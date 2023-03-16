@@ -9,12 +9,11 @@ To install pyramid, use the following script inside a Playground.
 ```st
 Metacello new
 	baseline: 'Pyramid';
-	repository: 'gitlab://gitlab.thalesdigital.io:smock/poc-bloc-editor:main';
+	repository: 'github://github.com/OpenSmock/Pyramid:main/src';
 	load.
-  
 ```
 
 
-Exemple can be found in the class `PyExample`.
+Exemple can be found in the class `PyExamples`.
 
 
