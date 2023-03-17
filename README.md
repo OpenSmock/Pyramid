@@ -9,7 +9,7 @@ To install pyramid, use the following script inside a Playground.
 ```st
 Metacello new
 	baseline: 'Pyramid';
-	repository: 'github://github.com/OpenSmock/Pyramid:main/src';
+	repository: 'github://OpenSmock/Pyramid:main/src';
 	load.
 ```
 
