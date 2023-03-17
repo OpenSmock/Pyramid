@@ -13,7 +13,9 @@ Metacello new
 	load.
 ```
 
-Exemple can be found in the class `PyExamples`.
+## Examples
+
+Examples can be found in the class `PyExamples`.
 
 ## Dependencies
 
