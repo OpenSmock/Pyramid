@@ -13,7 +13,13 @@ Metacello new
 	load.
 ```
 
-
 Exemple can be found in the class `PyExamples`.
 
+## Dependencies
 
+- [Bloc-Serialization](https://github.com/OpenSmock/Bloc-Serialization)
+- [Bloc](https://github.com/pharo-graphics/Bloc)
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
