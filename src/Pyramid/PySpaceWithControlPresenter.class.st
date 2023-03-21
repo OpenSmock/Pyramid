@@ -48,7 +48,25 @@ PySpaceWithControlPresenter >> initializeLayers [
 
 	self initializeEventRelocate.
 	self initializeEventSelection.
-	self initializeEventZoom
+	self initializeEventZoom.
+	self initializeMenu.
+]
+
+{ #category : #initialization }
+PySpaceWithControlPresenter >> initializeMenu [
+
+	viewPresenter contextMenu: (SpMenuPresenter new addGroup: [ :group |
+					   group addItem: [ :item | item name: 'Testing' ] ])
+]
+
+{ #category : #'as yet unclassified' }
+PySpaceWithControlPresenter >> methodSelectorAndArgumentNames [
+
+	self contextMenu: (SpMenuPresenter new addGroup: [ :group |
+					   group addItem: [ :item |
+							   item
+								   name: 'Browse method class';
+								   action: [ self methodClass browse ] ] ])
 ]
 
 { #category : #'as yet unclassified' }

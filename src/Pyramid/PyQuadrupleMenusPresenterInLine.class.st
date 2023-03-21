@@ -1,6 +1,6 @@
 Class {
 	#name : #PyQuadrupleMenusPresenterInLine,
-	#superclass : #PyEditorPresenterAbstract,
+	#superclass : #DeprecatedPyEditorPresenterAbstract,
 	#instVars : [
 		'openMenu',
 		'presenterCenter',

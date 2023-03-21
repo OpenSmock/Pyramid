@@ -1,6 +1,6 @@
 Class {
 	#name : #PyDoubleMenusPresenterAbstract,
-	#superclass : #PyEditorPresenterAbstract,
+	#superclass : #DeprecatedPyEditorPresenterAbstract,
 	#instVars : [
 		'openMenu',
 		'presenterCenter',
