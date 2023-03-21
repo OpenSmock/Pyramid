@@ -1,8 +1,8 @@
 Class {
 	#name : #PyPropertyStateIdentifierMemento,
 	#superclass : #PyPropertyStateIdentifier,
-	#traits : 'TPyMemento',
-	#classTraits : 'TPyMemento classTrait',
+	#traits : 'TPyMementoDeprecated',
+	#classTraits : 'TPyMementoDeprecated classTrait',
 	#category : #'Pyramid-test'
 }
 

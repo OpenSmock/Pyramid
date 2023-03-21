@@ -1,11 +1,12 @@
 Class {
 	#name : #PyMemento,
-	#superclass : #Object,
+	#superclass : #PyMementoAbstract,
+	#classTraits : 'TPyMemento classTrait',
 	#instVars : [
 		'element',
 		'command'
 	],
-	#category : #'Pyramid-test2'
+	#category : #'Pyramid-Core-Pipeline'
 }
 
 { #category : #accessing }
@@ -36,4 +37,12 @@ PyMemento >> element: aBlElement [
 PyMemento >> restore [
 
 	(self command arguments: self) executeOn: self element
+]
+
+{ #category : #'window management' }
+PyMemento >> restore: aPipeline [
+
+	aPipeline selection clear.
+	aPipeline selection add: self element.
+	aPipeline useCommand: (self command arguments: self).
 ]

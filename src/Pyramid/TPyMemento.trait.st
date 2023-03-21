@@ -1,7 +1,12 @@
 Trait {
 	#name : #TPyMemento,
 	#instVars : [
-		'element'
+		'background'
 	],
-	#category : #'Pyramid-test'
+	#category : #'Pyramid-Properties-Background'
 }
+
+{ #category : #'as yet unclassified' }
+TPyMemento >> restore [
+	^ self shouldBeImplemented
+]

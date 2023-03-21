@@ -1,7 +1,7 @@
 Class {
 	#name : #PyPropertyStateBackgroundMemento,
 	#superclass : #PyPropertyStateBackground,
-	#traits : 'TPyMemento',
-	#classTraits : 'TPyMemento classTrait',
+	#traits : 'TPyMementoDeprecated',
+	#classTraits : 'TPyMementoDeprecated classTrait',
 	#category : #'Pyramid-test'
 }

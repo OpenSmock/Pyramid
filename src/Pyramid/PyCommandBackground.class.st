@@ -10,8 +10,26 @@ PyCommandBackground >> executeOn: aBlElement [
 	aBlElement background: self arguments background
 ]
 
-{ #category : #'as yet unclassified' }
-PyCommandBackground >> stateOf: aBlElement for: aMemento [
+{ #category : #accessing }
+PyCommandBackground >> mementoClass [
 
-	aMemento background: aBlElement background
+	^ PyMementoBackgrounds 
+]
+
+{ #category : #printing }
+PyCommandBackground >> printOn: aStream [
+
+	super printOn: aStream.
+	aStream << 'Background'.
+
+	self arguments ifNil: [ ^ self ].
+	aStream nextPut: $(.
+	aStream print: self arguments background.
+	aStream nextPut: $)
+]
+
+{ #category : #'as yet unclassified' }
+PyCommandBackground >> stateOf: aBlElement for: aState [
+
+	aState background: aBlElement background
 ]
