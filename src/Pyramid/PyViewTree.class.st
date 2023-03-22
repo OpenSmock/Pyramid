@@ -63,6 +63,7 @@ PyViewTree >> pySelectionChanged [
 	self selectionChangedDesactivate.
 	self tree whenSelectionChangedDo: [ :selection |  ].
 	self tree selectItems: self selection elements.
+	self tree refresh.
 	self selectionChangedActivate
 ]
 

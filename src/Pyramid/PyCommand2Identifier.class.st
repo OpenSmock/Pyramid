@@ -1,17 +1,17 @@
 Class {
-	#name : #PyCommandIdentifier,
+	#name : #PyCommand2Identifier,
 	#superclass : #PyCommand2,
 	#category : #'Pyramid-test'
 }
 
 { #category : #'as yet unclassified' }
-PyCommandIdentifier class >> mementoClass [
+PyCommand2Identifier class >> mementoClass [
 
 	^ PyPropertyStateIdentifier
 ]
 
 { #category : #execution }
-PyCommandIdentifier >> executeOn: aBlElement [
+PyCommand2Identifier >> executeOn: aBlElement [
 
 	aBlElement id: self state identifier
 ]

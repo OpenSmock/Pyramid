@@ -7,8 +7,13 @@ Class {
 }
 
 { #category : #'as yet unclassified' }
-PyViewPropertyIdentification >> commandWith: aString [ 
-	self shouldBeImplemented.
+PyViewPropertyIdentification >> commandWith: aString [
+
+	| command args |
+	args := PyCommandIdentifierArgs new identifier: aString.
+	command := PyCommandIdentifier new.
+	command arguments: args.
+	^ command
 ]
 
 { #category : #'as yet unclassified' }

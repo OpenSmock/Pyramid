@@ -21,7 +21,8 @@ TPyViewProperty >> < aPyViewProperty [
 TPyViewProperty >> applyValue: aValue to: aPySelection [
 
 	self pipeline selection: aPySelection.
-	self pipeline useCommand: (self commandWith: aValue). 
+	self pipeline useCommand: (self commandWith: aValue).
+	self selection notifyObservers
 ]
 
 { #category : #'as yet unclassified' }
@@ -54,7 +55,7 @@ TPyViewProperty >> createMultipleSelectionPresenter [
 			                    action: [ :value |
 				                    self applyValue: value to: (PySelection new
 							                     add: each;
-							                     yourself) ];
+							                     yourself). self showPopover ];
 			                    yourself.
 
 		applyToAllButton := SpButtonPresenter new
@@ -64,7 +65,6 @@ TPyViewProperty >> createMultipleSelectionPresenter [
 				                    self
 					                    applyValue: elementPresenter currentValue
 					                    to: self selection.
-				                    self refreshPopover.
 				                    self showPopover ];
 			                    yourself.
 		globalLayout
@@ -148,7 +148,7 @@ TPyViewProperty >> initializePresenters [
 
 	singleLineForm enabled: false.
 	singleLineForm action: [ :value |
-		self applyValue: value to: self selection. self refreshPopover ]
+		self applyValue: value to: self selection ]
 ]
 
 { #category : #accessing }
@@ -196,13 +196,6 @@ TPyViewProperty >> pipeline: aPipeline [
 TPyViewProperty >> popover [
 
 	^ popover
-]
-
-{ #category : #'as yet unclassified' }
-TPyViewProperty >> refreshPopover [
-
-	popover dismiss.
-	popover := self createPopover
 ]
 
 { #category : #'as yet unclassified' }
