@@ -4,7 +4,7 @@ Class {
 	#instVars : [
 		'tree'
 	],
-	#category : #'Pyramid-Editor'
+	#category : #'Pyramid-ZZZ-Deprecated-Editor-Properties'
 }
 
 { #category : #opening }

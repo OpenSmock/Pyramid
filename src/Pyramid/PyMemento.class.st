@@ -6,7 +6,7 @@ Class {
 		'element',
 		'command'
 	],
-	#category : #'Pyramid-Core-Pipeline'
+	#category : #'Pyramid-Business'
 }
 
 { #category : #accessing }

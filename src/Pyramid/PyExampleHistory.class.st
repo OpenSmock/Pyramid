@@ -14,7 +14,7 @@ PyExampleHistory class >> example1 [
 	selection := PySelection new.
 	history := PyCommandHistory new.
 	command := PyCommandBackground new.
-	commandArgs := PyCommandBackgroundsArgs new.
+	commandArgs := PyCommandBackgroundArgs new.
 
 	command arguments: commandArgs.
 
@@ -49,7 +49,7 @@ PyExampleHistory class >> example2 [
 	pipeline selection: selection.
 
 	command := PyCommandBackground new.
-	commandArgs := PyCommandBackgroundsArgs new.
+	commandArgs := PyCommandBackgroundArgs new.
 	command arguments: commandArgs.
 
 	selection elements add: e1.

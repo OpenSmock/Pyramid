@@ -4,7 +4,7 @@ Class {
 	#instVars : [
 		'presenter'
 	],
-	#category : #'Pyramid-Deprecated'
+	#category : #'Pyramid-ZZZ-Deprecated'
 }
 
 { #category : #layout }

@@ -1,7 +1,7 @@
 Class {
 	#name : #PyCodeGenBuilder,
 	#superclass : #Object,
-	#category : #'Pyramid-test2'
+	#category : #'Pyramid-Business'
 }
 
 { #category : #accessing }

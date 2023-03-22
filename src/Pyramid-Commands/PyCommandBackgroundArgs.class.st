@@ -1,7 +1,7 @@
 Class {
-	#name : #PyCommandBackgroundsArgs,
+	#name : #PyCommandBackgroundArgs,
 	#superclass : #Object,
 	#traits : 'TPyPropertyBackground',
 	#classTraits : 'TPyPropertyBackground classTrait',
-	#category : #'Pyramid-test2'
+	#category : #'Pyramid-Commands-Background'
 }

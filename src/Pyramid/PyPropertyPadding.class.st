@@ -1,7 +1,7 @@
 Class {
 	#name : #PyPropertyPadding,
 	#superclass : #PyPropertyInsets,
-	#category : #'Pyramid-Editor-Properties'
+	#category : #'Pyramid-ZZZ-Deprecated-Editor-Properties'
 }
 
 { #category : #'as yet unclassified' }

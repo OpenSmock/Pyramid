@@ -1,7 +1,7 @@
 Class {
 	#name : #PyCommandBackground,
 	#superclass : #PyCommand,
-	#category : #'Pyramid-test2'
+	#category : #'Pyramid-Commands-Background'
 }
 
 { #category : #execution }
@@ -13,7 +13,7 @@ PyCommandBackground >> executeOn: aBlElement [
 { #category : #accessing }
 PyCommandBackground >> mementoClass [
 
-	^ PyMementoBackgrounds 
+	^ PyMementoBackground 
 ]
 
 { #category : #printing }

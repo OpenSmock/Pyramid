@@ -46,7 +46,7 @@ PyEditorPanelModel >> left: aBoolean [
 { #category : #notifying }
 PyEditorPanelModel >> notifyObservers [
 
-	observers do: [ :each | each triggerEvent: #pyEditorPanelModelChange ]
+	observers do: [ :each | each pyEditorPanelModelChange ]
 ]
 
 { #category : #accessing }

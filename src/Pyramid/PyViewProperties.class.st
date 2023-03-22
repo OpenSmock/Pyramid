@@ -1,53 +1,62 @@
 Class {
 	#name : #PyViewProperties,
-	#superclass : #PyViewAbstract,
-	#traits : 'PyBlocInput',
-	#classTraits : 'PyBlocInput classTrait',
+	#superclass : #SpPresenter,
+	#traits : 'TPyEditorPanelRight',
+	#classTraits : 'TPyEditorPanelRight classTrait',
 	#instVars : [
 		'properties'
 	],
-	#category : #'Pyramid-Deprecated'
+	#category : #'Pyramid-Editor-Side-Panel'
 }
 
-{ #category : #layout }
-PyViewProperties >> defaultLayout [
-
-	| default |
-	default := SpBoxLayout newTopToBottom spacing: 4.
-	properties do: [ :prop | 
-		default add: prop name expand: false.
-		prop presenter addOn: default ].
-	default add: self newNullPresenter expand: true.
-	^ default
-]
-
-{ #category : #initialization }
-PyViewProperties >> initializePresenters [
-
-	properties := { 
-		                    PyPropertyLocation new.
-		                    PyPropertySize new.
-		                    PyPropertyHeight new.
-		                    PyPropertyWidth new.
-		                    PyPropertyMargin new.
-		                    PyPropertyPadding new }
-]
-
 { #category : #accessing }
-PyViewProperties >> pageIcon [
+PyViewProperties class >> pageIcon [
 
 	^ self iconNamed: #edit
 ]
 
 { #category : #accessing }
-PyViewProperties >> pageTitle [
+PyViewProperties class >> pageTitle [
 
 	^ 'Properties'
 ]
 
-{ #category : #'as yet unclassified' }
-PyViewProperties >> receiveNewBlElement: aBlElement [
+{ #category : #initialization }
+PyViewProperties >> business: aBusiness [
 
-	aBlElement ifNil: [ ^ self ].
-	properties do: [ :each | each element: aBlElement ]
+	business := aBusiness.
+	business selection addObserver: self.
+	self properties do: [ :each | each pipeline: business pipeline.  each selection: business selection. ]
+]
+
+{ #category : #layout }
+PyViewProperties >> defaultLayout [
+
+	| defaultLayout |
+	defaultLayout := SpBoxLayout newVertical.
+	self properties do: [ :each | defaultLayout add: each expand: false ].
+	defaultLayout
+		add: (SpMorphPresenter new morph: (Morph new color: Color random))
+		expand: true;
+		yourself.
+	^ defaultLayout
+]
+
+{ #category : #accessing }
+PyViewProperties >> properties [
+
+	properties ifNil: [ properties := (TPyViewProperty users collect: [ :each | each new ]) asArray
+		  sort: [ :a :b | a < b ] ].
+	^ properties
+]
+
+{ #category : #'as yet unclassified' }
+PyViewProperties >> pySelectionChanged [
+	self properties do: [ :each | each selection: self selection ].
+]
+
+{ #category : #accessing }
+PyViewProperties >> selection [
+
+	^ self business selection
 ]

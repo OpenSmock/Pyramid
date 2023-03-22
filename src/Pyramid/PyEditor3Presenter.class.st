@@ -12,7 +12,7 @@ Class {
 		'tree4',
 		'navigationSave'
 	],
-	#category : #'Pyramid-Deprecated'
+	#category : #'Pyramid-ZZZ-Deprecated'
 }
 
 { #category : #opening }
@@ -110,29 +110,29 @@ PyEditor3Presenter >> initiliazeMenus [
 
 	| menu1 menu2 menu3 menu4 allMenus inputs outputs |
 	menu1 := { 
-		         (tree1 := PyViewTree new root: root).
-		         PyViewProperties new.
+		         (tree1 := PyViewTreeDeprecated new root: root).
+		         PyViewPropertiesDeprecated new.
 		         PyViewGeometry new.
 		         PyViewPreview new.
 		         PyViewPlayground new }.
 
 	menu2 := { 
-		         (tree2 := PyViewTree new root: root).
-		         PyViewProperties new.
+		         (tree2 := PyViewTreeDeprecated new root: root).
+		         PyViewPropertiesDeprecated new.
 		         PyViewGeometry new.
 		         PyViewPreview new.
 		         PyViewPlayground new }.
 
 	menu3 := { 
-		         (tree3 := PyViewTree new root: root).
-		         PyViewProperties new.
+		         (tree3 := PyViewTreeDeprecated new root: root).
+		         PyViewPropertiesDeprecated new.
 		         PyViewGeometry new.
 		         PyViewPreview new.
 		         PyViewPlayground new }.
 
 	menu4 := { 
-		         (tree4 := PyViewTree new root: root).
-		         PyViewProperties new.
+		         (tree4 := PyViewTreeDeprecated new root: root).
+		         PyViewPropertiesDeprecated new.
 		         PyViewGeometry new.
 		         PyViewPreview new.
 		         PyViewPlayground new }.

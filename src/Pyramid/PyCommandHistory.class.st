@@ -5,7 +5,7 @@ Class {
 		'mementos',
 		'historyPipeline'
 	],
-	#category : #'Pyramid-test2'
+	#category : #'Pyramid-Business'
 }
 
 { #category : #adding }

@@ -9,7 +9,7 @@ Class {
 		'formPresenter',
 		'blElement'
 	],
-	#category : #'Pyramid-Deprecated'
+	#category : #'Pyramid-ZZZ-Deprecated'
 }
 
 { #category : #'as yet unclassified' }

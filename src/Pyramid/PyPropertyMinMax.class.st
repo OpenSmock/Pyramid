@@ -1,7 +1,7 @@
 Class {
 	#name : #PyPropertyMinMax,
 	#superclass : #PyPropertyAbstract,
-	#category : #'Pyramid-Editor-Properties'
+	#category : #'Pyramid-ZZZ-Deprecated-Editor-Properties'
 }
 
 { #category : #testing }

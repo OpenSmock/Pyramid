@@ -1,23 +1,40 @@
 Class {
 	#name : #PySelection,
 	#superclass : #Object,
+	#traits : 'TPySelection',
+	#classTraits : 'TPySelection classTrait',
 	#instVars : [
 		'elements'
 	],
-	#category : #'Pyramid-test2'
+	#category : #'Pyramid-Business'
 }
 
 { #category : #adding }
-PySelection >> add: aBlElement [ 
-	
-	self elements add: aBlElement
+PySelection >> add: aBlElement [
 
+	self elements add: aBlElement.
+	self notifyObservers
+]
+
+{ #category : #adding }
+PySelection >> addAll: aCollection [
+
+	self elements addAll: aCollection.
+	self notifyObservers
 ]
 
 { #category : #accessing }
 PySelection >> clear [
 
 	self elements removeAll.
+	self notifyObservers
+]
+
+{ #category : #adding }
+PySelection >> clearThenAddAll: aCollection [
+	self elements removeAll.
+	self elements addAll: aCollection.
+	self notifyObservers
 ]
 
 { #category : #initialization }
@@ -35,6 +52,11 @@ PySelection >> getCurrentMementoFor: aCommand [
 	^ memento
 ]
 
+{ #category : #testing }
+PySelection >> ifEmpty: aFullBlockClosure [ 
+	self elements ifEmpty: aFullBlockClosure
+]
+
 { #category : #initialization }
 PySelection >> initialize [ 
 
@@ -42,8 +64,8 @@ PySelection >> initialize [
 ]
 
 { #category : #accessing }
-PySelection >> mementos [
-	self shouldBeImplemented.
+PySelection >> size [
+	^ self elements size
 ]
 
 { #category : #'as yet unclassified' }

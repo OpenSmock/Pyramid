@@ -10,7 +10,7 @@ Class {
 		'presenter4',
 		'navigation'
 	],
-	#category : #'Pyramid-Deprecated'
+	#category : #'Pyramid-ZZZ-Deprecated'
 }
 
 { #category : #testing }

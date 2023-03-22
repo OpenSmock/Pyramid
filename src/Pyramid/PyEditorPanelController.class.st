@@ -19,6 +19,18 @@ PyEditorPanelController >> closeRight [
 	self model right: false
 ]
 
+{ #category : #YannLEGOFF }
+PyEditorPanelController >> inverseLeft [
+
+	self model left: self model isLeftOpen not
+]
+
+{ #category : #YannLEGOFF }
+PyEditorPanelController >> inverseRight [
+	
+	self model right: self model isRightOpen not
+]
+
 { #category : #accessing }
 PyEditorPanelController >> model [
 

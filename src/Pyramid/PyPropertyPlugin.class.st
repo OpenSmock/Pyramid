@@ -5,7 +5,7 @@ Class {
 		'commandClass',
 		'mementoClass'
 	],
-	#category : #'Pyramid-test2'
+	#category : #'Pyramid-Business'
 }
 
 { #category : #'as yet unclassified' }

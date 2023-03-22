@@ -9,7 +9,7 @@ Class {
 		'property',
 		'preview'
 	],
-	#category : #'Pyramid-Editor-Properties'
+	#category : #'Pyramid-ZZZ-Deprecated-Editor-Properties'
 }
 
 { #category : #testing }

@@ -1,7 +1,7 @@
 Class {
 	#name : #PyCommandLogger,
 	#superclass : #PyWorkerAbstract,
-	#category : #'Pyramid-test2'
+	#category : #'Pyramid-Business'
 }
 
 { #category : #'menu messages' }

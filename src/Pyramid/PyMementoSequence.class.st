@@ -5,7 +5,7 @@ Class {
 	#instVars : [
 		'mementos'
 	],
-	#category : #'Pyramid-Core-Pipeline'
+	#category : #'Pyramid-Business'
 }
 
 { #category : #accessing }

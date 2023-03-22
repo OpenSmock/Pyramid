@@ -5,7 +5,7 @@ Class {
 		'browser',
 		'presenter'
 	],
-	#category : #'Pyramid-Deprecated'
+	#category : #'Pyramid-ZZZ-Deprecated'
 }
 
 { #category : #layout }

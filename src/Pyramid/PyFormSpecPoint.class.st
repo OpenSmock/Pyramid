@@ -10,7 +10,7 @@ Class {
 		'labelX',
 		'labelY'
 	],
-	#category : #'Pyramid-Editor-Properties'
+	#category : #'Pyramid-ZZZ-Deprecated-Editor-Properties'
 }
 
 { #category : #'instance creation' }

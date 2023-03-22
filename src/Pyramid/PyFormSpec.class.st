@@ -1,7 +1,7 @@
 Class {
 	#name : #PyFormSpec,
 	#superclass : #SpPresenter,
-	#category : #'Pyramid-Editor-Properties'
+	#category : #'Pyramid-ZZZ-Deprecated-Editor-Properties'
 }
 
 { #category : #activation }

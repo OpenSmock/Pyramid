@@ -5,7 +5,7 @@ Class {
 		'workers',
 		'selection'
 	],
-	#category : #'Pyramid-test2'
+	#category : #'Pyramid-Business'
 }
 
 { #category : #'as yet unclassified' }

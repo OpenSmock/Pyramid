@@ -1,7 +1,7 @@
 Class {
-	#name : #PyMementoBackgrounds,
+	#name : #PyMementoBackground,
 	#superclass : #PyMemento,
 	#traits : 'TPyPropertyBackground',
 	#classTraits : 'TPyPropertyBackground classTrait',
-	#category : #'Pyramid-test2'
+	#category : #'Pyramid-Commands-Background'
 }

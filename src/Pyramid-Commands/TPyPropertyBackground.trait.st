@@ -3,7 +3,7 @@ Trait {
 	#instVars : [
 		'background'
 	],
-	#category : #'Pyramid-test2'
+	#category : #'Pyramid-Commands-Background'
 }
 
 { #category : #accessing }

@@ -12,7 +12,7 @@ Class {
 		'tree4',
 		'navigationSave'
 	],
-	#category : #'Pyramid-Deprecated'
+	#category : #'Pyramid-ZZZ-Deprecated'
 }
 
 { #category : #opening }

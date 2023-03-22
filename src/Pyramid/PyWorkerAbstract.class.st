@@ -1,7 +1,7 @@
 Class {
 	#name : #PyWorkerAbstract,
 	#superclass : #Object,
-	#category : #'Pyramid-test2'
+	#category : #'Pyramid-Business'
 }
 
 { #category : #testing }
