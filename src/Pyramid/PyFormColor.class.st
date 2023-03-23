@@ -68,6 +68,14 @@ PyFormColor >> colorPickerButton [
 	^ colorPickerButton
 ]
 
+{ #category : #'as yet unclassified' }
+PyFormColor >> convertBackgroundAsColor: aBlBackground [ 
+
+	(aBlBackground isKindOf: Color) ifTrue: [ ^ aBlBackground ].
+	aBlBackground isTransparent ifTrue: [ ^ Color transparent ].
+	^ aBlBackground paint color
+]
+
 { #category : #accessing }
 PyFormColor >> currentValue [
 
@@ -75,7 +83,10 @@ PyFormColor >> currentValue [
 ]
 
 { #category : #accessing }
-PyFormColor >> currentValue: aColor [
+PyFormColor >> currentValue: aBackground [
+
+	| aColor |
+	aColor := self convertBackgroundAsColor: aBackground.
 
 	self changeMorphColor: aColor.
 	self textInput text: (self hexStringWithAlphaFrom: aColor).
@@ -98,6 +109,18 @@ PyFormColor >> defaultLayout [
 				  height: 24 ];
 		  add: self textInput expand: true;
 		  yourself
+]
+
+{ #category : #'as yet unclassified' }
+PyFormColor >> differentsValue [
+
+	self textInput text: self defaultMixedText
+]
+
+{ #category : #'as yet unclassified' }
+PyFormColor >> emptyValue [
+
+	self textInput text: self defaultEmptyText
 ]
 
 { #category : #accessing }

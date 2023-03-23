@@ -1,8 +1,8 @@
 Class {
 	#name : #PyEditorPresenter,
 	#superclass : #SpPresenter,
-	#traits : 'TPyEditorPanelModelObserver + TPyramidBusinessUser',
-	#classTraits : 'TPyEditorPanelModelObserver classTrait + TPyramidBusinessUser classTrait',
+	#traits : 'TPyramidBusinessUser + TPyEditorPanelModelObserver',
+	#classTraits : 'TPyramidBusinessUser classTrait + TPyEditorPanelModelObserver classTrait',
 	#instVars : [
 		'panelTop',
 		'panelLeft',
@@ -68,11 +68,29 @@ PyEditorPresenter >> initializePresenters [
 	panelTop := PyPanelTop new
 		            model: self model;
 		            controller: self controller;
-		            pyEditorPanelModelChange;
 		            yourself.
 	panelCenter := PyPanelCenter new.
 	panelLeft := PyPanelLeft new.
 	panelRight := PyPanelRight new
+]
+
+{ #category : #initialization }
+PyEditorPresenter >> model: aModel [
+
+	model := aModel.
+	model addObserver: self.
+
+	self when: #pyEditorPanelModelChange evaluate: [
+		self modelChanged ]
+]
+
+{ #category : #initialization }
+PyEditorPresenter >> modelChanged [
+
+	| strategy |
+	strategy := self strategyFromModel.
+	self layout: self defaultLayout
+	
 ]
 
 { #category : #accessing }

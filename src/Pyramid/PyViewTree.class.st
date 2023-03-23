@@ -1,8 +1,8 @@
 Class {
 	#name : #PyViewTree,
 	#superclass : #SpPresenter,
-	#traits : 'TPyEditorPanelLeft',
-	#classTraits : 'TPyEditorPanelLeft classTrait',
+	#traits : 'TPyEditorPanelLeft + TPySelectionObserver',
+	#classTraits : 'TPyEditorPanelLeft classTrait + TPySelectionObserver classTrait',
 	#instVars : [
 		'tree'
 	],
@@ -25,13 +25,35 @@ PyViewTree class >> pageTitle [
 PyViewTree >> business: aBusiness [
 
 	business := aBusiness.
-	business selection addObserver: self
+	self roots: business roots.
+	business selection addObserver: self.
 ]
 
-{ #category : #api }
+{ #category : #accessing }
 PyViewTree >> contextMenu [
-	^ SpMenuPresenter new addGroup: [ :group |
-					group addItem: [ :item | item name: tree selectedItem asString ] ]
+
+	| menu |
+	menu := SpMenuPresenter new.
+	menu addGroup: [ :group |
+		group addItem: [ :item |
+			item
+				name: 'inspect';
+				action: [ tree selectedItem inspect ];
+				icon: (self iconNamed: #glamorousInspect);
+				yourself ] ].
+	menu addGroup: [ :group |
+		group addItem: [ :item |
+			item
+				name: 'Copy shape';
+				shortcut: $c ctrl;
+				icon: (self iconNamed: #smallCopy);
+				yourself ].
+		group addItem: [ :item |
+			item
+				name: 'Export as png';
+				icon: (self iconNamed: #smallScreenshot);
+				yourself ] ].
+	^ menu
 ]
 
 { #category : #layout }
@@ -49,10 +71,10 @@ PyViewTree >> initializePresenters [
 	tree
 		beMultipleSelection;
 		roots: self roots;
-		children: [ :anElement | anElement children ];
-		"displayIcon: [ :anElement | self iconNamed: aClass systemIconName ];"
-		display: [ :anElement | anElement printString ];
-		contextMenu: [ self contextMenu ].
+		display: [ :each | each printString ];
+		children: [ :each | each children ];
+		contextMenu: [ self contextMenu ];
+		expandRoots.
 
 	self selectionChangedActivate
 ]
@@ -61,7 +83,6 @@ PyViewTree >> initializePresenters [
 PyViewTree >> pySelectionChanged [
 
 	self selectionChangedDesactivate.
-	self tree whenSelectionChangedDo: [ :selection |  ].
 	self tree selectItems: self selection elements.
 	self tree refresh.
 	self selectionChangedActivate
@@ -70,32 +91,41 @@ PyViewTree >> pySelectionChanged [
 { #category : #accessing }
 PyViewTree >> roots [
 
-	^ { BlElement new . BlElement new . BlElement new . BlElement new }
+	self business ifNil: [ ^ {  } ].
+	^ self business roots elements
+]
+
+{ #category : #api }
+PyViewTree >> roots: aPyRoots [
+
+	self tree roots: aPyRoots elements
 ]
 
 { #category : #accessing }
 PyViewTree >> selection [
 
-	^ business selection
+	^ self business selection
+]
+
+{ #category : #accessing }
+PyViewTree >> selection: aPySelection [
+
+	Error signal: 'PyTree should not set is selection like this. Use a business to change selection.'
 ]
 
 { #category : #'as yet unclassified' }
-PyViewTree >> selectionChangedActivate [.
+PyViewTree >> selectionChangedActivate [
+
 	self tree whenSelectionChangedDo: [ :selection |
-		self selectionChangedFromTree: selection ]
+		self selection removeObserver: self.
+		self selection clearThenAddAll: selection selectedItems.
+		self selection addObserver: self. ]
 ]
 
 { #category : #'as yet unclassified' }
-PyViewTree >> selectionChangedDesactivate [.
+PyViewTree >> selectionChangedDesactivate [
+
 	self tree whenSelectionChangedDo: [ :selection |  ].
-]
-
-{ #category : #'event handling' }
-PyViewTree >> selectionChangedFromTree: aSelection [
-
-	self selection removeObserver: self.
-	self selection clearThenAddAll: aSelection selectedItems.
-	self selection addObserver: self
 ]
 
 { #category : #accessing }

@@ -33,20 +33,18 @@ PyViewProperties >> business: aBusiness [
 PyViewProperties >> defaultLayout [
 
 	| defaultLayout |
-	defaultLayout := SpBoxLayout newVertical.
-	self properties do: [ :each | defaultLayout add: each expand: false ].
-	defaultLayout
-		add: (SpMorphPresenter new morph: (Morph new color: Color random))
-		expand: true;
-		yourself.
+	defaultLayout := SpBoxLayout newTopToBottom spacing: 4.
+	self properties do: [ :each | defaultLayout add: each view expand: false ].
+	defaultLayout add: self newNullPresenter expand: true.
 	^ defaultLayout
 ]
 
 { #category : #accessing }
 PyViewProperties >> properties [
 
-	properties ifNil: [ properties := (TPyViewProperty users collect: [ :each | each new ]) asArray
-		  sort: [ :a :b | a < b ] ].
+	properties ifNil: [
+		properties := (TPyPropertyChanger users collect: [ :each | each new ])
+			              asArray sorted ].
 	^ properties
 ]
 
@@ -55,8 +53,14 @@ PyViewProperties >> pySelectionChanged [
 	self properties do: [ :each | each selection: self selection ].
 ]
 
+{ #category : #'as yet unclassified' }
+PyViewProperties >> receiveNewBlElement: aBlElement [
+
+	aBlElement ifNil: [ ^ self ].
+	properties do: [ :each | each element: aBlElement ]
+]
+
 { #category : #accessing }
 PyViewProperties >> selection [
-
-	^ self business selection
+	 ^ self business selection
 ]

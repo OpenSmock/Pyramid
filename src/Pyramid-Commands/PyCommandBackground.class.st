@@ -1,19 +1,13 @@
 Class {
 	#name : #PyCommandBackground,
 	#superclass : #PyCommand,
-	#category : #'Pyramid-Commands-Background'
+	#category : #'Pyramid-Commands-AllCommands'
 }
 
 { #category : #execution }
 PyCommandBackground >> executeOn: aBlElement [
 
-	aBlElement background: self arguments background
-]
-
-{ #category : #accessing }
-PyCommandBackground >> mementoClass [
-
-	^ PyMementoBackground 
+	aBlElement background: self arguments value
 ]
 
 { #category : #printing }
@@ -24,12 +18,12 @@ PyCommandBackground >> printOn: aStream [
 
 	self arguments ifNil: [ ^ self ].
 	aStream nextPut: $(.
-	aStream print: self arguments background.
+	aStream print: self arguments value.
 	aStream nextPut: $)
 ]
 
 { #category : #'as yet unclassified' }
 PyCommandBackground >> stateOf: aBlElement for: aState [
 
-	aState background: aBlElement background
+	aState value: aBlElement background
 ]

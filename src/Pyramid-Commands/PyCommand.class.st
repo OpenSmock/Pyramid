@@ -4,7 +4,7 @@ Class {
 	#instVars : [
 		'args'
 	],
-	#category : #'Pyramid-Business'
+	#category : #'Pyramid-Commands-AllCommands'
 }
 
 { #category : #'as yet unclassified' }
@@ -32,16 +32,10 @@ PyCommand >> executeOn: aBlElement [
 ]
 
 { #category : #'as yet unclassified' }
-PyCommand >> mementoClass [
-
-	^ self shouldBeImplemented 
-]
-
-{ #category : #'as yet unclassified' }
 PyCommand >> mementoFor: aBlElement [
 
 	| memento |
-	memento := self mementoClass new.
+	memento := PyMemento new.
 	memento
 		element: aBlElement;
 		command: self class new.

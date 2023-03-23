@@ -6,15 +6,6 @@ Trait {
 }
 
 { #category : #converting }
-TPyEditorPanelSide classSide >> asNotebookPage [
-
-	^ SpNotebookPage
-		  title: self pageTitle
-		  icon: self pageIcon
-		  provider: [ self new ]
-]
-
-{ #category : #converting }
 TPyEditorPanelSide >> asNotebookPage [
 
 	^ SpNotebookPage

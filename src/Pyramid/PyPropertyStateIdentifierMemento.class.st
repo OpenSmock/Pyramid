@@ -9,7 +9,7 @@ Class {
 { #category : #'as yet unclassified' }
 PyPropertyStateIdentifierMemento >> commandClass [
 
-	^ PyCommand2Identifier
+	^ PyCommandIdentifier
 ]
 
 { #category : #'as yet unclassified' }

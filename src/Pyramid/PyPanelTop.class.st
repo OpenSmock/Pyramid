@@ -1,17 +1,27 @@
 Class {
 	#name : #PyPanelTop,
 	#superclass : #SpPresenter,
-	#traits : 'TPyEditorPanelModelObserver + TPyramidBusinessUser',
-	#classTraits : 'TPyEditorPanelModelObserver classTrait + TPyramidBusinessUser classTrait',
+	#traits : 'TPyramidBusinessUser',
+	#classTraits : 'TPyramidBusinessUser classTrait',
 	#instVars : [
 		'controller',
-		'menuLeft',
 		'menuRight',
 		'pluggins',
-		'model'
+		'menuLeft',
+		'model',
+		'viewsLeft',
+		'viewsRight'
 	],
 	#category : #'Pyramid-Editor'
 }
+
+{ #category : #initialization }
+PyPanelTop >> business: aBusiness [
+
+	business := aBusiness.
+	self viewsLeft do: [ :each | each business: aBusiness ].
+	self viewsRight do: [ :each | each business: aBusiness ]
+]
 
 { #category : #accessing }
 PyPanelTop >> controller [
@@ -28,14 +38,10 @@ PyPanelTop >> controller: aPyEditorPanelController [
 PyPanelTop >> defaultLayout [
 
 	| defaultLayout |
-	defaultLayout := SpBoxLayout newLeftToRight.
-	defaultLayout add: self menuLeft withConstraints: [ :c |
-		c height: 40.
-		c width: 40 ].
-	defaultLayout add: SpNullPresenter new expand: true fill: true.
-	defaultLayout add: self menuRight withConstraints: [ :c |
-		c height: 40.
-		c width: 40 ].
+	defaultLayout := SpBoxLayout newLeftToRight spacing: 4.
+	PyTopPanelHelper addButton: self menuLeft toLayout: defaultLayout.
+	self layoutExtension: defaultLayout.
+	PyTopPanelHelper addButton: self menuRight toLayout: defaultLayout.
 	^ defaultLayout
 ]
 
@@ -49,7 +55,15 @@ PyPanelTop >> initializePresenters [
 
 	menuRight := self newButton.
 	menuRight icon: (self iconNamed: #solidMenu).
-	menuRight action: [ self controller inverseRight ]
+	menuLeft action: [ self controller inverseRight ]
+]
+
+{ #category : #'as yet unclassified' }
+PyPanelTop >> layoutExtension: aLayout [
+
+	self viewsLeft do: [ :each | aLayout add: each expand: false ].
+	aLayout add: SpNullPresenter new expand: true.
+	self viewsRight do: [ :each | aLayout add: each expand: false ].
 ]
 
 { #category : #accessing }
@@ -63,6 +77,33 @@ PyPanelTop >> menuRight [
 	^ menuRight
 ]
 
+{ #category : #'as yet unclassified' }
+PyPanelTop >> model [
+
+	^ model
+]
+
+{ #category : #'as yet unclassified' }
+PyPanelTop >> model: aModel [
+
+	model := aModel.
+	model addObserver: self.
+
+	self when: #pyEditorPanelModelChange evaluate: [
+		self modelChanged ]
+]
+
+{ #category : #'accessing - structure variables' }
+PyPanelTop >> modelChanged [
+
+	self model isLeftOpen
+		ifTrue: [ self menuLeft color: (Color fromHexString: #afd5fa) ]
+		ifFalse: [ self menuLeft color: (Color fromHexString: #e6e6e6) ].
+	self model isRightOpen
+		ifTrue: [ self menuRight color: (Color fromHexString: #afd5fa) ]
+		ifFalse: [ self menuRight color: (Color fromHexString: #e6e6e6) ]
+]
+
 { #category : #initialization }
 PyPanelTop >> pyEditorPanelModelChange [
 
@@ -72,4 +113,22 @@ PyPanelTop >> pyEditorPanelModelChange [
 	self model isRightOpen
 		ifTrue: [ self menuRight color: (Color fromHexString: #afd5fa) ]
 		ifFalse: [ self menuRight color: (Color fromHexString: #e6e6e6) ]
+]
+
+{ #category : #accessing }
+PyPanelTop >> viewsLeft [
+
+	viewsLeft ifNil: [
+		viewsLeft := (TPyEditorPanelTopLeft users collect: [ :class |
+			              class new ]) asArray sorted ].
+	^ viewsLeft
+]
+
+{ #category : #accessing }
+PyPanelTop >> viewsRight [
+
+	viewsRight ifNil: [
+		viewsRight := (TPyEditorPanelTopRight users collect: [ :class |
+			               class new ]) asArray sorted ].
+	^ viewsRight
 ]

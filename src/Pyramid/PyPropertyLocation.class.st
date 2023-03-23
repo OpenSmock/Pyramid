@@ -30,3 +30,12 @@ PyPropertyLocation >> name [
 
 	^ 'Position'
 ]
+
+{ #category : #accessing }
+PyPropertyLocation >> pipeline: aPyPipeline [ 
+
+]
+
+{ #category : #accessing }
+PyPropertyLocation >> selection: aPySelection [ 
+]

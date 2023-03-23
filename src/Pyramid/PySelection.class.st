@@ -63,6 +63,17 @@ PySelection >> initialize [
 	elements := OrderedCollection new.
 ]
 
+{ #category : #testing }
+PySelection >> isEmpty [
+
+	^ self elements isEmpty 
+]
+
+{ #category : #accessing }
+PySelection >> mementos [
+	self shouldBeImplemented.
+]
+
 { #category : #accessing }
 PySelection >> size [
 	^ self elements size

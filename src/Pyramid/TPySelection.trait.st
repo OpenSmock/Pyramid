@@ -28,5 +28,5 @@ TPySelection >> observers [
 { #category : #adding }
 TPySelection >> removeObserver: anObserver [
 
-	self observers remove: anObserver
+	self observers remove: anObserver ifAbsent: [  ]
 ]

@@ -34,3 +34,12 @@ PyPropertySize >> name [
 
 	^ 'Size'
 ]
+
+{ #category : #accessing }
+PyPropertySize >> pipeline: aPyPipeline [ 
+]
+
+{ #category : #accessing }
+PyPropertySize >> selection: aPySelection [ 
+
+]

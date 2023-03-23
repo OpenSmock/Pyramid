@@ -31,6 +31,28 @@ PyFormAbstract >> currentValue: anObject [
 	self shouldBeImplemented
 ]
 
+{ #category : #'as yet unclassified' }
+PyFormAbstract >> defaultEmptyText [
+	^ 'No element'
+]
+
+{ #category : #private }
+PyFormAbstract >> defaultMixedText [
+
+	^ '# Mixed values'
+]
+
+{ #category : #'as yet unclassified' }
+PyFormAbstract >> differentsValue [
+	self shouldBeImplemented
+]
+
+{ #category : #'as yet unclassified' }
+PyFormAbstract >> emptyValue [
+
+	self shouldBeImplemented
+]
+
 { #category : #accessing }
 PyFormAbstract >> enabled: aBoolean [
 

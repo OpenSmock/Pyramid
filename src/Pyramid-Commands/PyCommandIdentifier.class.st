@@ -1,19 +1,19 @@
 Class {
 	#name : #PyCommandIdentifier,
 	#superclass : #PyCommand,
-	#category : #'Pyramid-Commands-Identifier'
+	#category : #'Pyramid-Commands-AllCommands'
 }
+
+{ #category : #'as yet unclassified' }
+PyCommandIdentifier class >> mementoClass [
+
+	^ PyPropertyStateIdentifier
+]
 
 { #category : #execution }
 PyCommandIdentifier >> executeOn: aBlElement [
 
-	aBlElement id: self arguments identifier
-]
-
-{ #category : #accessing }
-PyCommandIdentifier >> mementoClass [
-
-	^ PyMementoIdentifier
+	aBlElement id: self arguments value
 ]
 
 { #category : #printing }
@@ -24,12 +24,12 @@ PyCommandIdentifier >> printOn: aStream [
 
 	self arguments ifNil: [ ^ self ].
 	aStream nextPut: $(.
-	aStream print: self arguments identifier.
+	aStream print: self arguments value.
 	aStream nextPut: $)
 ]
 
 { #category : #'as yet unclassified' }
 PyCommandIdentifier >> stateOf: aBlElement for: aState [
 
-	aState identifier: aBlElement id
+	aState value: aBlElement id
 ]

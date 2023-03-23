@@ -1,10 +1,10 @@
 Class {
 	#name : #PyMemento,
 	#superclass : #PyMementoAbstract,
-	#classTraits : 'TPyMemento classTrait',
 	#instVars : [
 		'element',
-		'command'
+		'command',
+		'value'
 	],
 	#category : #'Pyramid-Business'
 }
@@ -45,4 +45,15 @@ PyMemento >> restore: aPipeline [
 	aPipeline selection clear.
 	aPipeline selection add: self element.
 	aPipeline useCommand: (self command arguments: self).
+]
+
+{ #category : #'as yet unclassified' }
+PyMemento >> value [
+	^ value
+]
+
+{ #category : #accessing }
+PyMemento >> value: anObject [
+
+	value := anObject
 ]

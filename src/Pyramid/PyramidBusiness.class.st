@@ -7,15 +7,28 @@ Class {
 		'history',
 		'pipeline',
 		'executor',
-		'logger'
+		'logger',
+		'roots'
 	],
 	#category : #'Pyramid-Business'
 }
+
+{ #category : #'as yet unclassified' }
+PyramidBusiness >> defaultRoots [
+
+	^ {
+		BlElement new.
+		BlElement new.
+		BlElement new.
+		BlElement new }
+]
 
 { #category : #initialization }
 PyramidBusiness >> initialize [
 
 	presenter := PyEditorPresenter new.
+	roots := PyRoots new.
+	roots addAll: self defaultRoots.
 
 	selection := PySelection new.
 	history := PyCommandHistory new.
@@ -44,6 +57,11 @@ PyramidBusiness >> pipeline [
 { #category : #accessing }
 PyramidBusiness >> presenter [
 	^ presenter
+]
+
+{ #category : #accessing }
+PyramidBusiness >> roots [
+	^ roots
 ]
 
 { #category : #accessing }
