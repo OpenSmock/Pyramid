@@ -74,6 +74,13 @@ PySelection >> mementos [
 	self shouldBeImplemented.
 ]
 
+{ #category : #printing }
+PySelection >> printOn: aStream [
+
+	super printOn: aStream.
+	aStream << '(' << self size printString << ')'
+]
+
 { #category : #accessing }
 PySelection >> size [
 	^ self elements size
