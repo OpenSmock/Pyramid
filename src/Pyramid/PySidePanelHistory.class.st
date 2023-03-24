@@ -4,7 +4,8 @@ Class {
 	#traits : 'TPyEditorPanelRight',
 	#classTraits : 'TPyEditorPanelRight classTrait',
 	#instVars : [
-		'properties'
+		'properties',
+		'plugin'
 	],
 	#category : #'Pyramid-Plugin-History'
 }
@@ -19,6 +20,13 @@ PySidePanelHistory class >> pageIcon [
 PySidePanelHistory class >> pageTitle [
 
 	^ 'History'
+]
+
+{ #category : #initialization }
+PySidePanelHistory >> business: aBusiness [
+
+	business := aBusiness.
+	plugin := aBusiness getPlugin: PyPluginHistory.
 ]
 
 { #category : #layout }

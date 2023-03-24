@@ -5,10 +5,18 @@ Class {
 	#classTraits : 'TPyEditorPanelTopLeft classTrait',
 	#instVars : [
 		'undoButton',
-		'redoButton'
+		'redoButton',
+		'plugin'
 	],
 	#category : #'Pyramid-Plugin-History'
 }
+
+{ #category : #initialization }
+PyTopPanelHistory >> business: aBusiness [
+
+	business := aBusiness.
+	plugin := aBusiness getPlugin: PyPluginHistory
+]
 
 { #category : #layout }
 PyTopPanelHistory >> defaultLayout [
