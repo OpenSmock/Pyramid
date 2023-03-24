@@ -1,5 +1,5 @@
 Class {
 	#name : #PyControllerStrategyDefault,
 	#superclass : #PyControllerStrategy,
-	#category : #'Pyramid-Examples'
+	#category : #'Pyramid-Events'
 }

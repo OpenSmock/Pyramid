@@ -1,7 +1,7 @@
 Class {
 	#name : #PyExamples,
 	#superclass : #Object,
-	#category : #'Pyramid-Examples'
+	#category : #'Pyramid-YYY-Examples'
 }
 
 { #category : #'bloc-STON' }

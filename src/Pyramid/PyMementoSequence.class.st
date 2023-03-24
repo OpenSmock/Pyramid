@@ -1,11 +1,10 @@
 Class {
 	#name : #PyMementoSequence,
 	#superclass : #PyMementoAbstract,
-	#classTraits : 'TPyMemento classTrait',
 	#instVars : [
 		'mementos'
 	],
-	#category : #'Pyramid-Business'
+	#category : #'Pyramid-Plugin-History'
 }
 
 { #category : #accessing }

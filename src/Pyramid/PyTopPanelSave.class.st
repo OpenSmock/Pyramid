@@ -3,6 +3,10 @@ Class {
 	#superclass : #SpPresenter,
 	#traits : 'TPyEditorPanelTopLeft',
 	#classTraits : 'TPyEditorPanelTopLeft classTrait',
+	#instVars : [
+		'saveButton',
+		'selectionButton'
+	],
 	#category : #'Pyramid-Editor-Panels-Top'
 }
 

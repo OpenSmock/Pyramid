@@ -1,5 +1,5 @@
 Class {
-	#name : #PyViewProperty,
+	#name : #PyPropertyView,
 	#superclass : #SpPresenter,
 	#traits : 'TPySelectionObserver',
 	#classTraits : 'TPySelectionObserver classTrait',
@@ -13,25 +13,25 @@ Class {
 		'popover',
 		'sectionLabel'
 	],
-	#category : #'Pyramid-Editor-Properties'
+	#category : #'Pyramid-Editor-Panels-Properties'
 }
 
 { #category : #accessing }
-PyViewProperty >> controller [
+PyPropertyView >> controller [
 
 	controller ifNil: [
-		Error signal: 'Do not use me without a controller' ].
+		PyMissingControllerError signal: 'a PyControllerProperty is needed.' ].
 	^ controller
 ]
 
 { #category : #accessing }
-PyViewProperty >> controller: aPyControllerProperty [
+PyPropertyView >> controller: aPyControllerProperty [
 
 	controller := aPyControllerProperty
 ]
 
 { #category : #'as yet unclassified' }
-PyViewProperty >> createEditButton [
+PyPropertyView >> createEditButton [
 
 	^ SpButtonPresenter new
 		  icon: (self iconNamed: #edit);
@@ -42,7 +42,7 @@ PyViewProperty >> createEditButton [
 ]
 
 { #category : #'as yet unclassified' }
-PyViewProperty >> createMultiForm [
+PyPropertyView >> createMultiForm [
 
 	| globalLayout |
 	globalLayout := SpBoxLayout newVertical spacing: 4.
@@ -83,7 +83,7 @@ PyViewProperty >> createMultiForm [
 ]
 
 { #category : #'as yet unclassified' }
-PyViewProperty >> createPopover [
+PyPropertyView >> createPopover [
 
 	^ SpPopoverPresenter new
 		  borderColor: Color black;
@@ -104,7 +104,7 @@ PyViewProperty >> createPopover [
 ]
 
 { #category : #'as yet unclassified' }
-PyViewProperty >> createSectionLabel [
+PyPropertyView >> createSectionLabel [
 
 	^ SpLabelPresenter new
 		  label: self sectionNameFull;
@@ -112,13 +112,13 @@ PyViewProperty >> createSectionLabel [
 ]
 
 { #category : #'as yet unclassified' }
-PyViewProperty >> createSingleForm [
+PyPropertyView >> createSingleForm [
 
 	^ PyFormVoid new
 ]
 
 { #category : #'as yet unclassified' }
-PyViewProperty >> defaultLayout [
+PyPropertyView >> defaultLayout [
 
 	^ SpBoxLayout newVertical
 		  add: self sectionLabel;
@@ -134,13 +134,13 @@ PyViewProperty >> defaultLayout [
 ]
 
 { #category : #accessing }
-PyViewProperty >> editButton [
+PyPropertyView >> editButton [
 
 	^ editButton
 ]
 
 { #category : #accessing }
-PyViewProperty >> initializePresenters [
+PyPropertyView >> initializePresenters [
 
 	editButton := self createEditButton.
 	singleForm := self createSingleForm.
@@ -149,93 +149,93 @@ PyViewProperty >> initializePresenters [
 ]
 
 { #category : #'as yet unclassified' }
-PyViewProperty >> multiFormClass [ 
+PyPropertyView >> multiFormClass [ 
 
 	^ mutliFormClass
 ]
 
 { #category : #'as yet unclassified' }
-PyViewProperty >> mutliFormClass: aClass [
+PyPropertyView >> mutliFormClass: aClass [
 
 	mutliFormClass := aClass
 ]
 
 { #category : #initialization }
-PyViewProperty >> popover [
+PyPropertyView >> popover [
 
 	^ popover
 ]
 
 { #category : #'as yet unclassified' }
-PyViewProperty >> popoverHide [
+PyPropertyView >> popoverHide [
 	self popover dismiss.
 ]
 
 { #category : #'as yet unclassified' }
-PyViewProperty >> popoverShow [
+PyPropertyView >> popoverShow [
 
 	self popover popup
 ]
 
 { #category : #'as yet unclassified' }
-PyViewProperty >> pySelectionChanged [
+PyPropertyView >> pySelectionChanged [
 
 	self updateSectionComplement 
 ]
 
 { #category : #'as yet unclassified' }
-PyViewProperty >> sectionComplement [
+PyPropertyView >> sectionComplement [
 	
 	sectionComplement ifNil: [ sectionComplement := 'sectionComplement' ].
 	^ sectionComplement
 ]
 
 { #category : #accessing }
-PyViewProperty >> sectionComplement: aString [
+PyPropertyView >> sectionComplement: aString [
 
 	sectionComplement := aString.
 	self updateSectionLabel
 ]
 
 { #category : #'as yet unclassified' }
-PyViewProperty >> sectionLabel [
+PyPropertyView >> sectionLabel [
 
 	^ sectionLabel
 ]
 
 { #category : #'as yet unclassified' }
-PyViewProperty >> sectionName [
+PyPropertyView >> sectionName [
 
 	sectionName ifNil: [ sectionName := self class name ].
 	^ sectionName
 ]
 
 { #category : #accessing }
-PyViewProperty >> sectionName: aString [
+PyPropertyView >> sectionName: aString [
 
 	sectionName := aString.
 	self updateSectionLabel
 ]
 
 { #category : #'as yet unclassified' }
-PyViewProperty >> sectionNameFull [
+PyPropertyView >> sectionNameFull [
 	^ self sectionName , '-' , self sectionComplement
 ]
 
 { #category : #accessing }
-PyViewProperty >> singleForm [
+PyPropertyView >> singleForm [
 
 	^ singleForm
 ]
 
 { #category : #'as yet unclassified' }
-PyViewProperty >> singleForm: aPyForm [
+PyPropertyView >> singleForm: aPyForm [
 
 	singleForm := aPyForm
 ]
 
 { #category : #'as yet unclassified' }
-PyViewProperty >> singleFormClass: aClass [
+PyPropertyView >> singleFormClass: aClass [
 
 	self singleForm:( aClass new action: [ :value |
 		self controller applyValue: value ]; yourself).
@@ -243,25 +243,25 @@ PyViewProperty >> singleFormClass: aClass [
 ]
 
 { #category : #'as yet unclassified' }
-PyViewProperty >> updatePopover [
+PyPropertyView >> updatePopover [
 	popover := self createPopover
 ]
 
 { #category : #'as yet unclassified' }
-PyViewProperty >> updateSectionComplement [
+PyPropertyView >> updateSectionComplement [
 	self selection ifEmpty: [ self sectionComplement: '0 element'. ^ self ].
 	self selection size = 1 ifTrue: [ self sectionComplement: '1 element'. ^ self ].
 	self sectionComplement: self selection size printString , ' elements'
 ]
 
 { #category : #'as yet unclassified' }
-PyViewProperty >> updateSectionLabel [
+PyPropertyView >> updateSectionLabel [
 
 	self sectionLabel label: self sectionNameFull
 ]
 
 { #category : #'as yet unclassified' }
-PyViewProperty >> updateView [
+PyPropertyView >> updateView [
 
 	self layout: self defaultLayout.
 	self update

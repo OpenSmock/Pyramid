@@ -1,7 +1,7 @@
 Class {
 	#name : #PyEventFilterSelection,
 	#superclass : #BlSelectionTool,
-	#category : #'Pyramid-Editor-Views-Space'
+	#category : #'Pyramid-ZZZ-Deprecated-Editor-Views-Space'
 }
 
 { #category : #'dnd handlers' }

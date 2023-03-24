@@ -1,5 +1,5 @@
 Class {
-	#name : #PyControllerProperty,
+	#name : #PyPropertyController,
 	#superclass : #Object,
 	#traits : 'TPySelectionObserver',
 	#classTraits : 'TPySelectionObserver classTrait',
@@ -8,17 +8,17 @@ Class {
 		'view',
 		'command'
 	],
-	#category : #'Pyramid-Editor-Properties'
+	#category : #'Pyramid-Editor-Panels-Properties'
 }
 
 { #category : #'as yet unclassified' }
-PyControllerProperty >> applyValue: aValue [
+PyPropertyController >> applyValue: aValue [
 
 	self applyValue: aValue to: self selection
 ]
 
 { #category : #'as yet unclassified' }
-PyControllerProperty >> applyValue: aValue to: aPySelection [
+PyPropertyController >> applyValue: aValue to: aPySelection [
 
 	self pipeline selection: aPySelection.
 	self pipeline useCommand: (command arguments: aValue).
@@ -26,50 +26,50 @@ PyControllerProperty >> applyValue: aValue to: aPySelection [
 ]
 
 { #category : #accessing }
-PyControllerProperty >> command [
+PyPropertyController >> command [
 
 	^ command
 ]
 
 { #category : #accessing }
-PyControllerProperty >> command: aCommand [
+PyPropertyController >> command: aCommand [
 
 	command := aCommand
 ]
 
 { #category : #'as yet unclassified' }
-PyControllerProperty >> formAllDifferentsValues [
+PyPropertyController >> formAllDifferentsValues [
 	
 ^ (self selection elements collect: [ :each |
 		              self valueFromElement: each ]) asSet asArray.
 ]
 
 { #category : #'as yet unclassified' }
-PyControllerProperty >> formSingleValue [
+PyPropertyController >> formSingleValue [
 	^ self formAllDifferentsValues first
 ]
 
 { #category : #accessing }
-PyControllerProperty >> initialize [
+PyPropertyController >> initialize [
 
 	command := PyCommandVoid new.
 ]
 
 { #category : #accessing }
-PyControllerProperty >> pipeline [
+PyPropertyController >> pipeline [
 
 	pipeline ifNil: [ pipeline := PyPipeline new add: PyCommandExecutor new; yourself].
 	^ pipeline
 ]
 
 { #category : #accessing }
-PyControllerProperty >> pipeline: aPipeline [
+PyPropertyController >> pipeline: aPipeline [
 
 	pipeline := aPipeline
 ]
 
 { #category : #'as yet unclassified' }
-PyControllerProperty >> pySelectionChanged [
+PyPropertyController >> pySelectionChanged [
 
 	self selectionIsEmpty ifTrue: [
 		self strategy: PyPropertyStrategySelectionEmpty new.
@@ -87,7 +87,7 @@ PyControllerProperty >> pySelectionChanged [
 ]
 
 { #category : #accessing }
-PyControllerProperty >> selection: aSelection [
+PyPropertyController >> selection: aSelection [
 
 	self selection removeObserver: self.
 	selection := aSelection.
@@ -97,31 +97,31 @@ PyControllerProperty >> selection: aSelection [
 ]
 
 { #category : #'as yet unclassified' }
-PyControllerProperty >> selectionIsEmpty [
+PyPropertyController >> selectionIsEmpty [
 
 	^ self selection isEmpty
 ]
 
 { #category : #'as yet unclassified' }
-PyControllerProperty >> selectionIsMixed [
+PyPropertyController >> selectionIsMixed [
 
 	^ (self formAllDifferentsValues size = 1) not
 ]
 
 { #category : #'as yet unclassified' }
-PyControllerProperty >> selectionIsSingle [
+PyPropertyController >> selectionIsSingle [
 
 	^ self selection size = 1
 ]
 
 { #category : #accessing }
-PyControllerProperty >> strategy: aStrategy [
+PyPropertyController >> strategy: aStrategy [
 
 	aStrategy updateView: self view
 ]
 
 { #category : #'as yet unclassified' }
-PyControllerProperty >> valueFromElement: anElement [
+PyPropertyController >> valueFromElement: anElement [
 
 	| arg |
 	arg := PyCommandArguments new.
@@ -130,13 +130,13 @@ PyControllerProperty >> valueFromElement: anElement [
 ]
 
 { #category : #accessing }
-PyControllerProperty >> view [
+PyPropertyController >> view [
 
 	^ view
 ]
 
 { #category : #accessing }
-PyControllerProperty >> view: aPyViewProperty [
+PyPropertyController >> view: aPyViewProperty [
 
 	view := aPyViewProperty
 ]

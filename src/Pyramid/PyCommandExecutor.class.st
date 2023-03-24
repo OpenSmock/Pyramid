@@ -1,6 +1,8 @@
 Class {
 	#name : #PyCommandExecutor,
-	#superclass : #PyWorkerAbstract,
+	#superclass : #Object,
+	#traits : 'TPyPipelineWorker',
+	#classTraits : 'TPyPipelineWorker classTrait',
 	#category : #'Pyramid-Business'
 }
 

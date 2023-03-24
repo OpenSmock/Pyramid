@@ -4,5 +4,5 @@ Class {
 	#instVars : [
 		'class'
 	],
-	#category : #'Pyramid-Examples'
+	#category : #'Pyramid-Events'
 }

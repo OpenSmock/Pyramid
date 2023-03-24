@@ -6,7 +6,7 @@ Class {
 		'command',
 		'value'
 	],
-	#category : #'Pyramid-Business'
+	#category : #'Pyramid-Plugin-History'
 }
 
 { #category : #accessing }

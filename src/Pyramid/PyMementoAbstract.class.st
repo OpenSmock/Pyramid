@@ -1,7 +1,7 @@
 Class {
 	#name : #PyMementoAbstract,
 	#superclass : #Object,
-	#category : #'Pyramid-Business'
+	#category : #'Pyramid-Plugin-History'
 }
 
 { #category : #'as yet unclassified' }

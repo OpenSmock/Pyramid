@@ -1,28 +1,28 @@
 Class {
-	#name : #PyViewCommandHistory,
+	#name : #PySidePanelHistory,
 	#superclass : #SpPresenter,
 	#traits : 'TPyEditorPanelRight',
 	#classTraits : 'TPyEditorPanelRight classTrait',
 	#instVars : [
 		'properties'
 	],
-	#category : #'Pyramid-Editor-Side-Panel'
+	#category : #'Pyramid-Plugin-History'
 }
 
 { #category : #accessing }
-PyViewCommandHistory class >> pageIcon [
+PySidePanelHistory class >> pageIcon [
 
 	^ self iconNamed: #history
 ]
 
 { #category : #accessing }
-PyViewCommandHistory class >> pageTitle [
+PySidePanelHistory class >> pageTitle [
 
 	^ 'History'
 ]
 
 { #category : #layout }
-PyViewCommandHistory >> defaultLayout [
+PySidePanelHistory >> defaultLayout [
 
 	| defaultLayout |
 	defaultLayout := SpBoxLayout newVertical.
@@ -31,4 +31,10 @@ PyViewCommandHistory >> defaultLayout [
 		expand: true;
 		yourself.
 	^ defaultLayout
+]
+
+{ #category : #accessing }
+PySidePanelHistory >> order [
+
+	^ 10
 ]

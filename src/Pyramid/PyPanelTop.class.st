@@ -1,8 +1,8 @@
 Class {
 	#name : #PyPanelTop,
 	#superclass : #SpPresenter,
-	#traits : 'TPyramidBusinessUser',
-	#classTraits : 'TPyramidBusinessUser classTrait',
+	#traits : 'TPyramidBusinessUser + TPyEditorPanelModelObserver',
+	#classTraits : 'TPyramidBusinessUser classTrait + TPyEditorPanelModelObserver classTrait',
 	#instVars : [
 		'controller',
 		'menuRight',
@@ -55,7 +55,7 @@ PyPanelTop >> initializePresenters [
 
 	menuRight := self newButton.
 	menuRight icon: (self iconNamed: #solidMenu).
-	menuLeft action: [ self controller inverseRight ]
+	menuRight action: [ self controller inverseRight ]
 ]
 
 { #category : #'as yet unclassified' }
@@ -77,20 +77,12 @@ PyPanelTop >> menuRight [
 	^ menuRight
 ]
 
-{ #category : #'as yet unclassified' }
-PyPanelTop >> model [
-
-	^ model
-]
-
-{ #category : #'as yet unclassified' }
+{ #category : #initialization }
 PyPanelTop >> model: aModel [
 
 	model := aModel.
 	model addObserver: self.
-
-	self when: #pyEditorPanelModelChange evaluate: [
-		self modelChanged ]
+	self pyEditorPanelModelChange 
 ]
 
 { #category : #'accessing - structure variables' }

@@ -4,7 +4,7 @@ Class {
 	#instVars : [
 		'valueOfForm'
 	],
-	#category : #'Pyramid-Editor-Properties'
+	#category : #'Pyramid-Editor-Panels-Properties'
 }
 
 { #category : #'as yet unclassified' }

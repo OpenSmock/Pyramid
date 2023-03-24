@@ -39,6 +39,17 @@ PyEditorLayoutStrategy class >> isAbstract [
 	^ self = PyEditorLayoutStrategy
 ]
 
+{ #category : #'as yet unclassified' }
+PyEditorLayoutStrategy >> globalLayout: aLayout [
+
+	^ SpBoxLayout newTopToBottom
+		  spacing: 16;
+		  add: self panelTop
+		  withConstraints: [ :c | c height: PyNavigationAbstract height ];
+		  add: aLayout withConstraints: [ :c | c fill: true ];
+		  yourself
+]
+
 { #category : #accessing }
 PyEditorLayoutStrategy >> layout [
 

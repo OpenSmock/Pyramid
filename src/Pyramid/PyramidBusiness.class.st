@@ -8,7 +8,8 @@ Class {
 		'pipeline',
 		'executor',
 		'logger',
-		'roots'
+		'roots',
+		'plugins'
 	],
 	#category : #'Pyramid-Business'
 }
@@ -26,22 +27,27 @@ PyramidBusiness >> defaultRoots [
 { #category : #initialization }
 PyramidBusiness >> initialize [
 
-	presenter := PyEditorPresenter new.
-	roots := PyRoots new.
+	roots := PySelection new.
 	roots addAll: self defaultRoots.
 
 	selection := PySelection new.
-	history := PyCommandHistory new.
 	executor := PyCommandExecutor new.
-	logger := PyCommandLogger new.
-	pipeline := PyPipeline new.
 
-	pipeline add: history.
-	pipeline add: logger.
-	pipeline add: executor.
+	pipeline := PyPipeline new.
+	pipeline addWorker: executor.
 	pipeline selection: selection.
 
+	self initializePlugins.
+
+	presenter := PyEditorPresenter new.
 	presenter business: self
+]
+
+{ #category : #initialization }
+PyramidBusiness >> initializePlugins [
+
+	plugins := TPyEditorPlugin users collect: [ :each |
+		           each new installOn: self; yourself ]
 ]
 
 { #category : #'instance creation' }

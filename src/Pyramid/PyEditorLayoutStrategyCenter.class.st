@@ -10,9 +10,5 @@ Class {
 { #category : #accessing }
 PyEditorLayoutStrategyCenter >> layout [
 
-	^ SpBoxLayout newTopToBottom
-		  add: self panelTop
-		  withConstraints: [ :c | c height: PyNavigationAbstract height ];
-		  add: self panelCenter withConstraints: [ :c | c fill: true ];
-		  yourself
+	^ self globalLayout: self panelCenter
 ]

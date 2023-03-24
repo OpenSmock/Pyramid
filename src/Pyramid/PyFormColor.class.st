@@ -9,7 +9,7 @@ Class {
 		'textInput',
 		'color'
 	],
-	#category : #'Pyramid-Editor-Properties'
+	#category : #'Pyramid-Editor-Panels-Properties'
 }
 
 { #category : #'menu actions' }

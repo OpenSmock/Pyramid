@@ -1,7 +1,7 @@
 Class {
 	#name : #PyExamplesSerializeController,
 	#superclass : #Object,
-	#category : #'Pyramid-Examples'
+	#category : #'Pyramid-YYY-Examples'
 }
 
 { #category : #'as yet unclassified' }
@@ -97,4 +97,10 @@ PyExamplesSerializeController class >> view [
 		]
 	}
 }'
+]
+
+{ #category : #'see class side' }
+PyExamplesSerializeController >> seeClassSide [
+
+	
 ]

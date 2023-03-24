@@ -1,5 +1,5 @@
 Class {
 	#name : #PyPerformer,
 	#superclass : #Object,
-	#category : #'Pyramid-Examples'
+	#category : #'Pyramid-Events'
 }

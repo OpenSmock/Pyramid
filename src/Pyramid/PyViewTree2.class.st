@@ -7,7 +7,7 @@ Class {
 		'tree',
 		'toolbar'
 	],
-	#category : #'Pyramid-Editor-Views'
+	#category : #'Pyramid-ZZZ-DeprecatedEditor-Views'
 }
 
 { #category : #accessing }

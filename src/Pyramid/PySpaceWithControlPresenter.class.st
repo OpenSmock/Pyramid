@@ -8,7 +8,7 @@ Class {
 		'callbackZoomDecrease',
 		'callbackDragged'
 	],
-	#category : #'Pyramid-Editor-Views-Space'
+	#category : #'Pyramid-ZZZ-Deprecated-Editor-Views-Space'
 }
 
 { #category : #initialization }

@@ -9,7 +9,7 @@ Class {
 		'buttonCenter',
 		'buttonCenterCallback'
 	],
-	#category : #'Pyramid-Editor-Toolbar'
+	#category : #'Pyramid-ZZZ-Deprecated-Editor-Toolbar'
 }
 
 { #category : #accessing }

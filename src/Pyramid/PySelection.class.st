@@ -78,7 +78,10 @@ PySelection >> mementos [
 PySelection >> printOn: aStream [
 
 	super printOn: aStream.
-	aStream << '(' << self size printString << ')'
+	aStream nextPut: $(.
+	self size printOn: aStream.
+	aStream nextPut: $)
+
 ]
 
 { #category : #accessing }

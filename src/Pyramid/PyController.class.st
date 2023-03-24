@@ -1,7 +1,7 @@
 Class {
 	#name : #PyController,
 	#superclass : #Object,
-	#category : #'Pyramid-Examples'
+	#category : #'Pyramid-YYY-Examples'
 }
 
 { #category : #'as yet unclassified' }

@@ -1,7 +1,9 @@
 Class {
 	#name : #PyCommandLogger,
-	#superclass : #PyWorkerAbstract,
-	#category : #'Pyramid-Business'
+	#superclass : #Object,
+	#traits : 'TPyPipelineWorker',
+	#classTraits : 'TPyPipelineWorker classTrait',
+	#category : #'Pyramid-Plugin-Logger'
 }
 
 { #category : #'menu messages' }

@@ -6,7 +6,7 @@ Class {
 	#instVars : [
 		'tree'
 	],
-	#category : #'Pyramid-Editor-Side-Panel'
+	#category : #'Pyramid-Editor-Panels-Side'
 }
 
 { #category : #accessing }
@@ -26,7 +26,7 @@ PyViewTree >> business: aBusiness [
 
 	business := aBusiness.
 	self roots: business roots.
-	business selection addObserver: self.
+	self selection: aBusiness selection
 ]
 
 { #category : #accessing }
@@ -79,6 +79,12 @@ PyViewTree >> initializePresenters [
 	self selectionChangedActivate
 ]
 
+{ #category : #accessing }
+PyViewTree >> order [
+
+	^ 1
+]
+
 { #category : #'as yet unclassified' }
 PyViewTree >> pySelectionChanged [
 
@@ -99,18 +105,6 @@ PyViewTree >> roots [
 PyViewTree >> roots: aPyRoots [
 
 	self tree roots: aPyRoots elements
-]
-
-{ #category : #accessing }
-PyViewTree >> selection [
-
-	^ self business selection
-]
-
-{ #category : #accessing }
-PyViewTree >> selection: aPySelection [
-
-	Error signal: 'PyTree should not set is selection like this. Use a business to change selection.'
 ]
 
 { #category : #'as yet unclassified' }

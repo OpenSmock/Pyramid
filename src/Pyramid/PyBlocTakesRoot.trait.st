@@ -3,7 +3,7 @@ Trait {
 	#instVars : [
 		'root'
 	],
-	#category : #'Pyramid-Utilities'
+	#category : #'Pyramid-ZZZ-Deprecated-Utilities'
 }
 
 { #category : #accessing }

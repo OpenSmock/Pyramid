@@ -1,6 +1,6 @@
 Trait {
 	#name : #PyBlocOutput,
-	#category : #'Pyramid-Utilities'
+	#category : #'Pyramid-ZZZ-Deprecated-Utilities'
 }
 
 { #category : #ports }

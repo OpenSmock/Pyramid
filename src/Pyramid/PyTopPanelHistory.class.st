@@ -7,7 +7,7 @@ Class {
 		'undoButton',
 		'redoButton'
 	],
-	#category : #'Pyramid-Editor-Panels-Top'
+	#category : #'Pyramid-Plugin-History'
 }
 
 { #category : #layout }

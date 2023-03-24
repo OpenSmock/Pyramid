@@ -5,6 +5,12 @@ Trait {
 	#category : #'Pyramid-Editor'
 }
 
+{ #category : #comparing }
+TPyEditorPanelSide >> <= aTPyEditorPanelSide [
+
+	^ self order <= aTPyEditorPanelSide order
+]
+
 { #category : #converting }
 TPyEditorPanelSide >> asNotebookPage [
 
@@ -12,4 +18,10 @@ TPyEditorPanelSide >> asNotebookPage [
 		  title: self class pageTitle
 		  icon: self class  pageIcon
 		  provider: [ self ]
+]
+
+{ #category : #accessing }
+TPyEditorPanelSide >> order [
+
+	^ 0
 ]

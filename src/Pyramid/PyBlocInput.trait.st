@@ -1,6 +1,6 @@
 Trait {
 	#name : #PyBlocInput,
-	#category : #'Pyramid-Utilities'
+	#category : #'Pyramid-ZZZ-Deprecated-Utilities'
 }
 
 { #category : #transmission }

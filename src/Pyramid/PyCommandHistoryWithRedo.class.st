@@ -6,7 +6,7 @@ Class {
 		'cursorLimit',
 		'lastMemento'
 	],
-	#category : #'Pyramid-Business'
+	#category : #'Pyramid-Plugin-History'
 }
 
 { #category : #'as yet unclassified' }

@@ -11,7 +11,7 @@ Class {
 		'inputClass',
 		'inputMethod'
 	],
-	#category : #'Pyramid-Editor-Toolbar'
+	#category : #'Pyramid-ZZZ-Deprecated-Editor-Toolbar'
 }
 
 { #category : #'as yet unclassified' }

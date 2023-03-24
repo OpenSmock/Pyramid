@@ -1,7 +1,7 @@
 Class {
 	#name : #PyBlocPort,
 	#superclass : #SpInputPort,
-	#category : #'Pyramid-Utilities'
+	#category : #'Pyramid-ZZZ-Deprecated-Utilities'
 }
 
 { #category : #'handling transmission' }

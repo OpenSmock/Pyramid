@@ -7,7 +7,7 @@ Class {
 		'offset',
 		'dragEnable'
 	],
-	#category : #'Pyramid-Editor-Views-Space'
+	#category : #'Pyramid-ZZZ-Deprecated-Editor-Views-Space'
 }
 
 { #category : #'api - hooks' }

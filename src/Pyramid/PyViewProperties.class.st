@@ -6,7 +6,7 @@ Class {
 	#instVars : [
 		'properties'
 	],
-	#category : #'Pyramid-Editor-Side-Panel'
+	#category : #'Pyramid-Editor-Panels-Side'
 }
 
 { #category : #accessing }
@@ -37,6 +37,12 @@ PyViewProperties >> defaultLayout [
 	self properties do: [ :each | defaultLayout add: each view expand: false ].
 	defaultLayout add: self newNullPresenter expand: true.
 	^ defaultLayout
+]
+
+{ #category : #accessing }
+PyViewProperties >> order [
+
+	^ 1
 ]
 
 { #category : #accessing }

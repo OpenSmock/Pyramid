@@ -1,11 +1,13 @@
 Class {
 	#name : #PyCommandHistory,
-	#superclass : #PyWorkerAbstract,
+	#superclass : #Object,
+	#traits : 'TPyPipelineWorker',
+	#classTraits : 'TPyPipelineWorker classTrait',
 	#instVars : [
 		'mementos',
 		'historyPipeline'
 	],
-	#category : #'Pyramid-Business'
+	#category : #'Pyramid-Plugin-History'
 }
 
 { #category : #adding }
@@ -20,8 +22,8 @@ PyCommandHistory >> historyPipeline [
 	historyPipeline ifNil: [ 
 		historyPipeline := PyPipeline new
 			                   selection: PySelection new;
-			                   add: PyCommandLogger new;
-			                   add: PyCommandExecutor new;
+			                   addWorker: PyCommandLogger new;
+			                   addWorker: PyCommandExecutor new;
 			                   yourself ].
 	^ historyPipeline
 ]

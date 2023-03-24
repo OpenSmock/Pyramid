@@ -3,7 +3,7 @@ Trait {
 	#instVars : [
 		'property'
 	],
-	#category : #'Pyramid-Editor-Properties'
+	#category : #'Pyramid-Editor-Panels-Properties'
 }
 
 { #category : #comparing }
@@ -21,7 +21,7 @@ TPyPropertyChanger >> commandClass [
 { #category : #'as yet unclassified' }
 TPyPropertyChanger >> initialize [
 
-	property := PyBuildProperty
+	property := PyPropertyMVC
 		            build: self sectionName
 		            withSingleForm: self singleFormClass
 		            withMultiForm: self mutliFormClass

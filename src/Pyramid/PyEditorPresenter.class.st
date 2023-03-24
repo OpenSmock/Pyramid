@@ -29,7 +29,7 @@ PyEditorPresenter >> business: aBusiness [
 { #category : #accessing }
 PyEditorPresenter >> controller [
 
-	controller ifNil: [ controller := PyEditorPanelController new ].
+	controller ifNil: [ PyMissingControllerError signal: 'a PyEditorPanelController is needed.' ].
 	^ controller
 ]
 
@@ -37,7 +37,6 @@ PyEditorPresenter >> controller [
 PyEditorPresenter >> controller: aPyEditorPanelController [
 
 	controller := aPyEditorPanelController.
-	controller model: self model
 ]
 
 { #category : #layout }
@@ -64,6 +63,7 @@ PyEditorPresenter >> initializePresenters [
 
 	self model: PyEditorPanelModel new.
 	self controller: PyEditorPanelController new.
+	self controller model: self model.
 
 	panelTop := PyPanelTop new
 		            model: self model;
@@ -72,25 +72,6 @@ PyEditorPresenter >> initializePresenters [
 	panelCenter := PyPanelCenter new.
 	panelLeft := PyPanelLeft new.
 	panelRight := PyPanelRight new
-]
-
-{ #category : #initialization }
-PyEditorPresenter >> model: aModel [
-
-	model := aModel.
-	model addObserver: self.
-
-	self when: #pyEditorPanelModelChange evaluate: [
-		self modelChanged ]
-]
-
-{ #category : #initialization }
-PyEditorPresenter >> modelChanged [
-
-	| strategy |
-	strategy := self strategyFromModel.
-	self layout: self defaultLayout
-	
 ]
 
 { #category : #accessing }

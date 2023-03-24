@@ -1,7 +1,7 @@
 Class {
 	#name : #PyNavigationAbstract,
 	#superclass : #SpPresenter,
-	#category : #'Pyramid-Editor-Toolbar'
+	#category : #'Pyramid-ZZZ-Deprecated-Editor-Toolbar'
 }
 
 { #category : #accessing }

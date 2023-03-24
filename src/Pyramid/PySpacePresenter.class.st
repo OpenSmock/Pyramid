@@ -7,7 +7,7 @@ Class {
 		'space',
 		'viewPresenter'
 	],
-	#category : #'Pyramid-Editor-Views-Space'
+	#category : #'Pyramid-ZZZ-Deprecated-Editor-Views-Space'
 }
 
 { #category : #layout }
