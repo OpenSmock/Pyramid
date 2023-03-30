@@ -8,7 +8,7 @@ Class {
 		'view',
 		'command'
 	],
-	#category : #'Pyramid-Editor-Panels-Properties'
+	#category : #'Pyramid-Editor-Properties'
 }
 
 { #category : #'as yet unclassified' }

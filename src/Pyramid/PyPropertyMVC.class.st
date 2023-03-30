@@ -5,7 +5,7 @@ Class {
 		'view',
 		'controller'
 	],
-	#category : #'Pyramid-Editor-Panels-Properties'
+	#category : #'Pyramid-Editor-Properties'
 }
 
 { #category : #'as yet unclassified' }
@@ -35,6 +35,11 @@ PyPropertyMVC class >> build: aString withSingleForm: aSingleFormClass withMulti
 PyPropertyMVC class >> build: aString withSingleForm: aSingleFormClass withMultiForm: aMultiFormClass withCommand: aCommandClass withSelection: aSelection [
 
 	| view controller |
+	self validateSingleForm: aSingleFormClass.
+	self validateMultiForm: aMultiFormClass.
+	self validateCommand: aCommandClass.
+	self validateSelection: aSelection.
+	
 	view := PyPropertyView new.
 	view sectionName: aString.
 	view singleFormClass: aSingleFormClass.
@@ -46,7 +51,43 @@ PyPropertyMVC class >> build: aString withSingleForm: aSingleFormClass withMulti
 	view controller: controller.
 	controller view: view.
 
-	^ self new view: view; controller: controller; selection: aSelection; yourself
+	^ self new
+		  view: view;
+		  controller: controller;
+		  selection: aSelection;
+		  yourself
+]
+
+{ #category : #'as yet unclassified' }
+PyPropertyMVC class >> validateCommand: aCommand [
+
+	(aCommand inheritsFrom: PyCommand) ifFalse: [
+		PyNotACommandError signal:
+			aCommand class name , ' should inherit ', PyCommand name,  '.' ]
+]
+
+{ #category : #'as yet unclassified' }
+PyPropertyMVC class >> validateMultiForm: aForm [
+
+	(aForm inheritsFrom: PyFormAbstract) ifFalse: [
+		PyNotAFormError signal:
+			aForm class name , ' should inherit ', PyFormAbstract name, '.' ]
+]
+
+{ #category : #'as yet unclassified' }
+PyPropertyMVC class >> validateSelection: aSelection [
+
+	(aSelection isKindOf: PySelection) ifFalse: [
+		PyNotAFormError signal:
+			aSelection class name , ' should be or inherit ' , PySelection name , '.' ]
+]
+
+{ #category : #'as yet unclassified' }
+PyPropertyMVC class >> validateSingleForm: aForm [
+
+	(aForm inheritsFrom: PyFormAbstract) ifFalse: [
+		PyNotAFormError signal:
+			aForm class name , ' should inherit ' , PyFormAbstract name , '.' ]
 ]
 
 { #category : #accessing }

@@ -13,7 +13,7 @@ Class {
 		'popover',
 		'sectionLabel'
 	],
-	#category : #'Pyramid-Editor-Panels-Properties'
+	#category : #'Pyramid-Editor-Properties'
 }
 
 { #category : #accessing }

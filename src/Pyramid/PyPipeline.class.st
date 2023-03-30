@@ -1,6 +1,8 @@
 Class {
 	#name : #PyPipeline,
 	#superclass : #Object,
+	#traits : 'TPyPipeline',
+	#classTraits : 'TPyPipeline classTrait',
 	#instVars : [
 		'workers',
 		'selection'
@@ -9,22 +11,17 @@ Class {
 }
 
 { #category : #'as yet unclassified' }
-PyPipeline >> addWorker: aWorker [
-	self validateCorrectUsage: aWorker.
-	workers add: aWorker
-]
-
-{ #category : #'as yet unclassified' }
 PyPipeline >> addWorkerFirst: aWorker [
 
-	self validateCorrectUsage: aWorker.
+	self validateWorker: aWorker.
 	workers addFirst: aWorker
 ]
 
 { #category : #'as yet unclassified' }
 PyPipeline >> addWorkerLast: aWorker [
 
-	self addWorker: aWorker
+	self validateWorker: aWorker.
+	workers addLast: aWorker
 ]
 
 { #category : #initialization }
@@ -55,12 +52,15 @@ PyPipeline >> selection: aSelection [
 { #category : #adding }
 PyPipeline >> useCommand: aCommand [
 
-	workers do: [ :each | each useCommand: aCommand onSelection: self selection ].
+	workers do: [ :each |
+		each useCommand: aCommand onSelection: self selection ].
+	self notifyObservers
 ]
 
 { #category : #'as yet unclassified' }
-PyPipeline >> validateCorrectUsage: aWorker [
+PyPipeline >> validateWorker: aWorker [
 
 	(aWorker class usesTrait: TPyPipelineWorker) ifFalse: [
-		PyNotAWorkerError signal: aWorker class name , ' should use TPyPipelineWorker.' ]
+		PyNotAWorkerError signal:
+			aWorker class name , ' should use ' , TPyPipelineWorker name , '.' ]
 ]

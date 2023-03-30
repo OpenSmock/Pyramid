@@ -10,6 +10,11 @@ PyMementoAbstract class >> isAbstract [
 	^ self == PyMementoAbstract
 ]
 
+{ #category : #testing }
+PyMementoAbstract >> isSequence [
+	^ false
+]
+
 { #category : #'as yet unclassified' }
 PyMementoAbstract >> restore [
 

@@ -1,8 +1,8 @@
 Class {
 	#name : #PyCommandHistory,
 	#superclass : #Object,
-	#traits : 'TPyPipelineWorker',
-	#classTraits : 'TPyPipelineWorker classTrait',
+	#traits : 'TPyPipelineWorker + TPyHistory',
+	#classTraits : 'TPyPipelineWorker classTrait + TPyHistory classTrait',
 	#instVars : [
 		'mementos',
 		'historyPipeline'
@@ -13,7 +13,8 @@ Class {
 { #category : #adding }
 PyCommandHistory >> add: aMemento [
 
-	mementos add: aMemento.
+	self mementos add: aMemento.
+	self notifyObservers
 ]
 
 { #category : #accessing }
@@ -22,8 +23,8 @@ PyCommandHistory >> historyPipeline [
 	historyPipeline ifNil: [ 
 		historyPipeline := PyPipeline new
 			                   selection: PySelection new;
-			                   addWorker: PyCommandLogger new;
-			                   addWorker: PyCommandExecutor new;
+			                   addWorkerLast: PyCommandLogger new;
+			                   addWorkerLast: PyCommandExecutor new;
 			                   yourself ].
 	^ historyPipeline
 ]
@@ -34,11 +35,18 @@ PyCommandHistory >> initialize [
 	mementos := OrderedCollection new.
 ]
 
+{ #category : #accessing }
+PyCommandHistory >> mementos [
+
+	^ mementos
+]
+
 { #category : #'menu messages' }
 PyCommandHistory >> undo [
 
-	mementos ifEmpty: [ ^ self ].
-	mementos removeLast restore: self historyPipeline
+	self mementos ifEmpty: [ ^ self ].
+	self mementos removeLast restore: self historyPipeline.
+	self notifyObservers
 ]
 
 { #category : #'menu messages' }

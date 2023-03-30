@@ -1,11 +1,12 @@
 Class {
 	#name : #PySidePanelHistory,
 	#superclass : #SpPresenter,
-	#traits : 'TPyEditorPanelRight',
-	#classTraits : 'TPyEditorPanelRight classTrait',
+	#traits : 'TPyEditorPanelRight + TPyHistroyObserver',
+	#classTraits : 'TPyEditorPanelRight classTrait + TPyHistroyObserver classTrait',
 	#instVars : [
 		'properties',
-		'plugin'
+		'historyTree',
+		'roots'
 	],
 	#category : #'Pyramid-Plugin-History'
 }
@@ -26,7 +27,8 @@ PySidePanelHistory class >> pageTitle [
 PySidePanelHistory >> business: aBusiness [
 
 	business := aBusiness.
-	plugin := aBusiness getPlugin: PyPluginHistory.
+	self history: (aBusiness getPlugin: PyPluginHistory) history.
+	self roots: self history mementos asArray reverse
 ]
 
 { #category : #layout }
@@ -35,14 +37,57 @@ PySidePanelHistory >> defaultLayout [
 	| defaultLayout |
 	defaultLayout := SpBoxLayout newVertical.
 	defaultLayout
-		add: (SpMorphPresenter new morph: (Morph new color: Color random))
+		add: #historyTree
 		expand: true;
 		yourself.
-	^ defaultLayout
+	^ PySidePanelHelper defaultLayoutFrom: defaultLayout
+]
+
+{ #category : #accessing }
+PySidePanelHistory >> historyTree [
+	^ historyTree
+]
+
+{ #category : #initialization }
+PySidePanelHistory >> initializePresenters [
+
+	historyTree := self newTree.
+	historyTree
+		beSingleSelection;
+		roots: self roots;
+		display: [ :each |
+			each isSequence
+				ifTrue: [ each printString ]
+				ifFalse: [
+					each command printString , ' ' , each element printString, ' ', each value printString ] ];
+		children: [ :each |
+			each isSequence
+				ifTrue: [ each mementos ]
+				ifFalse: [ {  } ] ];
+		"contextMenu: [ self contextMenu ];"expandRoots
 ]
 
 { #category : #accessing }
 PySidePanelHistory >> order [
 
 	^ 10
+]
+
+{ #category : #'as yet unclassified' }
+PySidePanelHistory >> pyHistoryUpdated [
+
+	self roots: self history mementos asArray reverse
+]
+
+{ #category : #accessing }
+PySidePanelHistory >> roots [
+	roots ifNil: [ roots := {  } ].
+	^ roots
+]
+
+{ #category : #accessing }
+PySidePanelHistory >> roots: anArray [
+
+	roots := anArray.
+	self historyTree roots: anArray.
 ]

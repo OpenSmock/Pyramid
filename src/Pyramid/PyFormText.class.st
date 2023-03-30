@@ -4,7 +4,7 @@ Class {
 	#instVars : [
 		'textInput'
 	],
-	#category : #'Pyramid-Editor-Panels-Properties'
+	#category : #'Pyramid-Editor-Properties-Form'
 }
 
 { #category : #accessing }

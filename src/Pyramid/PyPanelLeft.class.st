@@ -7,5 +7,6 @@ Class {
 { #category : #'as yet unclassified' }
 PyPanelLeft >> recoverSideViews [
 
-	^TPyEditorPanelLeft users collect: [ :each | each new ].
+	^ (PyEditorPanelLocator classPanelSideLeft collect: [ :each |
+		  each new ]) asArray sorted
 ]

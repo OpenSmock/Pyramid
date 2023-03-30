@@ -3,7 +3,7 @@ Trait {
 	#instVars : [
 		'property'
 	],
-	#category : #'Pyramid-Editor-Panels-Properties'
+	#category : #'Pyramid-Editor-Properties-Changer'
 }
 
 { #category : #comparing }

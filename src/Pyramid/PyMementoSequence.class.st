@@ -19,6 +19,12 @@ PyMementoSequence >> initialize [
 	mementos := OrderedCollection new.
 ]
 
+{ #category : #testing }
+PyMementoSequence >> isSequence [
+
+	^ true
+]
+
 { #category : #accessing }
 PyMementoSequence >> mementos [
 

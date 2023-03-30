@@ -5,10 +5,18 @@ Class {
 	#classTraits : 'TPyEditorPanelTopLeft classTrait',
 	#instVars : [
 		'saveButton',
-		'selectionButton'
+		'selectionButton',
+		'plugin'
 	],
-	#category : #'Pyramid-Editor-Panels-Top'
+	#category : #'Pyramid-Plugin-Save'
 }
+
+{ #category : #initialization }
+PyTopPanelSave >> business: aBusiness [
+
+	business := aBusiness.
+	plugin := aBusiness getPlugin: PyPluginHistory
+]
 
 { #category : #layout }
 PyTopPanelSave >> defaultLayout [

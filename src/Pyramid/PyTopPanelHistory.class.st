@@ -1,12 +1,11 @@
 Class {
 	#name : #PyTopPanelHistory,
 	#superclass : #SpPresenter,
-	#traits : 'TPyEditorPanelTopLeft',
-	#classTraits : 'TPyEditorPanelTopLeft classTrait',
+	#traits : 'TPyEditorPanelTopLeft + TPyHistroyObserver',
+	#classTraits : 'TPyEditorPanelTopLeft classTrait + TPyHistroyObserver classTrait',
 	#instVars : [
 		'undoButton',
-		'redoButton',
-		'plugin'
+		'redoButton'
 	],
 	#category : #'Pyramid-Plugin-History'
 }
@@ -15,7 +14,7 @@ Class {
 PyTopPanelHistory >> business: aBusiness [
 
 	business := aBusiness.
-	plugin := aBusiness getPlugin: PyPluginHistory
+	self history: (aBusiness getPlugin: PyPluginHistory) history.
 ]
 
 { #category : #layout }
@@ -34,16 +33,28 @@ PyTopPanelHistory >> initializePresenters [
 	undoButton := self newButton.
 	undoButton
 		icon: (self iconNamed: #back);
-		action: [ self undoAction ].
+		action: [ self undoAction ];
+		enabled: false.
 	redoButton := self newButton.
 	redoButton
 		icon: (self iconNamed: #forward);
-		action: [ self redoAction ]
+		action: [ self redoAction ];
+		enabled: false.
 ]
 
 { #category : #'as yet unclassified' }
 PyTopPanelHistory >> order [
 	^ 1
+]
+
+{ #category : #'as yet unclassified' }
+PyTopPanelHistory >> pyHistoryUpdated [
+
+	self history mementos ifEmpty: [
+		self undoButton enabled: false.
+		self redoButton enabled: false.
+		^ self ].
+	self undoButton enabled: true.
 ]
 
 { #category : #'as yet unclassified' }
@@ -58,10 +69,16 @@ PyTopPanelHistory >> redoButton [
 	^ redoButton
 ]
 
+{ #category : #accessing }
+PyTopPanelHistory >> selection [
+	^ self business selection
+]
+
 { #category : #'as yet unclassified' }
 PyTopPanelHistory >> undoAction [
 
-	
+	self history undo.
+	self selection notifyObservers
 ]
 
 { #category : #accessing }

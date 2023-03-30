@@ -1,7 +1,7 @@
 Class {
 	#name : #PyPropertyStrategySelectionMixed,
 	#superclass : #PyPropertyStrategy,
-	#category : #'Pyramid-Editor-Panels-Properties'
+	#category : #'Pyramid-Editor-Properties'
 }
 
 { #category : #'as yet unclassified' }

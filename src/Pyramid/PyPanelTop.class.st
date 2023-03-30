@@ -111,7 +111,7 @@ PyPanelTop >> pyEditorPanelModelChange [
 PyPanelTop >> viewsLeft [
 
 	viewsLeft ifNil: [
-		viewsLeft := (TPyEditorPanelTopLeft users collect: [ :class |
+		viewsLeft := (PyEditorPanelLocator classPanelTopLeft collect: [ :class |
 			              class new ]) asArray sorted ].
 	^ viewsLeft
 ]
@@ -120,7 +120,7 @@ PyPanelTop >> viewsLeft [
 PyPanelTop >> viewsRight [
 
 	viewsRight ifNil: [
-		viewsRight := (TPyEditorPanelTopRight users collect: [ :class |
+		viewsRight := (PyEditorPanelLocator classPanelTopRight collect: [ :class |
 			               class new ]) asArray sorted ].
 	^ viewsRight
 ]

@@ -33,10 +33,11 @@ PyViewProperties >> business: aBusiness [
 PyViewProperties >> defaultLayout [
 
 	| defaultLayout |
-	defaultLayout := SpBoxLayout newTopToBottom spacing: 4.
-	self properties do: [ :each | defaultLayout add: each view expand: false ].
+	defaultLayout := SpBoxLayout newVertical spacing: 4.
+	self properties do: [ :each |
+		defaultLayout add: each view expand: false ].
 	defaultLayout add: self newNullPresenter expand: true.
-	^ defaultLayout
+	^ PySidePanelHelper defaultLayoutFrom: defaultLayout
 ]
 
 { #category : #accessing }
@@ -49,7 +50,7 @@ PyViewProperties >> order [
 PyViewProperties >> properties [
 
 	properties ifNil: [
-		properties := (TPyPropertyChanger users collect: [ :each | each new ])
+		properties := (PyEditorPanelLocator classPanelProperties collect: [ :each | each new ])
 			              asArray sorted ].
 	^ properties
 ]

@@ -1,5 +1,5 @@
 Class {
-	#name : #PyPropertyChangerBackground,
+	#name : #PyPropertyChangerSize,
 	#superclass : #Object,
 	#traits : 'TPyPropertyChanger',
 	#classTraits : 'TPyPropertyChanger classTrait',
@@ -7,31 +7,31 @@ Class {
 }
 
 { #category : #'as yet unclassified' }
-PyPropertyChangerBackground >> commandClass [
+PyPropertyChangerSize >> commandClass [
 
-	^ PyCommandBackground
+	^ PyCommandSize
 ]
 
 { #category : #'as yet unclassified' }
-PyPropertyChangerBackground >> mutliFormClass [
+PyPropertyChangerSize >> mutliFormClass [
 
-	^ PyFormColor 
+	^ PyFormPoint
 ]
 
 { #category : #accessing }
-PyPropertyChangerBackground >> order [
+PyPropertyChangerSize >> order [
 
-	^ 10
+	^ 3
 ]
 
 { #category : #'as yet unclassified' }
-PyPropertyChangerBackground >> sectionName [
+PyPropertyChangerSize >> sectionName [
 
-	^ 'Background'
+	^ 'Size'
 ]
 
 { #category : #'as yet unclassified' }
-PyPropertyChangerBackground >> singleFormClass [
+PyPropertyChangerSize >> singleFormClass [
 
-	^ PyFormColor
+	^ PyFormPoint
 ]

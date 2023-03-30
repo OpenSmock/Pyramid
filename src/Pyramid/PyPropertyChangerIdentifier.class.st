@@ -3,7 +3,7 @@ Class {
 	#superclass : #Object,
 	#traits : 'TPyPropertyChanger',
 	#classTraits : 'TPyPropertyChanger classTrait',
-	#category : #'Pyramid-Editor-Panels-Properties'
+	#category : #'Pyramid-Editor-Properties-Changer'
 }
 
 { #category : #'as yet unclassified' }

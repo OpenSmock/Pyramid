@@ -1,7 +1,7 @@
 Class {
 	#name : #PyFormVoid,
 	#superclass : #PyFormAbstract,
-	#category : #'Pyramid-Editor-Panels-Properties'
+	#category : #'Pyramid-Editor-Properties-Form'
 }
 
 { #category : #'as yet unclassified' }

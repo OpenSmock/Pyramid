@@ -1,20 +1,20 @@
 Class {
-	#name : #PyCommandIdentifier,
+	#name : #PyCommandRelocate,
 	#superclass : #PyCommand,
 	#category : #'Pyramid-Commands-AllCommands'
 }
 
 { #category : #execution }
-PyCommandIdentifier >> executeOn: aBlElement [
+PyCommandRelocate >> executeOn: aBlElement [
 
-	aBlElement id: self arguments value
+	aBlElement relocate: self arguments value
 ]
 
 { #category : #printing }
-PyCommandIdentifier >> printOn: aStream [
+PyCommandRelocate >> printOn: aStream [
 
 	super printOn: aStream.
-	aStream << 'Identifier'.
+	aStream << 'Relocate'.
 
 	self arguments ifNil: [ ^ self ].
 	aStream nextPut: $(.
@@ -23,7 +23,7 @@ PyCommandIdentifier >> printOn: aStream [
 ]
 
 { #category : #'as yet unclassified' }
-PyCommandIdentifier >> stateOf: aBlElement for: aState [
+PyCommandRelocate >> stateOf: aBlElement for: aState [
 
-	aState value: aBlElement id
+	aState value: aBlElement constraints position
 ]
