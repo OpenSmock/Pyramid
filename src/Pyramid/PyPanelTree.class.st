@@ -1,36 +1,48 @@
 Class {
-	#name : #PyViewTree,
+	#name : #PyPanelTree,
 	#superclass : #SpPresenter,
-	#traits : 'TPyEditorPanelLeft + TPySelectionObserver',
-	#classTraits : 'TPyEditorPanelLeft classTrait + TPySelectionObserver classTrait',
+	#traits : 'TPyEditorPanelLeft + TPySelectionObserver + TPyPipelineObserver',
+	#classTraits : 'TPyEditorPanelLeft classTrait + TPySelectionObserver classTrait + TPyPipelineObserver classTrait',
 	#instVars : [
-		'tree'
+		'tree',
+		'columns'
 	],
-	#category : #'Pyramid-Editor-Panels-Side'
+	#category : #'Pyramid-Editor-Tree'
 }
 
 { #category : #accessing }
-PyViewTree class >> pageIcon [
+PyPanelTree class >> pageIcon [
 
 	^ self iconNamed: #catalog
 ]
 
 { #category : #accessing }
-PyViewTree class >> pageTitle [
+PyPanelTree class >> pageTitle [
 
 	^ 'Tree'
 ]
 
 { #category : #initialization }
-PyViewTree >> business: aBusiness [
+PyPanelTree >> business: aBusiness [
 
 	business := aBusiness.
 	self roots: business roots.
-	self selection: aBusiness selection
+	self selection: aBusiness selection.
+	self pipeline: aBusiness pipeline.
+	self columns do: [ :each | each business: aBusiness ]
 ]
 
 { #category : #accessing }
-PyViewTree >> contextMenu [
+PyPanelTree >> columns [
+
+	columns ifNil: [
+		columns := (PyEditorPanelLocator classPanelTreeColumns collect: [
+			               :each | each new ]) asArray sorted ].
+	^ columns
+]
+
+{ #category : #accessing }
+PyPanelTree >> contextMenu [
 
 	| menu |
 	menu := SpMenuPresenter new.
@@ -57,7 +69,7 @@ PyViewTree >> contextMenu [
 ]
 
 { #category : #layout }
-PyViewTree >> defaultLayout [
+PyPanelTree >> defaultLayout [
 
 	^ SpBoxLayout newVertical
 		  add: #tree expand: true;
@@ -65,28 +77,36 @@ PyViewTree >> defaultLayout [
 ]
 
 { #category : #initialization }
-PyViewTree >> initializePresenters [
+PyPanelTree >> initializePresenters [
 
-	tree := self newTree.
+	tree := self newTreeTable.
 	tree
 		beMultipleSelection;
+		beResizable;
 		roots: self roots;
-		display: [ :each | each printString ];
 		children: [ :each | each children ];
 		contextMenu: [ self contextMenu ];
 		expandRoots.
-
+	self columns do: [ :each | tree addColumn: each column ].
 	self selectionChangedActivate
 ]
 
 { #category : #accessing }
-PyViewTree >> order [
+PyPanelTree >> order [
 
 	^ 1
 ]
 
 { #category : #'as yet unclassified' }
-PyViewTree >> pySelectionChanged [
+PyPanelTree >> pyPipelineUsedCommand [
+
+	self selectionChangedDesactivate.
+	self tree refresh.
+	self selectionChangedActivate
+]
+
+{ #category : #'as yet unclassified' }
+PyPanelTree >> pySelectionChanged [
 
 	self selectionChangedDesactivate.
 	self tree selectItems: self selection elements.
@@ -95,20 +115,20 @@ PyViewTree >> pySelectionChanged [
 ]
 
 { #category : #accessing }
-PyViewTree >> roots [
+PyPanelTree >> roots [
 
 	self business ifNil: [ ^ {  } ].
 	^ self business roots elements
 ]
 
 { #category : #api }
-PyViewTree >> roots: aPyRoots [
+PyPanelTree >> roots: aPyRoots [
 
 	self tree roots: aPyRoots elements
 ]
 
 { #category : #'as yet unclassified' }
-PyViewTree >> selectionChangedActivate [
+PyPanelTree >> selectionChangedActivate [
 
 	self tree whenSelectionChangedDo: [ :selection |
 		self selection removeObserver: self.
@@ -117,12 +137,12 @@ PyViewTree >> selectionChangedActivate [
 ]
 
 { #category : #'as yet unclassified' }
-PyViewTree >> selectionChangedDesactivate [
+PyPanelTree >> selectionChangedDesactivate [
 
 	self tree whenSelectionChangedDo: [ :selection |  ].
 ]
 
 { #category : #accessing }
-PyViewTree >> tree [
+PyPanelTree >> tree [
 	^ tree
 ]

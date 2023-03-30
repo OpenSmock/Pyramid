@@ -1,28 +1,28 @@
 Class {
-	#name : #PyViewProperties,
+	#name : #PyPanelProperties,
 	#superclass : #SpPresenter,
 	#traits : 'TPyEditorPanelRight',
 	#classTraits : 'TPyEditorPanelRight classTrait',
 	#instVars : [
 		'properties'
 	],
-	#category : #'Pyramid-Editor-Panels-Side'
+	#category : #'Pyramid-Editor-Properties'
 }
 
 { #category : #accessing }
-PyViewProperties class >> pageIcon [
+PyPanelProperties class >> pageIcon [
 
 	^ self iconNamed: #edit
 ]
 
 { #category : #accessing }
-PyViewProperties class >> pageTitle [
+PyPanelProperties class >> pageTitle [
 
 	^ 'Properties'
 ]
 
 { #category : #initialization }
-PyViewProperties >> business: aBusiness [
+PyPanelProperties >> business: aBusiness [
 
 	business := aBusiness.
 	business selection addObserver: self.
@@ -30,7 +30,7 @@ PyViewProperties >> business: aBusiness [
 ]
 
 { #category : #layout }
-PyViewProperties >> defaultLayout [
+PyPanelProperties >> defaultLayout [
 
 	| defaultLayout |
 	defaultLayout := SpBoxLayout newVertical spacing: 4.
@@ -41,13 +41,13 @@ PyViewProperties >> defaultLayout [
 ]
 
 { #category : #accessing }
-PyViewProperties >> order [
+PyPanelProperties >> order [
 
 	^ 1
 ]
 
 { #category : #accessing }
-PyViewProperties >> properties [
+PyPanelProperties >> properties [
 
 	properties ifNil: [
 		properties := (PyEditorPanelLocator classPanelProperties collect: [ :each | each new ])
@@ -56,18 +56,18 @@ PyViewProperties >> properties [
 ]
 
 { #category : #'as yet unclassified' }
-PyViewProperties >> pySelectionChanged [
+PyPanelProperties >> pySelectionChanged [
 	self properties do: [ :each | each selection: self selection ].
 ]
 
 { #category : #'as yet unclassified' }
-PyViewProperties >> receiveNewBlElement: aBlElement [
+PyPanelProperties >> receiveNewBlElement: aBlElement [
 
 	aBlElement ifNil: [ ^ self ].
 	properties do: [ :each | each element: aBlElement ]
 ]
 
 { #category : #accessing }
-PyViewProperties >> selection [
+PyPanelProperties >> selection [
 	 ^ self business selection
 ]

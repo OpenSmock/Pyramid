@@ -32,6 +32,12 @@ PyEditorPanelLocator class >> classPanelTopRight [
 	^ TPyEditorPanelTopRight users
 ]
 
+{ #category : #'as yet unclassified' }
+PyEditorPanelLocator class >> classPanelTreeColumns [
+
+	^ TPyTreeColumn users
+]
+
 { #category : #'see class side' }
 PyEditorPanelLocator >> seeClassSide [
 ]

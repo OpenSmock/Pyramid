@@ -52,15 +52,16 @@ PyPanelCenter >> initializePresenters [
 ]
 
 { #category : #'as yet unclassified' }
-PyPanelCenter >> originLayer [
+PyPanelCenter >> rootLayer [
+
 	^ self space root
 ]
 
 { #category : #api }
 PyPanelCenter >> roots: aPyRoots [
 
-	self originLayer removeChildren.
-	self originLayer addChildren: aPyRoots elements
+	self rootLayer removeChildren.
+	self rootLayer addChildren: aPyRoots elements
 ]
 
 { #category : #'as yet unclassified' }

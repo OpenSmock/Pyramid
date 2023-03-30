@@ -21,8 +21,7 @@ PyPropertyController >> applyValue: aValue [
 PyPropertyController >> applyValue: aValue to: aPySelection [
 
 	self pipeline selection: aPySelection.
-	self pipeline useCommand: (command arguments: aValue).
-	self selection notifyObservers
+	self pipeline useCommand: (command arguments: aValue)
 ]
 
 { #category : #accessing }
@@ -86,16 +85,6 @@ PyPropertyController >> pySelectionChanged [
 				 self formSingleValue)
 ]
 
-{ #category : #accessing }
-PyPropertyController >> selection: aSelection [
-
-	self selection removeObserver: self.
-	selection := aSelection.
-	selection addObserver: self.
-	
-	self pySelectionChanged
-]
-
 { #category : #'as yet unclassified' }
 PyPropertyController >> selectionIsEmpty [
 
@@ -105,7 +94,7 @@ PyPropertyController >> selectionIsEmpty [
 { #category : #'as yet unclassified' }
 PyPropertyController >> selectionIsMixed [
 
-	^ (self formAllDifferentsValues size = 1) not
+	^ self formAllDifferentsValues size ~= 1
 ]
 
 { #category : #'as yet unclassified' }

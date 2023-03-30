@@ -2,7 +2,7 @@ Trait {
 	#name : #TPyEditorPanelSide,
 	#traits : 'TPyramidBusinessUser',
 	#classTraits : 'TPyramidBusinessUser classTrait',
-	#category : #'Pyramid-Editor'
+	#category : #'Pyramid-Editor-Panels-Side'
 }
 
 { #category : #comparing }

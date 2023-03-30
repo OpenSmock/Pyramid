@@ -14,11 +14,42 @@ Class {
 { #category : #'as yet unclassified' }
 PyBusiness >> defaultRoots [
 
+	| e1 e2 e3 |
+	e1 := BlElement new addChildren: {
+			      BlElement new.
+			      BlElement new.
+			      BlElement new.
+			      BlElement new }.
+	e2 := BlElement new addChildren: {
+			      BlElement new.
+			      BlElement new.
+			      BlElement new.
+			      BlElement new }.
+	e3 := BlElement new addChildren: {
+			      (BlElement new addChildren: {
+					       BlElement new.
+					       BlElement new.
+					       BlElement new.
+					       BlElement new }).
+			      (BlElement new addChildren: {
+					       BlElement new.
+					       BlElement new.
+					       BlElement new.
+					       BlElement new }).
+			      (BlElement new addChildren: {
+					       BlElement new.
+					       BlElement new.
+					       BlElement new.
+					       BlElement new }).
+			      (BlElement new addChildren: {
+					       BlElement new.
+					       BlElement new.
+					       BlElement new.
+					       BlElement new }) }.
 	^ {
-		BlElement new.
-		BlElement new.
-		BlElement new.
-		BlElement new }
+		  e1.
+		  e2.
+		  e3 }
 ]
 
 { #category : #accessing }

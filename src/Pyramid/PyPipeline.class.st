@@ -50,7 +50,7 @@ PyPipeline >> selection: aSelection [
 ]
 
 { #category : #adding }
-PyPipeline >> useCommand: aCommand [
+PyPipeline >> useCommand: aCommand [ 
 
 	workers do: [ :each |
 		each useCommand: aCommand onSelection: self selection ].

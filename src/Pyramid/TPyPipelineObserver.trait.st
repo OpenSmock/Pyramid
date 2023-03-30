@@ -1,7 +1,6 @@
 Trait {
 	#name : #TPyPipelineObserver,
 	#instVars : [
-		'selection',
 		'pipeline'
 	],
 	#category : #'Pyramid-Business'
