@@ -44,42 +44,66 @@ PyPropertyView >> createEditButton [
 { #category : #'as yet unclassified' }
 PyPropertyView >> createMultiForm [
 
-	| globalLayout |
+	| globalLayout scroll |
 	globalLayout := SpBoxLayout newVertical spacing: 4.
 
-	self selection elements do: [ :each |
-		| elementPresenter applyToAllButton |
-		elementPresenter := self multiFormClass new
-			                    currentValue: (self controller valueFromElement: each);
-			                    action: [ :value |
-				                    self controller
-					                    applyValue: value
-					                    to: (PySelection new
-							                     add: each;
-							                     yourself).
-				                    self popoverShow ];
-			                    yourself.
+	self selection ifEmpty: [ ^ globalLayout ].
 
-		applyToAllButton := SpButtonPresenter new
-			                    icon: (self iconNamed: #smallExpert);
-			                    extent: 10 asPoint;
-			                    action: [
-				                    self controller applyValue:
-						                    elementPresenter currentValue.
-				                    self popoverShow ];
-			                    yourself.
-		globalLayout
-			add: (SpBoxLayout newHorizontal
-					 spacing: 4;
-					 add: elementPresenter;
-					 add: applyToAllButton withConstraints: [ :c |
-						 c
-							 width: 24;
-							 height: 24 ];
-					 yourself)
-			withConstraints: [ :c | c width: 300 ];
-			yourself ].
-	^ globalLayout
+	self selection elements do: [ :each |
+		self createMultiFormEntryFor: each on: globalLayout ].
+
+	self multiFormClass numberOfEntriesBeforeScrolling
+	< self selection size
+		ifTrue: [
+			scroll := SpScrollableLayout new.
+			scroll child: globalLayout.
+			^ SpBoxLayout newVertical
+				  add: scroll withConstraints: [ :c |
+					  c width: 300.
+					  c height: 300 ];
+				  yourself ]
+		ifFalse: [ ^ globalLayout ]
+]
+
+{ #category : #'as yet unclassified' }
+PyPropertyView >> createMultiFormEntryFor: each on: globalLayout [
+
+	| identityLabel elementPresenter applyToAllButton |
+	identityLabel := self newLabel
+		                 label: each identityHash printString;
+		                 yourself.
+	elementPresenter := self multiFormClass new
+		                    currentValue:
+			                    (self controller valueFromElement: each);
+		                    action: [ :value |
+			                    self controller
+				                    applyValue: value
+				                    to: (PySelection new
+						                     add: each;
+						                     yourself).
+			                    self popoverShow ];
+		                    yourself.
+
+	applyToAllButton := SpButtonPresenter new
+		                    icon: (self iconNamed: #smallExpert);
+		                    extent: 10 asPoint;
+		                    action: [
+			                    self controller applyValue:
+					                    elementPresenter currentValue.
+			                    self popoverShow ];
+		                    yourself.
+	globalLayout
+		add: (SpBoxLayout newHorizontal
+				 vAlignCenter;
+				 spacing: 4;
+				 add: identityLabel width: 70;
+				 add: elementPresenter;
+				 add: applyToAllButton withConstraints: [ :c |
+					 c
+						 width: 24;
+						 height: 24 ];
+				 yourself)
+		withConstraints: [ :c | c width: 300 ]
 ]
 
 { #category : #'as yet unclassified' }
@@ -249,8 +273,13 @@ PyPropertyView >> updatePopover [
 
 { #category : #'as yet unclassified' }
 PyPropertyView >> updateSectionComplement [
-	self selection ifEmpty: [ self sectionComplement: '0 element'. ^ self ].
-	self selection size = 1 ifTrue: [ self sectionComplement: '1 element'. ^ self ].
+
+	self selection ifEmpty: [
+		self sectionComplement: '0 element'.
+		^ self ].
+	self selection size = 1 ifTrue: [
+		self sectionComplement: '1 element (', self selection elements first identityHash printString, ')'.
+		^ self ].
 	self sectionComplement: self selection size printString , ' elements'
 ]
 

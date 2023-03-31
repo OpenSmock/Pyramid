@@ -21,7 +21,8 @@ PyPropertyController >> applyValue: aValue [
 PyPropertyController >> applyValue: aValue to: aPySelection [
 
 	self pipeline selection: aPySelection.
-	self pipeline useCommand: (command arguments: aValue)
+	self pipeline useCommand: (command arguments: aValue).
+	self pySelectionChanged
 ]
 
 { #category : #accessing }

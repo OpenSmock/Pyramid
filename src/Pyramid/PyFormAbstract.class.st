@@ -7,6 +7,12 @@ Class {
 	#category : #'Pyramid-Editor-Properties-Form'
 }
 
+{ #category : #'as yet unclassified' }
+PyFormAbstract class >> numberOfEntriesBeforeScrolling [
+
+	^ 11
+]
+
 { #category : #accessing }
 PyFormAbstract >> action [
 

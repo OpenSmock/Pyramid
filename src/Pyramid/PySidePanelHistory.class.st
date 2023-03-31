@@ -59,12 +59,13 @@ PySidePanelHistory >> initializePresenters [
 			each isSequence
 				ifTrue: [ each printString ]
 				ifFalse: [
-					each command printString , ' ' , each element printString, ' ', each value printString ] ];
+					each command printString , ' ' , each element printString , ' '
+					, each value printString ] ];
 		children: [ :each |
 			each isSequence
 				ifTrue: [ each mementos ]
 				ifFalse: [ {  } ] ];
-		"contextMenu: [ self contextMenu ];"expandRoots
+		expandRoots
 ]
 
 { #category : #accessing }

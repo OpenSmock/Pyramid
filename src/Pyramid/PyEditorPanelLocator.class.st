@@ -18,6 +18,7 @@ PyEditorPanelLocator class >> classPanelSideLeft [
 
 { #category : #'as yet unclassified' }
 PyEditorPanelLocator class >> classPanelSideRight [
+
 	^ TPyEditorPanelRight users
 ]
 
