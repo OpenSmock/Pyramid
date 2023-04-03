@@ -9,14 +9,16 @@ Class {
 	#category : #'Pyramid-Plugin-Save'
 }
 
-{ #category : #initialization }
-PySaveCore >> initialize [
-	saveModel := PySaveModel new.
+{ #category : #accessing }
+PySaveCore >> model [
+saveModel ifNil: [ saveModel := PySaveModel new ].
+^ saveModel
 ]
 
 { #category : #accessing }
-PySaveCore >> model [
-	^ saveModel
+PySaveCore >> model: aSaveModel [
+
+	saveModel := aSaveModel
 ]
 
 { #category : #'as yet unclassified' }

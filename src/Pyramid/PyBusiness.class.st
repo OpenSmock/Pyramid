@@ -113,6 +113,32 @@ PyBusiness >> open [
 	self view open
 ]
 
+{ #category : #'instance creation' }
+PyBusiness >> openOn: anObject selector: aSelector [
+
+	| saveModel newRoots |
+	saveModel := (self getPlugin: PyPluginSave) saveModel.
+
+	anObject isClass
+		ifTrue: [
+			saveModel defaultPackageName: anObject package name.
+			saveModel defaultClassName: anObject name.
+			saveModel defaultMethodName: aSelector.
+			saveModel isClassSide ]
+		ifFalse: [
+			saveModel defaultPackageName: anObject class package name.
+			saveModel defaultClassName: anObject class name.
+			saveModel defaultMethodName: aSelector.
+			saveModel isInstanceSide ].
+
+	newRoots := BlSerializer materialize: (anObject perform: aSelector).
+	newRoots isCollection
+		ifTrue: [ self roots clearThenAddAll: newRoots ]
+		ifFalse: [ self roots clearThenAddAll: { newRoots } ].
+
+	self view open
+]
+
 { #category : #accessing }
 PyBusiness >> pipeline [
 	^ pipeline

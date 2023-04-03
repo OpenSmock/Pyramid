@@ -4,7 +4,9 @@ Class {
 	#traits : 'TPyEditorPlugin',
 	#classTraits : 'TPyEditorPlugin classTrait',
 	#instVars : [
-		'saveCore'
+		'saveCore',
+		'saveModel',
+		'validator'
 	],
 	#category : #'Pyramid-Plugin-Save'
 }
@@ -13,6 +15,10 @@ Class {
 PyPluginSave >> initialize [
 
 	saveCore := PySaveCore new.
+	saveModel := PySaveModel new.
+	validator := PySaveValidator new.
+
+	saveCore model: saveModel
 ]
 
 { #category : #displaying }
@@ -20,4 +26,21 @@ PyPluginSave >> installOn: aBusiness [
 	saveCore roots: aBusiness roots
 
 	
+]
+
+{ #category : #accessing }
+PyPluginSave >> saveCore [
+
+	^ saveCore
+]
+
+{ #category : #accessing }
+PyPluginSave >> saveModel [
+
+	^ saveModel
+]
+
+{ #category : #accessing }
+PyPluginSave >> validator [
+	^ validator
 ]

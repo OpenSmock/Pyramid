@@ -1,6 +1,8 @@
 Class {
 	#name : #PySaveModel,
 	#superclass : #Object,
+	#traits : 'TPySaveModel',
+	#classTraits : 'TPySaveModel classTrait',
 	#instVars : [
 		'instanceSide',
 		'defaultClassName',
@@ -13,7 +15,8 @@ Class {
 { #category : #accessing }
 PySaveModel >> classSide [
 
-	instanceSide := false
+	instanceSide := false.
+	self notifyObservers
 ]
 
 { #category : #accessing }
@@ -26,7 +29,8 @@ PySaveModel >> defaultClassName [
 { #category : #accessing }
 PySaveModel >> defaultClassName: aString [
 
-	defaultClassName := aString
+	defaultClassName := aString.
+	self notifyObservers
 ]
 
 { #category : #accessing }
@@ -38,7 +42,8 @@ PySaveModel >> defaultMethodName [
 { #category : #accessing }
 PySaveModel >> defaultMethodName: aString [
 
-	defaultMethodName := aString
+	defaultMethodName := aString.
+	self notifyObservers
 ]
 
 { #category : #accessing }
@@ -50,13 +55,15 @@ defaultPackageName ifNil: [ defaultPackageName := '' ].
 { #category : #accessing }
 PySaveModel >> defaultPackageName: aString [
 
-	defaultPackageName := aString
+	defaultPackageName := aString.
+	self notifyObservers
 ]
 
 { #category : #accessing }
 PySaveModel >> instanceSide [
 
-	instanceSide := true
+	instanceSide := true.
+	self notifyObservers
 ]
 
 { #category : #accessing }

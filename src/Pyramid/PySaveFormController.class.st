@@ -15,6 +15,12 @@ model ifNil: [ model := PySaveModel new ].
 	^ model
 ]
 
+{ #category : #accessing }
+PySaveFormController >> model: aPySaveModel [
+
+	model :=aPySaveModel
+]
+
 { #category : #'as yet unclassified' }
 PySaveFormController >> radioUpdatedOnClassSide: aBoolean [
 

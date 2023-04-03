@@ -1,6 +1,8 @@
 Class {
 	#name : #PySaveFormView,
 	#superclass : #SpPresenter,
+	#traits : 'TPySaveModelObserver',
+	#classTraits : 'TPySaveModelObserver classTrait',
 	#instVars : [
 		'inputPackage',
 		'inputClass',
@@ -32,6 +34,11 @@ PySaveFormView >> controller [
 
 	controller ifNil: [ controller := PySaveFormController new view: self; yourself ].
 	^ controller
+]
+
+{ #category : #accessing }
+PySaveFormView >> controller: aPySaveFormController [
+	controller := aPySaveFormController
 ]
 
 { #category : #layout }
@@ -146,6 +153,23 @@ PySaveFormView >> labelErrorMethod [
 PySaveFormView >> labelErrorPackage [ 
 
 	^ labelErrorPackage
+]
+
+{ #category : #accessing }
+PySaveFormView >> model: aPySaveModel [
+
+	self model removeObserver: self.
+	model := aPySaveModel.
+	model addObserver: self.
+	self controller model: aPySaveModel
+]
+
+{ #category : #'as yet unclassified' }
+PySaveFormView >> pySaveModelChanged [
+
+	self inputPackage text: self model defaultPackageName.
+	self inputClass text: self model defaultClassName.
+	self inputMethod text: self model defaultMethodName
 ]
 
 { #category : #'as yet unclassified' }

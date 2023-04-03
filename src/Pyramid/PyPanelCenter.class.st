@@ -14,7 +14,8 @@ Class {
 PyPanelCenter >> business: aBusiness [
 
 	business := aBusiness.
-	self roots: business roots.
+	business roots addObserver: self.
+	self roots: business roots
 ]
 
 { #category : #layout }
@@ -49,6 +50,12 @@ PyPanelCenter >> initializePresenters [
 
 	view := self newMorph.
 	view morph: self initializeNewMorphicSpace
+]
+
+{ #category : #'as yet unclassified' }
+PyPanelCenter >> pySelectionChanged [
+
+	self roots: self business roots.
 ]
 
 { #category : #'as yet unclassified' }

@@ -2,7 +2,6 @@ Class {
 	#name : #PySaveValidator,
 	#superclass : #Object,
 	#instVars : [
-		'saveModel',
 		'model'
 	],
 	#category : #'Pyramid-Plugin-Save'
@@ -34,6 +33,27 @@ PySaveValidator >> validate: aPySaveModel [
 	self validatePackageDoesExist: aPySaveModel.
 	self validateClassDoesExist: aPySaveModel.
 	self validateOverridesMethod: aPySaveModel
+]
+
+{ #category : #'as yet unclassified' }
+PySaveValidator >> validateAsBoolean: aPySaveModel [
+
+	[[[[[[[ self validate: aPySaveModel ]
+		on: PySaveWillOverrideANotPystonMethodException
+		do: [ ^ true ]]
+		on: PySaveOverridePyStonMethodException 
+		do: [ ^ true ]]
+		on: PySavePackageDontExistException 
+		do: [ ^ true ]]
+	   on: PySaveClassDontExistException 
+		do: [ ^ true ]]
+		on: PySavePackageMissingError 
+		do: [ ^ false ]]
+		on: PySaveClassMissingError 
+		do: [ ^ false ]]
+		on: PySaveMethodMissingError 
+		do: [ ^ false ].
+	^ true
 ]
 
 { #category : #'as yet unclassified' }
