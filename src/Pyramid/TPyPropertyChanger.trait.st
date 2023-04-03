@@ -6,6 +6,12 @@ Trait {
 	#category : #'Pyramid-Editor-Properties-Changer'
 }
 
+{ #category : #asserting }
+TPyPropertyChanger classSide >> shouldInstall [
+
+	^ true
+]
+
 { #category : #comparing }
 TPyPropertyChanger >> <= aPyViewProperty [
 

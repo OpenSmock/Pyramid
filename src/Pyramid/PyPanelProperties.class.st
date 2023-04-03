@@ -24,9 +24,9 @@ PyPanelProperties class >> pageTitle [
 { #category : #initialization }
 PyPanelProperties >> business: aBusiness [
 
-	business := aBusiness.
-	business selection addObserver: self.
-	self properties do: [ :each | each pipeline: business pipeline.  each selection: business selection. ]
+	self properties do: [ :each |
+		each pipeline: aBusiness pipeline.
+		each selection: aBusiness selection ]
 ]
 
 { #category : #layout }
@@ -50,24 +50,7 @@ PyPanelProperties >> order [
 PyPanelProperties >> properties [
 
 	properties ifNil: [
-		properties := (PyEditorPanelLocator classPanelProperties collect: [ :each | each new ])
-			              asArray sorted ].
+		properties := (PyEditorPanelLocator classPanelProperties select: [ :each | each shouldInstall ] thenCollect: [
+			               :each | each new ]) asArray sorted ].
 	^ properties
-]
-
-{ #category : #'as yet unclassified' }
-PyPanelProperties >> pySelectionChanged [
-	self properties do: [ :each | each selection: self selection ].
-]
-
-{ #category : #'as yet unclassified' }
-PyPanelProperties >> receiveNewBlElement: aBlElement [
-
-	aBlElement ifNil: [ ^ self ].
-	properties do: [ :each | each element: aBlElement ]
-]
-
-{ #category : #accessing }
-PyPanelProperties >> selection [
-	 ^ self business selection
 ]

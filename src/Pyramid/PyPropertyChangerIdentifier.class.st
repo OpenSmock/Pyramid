@@ -6,6 +6,12 @@ Class {
 	#category : #'Pyramid-Editor-Properties-Changer'
 }
 
+{ #category : #asserting }
+PyPropertyChangerIdentifier class >> shouldInstall [
+
+	^ true
+]
+
 { #category : #'as yet unclassified' }
 PyPropertyChangerIdentifier >> commandClass [
 

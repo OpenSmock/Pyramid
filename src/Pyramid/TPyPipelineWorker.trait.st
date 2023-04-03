@@ -1,6 +1,6 @@
 Trait {
 	#name : #TPyPipelineWorker,
-	#category : #'Pyramid-Business'
+	#category : #'Pyramid-Business-Pipeline'
 }
 
 { #category : #'menu messages' }

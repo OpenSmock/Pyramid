@@ -22,5 +22,5 @@ PyPluginHistory >> initialize [
 { #category : #displaying }
 PyPluginHistory >> installOn: aBusiness [
 
-	aBusiness pipeline addWorkerFirst: self history
+	aBusiness pipeline addWorkerBeforeExecute: self history
 ]

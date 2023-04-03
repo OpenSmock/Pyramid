@@ -247,6 +247,15 @@ PyPropertyView >> sectionNameFull [
 ]
 
 { #category : #accessing }
+PyPropertyView >> selection: aPySelection [
+
+	self selection removeObserver: self.
+	selection := aPySelection.
+	selection addObserver: self.
+	self pySelectionChanged
+]
+
+{ #category : #accessing }
 PyPropertyView >> singleForm [
 
 	^ singleForm

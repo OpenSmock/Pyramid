@@ -20,7 +20,6 @@ PyFormVisibility >> currentValue [
 { #category : #accessing }
 PyFormVisibility >> currentValue: aBlVisibility [
 
-	self dropList disableSelectionDuring: [
 		self dropList items: self modelSameValue.
 		aBlVisibility isVisible ifTrue: [
 			self dropList selectIndex: 1.
@@ -28,7 +27,7 @@ PyFormVisibility >> currentValue: aBlVisibility [
 		aBlVisibility isGone ifTrue: [
 			self dropList selectIndex: 3.
 			^ self ].
-		self dropList selectIndex: 2 ]
+		self dropList selectIndex: 2
 ]
 
 { #category : #layout }
@@ -94,21 +93,16 @@ PyFormVisibility >> modelEmptyValue [
 { #category : #'as yet unclassified' }
 PyFormVisibility >> modelGone [
 
-	modelGone ifNil: [ modelGone :=  (PyFormVisibilityModel new
-			   visibility: BlVisibility gone;
-			   label: 'gone';
-			   icon: (self iconNamed: #haloDismiss)) ].
-	^modelGone
+	modelGone ifNil: [
+		modelGone := PyFormVisibilityModel gone ].
+	^ modelGone
 ]
 
 { #category : #'as yet unclassified' }
 PyFormVisibility >> modelHidden [
 
 	modelHidden ifNil: [
-		modelHidden := PyFormVisibilityModel new
-			             visibility: BlVisibility hidden;
-			             label: 'hidden';
-			             icon: (self iconNamed: #haloHelp) ].
+		modelHidden := PyFormVisibilityModel hidden ].
 	^ modelHidden
 ]
 
@@ -136,10 +130,7 @@ PyFormVisibility >> modelSameValue [
 PyFormVisibility >> modelVisible [
 
 	modelVisible ifNil: [
-		modelVisible := PyFormVisibilityModel new
-			             visibility: BlVisibility visible;
-			             label: 'visible';
-			             icon: (self iconNamed: #haloView) ].
+		modelVisible := PyFormVisibilityModel visible ].
 	^ modelVisible
 ]
 

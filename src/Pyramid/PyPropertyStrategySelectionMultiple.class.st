@@ -7,11 +7,21 @@ Class {
 	#category : #'Pyramid-Editor-Properties'
 }
 
+{ #category : #testing }
+PyPropertyStrategySelectionMultiple >> isEditButtonEnabled [
+
+	^ true
+]
+
+{ #category : #testing }
+PyPropertyStrategySelectionMultiple >> isSingleFormEnabled [
+
+	^ true
+]
+
 { #category : #'as yet unclassified' }
 PyPropertyStrategySelectionMultiple >> updateForm: aView [
 
-	aView editButton enabled: true.
-	aView singleForm enabled: true.
 	aView singleForm currentValue: self valueOfForm.
 	aView updatePopover
 ]

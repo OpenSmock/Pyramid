@@ -15,9 +15,12 @@ PyFormText >> currentValue [
 
 { #category : #accessing }
 PyFormText >> currentValue: aBlElementId [
-
-	aBlElementId isString ifTrue: [ self textInput text: aBlElementId. ^ self ].
-	aBlElementId isNoId ifTrue: [ self textInput text: ''. ^ self ].
+	aBlElementId isString ifTrue: [
+		self textInput text: aBlElementId.
+		^ self ].
+	aBlElementId isNoId ifTrue: [
+		self textInput text: ''.
+		^ self ].
 	self textInput text: aBlElementId asSymbol
 
 	

@@ -74,7 +74,6 @@ PyBusiness >> initialize [
 PyBusiness >> initializePipeline [
 
 	pipeline := PyPipeline new.
-	pipeline addWorkerFirst: PyCommandExecutor new.
 	pipeline selection: self selection.
 ]
 

@@ -107,6 +107,11 @@ PyEditorPresenter >> pyEditorPanelModelChange [
 ]
 
 { #category : #initialization }
+PyEditorPresenter >> rootLayer [
+	^ self panelCenter rootLayer
+]
+
+{ #category : #initialization }
 PyEditorPresenter >> strategyFromModel [
 
 	| strategy |

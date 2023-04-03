@@ -12,6 +12,12 @@ Class {
 }
 
 { #category : #'as yet unclassified' }
+PyPropertyController >> allStatesFromSelection [
+
+	^ self selection getStatesFor: self command
+]
+
+{ #category : #'as yet unclassified' }
 PyPropertyController >> applyValue: aValue [
 
 	self applyValue: aValue to: self selection
@@ -38,15 +44,9 @@ PyPropertyController >> command: aCommand [
 ]
 
 { #category : #'as yet unclassified' }
-PyPropertyController >> formAllDifferentsValues [
-	
-^ (self selection elements collect: [ :each |
-		              self valueFromElement: each ]) asSet asArray.
-]
-
-{ #category : #'as yet unclassified' }
 PyPropertyController >> formSingleValue [
-	^ self formAllDifferentsValues first
+
+	^ self allStatesFromSelection first
 ]
 
 { #category : #accessing }
@@ -75,15 +75,23 @@ PyPropertyController >> pySelectionChanged [
 		self strategy: PyPropertyStrategySelectionEmpty new.
 		^ self ].
 	self selectionIsSingle ifTrue: [
-		self strategy:
-			(PyPropertyStrategySelectionSingle new valueOfForm:
+		self strategy: (PyPropertyStrategySelectionSingle new valueOfForm:
 				 self formSingleValue).
 		^ self ].
 	self selectionIsMixed ifTrue: [
 		self strategy: PyPropertyStrategySelectionMixed new.
 		^ self ].
 	self strategy: (PyPropertyStrategySelectionMultiple new valueOfForm:
-				 self formSingleValue)
+			 self formSingleValue)
+]
+
+{ #category : #accessing }
+PyPropertyController >> selection: aPySelection [
+
+	self selection removeObserver: self.
+	selection := aPySelection.
+	selection addObserver: self.
+	self pySelectionChanged
 ]
 
 { #category : #'as yet unclassified' }
@@ -95,7 +103,7 @@ PyPropertyController >> selectionIsEmpty [
 { #category : #'as yet unclassified' }
 PyPropertyController >> selectionIsMixed [
 
-	^ self formAllDifferentsValues size ~= 1
+	^ self allStatesFromSelection size ~= 1
 ]
 
 { #category : #'as yet unclassified' }

@@ -12,6 +12,12 @@ TPySelection >> addObserver: anObserver [
 	self observers add: anObserver
 ]
 
+{ #category : #testing }
+TPySelection >> isVoid [
+
+	^ false
+]
+
 { #category : #notifying }
 TPySelection >> notifyObservers [
 	

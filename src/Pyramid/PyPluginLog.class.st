@@ -17,7 +17,7 @@ PyPluginLog >> initialize [
 { #category : #displaying }
 PyPluginLog >> installOn: aBusiness [
 
-	aBusiness pipeline addWorkerLast: self logger
+	aBusiness pipeline addWorkersBeforeTerminate: self logger
 ]
 
 { #category : #accessing }

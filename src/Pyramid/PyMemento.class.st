@@ -42,7 +42,7 @@ PyMemento >> restore [
 { #category : #'window management' }
 PyMemento >> restore: aPipeline [
 
-	aPipeline selection clear.
+	aPipeline selection: PySelection new.
 	aPipeline selection add: self element.
 	aPipeline useCommand: (self command arguments: self).
 ]

@@ -3,7 +3,7 @@ Trait {
 	#instVars : [
 		'observers'
 	],
-	#category : #'Pyramid-Business'
+	#category : #'Pyramid-Business-Pipeline'
 }
 
 { #category : #adding }
@@ -13,9 +13,27 @@ TPyPipeline >> addObserver: anObserver [
 ]
 
 { #category : #notifying }
-TPyPipeline >> notifyObservers [
+TPyPipeline >> notifyObserversPipelineCancelCommand [
 
-	self observers do: [ :observer | observer pyPipelineUsedCommand ]
+	self observers do: [ :observer | observer pyPipelineCancelCommand ]
+]
+
+{ #category : #notifying }
+TPyPipeline >> notifyObserversPipelineExecuteCommand [
+
+	self observers do: [ :observer | observer pyPipelineExecuteCommand ]
+]
+
+{ #category : #notifying }
+TPyPipeline >> notifyObserversPipelineTerminateCommand [
+
+	self observers do: [ :observer | observer pyPipelineTerminateCommand ]
+]
+
+{ #category : #notifying }
+TPyPipeline >> notifyObserversPipelineVerifyCommand [
+
+	self observers do: [ :observer | observer pyPipelineVerifyCommand ]
 ]
 
 { #category : #adding }

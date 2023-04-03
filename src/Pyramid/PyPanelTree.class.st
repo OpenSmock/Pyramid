@@ -88,7 +88,10 @@ PyPanelTree >> initializePresenters [
 		contextMenu: [ self contextMenu ];
 		expandRoots.
 	self columns do: [ :each | tree addColumn: each column ].
-	self selectionChangedActivate
+	self tree whenSelectionChangedDo: [ :newSelection |
+		self selection removeObserver: self.
+		self selection clearThenAddAll: newSelection selectedItems.
+		self selection addObserver: self ]
 ]
 
 { #category : #accessing }
@@ -98,20 +101,28 @@ PyPanelTree >> order [
 ]
 
 { #category : #'as yet unclassified' }
-PyPanelTree >> pyPipelineUsedCommand [
+PyPanelTree >> pyPipelineCancelCommand [
+]
 
-	self selectionChangedDesactivate.
-	self tree refresh.
-	self selectionChangedActivate
+{ #category : #'as yet unclassified' }
+PyPanelTree >> pyPipelineExecuteCommand [
+
+	self tree disableActivationDuring: [ self tree refresh ]
+]
+
+{ #category : #'as yet unclassified' }
+PyPanelTree >> pyPipelineTerminateCommand [
+]
+
+{ #category : #'as yet unclassified' }
+PyPanelTree >> pyPipelineVerifyCommand [
 ]
 
 { #category : #'as yet unclassified' }
 PyPanelTree >> pySelectionChanged [
 
-	self selectionChangedDesactivate.
-	self tree selectItems: self selection elements.
-	self tree refresh.
-	self selectionChangedActivate
+	self tree disableActivationDuring: [self tree selectItems: self selection elements.
+	self tree refresh. ]
 ]
 
 { #category : #accessing }
@@ -125,21 +136,6 @@ PyPanelTree >> roots [
 PyPanelTree >> roots: aPyRoots [
 
 	self tree roots: aPyRoots elements
-]
-
-{ #category : #'as yet unclassified' }
-PyPanelTree >> selectionChangedActivate [
-
-	self tree whenSelectionChangedDo: [ :selection |
-		self selection removeObserver: self.
-		self selection clearThenAddAll: selection selectedItems.
-		self selection addObserver: self. ]
-]
-
-{ #category : #'as yet unclassified' }
-PyPanelTree >> selectionChangedDesactivate [
-
-	self tree whenSelectionChangedDo: [ :selection |  ].
 ]
 
 { #category : #accessing }

@@ -17,15 +17,19 @@ PyCommandHistory >> add: aMemento [
 	self notifyObservers
 ]
 
+{ #category : #'as yet unclassified' }
+PyCommandHistory >> getCurrentMementoFor: aCommand on: aSelection [
+
+	| memento |
+	memento := PyMementoSequence new.
+	aSelection elements do: [ :each | memento add: (aCommand mementoFor: each) ].
+	^ memento
+]
+
 { #category : #accessing }
 PyCommandHistory >> historyPipeline [
 
-	historyPipeline ifNil: [ 
-		historyPipeline := PyPipeline new
-			                   selection: PySelection new;
-			                   addWorkerLast: PyCommandLogger new;
-			                   addWorkerLast: PyCommandExecutor new;
-			                   yourself ].
+	historyPipeline ifNil: [ historyPipeline := PyPipeline new selection: PySelection new; yourself ].
 	^ historyPipeline
 ]
 
@@ -53,6 +57,6 @@ PyCommandHistory >> undo [
 PyCommandHistory >> useCommand: aCommand onSelection: aSelection [
 
 	| memento |
-	memento := aSelection getCurrentMementoFor: aCommand.
+	memento := self getCurrentMementoFor: aCommand on: aSelection.
 	self add: memento
 ]

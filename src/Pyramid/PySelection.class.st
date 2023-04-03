@@ -44,12 +44,13 @@ PySelection >> elements [
 ]
 
 { #category : #'as yet unclassified' }
-PySelection >> getCurrentMementoFor: aCommand [
+PySelection >> getStatesFor: aCommand [
 
-	| memento |
-	memento := PyMementoSequence new.
-	self elements do: [ :each | memento add: (aCommand mementoFor: each) ].
-	^ memento
+	^ (self elements collect: [ :each |
+		  | state |
+		  state := PyCommandArguments new.
+		  aCommand stateOf: each for: state.
+		  state value ]) asSet asArray
 ]
 
 { #category : #testing }
@@ -67,11 +68,6 @@ PySelection >> initialize [
 PySelection >> isEmpty [
 
 	^ self elements isEmpty 
-]
-
-{ #category : #accessing }
-PySelection >> mementos [
-	self shouldBeImplemented.
 ]
 
 { #category : #printing }

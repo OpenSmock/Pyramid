@@ -3,7 +3,7 @@ Trait {
 	#instVars : [
 		'pipeline'
 	],
-	#category : #'Pyramid-Business'
+	#category : #'Pyramid-Business-Pipeline'
 }
 
 { #category : #accessing }
@@ -25,7 +25,25 @@ TPyPipelineObserver >> pipeline: aPyPipeline [
 ]
 
 { #category : #'as yet unclassified' }
-TPyPipelineObserver >> pyPipelineUsedCommand [
+TPyPipelineObserver >> pyPipelineCancelCommand [
+
+	self shouldBeImplemented
+]
+
+{ #category : #'as yet unclassified' }
+TPyPipelineObserver >> pyPipelineExecuteCommand [
+
+	self shouldBeImplemented
+]
+
+{ #category : #'as yet unclassified' }
+TPyPipelineObserver >> pyPipelineTerminateCommand [
+
+	self shouldBeImplemented
+]
+
+{ #category : #'as yet unclassified' }
+TPyPipelineObserver >> pyPipelineVerifyCommand [
 
 	self shouldBeImplemented
 ]

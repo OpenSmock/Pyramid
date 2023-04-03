@@ -9,16 +9,24 @@ Class {
 { #category : #initialization }
 PyTreeColumnVisibility >> initialize [
 
-	column := (SpCheckBoxTableColumn new
-		           title: 'Visible';
-		           evaluated: [ :element | element visibility isVisible ];
-		           onActivation: [ :element |
-			           self sendCommandVisibleTo: element.
-			           ];
-		           onDeactivation: [ :element |
-			           self sendCommandHiddenTo: element ];
-		           yourself)
-		          width: 45;
+	column := SpCompositeTableColumn new
+		          title: 'Visible';
+					 addColumn: (SpStringTableColumn new
+				           title: 'Parent is Visible';
+				           evaluated: [ :element |
+					           self visibilityLabelFor: element ];
+				           yourself);
+		          addColumn: (SpCheckBoxTableColumn new
+				           title: 'Visible';
+				           evaluated: [ :element | element visibility isVisible ];
+				           onActivation: [ :element |
+					           self sendCommandVisibleTo: element ];
+				           onDeactivation: [ :element |
+					           self sendCommandHiddenTo: element ];
+				           yourself);
+		          addColumn: (SpImageTableColumn evaluated: [ :element |
+				           self visibilityIconFor: element ]);
+		          width: 55;
 		          yourself
 ]
 
@@ -57,4 +65,19 @@ PyTreeColumnVisibility >> sendCommandVisibleTo: aBlElement [
 	self pipeline useCommand:
 		(PyCommandVisibility new arguments: BlVisibility visible).
 	self selection notifyObservers
+]
+
+{ #category : #'as yet unclassified' }
+PyTreeColumnVisibility >> visibilityIconFor: aBlElement [
+
+	^ (PyFormVisibilityModel from: aBlElement visibility) icon
+]
+
+{ #category : #'as yet unclassified' }
+PyTreeColumnVisibility >> visibilityLabelFor: aBlElement [
+
+	aBlElement
+		allParentsTo: self business view rootLayer
+		do: [ :each | each visibility isVisible ifFalse: [ ^ '!' ] ].
+	^ ''
 ]
