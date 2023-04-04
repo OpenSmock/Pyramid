@@ -1,7 +1,6 @@
 Class {
 	#name : #PySaveModel,
 	#superclass : #Object,
-	#traits : 'TPySaveModel',
 	#classTraits : 'TPySaveModel classTrait',
 	#instVars : [
 		'instanceSide',

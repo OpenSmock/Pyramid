@@ -39,7 +39,6 @@ PyPanelCenter >> initializeNewMorphicSpace [
 
 	space := BlSpace new.
 	space host: host.
-	space root userData at: PyBusiness userdataKey put: self business. 
 
 	self whenDisplayDo: [ space show ].
 

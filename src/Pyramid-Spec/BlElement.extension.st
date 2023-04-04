@@ -1,6 +1,12 @@
 Extension { #name : #BlElement }
 
 { #category : #'*Pyramid-Spec' }
+BlElement >> openEditor [
+	PyBusiness new openStrategy: (PyOpenStrategyElement new sourceElement: self);
+						open
+]
+
+{ #category : #'*Pyramid-Spec' }
 BlElement >> openInNewSpaceWithPyramidShortcut [
 	"Add self to a new BlSpace and show it. Add a keyBoard shortcut to open pyramid editor. Answer such space."
 

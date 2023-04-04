@@ -7,7 +7,7 @@ Class {
 		'sourceObject',
 		'sourceSelector'
 	],
-	#category : #'Pyramid-Business-Open-Strategy'
+	#category : #'Pyramid-Plugin-Save'
 }
 
 { #category : #'as yet unclassified' }

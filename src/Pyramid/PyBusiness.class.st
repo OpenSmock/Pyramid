@@ -14,11 +14,6 @@ Class {
 }
 
 { #category : #'as yet unclassified' }
-PyBusiness class >> userdataKey [
-	^ #PyramidEditorIsOpened
-]
-
-{ #category : #'as yet unclassified' }
 PyBusiness >> defaultRoots [
 
 	| e1 e2 e3 |

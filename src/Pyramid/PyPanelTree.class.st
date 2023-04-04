@@ -52,6 +52,12 @@ PyPanelTree >> contextMenu [
 				name: 'inspect';
 				action: [ tree selectedItem inspect ];
 				icon: (self iconNamed: #glamorousInspect);
+				yourself ].
+			group addItem: [ :item |
+			item
+				name: 'open in other editor';
+				action: [ tree selectedItem openEditor ];
+				icon: (self iconNamed: #glamorousSaveToUrl);
 				yourself ] ].
 	menu addGroup: [ :group |
 		group addItem: [ :item |
