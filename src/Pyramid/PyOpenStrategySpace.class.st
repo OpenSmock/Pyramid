@@ -7,6 +7,12 @@ Class {
 	#category : #'Pyramid-Business'
 }
 
+{ #category : #removing }
+PyOpenStrategySpace >> removeParentOf: aCollection [
+
+	aCollection do: [ :each | each parent removeChild: each ]
+]
+
 { #category : #protocol }
 PyOpenStrategySpace >> setupRoots: aBusiness [
 
@@ -14,7 +20,7 @@ PyOpenStrategySpace >> setupRoots: aBusiness [
 	self sourceSpace ifNil: [
 		PySpaceIsMissingError signal: 'The source space is missing.' ].
 	
-	roots := 	self sourceSpace root children.
+	roots := 	self sourceSpace root children collect: [ :each | each ].
 
 	self removeParentOf: roots.
 
@@ -35,4 +41,7 @@ PyOpenStrategySpace >> sourceSpace: aBlSpace [
 
 { #category : #'as yet unclassified' }
 PyOpenStrategySpace >> whenWindowClosed: aBusiness [
+
+	self removeParentOf: aBusiness roots elements.
+	self sourceSpace root addChildren: aBusiness roots elements
 ]

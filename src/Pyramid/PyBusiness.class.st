@@ -7,7 +7,8 @@ Class {
 		'roots',
 		'plugins',
 		'view',
-		'restorationBlock'
+		'restorationBlock',
+		'openStrategy'
 	],
 	#category : #'Pyramid-Business'
 }
@@ -117,10 +118,11 @@ PyBusiness >> initializeView [
 PyBusiness >> open [
 
 	| window |
-	window := self view open.
+	self openStrategy open: self.
+	"window := self view open.
 	window resize: 1024 @ 720.
 	window title: 'Pyramid Editor'.
-	window whenClosedDo: [ self whenWindowClosed ]
+	window whenClosedDo: [ self whenWindowClosed ]"
 ]
 
 { #category : #'instance creation' }
@@ -178,6 +180,19 @@ PyBusiness >> openOn: anObject selector: aSelector [
 
 	newRoots := BlSerializer materialize: (anObject perform: aSelector).
 	self openOn: newRoots
+]
+
+{ #category : #accessing }
+PyBusiness >> openStrategy [
+
+	openStrategy ifNil: [ openStrategy := PyEditorOpenStrategy new ].
+	^ openStrategy
+]
+
+{ #category : #accessing }
+PyBusiness >> openStrategy: anOpenStrategy [
+
+	openStrategy := anOpenStrategy
 ]
 
 { #category : #accessing }

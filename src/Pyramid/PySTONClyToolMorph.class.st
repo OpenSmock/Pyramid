@@ -171,16 +171,19 @@ PySTONClyToolMorph >> method [
 
 { #category : #accessing }
 PySTONClyToolMorph >> openEditor [
-	"PyEditorPresenter
-			openOnSton: self getStonFromMethod
-			fromClass: self getClassName
-			andMethod: self getMethodName "
-	| class |
+
+	| class openStrategy |
+	openStrategy := PyOpenStrategyObjectSelector new
+		                sourceSelector: method selector;
+		                yourself.
 	class := method classBinding value.
-	class isMeta ifTrue: [ PyBusiness new openOn: method classBinding value instanceSide selector: method selector. ^ self ].
-	PyBusiness new openOn: method classBinding value new selector: method selector.
-	
-	
+	class isMeta
+		ifTrue: [ openStrategy sourceObject: class instanceSide ]
+		ifFalse: [ openStrategy sourceObject: class new ].
+
+	PyBusiness new
+		openStrategy: openStrategy;
+		open
 ]
 
 { #category : #accessing }

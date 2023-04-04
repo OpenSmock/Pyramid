@@ -33,7 +33,7 @@ PyOpenStrategyObjectSelector >> setupRoots: aBusiness [
 
 	aBusiness roots clear.
 
-	(sourceObject canPerform: sourceSelector)
+	(sourceObject respondsTo: sourceSelector)
 		ifTrue: [ aBusiness roots addAll: self retreiveRoots ]
 ]
 
