@@ -6,7 +6,8 @@ Class {
 		'pipeline',
 		'roots',
 		'plugins',
-		'view'
+		'view',
+		'restorationBlock'
 	],
 	#category : #'Pyramid-Business'
 }
@@ -110,7 +111,37 @@ PyBusiness >> initializeView [
 { #category : #'instance creation' }
 PyBusiness >> open [
 
-	self view open
+	| window |
+	window := self view open.
+	window resize: 1024 @ 720.
+	window title: 'Pyramid Editor'.
+	window whenClosedDo: [ self whenWindowClosed ]
+]
+
+{ #category : #'instance creation' }
+PyBusiness >> openOn: aBlElementOrACollection [
+
+	| newRoots oldParent |
+	newRoots := aBlElementOrACollection isCollection
+		            ifTrue: [ aBlElementOrACollection ]
+		            ifFalse: [ { aBlElementOrACollection } ].
+
+	oldParent := (newRoots collect: [ :each | each parent ]) asSet
+		             asArray.
+	oldParent size == 1 ifFalse: [
+		PyCanNotEditChildFromDifferentParentError signal:
+			'You cannot edit child comming from different parent.' ].
+
+	oldParent := oldParent first.
+	oldParent ifNotNil: [
+		newRoots do: [ :each |
+			each parent ifNotNil: [ each parent removeChild: each ] ].
+		self restorationBlock: [
+			self roots elements do: [ :each | each parent removeChild: each.
+				oldParent addChild: each ] ] ].
+
+	self roots clearThenAddAll: newRoots.
+	self open
 ]
 
 { #category : #'instance creation' }
@@ -132,11 +163,7 @@ PyBusiness >> openOn: anObject selector: aSelector [
 			saveModel isInstanceSide ].
 
 	newRoots := BlSerializer materialize: (anObject perform: aSelector).
-	newRoots isCollection
-		ifTrue: [ self roots clearThenAddAll: newRoots ]
-		ifFalse: [ self roots clearThenAddAll: { newRoots } ].
-
-	self view open
+	self openOn: newRoots.
 ]
 
 { #category : #accessing }
@@ -147,6 +174,19 @@ PyBusiness >> pipeline [
 { #category : #accessing }
 PyBusiness >> plugins [
 	^ plugins
+]
+
+{ #category : #'as yet unclassified' }
+PyBusiness >> restorationBlock [
+
+	restorationBlock ifNil: [ restorationBlock := [  ] ].
+	^ restorationBlock
+]
+
+{ #category : #'as yet unclassified' }
+PyBusiness >> restorationBlock: aBlock [
+
+	restorationBlock := aBlock
 ]
 
 { #category : #accessing }
@@ -163,4 +203,11 @@ PyBusiness >> selection [
 PyBusiness >> view [
 
 	^ view
+]
+
+{ #category : #'as yet unclassified' }
+PyBusiness >> whenWindowClosed [
+
+
+	self restorationBlock value.
 ]
