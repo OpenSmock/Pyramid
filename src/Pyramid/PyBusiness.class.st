@@ -144,8 +144,8 @@ PyBusiness >> openOn: aBlElementOrACollection [
 
 	oldParent userData
 		at: PyBusiness userdataKey
-		ifPresent: [ :business | "PyEditorAlreadyOpenError signal: 'A PyEditor is open.'"
-			^ self ].
+		ifPresent: [ :business |
+		"PyEditorAlreadyOpenError signal: 'A PyEditor is open.'". ^ self ].
 
 	newRoots do: [ :each |
 		each parent ifNotNil: [ each parent removeChild: each ] ].
@@ -169,15 +169,15 @@ PyBusiness >> openOn: anObject selector: aSelector [
 			saveModel defaultPackageName: anObject package name.
 			saveModel defaultClassName: anObject name.
 			saveModel defaultMethodName: aSelector.
-			saveModel isClassSide ]
+			saveModel classSide ]
 		ifFalse: [
 			saveModel defaultPackageName: anObject class package name.
 			saveModel defaultClassName: anObject class name.
 			saveModel defaultMethodName: aSelector.
-			saveModel isInstanceSide ].
+			saveModel instanceSide ].
 
 	newRoots := BlSerializer materialize: (anObject perform: aSelector).
-	self openOn: newRoots.
+	self openOn: newRoots
 ]
 
 { #category : #accessing }

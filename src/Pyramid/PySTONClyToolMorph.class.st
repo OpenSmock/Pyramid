@@ -61,11 +61,45 @@ PySTONClyToolMorph >> belongsToRemovedBrowserContext [
 { #category : #building }
 PySTONClyToolMorph >> build [
 
-	| editorButton |
-	editorButton := self editorButton.
+	| buttonEditor buttonOpen |
+	buttonEditor := self buttonEditor.
+	buttonOpen := self buttonOpen.
 	imageMorph := ImageMorph withForm: blElement exportAsForm.
 	self addMorph: imageMorph fullFrame: LayoutFrame identity.
-	self addMorph: editorButton.
+	self addMorph: buttonEditor.
+	self addMorph: buttonOpen
+]
+
+{ #category : #'as yet unclassified' }
+PySTONClyToolMorph >> buttonEditor [
+
+	| button |
+	button := SimpleButtonMorph newWithLabel: 'Edit'.
+	button
+		actionSelector: #value;
+		helpText: 'Open the PyEditor on this STON';
+		extent: 100 @ 25;
+		useRoundedCorners;
+		color: Color white.
+	button target: [ self openEditor ].
+
+	^ button
+]
+
+{ #category : #'as yet unclassified' }
+PySTONClyToolMorph >> buttonOpen [
+
+	| button |
+	button := SimpleButtonMorph newWithLabel: 'Open'.
+	button
+		actionSelector: #value;
+		helpText: 'Open the this STON in new space';
+		extent: 100 @ 25;
+		useRoundedCorners;
+		color: Color white.
+	button target: [ self openInNewSpace ].
+
+	^ button
 ]
 
 { #category : #initialization }
@@ -137,15 +171,33 @@ PySTONClyToolMorph >> method [
 
 { #category : #accessing }
 PySTONClyToolMorph >> openEditor [
-
 	"PyEditorPresenter
 			openOnSton: self getStonFromMethod
 			fromClass: self getClassName
 			andMethod: self getMethodName "
+	| class |
+	class := method classBinding value.
+	class isMeta ifTrue: [ PyBusiness new openOn: method classBinding value instanceSide selector: method selector. ^ self ].
+	PyBusiness new openOn: method classBinding value new selector: method selector.
+	
+	
+]
 
-	PyDoubleMenusPresenter
-		openOnClass: method classBinding value instanceSide
-		selector: method selector
+{ #category : #accessing }
+PySTONClyToolMorph >> openInNewSpace [
+
+	| class elements space |
+	class := method classBinding value.
+	elements := class isMeta ifTrue: [
+		 (method classBinding value instanceSide perform: method selector) materializeAsBlElement
+		] ifFalse: [ 
+	(method classBinding value new perform: method selector) materializeAsBlElement ].
+
+	elements isCollection ifFalse: [ elements := { elements } ].
+	
+	elements ifEmpty: [ ^ self ].
+	space := elements first openInNewSpaceWithPyramidShortcut.
+	space root addChildren: elements allButFirst.
 ]
 
 { #category : #printing }
@@ -166,7 +218,12 @@ PySTONClyToolMorph >> resetStateForSnapshot [
 PySTONClyToolMorph >> setUpModelFromContext [
 
 	method := context firstSelectedMethod.
-	blElement := self getStonFromMethod materializeAsBlElement
+	blElement := self getStonFromMethod materializeAsBlElement.
+	blElement isCollection ifTrue: [
+		blElement := BlElement new
+			             addChildren: blElement;
+			             size: 1500 @ 1500;
+			             yourself ]
 ]
 
 { #category : #updating }
@@ -176,6 +233,11 @@ PySTONClyToolMorph >> update [
 		          localMethodNamed: method selector
 		          ifAbsent: [ ^ self ].
 	blElement := self getStonFromMethod materializeAsBlElement.
+	blElement isCollection ifTrue: [
+		blElement := BlElement new
+			             addChildren: blElement;
+			             size: 1500 @ 1500;
+			             yourself ].
 
 	super update.
 

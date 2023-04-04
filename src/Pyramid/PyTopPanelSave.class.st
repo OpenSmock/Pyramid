@@ -1,8 +1,8 @@
 Class {
 	#name : #PyTopPanelSave,
 	#superclass : #SpPresenter,
-	#traits : 'TPyEditorPanelTopLeft + TPySaveModelObserver',
-	#classTraits : 'TPyEditorPanelTopLeft classTrait + TPySaveModelObserver classTrait',
+	#traits : 'TPyEditorPanelTopLeft + TPySaveModelObserver + TPyPipelineObserver',
+	#classTraits : 'TPyEditorPanelTopLeft classTrait + TPySaveModelObserver classTrait + TPyPipelineObserver classTrait',
 	#instVars : [
 		'saveButton',
 		'selectionButton',
@@ -19,6 +19,7 @@ PyTopPanelSave >> business: aBusiness [
 	business := aBusiness.
 	plugin := aBusiness getPlugin: PyPluginSave.
 	self model:  plugin saveModel.
+	self pipeline: aBusiness pipeline.
 	self saveForm model: plugin saveModel
 ]
 
@@ -30,6 +31,18 @@ PyTopPanelSave >> defaultLayout [
 	PyTopPanelHelper addButton: self selectionButton toLayout: defaultLayout.
 	PyTopPanelHelper addButton: self saveButton toLayout: defaultLayout.
 	^ defaultLayout
+]
+
+{ #category : #'as yet unclassified' }
+PyTopPanelSave >> informNewChange [
+
+	self saveButton color: Color orange.
+]
+
+{ #category : #'as yet unclassified' }
+PyTopPanelSave >> informSave [
+
+	self saveButton color: self saveButton defaultColor.
 ]
 
 { #category : #initialization }
@@ -129,6 +142,27 @@ PyTopPanelSave >> popupSaveForm [
 ]
 
 { #category : #'as yet unclassified' }
+PyTopPanelSave >> pyPipelineCancelCommand [
+
+]
+
+{ #category : #'as yet unclassified' }
+PyTopPanelSave >> pyPipelineExecuteCommand [
+
+	self informNewChange
+]
+
+{ #category : #'as yet unclassified' }
+PyTopPanelSave >> pyPipelineTerminateCommand [
+
+]
+
+{ #category : #'as yet unclassified' }
+PyTopPanelSave >> pyPipelineVerifyCommand [
+
+]
+
+{ #category : #'as yet unclassified' }
 PyTopPanelSave >> pySaveModelChanged [
 
 	| isModelValid |
@@ -143,7 +177,8 @@ PyTopPanelSave >> pySaveModelChanged [
 { #category : #'as yet unclassified' }
 PyTopPanelSave >> saveAction [
 
-	self plugin saveCore saveOrRaiseException
+	self plugin saveCore saveOrRaiseException.
+	self informSave
 ]
 
 { #category : #accessing }

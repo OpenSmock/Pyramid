@@ -169,7 +169,8 @@ PySaveFormView >> pySaveModelChanged [
 
 	self inputPackage text: self model defaultPackageName.
 	self inputClass text: self model defaultClassName.
-	self inputMethod text: self model defaultMethodName
+	self inputMethod text: self model defaultMethodName.
+	self model isInstanceSide ifTrue: [ self buttonInstance click ] ifFalse: [ self buttonClass click ].
 ]
 
 { #category : #'as yet unclassified' }

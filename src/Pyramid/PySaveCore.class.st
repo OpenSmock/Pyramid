@@ -31,7 +31,7 @@ PySaveCore >> pragmaSerialization [
 PySaveCore >> pyStonString [
 
 	| pySton methodText |
-	pySton := BlSerializer serialize: self roots.
+	pySton := BlSerializer serialize: self roots elements.
 	methodText := '!' , self model defaultClassName , ' '.
 	self model isClassSide ifTrue: [ methodText := methodText , 'class '. ].
 	methodText := methodText , 'methodsFor: ''bloc-STON''!'.
@@ -60,7 +60,7 @@ PySaveCore >> roots: aRoots [
 { #category : #actions }
 PySaveCore >> saveOrRaiseException [
 
-	self validator validate: self model.
+	[self validator validate: self model] on: PySaveOverridePyStonMethodException do: [].
 	CodeImporter evaluateString: self pyStonString
 ]
 

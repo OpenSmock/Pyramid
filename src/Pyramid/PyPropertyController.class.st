@@ -58,7 +58,9 @@ PyPropertyController >> initialize [
 { #category : #accessing }
 PyPropertyController >> pipeline [
 
-	pipeline ifNil: [ pipeline := PyPipeline new add: PyCommandExecutor new; yourself].
+	pipeline ifNil: [
+		pipeline := PyPipeline new
+			            yourself ].
 	^ pipeline
 ]
 

@@ -3936,6 +3936,3045 @@ PyExamples class >> test4 [
 }'
 ]
 
+{ #category : #'bloc-STON' }
+PyExamples class >> testABC [
+	<pySTON>
+
+
+	^ 'OrderedCollection [
+	BlElement {
+		#children : BlChildrenArray [
+			BlElement {
+				#children : BlChildrenArray [
+					BlElement {
+						#children : BlChildrenArray [ ],
+						#constraints : BlLayoutCommonConstraints {
+							#vertical : BlLayoutCommonConstraintsAxis {
+								#resizer : BlLayoutExactResizer {
+									#size : 100.0
+								}
+							},
+							#horizontal : BlLayoutCommonConstraintsAxis {
+								#resizer : @10
+							},
+							#position : Point [ 0.0, 0.0 ],
+							#margin : BlInsets {
+								#top : 10.0,
+								#left : 10.0,
+								#bottom : 0.0,
+								#right : 0.0
+							},
+							#padding : BlInsets {
+								#top : 0.0,
+								#left : 0.0,
+								#bottom : 0.0,
+								#right : 0.0
+							},
+							#minHeight : 0.0,
+							#minWidth : 0.0,
+							#maxHeight : Float [ #infinity ],
+							#maxWidth : @15,
+							#ignoredByLayout : false,
+							#accountTransformation : false
+						},
+						#visuals : BlCustomVisuals {
+							#geometry : BlCircleGeometry {
+								#extent : Point [ 100.0, 100.0 ],
+								#pathCache : BlPathCache {
+									#geometry : @17
+								},
+								#radius : 50.0,
+								#origin : Point [ 0.0, 0.0 ]
+							},
+							#background : BlPaintBackground {
+								#paint : BlRadialGradientPaint {
+									#stops : [
+										0 : Color {
+											#red : 0.0,
+											#green : 0.0,
+											#blue : 0.0,
+											#alpha : 0.0
+										},
+										0.3 : Color {
+											#red : 0.0,
+											#green : 0.0,
+											#blue : 0.0,
+											#alpha : 0.2
+										},
+										1 : Color {
+											#red : 0.0,
+											#green : 0.0,
+											#blue : 0.0,
+											#alpha : 0.8
+										}
+									],
+									#center : Point [ 50, 50 ],
+									#radius : 50
+								}
+							}
+						},
+						#userData : IdentityDictionary { },
+						#layout : BlBasicLayout { },
+						#eventDispatcher : BlElementEventDispatcher {
+							#owner : @6,
+							#handlers : [ ]
+						}
+					},
+					BlElement {
+						#children : BlChildrenArray [ ],
+						#constraints : BlLayoutCommonConstraints {
+							#vertical : BlLayoutCommonConstraintsAxis {
+								#resizer : @10
+							},
+							#horizontal : BlLayoutCommonConstraintsAxis {
+								#resizer : @10
+							},
+							#position : Point [ 1, 1 ],
+							#margin : BlInsets {
+								#top : 10.0,
+								#left : 10.0,
+								#bottom : 0.0,
+								#right : 0.0
+							},
+							#padding : @14,
+							#minHeight : 0.0,
+							#minWidth : 0.0,
+							#maxHeight : @15,
+							#maxWidth : @15,
+							#ignoredByLayout : false,
+							#accountTransformation : false
+						},
+						#visuals : BlCustomVisuals {
+							#geometry : BlCircleGeometry {
+								#extent : Point [ 100.0, 100.0 ],
+								#pathCache : BlPathCache {
+									#geometry : @40
+								},
+								#radius : 50.0,
+								#origin : Point [ 0.0, 0.0 ]
+							},
+							#background : BlPaintBackground {
+								#paint : BlRadialGradientPaint {
+									#stops : [
+										0 : Color [ #white ],
+										0.9 : @24,
+										1 : @24
+									],
+									#center : Point [ 10, 10 ],
+									#radius : 90
+								}
+							}
+						},
+						#userData : IdentityDictionary { },
+						#layout : @29,
+						#eventDispatcher : BlElementEventDispatcher {
+							#owner : @32,
+							#handlers : [ ]
+						}
+					}
+				],
+				#constraints : BlLayoutCommonConstraints {
+					#vertical : BlLayoutCommonConstraintsAxis {
+						#resizer : @10
+					},
+					#horizontal : BlLayoutCommonConstraintsAxis {
+						#resizer : @10
+					},
+					#position : Point [ 0.0, 0.0 ],
+					#margin : BlInsets {
+						#top : 10.0,
+						#left : 10.0,
+						#bottom : 0.0,
+						#right : 0.0
+					},
+					#padding : BlInsets {
+						#top : 0.0,
+						#left : 0.0,
+						#bottom : 0.0,
+						#right : 0.0
+					},
+					#minHeight : 0.0,
+					#minWidth : 0.0,
+					#maxHeight : @15,
+					#maxWidth : @15,
+					#ignoredByLayout : false,
+					#accountTransformation : false
+				},
+				#visuals : BlCustomVisuals {
+					#geometry : BlCircleGeometry {
+						#extent : Point [ 100.0, 100.0 ],
+						#pathCache : BlPathCache {
+							#geometry : @59
+						},
+						#radius : 50.0,
+						#origin : Point [ 0.0, 0.0 ]
+					},
+					#background : BlPaintBackground {
+						#paint : BlColorPaint {
+							#color : Color {
+								#red : 0.3225806451612903,
+								#green : 0.8093841642228738,
+								#blue : 0.4604105571847507,
+								#alpha : 1.0
+							}
+						}
+					},
+					#visibility : BlVisibilityVisible { }
+				},
+				#userData : IdentityDictionary { },
+				#layout : @29,
+				#eventDispatcher : BlElementEventDispatcher {
+					#owner : @4,
+					#handlers : [ ]
+				}
+			},
+			BlElement {
+				#children : BlChildrenArray [ ],
+				#constraints : BlLayoutCommonConstraints {
+					#vertical : BlLayoutCommonConstraintsAxis {
+						#resizer : BlLayoutExactResizer {
+							#size : 25.0
+						}
+					},
+					#horizontal : BlLayoutCommonConstraintsAxis {
+						#resizer : @10
+					},
+					#position : Point [ 0.0, 120 ],
+					#margin : BlInsets {
+						#top : 10.0,
+						#left : 10.0,
+						#bottom : 0.0,
+						#right : 0.0
+					},
+					#padding : @57,
+					#minHeight : 0.0,
+					#minWidth : 0.0,
+					#maxHeight : @15,
+					#maxWidth : @15,
+					#ignoredByLayout : false,
+					#accountTransformation : false
+				},
+				#visuals : BlCustomVisuals {
+					#geometry : BlEllipseGeometry {
+						#extent : Point [ 100.0, 25.0 ],
+						#pathCache : BlPathCache {
+							#geometry : @79
+						}
+					},
+					#background : BlPaintBackground {
+						#paint : BlColorPaint {
+							#color : Color {
+								#red : 0.0,
+								#green : 0.0,
+								#blue : 0.0,
+								#alpha : 0.4
+							}
+						}
+					},
+					#visibility : BlVisibilityVisible { }
+				},
+				#userData : IdentityDictionary { },
+				#layout : @29,
+				#eventDispatcher : BlElementEventDispatcher {
+					#owner : @70,
+					#handlers : [ ]
+				}
+			}
+		],
+		#constraints : BlLayoutCommonConstraints {
+			#vertical : BlLayoutCommonConstraintsAxis {
+				#resizer : BlLayoutExactResizer {
+					#size : 200.0
+				}
+			},
+			#horizontal : BlLayoutCommonConstraintsAxis {
+				#resizer : BlLayoutExactResizer {
+					#size : 100.0
+				}
+			},
+			#position : Point [ 0.0, 0.0 ],
+			#margin : BlInsets {
+				#top : 0.0,
+				#left : 0.0,
+				#bottom : 0.0,
+				#right : 0.0
+			},
+			#padding : @95,
+			#minHeight : 0.0,
+			#minWidth : 0.0,
+			#maxHeight : @15,
+			#maxWidth : @15,
+			#ignoredByLayout : false,
+			#accountTransformation : false
+		},
+		#visuals : BlCustomVisuals {
+			#background : BlPaintBackground {
+				#paint : BlColorPaint {
+					#color : Color {
+						#red : 0.0,
+						#green : 0.0,
+						#blue : 0.0,
+						#alpha : 0.0
+					}
+				}
+			}
+		},
+		#userData : IdentityDictionary { },
+		#layout : @29,
+		#eventDispatcher : BlElementEventDispatcher {
+			#owner : @2,
+			#handlers : [ ]
+		}
+	}
+]'
+]
+
 { #category : #'see class side' }
 PyExamples >> seeClassSide [
+]
+
+{ #category : #'bloc-STON' }
+PyExamples >> test3b [
+	<pySTON>
+
+
+	^ 'OrderedCollection [
+	BlElement {
+		#children : BlChildrenArray [
+			BlElement {
+				#children : BlChildrenArray [
+					BlElement {
+						#children : BlChildrenArray [
+							BlElement {
+								#children : BlChildrenArray [ ],
+								#constraints : BlLayoutCommonConstraints {
+									#vertical : BlLayoutCommonConstraintsAxis {
+										#resizer : BlLayoutExactResizer {
+											#size : 100.0
+										}
+									},
+									#horizontal : BlLayoutCommonConstraintsAxis {
+										#resizer : @12
+									},
+									#position : Point [ 0.0, 0.0 ],
+									#margin : BlInsets {
+										#top : 10.0,
+										#left : 10.0,
+										#bottom : 0.0,
+										#right : 0.0
+									},
+									#padding : BlInsets {
+										#top : 0.0,
+										#left : 0.0,
+										#bottom : 0.0,
+										#right : 0.0
+									},
+									#minHeight : 0.0,
+									#minWidth : 0.0,
+									#maxHeight : Float [ #infinity ],
+									#maxWidth : @17,
+									#ignoredByLayout : false,
+									#accountTransformation : false
+								},
+								#visuals : BlCustomVisuals {
+									#geometry : BlCircleGeometry {
+										#extent : Point [ 100.0, 100.0 ],
+										#pathCache : BlPathCache {
+											#geometry : @19
+										},
+										#radius : 50.0,
+										#origin : Point [ 0.0, 0.0 ]
+									},
+									#background : BlPaintBackground {
+										#paint : BlRadialGradientPaint {
+											#stops : [
+												0 : Color {
+													#red : 0.0,
+													#green : 0.0,
+													#blue : 0.0,
+													#alpha : 0.0
+												},
+												0.3 : Color {
+													#red : 0.0,
+													#green : 0.0,
+													#blue : 0.0,
+													#alpha : 0.2
+												},
+												1 : Color {
+													#red : 0.0,
+													#green : 0.0,
+													#blue : 0.0,
+													#alpha : 0.8
+												}
+											],
+											#center : Point [ 50, 50 ],
+											#radius : 50
+										}
+									}
+								},
+								#userData : IdentityDictionary { },
+								#layout : BlBasicLayout { },
+								#eventDispatcher : BlElementEventDispatcher {
+									#owner : @8,
+									#handlers : [ ]
+								}
+							},
+							BlElement {
+								#children : BlChildrenArray [ ],
+								#constraints : BlLayoutCommonConstraints {
+									#vertical : BlLayoutCommonConstraintsAxis {
+										#resizer : @12
+									},
+									#horizontal : BlLayoutCommonConstraintsAxis {
+										#resizer : @12
+									},
+									#position : Point [ 1, 1 ],
+									#margin : BlInsets {
+										#top : 10.0,
+										#left : 10.0,
+										#bottom : 0.0,
+										#right : 0.0
+									},
+									#padding : @16,
+									#minHeight : 0.0,
+									#minWidth : 0.0,
+									#maxHeight : @17,
+									#maxWidth : @17,
+									#ignoredByLayout : false,
+									#accountTransformation : false
+								},
+								#visuals : BlCustomVisuals {
+									#geometry : BlCircleGeometry {
+										#extent : Point [ 100.0, 100.0 ],
+										#pathCache : BlPathCache {
+											#geometry : @42
+										},
+										#radius : 50.0,
+										#origin : Point [ 0.0, 0.0 ]
+									},
+									#background : BlPaintBackground {
+										#paint : BlRadialGradientPaint {
+											#stops : [
+												0 : Color [ #white ],
+												0.9 : @26,
+												1 : @26
+											],
+											#center : Point [ 10, 10 ],
+											#radius : 90
+										}
+									}
+								},
+								#userData : IdentityDictionary { },
+								#layout : @31,
+								#eventDispatcher : BlElementEventDispatcher {
+									#owner : @34,
+									#handlers : [ ]
+								}
+							}
+						],
+						#constraints : BlLayoutCommonConstraints {
+							#vertical : BlLayoutCommonConstraintsAxis {
+								#resizer : BlLayoutExactResizer {
+									#size : 100.0
+								}
+							},
+							#horizontal : BlLayoutCommonConstraintsAxis {
+								#resizer : @56
+							},
+							#position : Point [ 0.0, 0.0 ],
+							#margin : BlInsets {
+								#top : 10.0,
+								#left : 10.0,
+								#bottom : 0.0,
+								#right : 0.0
+							},
+							#padding : BlInsets {
+								#top : 0.0,
+								#left : 0.0,
+								#bottom : 0.0,
+								#right : 0.0
+							},
+							#minHeight : 0.0,
+							#minWidth : 0.0,
+							#maxHeight : 0.0,
+							#maxWidth : 0.0,
+							#ignoredByLayout : false,
+							#accountTransformation : false
+						},
+						#visuals : BlCustomVisuals {
+							#geometry : BlCircleGeometry {
+								#extent : Point [ 100.0, 100.0 ],
+								#pathCache : BlPathCache {
+									#geometry : @62
+								},
+								#radius : 50.0,
+								#origin : Point [ 0.0, 0.0 ]
+							},
+							#background : BlPaintBackground {
+								#paint : BlColorPaint {
+									#color : Color {
+										#red : 0.0,
+										#green : 0.5933528836754643,
+										#blue : 0.6754643206256109,
+										#alpha : 1.0
+									}
+								}
+							}
+						},
+						#userData : IdentityDictionary {
+							#elementId : BlElementNoId { }
+						},
+						#layout : @31,
+						#eventDispatcher : BlElementEventDispatcher {
+							#owner : @6,
+							#handlers : [ ]
+						}
+					},
+					BlElement {
+						#children : BlChildrenArray [ ],
+						#constraints : BlLayoutCommonConstraints {
+							#vertical : BlLayoutCommonConstraintsAxis {
+								#resizer : BlLayoutExactResizer {
+									#size : 25.0
+								}
+							},
+							#horizontal : BlLayoutCommonConstraintsAxis {
+								#resizer : @56
+							},
+							#position : Point [ 0.0, 120 ],
+							#margin : @59,
+							#padding : @60,
+							#minHeight : 0.0,
+							#minWidth : 0.0,
+							#maxHeight : 0.0,
+							#maxWidth : 0.0,
+							#ignoredByLayout : false,
+							#accountTransformation : false
+						},
+						#visuals : BlCustomVisuals {
+							#geometry : BlEllipseGeometry {
+								#extent : Point [ 100.0, 25.0 ],
+								#pathCache : BlPathCache {
+									#geometry : @81
+								}
+							},
+							#background : BlPaintBackground {
+								#paint : BlColorPaint {
+									#color : Color {
+										#red : 0.0,
+										#green : 0.0,
+										#blue : 0.0,
+										#alpha : 0.6
+									}
+								}
+							}
+						},
+						#userData : IdentityDictionary {
+							#elementId : @70
+						},
+						#layout : @31,
+						#eventDispatcher : BlElementEventDispatcher {
+							#owner : @73,
+							#handlers : [ ]
+						}
+					}
+				],
+				#constraints : BlLayoutCommonConstraints {
+					#vertical : BlLayoutCommonConstraintsAxis {
+						#resizer : BlLayoutExactResizer {
+							#size : 200.0
+						}
+					},
+					#horizontal : BlLayoutCommonConstraintsAxis {
+						#resizer : @56
+					},
+					#position : Point [ 0.0, 0.0 ],
+					#margin : BlInsets {
+						#top : 0.0,
+						#left : 0.0,
+						#bottom : 0.0,
+						#right : 0.0
+					},
+					#padding : @95,
+					#minHeight : 0.0,
+					#minWidth : 0.0,
+					#maxHeight : 0.0,
+					#maxWidth : 0.0,
+					#ignoredByLayout : false,
+					#accountTransformation : false
+				},
+				#visuals : BlCustomVisuals {
+					#background : BlPaintBackground {
+						#paint : BlColorPaint {
+							#color : Color {
+								#red : 0.0,
+								#green : 0.0,
+								#blue : 0.0,
+								#alpha : 0.0
+							}
+						}
+					}
+				},
+				#userData : IdentityDictionary {
+					#elementId : @70
+				},
+				#layout : @31,
+				#eventDispatcher : BlElementEventDispatcher {
+					#owner : @4,
+					#handlers : [ ]
+				}
+			},
+			BlElement {
+				#children : BlChildrenArray [
+					BlElement {
+						#children : BlChildrenArray [
+							BlElement {
+								#children : BlChildrenArray [ ],
+								#constraints : BlLayoutCommonConstraints {
+									#vertical : BlLayoutCommonConstraintsAxis {
+										#resizer : BlLayoutExactResizer {
+											#size : 100.0
+										}
+									},
+									#horizontal : BlLayoutCommonConstraintsAxis {
+										#resizer : @111
+									},
+									#position : Point [ 0.0, 0.0 ],
+									#margin : BlInsets {
+										#top : 10.0,
+										#left : 10.0,
+										#bottom : 0.0,
+										#right : 0.0
+									},
+									#padding : BlInsets {
+										#top : 0.0,
+										#left : 0.0,
+										#bottom : 0.0,
+										#right : 0.0
+									},
+									#minHeight : 0.0,
+									#minWidth : 0.0,
+									#maxHeight : @17,
+									#maxWidth : @17,
+									#ignoredByLayout : false,
+									#accountTransformation : false
+								},
+								#visuals : BlCustomVisuals {
+									#geometry : BlCircleGeometry {
+										#extent : Point [ 100.0, 100.0 ],
+										#pathCache : BlPathCache {
+											#geometry : @117
+										},
+										#radius : 50.0,
+										#origin : Point [ 0.0, 0.0 ]
+									},
+									#background : BlPaintBackground {
+										#paint : BlRadialGradientPaint {
+											#stops : [
+												0 : Color {
+													#red : 0.0,
+													#green : 0.0,
+													#blue : 0.0,
+													#alpha : 0.0
+												},
+												0.3 : Color {
+													#red : 0.0,
+													#green : 0.0,
+													#blue : 0.0,
+													#alpha : 0.2
+												},
+												1 : Color {
+													#red : 0.0,
+													#green : 0.0,
+													#blue : 0.0,
+													#alpha : 0.8
+												}
+											],
+											#center : Point [ 50, 50 ],
+											#radius : 50
+										}
+									}
+								},
+								#userData : IdentityDictionary { },
+								#layout : @31,
+								#eventDispatcher : BlElementEventDispatcher {
+									#owner : @107,
+									#handlers : [ ]
+								}
+							},
+							BlElement {
+								#children : BlChildrenArray [ ],
+								#constraints : BlLayoutCommonConstraints {
+									#vertical : BlLayoutCommonConstraintsAxis {
+										#resizer : @111
+									},
+									#horizontal : BlLayoutCommonConstraintsAxis {
+										#resizer : @111
+									},
+									#position : Point [ 1, 1 ],
+									#margin : BlInsets {
+										#top : 10.0,
+										#left : 10.0,
+										#bottom : 0.0,
+										#right : 0.0
+									},
+									#padding : @115,
+									#minHeight : 0.0,
+									#minWidth : 0.0,
+									#maxHeight : @17,
+									#maxWidth : @17,
+									#ignoredByLayout : false,
+									#accountTransformation : false
+								},
+								#visuals : BlCustomVisuals {
+									#geometry : BlCircleGeometry {
+										#extent : Point [ 100.0, 100.0 ],
+										#pathCache : BlPathCache {
+											#geometry : @139
+										},
+										#radius : 50.0,
+										#origin : Point [ 0.0, 0.0 ]
+									},
+									#background : BlPaintBackground {
+										#paint : BlRadialGradientPaint {
+											#stops : [
+												0 : @49,
+												0.9 : @124,
+												1 : @124
+											],
+											#center : Point [ 10, 10 ],
+											#radius : 90
+										}
+									}
+								},
+								#userData : IdentityDictionary { },
+								#layout : @31,
+								#eventDispatcher : BlElementEventDispatcher {
+									#owner : @131,
+									#handlers : [ ]
+								}
+							}
+						],
+						#constraints : BlLayoutCommonConstraints {
+							#vertical : BlLayoutCommonConstraintsAxis {
+								#resizer : @56
+							},
+							#horizontal : BlLayoutCommonConstraintsAxis {
+								#resizer : @56
+							},
+							#position : Point [ 0.0, 0.0 ],
+							#margin : @59,
+							#padding : BlInsets {
+								#top : 0.0,
+								#left : 0.0,
+								#bottom : 0.0,
+								#right : 0.0
+							},
+							#minHeight : 0.0,
+							#minWidth : 0.0,
+							#maxHeight : 0.0,
+							#maxWidth : 0.0,
+							#ignoredByLayout : false,
+							#accountTransformation : false
+						},
+						#visuals : BlCustomVisuals {
+							#geometry : BlCircleGeometry {
+								#extent : Point [ 100.0, 100.0 ],
+								#pathCache : BlPathCache {
+									#geometry : @156
+								},
+								#radius : 50.0,
+								#origin : Point [ 0.0, 0.0 ]
+							},
+							#background : BlPaintBackground {
+								#paint : BlColorPaint {
+									#color : @68
+								}
+							}
+						},
+						#userData : IdentityDictionary {
+							#elementId : @70
+						},
+						#layout : @31,
+						#eventDispatcher : BlElementEventDispatcher {
+							#owner : @105,
+							#handlers : [ ]
+						}
+					},
+					BlElement {
+						#children : BlChildrenArray [ ],
+						#constraints : BlLayoutCommonConstraints {
+							#vertical : BlLayoutCommonConstraintsAxis {
+								#resizer : BlLayoutExactResizer {
+									#size : 25.0
+								}
+							},
+							#horizontal : BlLayoutCommonConstraintsAxis {
+								#resizer : @56
+							},
+							#position : @79,
+							#margin : @59,
+							#padding : @154,
+							#minHeight : 0.0,
+							#minWidth : 0.0,
+							#maxHeight : 0.0,
+							#maxWidth : 0.0,
+							#ignoredByLayout : false,
+							#accountTransformation : false
+						},
+						#visuals : BlCustomVisuals {
+							#geometry : BlEllipseGeometry {
+								#extent : Point [ 100.0, 25.0 ],
+								#pathCache : BlPathCache {
+									#geometry : @172
+								}
+							},
+							#background : BlPaintBackground {
+								#paint : BlColorPaint {
+									#color : @86
+								}
+							}
+						},
+						#userData : IdentityDictionary {
+							#elementId : @70
+						},
+						#layout : @31,
+						#eventDispatcher : BlElementEventDispatcher {
+							#owner : @165,
+							#handlers : [ ]
+						}
+					}
+				],
+				#constraints : BlLayoutCommonConstraints {
+					#vertical : BlLayoutCommonConstraintsAxis {
+						#resizer : BlLayoutExactResizer {
+							#size : 200.0
+						}
+					},
+					#horizontal : BlLayoutCommonConstraintsAxis {
+						#resizer : @56
+					},
+					#position : Point [ 150, 0 ],
+					#margin : BlInsets {
+						#top : 0.0,
+						#left : 0.0,
+						#bottom : 0.0,
+						#right : 0.0
+					},
+					#padding : @185,
+					#minHeight : 0.0,
+					#minWidth : 0.0,
+					#maxHeight : 0.0,
+					#maxWidth : 0.0,
+					#ignoredByLayout : false,
+					#accountTransformation : false
+				},
+				#visuals : BlCustomVisuals {
+					#background : BlPaintBackground {
+						#paint : BlColorPaint {
+							#color : Color {
+								#red : 0.0,
+								#green : 0.0,
+								#blue : 0.0,
+								#alpha : 0.0
+							}
+						}
+					}
+				},
+				#userData : IdentityDictionary {
+					#elementId : @70
+				},
+				#layout : @31,
+				#eventDispatcher : BlElementEventDispatcher {
+					#owner : @103,
+					#handlers : [ ]
+				}
+			},
+			BlElement {
+				#children : BlChildrenArray [
+					BlElement {
+						#children : BlChildrenArray [
+							BlElement {
+								#children : BlChildrenArray [ ],
+								#constraints : BlLayoutCommonConstraints {
+									#vertical : BlLayoutCommonConstraintsAxis {
+										#resizer : BlLayoutExactResizer {
+											#size : 100.0
+										}
+									},
+									#horizontal : BlLayoutCommonConstraintsAxis {
+										#resizer : @201
+									},
+									#position : Point [ 0.0, 0.0 ],
+									#margin : BlInsets {
+										#top : 10.0,
+										#left : 10.0,
+										#bottom : 0.0,
+										#right : 0.0
+									},
+									#padding : BlInsets {
+										#top : 0.0,
+										#left : 0.0,
+										#bottom : 0.0,
+										#right : 0.0
+									},
+									#minHeight : 0.0,
+									#minWidth : 0.0,
+									#maxHeight : @17,
+									#maxWidth : @17,
+									#ignoredByLayout : false,
+									#accountTransformation : false
+								},
+								#visuals : BlCustomVisuals {
+									#geometry : BlCircleGeometry {
+										#extent : Point [ 100.0, 100.0 ],
+										#pathCache : BlPathCache {
+											#geometry : @207
+										},
+										#radius : 50.0,
+										#origin : Point [ 0.0, 0.0 ]
+									},
+									#background : BlPaintBackground {
+										#paint : BlRadialGradientPaint {
+											#stops : [
+												0 : Color {
+													#red : 0.0,
+													#green : 0.0,
+													#blue : 0.0,
+													#alpha : 0.0
+												},
+												0.3 : Color {
+													#red : 0.0,
+													#green : 0.0,
+													#blue : 0.0,
+													#alpha : 0.2
+												},
+												1 : Color {
+													#red : 0.0,
+													#green : 0.0,
+													#blue : 0.0,
+													#alpha : 0.8
+												}
+											],
+											#center : Point [ 50, 50 ],
+											#radius : 50
+										}
+									}
+								},
+								#userData : IdentityDictionary { },
+								#layout : @31,
+								#eventDispatcher : BlElementEventDispatcher {
+									#owner : @197,
+									#handlers : [ ]
+								}
+							},
+							BlElement {
+								#children : BlChildrenArray [ ],
+								#constraints : BlLayoutCommonConstraints {
+									#vertical : BlLayoutCommonConstraintsAxis {
+										#resizer : @201
+									},
+									#horizontal : BlLayoutCommonConstraintsAxis {
+										#resizer : @201
+									},
+									#position : Point [ 1, 1 ],
+									#margin : BlInsets {
+										#top : 10.0,
+										#left : 10.0,
+										#bottom : 0.0,
+										#right : 0.0
+									},
+									#padding : @205,
+									#minHeight : 0.0,
+									#minWidth : 0.0,
+									#maxHeight : @17,
+									#maxWidth : @17,
+									#ignoredByLayout : false,
+									#accountTransformation : false
+								},
+								#visuals : BlCustomVisuals {
+									#geometry : BlCircleGeometry {
+										#extent : Point [ 100.0, 100.0 ],
+										#pathCache : BlPathCache {
+											#geometry : @229
+										},
+										#radius : 50.0,
+										#origin : Point [ 0.0, 0.0 ]
+									},
+									#background : BlPaintBackground {
+										#paint : BlRadialGradientPaint {
+											#stops : [
+												0 : @49,
+												0.9 : @214,
+												1 : @214
+											],
+											#center : Point [ 10, 10 ],
+											#radius : 90
+										}
+									}
+								},
+								#userData : IdentityDictionary { },
+								#layout : @31,
+								#eventDispatcher : BlElementEventDispatcher {
+									#owner : @221,
+									#handlers : [ ]
+								}
+							}
+						],
+						#constraints : BlLayoutCommonConstraints {
+							#vertical : BlLayoutCommonConstraintsAxis {
+								#resizer : @56
+							},
+							#horizontal : BlLayoutCommonConstraintsAxis {
+								#resizer : @56
+							},
+							#position : Point [ 0.0, 0.0 ],
+							#margin : @59,
+							#padding : BlInsets {
+								#top : 0.0,
+								#left : 0.0,
+								#bottom : 0.0,
+								#right : 0.0
+							},
+							#minHeight : 0.0,
+							#minWidth : 0.0,
+							#maxHeight : 0.0,
+							#maxWidth : 0.0,
+							#ignoredByLayout : false,
+							#accountTransformation : false
+						},
+						#visuals : BlCustomVisuals {
+							#geometry : BlCircleGeometry {
+								#extent : Point [ 100.0, 100.0 ],
+								#pathCache : BlPathCache {
+									#geometry : @246
+								},
+								#radius : 50.0,
+								#origin : Point [ 0.0, 0.0 ]
+							},
+							#background : BlPaintBackground {
+								#paint : BlColorPaint {
+									#color : @68
+								}
+							}
+						},
+						#userData : IdentityDictionary {
+							#elementId : @70
+						},
+						#layout : @31,
+						#eventDispatcher : BlElementEventDispatcher {
+							#owner : @195,
+							#handlers : [ ]
+						}
+					},
+					BlElement {
+						#children : BlChildrenArray [ ],
+						#constraints : BlLayoutCommonConstraints {
+							#vertical : BlLayoutCommonConstraintsAxis {
+								#resizer : BlLayoutExactResizer {
+									#size : 25.0
+								}
+							},
+							#horizontal : BlLayoutCommonConstraintsAxis {
+								#resizer : @56
+							},
+							#position : @79,
+							#margin : @59,
+							#padding : @244,
+							#minHeight : 0.0,
+							#minWidth : 0.0,
+							#maxHeight : 0.0,
+							#maxWidth : 0.0,
+							#ignoredByLayout : false,
+							#accountTransformation : false
+						},
+						#visuals : BlCustomVisuals {
+							#geometry : BlEllipseGeometry {
+								#extent : Point [ 100.0, 25.0 ],
+								#pathCache : BlPathCache {
+									#geometry : @262
+								}
+							},
+							#background : BlPaintBackground {
+								#paint : BlColorPaint {
+									#color : @86
+								}
+							}
+						},
+						#userData : IdentityDictionary {
+							#elementId : @70
+						},
+						#layout : @31,
+						#eventDispatcher : BlElementEventDispatcher {
+							#owner : @255,
+							#handlers : [ ]
+						}
+					}
+				],
+				#constraints : BlLayoutCommonConstraints {
+					#vertical : BlLayoutCommonConstraintsAxis {
+						#resizer : BlLayoutExactResizer {
+							#size : 200.0
+						}
+					},
+					#horizontal : BlLayoutCommonConstraintsAxis {
+						#resizer : @56
+					},
+					#position : Point [ 300, 0 ],
+					#margin : BlInsets {
+						#top : 0.0,
+						#left : 0.0,
+						#bottom : 0.0,
+						#right : 0.0
+					},
+					#padding : @275,
+					#minHeight : 0.0,
+					#minWidth : 0.0,
+					#maxHeight : 0.0,
+					#maxWidth : 0.0,
+					#ignoredByLayout : false,
+					#accountTransformation : false
+				},
+				#visuals : BlCustomVisuals {
+					#background : BlPaintBackground {
+						#paint : BlColorPaint {
+							#color : Color {
+								#red : 0.0,
+								#green : 0.0,
+								#blue : 0.0,
+								#alpha : 0.0
+							}
+						}
+					}
+				},
+				#userData : IdentityDictionary {
+					#elementId : @70
+				},
+				#layout : @31,
+				#eventDispatcher : BlElementEventDispatcher {
+					#owner : @193,
+					#handlers : [ ]
+				}
+			},
+			BlElement {
+				#children : BlChildrenArray [
+					BlElement {
+						#children : BlChildrenArray [
+							BlElement {
+								#children : BlChildrenArray [ ],
+								#constraints : BlLayoutCommonConstraints {
+									#vertical : BlLayoutCommonConstraintsAxis {
+										#resizer : BlLayoutExactResizer {
+											#size : 100.0
+										}
+									},
+									#horizontal : BlLayoutCommonConstraintsAxis {
+										#resizer : @291
+									},
+									#position : Point [ 0.0, 0.0 ],
+									#margin : BlInsets {
+										#top : 10.0,
+										#left : 10.0,
+										#bottom : 0.0,
+										#right : 0.0
+									},
+									#padding : BlInsets {
+										#top : 0.0,
+										#left : 0.0,
+										#bottom : 0.0,
+										#right : 0.0
+									},
+									#minHeight : 0.0,
+									#minWidth : 0.0,
+									#maxHeight : @17,
+									#maxWidth : @17,
+									#ignoredByLayout : false,
+									#accountTransformation : false
+								},
+								#visuals : BlCustomVisuals {
+									#geometry : BlCircleGeometry {
+										#extent : Point [ 100.0, 100.0 ],
+										#pathCache : BlPathCache {
+											#geometry : @297
+										},
+										#radius : 50.0,
+										#origin : Point [ 0.0, 0.0 ]
+									},
+									#background : BlPaintBackground {
+										#paint : BlRadialGradientPaint {
+											#stops : [
+												0 : Color {
+													#red : 0.0,
+													#green : 0.0,
+													#blue : 0.0,
+													#alpha : 0.0
+												},
+												0.3 : Color {
+													#red : 0.0,
+													#green : 0.0,
+													#blue : 0.0,
+													#alpha : 0.2
+												},
+												1 : Color {
+													#red : 0.0,
+													#green : 0.0,
+													#blue : 0.0,
+													#alpha : 0.8
+												}
+											],
+											#center : Point [ 50, 50 ],
+											#radius : 50
+										}
+									}
+								},
+								#userData : IdentityDictionary { },
+								#layout : @31,
+								#eventDispatcher : BlElementEventDispatcher {
+									#owner : @287,
+									#handlers : [ ]
+								}
+							},
+							BlElement {
+								#children : BlChildrenArray [ ],
+								#constraints : BlLayoutCommonConstraints {
+									#vertical : BlLayoutCommonConstraintsAxis {
+										#resizer : @291
+									},
+									#horizontal : BlLayoutCommonConstraintsAxis {
+										#resizer : @291
+									},
+									#position : Point [ 1, 1 ],
+									#margin : BlInsets {
+										#top : 10.0,
+										#left : 10.0,
+										#bottom : 0.0,
+										#right : 0.0
+									},
+									#padding : @295,
+									#minHeight : 0.0,
+									#minWidth : 0.0,
+									#maxHeight : @17,
+									#maxWidth : @17,
+									#ignoredByLayout : false,
+									#accountTransformation : false
+								},
+								#visuals : BlCustomVisuals {
+									#geometry : BlCircleGeometry {
+										#extent : Point [ 100.0, 100.0 ],
+										#pathCache : BlPathCache {
+											#geometry : @319
+										},
+										#radius : 50.0,
+										#origin : Point [ 0.0, 0.0 ]
+									},
+									#background : BlPaintBackground {
+										#paint : BlRadialGradientPaint {
+											#stops : [
+												0 : @49,
+												0.9 : @304,
+												1 : @304
+											],
+											#center : Point [ 10, 10 ],
+											#radius : 90
+										}
+									}
+								},
+								#userData : IdentityDictionary { },
+								#layout : @31,
+								#eventDispatcher : BlElementEventDispatcher {
+									#owner : @311,
+									#handlers : [ ]
+								}
+							}
+						],
+						#constraints : BlLayoutCommonConstraints {
+							#vertical : BlLayoutCommonConstraintsAxis {
+								#resizer : @56
+							},
+							#horizontal : BlLayoutCommonConstraintsAxis {
+								#resizer : @56
+							},
+							#position : Point [ 0.0, 0.0 ],
+							#margin : @59,
+							#padding : BlInsets {
+								#top : 0.0,
+								#left : 0.0,
+								#bottom : 0.0,
+								#right : 0.0
+							},
+							#minHeight : 0.0,
+							#minWidth : 0.0,
+							#maxHeight : 0.0,
+							#maxWidth : 0.0,
+							#ignoredByLayout : false,
+							#accountTransformation : false
+						},
+						#visuals : BlCustomVisuals {
+							#geometry : BlCircleGeometry {
+								#extent : Point [ 100.0, 100.0 ],
+								#pathCache : BlPathCache {
+									#geometry : @336
+								},
+								#radius : 50.0,
+								#origin : Point [ 0.0, 0.0 ]
+							},
+							#background : BlPaintBackground {
+								#paint : BlColorPaint {
+									#color : @68
+								}
+							}
+						},
+						#userData : IdentityDictionary {
+							#elementId : @70
+						},
+						#layout : @31,
+						#eventDispatcher : BlElementEventDispatcher {
+							#owner : @285,
+							#handlers : [ ]
+						}
+					},
+					BlElement {
+						#children : BlChildrenArray [ ],
+						#constraints : BlLayoutCommonConstraints {
+							#vertical : BlLayoutCommonConstraintsAxis {
+								#resizer : BlLayoutExactResizer {
+									#size : 25.0
+								}
+							},
+							#horizontal : BlLayoutCommonConstraintsAxis {
+								#resizer : @56
+							},
+							#position : @79,
+							#margin : @59,
+							#padding : @334,
+							#minHeight : 0.0,
+							#minWidth : 0.0,
+							#maxHeight : 0.0,
+							#maxWidth : 0.0,
+							#ignoredByLayout : false,
+							#accountTransformation : false
+						},
+						#visuals : BlCustomVisuals {
+							#geometry : BlEllipseGeometry {
+								#extent : Point [ 100.0, 25.0 ],
+								#pathCache : BlPathCache {
+									#geometry : @352
+								}
+							},
+							#background : BlPaintBackground {
+								#paint : BlColorPaint {
+									#color : @86
+								}
+							}
+						},
+						#userData : IdentityDictionary {
+							#elementId : @70
+						},
+						#layout : @31,
+						#eventDispatcher : BlElementEventDispatcher {
+							#owner : @345,
+							#handlers : [ ]
+						}
+					}
+				],
+				#constraints : BlLayoutCommonConstraints {
+					#vertical : BlLayoutCommonConstraintsAxis {
+						#resizer : BlLayoutExactResizer {
+							#size : 200.0
+						}
+					},
+					#horizontal : BlLayoutCommonConstraintsAxis {
+						#resizer : @56
+					},
+					#position : Point [ 450, 0 ],
+					#margin : BlInsets {
+						#top : 0.0,
+						#left : 0.0,
+						#bottom : 0.0,
+						#right : 0.0
+					},
+					#padding : @365,
+					#minHeight : 0.0,
+					#minWidth : 0.0,
+					#maxHeight : 0.0,
+					#maxWidth : 0.0,
+					#ignoredByLayout : false,
+					#accountTransformation : false
+				},
+				#visuals : BlCustomVisuals {
+					#background : BlPaintBackground {
+						#paint : BlColorPaint {
+							#color : Color {
+								#red : 0.0,
+								#green : 0.0,
+								#blue : 0.0,
+								#alpha : 0.0
+							}
+						}
+					}
+				},
+				#userData : IdentityDictionary {
+					#elementId : @70
+				},
+				#layout : @31,
+				#eventDispatcher : BlElementEventDispatcher {
+					#owner : @283,
+					#handlers : [ ]
+				}
+			},
+			BlElement {
+				#children : BlChildrenArray [
+					BlElement {
+						#children : BlChildrenArray [
+							BlElement {
+								#children : BlChildrenArray [ ],
+								#constraints : BlLayoutCommonConstraints {
+									#vertical : BlLayoutCommonConstraintsAxis {
+										#resizer : BlLayoutExactResizer {
+											#size : 100.0
+										}
+									},
+									#horizontal : BlLayoutCommonConstraintsAxis {
+										#resizer : @381
+									},
+									#position : Point [ 0.0, 0.0 ],
+									#margin : BlInsets {
+										#top : 10.0,
+										#left : 10.0,
+										#bottom : 0.0,
+										#right : 0.0
+									},
+									#padding : BlInsets {
+										#top : 0.0,
+										#left : 0.0,
+										#bottom : 0.0,
+										#right : 0.0
+									},
+									#minHeight : 0.0,
+									#minWidth : 0.0,
+									#maxHeight : @17,
+									#maxWidth : @17,
+									#ignoredByLayout : false,
+									#accountTransformation : false
+								},
+								#visuals : BlCustomVisuals {
+									#geometry : BlCircleGeometry {
+										#extent : Point [ 100.0, 100.0 ],
+										#pathCache : BlPathCache {
+											#geometry : @387
+										},
+										#radius : 50.0,
+										#origin : Point [ 0.0, 0.0 ]
+									},
+									#background : BlPaintBackground {
+										#paint : BlRadialGradientPaint {
+											#stops : [
+												0 : Color {
+													#red : 0.0,
+													#green : 0.0,
+													#blue : 0.0,
+													#alpha : 0.0
+												},
+												0.3 : Color {
+													#red : 0.0,
+													#green : 0.0,
+													#blue : 0.0,
+													#alpha : 0.2
+												},
+												1 : Color {
+													#red : 0.0,
+													#green : 0.0,
+													#blue : 0.0,
+													#alpha : 0.8
+												}
+											],
+											#center : Point [ 50, 50 ],
+											#radius : 50
+										}
+									}
+								},
+								#userData : IdentityDictionary { },
+								#layout : @31,
+								#eventDispatcher : BlElementEventDispatcher {
+									#owner : @377,
+									#handlers : [ ]
+								}
+							},
+							BlElement {
+								#children : BlChildrenArray [ ],
+								#constraints : BlLayoutCommonConstraints {
+									#vertical : BlLayoutCommonConstraintsAxis {
+										#resizer : @381
+									},
+									#horizontal : BlLayoutCommonConstraintsAxis {
+										#resizer : @381
+									},
+									#position : Point [ 1, 1 ],
+									#margin : BlInsets {
+										#top : 10.0,
+										#left : 10.0,
+										#bottom : 0.0,
+										#right : 0.0
+									},
+									#padding : @385,
+									#minHeight : 0.0,
+									#minWidth : 0.0,
+									#maxHeight : @17,
+									#maxWidth : @17,
+									#ignoredByLayout : false,
+									#accountTransformation : false
+								},
+								#visuals : BlCustomVisuals {
+									#geometry : BlCircleGeometry {
+										#extent : Point [ 100.0, 100.0 ],
+										#pathCache : BlPathCache {
+											#geometry : @409
+										},
+										#radius : 50.0,
+										#origin : Point [ 0.0, 0.0 ]
+									},
+									#background : BlPaintBackground {
+										#paint : BlRadialGradientPaint {
+											#stops : [
+												0 : @49,
+												0.9 : @394,
+												1 : @394
+											],
+											#center : Point [ 10, 10 ],
+											#radius : 90
+										}
+									}
+								},
+								#userData : IdentityDictionary { },
+								#layout : @31,
+								#eventDispatcher : BlElementEventDispatcher {
+									#owner : @401,
+									#handlers : [ ]
+								}
+							}
+						],
+						#constraints : BlLayoutCommonConstraints {
+							#vertical : BlLayoutCommonConstraintsAxis {
+								#resizer : @56
+							},
+							#horizontal : BlLayoutCommonConstraintsAxis {
+								#resizer : @56
+							},
+							#position : Point [ 0.0, 0.0 ],
+							#margin : @59,
+							#padding : BlInsets {
+								#top : 0.0,
+								#left : 0.0,
+								#bottom : 0.0,
+								#right : 0.0
+							},
+							#minHeight : 0.0,
+							#minWidth : 0.0,
+							#maxHeight : 0.0,
+							#maxWidth : 0.0,
+							#ignoredByLayout : false,
+							#accountTransformation : false
+						},
+						#visuals : BlCustomVisuals {
+							#geometry : BlCircleGeometry {
+								#extent : Point [ 100.0, 100.0 ],
+								#pathCache : BlPathCache {
+									#geometry : @426
+								},
+								#radius : 50.0,
+								#origin : Point [ 0.0, 0.0 ]
+							},
+							#background : BlPaintBackground {
+								#paint : BlColorPaint {
+									#color : @68
+								}
+							}
+						},
+						#userData : IdentityDictionary {
+							#elementId : @70
+						},
+						#layout : @31,
+						#eventDispatcher : BlElementEventDispatcher {
+							#owner : @375,
+							#handlers : [ ]
+						}
+					},
+					BlElement {
+						#children : BlChildrenArray [ ],
+						#constraints : BlLayoutCommonConstraints {
+							#vertical : BlLayoutCommonConstraintsAxis {
+								#resizer : BlLayoutExactResizer {
+									#size : 25.0
+								}
+							},
+							#horizontal : BlLayoutCommonConstraintsAxis {
+								#resizer : @56
+							},
+							#position : @79,
+							#margin : @59,
+							#padding : @424,
+							#minHeight : 0.0,
+							#minWidth : 0.0,
+							#maxHeight : 0.0,
+							#maxWidth : 0.0,
+							#ignoredByLayout : false,
+							#accountTransformation : false
+						},
+						#visuals : BlCustomVisuals {
+							#geometry : BlEllipseGeometry {
+								#extent : Point [ 100.0, 25.0 ],
+								#pathCache : BlPathCache {
+									#geometry : @442
+								}
+							},
+							#background : BlPaintBackground {
+								#paint : BlColorPaint {
+									#color : @86
+								}
+							}
+						},
+						#userData : IdentityDictionary {
+							#elementId : @70
+						},
+						#layout : @31,
+						#eventDispatcher : BlElementEventDispatcher {
+							#owner : @435,
+							#handlers : [ ]
+						}
+					}
+				],
+				#constraints : BlLayoutCommonConstraints {
+					#vertical : BlLayoutCommonConstraintsAxis {
+						#resizer : BlLayoutExactResizer {
+							#size : 200.0
+						}
+					},
+					#horizontal : BlLayoutCommonConstraintsAxis {
+						#resizer : @56
+					},
+					#position : Point [ 600, 0 ],
+					#margin : BlInsets {
+						#top : 0.0,
+						#left : 0.0,
+						#bottom : 0.0,
+						#right : 0.0
+					},
+					#padding : @455,
+					#minHeight : 0.0,
+					#minWidth : 0.0,
+					#maxHeight : 0.0,
+					#maxWidth : 0.0,
+					#ignoredByLayout : false,
+					#accountTransformation : false
+				},
+				#visuals : BlCustomVisuals {
+					#background : BlPaintBackground {
+						#paint : BlColorPaint {
+							#color : Color {
+								#red : 0.0,
+								#green : 0.0,
+								#blue : 0.0,
+								#alpha : 0.0
+							}
+						}
+					}
+				},
+				#userData : IdentityDictionary {
+					#elementId : @70
+				},
+				#layout : @31,
+				#eventDispatcher : BlElementEventDispatcher {
+					#owner : @373,
+					#handlers : [ ]
+				}
+			},
+			BlElement {
+				#children : BlChildrenArray [
+					BlElement {
+						#children : BlChildrenArray [
+							BlElement {
+								#children : BlChildrenArray [ ],
+								#constraints : BlLayoutCommonConstraints {
+									#vertical : BlLayoutCommonConstraintsAxis {
+										#resizer : BlLayoutExactResizer {
+											#size : 100.0
+										}
+									},
+									#horizontal : BlLayoutCommonConstraintsAxis {
+										#resizer : @471
+									},
+									#position : Point [ 0.0, 0.0 ],
+									#margin : BlInsets {
+										#top : 10.0,
+										#left : 10.0,
+										#bottom : 0.0,
+										#right : 0.0
+									},
+									#padding : BlInsets {
+										#top : 0.0,
+										#left : 0.0,
+										#bottom : 0.0,
+										#right : 0.0
+									},
+									#minHeight : 0.0,
+									#minWidth : 0.0,
+									#maxHeight : @17,
+									#maxWidth : @17,
+									#ignoredByLayout : false,
+									#accountTransformation : false
+								},
+								#visuals : BlCustomVisuals {
+									#geometry : BlCircleGeometry {
+										#extent : Point [ 100.0, 100.0 ],
+										#pathCache : BlPathCache {
+											#geometry : @477
+										},
+										#radius : 50.0,
+										#origin : Point [ 0.0, 0.0 ]
+									},
+									#background : BlPaintBackground {
+										#paint : BlRadialGradientPaint {
+											#stops : [
+												0 : Color {
+													#red : 0.0,
+													#green : 0.0,
+													#blue : 0.0,
+													#alpha : 0.0
+												},
+												0.3 : Color {
+													#red : 0.0,
+													#green : 0.0,
+													#blue : 0.0,
+													#alpha : 0.2
+												},
+												1 : Color {
+													#red : 0.0,
+													#green : 0.0,
+													#blue : 0.0,
+													#alpha : 0.8
+												}
+											],
+											#center : Point [ 50, 50 ],
+											#radius : 50
+										}
+									}
+								},
+								#userData : IdentityDictionary { },
+								#layout : @31,
+								#eventDispatcher : BlElementEventDispatcher {
+									#owner : @467,
+									#handlers : [ ]
+								}
+							},
+							BlElement {
+								#children : BlChildrenArray [ ],
+								#constraints : BlLayoutCommonConstraints {
+									#vertical : BlLayoutCommonConstraintsAxis {
+										#resizer : @471
+									},
+									#horizontal : BlLayoutCommonConstraintsAxis {
+										#resizer : @471
+									},
+									#position : Point [ 1, 1 ],
+									#margin : BlInsets {
+										#top : 10.0,
+										#left : 10.0,
+										#bottom : 0.0,
+										#right : 0.0
+									},
+									#padding : @475,
+									#minHeight : 0.0,
+									#minWidth : 0.0,
+									#maxHeight : @17,
+									#maxWidth : @17,
+									#ignoredByLayout : false,
+									#accountTransformation : false
+								},
+								#visuals : BlCustomVisuals {
+									#geometry : BlCircleGeometry {
+										#extent : Point [ 100.0, 100.0 ],
+										#pathCache : BlPathCache {
+											#geometry : @499
+										},
+										#radius : 50.0,
+										#origin : Point [ 0.0, 0.0 ]
+									},
+									#background : BlPaintBackground {
+										#paint : BlRadialGradientPaint {
+											#stops : [
+												0 : @49,
+												0.9 : @484,
+												1 : @484
+											],
+											#center : Point [ 10, 10 ],
+											#radius : 90
+										}
+									}
+								},
+								#userData : IdentityDictionary { },
+								#layout : @31,
+								#eventDispatcher : BlElementEventDispatcher {
+									#owner : @491,
+									#handlers : [ ]
+								}
+							}
+						],
+						#constraints : BlLayoutCommonConstraints {
+							#vertical : BlLayoutCommonConstraintsAxis {
+								#resizer : @56
+							},
+							#horizontal : BlLayoutCommonConstraintsAxis {
+								#resizer : @56
+							},
+							#position : Point [ 0.0, 0.0 ],
+							#margin : @59,
+							#padding : BlInsets {
+								#top : 0.0,
+								#left : 0.0,
+								#bottom : 0.0,
+								#right : 0.0
+							},
+							#minHeight : 0.0,
+							#minWidth : 0.0,
+							#maxHeight : 0.0,
+							#maxWidth : 0.0,
+							#ignoredByLayout : false,
+							#accountTransformation : false
+						},
+						#visuals : BlCustomVisuals {
+							#geometry : BlCircleGeometry {
+								#extent : Point [ 100.0, 100.0 ],
+								#pathCache : BlPathCache {
+									#geometry : @516
+								},
+								#radius : 50.0,
+								#origin : Point [ 0.0, 0.0 ]
+							},
+							#background : BlPaintBackground {
+								#paint : BlColorPaint {
+									#color : @68
+								}
+							}
+						},
+						#userData : IdentityDictionary {
+							#elementId : @70
+						},
+						#layout : @31,
+						#eventDispatcher : BlElementEventDispatcher {
+							#owner : @465,
+							#handlers : [ ]
+						}
+					},
+					BlElement {
+						#children : BlChildrenArray [ ],
+						#constraints : BlLayoutCommonConstraints {
+							#vertical : BlLayoutCommonConstraintsAxis {
+								#resizer : BlLayoutExactResizer {
+									#size : 25.0
+								}
+							},
+							#horizontal : BlLayoutCommonConstraintsAxis {
+								#resizer : @56
+							},
+							#position : @79,
+							#margin : BlInsets {
+								#top : 10.0,
+								#left : 10.0,
+								#bottom : 0.0,
+								#right : 0.0
+							},
+							#padding : @514,
+							#minHeight : 0.0,
+							#minWidth : 0.0,
+							#maxHeight : 0.0,
+							#maxWidth : 0.0,
+							#ignoredByLayout : false,
+							#accountTransformation : false
+						},
+						#visuals : BlCustomVisuals {
+							#geometry : BlEllipseGeometry {
+								#extent : Point [ 100.0, 25.0 ],
+								#pathCache : BlPathCache {
+									#geometry : @533
+								}
+							},
+							#background : BlPaintBackground {
+								#paint : BlColorPaint {
+									#color : @86
+								}
+							}
+						},
+						#userData : IdentityDictionary {
+							#elementId : @70
+						},
+						#layout : @31,
+						#eventDispatcher : BlElementEventDispatcher {
+							#owner : @525,
+							#handlers : [ ]
+						}
+					}
+				],
+				#constraints : BlLayoutCommonConstraints {
+					#vertical : BlLayoutCommonConstraintsAxis {
+						#resizer : BlLayoutExactResizer {
+							#size : 200.0
+						}
+					},
+					#horizontal : BlLayoutCommonConstraintsAxis {
+						#resizer : @56
+					},
+					#position : Point [ 0.0, 200 ],
+					#margin : BlInsets {
+						#top : 0.0,
+						#left : 0.0,
+						#bottom : 0.0,
+						#right : 0.0
+					},
+					#padding : @546,
+					#minHeight : 0.0,
+					#minWidth : 0.0,
+					#maxHeight : 0.0,
+					#maxWidth : 0.0,
+					#ignoredByLayout : false,
+					#accountTransformation : false
+				},
+				#visuals : BlCustomVisuals {
+					#background : BlPaintBackground {
+						#paint : BlColorPaint {
+							#color : Color {
+								#red : 0.0,
+								#green : 0.0,
+								#blue : 0.0,
+								#alpha : 0.0
+							}
+						}
+					}
+				},
+				#userData : IdentityDictionary {
+					#elementId : @70
+				},
+				#layout : @31,
+				#eventDispatcher : BlElementEventDispatcher {
+					#owner : @463,
+					#handlers : [ ]
+				}
+			},
+			BlElement {
+				#children : BlChildrenArray [
+					BlElement {
+						#children : BlChildrenArray [
+							BlElement {
+								#children : BlChildrenArray [ ],
+								#constraints : BlLayoutCommonConstraints {
+									#vertical : BlLayoutCommonConstraintsAxis {
+										#resizer : BlLayoutExactResizer {
+											#size : 100.0
+										}
+									},
+									#horizontal : BlLayoutCommonConstraintsAxis {
+										#resizer : @562
+									},
+									#position : Point [ 0.0, 0.0 ],
+									#margin : BlInsets {
+										#top : 10.0,
+										#left : 10.0,
+										#bottom : 0.0,
+										#right : 0.0
+									},
+									#padding : BlInsets {
+										#top : 0.0,
+										#left : 0.0,
+										#bottom : 0.0,
+										#right : 0.0
+									},
+									#minHeight : 0.0,
+									#minWidth : 0.0,
+									#maxHeight : @17,
+									#maxWidth : @17,
+									#ignoredByLayout : false,
+									#accountTransformation : false
+								},
+								#visuals : BlCustomVisuals {
+									#geometry : BlCircleGeometry {
+										#extent : Point [ 100.0, 100.0 ],
+										#pathCache : BlPathCache {
+											#geometry : @568
+										},
+										#radius : 50.0,
+										#origin : Point [ 0.0, 0.0 ]
+									},
+									#background : BlPaintBackground {
+										#paint : BlRadialGradientPaint {
+											#stops : [
+												0 : Color {
+													#red : 0.0,
+													#green : 0.0,
+													#blue : 0.0,
+													#alpha : 0.0
+												},
+												0.3 : Color {
+													#red : 0.0,
+													#green : 0.0,
+													#blue : 0.0,
+													#alpha : 0.2
+												},
+												1 : Color {
+													#red : 0.0,
+													#green : 0.0,
+													#blue : 0.0,
+													#alpha : 0.8
+												}
+											],
+											#center : Point [ 50, 50 ],
+											#radius : 50
+										}
+									}
+								},
+								#userData : IdentityDictionary { },
+								#layout : @31,
+								#eventDispatcher : BlElementEventDispatcher {
+									#owner : @558,
+									#handlers : [ ]
+								}
+							},
+							BlElement {
+								#children : BlChildrenArray [ ],
+								#constraints : BlLayoutCommonConstraints {
+									#vertical : BlLayoutCommonConstraintsAxis {
+										#resizer : @562
+									},
+									#horizontal : BlLayoutCommonConstraintsAxis {
+										#resizer : @562
+									},
+									#position : Point [ 1, 1 ],
+									#margin : BlInsets {
+										#top : 10.0,
+										#left : 10.0,
+										#bottom : 0.0,
+										#right : 0.0
+									},
+									#padding : @566,
+									#minHeight : 0.0,
+									#minWidth : 0.0,
+									#maxHeight : @17,
+									#maxWidth : @17,
+									#ignoredByLayout : false,
+									#accountTransformation : false
+								},
+								#visuals : BlCustomVisuals {
+									#geometry : BlCircleGeometry {
+										#extent : Point [ 100.0, 100.0 ],
+										#pathCache : BlPathCache {
+											#geometry : @590
+										},
+										#radius : 50.0,
+										#origin : Point [ 0.0, 0.0 ]
+									},
+									#background : BlPaintBackground {
+										#paint : BlRadialGradientPaint {
+											#stops : [
+												0 : @49,
+												0.9 : @575,
+												1 : @575
+											],
+											#center : Point [ 10, 10 ],
+											#radius : 90
+										}
+									}
+								},
+								#userData : IdentityDictionary { },
+								#layout : @31,
+								#eventDispatcher : BlElementEventDispatcher {
+									#owner : @582,
+									#handlers : [ ]
+								}
+							}
+						],
+						#constraints : BlLayoutCommonConstraints {
+							#vertical : BlLayoutCommonConstraintsAxis {
+								#resizer : @56
+							},
+							#horizontal : BlLayoutCommonConstraintsAxis {
+								#resizer : @56
+							},
+							#position : Point [ 0.0, 0.0 ],
+							#margin : BlInsets {
+								#top : 10.0,
+								#left : 10.0,
+								#bottom : 0.0,
+								#right : 0.0
+							},
+							#padding : BlInsets {
+								#top : 0.0,
+								#left : 0.0,
+								#bottom : 0.0,
+								#right : 0.0
+							},
+							#minHeight : 0.0,
+							#minWidth : 0.0,
+							#maxHeight : 0.0,
+							#maxWidth : 0.0,
+							#ignoredByLayout : false,
+							#accountTransformation : false
+						},
+						#visuals : BlCustomVisuals {
+							#geometry : BlCircleGeometry {
+								#extent : Point [ 100.0, 100.0 ],
+								#pathCache : BlPathCache {
+									#geometry : @608
+								},
+								#radius : 50.0,
+								#origin : Point [ 0.0, 0.0 ]
+							},
+							#background : BlPaintBackground {
+								#paint : BlColorPaint {
+									#color : @68
+								}
+							}
+						},
+						#userData : IdentityDictionary {
+							#elementId : @70
+						},
+						#layout : @31,
+						#eventDispatcher : BlElementEventDispatcher {
+							#owner : @556,
+							#handlers : [ ]
+						}
+					},
+					BlElement {
+						#children : BlChildrenArray [ ],
+						#constraints : BlLayoutCommonConstraints {
+							#vertical : BlLayoutCommonConstraintsAxis {
+								#resizer : BlLayoutExactResizer {
+									#size : 25.0
+								}
+							},
+							#horizontal : BlLayoutCommonConstraintsAxis {
+								#resizer : @56
+							},
+							#position : @79,
+							#margin : @59,
+							#padding : @606,
+							#minHeight : 0.0,
+							#minWidth : 0.0,
+							#maxHeight : 0.0,
+							#maxWidth : 0.0,
+							#ignoredByLayout : false,
+							#accountTransformation : false
+						},
+						#visuals : BlCustomVisuals {
+							#geometry : BlEllipseGeometry {
+								#extent : Point [ 100.0, 25.0 ],
+								#pathCache : BlPathCache {
+									#geometry : @624
+								}
+							},
+							#background : BlPaintBackground {
+								#paint : BlColorPaint {
+									#color : @86
+								}
+							}
+						},
+						#userData : IdentityDictionary {
+							#elementId : @70
+						},
+						#layout : @31,
+						#eventDispatcher : BlElementEventDispatcher {
+							#owner : @617,
+							#handlers : [ ]
+						}
+					}
+				],
+				#constraints : BlLayoutCommonConstraints {
+					#vertical : BlLayoutCommonConstraintsAxis {
+						#resizer : BlLayoutExactResizer {
+							#size : 200.0
+						}
+					},
+					#horizontal : BlLayoutCommonConstraintsAxis {
+						#resizer : @56
+					},
+					#position : Point [ 150, 200 ],
+					#margin : BlInsets {
+						#top : 0.0,
+						#left : 0.0,
+						#bottom : 0.0,
+						#right : 0.0
+					},
+					#padding : @637,
+					#minHeight : 0.0,
+					#minWidth : 0.0,
+					#maxHeight : 0.0,
+					#maxWidth : 0.0,
+					#ignoredByLayout : false,
+					#accountTransformation : false
+				},
+				#visuals : BlCustomVisuals {
+					#background : BlPaintBackground {
+						#paint : BlColorPaint {
+							#color : Color {
+								#red : 0.0,
+								#green : 0.0,
+								#blue : 0.0,
+								#alpha : 0.0
+							}
+						}
+					}
+				},
+				#userData : IdentityDictionary {
+					#elementId : @70
+				},
+				#layout : @31,
+				#eventDispatcher : BlElementEventDispatcher {
+					#owner : @554,
+					#handlers : [ ]
+				}
+			},
+			BlElement {
+				#children : BlChildrenArray [
+					BlElement {
+						#children : BlChildrenArray [
+							BlElement {
+								#children : BlChildrenArray [ ],
+								#constraints : BlLayoutCommonConstraints {
+									#vertical : BlLayoutCommonConstraintsAxis {
+										#resizer : BlLayoutExactResizer {
+											#size : 100.0
+										}
+									},
+									#horizontal : BlLayoutCommonConstraintsAxis {
+										#resizer : @653
+									},
+									#position : Point [ 0.0, 0.0 ],
+									#margin : BlInsets {
+										#top : 10.0,
+										#left : 10.0,
+										#bottom : 0.0,
+										#right : 0.0
+									},
+									#padding : BlInsets {
+										#top : 0.0,
+										#left : 0.0,
+										#bottom : 0.0,
+										#right : 0.0
+									},
+									#minHeight : 0.0,
+									#minWidth : 0.0,
+									#maxHeight : @17,
+									#maxWidth : @17,
+									#ignoredByLayout : false,
+									#accountTransformation : false
+								},
+								#visuals : BlCustomVisuals {
+									#geometry : BlCircleGeometry {
+										#extent : Point [ 100.0, 100.0 ],
+										#pathCache : BlPathCache {
+											#geometry : @659
+										},
+										#radius : 50.0,
+										#origin : Point [ 0.0, 0.0 ]
+									},
+									#background : BlPaintBackground {
+										#paint : BlRadialGradientPaint {
+											#stops : [
+												0 : Color {
+													#red : 0.0,
+													#green : 0.0,
+													#blue : 0.0,
+													#alpha : 0.0
+												},
+												0.3 : Color {
+													#red : 0.0,
+													#green : 0.0,
+													#blue : 0.0,
+													#alpha : 0.2
+												},
+												1 : Color {
+													#red : 0.0,
+													#green : 0.0,
+													#blue : 0.0,
+													#alpha : 0.8
+												}
+											],
+											#center : Point [ 50, 50 ],
+											#radius : 50
+										}
+									}
+								},
+								#userData : IdentityDictionary { },
+								#layout : @31,
+								#eventDispatcher : BlElementEventDispatcher {
+									#owner : @649,
+									#handlers : [ ]
+								}
+							},
+							BlElement {
+								#children : BlChildrenArray [ ],
+								#constraints : BlLayoutCommonConstraints {
+									#vertical : BlLayoutCommonConstraintsAxis {
+										#resizer : @653
+									},
+									#horizontal : BlLayoutCommonConstraintsAxis {
+										#resizer : @653
+									},
+									#position : Point [ 1, 1 ],
+									#margin : BlInsets {
+										#top : 10.0,
+										#left : 10.0,
+										#bottom : 0.0,
+										#right : 0.0
+									},
+									#padding : @657,
+									#minHeight : 0.0,
+									#minWidth : 0.0,
+									#maxHeight : @17,
+									#maxWidth : @17,
+									#ignoredByLayout : false,
+									#accountTransformation : false
+								},
+								#visuals : BlCustomVisuals {
+									#geometry : BlCircleGeometry {
+										#extent : Point [ 100.0, 100.0 ],
+										#pathCache : BlPathCache {
+											#geometry : @681
+										},
+										#radius : 50.0,
+										#origin : Point [ 0.0, 0.0 ]
+									},
+									#background : BlPaintBackground {
+										#paint : BlRadialGradientPaint {
+											#stops : [
+												0 : @49,
+												0.9 : @666,
+												1 : @666
+											],
+											#center : Point [ 10, 10 ],
+											#radius : 90
+										}
+									}
+								},
+								#userData : IdentityDictionary { },
+								#layout : @31,
+								#eventDispatcher : BlElementEventDispatcher {
+									#owner : @673,
+									#handlers : [ ]
+								}
+							}
+						],
+						#constraints : BlLayoutCommonConstraints {
+							#vertical : BlLayoutCommonConstraintsAxis {
+								#resizer : @56
+							},
+							#horizontal : BlLayoutCommonConstraintsAxis {
+								#resizer : @56
+							},
+							#position : Point [ 0.0, 0.0 ],
+							#margin : @59,
+							#padding : BlInsets {
+								#top : 0.0,
+								#left : 0.0,
+								#bottom : 0.0,
+								#right : 0.0
+							},
+							#minHeight : 0.0,
+							#minWidth : 0.0,
+							#maxHeight : 0.0,
+							#maxWidth : 0.0,
+							#ignoredByLayout : false,
+							#accountTransformation : false
+						},
+						#visuals : BlCustomVisuals {
+							#geometry : BlCircleGeometry {
+								#extent : Point [ 100.0, 100.0 ],
+								#pathCache : BlPathCache {
+									#geometry : @698
+								},
+								#radius : 50.0,
+								#origin : Point [ 0.0, 0.0 ]
+							},
+							#background : BlPaintBackground {
+								#paint : BlColorPaint {
+									#color : @68
+								}
+							}
+						},
+						#userData : IdentityDictionary {
+							#elementId : @70
+						},
+						#layout : @31,
+						#eventDispatcher : BlElementEventDispatcher {
+							#owner : @647,
+							#handlers : [ ]
+						}
+					},
+					BlElement {
+						#children : BlChildrenArray [ ],
+						#constraints : BlLayoutCommonConstraints {
+							#vertical : BlLayoutCommonConstraintsAxis {
+								#resizer : BlLayoutExactResizer {
+									#size : 25.0
+								}
+							},
+							#horizontal : BlLayoutCommonConstraintsAxis {
+								#resizer : @56
+							},
+							#position : @79,
+							#margin : @531,
+							#padding : @696,
+							#minHeight : 0.0,
+							#minWidth : 0.0,
+							#maxHeight : 0.0,
+							#maxWidth : 0.0,
+							#ignoredByLayout : false,
+							#accountTransformation : false
+						},
+						#visuals : BlCustomVisuals {
+							#geometry : BlEllipseGeometry {
+								#extent : Point [ 100.0, 25.0 ],
+								#pathCache : BlPathCache {
+									#geometry : @714
+								}
+							},
+							#background : BlPaintBackground {
+								#paint : BlColorPaint {
+									#color : @86
+								}
+							}
+						},
+						#userData : IdentityDictionary {
+							#elementId : @70
+						},
+						#layout : @31,
+						#eventDispatcher : BlElementEventDispatcher {
+							#owner : @707,
+							#handlers : [ ]
+						}
+					}
+				],
+				#constraints : BlLayoutCommonConstraints {
+					#vertical : BlLayoutCommonConstraintsAxis {
+						#resizer : BlLayoutExactResizer {
+							#size : 200.0
+						}
+					},
+					#horizontal : BlLayoutCommonConstraintsAxis {
+						#resizer : @56
+					},
+					#position : Point [ 300, 200 ],
+					#margin : BlInsets {
+						#top : 0.0,
+						#left : 0.0,
+						#bottom : 0.0,
+						#right : 0.0
+					},
+					#padding : @727,
+					#minHeight : 0.0,
+					#minWidth : 0.0,
+					#maxHeight : 0.0,
+					#maxWidth : 0.0,
+					#ignoredByLayout : false,
+					#accountTransformation : false
+				},
+				#visuals : BlCustomVisuals {
+					#background : BlPaintBackground {
+						#paint : BlColorPaint {
+							#color : Color {
+								#red : 0.0,
+								#green : 0.0,
+								#blue : 0.0,
+								#alpha : 0.0
+							}
+						}
+					}
+				},
+				#userData : IdentityDictionary {
+					#elementId : @70
+				},
+				#layout : @31,
+				#eventDispatcher : BlElementEventDispatcher {
+					#owner : @645,
+					#handlers : [ ]
+				}
+			},
+			BlElement {
+				#children : BlChildrenArray [
+					BlElement {
+						#children : BlChildrenArray [
+							BlElement {
+								#children : BlChildrenArray [ ],
+								#constraints : BlLayoutCommonConstraints {
+									#vertical : BlLayoutCommonConstraintsAxis {
+										#resizer : BlLayoutExactResizer {
+											#size : 100.0
+										}
+									},
+									#horizontal : BlLayoutCommonConstraintsAxis {
+										#resizer : @743
+									},
+									#position : Point [ 0.0, 0.0 ],
+									#margin : BlInsets {
+										#top : 10.0,
+										#left : 10.0,
+										#bottom : 0.0,
+										#right : 0.0
+									},
+									#padding : BlInsets {
+										#top : 0.0,
+										#left : 0.0,
+										#bottom : 0.0,
+										#right : 0.0
+									},
+									#minHeight : 0.0,
+									#minWidth : 0.0,
+									#maxHeight : @17,
+									#maxWidth : @17,
+									#ignoredByLayout : false,
+									#accountTransformation : false
+								},
+								#visuals : BlCustomVisuals {
+									#geometry : BlCircleGeometry {
+										#extent : Point [ 100.0, 100.0 ],
+										#pathCache : BlPathCache {
+											#geometry : @749
+										},
+										#radius : 50.0,
+										#origin : Point [ 0.0, 0.0 ]
+									},
+									#background : BlPaintBackground {
+										#paint : BlRadialGradientPaint {
+											#stops : [
+												0 : Color {
+													#red : 0.0,
+													#green : 0.0,
+													#blue : 0.0,
+													#alpha : 0.0
+												},
+												0.3 : Color {
+													#red : 0.0,
+													#green : 0.0,
+													#blue : 0.0,
+													#alpha : 0.2
+												},
+												1 : Color {
+													#red : 0.0,
+													#green : 0.0,
+													#blue : 0.0,
+													#alpha : 0.8
+												}
+											],
+											#center : Point [ 50, 50 ],
+											#radius : 50
+										}
+									}
+								},
+								#userData : IdentityDictionary { },
+								#layout : @31,
+								#eventDispatcher : BlElementEventDispatcher {
+									#owner : @739,
+									#handlers : [ ]
+								}
+							},
+							BlElement {
+								#children : BlChildrenArray [ ],
+								#constraints : BlLayoutCommonConstraints {
+									#vertical : BlLayoutCommonConstraintsAxis {
+										#resizer : @743
+									},
+									#horizontal : BlLayoutCommonConstraintsAxis {
+										#resizer : @743
+									},
+									#position : Point [ 1, 1 ],
+									#margin : BlInsets {
+										#top : 10.0,
+										#left : 10.0,
+										#bottom : 0.0,
+										#right : 0.0
+									},
+									#padding : @747,
+									#minHeight : 0.0,
+									#minWidth : 0.0,
+									#maxHeight : @17,
+									#maxWidth : @17,
+									#ignoredByLayout : false,
+									#accountTransformation : false
+								},
+								#visuals : BlCustomVisuals {
+									#geometry : BlCircleGeometry {
+										#extent : Point [ 100.0, 100.0 ],
+										#pathCache : BlPathCache {
+											#geometry : @771
+										},
+										#radius : 50.0,
+										#origin : Point [ 0.0, 0.0 ]
+									},
+									#background : BlPaintBackground {
+										#paint : BlRadialGradientPaint {
+											#stops : [
+												0 : @49,
+												0.9 : @756,
+												1 : @756
+											],
+											#center : Point [ 10, 10 ],
+											#radius : 90
+										}
+									}
+								},
+								#userData : IdentityDictionary { },
+								#layout : @31,
+								#eventDispatcher : BlElementEventDispatcher {
+									#owner : @763,
+									#handlers : [ ]
+								}
+							}
+						],
+						#constraints : BlLayoutCommonConstraints {
+							#vertical : BlLayoutCommonConstraintsAxis {
+								#resizer : @56
+							},
+							#horizontal : BlLayoutCommonConstraintsAxis {
+								#resizer : @56
+							},
+							#position : Point [ 0.0, 0.0 ],
+							#margin : @59,
+							#padding : BlInsets {
+								#top : 0.0,
+								#left : 0.0,
+								#bottom : 0.0,
+								#right : 0.0
+							},
+							#minHeight : 0.0,
+							#minWidth : 0.0,
+							#maxHeight : 0.0,
+							#maxWidth : 0.0,
+							#ignoredByLayout : false,
+							#accountTransformation : false
+						},
+						#visuals : BlCustomVisuals {
+							#geometry : BlCircleGeometry {
+								#extent : Point [ 100.0, 100.0 ],
+								#pathCache : BlPathCache {
+									#geometry : @788
+								},
+								#radius : 50.0,
+								#origin : Point [ 0.0, 0.0 ]
+							},
+							#background : BlPaintBackground {
+								#paint : BlColorPaint {
+									#color : @68
+								}
+							}
+						},
+						#userData : IdentityDictionary {
+							#elementId : @70
+						},
+						#layout : @31,
+						#eventDispatcher : BlElementEventDispatcher {
+							#owner : @737,
+							#handlers : [ ]
+						}
+					},
+					BlElement {
+						#children : BlChildrenArray [ ],
+						#constraints : BlLayoutCommonConstraints {
+							#vertical : BlLayoutCommonConstraintsAxis {
+								#resizer : BlLayoutExactResizer {
+									#size : 25.0
+								}
+							},
+							#horizontal : BlLayoutCommonConstraintsAxis {
+								#resizer : @56
+							},
+							#position : @79,
+							#margin : @59,
+							#padding : @786,
+							#minHeight : 0.0,
+							#minWidth : 0.0,
+							#maxHeight : 0.0,
+							#maxWidth : 0.0,
+							#ignoredByLayout : false,
+							#accountTransformation : false
+						},
+						#visuals : BlCustomVisuals {
+							#geometry : BlEllipseGeometry {
+								#extent : Point [ 100.0, 25.0 ],
+								#pathCache : BlPathCache {
+									#geometry : @804
+								}
+							},
+							#background : BlPaintBackground {
+								#paint : BlColorPaint {
+									#color : @86
+								}
+							}
+						},
+						#userData : IdentityDictionary {
+							#elementId : @70
+						},
+						#layout : @31,
+						#eventDispatcher : BlElementEventDispatcher {
+							#owner : @797,
+							#handlers : [ ]
+						}
+					}
+				],
+				#constraints : BlLayoutCommonConstraints {
+					#vertical : BlLayoutCommonConstraintsAxis {
+						#resizer : BlLayoutExactResizer {
+							#size : 200.0
+						}
+					},
+					#horizontal : BlLayoutCommonConstraintsAxis {
+						#resizer : @56
+					},
+					#position : Point [ 450, 200 ],
+					#margin : BlInsets {
+						#top : 0.0,
+						#left : 0.0,
+						#bottom : 0.0,
+						#right : 0.0
+					},
+					#padding : @817,
+					#minHeight : 0.0,
+					#minWidth : 0.0,
+					#maxHeight : 0.0,
+					#maxWidth : 0.0,
+					#ignoredByLayout : false,
+					#accountTransformation : false
+				},
+				#visuals : BlCustomVisuals {
+					#background : BlPaintBackground {
+						#paint : BlColorPaint {
+							#color : Color {
+								#red : 0.0,
+								#green : 0.0,
+								#blue : 0.0,
+								#alpha : 0.0
+							}
+						}
+					}
+				},
+				#userData : IdentityDictionary {
+					#elementId : @70
+				},
+				#layout : @31,
+				#eventDispatcher : BlElementEventDispatcher {
+					#owner : @735,
+					#handlers : [ ]
+				}
+			},
+			BlElement {
+				#children : BlChildrenArray [
+					BlElement {
+						#children : BlChildrenArray [
+							BlElement {
+								#children : BlChildrenArray [ ],
+								#constraints : BlLayoutCommonConstraints {
+									#vertical : BlLayoutCommonConstraintsAxis {
+										#resizer : BlLayoutExactResizer {
+											#size : 100.0
+										}
+									},
+									#horizontal : BlLayoutCommonConstraintsAxis {
+										#resizer : @833
+									},
+									#position : Point [ 0.0, 0.0 ],
+									#margin : BlInsets {
+										#top : 10.0,
+										#left : 10.0,
+										#bottom : 0.0,
+										#right : 0.0
+									},
+									#padding : BlInsets {
+										#top : 0.0,
+										#left : 0.0,
+										#bottom : 0.0,
+										#right : 0.0
+									},
+									#minHeight : 0.0,
+									#minWidth : 0.0,
+									#maxHeight : @17,
+									#maxWidth : @17,
+									#ignoredByLayout : false,
+									#accountTransformation : false
+								},
+								#visuals : BlCustomVisuals {
+									#geometry : BlCircleGeometry {
+										#extent : Point [ 100.0, 100.0 ],
+										#pathCache : BlPathCache {
+											#geometry : @839
+										},
+										#radius : 50.0,
+										#origin : Point [ 0.0, 0.0 ]
+									},
+									#background : BlPaintBackground {
+										#paint : BlRadialGradientPaint {
+											#stops : [
+												0 : Color {
+													#red : 0.0,
+													#green : 0.0,
+													#blue : 0.0,
+													#alpha : 0.0
+												},
+												0.3 : Color {
+													#red : 0.0,
+													#green : 0.0,
+													#blue : 0.0,
+													#alpha : 0.2
+												},
+												1 : Color {
+													#red : 0.0,
+													#green : 0.0,
+													#blue : 0.0,
+													#alpha : 0.8
+												}
+											],
+											#center : Point [ 50, 50 ],
+											#radius : 50
+										}
+									}
+								},
+								#userData : IdentityDictionary { },
+								#layout : @31,
+								#eventDispatcher : BlElementEventDispatcher {
+									#owner : @829,
+									#handlers : [ ]
+								}
+							},
+							BlElement {
+								#children : BlChildrenArray [ ],
+								#constraints : BlLayoutCommonConstraints {
+									#vertical : BlLayoutCommonConstraintsAxis {
+										#resizer : @833
+									},
+									#horizontal : BlLayoutCommonConstraintsAxis {
+										#resizer : @833
+									},
+									#position : Point [ 1, 1 ],
+									#margin : BlInsets {
+										#top : 10.0,
+										#left : 10.0,
+										#bottom : 0.0,
+										#right : 0.0
+									},
+									#padding : @837,
+									#minHeight : 0.0,
+									#minWidth : 0.0,
+									#maxHeight : @17,
+									#maxWidth : @17,
+									#ignoredByLayout : false,
+									#accountTransformation : false
+								},
+								#visuals : BlCustomVisuals {
+									#geometry : BlCircleGeometry {
+										#extent : Point [ 100.0, 100.0 ],
+										#pathCache : BlPathCache {
+											#geometry : @861
+										},
+										#radius : 50.0,
+										#origin : Point [ 0.0, 0.0 ]
+									},
+									#background : BlPaintBackground {
+										#paint : BlRadialGradientPaint {
+											#stops : [
+												0 : @49,
+												0.9 : @846,
+												1 : @846
+											],
+											#center : Point [ 10, 10 ],
+											#radius : 90
+										}
+									}
+								},
+								#userData : IdentityDictionary { },
+								#layout : @31,
+								#eventDispatcher : BlElementEventDispatcher {
+									#owner : @853,
+									#handlers : [ ]
+								}
+							}
+						],
+						#constraints : BlLayoutCommonConstraints {
+							#vertical : BlLayoutCommonConstraintsAxis {
+								#resizer : @56
+							},
+							#horizontal : BlLayoutCommonConstraintsAxis {
+								#resizer : @56
+							},
+							#position : Point [ 0.0, 0.0 ],
+							#margin : @59,
+							#padding : BlInsets {
+								#top : 0.0,
+								#left : 0.0,
+								#bottom : 0.0,
+								#right : 0.0
+							},
+							#minHeight : 0.0,
+							#minWidth : 0.0,
+							#maxHeight : 0.0,
+							#maxWidth : 0.0,
+							#ignoredByLayout : false,
+							#accountTransformation : false
+						},
+						#visuals : BlCustomVisuals {
+							#geometry : BlCircleGeometry {
+								#extent : Point [ 100.0, 100.0 ],
+								#pathCache : BlPathCache {
+									#geometry : @878
+								},
+								#radius : 50.0,
+								#origin : Point [ 0.0, 0.0 ]
+							},
+							#background : BlPaintBackground {
+								#paint : BlColorPaint {
+									#color : @68
+								}
+							}
+						},
+						#userData : IdentityDictionary {
+							#elementId : @70
+						},
+						#layout : @31,
+						#eventDispatcher : BlElementEventDispatcher {
+							#owner : @827,
+							#handlers : [ ]
+						}
+					},
+					BlElement {
+						#children : BlChildrenArray [ ],
+						#constraints : BlLayoutCommonConstraints {
+							#vertical : BlLayoutCommonConstraintsAxis {
+								#resizer : BlLayoutExactResizer {
+									#size : 25.0
+								}
+							},
+							#horizontal : BlLayoutCommonConstraintsAxis {
+								#resizer : @56
+							},
+							#position : @79,
+							#margin : @531,
+							#padding : @876,
+							#minHeight : 0.0,
+							#minWidth : 0.0,
+							#maxHeight : 0.0,
+							#maxWidth : 0.0,
+							#ignoredByLayout : false,
+							#accountTransformation : false
+						},
+						#visuals : BlCustomVisuals {
+							#geometry : BlEllipseGeometry {
+								#extent : Point [ 100.0, 25.0 ],
+								#pathCache : BlPathCache {
+									#geometry : @894
+								}
+							},
+							#background : BlPaintBackground {
+								#paint : BlColorPaint {
+									#color : @86
+								}
+							}
+						},
+						#userData : IdentityDictionary {
+							#elementId : @70
+						},
+						#layout : @31,
+						#eventDispatcher : BlElementEventDispatcher {
+							#owner : @887,
+							#handlers : [ ]
+						}
+					}
+				],
+				#constraints : BlLayoutCommonConstraints {
+					#vertical : BlLayoutCommonConstraintsAxis {
+						#resizer : BlLayoutExactResizer {
+							#size : 200.0
+						}
+					},
+					#horizontal : BlLayoutCommonConstraintsAxis {
+						#resizer : @56
+					},
+					#position : Point [ 600, 200 ],
+					#margin : BlInsets {
+						#top : 0.0,
+						#left : 0.0,
+						#bottom : 0.0,
+						#right : 0.0
+					},
+					#padding : @907,
+					#minHeight : 0.0,
+					#minWidth : 0.0,
+					#maxHeight : 0.0,
+					#maxWidth : 0.0,
+					#ignoredByLayout : false,
+					#accountTransformation : false
+				},
+				#visuals : BlCustomVisuals {
+					#background : BlPaintBackground {
+						#paint : BlColorPaint {
+							#color : Color {
+								#red : 0.0,
+								#green : 0.0,
+								#blue : 0.0,
+								#alpha : 0.0
+							}
+						}
+					}
+				},
+				#userData : IdentityDictionary {
+					#elementId : @70
+				},
+				#layout : @31,
+				#eventDispatcher : BlElementEventDispatcher {
+					#owner : @825,
+					#handlers : [ ]
+				}
+			}
+		],
+		#constraints : BlLayoutCommonConstraints {
+			#vertical : BlLayoutCommonConstraintsAxis {
+				#resizer : BlLayoutExactResizer {
+					#size : 600.0
+				}
+			},
+			#horizontal : BlLayoutCommonConstraintsAxis {
+				#resizer : BlLayoutExactResizer {
+					#size : 800.0
+				}
+			},
+			#position : Point [ 0.0, 0.0 ],
+			#margin : BlInsets {
+				#top : 0.0,
+				#left : 0.0,
+				#bottom : 0.0,
+				#right : 0.0
+			},
+			#padding : @921,
+			#minHeight : 0.0,
+			#minWidth : 0.0,
+			#maxHeight : 0.0,
+			#maxWidth : 0.0,
+			#ignoredByLayout : false,
+			#accountTransformation : false
+		},
+		#visuals : BlCustomVisuals {
+			#background : BlPaintBackground {
+				#paint : BlColorPaint {
+					#color : Color {
+						#red : 0.0,
+						#green : 0.0,
+						#blue : 0.0,
+						#alpha : 0.0
+					}
+				}
+			}
+		},
+		#userData : IdentityDictionary {
+			#elementId : @70
+		},
+		#layout : @31,
+		#eventDispatcher : BlElementEventDispatcher {
+			#owner : @2,
+			#handlers : [ ]
+		}
+	}
+]'
 ]
