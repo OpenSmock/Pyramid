@@ -13,6 +13,11 @@ Class {
 }
 
 { #category : #'as yet unclassified' }
+PyBusiness class >> userdataKey [
+	^ #PyramidEditorIsOpened
+]
+
+{ #category : #'as yet unclassified' }
 PyBusiness >> defaultRoots [
 
 	| e1 e2 e3 |
@@ -133,15 +138,24 @@ PyBusiness >> openOn: aBlElementOrACollection [
 			'You cannot edit child comming from different parent.' ].
 
 	oldParent := oldParent first.
-	oldParent ifNotNil: [
-		newRoots do: [ :each |
-			each parent ifNotNil: [ each parent removeChild: each ] ].
-		self restorationBlock: [
-			self roots elements do: [ :each | each parent removeChild: each.
-				oldParent addChild: each ] ] ].
+	oldParent ifNil: [
+		self roots clearThenAddAll: newRoots.
+		^ self open ].
+
+	oldParent userData
+		at: PyBusiness userdataKey
+		ifPresent: [ :business | "PyEditorAlreadyOpenError signal: 'A PyEditor is open.'"
+			^ self ].
+
+	newRoots do: [ :each |
+		each parent ifNotNil: [ each parent removeChild: each ] ].
+	self restorationBlock: [
+		self roots elements do: [ :each |
+			each parent removeChild: each.
+			oldParent addChild: each ] ].
 
 	self roots clearThenAddAll: newRoots.
-	self open
+	^ self open
 ]
 
 { #category : #'instance creation' }
