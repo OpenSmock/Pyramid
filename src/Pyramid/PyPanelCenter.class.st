@@ -40,7 +40,6 @@ PyPanelCenter >> initializeNewMorphicSpace [
 	space := BlSpace new.
 	space host: host.
 
-	"self whenBuiltDo: [ space show ]."
 	self whenDisplayDo: [ space show ].
 
 	^ morph
