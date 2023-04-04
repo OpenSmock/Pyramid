@@ -1,10 +1,12 @@
 Class {
 	#name : #PyOpenStrategySpace,
-	#superclass : #PyEditorOpenStrategy,
+	#superclass : #Object,
+	#traits : 'TPyOpenStrategy',
+	#classTraits : 'TPyOpenStrategy classTrait',
 	#instVars : [
 		'sourceSpace'
 	],
-	#category : #'Pyramid-Business'
+	#category : #'Pyramid-Business-Open-Strategy'
 }
 
 { #category : #removing }

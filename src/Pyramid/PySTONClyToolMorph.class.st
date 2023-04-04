@@ -121,23 +121,6 @@ PySTONClyToolMorph >> detachFromSystem [
 ]
 
 { #category : #'as yet unclassified' }
-PySTONClyToolMorph >> editorButton [
-
-	| button |
-	button := SimpleButtonMorph newWithLabel: 'Edit'.
-	button
-		actionSelector: #value;
-		helpText: 'Open the PyEditor on this STON';
-		extent: 100 @ 25;
-		useRoundedCorners;
-		color: Color white.
-	button target: [ self openEditor. 
-		].
-
-	^ button
-]
-
-{ #category : #'as yet unclassified' }
 PySTONClyToolMorph >> getClassName [
 
 	^ (Character space split: method classBinding value name) first

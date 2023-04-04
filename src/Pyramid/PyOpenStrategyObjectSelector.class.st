@@ -1,11 +1,13 @@
 Class {
 	#name : #PyOpenStrategyObjectSelector,
-	#superclass : #PyEditorOpenStrategy,
+	#superclass : #Object,
+	#traits : 'TPyOpenStrategy',
+	#classTraits : 'TPyOpenStrategy classTrait',
 	#instVars : [
 		'sourceObject',
 		'sourceSelector'
 	],
-	#category : #'Pyramid-Business'
+	#category : #'Pyramid-Business-Open-Strategy'
 }
 
 { #category : #'as yet unclassified' }

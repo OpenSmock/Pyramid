@@ -117,75 +117,14 @@ PyBusiness >> initializeView [
 { #category : #'instance creation' }
 PyBusiness >> open [
 
-	| window |
-	self openStrategy open: self.
-	"window := self view open.
-	window resize: 1024 @ 720.
-	window title: 'Pyramid Editor'.
-	window whenClosedDo: [ self whenWindowClosed ]"
-]
+	self openStrategy open: self
 
-{ #category : #'instance creation' }
-PyBusiness >> openOn: aBlElementOrACollection [
-
-	| newRoots oldParent |
-	newRoots := aBlElementOrACollection isCollection
-		            ifTrue: [ aBlElementOrACollection ]
-		            ifFalse: [ { aBlElementOrACollection } ].
-
-	oldParent := (newRoots collect: [ :each | each parent ]) asSet
-		             asArray.
-	oldParent size == 1 ifFalse: [
-		PyCanNotEditChildFromDifferentParentError signal:
-			'You cannot edit child comming from different parent.' ].
-
-	oldParent := oldParent first.
-	oldParent ifNil: [
-		self roots clearThenAddAll: newRoots.
-		^ self open ].
-
-	oldParent userData
-		at: PyBusiness userdataKey
-		ifPresent: [ :business |
-		"PyEditorAlreadyOpenError signal: 'A PyEditor is open.'". ^ self ].
-
-	newRoots do: [ :each |
-		each parent ifNotNil: [ each parent removeChild: each ] ].
-	self restorationBlock: [
-		self roots elements do: [ :each |
-			each parent removeChild: each.
-			oldParent addChild: each ] ].
-
-	self roots clearThenAddAll: newRoots.
-	^ self open
-]
-
-{ #category : #'instance creation' }
-PyBusiness >> openOn: anObject selector: aSelector [
-
-	| saveModel newRoots |
-	saveModel := (self getPlugin: PyPluginSave) saveModel.
-
-	anObject isClass
-		ifTrue: [
-			saveModel defaultPackageName: anObject package name.
-			saveModel defaultClassName: anObject name.
-			saveModel defaultMethodName: aSelector.
-			saveModel classSide ]
-		ifFalse: [
-			saveModel defaultPackageName: anObject class package name.
-			saveModel defaultClassName: anObject class name.
-			saveModel defaultMethodName: aSelector.
-			saveModel instanceSide ].
-
-	newRoots := BlSerializer materialize: (anObject perform: aSelector).
-	self openOn: newRoots
 ]
 
 { #category : #accessing }
 PyBusiness >> openStrategy [
 
-	openStrategy ifNil: [ openStrategy := PyEditorOpenStrategy new ].
+	openStrategy ifNil: [ openStrategy := PyOpenStrategyDefault new ].
 	^ openStrategy
 ]
 
@@ -205,19 +144,6 @@ PyBusiness >> plugins [
 	^ plugins
 ]
 
-{ #category : #'as yet unclassified' }
-PyBusiness >> restorationBlock [
-
-	restorationBlock ifNil: [ restorationBlock := [  ] ].
-	^ restorationBlock
-]
-
-{ #category : #'as yet unclassified' }
-PyBusiness >> restorationBlock: aBlock [
-
-	restorationBlock := aBlock
-]
-
 { #category : #accessing }
 PyBusiness >> roots [
 	^ roots
@@ -232,11 +158,4 @@ PyBusiness >> selection [
 PyBusiness >> view [
 
 	^ view
-]
-
-{ #category : #'as yet unclassified' }
-PyBusiness >> whenWindowClosed [
-
-
-	self restorationBlock value.
 ]

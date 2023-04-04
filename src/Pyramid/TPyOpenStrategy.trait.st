@@ -1,22 +1,21 @@
-Class {
-	#name : #PyEditorOpenStrategy,
-	#superclass : #Object,
-	#category : #'Pyramid-Business'
+Trait {
+	#name : #TPyOpenStrategy,
+	#category : #'Pyramid-Business-Open-Strategy'
 }
 
 { #category : #protocol }
-PyEditorOpenStrategy >> open: aBusiness [
+TPyOpenStrategy >> open: aBusiness [
 
 	self setupRoots: aBusiness.
 	self setupWindow: aBusiness.
 ]
 
 { #category : #protocol }
-PyEditorOpenStrategy >> setupRoots: aBusiness [
+TPyOpenStrategy >> setupRoots: aBusiness [
 ]
 
 { #category : #protocol }
-PyEditorOpenStrategy >> setupWindow: aBusiness [
+TPyOpenStrategy >> setupWindow: aBusiness [
 
 	| window |
 	window := aBusiness view open.
@@ -26,7 +25,7 @@ PyEditorOpenStrategy >> setupWindow: aBusiness [
 ]
 
 { #category : #'as yet unclassified' }
-PyEditorOpenStrategy >> whenWindowClosed: aBusiness [
+TPyOpenStrategy >> whenWindowClosed: aBusiness [
 
 	
 ]
