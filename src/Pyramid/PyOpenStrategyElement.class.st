@@ -1,6 +1,7 @@
 Class {
 	#name : #PyOpenStrategyElement,
 	#superclass : #Object,
+	#traits : 'TPyOpenStrategy',
 	#classTraits : 'TPyOpenStrategy classTrait',
 	#instVars : [
 		'sourceElement',

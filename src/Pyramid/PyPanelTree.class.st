@@ -127,8 +127,11 @@ PyPanelTree >> pyPipelineVerifyCommand [
 { #category : #'as yet unclassified' }
 PyPanelTree >> pySelectionChanged [
 
-	self tree disableActivationDuring: [self tree selectItems: self selection elements.
-	self tree refresh. ]
+		self selection lock.
+		self tree selectItems: self selection elements.
+		self tree refresh.
+		self selection unlock.
+
 ]
 
 { #category : #accessing }
