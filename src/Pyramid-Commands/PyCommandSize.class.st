@@ -26,7 +26,9 @@ PyCommandSize >> printOn: aStream [
 PyCommandSize >> stateOf: aBlElement for: aState [
 
 	| x y |
-	x :=aBlElement constraints horizontal resizer size.
-	y := aBlElement constraints vertical resizer size.
+	
+	aBlElement constraints horizontal resizer isFitContent ifTrue: [x := -1 ] ifFalse: [ x := aBlElement constraints horizontal resizer size. ].
+	aBlElement constraints vertical resizer isFitContent ifTrue: [y := -1 ] ifFalse: [ 	y := aBlElement constraints vertical resizer size. ].
+
 	aState value: x @ y
 ]
