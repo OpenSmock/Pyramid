@@ -4,10 +4,23 @@ Class {
 	#traits : 'TPyOpenStrategy',
 	#classTraits : 'TPyOpenStrategy classTrait',
 	#instVars : [
-		'sourceSpace'
+		'sourceSpace',
+		'oldRootBackground'
 	],
 	#category : #'Pyramid-Business-Open-Strategy'
 }
+
+{ #category : #accessing }
+PyOpenStrategySpace >> oldRootBackground [
+
+	^ oldRootBackground
+]
+
+{ #category : #accessing }
+PyOpenStrategySpace >> oldRootBackground: anObject [
+
+	oldRootBackground := anObject
+]
 
 { #category : #removing }
 PyOpenStrategySpace >> removeParentOf: aCollection [
@@ -21,8 +34,12 @@ PyOpenStrategySpace >> setupRoots: aBusiness [
 	| roots |
 	self sourceSpace ifNil: [
 		PySpaceIsMissingError signal: 'The source space is missing.' ].
-	
-	roots := 	self sourceSpace root children collect: [ :each | each ].
+
+	self oldRootBackground: self sourceSpace root background.
+	self sourceSpace root background:
+		(BlImageBackground new image: self sourceSpace root aeAsForm).
+
+	roots := self sourceSpace root children collect: [ :each | each ].
 
 	self removeParentOf: roots.
 
@@ -44,6 +61,7 @@ PyOpenStrategySpace >> sourceSpace: aBlSpace [
 { #category : #'as yet unclassified' }
 PyOpenStrategySpace >> whenWindowClosed: aBusiness [
 
+	self sourceSpace root background: self oldRootBackground.
 	self removeParentOf: aBusiness roots elements.
-	self sourceSpace root addChildren: aBusiness roots elements
+	self sourceSpace root addChildren: aBusiness roots elements.
 ]
