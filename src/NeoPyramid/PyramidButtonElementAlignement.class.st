@@ -1,7 +1,7 @@
 Class {
 	#name : #PyramidButtonElementAlignement,
 	#superclass : #Object,
-	#category : #NeoPyramid
+	#category : #'NeoPyramid-views'
 }
 
 { #category : #accessing }

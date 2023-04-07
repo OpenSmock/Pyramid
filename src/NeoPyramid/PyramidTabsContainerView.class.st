@@ -4,29 +4,13 @@ Class {
 	#instVars : [
 		'notebook'
 	],
-	#category : #NeoPyramid
+	#category : #'NeoPyramid-views'
 }
 
 { #category : #adding }
-PyramidTabsContainerView >> addClosableTab: aPyramidElementView [
+PyramidTabsContainerView >> addTab: aSpNotebookPage [
 
-	| page |
-	page := SpNotebookPage
-		        title: aPyramidElementView title
-		        icon: aPyramidElementView icon
-		        provider: aPyramidElementView presenter.
-	page beCloseable.
-	self notebook addPage: page
-]
-
-{ #category : #adding }
-PyramidTabsContainerView >> addTab: aPyramidElementView [
-	| page |
-page := SpNotebookPage
-		  title: aPyramidElementView title
-		  icon: aPyramidElementView icon
-		  provider: aPyramidElementView presenter.
-	self notebook addPage: page
+	self notebook addPage: aSpNotebookPage
 ]
 
 { #category : #layout }
@@ -46,9 +30,4 @@ PyramidTabsContainerView >> initializePresenters [
 { #category : #accessing }
 PyramidTabsContainerView >> notebook [
 	^ notebook
-]
-
-{ #category : #'as yet unclassified' }
-PyramidTabsContainerView >> whenTabClose: aBlock [
-	
 ]

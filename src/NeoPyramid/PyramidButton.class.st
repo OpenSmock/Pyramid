@@ -7,7 +7,7 @@ Class {
 		'presenter',
 		'align'
 	],
-	#category : #NeoPyramid
+	#category : #'NeoPyramid-views'
 }
 
 { #category : #accessing }

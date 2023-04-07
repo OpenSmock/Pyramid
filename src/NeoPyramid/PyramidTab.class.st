@@ -1,16 +1,16 @@
 Class {
-	#name : #PyramidTabElement,
+	#name : #PyramidTab,
 	#superclass : #Object,
 	#instVars : [
 		'icon',
 		'title',
 		'presenter'
 	],
-	#category : #NeoPyramid
+	#category : #'NeoPyramid-views'
 }
 
 { #category : #accessing }
-PyramidTabElement class >> random [
+PyramidTab class >> random [
 	| loremIpsumWords |
 	loremIpsumWords := String loremIpsum substrings.
 	^ self new
@@ -22,37 +22,37 @@ PyramidTabElement class >> random [
 ]
 
 { #category : #accessing }
-PyramidTabElement >> icon [
+PyramidTab >> icon [
 
 	^ icon
 ]
 
 { #category : #accessing }
-PyramidTabElement >> icon: anObject [
+PyramidTab >> icon: anObject [
 
 	icon := anObject
 ]
 
 { #category : #accessing }
-PyramidTabElement >> presenter [
+PyramidTab >> presenter [
 
 	^ presenter
 ]
 
 { #category : #accessing }
-PyramidTabElement >> presenter: anObject [
+PyramidTab >> presenter: anObject [
 
 	presenter := anObject
 ]
 
 { #category : #accessing }
-PyramidTabElement >> title [
+PyramidTab >> title [
 
 	^ title
 ]
 
 { #category : #accessing }
-PyramidTabElement >> title: anObject [
+PyramidTab >> title: anObject [
 
 	title := anObject
 ]

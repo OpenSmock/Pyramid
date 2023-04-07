@@ -4,7 +4,7 @@ Class {
 	#instVars : [
 		'buttonContraints'
 	],
-	#category : #NeoPyramid
+	#category : #'NeoPyramid-views'
 }
 
 { #category : #accessing }

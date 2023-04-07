@@ -7,7 +7,7 @@ Class {
 		'rightView',
 		'topView'
 	],
-	#category : #NeoPyramid
+	#category : #'NeoPyramid-views'
 }
 
 { #category : #accessing }

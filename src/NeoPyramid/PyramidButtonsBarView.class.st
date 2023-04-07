@@ -7,7 +7,7 @@ Class {
 		'buttonsConstraintsEnd',
 		'boxLayout'
 	],
-	#category : #NeoPyramid
+	#category : #'NeoPyramid-views'
 }
 
 { #category : #adding }
@@ -31,10 +31,6 @@ PyramidButtonsBarView >> addButtonStart: aSpButtonPresenter withConstraints: aBl
 { #category : #'as yet unclassified' }
 PyramidButtonsBarView >> boxLayout [
 
-	boxLayout ifNil: [ boxLayout := SpBoxLayout newLeftToRight
-		  spacing: 4;
-		  hAlignEnd;
-		  yourself ].
 	^ boxLayout
 ]
 
@@ -64,12 +60,31 @@ PyramidButtonsBarView >> buttonsConstraintsStart [
 { #category : #layout }
 PyramidButtonsBarView >> defaultLayout [
 
-	| defaultLayout startDefaultLayout centerDefaultLayout endDefaultLayout |
-	defaultLayout := self boxLayout.
-
-	startDefaultLayout := self boxLayout.
-	centerDefaultLayout := self boxLayout.
-	endDefaultLayout := self boxLayout.
+	| spacing defaultLayout startDefaultLayout centerDefaultLayout endDefaultLayout |
+	spacing := self boxLayout spacing.
+	self boxLayout isHorizontal
+		ifTrue: [
+			defaultLayout := SpBoxLayout newHorizontal.
+			startDefaultLayout := SpBoxLayout newHorizontal
+				                      spacing: spacing;
+				                      yourself.
+			centerDefaultLayout := SpBoxLayout newHorizontal
+				                       spacing: spacing;
+				                       yourself.
+			endDefaultLayout := SpBoxLayout newHorizontal
+				                    spacing: spacing;
+				                    yourself ]
+		ifFalse: [
+			defaultLayout := SpBoxLayout newVertical.
+			startDefaultLayout := SpBoxLayout newVertical
+				                      spacing: spacing;
+				                      yourself.
+			centerDefaultLayout := SpBoxLayout newVertical
+				                       spacing: spacing;
+				                       yourself.
+			endDefaultLayout := SpBoxLayout newVertical
+				                    spacing: spacing;
+				                    yourself ].
 
 	defaultLayout
 		add: startDefaultLayout expand: true;
@@ -87,7 +102,6 @@ PyramidButtonsBarView >> defaultLayout [
 	self buttonsConstraintsEnd do: [ :each |
 		endDefaultLayout add: each key withConstraints: each value ].
 
-	
 	^ defaultLayout
 ]
 

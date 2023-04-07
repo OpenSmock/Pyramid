@@ -6,7 +6,7 @@ Class {
 		'rightElements',
 		'topElements'
 	],
-	#category : #NeoPyramid
+	#category : #'NeoPyramid-views'
 }
 
 { #category : #building }
@@ -40,18 +40,20 @@ PyramidGlobalViewBuilder >> makeCenterView [
 { #category : #'as yet unclassified' }
 PyramidGlobalViewBuilder >> makeLeftView [
 
-	| leftView |
+	| builder leftView |
+	builder := PyramidTabBuilder new.
 	leftView := PyramidTabsContainerView new.
-	self leftElements do: [ :each | leftView addTab: each ].
+	self leftElements do: [ :each | builder makeTabFrom: each for: leftView ].
 	^ leftView
 ]
 
 { #category : #'as yet unclassified' }
 PyramidGlobalViewBuilder >> makeRightView [
 
-	| rightView |
+	| builder rightView |
+	builder := PyramidTabBuilder new.
 	rightView := PyramidTabsContainerView new.
-	self rightElements do: [ :each | rightView addTab: each ].
+	self rightElements do: [ :each | builder makeTabFrom: each for: rightView ].
 	^ rightView
 ]
 

@@ -13,13 +13,13 @@ PyramidPluginRandom class >> initialize [
 { #category : #accessing }
 PyramidPluginRandom >> leftElements [
 
-	^ { PyramidTabElement random . PyramidTabElement random }
+	^ { PyramidTab random . PyramidTab random }
 ]
 
 { #category : #accessing }
 PyramidPluginRandom >> rightElements [
 
-	^ { PyramidTabElement random . PyramidTabElement random }
+	^ { PyramidTab random . PyramidTab random }
 ]
 
 { #category : #accessing }

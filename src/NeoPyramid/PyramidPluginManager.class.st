@@ -32,35 +32,21 @@ PyramidPluginManager class >> uniqueInstance [
 { #category : #adding }
 PyramidPluginManager >> addPlugin: aPluginClass [
 
-	self plugins at: aPluginClass put: aPluginClass new.
-
-	
+	self plugins add: aPluginClass
 ]
 
 { #category : #initialization }
 PyramidPluginManager >> initialize [
 
-	plugins := Dictionary new
+	plugins := OrderedCollection new
 ]
 
 { #category : #'as yet unclassified' }
-PyramidPluginManager >> makeGlobalView [
+PyramidPluginManager >> makeEditor [
 
-	| builder leftElements topElements rightElements |
-	builder := PyramidGlobalViewBuilder new.
-	leftElements := OrderedCollection new.
-	topElements := OrderedCollection new.
-	rightElements := OrderedCollection new.
-
-	self plugins values do: [ :each |
-		topElements := topElements , each topElements.
-		leftElements := leftElements , each leftElements.
-		rightElements := rightElements , each rightElements ].
-	^ builder
-		  topElements: topElements;
-		  leftElements: leftElements;
-		  rightElements: rightElements;
-		  build
+	^ PyramidEditor new
+		  plugins: (self plugins collect: [ :class | class new ]);
+		  yourself
 ]
 
 { #category : #'as yet unclassified' }

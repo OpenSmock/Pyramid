@@ -7,13 +7,13 @@ Class {
 { #category : #accessing }
 PyramidPlugin >> leftElements [
 
-	^ { PyramidTabElement random . PyramidTabElement random }
+	^ { PyramidTab random . PyramidTab random }
 ]
 
 { #category : #accessing }
 PyramidPlugin >> rightElements [
 
-	^ { PyramidTabElement random . PyramidTabElement random }
+	^ { PyramidTab random . PyramidTab random }
 ]
 
 { #category : #accessing }
