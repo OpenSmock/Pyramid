@@ -1,13 +1,26 @@
 Class {
 	#name : #PyramidPluginRandom,
 	#superclass : #Object,
-	#category : #NeoPyramid
+	#category : #'NeoPyramid-core'
 }
 
 { #category : #initialization }
 PyramidPluginRandom class >> initialize [
 
 	PyramidPluginManager uniqueInstance addPlugin: self
+]
+
+{ #category : #'as yet unclassified' }
+PyramidPluginRandom >> buildGlobalViewOn: aBuilder [
+
+	aBuilder leftElements addAll: self leftElements.
+	aBuilder rightElements addAll: self rightElements.
+	aBuilder topElements addAll: self topElements.
+]
+
+{ #category : #'as yet unclassified' }
+PyramidPluginRandom >> connectOn: aPyramidEditor [
+	
 ]
 
 { #category : #accessing }

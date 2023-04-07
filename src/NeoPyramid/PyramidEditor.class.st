@@ -2,36 +2,11 @@ Class {
 	#name : #PyramidEditor,
 	#superclass : #Object,
 	#instVars : [
-		'plugins'
+		'plugins',
+		'view'
 	],
-	#category : #NeoPyramid
+	#category : #'NeoPyramid-core'
 }
-
-{ #category : #initialization }
-PyramidEditor >> initialize [ 
-	plugins:= {  }
-]
-
-{ #category : #'as yet unclassified' }
-PyramidEditor >> makeGlobalView [
-
-	| builder leftElements topElements rightElements |
-	builder := PyramidGlobalViewBuilder new.
-	leftElements := OrderedCollection new.
-	topElements := OrderedCollection new.
-	rightElements := OrderedCollection new.
-
-	self plugins values do: [ :each |
-		topElements := topElements , each topElements.
-		leftElements := leftElements , each leftElements.
-		rightElements := rightElements , each rightElements ].
-
-	^ builder
-		  topElements: topElements;
-		  leftElements: leftElements;
-		  rightElements: rightElements;
-		  build
-]
 
 { #category : #accessing }
 PyramidEditor >> plugins [
@@ -40,6 +15,18 @@ PyramidEditor >> plugins [
 ]
 
 { #category : #accessing }
-PyramidEditor >> plugins:aCollection [
-	plugins:=aCollection
+PyramidEditor >> plugins: aCollection [
+
+	plugins := aCollection
+]
+
+{ #category : #accessing }
+PyramidEditor >> view [
+ ^ view
+]
+
+{ #category : #accessing }
+PyramidEditor >> view: aSpPresenter [
+
+	view:= aSpPresenter
 ]

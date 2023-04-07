@@ -7,7 +7,7 @@ Class {
 	#classInstVars : [
 		'uniqueInstance'
 	],
-	#category : #NeoPyramid
+	#category : #'NeoPyramid-core'
 }
 
 { #category : #initialization }
@@ -19,7 +19,7 @@ PyramidPluginManager class >> initialize [
 { #category : #'instance creation' }
 PyramidPluginManager class >> new [
 
-	^ self uniqueInstance
+	Error signal: 'Use uniqueInstance instead.'
 ]
 
 { #category : #'instance creation' }
@@ -44,9 +44,9 @@ PyramidPluginManager >> initialize [
 { #category : #'as yet unclassified' }
 PyramidPluginManager >> makeEditor [
 
-	^ PyramidEditor new
+	^ PyramidEditorBuilder new
 		  plugins: (self plugins collect: [ :class | class new ]);
-		  yourself
+		  build
 ]
 
 { #category : #'as yet unclassified' }

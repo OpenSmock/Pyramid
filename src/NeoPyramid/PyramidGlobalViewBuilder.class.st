@@ -20,6 +20,14 @@ PyramidGlobalViewBuilder >> build [
 	^ globalView
 ]
 
+{ #category : #initialization }
+PyramidGlobalViewBuilder >> initialize [
+
+	leftElements := OrderedCollection new.
+	topElements := OrderedCollection new.
+	rightElements := OrderedCollection new
+]
+
 { #category : #accessing }
 PyramidGlobalViewBuilder >> leftElements [
 	^ leftElements
