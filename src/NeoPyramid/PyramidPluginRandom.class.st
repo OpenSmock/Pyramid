@@ -1,6 +1,8 @@
 Class {
 	#name : #PyramidPluginRandom,
 	#superclass : #Object,
+	#traits : 'TPyramidPlugin',
+	#classTraits : 'TPyramidPlugin classTrait',
 	#category : #'NeoPyramid-core'
 }
 

@@ -3,10 +3,25 @@ Class {
 	#superclass : #Object,
 	#instVars : [
 		'plugins',
-		'view'
+		'view',
+		'activeProject'
 	],
 	#category : #'NeoPyramid-core'
 }
+
+{ #category : #accessing }
+PyramidEditor >> activeProject [
+
+	^ activeProject
+]
+
+{ #category : #'as yet unclassified' }
+PyramidEditor >> initialize [
+
+	activeProject := PyramidActiveProjectModel new.
+	view := SpNullPresenter new.
+	plugins := {  }
+]
 
 { #category : #accessing }
 PyramidEditor >> plugins [
