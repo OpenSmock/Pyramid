@@ -1,52 +1,46 @@
 Class {
-	#name : #PyramidGlobalViewBuilder,
+	#name : #PyramidEditorViewBuilder,
 	#superclass : #Object,
 	#instVars : [
-		'leftElements',
-		'rightElements',
-		'topElements'
+		'model'
 	],
 	#category : #'NeoPyramid-views'
 }
 
 { #category : #building }
-PyramidGlobalViewBuilder >> build [
-	| topView leftView centerView rightView globalView |
-	topView := self makeTopView.
-	leftView := self makeLeftView.
-	centerView := self makeCenterView.
-	rightView := self makeRightView.
-	globalView := PyramidGlobalView new topView: topView;leftView: leftView;centerView: centerView;rightView: rightView;yourself.
-	^ globalView
+PyramidEditorViewBuilder >> build [
+
+	^ PyramidEditorView new
+		  model: self model;
+		  layoutStrategy: PyramidSimpleLayoutStrategy new;
+		  yourself
 ]
 
 { #category : #initialization }
-PyramidGlobalViewBuilder >> initialize [
+PyramidEditorViewBuilder >> initialize [
 
-	leftElements := OrderedCollection new.
-	topElements := OrderedCollection new.
-	rightElements := OrderedCollection new
+	model := PyramidEditorModel new.
 ]
 
 { #category : #accessing }
-PyramidGlobalViewBuilder >> leftElements [
+PyramidEditorViewBuilder >> leftElements [
 	^ leftElements
 ]
 
 { #category : #accessing }
-PyramidGlobalViewBuilder >> leftElements: anObject [
+PyramidEditorViewBuilder >> leftElements: anObject [
 
 	leftElements := anObject
 ]
 
 { #category : #'as yet unclassified' }
-PyramidGlobalViewBuilder >> makeCenterView [
+PyramidEditorViewBuilder >> makeCenterView [
 
 	^ PyramidTabsContainerView new
 ]
 
 { #category : #'as yet unclassified' }
-PyramidGlobalViewBuilder >> makeLeftView [
+PyramidEditorViewBuilder >> makeLeftView [
 
 	| builder leftView |
 	builder := PyramidTabBuilder new.
@@ -56,7 +50,7 @@ PyramidGlobalViewBuilder >> makeLeftView [
 ]
 
 { #category : #'as yet unclassified' }
-PyramidGlobalViewBuilder >> makeRightView [
+PyramidEditorViewBuilder >> makeRightView [
 
 	| builder rightView |
 	builder := PyramidTabBuilder new.
@@ -66,7 +60,7 @@ PyramidGlobalViewBuilder >> makeRightView [
 ]
 
 { #category : #'as yet unclassified' }
-PyramidGlobalViewBuilder >> makeTopView [
+PyramidEditorViewBuilder >> makeTopView [
 
 	| topView builder |
 	builder := PyramidButtonBuilder new buttonContraints: [ :c |
@@ -83,25 +77,31 @@ PyramidGlobalViewBuilder >> makeTopView [
 ]
 
 { #category : #accessing }
-PyramidGlobalViewBuilder >> rightElements [
+PyramidEditorViewBuilder >> model [
+
+	^ model
+]
+
+{ #category : #accessing }
+PyramidEditorViewBuilder >> rightElements [
 
 	^ rightElements
 ]
 
 { #category : #accessing }
-PyramidGlobalViewBuilder >> rightElements: anObject [
+PyramidEditorViewBuilder >> rightElements: anObject [
 
 	rightElements := anObject
 ]
 
 { #category : #accessing }
-PyramidGlobalViewBuilder >> topElements [
+PyramidEditorViewBuilder >> topElements [
 
 	^ topElements
 ]
 
 { #category : #accessing }
-PyramidGlobalViewBuilder >> topElements: anObject [
+PyramidEditorViewBuilder >> topElements: anObject [
 
 	topElements := anObject
 ]

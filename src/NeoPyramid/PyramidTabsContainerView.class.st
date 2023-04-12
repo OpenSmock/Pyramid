@@ -2,15 +2,34 @@ Class {
 	#name : #PyramidTabsContainerView,
 	#superclass : #SpPresenter,
 	#instVars : [
-		'notebook'
+		'notebook',
+		'builder'
 	],
 	#category : #'NeoPyramid-views'
 }
 
 { #category : #adding }
+PyramidTabsContainerView >> addAllTabs: aCollection [
+
+aCollection do: [ :each | self builder makeTabFrom: each for: self ]
+	
+]
+
+{ #category : #adding }
 PyramidTabsContainerView >> addTab: aSpNotebookPage [
 
 	self notebook addPage: aSpNotebookPage
+]
+
+{ #category : #accessing }
+PyramidTabsContainerView >> builder [
+	^ builder
+]
+
+{ #category : #accessing }
+PyramidTabsContainerView >> builder: aBuilder [
+
+	builder := aBuilder
 ]
 
 { #category : #layout }

@@ -3,7 +3,8 @@ Class {
 	#superclass : #Object,
 	#instVars : [
 		'editor',
-		'plugins'
+		'plugins',
+		'viewBuilder'
 	],
 	#category : #'NeoPyramid-core'
 }
@@ -11,26 +12,16 @@ Class {
 { #category : #building }
 PyramidEditorBuilder >> build [
 
-	self buildGlobalView.
-	self buildConnectors.
-	self editor plugins: self plugins.
-	^ self editor
-]
-
-{ #category : #building }
-PyramidEditorBuilder >> buildConnectors [
+	| builder |
+	builder := self viewBuilder.
+	self plugins do: [ :each |
+		each buildGlobalViewOn: self viewBuilder.
+		each connectOn: self editor ].
 
 	self plugins do: [ :each | each connectOn: self editor ].
-
-]
-
-{ #category : #building }
-PyramidEditorBuilder >> buildGlobalView [
-
-	| builder   |
-	builder := PyramidGlobalViewBuilder new.
-	self plugins do: [ :each | each buildGlobalViewOn: builder ].
-	self editor view:  builder build.
+	self editor plugins: self plugins.
+	self editor view: builder build.
+	^ self editor
 ]
 
 { #category : #accessing }
@@ -53,4 +44,17 @@ PyramidEditorBuilder >> plugins [
 PyramidEditorBuilder >> plugins: aCollection [
 
 	plugins := aCollection
+]
+
+{ #category : #accessing }
+PyramidEditorBuilder >> viewBuilder [
+
+	viewBuilder ifNil: [ viewBuilder := PyramidEditorViewBuilder new ].
+	^ viewBuilder
+]
+
+{ #category : #accessing }
+PyramidEditorBuilder >> viewBuilder: aBuilder [
+
+	viewBuilder := aBuilder
 ]

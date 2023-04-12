@@ -32,7 +32,7 @@ PyramidPluginTree >> activeProject: anActiveProject [
 { #category : #'as yet unclassified' }
 PyramidPluginTree >> buildGlobalViewOn: aPyramidGlobalViewBuilder [
 
-	aPyramidGlobalViewBuilder leftElements add: self view
+	aPyramidGlobalViewBuilder model browsers add: self view
 ]
 
 { #category : #'as yet unclassified' }

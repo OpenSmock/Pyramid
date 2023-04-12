@@ -5,10 +5,18 @@ Class {
 		'buttonsConstraintsStart',
 		'buttonsConstraintsCenter',
 		'buttonsConstraintsEnd',
-		'boxLayout'
+		'isHorizontal',
+		'spacing',
+		'builder'
 	],
 	#category : #'NeoPyramid-views'
 }
+
+{ #category : #adding }
+PyramidButtonsBarView >> addAllButtons: aCollection [
+
+	aCollection do: [ :each | self builder makeButtonFrom: each for: self ]
+]
 
 { #category : #adding }
 PyramidButtonsBarView >> addButtonCenter: aSpButtonPresenter withConstraints: aBlock [
@@ -28,16 +36,27 @@ PyramidButtonsBarView >> addButtonStart: aSpButtonPresenter withConstraints: aBl
 	self buttonsConstraintsStart add: aSpButtonPresenter -> aBlock
 ]
 
-{ #category : #'as yet unclassified' }
-PyramidButtonsBarView >> boxLayout [
+{ #category : #accessing }
+PyramidButtonsBarView >> beHorizontal [
 
-	^ boxLayout
+	isHorizontal := true
 ]
 
-{ #category : #'as yet unclassified' }
-PyramidButtonsBarView >> boxLayout: aSpBoxLayout [
+{ #category : #accessing }
+PyramidButtonsBarView >> beVertical [
 
-	boxLayout := aSpBoxLayout
+	isHorizontal := false
+]
+
+{ #category : #accessing }
+PyramidButtonsBarView >> builder [
+	^ builder
+]
+
+{ #category : #accessing }
+PyramidButtonsBarView >> builder: aBuilder [
+
+	builder := aBuilder
 ]
 
 { #category : #accessing }
@@ -60,30 +79,29 @@ PyramidButtonsBarView >> buttonsConstraintsStart [
 { #category : #layout }
 PyramidButtonsBarView >> defaultLayout [
 
-	| spacing defaultLayout startDefaultLayout centerDefaultLayout endDefaultLayout |
-	spacing := self boxLayout spacing.
-	self boxLayout isHorizontal
+	| defaultLayout startDefaultLayout centerDefaultLayout endDefaultLayout |
+	self isHorizontal
 		ifTrue: [
 			defaultLayout := SpBoxLayout newHorizontal.
 			startDefaultLayout := SpBoxLayout newHorizontal
-				                      spacing: spacing;
+				                      spacing: self spacing;
 				                      yourself.
 			centerDefaultLayout := SpBoxLayout newHorizontal
-				                       spacing: spacing;
+				                       spacing: self spacing;
 				                       yourself.
 			endDefaultLayout := SpBoxLayout newHorizontal
-				                    spacing: spacing;
+				                    spacing: self spacing;
 				                    yourself ]
 		ifFalse: [
 			defaultLayout := SpBoxLayout newVertical.
 			startDefaultLayout := SpBoxLayout newVertical
-				                      spacing: spacing;
+				                      spacing: self spacing;
 				                      yourself.
 			centerDefaultLayout := SpBoxLayout newVertical
-				                       spacing: spacing;
+				                       spacing: self spacing;
 				                       yourself.
 			endDefaultLayout := SpBoxLayout newVertical
-				                    spacing: spacing;
+				                    spacing: self spacing;
 				                    yourself ].
 
 	defaultLayout
@@ -109,6 +127,26 @@ PyramidButtonsBarView >> defaultLayout [
 PyramidButtonsBarView >> initializePresenters [
 
 	buttonsConstraintsStart  := OrderedCollection new.buttonsConstraintsCenter := OrderedCollection new. buttonsConstraintsEnd := OrderedCollection new.
+]
+
+{ #category : #accessing }
+PyramidButtonsBarView >> isHorizontal [
+
+	isHorizontal ifNil: [ isHorizontal := true ].
+	^ isHorizontal
+]
+
+{ #category : #accessing }
+PyramidButtonsBarView >> spacing [
+
+	spacing ifNil: [ spacing := 0 ].
+	^ spacing
+]
+
+{ #category : #accessing }
+PyramidButtonsBarView >> spacing: aNumber [
+
+	spacing := aNumber
 ]
 
 { #category : #adding }

@@ -15,9 +15,9 @@ PyramidPluginRandom class >> initialize [
 { #category : #'as yet unclassified' }
 PyramidPluginRandom >> buildGlobalViewOn: aBuilder [
 
-	aBuilder leftElements addAll: self leftElements.
-	aBuilder rightElements addAll: self rightElements.
-	aBuilder topElements addAll: self topElements.
+	aBuilder model tools addAll: self topElements.
+	aBuilder model propertiesViewers addAll: self rightElements.
+	aBuilder model browsers addAll: self leftElements
 ]
 
 { #category : #'as yet unclassified' }
