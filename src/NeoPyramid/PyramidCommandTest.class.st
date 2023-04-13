@@ -85,6 +85,26 @@ PyramidCommandTest >> testAddElementOnCollection [
 ]
 
 { #category : #tests }
+PyramidCommandTest >> testIdentifier [
+
+	| e1 b1 state |
+	state := PyramidCommandState new.
+	e1 := BlElement new.
+	PyramidCommand identifier getState: state from: e1.
+	self assert: state arguments equals: nil.
+	e1 id: #toto.
+	PyramidCommand identifier getState: state from: e1.
+	self assert: state arguments equals: #toto.
+
+	b1 := BlElement new.
+	PyramidCommand identifier
+		setState: (PyramidCommandState new arguments: #test)
+		on: b1.
+	self assert: b1 id asSymbol equals: #test.
+
+]
+
+{ #category : #tests }
 PyramidCommandTest >> testRemoveChildren [
 
 	| e1 e2 e3 b1 b2 b3 state |

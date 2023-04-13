@@ -42,6 +42,11 @@ PyramidObservableElementCollection >> initialize [
 	elements := OrderedCollection new
 ]
 
+{ #category : #testing }
+PyramidObservableElementCollection >> isCollection [
+	^ true
+]
+
 { #category : #initialization }
 PyramidObservableElementCollection >> remove: anObject [
 

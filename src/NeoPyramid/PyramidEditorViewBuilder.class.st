@@ -19,7 +19,7 @@ PyramidEditorViewBuilder >> build [
 { #category : #initialization }
 PyramidEditorViewBuilder >> initialize [
 
-	model := PyramidEditorModel new.
+	model := PyramidEditorViewModel new.
 ]
 
 { #category : #accessing }

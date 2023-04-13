@@ -1,5 +1,5 @@
 Class {
-	#name : #PyramidEditorModel,
+	#name : #PyramidEditorViewModel,
 	#superclass : #Object,
 	#instVars : [
 		'adders',
@@ -15,13 +15,13 @@ Class {
 }
 
 { #category : #accessing }
-PyramidEditorModel >> centralViews [
+PyramidEditorViewModel >> centralViews [
 
 	^ centralViews
 ]
 
 { #category : #initialization }
-PyramidEditorModel >> initialize [
+PyramidEditorViewModel >> initialize [
 
 	leftTabs := OrderedCollection new.
 	rightTabs := OrderedCollection new.
@@ -30,19 +30,19 @@ PyramidEditorModel >> initialize [
 ]
 
 { #category : #accessing }
-PyramidEditorModel >> leftTabs [
+PyramidEditorViewModel >> leftTabs [
 
 	^ leftTabs
 ]
 
 { #category : #accessing }
-PyramidEditorModel >> rightTabs [
+PyramidEditorViewModel >> rightTabs [
 
 	^ rightTabs
 ]
 
 { #category : #accessing }
-PyramidEditorModel >> tools [
+PyramidEditorViewModel >> tools [
 
 	^ tools
 ]
