@@ -19,7 +19,7 @@ PyramidEditor >> activeProject [
 PyramidEditor >> initialize [
 
 	activeProject := PyramidActiveProjectModel new.
-	view := SpNullPresenter new.
+	view := PyramidEditorVoidView new.
 	plugins := {  }
 ]
 

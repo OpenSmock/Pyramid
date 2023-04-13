@@ -10,6 +10,11 @@ Class {
 	#category : #'NeoPyramid-models'
 }
 
+{ #category : #accessing }
+PyramidRootsModel >> collection [
+	^ collection
+]
+
 { #category : #initialization }
 PyramidRootsModel >> initialize [
 

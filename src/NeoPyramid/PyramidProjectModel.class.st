@@ -25,10 +25,22 @@ PyramidProjectModel >> initialize [
 	extensions := OrderedCollection new.
 ]
 
+{ #category : #accessing }
+PyramidProjectModel >> roots [
+
+	^ roots
+]
+
 { #category : #'event handling' }
 PyramidProjectModel >> rootsChanged [
 
 	self informRootsChanged
+]
+
+{ #category : #accessing }
+PyramidProjectModel >> selection [
+
+	^ selection
 ]
 
 { #category : #'event handling' }

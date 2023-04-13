@@ -3,54 +3,42 @@ Class {
 	#superclass : #Object,
 	#instVars : [
 		'adders',
-		'browsers',
 		'others',
-		'propertiesViewers',
 		'rootsViewers',
-		'tools'
+		'tools',
+		'leftTabs',
+		'rightTabs',
+		'centralView',
+		'centralViews'
 	],
 	#category : #'NeoPyramid-views'
 }
 
 { #category : #accessing }
-PyramidEditorModel >> adders [
+PyramidEditorModel >> centralViews [
 
-	^ adders
-]
-
-{ #category : #accessing }
-PyramidEditorModel >> browsers [
-
-	^ browsers
+	^ centralViews
 ]
 
 { #category : #initialization }
 PyramidEditorModel >> initialize [
 
-	adders := OrderedCollection new.
-	browsers:= OrderedCollection new.
-	others:= OrderedCollection new.
-	propertiesViewers:= OrderedCollection new.
-	rootsViewers:= OrderedCollection new.
-	tools:= OrderedCollection new.
+	leftTabs := OrderedCollection new.
+	rightTabs := OrderedCollection new.
+	centralViews := OrderedCollection new.
+	tools := OrderedCollection new
 ]
 
 { #category : #accessing }
-PyramidEditorModel >> others [
+PyramidEditorModel >> leftTabs [
 
-	^ others
+	^ leftTabs
 ]
 
 { #category : #accessing }
-PyramidEditorModel >> propertiesViewers [
+PyramidEditorModel >> rightTabs [
 
-	^ propertiesViewers
-]
-
-{ #category : #accessing }
-PyramidEditorModel >> rootsViewers [
-
-	^ rootsViewers
+	^ rightTabs
 ]
 
 { #category : #accessing }

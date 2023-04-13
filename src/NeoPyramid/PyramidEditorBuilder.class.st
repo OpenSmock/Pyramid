@@ -14,13 +14,13 @@ PyramidEditorBuilder >> build [
 
 	| builder |
 	builder := self viewBuilder.
-	self plugins do: [ :each |
-		each buildGlobalViewOn: self viewBuilder.
-		each connectOn: self editor ].
+	self plugins do: [ :each | each buildViewFrom: self viewBuilder ].
 
-	self plugins do: [ :each | each connectOn: self editor ].
-	self editor plugins: self plugins.
 	self editor view: builder build.
+	self plugins do: [ :each | each connectOn: self editor ].
+
+	self editor plugins: self plugins.
+
 	^ self editor
 ]
 

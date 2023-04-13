@@ -1,8 +1,8 @@
 Class {
 	#name : #PyramidPluginTree,
 	#superclass : #Object,
-	#traits : 'TPyramidPlugin + TPyramidActiveProjectModelObserver',
-	#classTraits : 'TPyramidPlugin classTrait + TPyramidActiveProjectModelObserver classTrait',
+	#traits : 'TPyramidPlugin',
+	#classTraits : 'TPyramidPlugin classTrait',
 	#instVars : [
 		'activeProject',
 		'view'
@@ -16,30 +16,16 @@ PyramidPluginTree class >> initialize [
 	PyramidPluginManager uniqueInstance addPlugin: self
 ]
 
-{ #category : #accessing }
-PyramidPluginTree >> activeProject [
-
-	^ activeProject
-]
-
-{ #category : #accessing }
-PyramidPluginTree >> activeProject: anActiveProject [
-
-	activeProject := anActiveProject.
-	activeProject addObserver: self
-]
-
 { #category : #'as yet unclassified' }
-PyramidPluginTree >> buildGlobalViewOn: aPyramidGlobalViewBuilder [
+PyramidPluginTree >> buildViewFrom: aPyramidGlobalViewBuilder [
 
-	aPyramidGlobalViewBuilder model browsers add: self view
+	aPyramidGlobalViewBuilder model leftTabs add: self view
 ]
 
 { #category : #'as yet unclassified' }
 PyramidPluginTree >> connectOn: aPyramidEditor [
 
-	self activeProject: aPyramidEditor activeProject.
-	
+	self view presenter activeProject: aPyramidEditor activeProject
 ]
 
 { #category : #initialization }
@@ -50,26 +36,11 @@ PyramidPluginTree >> initialize [
 { #category : #initialization }
 PyramidPluginTree >> initializeView [
 
-	view := PyramidTab new title: 'Tree'; icon: (self iconNamed: #catalog); presenter: PyPanelTree new; yourself
-]
-
-{ #category : #'as yet unclassified' }
-PyramidPluginTree >> pyramidActiveProjectChangedChanged [
-
-	self updateRoots.
-	self updateSelection
-]
-
-{ #category : #'as yet unclassified' }
-PyramidPluginTree >> pyramidRootsChangedOnActiveProject [
-
-	self updateRoots
-]
-
-{ #category : #'as yet unclassified' }
-PyramidPluginTree >> pyramidSelectionChangedOnActiveProject [
-
-	self updateSelection
+	view := PyramidTab new
+		        title: 'Tree';
+		        icon: (self iconNamed: #catalog);
+		        presenter: PyramidTreeView new;
+		        yourself
 ]
 
 { #category : #initialization }

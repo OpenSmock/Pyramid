@@ -1,11 +1,10 @@
 Class {
 	#name : #PyramidButton,
-	#superclass : #Object,
+	#superclass : #PyramidVisualElement,
 	#instVars : [
 		'icon',
-		'title',
-		'presenter',
-		'align'
+		'align',
+		'callback'
 	],
 	#category : #'NeoPyramid-views'
 }
@@ -15,11 +14,7 @@ PyramidButton class >> random [
 	| loremIpsumWords |
 	loremIpsumWords := String loremIpsum substrings.
 	^ self new
-		  icon: Smalltalk ui icons icons atRandom;
-		  title: loremIpsumWords atRandom;
-		  presenter: (SpMorphPresenter new
-				   morph: (Morph new color: Color random);
-				   yourself)
+		  icon: Smalltalk ui icons icons atRandom
 ]
 
 { #category : #accessing }
@@ -53,6 +48,27 @@ PyramidButton >> alignStart [
 	self align: PyramidButtonElementAlignement start
 ]
 
+{ #category : #converting }
+PyramidButton >> asSpecButtonFor: anObject [
+
+	^ SpButtonPresenter new
+		  icon: self icon;
+		  action: self callback;
+		  yourself
+]
+
+{ #category : #accessing }
+PyramidButton >> callback [
+
+	^ callback
+]
+
+{ #category : #accessing }
+PyramidButton >> callback: anObject [
+
+	callback := anObject
+]
+
 { #category : #accessing }
 PyramidButton >> icon [
 
@@ -63,28 +79,4 @@ PyramidButton >> icon [
 PyramidButton >> icon: anObject [
 
 	icon := anObject
-]
-
-{ #category : #accessing }
-PyramidButton >> presenter [
-
-	^ presenter
-]
-
-{ #category : #accessing }
-PyramidButton >> presenter: anObject [
-
-	presenter := anObject
-]
-
-{ #category : #accessing }
-PyramidButton >> title [
-
-	^ title
-]
-
-{ #category : #accessing }
-PyramidButton >> title: anObject [
-
-	title := anObject
 ]

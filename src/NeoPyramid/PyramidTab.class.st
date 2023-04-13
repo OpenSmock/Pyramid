@@ -1,6 +1,6 @@
 Class {
 	#name : #PyramidTab,
-	#superclass : #Object,
+	#superclass : #PyramidVisualElement,
 	#instVars : [
 		'icon',
 		'title',

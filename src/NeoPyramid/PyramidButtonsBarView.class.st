@@ -15,7 +15,8 @@ Class {
 { #category : #adding }
 PyramidButtonsBarView >> addAllButtons: aCollection [
 
-	aCollection do: [ :each | self builder makeButtonFrom: each for: self ]
+	aCollection sorted do: [ :each |
+		self builder makeButtonFrom: each for: self ]
 ]
 
 { #category : #adding }

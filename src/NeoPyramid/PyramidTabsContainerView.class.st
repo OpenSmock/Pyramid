@@ -11,8 +11,7 @@ Class {
 { #category : #adding }
 PyramidTabsContainerView >> addAllTabs: aCollection [
 
-aCollection do: [ :each | self builder makeTabFrom: each for: self ]
-	
+	aCollection sorted do: [ :each | self builder makeTabFrom: each for: self ]
 ]
 
 { #category : #adding }

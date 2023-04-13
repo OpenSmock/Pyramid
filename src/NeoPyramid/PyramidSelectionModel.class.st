@@ -10,6 +10,12 @@ Class {
 	#category : #'NeoPyramid-models'
 }
 
+{ #category : #accessing }
+PyramidSelectionModel >> collection [
+
+	^ collection
+]
+
 { #category : #initialization }
 PyramidSelectionModel >> initialize [ 
 	collection := PyramidObservableElementCollection new.

@@ -2,7 +2,8 @@ Class {
 	#name : #PyramidButtonBuilder,
 	#superclass : #Object,
 	#instVars : [
-		'buttonContraints'
+		'buttonContraints',
+		'popoverStrategy'
 	],
 	#category : #'NeoPyramid-views'
 }
@@ -20,17 +21,23 @@ PyramidButtonBuilder >> buttonContraints: aBlock [
 ]
 
 { #category : #'as yet unclassified' }
-PyramidButtonBuilder >> makeButtonFrom: aPyramidButton [
-
-	^ SpButtonPresenter new
-		  icon: aPyramidButton icon;
-		  yourself
-]
-
-{ #category : #'as yet unclassified' }
 PyramidButtonBuilder >> makeButtonFrom: aPyramidButton for: aPyramidButtonView [
 
 	| button |
-	button := self makeButtonFrom: aPyramidButton.
-	aPyramidButton align addButton: button withConstraints: self buttonContraints on: aPyramidButtonView.
+	button := aPyramidButton asSpecButtonFor: self.
+	aPyramidButton align
+		addButton: button
+		withConstraints: self buttonContraints
+		on: aPyramidButtonView
+]
+
+{ #category : #accessing }
+PyramidButtonBuilder >> popoverStrategy [
+
+	^ popoverStrategy
+]
+
+{ #category : #accessing }
+PyramidButtonBuilder >> popoverStrategy: aStrategy [
+	popoverStrategy:=aStrategy
 ]

@@ -55,3 +55,18 @@ PyramidObservableElementCollection >> removeAll [
 	self elements removeAll.
 	self informCollectionChanged
 ]
+
+{ #category : #initialization }
+PyramidObservableElementCollection >> removeAll: aCollection [
+
+	self elements removeAll: aCollection.
+	self informCollectionChanged
+]
+
+{ #category : #initialization }
+PyramidObservableElementCollection >> replaceAll: aCollection [
+
+	self elements removeAll.
+	self elements addAll: aCollection.
+	self informCollectionChanged
+]

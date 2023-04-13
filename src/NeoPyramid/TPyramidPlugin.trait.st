@@ -4,7 +4,7 @@ Trait {
 }
 
 { #category : #'as yet unclassified' }
-TPyramidPlugin >> buildGlobalViewOn: aPyramidGlobalViewBuilder [
+TPyramidPlugin >> buildViewFrom: aPyramidGlobalViewBuilder [
 
 	
 ]

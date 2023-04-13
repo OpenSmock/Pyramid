@@ -27,3 +27,9 @@ PyramidButtonElementAlignement >> addButton: aSpButtonPresenter withConstraints:
 
 	self shouldBeImplemented
 ]
+
+{ #category : #adding }
+PyramidButtonElementAlignement >> getHorizontalPopoverDirection [
+
+	self shouldBeImplemented
+]

@@ -11,8 +11,9 @@ Class {
 
 { #category : #initialization }
 PyramidActiveProjectModel >> initialize [
-
-	project := PyramidProjectModelVoid new.
+	project := PyramidProjectModel new.
+	project addObserver: self
+	
 ]
 
 { #category : #accessing }
@@ -39,4 +40,16 @@ PyramidActiveProjectModel >> pyramidRootsChanged [
 PyramidActiveProjectModel >> pyramidSelectionChanged [
 
 	self informSelectionChangedOnActiveProject
+]
+
+{ #category : #accessing }
+PyramidActiveProjectModel >> roots [
+
+	^ self project roots collection
+]
+
+{ #category : #accessing }
+PyramidActiveProjectModel >> selection [
+
+	^ self project selection collection
 ]

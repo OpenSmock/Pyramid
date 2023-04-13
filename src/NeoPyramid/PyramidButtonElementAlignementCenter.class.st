@@ -9,3 +9,9 @@ PyramidButtonElementAlignementCenter >> addButton: aSpButtonPresenter withConstr
 
 	aPyramidButtonView addButtonCenter: aSpButtonPresenter withConstraints: aBlock
 ]
+
+{ #category : #'as yet unclassified' }
+PyramidButtonElementAlignementCenter >> getHorizontalPopoverDirection [
+
+	^ SpPopoverPosition bottom
+]
