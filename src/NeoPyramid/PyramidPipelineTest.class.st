@@ -18,7 +18,7 @@ PyramidPipelineTest >> testUseCommandOn [
 			           counter := counter + 1.
 			           sum := sum + obj ]
 		           get: [ :state :obj |  ]
-		           verificator: PyramidAlwaysTrueVerifierStrategy new.
+		           isExecutableBlock:  [ :obj | true ].
 	pipeline
 		useCommand: command
 		on: (PyramidPipelineTarget new collection: target).

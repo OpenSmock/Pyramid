@@ -23,6 +23,13 @@ PyramidPluginProperties >> buildViewFrom: aPyramidGlobalViewBuilder [
 ]
 
 { #category : #'as yet unclassified' }
+PyramidPluginProperties >> connectOn: aPyramidEditor [
+
+	aPyramidEditor activeProject addObserver: self propertiesView.
+	self propertiesView activeProject: aPyramidEditor activeProject
+]
+
+{ #category : #'as yet unclassified' }
 PyramidPluginProperties >> initialize [
 
 	propertiesView := PyramidPropertiesView new.

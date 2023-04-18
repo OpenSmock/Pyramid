@@ -13,7 +13,8 @@ Class {
 { #category : #initialization }
 PyramidPluginManager class >> initialize [
 
-	uniqueInstance := self basicNew initialize
+	uniqueInstance := self basicNew initialize.
+	TPyramidPlugin users do: [ :each | each initialize ]
 ]
 
 { #category : #'instance creation' }
@@ -38,7 +39,7 @@ PyramidPluginManager >> addPlugin: aPluginClass [
 { #category : #initialization }
 PyramidPluginManager >> initialize [
 
-	plugins := OrderedCollection new
+	plugins := Set new
 ]
 
 { #category : #'as yet unclassified' }

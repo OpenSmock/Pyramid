@@ -1,6 +1,6 @@
 Class {
 	#name : #PyramidAlwaysTrueVerifierStrategy,
-	#superclass : #PyramidTargetVerifierStrategy,
+	#superclass : #Object,
 	#category : #'NeoPyramid-plugin-commands'
 }
 

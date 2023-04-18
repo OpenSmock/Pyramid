@@ -6,8 +6,7 @@ Class {
 		'state',
 		'setBlock',
 		'getBlock',
-		'expectedTargets',
-		'verificator'
+		'isExecutableBlock'
 	],
 	#category : #'NeoPyramid-plugin-commands'
 }
@@ -21,7 +20,8 @@ PyramidCommand class >> addChildren [
 		  get: [ :state :source |
 			  state source: source.
 			  state arguments: source children asArray ]
-		verificator: self verificatorBlElementClass
+		  isExecutableBlock: [ :obj | obj isKindOf: BlElement ]
+		  
 ]
 
 { #category : #adding }
@@ -33,7 +33,19 @@ PyramidCommand class >> addElementOnCollection [
 		  get: [ :state :source |
 			  state source: source.
 			  state arguments: source elements asArray ]
-		verificator: self verificatorBlElementClass
+		  isExecutableBlock: [ :obj | obj isCollection ]
+]
+
+{ #category : #adding }
+PyramidCommand class >> background [
+
+	^ self
+		  name: #background
+		  set: [ :state :target | target background: state background ]
+		  get: [ :state :source |
+			  state source: source.
+			  state arguments: source background ]
+		  isExecutableBlock: [ :obj | obj isKindOf: BlElement ]
 ]
 
 { #category : #adding }
@@ -45,17 +57,17 @@ PyramidCommand class >> identifier [
 		  get: [ :state :source |
 			  state source: source.
 			  state arguments: source id asSymbol ]
-		verificator: self verificatorBlElementClass
+		  isExecutableBlock: [ :obj | obj isKindOf: BlElement ]
 ]
 
 { #category : #adding }
-PyramidCommand class >> name: aString set: aSetter get: aGetter verificator: aVerificator [
+PyramidCommand class >> name: aString set: aSetter get: aGetter isExecutableBlock: aBlock [
 
 	^ self new
 		  name: aString;
 		  setBlock: aSetter;
 		  getBlock: aGetter;
-		  verificator: aVerificator;
+		  isExecutableBlock: aBlock;
 		  yourself
 ]
 
@@ -68,7 +80,8 @@ PyramidCommand class >> removeChildren [
 		  get: [ :state :source |
 			  state source: source.
 			  state arguments: source children asArray ]
-		  verificator: self verificatorBlElementClass
+		  isExecutableBlock: [ :obj | obj isKindOf: BlElement ]
+		  
 ]
 
 { #category : #adding }
@@ -80,13 +93,8 @@ PyramidCommand class >> removeElementOnCollection [
 		  get: [ :state :source |
 			  state source: source.
 			  state arguments: source elements asArray ]
-		verificator: self verificatorBlElementClass
-]
-
-{ #category : #'as yet unclassified' }
-PyramidCommand class >> verificatorBlElementClass [
-
-	^ PyramidKindOfVerifierStrategy new classToTest: BlElement
+		  isExecutableBlock: [ :obj | obj isCollection ]
+		  
 ]
 
 { #category : #accessing }
@@ -107,10 +115,30 @@ PyramidCommand >> getState: aPyramidCommandState from: aSource [
 	self getBlock value: aPyramidCommandState value: aSource
 ]
 
+{ #category : #initialization }
+PyramidCommand >> getStateFrom: aSource [
+
+	| newState |
+	newState := PyramidCommandState new.
+	self getState: newState from: aSource.
+	^ newState
+]
+
+{ #category : #accessing }
+PyramidCommand >> isExecutableBlock [
+	^ isExecutableBlock 
+]
+
+{ #category : #accessing }
+PyramidCommand >> isExecutableBlock: aBlock [
+
+	isExecutableBlock:= aBlock
+]
+
 { #category : #testing }
 PyramidCommand >> isExecutableBy: anObject [
 
-	^ self verificator verify: anObject
+	^ self isExecutableBlock value: anObject
 ]
 
 { #category : #accessing }
@@ -152,17 +180,4 @@ PyramidCommand >> state [
 PyramidCommand >> state: aState [
 
 	state := aState
-]
-
-{ #category : #accessing }
-PyramidCommand >> verificator [
-
-	verificator ifNil: [ verificator := PyramidAlwaysFalseVerifierStrategy new ].
-	^ verificator
-]
-
-{ #category : #accessing }
-PyramidCommand >> verificator: aVerificator [
-
-	verificator := aVerificator
 ]

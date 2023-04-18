@@ -1,6 +1,7 @@
 Class {
 	#name : #PyramidPluginLibrary,
 	#superclass : #Object,
+	#traits : 'TPyramidPlugin',
 	#classTraits : 'TPyramidPlugin classTrait',
 	#instVars : [
 		'spaceView',
