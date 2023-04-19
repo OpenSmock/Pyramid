@@ -5,7 +5,7 @@ Class {
 		'arguments',
 		'source'
 	],
-	#category : #'NeoPyramid-plugin-commands'
+	#category : #'NeoPyramid-commands'
 }
 
 { #category : #comparing }

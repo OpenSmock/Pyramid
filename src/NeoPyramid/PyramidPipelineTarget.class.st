@@ -4,7 +4,7 @@ Class {
 	#instVars : [
 		'collection'
 	],
-	#category : #'NeoPyramid-plugin-commands'
+	#category : #'NeoPyramid-commands'
 }
 
 { #category : #execution }

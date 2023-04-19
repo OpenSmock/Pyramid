@@ -3,7 +3,7 @@ Class {
 	#superclass : #Object,
 	#instVars : [
 		'observers',
-		'statesDictionary'
+		'states'
 	],
 	#category : #'NeoPyramid-plugin-properties'
 }
@@ -14,9 +14,16 @@ PyramidPropertyModel >> addObserver: anObserver [
 	self observers add: anObserver
 ]
 
+{ #category : #accessing }
+PyramidPropertyModel >> allElements [
+
+	^ self states flatCollectAsSet: [ :each | each source ]
+]
+
 { #category : #'as yet unclassified' }
-PyramidPropertyModel >> informStatesDictionaryChanged [
-	self observers do: [ :each | each statesDictonaryChanged].
+PyramidPropertyModel >> informPropertyModelChanged [
+
+	self observers do: [ :each | each propertyModelChanged ]
 ]
 
 { #category : #'as yet unclassified' }
@@ -33,14 +40,15 @@ PyramidPropertyModel >> removeObserver: anObserver [
 ]
 
 { #category : #accessing }
-PyramidPropertyModel >> statesDictionary [
-	statesDictionary ifNil: [ ^ Dictionary new ].
-	^ statesDictionary
+PyramidPropertyModel >> states [
+
+	states ifNil: [ states := OrderedCollection new ].
+	^ states
 ]
 
 { #category : #accessing }
-PyramidPropertyModel >> statesDictionary: aDictionary [
+PyramidPropertyModel >> states: aCollection [
 
-	statesDictionary := aDictionary.
-	self informStatesDictionaryChanged
+	states := aCollection.
+	self informPropertyModelChanged
 ]

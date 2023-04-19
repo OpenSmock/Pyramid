@@ -14,7 +14,7 @@ Class {
 		'workersBeforeCancel',
 		'workersAfterCancel'
 	],
-	#category : #'NeoPyramid-plugin-commands'
+	#category : #'NeoPyramid-commands'
 }
 
 { #category : #'as yet unclassified' }

@@ -28,8 +28,9 @@ PyramidPropertiesView >> defaultLayout [
 	defaultLayout := SpBoxLayout newVertical
 		                 spacing: 4;
 		                 yourself.
-	self properties do: [ :each | defaultLayout add: each presenter expand: true ].
-	
+	self properties do: [ :each |
+		defaultLayout add: each presenter expand: false ].
+defaultLayout add: SpNullPresenter new expand: true.
 	^ defaultLayout
 ]
 
@@ -44,5 +45,5 @@ PyramidPropertiesView >> properties [
 PyramidPropertiesView >> pyramidSelectionChangedOnActiveProject [
 
 	self properties do: [ :each |
-		each targetsFromCollection: self activeProject selection elements ]
+		each updateModelFrom: self activeProject selection elements ]
 ]

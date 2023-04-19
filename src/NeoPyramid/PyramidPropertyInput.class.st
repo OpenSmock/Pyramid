@@ -79,17 +79,16 @@ PyramidPropertyInput >> initializePresenters [
 { #category : #initialization }
 PyramidPropertyInput >> initiliazeMultiInputs [
 
-	| height scroll multiInputsLayout multiInputs |
+	| height scroll multiInputsLayout |
 	multiInputsLayout := SpBoxLayout newVertical spacing: 4.
-
-	multiInputs := OrderedCollection new.
-	self model statesDictionary keysAndValuesDo: [ :key :value |
-		value do: [ :each |
-			multiInputsLayout
-				add: (self inputBuilder buildFromSingleObject: each withState: key)
-				withConstraints: [ :c | c width: self popoverWidth ] ] ].
 	height := 0.
-	multiInputs do: [ :each | height := height + each height ].
+	self model states do: [ :state |
+		state source do: [ :each |
+			height := height + 25.
+			multiInputsLayout
+				add:
+				(self inputBuilder buildFromSingleObject: each withState: state forModel: self model)
+				withConstraints: [ :c | c width: self popoverWidth ] ] ].
 	height > self popoverHeight
 		ifTrue: [
 			scroll := SpScrollableLayout new.
@@ -135,7 +134,7 @@ PyramidPropertyInput >> model: anObject [
 	self model removeObserver: self.
 	model := anObject.
 	model addObserver: self.
-	self statesDictonaryChanged
+	self propertyModelChanged
 ]
 
 { #category : #'as yet unclassified' }
@@ -162,6 +161,21 @@ PyramidPropertyInput >> popoverWidth [
 	^ 300
 ]
 
+{ #category : #accessing }
+PyramidPropertyInput >> property [
+
+]
+
+{ #category : #'as yet unclassified' }
+PyramidPropertyInput >> propertyModelChanged [
+
+	self updateShowPopoverButton.
+	self updateDefaultInput.
+	self popoverVisibility
+		ifTrue: [ self showPopover ]
+		ifFalse: [ self hidePopover ]
+]
+
 { #category : #'as yet unclassified' }
 PyramidPropertyInput >> showPopover [
 
@@ -177,31 +191,21 @@ PyramidPropertyInput >> showPopoverButton [
 ]
 
 { #category : #'as yet unclassified' }
-PyramidPropertyInput >> statesDictonaryChanged [
-
-	self updateShowPopoverButton.
-	self updateDefaultInput.
-	self popoverVisibility ifTrue: [ self showPopover ] ifFalse: [ self hidePopover ]
-]
-
-{ #category : #'as yet unclassified' }
 PyramidPropertyInput >> updateDefaultInput [
 
-	| states |
-	states := self model statesDictionary keys.
-	states size = 0 ifTrue: [
+	self model states size = 0 ifTrue: [
 		self inputBuilder noStateTo: self defaultInput.
 		^ self ].
-	states size = 1 ifTrue: [
-		self inputBuilder singleState: states first to: self defaultInput.
+	self model states size = 1 ifTrue: [
+		self inputBuilder singleState: self model states first to: self defaultInput.
 		^ self ].
-	self inputBuilder multiStates: states to: self defaultInput.
+	self inputBuilder multiStates: self model states to: self defaultInput.
 ]
 
 { #category : #'as yet unclassified' }
 PyramidPropertyInput >> updateShowPopoverButton [
 
-	self model statesDictionary keys size > 1
+	(self model allElements size > 1 )
 		ifTrue: [ self showPopoverButton enabled: true ]
 		ifFalse: [ self showPopoverButton enabled: false ]
 ]

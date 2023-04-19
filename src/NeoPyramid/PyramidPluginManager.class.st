@@ -14,13 +14,19 @@ Class {
 PyramidPluginManager class >> initialize [
 
 	uniqueInstance := self basicNew initialize.
-	TPyramidPlugin users do: [ :each | each initialize ]
 ]
 
 { #category : #'instance creation' }
 PyramidPluginManager class >> new [
 
 	Error signal: 'Use uniqueInstance instead.'
+]
+
+{ #category : #initialization }
+PyramidPluginManager class >> reset [
+<script>
+self initialize.
+TPyramidPlugin users do: [ :each | each initialize ]
 ]
 
 { #category : #'instance creation' }

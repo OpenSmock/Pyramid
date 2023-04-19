@@ -8,7 +8,7 @@ Class {
 		'getBlock',
 		'isExecutableBlock'
 	],
-	#category : #'NeoPyramid-plugin-commands'
+	#category : #'NeoPyramid-commands'
 }
 
 { #category : #adding }
@@ -95,6 +95,17 @@ PyramidCommand class >> removeElementOnCollection [
 			  state arguments: source elements asArray ]
 		  isExecutableBlock: [ :obj | obj isCollection ]
 		  
+]
+
+{ #category : #adding }
+PyramidCommand class >> set: aSetter get: aGetter isExecutableBlock: aBlock [
+
+	^ self new
+		  name: #'Anonymous command';
+		  setBlock: aSetter;
+		  getBlock: aGetter;
+		  isExecutableBlock: aBlock;
+		  yourself
 ]
 
 { #category : #accessing }

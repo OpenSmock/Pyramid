@@ -5,7 +5,9 @@ Class {
 		'inputClass',
 		'noStateBlock',
 		'singleStateBlock',
-		'multiStatesBlock'
+		'multiStatesBlock',
+		'connectSubmitBloc',
+		'submitBloc'
 	],
 	#category : #'NeoPyramid-plugin-properties'
 }
@@ -17,20 +19,33 @@ PyramidInputBuilder class >> null [
 ]
 
 { #category : #accessing }
-PyramidInputBuilder class >> string [
+PyramidInputBuilder class >> string: aPyramidProperty [
 
 	^ self new
 		  inputClass: SpTextInputFieldPresenter;
 		  noStateBlock: [ :input | input text: '# no element in selection' ];
-		  singleStateBlock: [ :input :state | state arguments ifNil: [input text: ''] ifNotNil: [input text: state arguments ]];
+		  singleStateBlock: [ :input :state |
+			  state arguments
+				  ifNil: [ input text: '' ]
+				  ifNotNil: [ input text: state arguments ] ];
 		  multiStatesBlock: [ :input :state | input text: '# mixed values' ];
+		  connectSubmitBloc: [ :input :targets |
+			  input whenSubmitDo: [ :text |
+					  text
+						  ifEmpty: [ aPyramidProperty submit: nil on: targets ]
+						  ifNotEmpty: [ aPyramidProperty submit: text on: targets ] ] ];
 		  yourself
 ]
 
 { #category : #'as yet unclassified' }
 PyramidInputBuilder >> buildFromModel: aModel [
 
-	^ self inputClass new
+	| input |
+	input := self inputClass new.
+	self connectSubmitBloc
+		value: input
+		value: aModel allElements.
+	^ input
 ]
 
 { #category : #'as yet unclassified' }
@@ -39,7 +54,32 @@ PyramidInputBuilder >> buildFromSingleObject: each withState: aState [
 	| input |
 	input := self inputClass new.
 	self singleState: aState to: input.
+	self connectSubmitBloc
+		value: input
+		value: { each }.
 	^ input
+]
+
+{ #category : #'as yet unclassified' }
+PyramidInputBuilder >> buildFromSingleObject: anObject withState: aState forModel: aModel [
+
+	| input buttonApplyToState buttonApplyToModel|
+	input := self buildFromSingleObject: anObject withState: aState.
+
+	^ input
+]
+
+{ #category : #accessing }
+PyramidInputBuilder >> connectSubmitBloc [
+
+	connectSubmitBloc ifNil: [ connectSubmitBloc := [ :a :b | ] ].
+	^ connectSubmitBloc
+]
+
+{ #category : #accessing }
+PyramidInputBuilder >> connectSubmitBloc: anObject [
+
+	connectSubmitBloc := anObject
 ]
 
 { #category : #accessing }

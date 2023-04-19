@@ -4,7 +4,7 @@ Class {
 	#instVars : [
 		'testModels'
 	],
-	#category : #'NeoPyramid-plugin-commands'
+	#category : #'NeoPyramid-commands'
 }
 
 { #category : #running }

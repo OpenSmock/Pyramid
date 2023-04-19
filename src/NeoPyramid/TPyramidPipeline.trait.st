@@ -3,7 +3,7 @@ Trait {
 	#instVars : [
 		'observers'
 	],
-	#category : #'NeoPyramid-plugin-commands'
+	#category : #'NeoPyramid-commands'
 }
 
 { #category : #adding }
