@@ -108,6 +108,18 @@ PyramidCommand class >> set: aSetter get: aGetter isExecutableBlock: aBlock [
 		  yourself
 ]
 
+{ #category : #adding }
+PyramidCommand class >> visibility [
+
+	^ self
+		  name: #visibility
+		  set: [ :state :target | target visibility: state arguments ]
+		  get: [ :state :source |
+			  state source: source.
+			  state arguments: source visibility ]
+		  isExecutableBlock: [ :obj | obj isKindOf: BlElement ]
+]
+
 { #category : #accessing }
 PyramidCommand >> getBlock [
 

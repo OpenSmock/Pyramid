@@ -1,5 +1,5 @@
 Class {
-	#name : #PyramidPropertyInputForElementsModel,
+	#name : #PyramidPropertyInputForElementModel,
 	#superclass : #Object,
 	#instVars : [
 		'elementInput',
@@ -10,37 +10,37 @@ Class {
 }
 
 { #category : #accessing }
-PyramidPropertyInputForElementsModel >> elementInput [
+PyramidPropertyInputForElementModel >> elementInput [
 
 	^ elementInput
 ]
 
 { #category : #accessing }
-PyramidPropertyInputForElementsModel >> elementInput: anObject [
+PyramidPropertyInputForElementModel >> elementInput: anObject [
 
 	elementInput := anObject
 ]
 
 { #category : #accessing }
-PyramidPropertyInputForElementsModel >> modelInput [
+PyramidPropertyInputForElementModel >> modelInput [
 
 	^ modelInput
 ]
 
 { #category : #accessing }
-PyramidPropertyInputForElementsModel >> modelInput: anObject [
+PyramidPropertyInputForElementModel >> modelInput: anObject [
 
 	modelInput := anObject
 ]
 
 { #category : #accessing }
-PyramidPropertyInputForElementsModel >> stateInput [
+PyramidPropertyInputForElementModel >> stateInput [
 
 	^ stateInput
 ]
 
 { #category : #accessing }
-PyramidPropertyInputForElementsModel >> stateInput: anObject [
+PyramidPropertyInputForElementModel >> stateInput: anObject [
 
 	stateInput := anObject
 ]

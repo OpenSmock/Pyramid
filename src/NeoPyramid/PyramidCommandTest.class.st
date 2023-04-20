@@ -172,3 +172,51 @@ PyramidCommandTest >> testRemoveElementOnCollection [
 	self assert: (b1 elements indexOf: b2) equals: 0.
 	b1 elements indexOf: b3 ifAbsent: [ self fail ]
 ]
+
+{ #category : #tests }
+PyramidCommandTest >> testVisibility [
+
+	| e1 b1 state |
+	state := PyramidCommandState new.
+	e1 := BlElement new.
+	PyramidCommand visibility getState: state from: e1.
+	self assert: state arguments isVisible.
+	self deny: state arguments isHidden.
+	self deny: state arguments isGone.
+
+	e1 visibility: BlVisibility hidden.
+	PyramidCommand visibility getState: state from: e1.
+	self deny: state arguments isVisible.
+	self assert: state arguments isHidden.
+	self deny: state arguments isGone.
+	
+	e1 visibility: BlVisibility gone.
+	PyramidCommand visibility getState: state from: e1.
+	self deny: state arguments isVisible.
+	self assert: state arguments isHidden.
+	self assert: state arguments isGone.
+
+	b1 := BlElement new.
+	PyramidCommand visibility
+		setState: (PyramidCommandState new arguments: BlVisibility gone)
+		on: b1.
+	self deny: b1 visibility isVisible.
+	self assert: b1 visibility isHidden.
+	self assert: b1 visibility isGone.
+	
+b1 := BlElement new.
+	PyramidCommand visibility
+		setState: (PyramidCommandState new arguments: BlVisibility hidden)
+		on: b1.
+	self deny: b1 visibility isVisible.
+	self assert: b1 visibility isHidden.
+	self deny: b1 visibility isGone.
+	
+b1 := BlElement new.
+	PyramidCommand visibility
+		setState: (PyramidCommandState new arguments: BlVisibility visible)
+		on: b1.
+	self assert: b1 visibility isVisible.
+	self deny: b1 visibility isHidden.
+	self deny: b1 visibility isGone.
+]

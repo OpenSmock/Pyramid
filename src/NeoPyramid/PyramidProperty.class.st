@@ -5,7 +5,8 @@ Class {
 		'command',
 		'model',
 		'pipeline',
-		'presenter'
+		'presenter',
+		'inputBuilder'
 	],
 	#category : #'NeoPyramid-plugin-properties'
 }
@@ -40,6 +41,18 @@ PyramidProperty >> command: anObject [
 PyramidProperty >> initialize [
 
 	model := PyramidPropertyModel new.
+]
+
+{ #category : #accessing }
+PyramidProperty >> inputBuilder [ 
+
+	^ inputBuilder
+]
+
+{ #category : #accessing }
+PyramidProperty >> inputBuilder: anObject [
+
+	inputBuilder := anObject
 ]
 
 { #category : #'as yet unclassified' }

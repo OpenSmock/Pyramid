@@ -1,30 +1,40 @@
 Class {
-	#name : #PyramidPropertyInputBuilderTest,
+	#name : #PyramidPropertyInputModelBuilderTest,
 	#superclass : #TestCase,
 	#category : #'NeoPyramid-plugin-properties'
 }
 
 { #category : #'as yet unclassified' }
-PyramidPropertyInputBuilderTest >> builderFrom: aPopertyModel [
+PyramidPropertyInputModelBuilderTest >> builderFrom: aPopertyModel [
 
-	^ PyramidPropertyInputBuilder new
+	| transformIn transformOut callback connectTriggerBlock initializeBlock |
+	transformOut := [ :input |
+	                input text
+		                ifEmpty: [ nil ]
+		                ifNotEmpty: [ input text ] ].
+	transformIn := [ :input :value |
+	               input text: (value ifNil: [ '' ] ifNotNil: [ value ]) ].
+	callback := [ :input :col |
+	            col do: [ :each | each id: (transformOut value: input) ] ].
+	connectTriggerBlock := [ :input :col |
+	                       input whenSubmitDo: [ :val |
+		                       callback value: input value: col ] ].
+	initializeBlock := [ :input | ].
+
+	^ PyramidPropertyInputModelBuilder new
 		  propertyModel: aPopertyModel;
 		  inputClass: PyramidMockSpecPresenter;
-		  connectInputBlock: [ :input :col |
-			  input whenSubmitDo: [ :val | col do: [ :each | each id: val ] ] ];
-		  setDefautValueBlock: [ :input :value |
-			  value ifNil: [ input text: '' ] ifNotNil: [ input text: value ] ];
-		  buttonCallbackBlock: [ :input :col |
-			  col do: [ :each |
-					  each id:
-							  (input text ifEmpty: [ nil ] ifNotEmpty: [ input text ]) ] ];
+		  connectInputBlock: connectTriggerBlock;
+		  setDefautValueBlock: transformIn;
+		  buttonCallbackBlock: callback;
+		initializeInputBlock: initializeBlock;
 		  noValue: 'no value';
 		  multiValue: 'multi values';
 		  yourself
 ]
 
 { #category : #tests }
-PyramidPropertyInputBuilderTest >> testBuild [
+PyramidPropertyInputModelBuilderTest >> testBuild [
 
 	self testEmptyModel.
 	self testSingleStateSingleElementModel.
@@ -33,7 +43,7 @@ PyramidPropertyInputBuilderTest >> testBuild [
 ]
 
 { #category : #tests }
-PyramidPropertyInputBuilderTest >> testEmptyModel [
+PyramidPropertyInputModelBuilderTest >> testEmptyModel [
 
 	| propertyModel inputModel builder  |
 	propertyModel := PyramidPropertyModel new states:
@@ -46,7 +56,7 @@ PyramidPropertyInputBuilderTest >> testEmptyModel [
 ]
 
 { #category : #tests }
-PyramidPropertyInputBuilderTest >> testMultiStatesMultiElementsModel [
+PyramidPropertyInputModelBuilderTest >> testMultiStatesMultiElementsModel [
 
 	| propertyModel inputModel builder e1 e2 e3 |
 	e1 := BlElement new
@@ -101,7 +111,7 @@ PyramidPropertyInputBuilderTest >> testMultiStatesMultiElementsModel [
 ]
 
 { #category : #tests }
-PyramidPropertyInputBuilderTest >> testSingleStateMultiElementsModel [
+PyramidPropertyInputModelBuilderTest >> testSingleStateMultiElementsModel [
 
 	| propertyModel inputModel builder e1 e2 |
 	e1 := BlElement new
@@ -146,7 +156,7 @@ PyramidPropertyInputBuilderTest >> testSingleStateMultiElementsModel [
 ]
 
 { #category : #tests }
-PyramidPropertyInputBuilderTest >> testSingleStateSingleElementModel [
+PyramidPropertyInputModelBuilderTest >> testSingleStateSingleElementModel [
 
 	| propertyModel inputModel builder e1 |
 	e1 := BlElement new
