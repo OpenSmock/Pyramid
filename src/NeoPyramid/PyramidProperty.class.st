@@ -17,8 +17,8 @@ PyramidProperty class >> identifier [
 	property := self new.
 	property
 		command: PyramidCommand identifier;
-		presenter: (PyramidPropertyInput new
-				 inputBuilder: (PyramidInputBuilder string: property);
+		presenter: (PyramidPropertyInputDeprecated new
+				 inputBuilder: (PyramidInputBuilderDeprecated string: property);
 				 yourself);
 		pipeline: PyramidPipeline new.
 	^ property
