@@ -8,7 +8,8 @@ Class {
 		'mutliValuesDefault',
 		'inputClass',
 		'triggerBlockStrategy',
-		'initializeBlock'
+		'initializeBlock',
+		'shouldTriggerOnNil'
 	],
 	#category : #'NeoPyramid-plugin-properties'
 }
@@ -53,6 +54,7 @@ PyramidPropertyInputModelBuilderFactory class >> mockPresenter [
 PyramidPropertyInputModelBuilderFactory class >> visibilityDropList [
 
 	^ self new
+	dontTriggerOnNil;
 		  inputClass: SpDropListPresenter;
 		  initializeBlock: [ :input |
 			  input
@@ -65,13 +67,13 @@ PyramidPropertyInputModelBuilderFactory class >> visibilityDropList [
 				  addItemLabeled: 'Gone'
 				  do: [  ]
 				  icon: (self iconNamed: #haloDismiss).
-				(input items at: 1) model: BlVisibility visible.
-				(input items at: 2) model: BlVisibility hidden.
-				(input items at: 3) model: BlVisibility gone];
+			  (input getList at: 1) model: BlVisibility visible.
+			  (input getList at: 2) model: BlVisibility hidden.
+			  (input getList at: 3) model: BlVisibility gone ];
 		  mutliValuesDefault: nil;
 		  noValueDefault: nil;
 		  transformInBlock: [ :input :value |
-			  value ifNil: [ input selectIndex: 0 ] ifNotNil: [
+			  value ifNil: [ input resetSelection ] ifNotNil: [
 				  value isVisible
 					  ifTrue: [ "Ici on selectionne visible" input selectIndex: 1 ]
 					  ifFalse: [
@@ -86,6 +88,12 @@ PyramidPropertyInputModelBuilderFactory class >> visibilityDropList [
 				   selector: #whenSelectionChangedDo:;
 				   yourself);
 		  yourself
+]
+
+{ #category : #accessing }
+PyramidPropertyInputModelBuilderFactory >> dontTriggerOnNil [
+
+	shouldTriggerOnNil := false
 ]
 
 { #category : #accessing }
@@ -121,8 +129,17 @@ PyramidPropertyInputModelBuilderFactory >> installBuilderOn: aPorperty [
 { #category : #'as yet unclassified' }
 PyramidPropertyInputModelBuilderFactory >> makeCallBackBlock: aProperty [
 
-	^ [ :input :collection |
-	  aProperty submit: (self transformOutBlock value: input) on: collection ]
+	self shouldTriggerOnNil ifTrue: [ ^ [ :input :collection |
+	  aProperty
+		  submit: (self transformOutBlock value: input)
+		  on: collection ] ] ifFalse: [ ^ [ :input :collection | | value |
+		value := (self transformOutBlock value: input).
+		value ifNotNil: [ aProperty
+		  submit: value
+		  on: collection ] ]
+	  
+	 ]
+	
 ]
 
 { #category : #'as yet unclassified' }
@@ -176,6 +193,12 @@ PyramidPropertyInputModelBuilderFactory >> noValueDefault: anObject [
 ]
 
 { #category : #accessing }
+PyramidPropertyInputModelBuilderFactory >> shouldTriggerOnNil [
+
+	^ shouldTriggerOnNil ifNil: [ true ].
+]
+
+{ #category : #accessing }
 PyramidPropertyInputModelBuilderFactory >> transformInBlock [
 
 	^ transformInBlock
@@ -209,4 +232,10 @@ PyramidPropertyInputModelBuilderFactory >> triggerBlockStrategy [
 PyramidPropertyInputModelBuilderFactory >> triggerBlockStrategy: anObject [
 
 	triggerBlockStrategy := anObject
+]
+
+{ #category : #accessing }
+PyramidPropertyInputModelBuilderFactory >> triggerOnNil [
+
+	shouldTriggerOnNil := true
 ]
