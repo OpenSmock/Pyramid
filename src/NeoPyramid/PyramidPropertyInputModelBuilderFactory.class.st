@@ -54,7 +54,7 @@ PyramidPropertyInputModelBuilderFactory class >> mockPresenter [
 PyramidPropertyInputModelBuilderFactory class >> visibilityDropList [
 
 	^ self new
-	dontTriggerOnNil;
+		  dontTriggerOnNil;
 		  inputClass: SpDropListPresenter;
 		  initializeBlock: [ :input |
 			  input
@@ -81,9 +81,7 @@ PyramidPropertyInputModelBuilderFactory class >> visibilityDropList [
 							  ifTrue: [ "Ici on selectionne gone" input selectIndex: 3 ]
 							  ifFalse: [ "Ici on selectionne hidden" input selectIndex: 2 ] ] ] ];
 		  transformOutBlock: [ :input |
-			  input selectedItem
-				  ifNil: [ nil ]
-				  ifNotNil: [ input selectedItem model ] ];
+			  input selectedItem ];
 		  triggerBlockStrategy: (PyramidNoArgTrigger new
 				   selector: #whenSelectionChangedDo:;
 				   yourself);
