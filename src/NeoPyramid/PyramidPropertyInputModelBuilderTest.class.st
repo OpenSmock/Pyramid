@@ -19,15 +19,15 @@ PyramidPropertyInputModelBuilderTest >> builderFrom: aPopertyModel [
 	connectTriggerBlock := [ :input :col |
 	                       input whenSubmitDo: [ :val |
 		                       callback value: input value: col ] ].
-	initializeBlock := [ :input | ].
+	initializeBlock := [ :input |  ].
 
 	^ PyramidPropertyInputModelBuilder new
-		  propertyModel: aPopertyModel;
+		  targetModel: aPopertyModel;
 		  inputClass: PyramidMockSpecPresenter;
 		  connectInputBlock: connectTriggerBlock;
 		  setDefautValueBlock: transformIn;
 		  buttonCallbackBlock: callback;
-		initializeInputBlock: initializeBlock;
+		  initializeInputBlock: initializeBlock;
 		  noValue: 'no value';
 		  multiValue: 'multi values';
 		  yourself
@@ -45,20 +45,19 @@ PyramidPropertyInputModelBuilderTest >> testBuild [
 { #category : #tests }
 PyramidPropertyInputModelBuilderTest >> testEmptyModel [
 
-	| propertyModel inputModel builder  |
-	propertyModel := PyramidPropertyModel new states:
-		                 {  }.
-	builder := builder := self builderFrom: propertyModel.
+	| targetModel inputModel builder |
+	targetModel := PyramidPropertyTargetModel new.
+	builder := builder := self builderFrom: targetModel.
 	inputModel := builder build.
 
 	self assert: inputModel elementInputModel size equals: 0.
-	self assert: inputModel globalInput text equals: 'no value'.
+	self assert: inputModel globalInput text equals: 'no value'
 ]
 
 { #category : #tests }
 PyramidPropertyInputModelBuilderTest >> testMultiStatesMultiElementsModel [
 
-	| propertyModel inputModel builder e1 e2 e3 |
+	| targetModel inputModel builder e1 e2 e3 |
 	e1 := BlElement new
 		      id: #'hello world';
 		      yourself.
@@ -68,16 +67,12 @@ PyramidPropertyInputModelBuilderTest >> testMultiStatesMultiElementsModel [
 	e3 := BlElement new
 		      id: #'dlrow olleh';
 		      yourself.
-	propertyModel := PyramidPropertyModel new states: {
-			                 (PyramidCommandState new
-				                  arguments: 'hello world';
-				                  source: {
-						                  e1.
-						                  e2 }).
-			                 (PyramidCommandState new
-				                  arguments: 'dlrow olleh';
-				                  source: { e3 }) }.
-	builder := builder := self builderFrom: propertyModel.
+	targetModel := PyramidPropertyTargetModel new
+		               at: #'hello world' put: e1;
+		               at: #'hello world' put: e2;
+		               at: #'dlrow olleh' put: e3;
+		               yourself.
+	builder := self builderFrom: targetModel.
 	inputModel := builder build.
 
 	self assert: inputModel elementInputModel size equals: 3.
@@ -113,20 +108,18 @@ PyramidPropertyInputModelBuilderTest >> testMultiStatesMultiElementsModel [
 { #category : #tests }
 PyramidPropertyInputModelBuilderTest >> testSingleStateMultiElementsModel [
 
-	| propertyModel inputModel builder e1 e2 |
+	| targetModel inputModel builder e1 e2 |
 	e1 := BlElement new
 		      id: #'hello world';
 		      yourself.
 	e2 := BlElement new
 		      id: #'hello world';
 		      yourself.
-	propertyModel := PyramidPropertyModel new states: {
-			                 (PyramidCommandState new
-				                  arguments: 'hello world';
-				                  source: {
-						                  e1.
-						                  e2 }) }.
-	builder := builder := self builderFrom: propertyModel.
+	targetModel := PyramidPropertyTargetModel new
+		               at: #'hello world' put: e1;
+		               at: #'hello world' put: e2;
+		               yourself.
+	builder := builder := self builderFrom: targetModel.
 	inputModel := builder build.
 
 	self assert: inputModel elementInputModel size equals: 2.
@@ -152,23 +145,20 @@ PyramidPropertyInputModelBuilderTest >> testSingleStateMultiElementsModel [
 		text: 'goodbye';
 		submit.
 	self assert: e1 id asSymbol equals: #goodbye.
-	self assert: e2 id asSymbol equals: #goodbye.
+	self assert: e2 id asSymbol equals: #goodbye
 ]
 
 { #category : #tests }
 PyramidPropertyInputModelBuilderTest >> testSingleStateSingleElementModel [
 
-	| propertyModel inputModel builder e1 |
+	| targetModel inputModel builder e1 |
 	e1 := BlElement new
 		      id: #'hello world';
 		      yourself.
-	propertyModel := PyramidPropertyModel new states:
-		                 { (PyramidCommandState new
-			                  arguments: 'hello world';
-			                  source: {
-					                  e1
-					                   }) }.
-	builder := builder := self builderFrom: propertyModel.
+	targetModel := PyramidPropertyTargetModel new
+		               at: #'hello world' put: e1;
+		               yourself.
+	builder := builder := self builderFrom: targetModel.
 	inputModel := builder build.
 
 	self assert: inputModel elementInputModel size equals: 1.
@@ -190,5 +180,5 @@ PyramidPropertyInputModelBuilderTest >> testSingleStateSingleElementModel [
 	inputModel globalInput
 		text: 'goodbye';
 		submit.
-	self assert: e1 id asSymbol equals: #goodbye.
+	self assert: e1 id asSymbol equals: #goodbye
 ]

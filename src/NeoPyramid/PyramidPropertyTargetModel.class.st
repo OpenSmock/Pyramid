@@ -1,0 +1,47 @@
+Class {
+	#name : #PyramidPropertyTargetModel,
+	#superclass : #Object,
+	#instVars : [
+		'argumentsDict',
+		'targets'
+	],
+	#category : #'NeoPyramid-plugin-properties'
+}
+
+{ #category : #accessing }
+PyramidPropertyTargetModel >> argumentsDict [
+
+	^ argumentsDict
+]
+
+{ #category : #accessing }
+PyramidPropertyTargetModel >> at: anArgument put: aTarget [
+
+	self argumentsDict at: anArgument ifPresent: [ :col | col add: aTarget ] ifAbsentPut: [ OrderedCollection new add: aTarget; yourself ].
+	self targets add: aTarget
+]
+
+{ #category : #initialization }
+PyramidPropertyTargetModel >> initialize [
+
+	argumentsDict := Dictionary new.
+	targets := Set new
+]
+
+{ #category : #initialization }
+PyramidPropertyTargetModel >> reset [
+	self targets removeAll.
+	self argumentsDict removeAll.
+]
+
+{ #category : #accessing }
+PyramidPropertyTargetModel >> targets [
+
+	^ targets
+]
+
+{ #category : #accessing }
+PyramidPropertyTargetModel >> targetsAt: aKey [
+
+	^ self argumentsDict at: aKey ifAbsent: [ {  } ]
+]

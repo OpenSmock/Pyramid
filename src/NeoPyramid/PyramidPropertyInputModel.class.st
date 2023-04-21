@@ -20,6 +20,11 @@ PyramidPropertyInputModel >> elementInputModel [
 	^ elementInputModel
 ]
 
+{ #category : #'as yet unclassified' }
+PyramidPropertyInputModel >> elementInputSize [
+	^ self elementInputModel size
+]
+
 { #category : #accessing }
 PyramidPropertyInputModel >> globalInput [
 

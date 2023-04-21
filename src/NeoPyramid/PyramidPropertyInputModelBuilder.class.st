@@ -9,7 +9,8 @@ Class {
 		'noValue',
 		'multiValue',
 		'buttonCallbackBlock',
-		'initializeInputBlock'
+		'initializeInputBlock',
+		'targetModel'
 	],
 	#category : #'NeoPyramid-plugin-properties'
 }
@@ -22,14 +23,12 @@ PyramidPropertyInputModelBuilder >> build [
 	inputModel globalInput: self makeInput.
 	self
 		connectInput: inputModel globalInput
-		to: self propertyModel allElements.
-	self
-		setDefautValueOf: inputModel globalInput
-		withAllStates: self propertyModel states.
-	self propertyModel states do: [ :state |
-		state source do: [ :element |
+		to: self targetModel targets.
+	self setDefautValueOfGlobalInput: inputModel globalInput.
+	self targetModel argumentsDict keysAndValuesDo: [ :arguments :targets |
+		targets do: [ :single |
 			inputModel addElementInput:
-				(self buildElementInputModelForState: state element: element) ] ].
+				(self buildInputModelFor: single withArguments: arguments) ] ].
 	^ inputModel
 ]
 
@@ -43,22 +42,29 @@ PyramidPropertyInputModelBuilder >> buildButtonFor: aCollection withInput: aSour
 ]
 
 { #category : #'as yet unclassified' }
-PyramidPropertyInputModelBuilder >> buildElementInputFor: aCollection withState: state [
+PyramidPropertyInputModelBuilder >> buildElementInputFor: aCollection withArguments: anArgument [
 
 	| elementInput |
 	elementInput := self makeInput.
 	self connectInput: elementInput to: aCollection.
-	self setDefautValueOf: elementInput with: state arguments.
+	self setDefautValueOf: elementInput with: anArgument.
 	^ elementInput
 ]
 
 { #category : #building }
-PyramidPropertyInputModelBuilder >> buildElementInputModelForState: state element: element [
+PyramidPropertyInputModelBuilder >> buildInputModelFor: aTarget withArguments: anArgument [
+
 	| model |
-	model := PyramidPropertyInputForElementModel new.
-	model elementInput: (self buildElementInputFor: { element } withState: state).
-	model stateInput: (self buildButtonFor: state source withInput: model elementInput).
-	model modelInput: (self buildButtonFor: self propertyModel allElements withInput: model elementInput).
+	model := PyramidPropertyInputForObjectModel new.
+	model elementInput:
+		(self buildElementInputFor: { aTarget } withArguments: anArgument).
+	model stateInput: (self
+			 buildButtonFor: (self targetModel targetsAt: anArgument)
+			 withInput: model elementInput).
+	model modelInput: (self
+			 buildButtonFor: self targetModel targets
+			 withInput: model elementInput).
+	model referenceObject: aTarget.
 	^ model
 ]
 
@@ -149,18 +155,6 @@ PyramidPropertyInputModelBuilder >> noValue: anObject [
 ]
 
 { #category : #accessing }
-PyramidPropertyInputModelBuilder >> propertyModel [
-
-	^ propertyModel
-]
-
-{ #category : #accessing }
-PyramidPropertyInputModelBuilder >> propertyModel: anObject [
-
-	propertyModel := anObject
-]
-
-{ #category : #accessing }
 PyramidPropertyInputModelBuilder >> setDefautValueBlock [
 
 	^ setDefautValueBlock
@@ -182,6 +176,32 @@ PyramidPropertyInputModelBuilder >> setDefautValueOf: anInput with: aState [
 PyramidPropertyInputModelBuilder >> setDefautValueOf: anInput withAllStates: aCollection [
 
 	aCollection ifEmpty: [ self setDefautValueBlock value: anInput value: self noValue. ^ self ].
-	aCollection size = 1 ifTrue: [ self setDefautValueBlock value: anInput value: aCollection first arguments. ^ self ].
+	aCollection size = 1 ifTrue: [ aCollection doOnlyOnce: [ :obj | self setDefautValueBlock value: anInput value: obj]. ^ self ].
 	self setDefautValueBlock value: anInput value: self multiValue
+]
+
+{ #category : #initialization }
+PyramidPropertyInputModelBuilder >> setDefautValueOfGlobalInput: anInput [
+
+	| keys |
+	keys := self targetModel argumentsDict keys.
+	keys ifEmpty: [
+		self setDefautValueBlock value: anInput value: self noValue.
+		^ self ].
+	keys size = 1 ifTrue: [
+			self setDefautValueBlock value: anInput value: keys first.
+		^ self ].
+	self setDefautValueBlock value: anInput value: self multiValue
+]
+
+{ #category : #accessing }
+PyramidPropertyInputModelBuilder >> targetModel [
+
+	^ targetModel
+]
+
+{ #category : #accessing }
+PyramidPropertyInputModelBuilder >> targetModel: anObject [
+
+	targetModel := anObject
 ]

@@ -3,27 +3,13 @@ Class {
 	#superclass : #Object,
 	#instVars : [
 		'command',
-		'model',
 		'pipeline',
-		'presenter',
+		'targetModel',
+		'inputModel',
 		'inputBuilder'
 	],
 	#category : #'NeoPyramid-plugin-properties'
 }
-
-{ #category : #accessing }
-PyramidProperty class >> identifier [
-
-	| property |
-	property := self new.
-	property
-		command: PyramidCommand identifier;
-		presenter: (PyramidPropertyInputDeprecated new
-				 inputBuilder: (PyramidInputBuilderDeprecated string: property);
-				 yourself);
-		pipeline: PyramidPipeline new.
-	^ property
-]
 
 { #category : #accessing }
 PyramidProperty >> command [
@@ -40,7 +26,7 @@ PyramidProperty >> command: anObject [
 { #category : #'as yet unclassified' }
 PyramidProperty >> initialize [
 
-	model := PyramidPropertyModel new.
+	targetModel := PyramidPropertyTargetModel new
 ]
 
 { #category : #accessing }
@@ -55,9 +41,15 @@ PyramidProperty >> inputBuilder: anObject [
 	inputBuilder := anObject
 ]
 
-{ #category : #'as yet unclassified' }
-PyramidProperty >> model [
-^ model
+{ #category : #accessing }
+PyramidProperty >> inputModel [
+	^ inputModel
+]
+
+{ #category : #accessing }
+PyramidProperty >> inputModel: anObject [
+
+	inputModel := anObject
 ]
 
 { #category : #'as yet unclassified' }
@@ -70,19 +62,6 @@ PyramidProperty >> pipeline [
 PyramidProperty >> pipeline: anObject [
 
 	pipeline := anObject
-]
-
-{ #category : #accessing }
-PyramidProperty >> presenter [
-
-	^ presenter
-]
-
-{ #category : #accessing }
-PyramidProperty >> presenter: anObject [
-
-	presenter := anObject.
-	presenter model: self model.
 ]
 
 { #category : #'as yet unclassified' }
@@ -100,45 +79,13 @@ PyramidProperty >> submit: anArguments on: aCollection [
 	self pipeline useCommand: self command on: (PyramidPipelineTarget new collection: aCollection)
 ]
 
-{ #category : #'as yet unclassified' }
-PyramidProperty >> submit: anArguments onElement: anElement [
-
-	self submit: anArguments on: { anElement }
+{ #category : #accessing }
+PyramidProperty >> targetModel [
+^ targetModel
 ]
 
 { #category : #'as yet unclassified' }
-PyramidProperty >> submit: anArguments onState: aState [
-
-	self submit: anArguments on: aState source
-]
-
-{ #category : #'as yet unclassified' }
-PyramidProperty >> submitOnModel: anArguments [
-
-	self submit: anArguments on: self model allElements
-]
-
-{ #category : #'as yet unclassified' }
-PyramidProperty >> targetsFromCollection: aCollection [
-
-	| states targets |
-	targets := aCollection select: [ :each |
-		           self command isExecutableBy: each ].
-
-	states := OrderedCollection new.
-	targets do: [ :each |
-		| newState current |
-		newState := self stateOf: each.
-		current := states select: [ :state |
-			           state arguments = newState arguments ].
-		current
-			ifEmpty: [ states add: newState ]
-			ifNotEmpty: [ current first source addAll: newState source ] ].
-	^ states
-]
-
-{ #category : #'as yet unclassified' }
-PyramidProperty >> updateModelFrom: aCollection [
-
-self model states: (self targetsFromCollection: aCollection)
+PyramidProperty >> updateTargetModelFrom: aCollection [
+	self targetModel reset.
+	aCollection select: [ :each | self command isExecutableBy: each ] thenDo: [ :each | self targetModel at: (self stateOf: each) arguments put: each ]
 ]

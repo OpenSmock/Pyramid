@@ -58,34 +58,55 @@ PyramidPropertyInputModelBuilderFactory class >> visibilityDropList [
 		  inputClass: SpDropListPresenter;
 		  initializeBlock: [ :input |
 			  input
-				  addItemLabeled: 'Visible'
-				  do: [  ]
-				  icon: (self iconNamed: #haloView);
-				  addItemLabeled: 'Hidden'
-				  do: [  ]
-				  icon: (self iconNamed: #haloDrag);
-				  addItemLabeled: 'Gone'
-				  do: [  ]
-				  icon: (self iconNamed: #haloDismiss).
-			  (input getList at: 1) model: BlVisibility visible.
-			  (input getList at: 2) model: BlVisibility hidden.
-			  (input getList at: 3) model: BlVisibility gone ];
+				  dropListItems: {
+						  (SpDropListItem new
+							   action: [ BlVisibility visible ];
+							   icon: (self iconNamed: #haloView);
+							   model: BlVisibility visible;
+							   display: [ :e | 'Visible' ];
+							   yourself).
+						  (SpDropListItem new
+							   action: [ BlVisibility hidden ];
+							   icon: (self iconNamed: #haloDrag);
+							   model: BlVisibility hidden;
+							   display: [ :e | 'Hidden' ];
+							   yourself).
+						  (SpDropListItem new
+							   action: [ BlVisibility gone ];
+							   icon: (self iconNamed: #haloDismiss);
+							   model: BlVisibility gone;
+							   display: [ :e | 'Gone' ];
+							   yourself) };
+				  yourself ];
 		  mutliValuesDefault: nil;
 		  noValueDefault: nil;
 		  transformInBlock: [ :input :value |
-			  value ifNil: [ input resetSelection ] ifNotNil: [
-				  value isVisible
-					  ifTrue: [ "Ici on selectionne visible" input selectIndex: 1 ]
-					  ifFalse: [
-						  value isGone
-							  ifTrue: [ "Ici on selectionne gone" input selectIndex: 3 ]
-							  ifFalse: [ "Ici on selectionne hidden" input selectIndex: 2 ] ] ] ];
+			  value
+				  ifNil: [
+					  input startWithoutSelection.
+					  input resetSelection ]
+				  ifNotNil: [
+					  input startWithSelection.
+					  value isVisible
+						  ifTrue: [ "Ici on selectionne visible" input selectIndex: 1 ]
+						  ifFalse: [
+							  value isGone
+								  ifTrue: [ "Ici on selectionne gone" input selectIndex: 3 ]
+								  ifFalse: [ "Ici on selectionne hidden" input selectIndex: 2 ] ] ] ];
 		  transformOutBlock: [ :input |
-			  input selectedItem ];
+			  input selectedIndex = 0
+				  ifTrue: [ nil ]
+				  ifFalse: [ (input getList at: input selectedIndex) action value ] ];
 		  triggerBlockStrategy: (PyramidNoArgTrigger new
 				   selector: #whenSelectionChangedDo:;
 				   yourself);
 		  yourself
+]
+
+{ #category : #accessing }
+PyramidPropertyInputModelBuilderFactory >> doTriggerOnNil [
+
+	shouldTriggerOnNil := true
 ]
 
 { #category : #accessing }
@@ -143,13 +164,13 @@ PyramidPropertyInputModelBuilderFactory >> makeCallBackBlock: aProperty [
 { #category : #'as yet unclassified' }
 PyramidPropertyInputModelBuilderFactory >> makeInputBuilderFrom: aProperty [
 
-	| propertyModel callbakBlock connectTriggerBlock |
-	propertyModel := self makePropertyModel: aProperty.
+	| targetModel callbakBlock connectTriggerBlock |
+	targetModel := self makeTargetModel: aProperty.
 	callbakBlock := self makeCallBackBlock: aProperty.
 	connectTriggerBlock := self triggerBlockStrategy makeTriggerBloc:
 		                       callbakBlock.
 	^ PyramidPropertyInputModelBuilder new
-		  propertyModel: propertyModel;
+		  targetModel: targetModel;
 		  inputClass: self inputClass;
 		  initializeInputBlock: self initializeBlock;
 		  connectInputBlock: connectTriggerBlock;
@@ -161,9 +182,9 @@ PyramidPropertyInputModelBuilderFactory >> makeInputBuilderFrom: aProperty [
 ]
 
 { #category : #'as yet unclassified' }
-PyramidPropertyInputModelBuilderFactory >> makePropertyModel: aProperty [
+PyramidPropertyInputModelBuilderFactory >> makeTargetModel: aProperty [
 
-	^ aProperty model
+	^ aProperty targetModel
 ]
 
 { #category : #accessing }
@@ -230,10 +251,4 @@ PyramidPropertyInputModelBuilderFactory >> triggerBlockStrategy [
 PyramidPropertyInputModelBuilderFactory >> triggerBlockStrategy: anObject [
 
 	triggerBlockStrategy := anObject
-]
-
-{ #category : #accessing }
-PyramidPropertyInputModelBuilderFactory >> triggerOnNil [
-
-	shouldTriggerOnNil := true
 ]
