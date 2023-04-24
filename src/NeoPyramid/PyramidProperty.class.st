@@ -1,6 +1,7 @@
 Class {
 	#name : #PyramidProperty,
 	#superclass : #Object,
+	#classTraits : 'TPyramidPipelineObserver classTrait',
 	#instVars : [
 		'command',
 		'pipeline',
@@ -90,7 +91,7 @@ PyramidProperty >> pipeline [
 { #category : #accessing }
 PyramidProperty >> pipeline: anObject [
 
-	pipeline := anObject
+	pipeline := anObject.
 ]
 
 { #category : #'as yet unclassified' }

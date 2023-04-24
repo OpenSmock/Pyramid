@@ -1,5 +1,8 @@
 Trait {
 	#name : #TPyramidActiveProjectModelObserver,
+	#instVars : [
+		'isLock'
+	],
 	#category : #'NeoPyramid-models'
 }
 

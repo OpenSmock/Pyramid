@@ -17,7 +17,8 @@ PyramidPropertyInputView >> defaultLayout [
 { #category : #'as yet unclassified' }
 PyramidPropertyInputView >> hidePopover [
 
-	self popover dismiss
+	self popover ifNotNil: [ self popover dismiss ]
+	
 ]
 
 { #category : #'as yet unclassified' }

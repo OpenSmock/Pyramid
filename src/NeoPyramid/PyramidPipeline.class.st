@@ -71,8 +71,6 @@ PyramidPipeline >> useCommand: aCommand on: anObject [
 PyramidPipeline >> verify: aCommand on: anObject [
 
 	| isCommanOk |
-
-
 	self workersBeforeVerify do: [ :each |
 		each useCommand: aCommand on: anObject ].
 

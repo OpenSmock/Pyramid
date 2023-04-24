@@ -6,7 +6,8 @@ Class {
 	#instVars : [
 		'tree',
 		'roots',
-		'activeProject'
+		'activeProject',
+		'shouldChangeSelection'
 	],
 	#category : #'NeoPyramid-plugin-tree'
 }
@@ -95,6 +96,12 @@ PyramidTreeView >> currentRoots [
 	^ self activeProject roots elements
 ]
 
+{ #category : #accessing }
+PyramidTreeView >> currentSelection [
+
+	^ self activeProject selection elements
+]
+
 { #category : #layout }
 PyramidTreeView >> defaultLayout [
 
@@ -106,11 +113,13 @@ PyramidTreeView >> defaultLayout [
 { #category : #initialization }
 PyramidTreeView >> initializePresenters [
 
+	shouldChangeSelection := true.
 	tree := self newTreeTable.
 
 	tree whenSelectionChangedDo: [ :newSelection |
 		self activeProject removeObserver: self.
-		self activeProject selection replaceAll: newSelection selectedItems.
+		self shouldChangeSelection ifTrue: [
+			self activeProject selection replaceAll: newSelection selectedItems ].
 		self activeProject addObserver: self ].
 
 	tree
@@ -138,13 +147,24 @@ PyramidTreeView >> pyramidActiveProjectChangedChanged [
 { #category : #'as yet unclassified' }
 PyramidTreeView >> pyramidPipelineExecuteCommand [
 
-	self updateRoots
+	self updateTree
 ]
 
 { #category : #'as yet unclassified' }
 PyramidTreeView >> pyramidRootsChangedOnActiveProject [
 
-	self updateRoots
+	self updateTree
+]
+
+{ #category : #accessing }
+PyramidTreeView >> shouldChangeSelection [
+	^ shouldChangeSelection
+]
+
+{ #category : #accessing }
+PyramidTreeView >> shouldChangeSelection: anObject [
+
+	shouldChangeSelection := anObject
 ]
 
 { #category : #accessing }
@@ -156,6 +176,23 @@ PyramidTreeView >> tree [
 PyramidTreeView >> updateRoots [
 
 	self tree roots: self currentRoots
+]
+
+{ #category : #accessing }
+PyramidTreeView >> updateSelection [
+
+	self tree selectItems: self currentSelection
+]
+
+{ #category : #accessing }
+PyramidTreeView >> updateTree [
+
+	self activeProject selection lock.
+	self shouldChangeSelection: false.
+	self updateRoots.
+	self updateSelection.
+		self shouldChangeSelection: true.
+	self activeProject selection unlock
 ]
 
 { #category : #'as yet unclassified' }

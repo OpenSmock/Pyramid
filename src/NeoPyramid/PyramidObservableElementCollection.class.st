@@ -38,7 +38,9 @@ PyramidObservableElementCollection >> elements: aCollection [
 ]
 
 { #category : #initialization }
-PyramidObservableElementCollection >> initialize [ 
+PyramidObservableElementCollection >> initialize [
+
+	isLock := false.
 	elements := OrderedCollection new
 ]
 

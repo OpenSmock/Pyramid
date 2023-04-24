@@ -8,6 +8,10 @@ Class {
 	#category : #'NeoPyramid-plugin-properties'
 }
 
+{ #category : #accessing }
+PyramidMockSpecPresenter >> enabled: aBoolean [
+]
+
 { #category : #submit }
 PyramidMockSpecPresenter >> submit [
 

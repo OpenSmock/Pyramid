@@ -20,8 +20,7 @@ PyramidCommand class >> addChildren [
 		  get: [ :state :source |
 			  state source: source.
 			  state arguments: source children asArray ]
-		  isExecutableBlock: [ :obj | obj isKindOf: BlElement ]
-		  
+		  isExecutableBlock: [ :obj :state | obj isKindOf: BlElement ]
 ]
 
 { #category : #adding }
@@ -33,7 +32,7 @@ PyramidCommand class >> addElementOnCollection [
 		  get: [ :state :source |
 			  state source: source.
 			  state arguments: source elements asArray ]
-		  isExecutableBlock: [ :obj | obj isCollection ]
+		  isExecutableBlock: [ :obj :state| obj isCollection ]
 ]
 
 { #category : #adding }
@@ -57,7 +56,8 @@ PyramidCommand class >> identifier [
 		  get: [ :state :source |
 			  state source: source.
 			  state arguments: source id asSymbol ]
-		  isExecutableBlock: [ :obj | obj isKindOf: BlElement ]
+		  isExecutableBlock: [ :obj :state | (obj isKindOf: BlElement) and: [
+				  state arguments ~= obj id asSymbol ]]
 ]
 
 { #category : #adding }
@@ -80,8 +80,7 @@ PyramidCommand class >> removeChildren [
 		  get: [ :state :source |
 			  state source: source.
 			  state arguments: source children asArray ]
-		  isExecutableBlock: [ :obj | obj isKindOf: BlElement ]
-		  
+		  isExecutableBlock: [ :obj :state| obj isKindOf: BlElement ]
 ]
 
 { #category : #adding }
@@ -93,8 +92,7 @@ PyramidCommand class >> removeElementOnCollection [
 		  get: [ :state :source |
 			  state source: source.
 			  state arguments: source elements asArray ]
-		  isExecutableBlock: [ :obj | obj isCollection ]
-		  
+		  isExecutableBlock: [ :obj :state| obj isCollection ]
 ]
 
 { #category : #adding }
@@ -117,7 +115,7 @@ PyramidCommand class >> visibility [
 		  get: [ :state :source |
 			  state source: source.
 			  state arguments: source visibility ]
-		  isExecutableBlock: [ :obj | obj isKindOf: BlElement ]
+		  isExecutableBlock: [ :obj :state | (obj isKindOf: BlElement) and: [ state arguments ~= obj visibility ] ]
 ]
 
 { #category : #accessing }
@@ -161,7 +159,7 @@ PyramidCommand >> isExecutableBlock: aBlock [
 { #category : #testing }
 PyramidCommand >> isExecutableBy: anObject [
 
-	^ self isExecutableBlock value: anObject
+	^ self isExecutableBlock value: anObject value: self state
 ]
 
 { #category : #accessing }

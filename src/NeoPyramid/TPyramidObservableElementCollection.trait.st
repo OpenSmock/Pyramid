@@ -1,7 +1,8 @@
 Trait {
 	#name : #TPyramidObservableElementCollection,
 	#instVars : [
-		'observers'
+		'observers',
+		'isLock'
 	],
 	#category : #'NeoPyramid-models'
 }
@@ -13,7 +14,21 @@ TPyramidObservableElementCollection >> addObserver: anObserver [
 
 { #category : #'as yet unclassified' }
 TPyramidObservableElementCollection >> informCollectionChanged [
-	self observers do: [ :each | each pyramidCollectionChanged ]
+
+	self isLock ifFalse: [ 
+	self observers do: [ :each | each pyramidCollectionChanged ] ]
+]
+
+{ #category : #accessing }
+TPyramidObservableElementCollection >> isLock [
+
+	^ isLock
+]
+
+{ #category : #accessing }
+TPyramidObservableElementCollection >> lock [
+
+	isLock := true
 ]
 
 { #category : #adding }
@@ -27,4 +42,10 @@ TPyramidObservableElementCollection >> observers [
 TPyramidObservableElementCollection >> removeObserver: anObserver [
 
 	self observers remove: anObserver
+]
+
+{ #category : #accessing }
+TPyramidObservableElementCollection >> unlock [
+
+	isLock := false
 ]

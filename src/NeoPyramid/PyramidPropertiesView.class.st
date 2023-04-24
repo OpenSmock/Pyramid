@@ -6,7 +6,8 @@ Class {
 	#instVars : [
 		'properties',
 		'activeProject',
-		'pipeline'
+		'pipeline',
+		'propertyViews'
 	],
 	#category : #'NeoPyramid-plugin-properties'
 }
@@ -26,22 +27,10 @@ PyramidPropertiesView >> activeProject: anObject [
 { #category : #accessing }
 PyramidPropertiesView >> addProperty: aProperty [
 
+	(self properties anySatisfy: [ :each | each = aProperty ]) ifTrue: [
+		^ self ].
 	self properties add: aProperty.
-	aProperty pipeline: self pipeline.
-	self pyramidSelectionChangedOnActiveProject
-]
-
-{ #category : #layout }
-PyramidPropertiesView >> addProperty: aProperty onLayout: aLayout [
-
-	| view inputModel |
-	inputModel := aProperty inputBuilder build.
-	inputModel elementInputSize > 0 ifFalse: [ ^ self ].
-	view := PyramidPropertyInputView new
-		        model: inputModel;
-		        yourself.
-	aLayout add: view expand: false.
-	view updateView
+	aProperty pipeline: self pipeline
 ]
 
 { #category : #layout }
@@ -51,9 +40,8 @@ PyramidPropertiesView >> defaultLayout [
 	defaultLayout := SpBoxLayout newVertical
 		                 spacing: 4;
 		                 yourself.
-	self properties do: [ :each |
-		self addProperty: each onLayout: defaultLayout ].
-	defaultLayout add: SpNullPresenter new expand: true.
+	self propertyViews do: [ :each |
+			defaultLayout add: each expand: false ].
 	^ defaultLayout
 ]
 
@@ -65,7 +53,7 @@ PyramidPropertiesView >> pipeline [ ^ pipeline
 PyramidPropertiesView >> pipeline: aPyramidPipeline [
 
 	pipeline := aPyramidPipeline.
-	self properties do: [ :each | each pipeline: aPyramidPipeline ].
+	self properties do: [ :each | each pipeline: aPyramidPipeline ]
 ]
 
 { #category : #accessing }
@@ -75,11 +63,42 @@ PyramidPropertiesView >> properties [
 	^ properties
 ]
 
+{ #category : #accessing }
+PyramidPropertiesView >> propertyViews [
+
+	propertyViews ifNil: [ propertyViews := {  } ].
+	^ propertyViews
+]
+
+{ #category : #accessing }
+PyramidPropertiesView >> propertyViews: aCollection [
+	propertyViews:= aCollection
+]
+
 { #category : #'as yet unclassified' }
 PyramidPropertiesView >> pyramidSelectionChangedOnActiveProject [
 
-	self properties do: [ :property |
-		property updateTargetModelFrom:
-			self activeProject selection elements ].
-	self layout: self defaultLayout
+	self propertyViews do: [ :each | each hidePopover ].
+	self updatePropertyViews
+]
+
+{ #category : #'as yet unclassified' }
+PyramidPropertiesView >> updatePropertyViews [
+
+	| inputModels |
+	inputModels := self properties collect: [ :property |
+		               property updateTargetModelFrom:
+			               self activeProject selection elements.
+		               property inputBuilder build ].
+	self layout removeAll.
+	self propertyViews: (inputModels
+			 select: [ :each | each elementInputSize > 0 ]
+			 thenCollect: [ :each |
+				 | view |
+				 view := PyramidPropertyInputView new
+					         model: each;
+					         updateView;
+					         yourself.
+				 self layout add: view expand: false.
+				 view ])
 ]

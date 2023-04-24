@@ -18,7 +18,7 @@ PyramidPipelineTest >> testUseCommandOn [
 			           counter := counter + 1.
 			           sum := sum + obj ]
 		           get: [ :state :obj |  ]
-		           isExecutableBlock:  [ :obj | true ].
+		           isExecutableBlock: [ :obj :state | true ].
 	pipeline
 		useCommand: command
 		on: (PyramidPipelineTarget new collection: target).

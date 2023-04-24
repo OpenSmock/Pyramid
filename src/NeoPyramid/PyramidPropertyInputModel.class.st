@@ -25,6 +25,15 @@ PyramidPropertyInputModel >> elementInputSize [
 	^ self elementInputModel size
 ]
 
+{ #category : #'as yet unclassified' }
+PyramidPropertyInputModel >> getElementInputModelFor: anObject [
+
+	| values |
+	values := self elementInputModel select: [ :each |
+		          each referenceObject == anObject ].
+	^ values
+]
+
 { #category : #accessing }
 PyramidPropertyInputModel >> globalInput [
 
