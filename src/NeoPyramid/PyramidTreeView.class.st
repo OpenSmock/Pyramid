@@ -1,8 +1,8 @@
 Class {
 	#name : #PyramidTreeView,
 	#superclass : #SpPresenter,
-	#traits : 'TPyramidActiveProjectModelObserver',
-	#classTraits : 'TPyramidActiveProjectModelObserver classTrait',
+	#traits : 'TPyramidActiveProjectModelObserver + TPyramidPipelineObserver',
+	#classTraits : 'TPyramidActiveProjectModelObserver classTrait + TPyramidPipelineObserver classTrait',
 	#instVars : [
 		'tree',
 		'roots',
@@ -131,6 +131,12 @@ PyramidTreeView >> initializePresenters [
 
 { #category : #'as yet unclassified' }
 PyramidTreeView >> pyramidActiveProjectChangedChanged [
+
+	self updateRoots
+]
+
+{ #category : #'as yet unclassified' }
+PyramidTreeView >> pyramidPipelineExecuteCommand [
 
 	self updateRoots
 ]

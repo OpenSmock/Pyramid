@@ -25,8 +25,11 @@ PyramidPluginProperties >> buildViewFrom: aPyramidGlobalViewBuilder [
 { #category : #'as yet unclassified' }
 PyramidPluginProperties >> connectOn: aPyramidEditor [
 
-	aPyramidEditor activeProject addObserver: self propertiesView.
-	self propertiesView activeProject: aPyramidEditor activeProject
+	self propertiesView activeProject: aPyramidEditor activeProject.
+	self propertiesView pipeline: aPyramidEditor commandPipeline.
+
+	self propertiesView addProperty: PyramidProperty identifier.
+	self propertiesView addProperty: PyramidProperty visibility
 ]
 
 { #category : #'as yet unclassified' }

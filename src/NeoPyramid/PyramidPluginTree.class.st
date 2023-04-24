@@ -25,7 +25,8 @@ PyramidPluginTree >> buildViewFrom: aPyramidGlobalViewBuilder [
 { #category : #'as yet unclassified' }
 PyramidPluginTree >> connectOn: aPyramidEditor [
 
-	self view presenter activeProject: aPyramidEditor activeProject
+	self view presenter activeProject: aPyramidEditor activeProject.
+	aPyramidEditor commandPipeline addObserver: self view presenter 
 ]
 
 { #category : #initialization }

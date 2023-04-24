@@ -31,6 +31,16 @@ PyramidProperty class >> identifier [
 ]
 
 { #category : #accessing }
+PyramidProperty class >> visibility [
+
+	^ self
+		  fromCommand: PyramidCommand visibility
+		  inputBuilder:
+		  PyramidPropertyInputModelBuilderFactory visibilityDropList
+		  pipeline: PyramidPipeline new
+]
+
+{ #category : #accessing }
 PyramidProperty >> command [
 
 	^ command
