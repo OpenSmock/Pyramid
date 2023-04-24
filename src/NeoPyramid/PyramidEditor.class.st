@@ -4,7 +4,8 @@ Class {
 	#instVars : [
 		'plugins',
 		'view',
-		'activeProject'
+		'activeProject',
+		'commandPipeline'
 	],
 	#category : #'NeoPyramid-core'
 }
@@ -15,11 +16,18 @@ PyramidEditor >> activeProject [
 	^ activeProject
 ]
 
+{ #category : #accessing }
+PyramidEditor >> commandPipeline [
+
+	^ commandPipeline
+]
+
 { #category : #'as yet unclassified' }
 PyramidEditor >> initialize [
 
 	activeProject := PyramidActiveProjectModel new.
 	view := PyramidEditorVoidView new.
+	commandPipeline := PyramidPipeline new.
 	plugins := {  }
 ]
 

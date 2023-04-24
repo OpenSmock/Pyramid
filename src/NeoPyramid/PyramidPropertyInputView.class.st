@@ -31,21 +31,21 @@ PyramidPropertyInputView >> initializePresenters [
 PyramidPropertyInputView >> makePopover [
 
 	^ SpPopoverPresenter new
-		           borderColor: Color black;
-		           relativeTo: self popoverButton;
-		           position: SpPopoverPosition left;
-		           presenter: (SpPresenter new
-				            layout: (SpBoxLayout newTopToBottom
-						             borderWidth: 3;
-						             spacing: 5;
-						             add: self popoverLayout;
-						             add: (SpButtonPresenter new
-								              label: 'Close';
-								              action: [ self hidePopover ];
-								              yourself);
-						             yourself);
-				            yourself);
-		           yourself
+		  borderColor: Color black;
+		  relativeTo: self popoverButton;
+		  position: SpPopoverPosition left;
+		  presenter: (SpPresenter new
+				   layout: (SpBoxLayout newTopToBottom
+						    borderWidth: 3;
+						    spacing: 5;
+						    add: self popoverLayout width: 300;
+						    add: (SpButtonPresenter new
+								     label: 'Close';
+								     action: [ self hidePopover ];
+								     yourself);
+						    yourself);
+				   yourself);
+		  yourself
 ]
 
 { #category : #'as yet unclassified' }
