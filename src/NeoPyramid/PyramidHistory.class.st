@@ -1,20 +1,16 @@
 Class {
 	#name : #PyramidHistory,
 	#superclass : #Object,
+	#traits : 'TPyramidHistory',
+	#classTraits : 'TPyramidHistory classTrait',
 	#instVars : [
-		'originMemento',
+		'afterMementoSaver',
+		'beforeMementoSaver',
+		'undoCounter',
 		'mementos',
 		'undoPipeline',
-		'undoMementoSaver',
-		'redoMementoSaver',
-		'redoPipeline',
-		'undoAfterRedoMementoSaver',
-		'privateRedoCollection',
-		'currentState',
-		'mementoSaver',
-		'undoCounter',
-		'beforeMementoSaver',
-		'afterMementoSaver'
+		'mainPipeline',
+		'originMemento'
 	],
 	#category : #'NeoPyramid-plugin-history'
 }
@@ -28,7 +24,7 @@ PyramidHistory >> afterMementoSaver [
 { #category : #accessing }
 PyramidHistory >> beforeMementoSaver [
 
-	^ beforeMementoSaver
+	^ beforeMementoSaver.
 ]
 
 { #category : #testing }
@@ -63,7 +59,14 @@ PyramidHistory >> initialize [
 PyramidHistory >> installHistoryOn: aPipeline [
 
 	aPipeline workersBeforeExecute add: self beforeMementoSaver.
-	aPipeline workersAfterExecute add: self afterMementoSaver
+	aPipeline workersAfterExecute add: self afterMementoSaver.
+	mainPipeline := aPipeline
+]
+
+{ #category : #accessing }
+PyramidHistory >> mainPipeline [
+
+	^ mainPipeline
 ]
 
 { #category : #accessing }
@@ -75,7 +78,7 @@ PyramidHistory >> mementos [
 { #category : #testing }
 PyramidHistory >> originMemento [
 
-	^ originMemento
+	^ originMemento.
 ]
 
 { #category : #testing }
@@ -89,7 +92,9 @@ PyramidHistory >> redo [
 
 	self canRedo ifFalse: [ ^ self ].
 	self redoCollection last restore.
-	self undoCounterDecrement
+	self undoCounterDecrement.
+	self mainPipeline informPipelineExecuteCommand.
+	self informRedo
 ]
 
 { #category : #accessing }
@@ -100,7 +105,10 @@ PyramidHistory >> redoCollection [
 
 { #category : #initialization }
 PyramidHistory >> resetUndoCounter [
- undoCounter := 0
+
+	undoCounter := 0.
+	self informCounterReset
+	
 ]
 
 { #category : #'menu messages' }
@@ -108,7 +116,9 @@ PyramidHistory >> undo [
 
 	self canUndo ifFalse: [ ^ self ].
 	self undoCollection first restore.
-	self undoCounterIncrement
+	self undoCounterIncrement.
+	self mainPipeline informPipelineExecuteCommand.
+	self informUndo
 ]
 
 { #category : #accessing }

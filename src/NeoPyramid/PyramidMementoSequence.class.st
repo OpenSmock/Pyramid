@@ -19,6 +19,11 @@ PyramidMementoSequence >> initialize [
 	mementos := OrderedCollection new.
 ]
 
+{ #category : #testing }
+PyramidMementoSequence >> isSequence [
+^ true
+]
+
 { #category : #accessing }
 PyramidMementoSequence >> mementos [
 	^ mementos

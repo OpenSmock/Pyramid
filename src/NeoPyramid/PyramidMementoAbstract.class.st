@@ -7,6 +7,11 @@ Class {
 	#category : #'NeoPyramid-plugin-history'
 }
 
+{ #category : #testing }
+PyramidMementoAbstract >> isSequence [
+^false
+]
+
 { #category : #accessing }
 PyramidMementoAbstract >> pipeline [
 

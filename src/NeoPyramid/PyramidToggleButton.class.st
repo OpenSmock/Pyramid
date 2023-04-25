@@ -14,7 +14,7 @@ PyramidToggleButton >> asSpecButtonFor: anObject [
 	spec := SpButtonPresenter new
 		        icon: self icon;
 		        action: [
-			        self state: self state not.
+			        self state: self state value not.
 			        self updateSpec.
 			        self callback value ];
 		        yourself.

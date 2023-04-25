@@ -36,7 +36,6 @@ PyramidPluginProperties >> connectOn: aPyramidEditor [
 PyramidPluginProperties >> initialize [
 
 	propertiesView := PyramidPropertiesView new.
-	propertiesView inspect.
 	propertiesTab := PyramidTab new
 		                 presenter: [ propertiesView ];
 		                 title: 'Properties';
