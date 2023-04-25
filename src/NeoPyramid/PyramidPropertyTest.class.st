@@ -15,7 +15,7 @@ PyramidPropertyTest >> testSubmitOn [
 			           state source: obj.
 			           state arguments: boolean.
 			           boolean := boolean not ]
-		           isExecutableBlock: [ :obj | true ].
+		           isExecutableBlock: [ :obj :state | true ].
 	property := PyramidProperty new
 		            command: command;
 		            pipeline: PyramidPipeline new;
@@ -53,7 +53,7 @@ PyramidPropertyTest >> testUpdateTargetModelFrom [
 		           get: [ :state :obj |
 			           state source: obj.
 			           state arguments: obj even ]
-		           isExecutableBlock: [ :obj | obj < 5 ].
+		           isExecutableBlock: [ :obj :state | obj < 5 ].
 	property := PyramidProperty new command: command.
 	property updateTargetModelFrom: { 1. 2. 3. 4. 5. 6. 7. 8. 9. 10 }.
 
@@ -80,9 +80,9 @@ PyramidPropertyTest >> testUpdateTargetModelFrom [
 	self assert:
 		((property targetModel argumentsDict at: false) anySatisfy: [ :e |
 			 e = 3 ]).
-	
-property updateTargetModelFrom: { 5. 6. 7. 8. 9. 10 }.
+
+	property updateTargetModelFrom: { 5. 6. 7. 8. 9. 10 }.
 
 	self assert: property targetModel targets size equals: 0.
-	self assert: property targetModel argumentsDict keys size equals: 0.
+	self assert: property targetModel argumentsDict keys size equals: 0
 ]

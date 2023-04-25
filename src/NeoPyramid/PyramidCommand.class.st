@@ -118,6 +118,18 @@ PyramidCommand class >> visibility [
 		  isExecutableBlock: [ :obj :state | (obj isKindOf: BlElement) and: [ state arguments ~= obj visibility ] ]
 ]
 
+{ #category : #operations }
+PyramidCommand >> copyWithoutState [
+
+	| command |
+	command := self class new.
+	command setBlock: self setBlock.
+	command getBlock: self getBlock.
+	command name: self name.
+	command isExecutableBlock: self isExecutableBlock.
+	^ command
+]
+
 { #category : #accessing }
 PyramidCommand >> getBlock [
 
