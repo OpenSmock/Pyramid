@@ -1,7 +1,6 @@
 Class {
-	#name : #PyramidSaveForm,
+	#name : #PyramidSaveInputsView,
 	#superclass : #SpPresenter,
-	#traits : 'TPySaveModelObserver',
 	#classTraits : 'TPySaveModelObserver classTrait',
 	#instVars : [
 		'inputPackage',
@@ -12,37 +11,41 @@ Class {
 		'labelErrorPackage',
 		'labelErrorClass',
 		'labelErrorMethod',
-		'controller'
+		'controller',
+		'model'
 	],
 	#category : #'NeoPyramid-plugin-save'
 }
 
 { #category : #accessing }
-PyramidSaveForm >> buttonClass [ 
+PyramidSaveInputsView >> buttonClass [ 
 
 	^ buttonClass
 ]
 
 { #category : #accessing }
-PyramidSaveForm >> buttonInstance [ 
+PyramidSaveInputsView >> buttonInstance [ 
 
 	^ buttonInstance
 ]
 
 { #category : #accessing }
-PyramidSaveForm >> controller [
+PyramidSaveInputsView >> controller [
 
-	controller ifNil: [ controller := PySaveFormController new view: self; yourself ].
+	controller ifNil: [
+		controller := PyramidSaveInputsController new
+			              view: self;
+			              yourself ].
 	^ controller
 ]
 
 { #category : #accessing }
-PyramidSaveForm >> controller: aPySaveFormController [
+PyramidSaveInputsView >> controller: aPySaveFormController [
 	controller := aPySaveFormController
 ]
 
 { #category : #layout }
-PyramidSaveForm >> defaultLayout [
+PyramidSaveInputsView >> defaultLayout [
 
 	^ SpBoxLayout newVertical
 		  spacing: 4;
@@ -61,24 +64,24 @@ PyramidSaveForm >> defaultLayout [
 ]
 
 { #category : #'as yet unclassified' }
-PyramidSaveForm >> hideLabelClass [
+PyramidSaveInputsView >> hideLabelClass [
 	self labelErrorClass label: ''.
 ]
 
 { #category : #'as yet unclassified' }
-PyramidSaveForm >> hideLabelMethod [
+PyramidSaveInputsView >> hideLabelMethod [
 
 	self labelErrorMethod label: ''
 ]
 
 { #category : #'as yet unclassified' }
-PyramidSaveForm >> hideLabelPackage [
+PyramidSaveInputsView >> hideLabelPackage [
 
 	self labelErrorPackage label: ''
 ]
 
 { #category : #initialization }
-PyramidSaveForm >> initializePresenters [
+PyramidSaveInputsView >> initializePresenters [
 
 	inputPackage := self newTextInput
 		                placeholder: 'Enter a package name';
@@ -119,72 +122,60 @@ PyramidSaveForm >> initializePresenters [
 ]
 
 { #category : #accessing }
-PyramidSaveForm >> inputClass [
+PyramidSaveInputsView >> inputClass [
 
 	^ inputClass
 ]
 
 { #category : #accessing }
-PyramidSaveForm >> inputMethod [ 
+PyramidSaveInputsView >> inputMethod [ 
 
 	^ inputMethod
 ]
 
 { #category : #accessing }
-PyramidSaveForm >> inputPackage [
+PyramidSaveInputsView >> inputPackage [
 	^ inputPackage
 
 
 ]
 
 { #category : #accessing }
-PyramidSaveForm >> labelErrorClass [ 
+PyramidSaveInputsView >> labelErrorClass [ 
 
 	^ labelErrorClass
 ]
 
 { #category : #accessing }
-PyramidSaveForm >> labelErrorMethod [
+PyramidSaveInputsView >> labelErrorMethod [
 
 	^ labelErrorMethod
 ]
 
 { #category : #accessing }
-PyramidSaveForm >> labelErrorPackage [ 
+PyramidSaveInputsView >> labelErrorPackage [ 
 
 	^ labelErrorPackage
 ]
 
 { #category : #accessing }
-PyramidSaveForm >> model [
+PyramidSaveInputsView >> model [
 
 	model ifNil: [
-		model := PySaveModel new
-			             addObserver: self;
-			             yourself ].
+		model := PyramidSaveModel new
+			         yourself ].
 	^ model
 ]
 
 { #category : #accessing }
-PyramidSaveForm >> model: aPySaveModel [
+PyramidSaveInputsView >> model: aPySaveModel [
 
-	self model removeObserver: self.
 	model := aPySaveModel.
-	model addObserver: self.
-	self controller model: aPySaveModel
+	self updateFromModel.
 ]
 
 { #category : #'as yet unclassified' }
-PyramidSaveForm >> pySaveModelChanged [
-
-	self inputPackage text: self model defaultPackageName.
-	self inputClass text: self model defaultClassName.
-	self inputMethod text: self model defaultMethodName.
-	self model isInstanceSide ifTrue: [ self buttonInstance click ] ifFalse: [ self buttonClass click ].
-]
-
-{ #category : #'as yet unclassified' }
-PyramidSaveForm >> showErrorClassMissing [
+PyramidSaveInputsView >> showErrorClassMissing [
 
 	self labelErrorClass
 		displayColor: [ :e | Color red ];
@@ -193,7 +184,7 @@ PyramidSaveForm >> showErrorClassMissing [
 ]
 
 { #category : #'as yet unclassified' }
-PyramidSaveForm >> showErrorMethodMissing [
+PyramidSaveInputsView >> showErrorMethodMissing [
 
 	self labelErrorMethod
 		displayColor: [ :e | Color red ];
@@ -202,7 +193,7 @@ PyramidSaveForm >> showErrorMethodMissing [
 ]
 
 { #category : #'as yet unclassified' }
-PyramidSaveForm >> showErrorMethodWillOverride [
+PyramidSaveInputsView >> showErrorMethodWillOverride [
 
 	self labelErrorMethod
 		displayColor: [ :e | Color red ];
@@ -211,7 +202,7 @@ PyramidSaveForm >> showErrorMethodWillOverride [
 ]
 
 { #category : #'as yet unclassified' }
-PyramidSaveForm >> showErrorPackageMissing [
+PyramidSaveInputsView >> showErrorPackageMissing [
 
 	self labelErrorPackage
 	displayColor: [ :e | Color red ];
@@ -221,7 +212,7 @@ PyramidSaveForm >> showErrorPackageMissing [
 ]
 
 { #category : #'as yet unclassified' }
-PyramidSaveForm >> showInfoClassWillBeCreated [
+PyramidSaveInputsView >> showInfoClassWillBeCreated [
 
 	self labelErrorClass
 		displayColor: [ :e | Color black ];
@@ -230,7 +221,7 @@ PyramidSaveForm >> showInfoClassWillBeCreated [
 ]
 
 { #category : #'as yet unclassified' }
-PyramidSaveForm >> showInfoMethodWillOverride [
+PyramidSaveInputsView >> showInfoMethodWillOverride [
 
 	self labelErrorMethod
 		displayColor: [ :e | Color black ];
@@ -239,10 +230,21 @@ PyramidSaveForm >> showInfoMethodWillOverride [
 ]
 
 { #category : #'as yet unclassified' }
-PyramidSaveForm >> showInfoPackageWillBeCreated [
+PyramidSaveInputsView >> showInfoPackageWillBeCreated [
 
 	self labelErrorPackage
 		displayColor: [ :e | Color black ];
 		label: 'A new package will be created.';
 		yourself
+]
+
+{ #category : #'as yet unclassified' }
+PyramidSaveInputsView >> updateFromModel [
+
+	self inputPackage text: self model savingPackageName.
+	self inputClass text: self model savingClassName.
+	self inputMethod text: self model savingMethodName.
+	self model isClassSide
+		ifTrue: [ self buttonClass click ]
+		ifFalse: [ self buttonInstance click ]
 ]

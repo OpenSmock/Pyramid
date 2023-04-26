@@ -3,7 +3,8 @@ Class {
 	#superclass : #Object,
 	#instVars : [
 		'methodBuilder',
-		'savingModel'
+		'savingModel',
+		'verifier'
 	],
 	#category : #'NeoPyramid-plugin-save'
 }
@@ -16,25 +17,20 @@ PyramidSavingService >> canSave [
 	- if savingClassName exist it should be in the savingPackageName
 	"
 
-	self savingModel ifNil: [ ^ false ].
-	self savingModel project ifNil: [ ^ false ].
-	self savingModel savingMethodName isValidSelector ifFalse: [ ^ false ].
-	self savingModel savingClassName isValidGlobalName ifFalse: [
-		^ false ].
-	self savingModel savingPackageName isValidGlobalName ifFalse: [
-		^ false ].
-	self class environment
-		at: self savingModel savingClassName
-		ifPresent: [ :class |
-			class package name = self savingModel savingPackageName ifFalse: [
-				^ false ] ].
-	^ true
+	^ self verifier verify: self savingModel.
+	
 ]
 
 { #category : #'as yet unclassified' }
 PyramidSavingService >> errorCannotSave [
 
 	PyramidSaveError signal: 'Cannot save with given model. Check canSave method to more explenation.'
+]
+
+{ #category : #accessing }
+PyramidSavingService >> initialize [
+
+	verifier := PyramidSaveModelVerifier new
 ]
 
 { #category : #accessing }
@@ -96,4 +92,16 @@ PyramidSavingService >> savingModel [
 PyramidSavingService >> savingModel: anObject [
 
 	savingModel := anObject
+]
+
+{ #category : #accessing }
+PyramidSavingService >> verifier [
+
+	^ verifier
+]
+
+{ #category : #accessing }
+PyramidSavingService >> verifier: aVerifier [
+
+	verifier := aVerifier
 ]
