@@ -45,11 +45,11 @@ PyramidActiveProjectModel >> pyramidSelectionChanged [
 { #category : #accessing }
 PyramidActiveProjectModel >> roots [
 
-	^ self project roots collection
+	^ self project roots
 ]
 
 { #category : #accessing }
 PyramidActiveProjectModel >> selection [
 
-	^ self project selection collection
+	^ self project selection
 ]

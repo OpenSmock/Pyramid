@@ -28,7 +28,7 @@ PyramidProjectModel >> initialize [
 { #category : #accessing }
 PyramidProjectModel >> roots [
 
-	^ roots
+	^ roots collection
 ]
 
 { #category : #'event handling' }
@@ -40,7 +40,7 @@ PyramidProjectModel >> rootsChanged [
 { #category : #accessing }
 PyramidProjectModel >> selection [
 
-	^ selection
+	^ selection collection
 ]
 
 { #category : #'event handling' }
