@@ -11,15 +11,6 @@ Class {
 	#category : #'NeoPyramid-plugin-history'
 }
 
-{ #category : #initialization }
-PyramidHistoryView >> childrenBlock [
-
-	^ [ :each |
-			            each isSequence
-				            ifTrue: [ each mementos ]
-				            ifFalse: [ {  } ] ]
-]
-
 { #category : #layout }
 PyramidHistoryView >> defaultLayout [
 
@@ -28,17 +19,6 @@ PyramidHistoryView >> defaultLayout [
 		add: self undoTree;
 		add: self redoTree;
 		yourself
-]
-
-{ #category : #initialization }
-PyramidHistoryView >> displayBlock [
-
-	^ [ :each |
-	  each isSequence
-		  ifTrue: [ each printString ]
-		  ifFalse: [
-			  each command name printString , ' '
-			  , each command state arguments printString , ' ' , each target printString ] ]
 ]
 
 { #category : #initialization }
@@ -59,14 +39,14 @@ PyramidHistoryView >> initializePresenters [
 	undoTree := self newTree
 		            beSingleSelection;
 		            roots: {  };
-		            display: self displayBlock;
-		            children: self childrenBlock;
+		            display: self undoDisplayBlock;
+		            children: self undoChildrenBlock;
 		            expandRoots.
 	redoTree := self newTree
 		            beSingleSelection;
 		            roots: {  };
-		            display: self displayBlock;
-		            children: self childrenBlock;
+		            display: self redoDisplayBlock;
+		            children: self redoChildrenBlock;
 		            expandRoots
 ]
 
@@ -88,10 +68,52 @@ PyramidHistoryView >> pyramidHistoryUndo [
 	self updateRoots
 ]
 
+{ #category : #initialization }
+PyramidHistoryView >> redoChildrenBlock [
+
+	^ [ :each |
+	  each redoMemento isSequence
+		  ifTrue: [ each redoMemento mementos ]
+		  ifFalse: [ {  } ] ]
+]
+
+{ #category : #initialization }
+PyramidHistoryView >> redoDisplayBlock [
+
+	^ [ :each |
+	  each redoMemento isSequence
+		  ifTrue: [ each redoMemento printString ]
+		  ifFalse: [
+			  each redoMemento command name printString , ' '
+			  , each redoMemento command state arguments printString , ' '
+			  , each redoMemento target printString ] ]
+]
+
 { #category : #layout }
 PyramidHistoryView >> redoTree [
 
 	^ redoTree
+]
+
+{ #category : #initialization }
+PyramidHistoryView >> undoChildrenBlock [
+
+	^ [ :each |
+	  each undoMemento isSequence
+		  ifTrue: [ each undoMemento mementos ]
+		  ifFalse: [ {  } ] ]
+]
+
+{ #category : #initialization }
+PyramidHistoryView >> undoDisplayBlock [
+
+	^ [ :each |
+	  each undoMemento isSequence
+		  ifTrue: [ each undoMemento printString ]
+		  ifFalse: [
+			  each undoMemento command name printString , ' '
+			  , each undoMemento command state arguments printString , ' '
+			  , each undoMemento target printString ] ]
 ]
 
 { #category : #layout }
