@@ -22,5 +22,5 @@ PyramidMementoSaver >> collection: anObject [
 { #category : #adding }
 PyramidMementoSaver >> saveMemento: aMemento [
 
-	self collection addFirst: aMemento.
+	self collection addFirst: aMemento
 ]

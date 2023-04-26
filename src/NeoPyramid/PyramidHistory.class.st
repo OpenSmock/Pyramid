@@ -9,8 +9,7 @@ Class {
 		'undoCounter',
 		'mementos',
 		'undoPipeline',
-		'mainPipeline',
-		'originMemento'
+		'mainPipeline'
 	],
 	#category : #'NeoPyramid-plugin-history'
 }
@@ -45,11 +44,13 @@ PyramidHistory >> initialize [
 	undoCounter := 0.
 	mementos := OrderedCollection new.
 	undoPipeline := PyramidPipeline new.
-	beforeMementoSaver := PyramidMementoSaverForOriginAndReset new
-		                      history: self;
+	self flag: #TODO. "Changer le nom de la classe des memento svaers"
+	beforeMementoSaver := PyramidMementoSaverWithModelBefore new
+		                      collection: self mementos;
 		                      pipeline: self undoPipeline;
+		history: self;
 		                      yourself.
-	afterMementoSaver := PyramidMementoSaver new
+	afterMementoSaver := PyramidMementoSaverWithModelAfter new
 		                     collection: self mementos;
 		                     pipeline: self undoPipeline;
 		                     yourself
@@ -75,23 +76,11 @@ PyramidHistory >> mementos [
 	^ mementos
 ]
 
-{ #category : #testing }
-PyramidHistory >> originMemento [
-
-	^ originMemento.
-]
-
-{ #category : #testing }
-PyramidHistory >> originMemento: anObject [
-
-	originMemento := anObject
-]
-
 { #category : #'menu messages' }
 PyramidHistory >> redo [
 
 	self canRedo ifFalse: [ ^ self ].
-	self redoCollection last restore.
+	self redoCollection first redoMemento restore.
 	self undoCounterDecrement.
 	self mainPipeline informPipelineExecuteCommand.
 	self informRedo
@@ -100,22 +89,22 @@ PyramidHistory >> redo [
 { #category : #accessing }
 PyramidHistory >> redoCollection [
 
-	^ self mementos first: self undoCounter
+	^ (self mementos first: self undoCounter) reversed
 ]
 
 { #category : #initialization }
 PyramidHistory >> resetUndoCounter [
 
+	self mementos removeAll: self redoCollection.
 	undoCounter := 0.
 	self informCounterReset
-	
 ]
 
 { #category : #'menu messages' }
 PyramidHistory >> undo [
 
 	self canUndo ifFalse: [ ^ self ].
-	self undoCollection first restore.
+	self undoCollection first undoMemento restore.
 	self undoCounterIncrement.
 	self mainPipeline informPipelineExecuteCommand.
 	self informUndo
@@ -124,11 +113,7 @@ PyramidHistory >> undo [
 { #category : #accessing }
 PyramidHistory >> undoCollection [
 
-	self originMemento ifNotNil: [
-		^ (self mementos allButFirst
-			  addLast: self originMemento;
-			  yourself) allButFirst: self undoCounter].
-	^ {  }
+	^ self mementos allButFirst: self undoCounter
 ]
 
 { #category : #testing }

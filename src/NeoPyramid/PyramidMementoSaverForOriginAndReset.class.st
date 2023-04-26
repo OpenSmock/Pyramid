@@ -22,7 +22,7 @@ PyramidMementoSaverForOriginAndReset >> history: anObject [
 { #category : #adding }
 PyramidMementoSaverForOriginAndReset >> saveMemento: aMemento [
 
-	self history originMemento ifNil: [
-		self history originMemento: aMemento ].
+	self history mementos ifNotEmpty: [ self history mementos removeFirst ].
+	self history mementos addFirst: aMemento.
 	self history resetUndoCounter
 ]

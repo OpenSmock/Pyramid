@@ -41,3 +41,9 @@ PyramidMementoSequence >> restore [
 
 	self mementos do: [ :each | each restore ]
 ]
+
+{ #category : #accessing }
+PyramidMementoSequence >> size [
+
+	^ self mementos size
+]
