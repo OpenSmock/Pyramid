@@ -26,6 +26,14 @@ PyramidSelectionView >> activeProject: aPyramidActiveProject [
 ]
 
 { #category : #'as yet unclassified' }
+PyramidSelectionView >> connectPlaygroundTo: anObject [
+
+	self playground interactionModel:
+		(SpCodeObjectInteractionModel on: anObject).
+		self flag: #TODO. "remplacer ici par un interraction model custom en changeant la méthode doItReceiver par la meme chose mais en envoyant avant un message commande custom."
+]
+
+{ #category : #'as yet unclassified' }
 PyramidSelectionView >> currentSelection [
 
 	^ self activeProject selection elements
@@ -73,7 +81,11 @@ PyramidSelectionView >> pyramidSelectionChangedOnActiveProject [
 PyramidSelectionView >> updateSelection [
 
 	self list items: self currentSelection.
-	self currentSelection ifEmpty: [ self playground beForObject: nil. ^ self ].
-	(self currentSelection size = 1) ifTrue: [ self playground beForObject: self currentSelection first . ^ self].
-	self playground beForObject: self currentSelection
+	self currentSelection ifEmpty: [
+		self connectPlaygroundTo: nil.
+		^ self ].
+	self currentSelection size = 1 ifTrue: [
+		self connectPlaygroundTo: self currentSelection first.
+		^ self ].
+	self connectPlaygroundTo: self currentSelection
 ]
