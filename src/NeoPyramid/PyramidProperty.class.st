@@ -6,7 +6,6 @@ Class {
 		'command',
 		'pipeline',
 		'targetModel',
-		'inputModel',
 		'inputBuilder'
 	],
 	#category : #'NeoPyramid-plugin-properties'
@@ -69,17 +68,6 @@ PyramidProperty >> inputBuilder [
 PyramidProperty >> inputBuilder: anObject [
 
 	inputBuilder := anObject
-]
-
-{ #category : #accessing }
-PyramidProperty >> inputModel [
-	^ inputModel
-]
-
-{ #category : #accessing }
-PyramidProperty >> inputModel: anObject [
-
-	inputModel := anObject
 ]
 
 { #category : #'as yet unclassified' }

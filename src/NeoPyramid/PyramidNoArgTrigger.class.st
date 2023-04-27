@@ -5,7 +5,7 @@ Class {
 }
 
 { #category : #'as yet unclassified' }
-PyramidNoArgTrigger >> argBlock: aCallbackBlock input: input collection: collection [
+PyramidNoArgTrigger >> argBlock: aCallbackBlock input: input collection: collection model: model [
 
-	^ [ aCallbackBlock value: input value: collection ]
+	^ [ aCallbackBlock value: input value: collection value: model ]
 ]

@@ -8,7 +8,7 @@ Class {
 }
 
 { #category : #'as yet unclassified' }
-PyramidPropertyInputTrigger >> argBlock: aCallbackBlock input: input collection: collection [
+PyramidPropertyInputTrigger >> argBlock: aCallbackBlock input: input collection: collection model: model [
 
 	^ self shouldBeImplemented
 ]
@@ -16,8 +16,11 @@ PyramidPropertyInputTrigger >> argBlock: aCallbackBlock input: input collection:
 { #category : #'as yet unclassified' }
 PyramidPropertyInputTrigger >> makeTriggerBloc: aCallbackBlock [
 
-	^ [ :input :collection |
-	  input perform: self selector with: (self argBlock: aCallbackBlock input: input collection: collection) ]
+	^ [ :input :collection :model |
+	  input
+		  perform: self selector
+		  with:
+		  (self argBlock: aCallbackBlock input: input collection: collection model: model) ]
 ]
 
 { #category : #accessing }

@@ -5,13 +5,14 @@ Class {
 		'propertyModel',
 		'inputClass',
 		'connectInputBlock',
-		'setDefautValueBlock',
 		'noValue',
 		'multiValue',
 		'buttonCallbackBlock',
 		'initializeInputBlock',
 		'targetModel',
-		'sectionName'
+		'sectionName',
+		'inputModel',
+		'setDefautValueBlock'
 	],
 	#category : #'NeoPyramid-plugin-properties'
 }
@@ -19,19 +20,19 @@ Class {
 { #category : #building }
 PyramidPropertyInputModelBuilder >> build [
 
-	| inputModel |
-	inputModel := PyramidPropertyInputModel new.
-	inputModel sectionName: self sectionName.
-	inputModel globalInput: self makeInput.
+	self inputModel: (PyramidPropertyInputModel new
+			 sectionName: self sectionName;
+			 globalInput: self makeInput;
+			 yourself).
 	self
-		connectInput: inputModel globalInput
-		to: self targetModel targets.
-	self setDefautValueOfGlobalInput: inputModel globalInput.
+		connectInput: self inputModel globalInput
+		toCollection: self targetModel targets fromModel: self inputModel.
+	self setDefautValueOfGlobalInput: self inputModel globalInput.
 	self targetModel argumentsDict keysAndValuesDo: [ :arguments :targets |
 		targets do: [ :single |
-			inputModel addElementInput:
+			self inputModel addElementInput:
 				(self buildInputModelFor: single withArguments: arguments) ] ].
-	^ inputModel
+	^ self inputModel
 ]
 
 { #category : #'as yet unclassified' }
@@ -39,7 +40,8 @@ PyramidPropertyInputModelBuilder >> buildButtonFor: aCollection withInput: aSour
 
 	| button |
 	button := SpButtonPresenter new.
-	button action: [ self buttonCallbackBlock value: aSourceInput value: aCollection].
+	button action: [
+		self buttonCallbackBlock value: aSourceInput value: aCollection value: self inputModel ].
 	^ button
 ]
 
@@ -48,7 +50,7 @@ PyramidPropertyInputModelBuilder >> buildElementInputFor: aCollection withArgume
 
 	| elementInput |
 	elementInput := self makeInput.
-	self connectInput: elementInput to: aCollection.
+	self connectInput: elementInput toCollection: aCollection fromModel: self inputModel.
 	self setDefautValueOf: elementInput with: anArgument.
 	^ elementInput
 ]
@@ -83,9 +85,9 @@ PyramidPropertyInputModelBuilder >> buttonCallbackBlock: anObject [
 ]
 
 { #category : #'as yet unclassified' }
-PyramidPropertyInputModelBuilder >> connectInput: input to: aCollection [
-	self connectInputBlock value: input value: aCollection
-	
+PyramidPropertyInputModelBuilder >> connectInput: input toCollection: aCollection fromModel: aModel [
+
+	self connectInputBlock value: input value: aCollection value: aModel
 ]
 
 { #category : #accessing }
@@ -122,6 +124,17 @@ PyramidPropertyInputModelBuilder >> inputClass [
 PyramidPropertyInputModelBuilder >> inputClass: anObject [
 
 	inputClass := anObject
+]
+
+{ #category : #building }
+PyramidPropertyInputModelBuilder >> inputModel [
+	^ inputModel 
+]
+
+{ #category : #building }
+PyramidPropertyInputModelBuilder >> inputModel: anObject [
+
+	inputModel:=anObject
 ]
 
 { #category : #'as yet unclassified' }

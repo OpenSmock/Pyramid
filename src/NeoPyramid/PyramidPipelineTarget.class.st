@@ -44,6 +44,6 @@ PyramidPipelineTarget >> verify: aCommand [
 	"verify the collection, then the command."
 	self collection ifNil: [ ^ false ].
 	self collection isCollection ifFalse: [ ^ false ].
-	^ self collection allSatisfy: [ :each |
-		  aCommand isExecutableBy: each ]
+	self collection: (self collection select: [ :each |  aCommand isExecutableBy: each ]).
+	^ self collection isNotEmpty
 ]

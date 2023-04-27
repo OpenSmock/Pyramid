@@ -9,6 +9,7 @@ Class {
 		'inputClass',
 		'triggerBlockStrategy',
 		'initializeBlock',
+		'inputToInputBlock',
 		'shouldTriggerOnNil',
 		'sectionName'
 	],
@@ -19,9 +20,10 @@ Class {
 PyramidPropertyInputModelBuilderFactory class >> identifierTextInput [
 
 	^ self new
-		sectionName: 'Identity';
+		  sectionName: 'Identity';
 		  inputClass: SpTextInputFieldPresenter;
 		  initializeBlock: [ :input |  ];
+		inputToInputBlock: [ :source :target | target text: source text ];
 		  mutliValuesDefault: '# mixed values';
 		  noValueDefault: '# no values';
 		  transformInBlock: [ :input :value |
@@ -38,9 +40,10 @@ PyramidPropertyInputModelBuilderFactory class >> identifierTextInput [
 PyramidPropertyInputModelBuilderFactory class >> mockPresenter [
 
 	^ self new
-			 sectionName: 'Mock';
+		  sectionName: 'Mock';
 		  inputClass: PyramidMockSpecPresenter;
 		  initializeBlock: [ :input |  ];
+		inputToInputBlock: [ :source :target | target text: source text ];
 		  mutliValuesDefault: '# mixed values';
 		  noValueDefault: '# no values';
 		  transformInBlock: [ :input :value |
@@ -57,7 +60,7 @@ PyramidPropertyInputModelBuilderFactory class >> mockPresenter [
 PyramidPropertyInputModelBuilderFactory class >> visibilityDropList [
 
 	^ self new
-		 sectionName: 'Visibility';
+		  sectionName: 'Visibility';
 		  dontTriggerOnNil;
 		  inputClass: SpDropListPresenter;
 		  initializeBlock: [ :input |
@@ -82,6 +85,7 @@ PyramidPropertyInputModelBuilderFactory class >> visibilityDropList [
 							   display: [ :e | 'Gone' ];
 							   yourself) };
 				  yourself ];
+			inputToInputBlock: [ :source :target | target selectIndex: source selectedIndex ];
 		  mutliValuesDefault: nil;
 		  noValueDefault: nil;
 		  transformInBlock: [ :input :value |
@@ -143,6 +147,18 @@ PyramidPropertyInputModelBuilderFactory >> inputClass: anObject [
 	inputClass := anObject
 ]
 
+{ #category : #accessing }
+PyramidPropertyInputModelBuilderFactory >> inputToInputBlock [
+
+	^ inputToInputBlock
+]
+
+{ #category : #accessing }
+PyramidPropertyInputModelBuilderFactory >> inputToInputBlock: anObject [
+
+	inputToInputBlock := anObject
+]
+
 { #category : #'as yet unclassified' }
 PyramidPropertyInputModelBuilderFactory >> installBuilderOn: aPorperty [
 
@@ -152,17 +168,30 @@ PyramidPropertyInputModelBuilderFactory >> installBuilderOn: aPorperty [
 { #category : #'as yet unclassified' }
 PyramidPropertyInputModelBuilderFactory >> makeCallBackBlock: aProperty [
 
-	self shouldTriggerOnNil ifTrue: [ ^ [ :input :collection |
-	  aProperty
-		  submit: (self transformOutBlock value: input)
-		  on: collection ] ] ifFalse: [ ^ [ :input :collection | | value |
-		value := (self transformOutBlock value: input).
-		value ifNotNil: [ aProperty
-		  submit: value
-		  on: collection ] ]
-	  
-	 ]
-	
+	self shouldTriggerOnNil
+		ifTrue: [
+			^ [ :input :collection :model |
+			  aProperty
+				  submit: (self transformOutBlock value: input)
+				  on: collection.
+				self transformInBlock
+					  value: model globalInput
+					  value: self mutliValuesDefault.
+			  (model allInputsOf: collection) do: [ :each |
+				  input = each ifFalse: [
+					  self inputToInputBlock value: input value: each ] ] ] ]
+		ifFalse: [
+			^ [ :input :collection :model |
+			  | value |
+			  value := self transformOutBlock value: input.
+			  value ifNotNil: [
+				  aProperty submit: value on: collection.
+				  self transformInBlock
+					  value: model globalInput
+					  value: self mutliValuesDefault.
+				  (model allInputsOf: collection) do: [ :each |
+					  input = each ifFalse: [
+						  self inputToInputBlock value: input value: each ] ] ] ] ]
 ]
 
 { #category : #'as yet unclassified' }
@@ -174,6 +203,7 @@ PyramidPropertyInputModelBuilderFactory >> makeInputBuilderFrom: aProperty [
 	connectTriggerBlock := self triggerBlockStrategy makeTriggerBloc:
 		                       callbakBlock.
 	^ PyramidPropertyInputModelBuilder new
+	
 		  sectionName: self sectionName;
 		  targetModel: targetModel;
 		  inputClass: self inputClass;
