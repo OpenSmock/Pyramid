@@ -80,36 +80,39 @@ PyramidSaveInputsView >> hideLabelPackage [
 	self labelErrorPackage label: ''
 ]
 
+{ #category : #configuration }
+PyramidSaveInputsView >> hideLabels [
+
+	self labelErrorClass label: ''.
+	self labelErrorMethod label: ''.
+	self labelErrorPackage label: ''.
+]
+
 { #category : #initialization }
 PyramidSaveInputsView >> initializePresenters [
 
 	inputPackage := self newTextInput
 		                placeholder: 'Enter a package name';
-		                whenTextChangedDo: [
-			                | text |
-			                text := inputPackage text.
+		                whenTextChangedDo: [ :text |
 			                self controller textUpdatedFromPackage: text ];
 		                yourself.
 
 	inputClass := self newTextInput
 		              placeholder: 'Enter a class name';
-		              whenTextChangedDo: [
-			              | text |
-			              text := inputClass text.
+		              whenTextChangedDo: [ :text |
 			              self controller textUpdatedFromClass: text ];
 		              yourself.
 
 	inputMethod := self newTextInput
 		               placeholder: 'Enter a method name';
-		               whenTextChangedDo: [
-			               | text |
-			               text := inputMethod text.
+		               whenTextChangedDo: [ :text |
 			               self controller textUpdatedFromMethod: text ];
 		               yourself.
 
 	buttonClass := self newRadioButton
 		               label: 'save on class side';
-							whenChangedDo: [ :aBoolean | self controller radioUpdatedOnClassSide: aBoolean ];
+		               whenChangedDo: [ :aBoolean |
+			               self controller radioUpdatedOnClassSide: aBoolean ];
 		               yourself.
 	buttonInstance := self newRadioButton
 		                  label: 'save on instance side';
@@ -175,67 +178,43 @@ PyramidSaveInputsView >> model: aPySaveModel [
 ]
 
 { #category : #'as yet unclassified' }
-PyramidSaveInputsView >> showErrorClassMissing [
+PyramidSaveInputsView >> showClassIsNotValidError [
 
 	self labelErrorClass
-		displayColor: [ :e | Color red ];
-		label: 'Class name should not be empty.';
-		yourself
+		displayColor: [ Color red ];
+		label: 'Class name is not valid.'
 ]
 
 { #category : #'as yet unclassified' }
-PyramidSaveInputsView >> showErrorMethodMissing [
-
-	self labelErrorMethod
-		displayColor: [ :e | Color red ];
-		label: 'Method name should not be empty.';
-		yourself
-]
-
-{ #category : #'as yet unclassified' }
-PyramidSaveInputsView >> showErrorMethodWillOverride [
-
-	self labelErrorMethod
-		displayColor: [ :e | Color red ];
-		label: 'Saving will override a method from the System. Be carefull';
-		yourself
-]
-
-{ #category : #'as yet unclassified' }
-PyramidSaveInputsView >> showErrorPackageMissing [
-
-	self labelErrorPackage
-	displayColor: [ :e | Color red ];
-		label: 'Package name should not be empty.';
-		yourself
-		
-]
-
-{ #category : #'as yet unclassified' }
-PyramidSaveInputsView >> showInfoClassWillBeCreated [
+PyramidSaveInputsView >> showClassPackageIsNotEqualError [
 
 	self labelErrorClass
-		displayColor: [ :e | Color black ];
-		label: 'A new class will be created.';
-		yourself
+		displayColor: [ Color red ];
+		label: 'This class already exist in another package.'
 ]
 
 { #category : #'as yet unclassified' }
-PyramidSaveInputsView >> showInfoMethodWillOverride [
+PyramidSaveInputsView >> showMethodIsNotValidError [
 
 	self labelErrorMethod
-		displayColor: [ :e | Color black ];
-		label: 'Saving will override an existing Bloc project.';
-		yourself
+		displayColor: [ Color red ];
+		label: 'Method name is not valid.'
 ]
 
 { #category : #'as yet unclassified' }
-PyramidSaveInputsView >> showInfoPackageWillBeCreated [
+PyramidSaveInputsView >> showPackageIsNotValidError [
 
 	self labelErrorPackage
-		displayColor: [ :e | Color black ];
-		label: 'A new package will be created.';
-		yourself
+		displayColor: [ Color red ];
+		label: 'Package name is not valid.'
+]
+
+{ #category : #'as yet unclassified' }
+PyramidSaveInputsView >> showProjectNilError [
+
+	self labelErrorPackage
+		displayColor: [Color red];
+		label: 'No project loaded.'
 ]
 
 { #category : #'as yet unclassified' }

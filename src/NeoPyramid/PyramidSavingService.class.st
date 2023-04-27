@@ -28,12 +28,6 @@ PyramidSavingService >> errorCannotSave [
 ]
 
 { #category : #accessing }
-PyramidSavingService >> initialize [
-
-	verifier := PyramidSaveModelVerifier new
-]
-
-{ #category : #accessing }
 PyramidSavingService >> methodBuilder [
 
 	^ methodBuilder
@@ -97,6 +91,7 @@ PyramidSavingService >> savingModel: anObject [
 { #category : #accessing }
 PyramidSavingService >> verifier [
 
+	verifier ifNil: [ verifier := PyramidSaveModelVerifier verifierNoError ].
 	^ verifier
 ]
 

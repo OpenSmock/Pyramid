@@ -1,6 +1,7 @@
 Class {
 	#name : #PyramidPluginSelection,
 	#superclass : #Object,
+	#traits : 'TPyramidPlugin',
 	#classTraits : 'TPyramidPlugin classTrait',
 	#instVars : [
 		'activeProject',

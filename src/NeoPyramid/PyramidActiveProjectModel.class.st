@@ -9,6 +9,12 @@ Class {
 	#category : #'NeoPyramid-models'
 }
 
+{ #category : #'as yet unclassified' }
+PyramidActiveProjectModel >> informActiveProjectChanged [
+
+	self observers do: [ :each | each pyramidActiveProjectChanged ]
+]
+
 { #category : #initialization }
 PyramidActiveProjectModel >> initialize [
 	project := PyramidProjectModel new.

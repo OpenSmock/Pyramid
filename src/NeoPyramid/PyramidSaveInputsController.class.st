@@ -3,7 +3,8 @@ Class {
 	#superclass : #Object,
 	#instVars : [
 		'view',
-		'model'
+		'model',
+		'verifier'
 	],
 	#category : #'NeoPyramid-plugin-save'
 }
@@ -11,7 +12,7 @@ Class {
 { #category : #accessing }
 PyramidSaveInputsController >> model [
 
-	model ifNil: [ model := PyramidSaveModel new yourself ].
+	model ifNil: [ model := PyramidSaveModel new ].
 	^ model
 ]
 
@@ -25,29 +26,54 @@ PyramidSaveInputsController >> model: aPyramidSaveModel [
 { #category : #'as yet unclassified' }
 PyramidSaveInputsController >> radioUpdatedOnClassSide: aBoolean [
 
-	
+	aBoolean
+		ifTrue: [ self model onClass ]
+		ifFalse: [ self model onInstance ]. self updateView
 ]
 
 { #category : #'as yet unclassified' }
 PyramidSaveInputsController >> textUpdatedFromClass: aString [
 
-	
+	self model savingClassName: aString.
+	self updateView
 ]
 
 { #category : #'as yet unclassified' }
 PyramidSaveInputsController >> textUpdatedFromMethod: aString [
 
-	
+		self model savingMethodName: aString.
+	self updateView
 ]
 
 { #category : #'as yet unclassified' }
 PyramidSaveInputsController >> textUpdatedFromPackage: aString [
+
+	self model savingPackageName: aString.
+	self updateView
+]
+
+{ #category : #'as yet unclassified' }
+PyramidSaveInputsController >> updateView [
+
+	| errors |
+	errors := self verifier allErrors: self model.
+	self view hideLabels.
+	errors do: [ :each | each showOn: self view ]
+]
+
+{ #category : #accessing }
+PyramidSaveInputsController >> verifier [
+
+	verifier ifNil: [
+		verifier := PyramidSaveModelVerifier verifierNoErrorForInputsView ].
+	^ verifier
 ]
 
 { #category : #accessing }
 PyramidSaveInputsController >> view [
 
-	view ifNil: [ view := PyramidSaveInputsView new controller: self; model: self model; yourself ].
+	view ifNil: [ view := PyramidSaveInputsView new.
+		view controller: self; model: self model ].
 	^ view
 ]
 

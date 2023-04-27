@@ -7,7 +7,7 @@ Trait {
 }
 
 { #category : #'as yet unclassified' }
-TPyramidActiveProjectModelObserver >> pyramidActiveProjectChangedChanged [
+TPyramidActiveProjectModelObserver >> pyramidActiveProjectChanged [
 
 	
 ]
