@@ -5,7 +5,8 @@ Class {
 	#classTraits : 'TPyramidActiveProjectModelObserver classTrait',
 	#instVars : [
 		'activeProject',
-		'list'
+		'list',
+		'playground'
 	],
 	#category : #'NeoPyramid-plugin-selection'
 }
@@ -33,8 +34,9 @@ PyramidSelectionView >> currentSelection [
 { #category : #layout }
 PyramidSelectionView >> defaultLayout [
 
-	^ SpBoxLayout newVertical
-		  add: self list expand: true;
+	^ SpPanedLayout newVertical
+		  add: self list;
+		  add: self playground;
 		  yourself
 ]
 
@@ -42,12 +44,17 @@ PyramidSelectionView >> defaultLayout [
 PyramidSelectionView >> initializePresenters [
 
 	list := self newList.
-
+	playground := self newCode.
 ]
 
 { #category : #accessing }
 PyramidSelectionView >> list [
 ^ list
+]
+
+{ #category : #accessing }
+PyramidSelectionView >> playground [
+	^ playground
 ]
 
 { #category : #'as yet unclassified' }
@@ -65,5 +72,8 @@ PyramidSelectionView >> pyramidSelectionChangedOnActiveProject [
 { #category : #'as yet unclassified' }
 PyramidSelectionView >> updateSelection [
 
-	self list items: self currentSelection
+	self list items: self currentSelection.
+	self currentSelection ifEmpty: [ self playground beForObject: nil. ^ self ].
+	(self currentSelection size = 1) ifTrue: [ self playground beForObject: self currentSelection first . ^ self].
+	self playground beForObject: self currentSelection
 ]

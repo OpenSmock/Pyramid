@@ -37,7 +37,7 @@ PyramidPluginSelection >> initialize [
 PyramidPluginSelection >> initializeView [
 
 	view := PyramidTab new
-		        title: 'Selection';
+		        title: 'Playground';
 		        icon: (self iconNamed: #open);
 		        presenter: PyramidSelectionView new;
 		        yourself
