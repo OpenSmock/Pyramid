@@ -283,7 +283,7 @@ PyramidPropertyInputModelBuilderFactory >> updateInputs: input collection: colle
 	valueToSet := self transformOutBlock value: input.
 
 	(model allInputsOf: collection) do: [ :each |
-		self transformInBlock value: input value: valueToSet ].
+		self transformInBlock value: each value: valueToSet ].
 
 	((model allInputs collect:
 		 [ :each | self transformOutBlock value: each ]) asSet) size = 1
