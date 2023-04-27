@@ -60,13 +60,13 @@ PyramidSavePlugin >> initialize [
 		                 yourself.
 
 	inputsButton := PyramidButtonWithPopover new
-		                icon: (self iconNamed: #add);
+		                icon: (self iconNamed: #smallRemoteOpen);
 		                presenter: self inputsView;
-		                 alignCenter;
-		              order: 30;
+		                alignCenter;
+		                order: 30;
 		                yourself.
 	saveButton := PyramidButton new
-		              icon: (self iconNamed: #solidMenu);
+		              icon: (self iconNamed: #smallSave);
 		              alignCenter;
 		              order: 31;
 		              callback: [ self savingService save ];

@@ -15,7 +15,11 @@ PyramidSavingMethodBuilder class >> ston [
 
 	^ self new
 		  classifier: #'pyramid-serialized-bloc';
-		  comment: ('This class has been generated using Pyramid.<r><r><t><1s> <2s>' expandMacrosWith: Date today yyyymmdd with: Time now print24);
+		  comment:
+			  ('This class has been generated using Pyramid.<r><r><t>By: <1s><r><t><2s> <3s>'
+				   expandMacrosWith: Author uniqueInstance fullName
+				with: Date today yyyymmdd
+				   with: Time now print24);
 		  pragma: 'pySTON';
 		  serializeBlock: [ :collection |
 			  BlSerializer serialize: collection ];
