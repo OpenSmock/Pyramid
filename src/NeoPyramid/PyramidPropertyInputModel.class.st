@@ -16,14 +16,21 @@ PyramidPropertyInputModel >> addElementInput: anObject [
 ]
 
 { #category : #'as yet unclassified' }
+PyramidPropertyInputModel >> allInputs [
+
+	^ self elementInputModel collect: [ :each | each elementInput ].
+
+]
+
+{ #category : #'as yet unclassified' }
 PyramidPropertyInputModel >> allInputsOf: aCollection [
 
 	| inputs |
-	inputs := self elementInputModel select: [ :each |
-		          aCollection anySatisfy: [ :obj |
-			          obj = each referenceObject ] ] thenCollect: [:each | each elementInput].
-	inputs size = self elementInputSize ifTrue: [
-		inputs add: self globalInput ].
+	inputs := self elementInputModel
+		          select: [ :each |
+			          aCollection anySatisfy: [ :obj |
+				          obj = each referenceObject ] ]
+		          thenCollect: [ :each | each elementInput ].
 	^ inputs
 ]
 

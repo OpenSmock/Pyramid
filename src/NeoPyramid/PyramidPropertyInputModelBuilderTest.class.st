@@ -14,11 +14,11 @@ PyramidPropertyInputModelBuilderTest >> builderFrom: aPopertyModel [
 		                ifNotEmpty: [ input text ] ].
 	transformIn := [ :input :value |
 	               input text: (value ifNil: [ '' ] ifNotNil: [ value ]) ].
-	callback := [ :input :col |
+	callback := [ :input :col :model |
 	            col do: [ :each | each id: (transformOut value: input) ] ].
-	connectTriggerBlock := [ :input :col |
+	connectTriggerBlock := [ :input :col :model |
 	                       input whenSubmitDo: [ :val |
-		                       callback value: input value: col ] ].
+		                       callback value: input value: col value: model ] ].
 	initializeBlock := [ :input |  ].
 
 	^ PyramidPropertyInputModelBuilder new

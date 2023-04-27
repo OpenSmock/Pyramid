@@ -9,7 +9,6 @@ Class {
 		'inputClass',
 		'triggerBlockStrategy',
 		'initializeBlock',
-		'inputToInputBlock',
 		'shouldTriggerOnNil',
 		'sectionName'
 	],
@@ -23,7 +22,6 @@ PyramidPropertyInputModelBuilderFactory class >> identifierTextInput [
 		  sectionName: 'Identity';
 		  inputClass: SpTextInputFieldPresenter;
 		  initializeBlock: [ :input |  ];
-		inputToInputBlock: [ :source :target | target text: source text ];
 		  mutliValuesDefault: '# mixed values';
 		  noValueDefault: '# no values';
 		  transformInBlock: [ :input :value |
@@ -85,7 +83,6 @@ PyramidPropertyInputModelBuilderFactory class >> visibilityDropList [
 							   display: [ :e | 'Gone' ];
 							   yourself) };
 				  yourself ];
-			inputToInputBlock: [ :source :target | target selectIndex: source selectedIndex ];
 		  mutliValuesDefault: nil;
 		  noValueDefault: nil;
 		  transformInBlock: [ :input :value |
@@ -147,18 +144,6 @@ PyramidPropertyInputModelBuilderFactory >> inputClass: anObject [
 	inputClass := anObject
 ]
 
-{ #category : #accessing }
-PyramidPropertyInputModelBuilderFactory >> inputToInputBlock [
-
-	^ inputToInputBlock
-]
-
-{ #category : #accessing }
-PyramidPropertyInputModelBuilderFactory >> inputToInputBlock: anObject [
-
-	inputToInputBlock := anObject
-]
-
 { #category : #'as yet unclassified' }
 PyramidPropertyInputModelBuilderFactory >> installBuilderOn: aPorperty [
 
@@ -174,24 +159,15 @@ PyramidPropertyInputModelBuilderFactory >> makeCallBackBlock: aProperty [
 			  aProperty
 				  submit: (self transformOutBlock value: input)
 				  on: collection.
-				self transformInBlock
-					  value: model globalInput
-					  value: self mutliValuesDefault.
-			  (model allInputsOf: collection) do: [ :each |
-				  input = each ifFalse: [
-					  self inputToInputBlock value: input value: each ] ] ] ]
+			  self updateInputs: input collection: collection model: model ] ]
 		ifFalse: [
 			^ [ :input :collection :model |
 			  | value |
 			  value := self transformOutBlock value: input.
 			  value ifNotNil: [
 				  aProperty submit: value on: collection.
-				  self transformInBlock
-					  value: model globalInput
-					  value: self mutliValuesDefault.
-				  (model allInputsOf: collection) do: [ :each |
-					  input = each ifFalse: [
-						  self inputToInputBlock value: input value: each ] ] ] ] ]
+				  self updateInputs: input collection: collection model: model.
+				   ] ] ]
 ]
 
 { #category : #'as yet unclassified' }
@@ -298,4 +274,23 @@ PyramidPropertyInputModelBuilderFactory >> triggerBlockStrategy [
 PyramidPropertyInputModelBuilderFactory >> triggerBlockStrategy: anObject [
 
 	triggerBlockStrategy := anObject
+]
+
+{ #category : #'as yet unclassified' }
+PyramidPropertyInputModelBuilderFactory >> updateInputs: input collection: collection model: model [
+
+	| valueToSet |
+	valueToSet := self transformOutBlock value: input.
+
+	(model allInputsOf: collection) do: [ :each |
+		self transformInBlock value: input value: valueToSet ].
+
+	((model allInputs collect:
+		 [ :each | self transformOutBlock value: each ]) asSet) size = 1
+		ifTrue: [
+		self transformInBlock value: model globalInput value: valueToSet ]
+		ifFalse: [
+			self transformInBlock
+				value: model globalInput
+				value: self mutliValuesDefault ]
 ]
