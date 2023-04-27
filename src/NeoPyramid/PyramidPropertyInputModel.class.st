@@ -3,7 +3,8 @@ Class {
 	#superclass : #Object,
 	#instVars : [
 		'globalInput',
-		'elementInputModel'
+		'elementInputModel',
+		'sectionName'
 	],
 	#category : #'NeoPyramid-plugin-properties'
 }
@@ -56,4 +57,15 @@ PyramidPropertyInputModel >> initialize [
 PyramidPropertyInputModel >> removeElementInput: anObject [
 
 	elementInputModel remove: anObject
+]
+
+{ #category : #accessing }
+PyramidPropertyInputModel >> sectionName [
+
+	^ sectionName
+]
+
+{ #category : #accessing }
+PyramidPropertyInputModel >> sectionName: aString [
+	sectionName:=aString
 ]

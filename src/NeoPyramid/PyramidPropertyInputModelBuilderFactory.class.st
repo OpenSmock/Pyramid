@@ -9,7 +9,8 @@ Class {
 		'inputClass',
 		'triggerBlockStrategy',
 		'initializeBlock',
-		'shouldTriggerOnNil'
+		'shouldTriggerOnNil',
+		'sectionName'
 	],
 	#category : #'NeoPyramid-plugin-properties'
 }
@@ -18,8 +19,9 @@ Class {
 PyramidPropertyInputModelBuilderFactory class >> identifierTextInput [
 
 	^ self new
+		sectionName: 'Identity';
 		  inputClass: SpTextInputFieldPresenter;
-		  initializeBlock: [ :input | ];
+		  initializeBlock: [ :input |  ];
 		  mutliValuesDefault: '# mixed values';
 		  noValueDefault: '# no values';
 		  transformInBlock: [ :input :value |
@@ -36,6 +38,7 @@ PyramidPropertyInputModelBuilderFactory class >> identifierTextInput [
 PyramidPropertyInputModelBuilderFactory class >> mockPresenter [
 
 	^ self new
+			 sectionName: 'Mock';
 		  inputClass: PyramidMockSpecPresenter;
 		  initializeBlock: [ :input |  ];
 		  mutliValuesDefault: '# mixed values';
@@ -54,6 +57,7 @@ PyramidPropertyInputModelBuilderFactory class >> mockPresenter [
 PyramidPropertyInputModelBuilderFactory class >> visibilityDropList [
 
 	^ self new
+		 sectionName: 'Visibility';
 		  dontTriggerOnNil;
 		  inputClass: SpDropListPresenter;
 		  initializeBlock: [ :input |
@@ -170,6 +174,7 @@ PyramidPropertyInputModelBuilderFactory >> makeInputBuilderFrom: aProperty [
 	connectTriggerBlock := self triggerBlockStrategy makeTriggerBloc:
 		                       callbakBlock.
 	^ PyramidPropertyInputModelBuilder new
+		  sectionName: self sectionName;
 		  targetModel: targetModel;
 		  inputClass: self inputClass;
 		  initializeInputBlock: self initializeBlock;
@@ -209,6 +214,18 @@ PyramidPropertyInputModelBuilderFactory >> noValueDefault [
 PyramidPropertyInputModelBuilderFactory >> noValueDefault: anObject [
 
 	noValueDefault := anObject
+]
+
+{ #category : #accessing }
+PyramidPropertyInputModelBuilderFactory >> sectionName [
+
+	^ sectionName
+]
+
+{ #category : #accessing }
+PyramidPropertyInputModelBuilderFactory >> sectionName: aString [
+
+	sectionName := aString
 ]
 
 { #category : #accessing }

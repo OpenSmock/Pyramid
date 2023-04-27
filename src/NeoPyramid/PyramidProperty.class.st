@@ -13,12 +13,11 @@ Class {
 }
 
 { #category : #accessing }
-PyramidProperty class >> fromCommand: aPyramidCommand inputBuilder: aPyramidPropertyInputModelBuilderFactory pipeline: aPyramidPipeline [
+PyramidProperty class >> fromCommand: aPyramidCommand inputBuilder: aPyramidPropertyInputModelBuilderFactory [
 
 	| property |
 	property := self new
 		            command: aPyramidCommand;
-		            pipeline: aPyramidPipeline;
 		            yourself.
 	aPyramidPropertyInputModelBuilderFactory installBuilderOn: property.
 	^ property
@@ -27,8 +26,10 @@ PyramidProperty class >> fromCommand: aPyramidCommand inputBuilder: aPyramidProp
 { #category : #accessing }
 PyramidProperty class >> identifier [
 
-^ self fromCommand:  PyramidCommand identifier inputBuilder: PyramidPropertyInputModelBuilderFactory identifierTextInput pipeline: PyramidPipeline new
-	
+	^ self
+		  fromCommand: PyramidCommand identifier
+		  inputBuilder:
+		  PyramidPropertyInputModelBuilderFactory identifierTextInput
 ]
 
 { #category : #accessing }
@@ -38,7 +39,6 @@ PyramidProperty class >> visibility [
 		  fromCommand: PyramidCommand visibility
 		  inputBuilder:
 		  PyramidPropertyInputModelBuilderFactory visibilityDropList
-		  pipeline: PyramidPipeline new
 ]
 
 { #category : #accessing }

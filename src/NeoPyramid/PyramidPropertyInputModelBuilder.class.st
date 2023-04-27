@@ -10,7 +10,8 @@ Class {
 		'multiValue',
 		'buttonCallbackBlock',
 		'initializeInputBlock',
-		'targetModel'
+		'targetModel',
+		'sectionName'
 	],
 	#category : #'NeoPyramid-plugin-properties'
 }
@@ -20,6 +21,7 @@ PyramidPropertyInputModelBuilder >> build [
 
 	| inputModel |
 	inputModel := PyramidPropertyInputModel new.
+	inputModel sectionName: self sectionName.
 	inputModel globalInput: self makeInput.
 	self
 		connectInput: inputModel globalInput
@@ -152,6 +154,18 @@ PyramidPropertyInputModelBuilder >> noValue [
 PyramidPropertyInputModelBuilder >> noValue: anObject [
 
 	noValue := anObject
+]
+
+{ #category : #accessing }
+PyramidPropertyInputModelBuilder >> sectionName [
+
+	^ sectionName
+]
+
+{ #category : #accessing }
+PyramidPropertyInputModelBuilder >> sectionName: aString [
+
+	sectionName := aString
 ]
 
 { #category : #accessing }
