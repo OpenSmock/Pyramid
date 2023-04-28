@@ -32,13 +32,6 @@ PyramidPluginDynamicLayout >> addPanelsOn: aPyramidSimpleWindow [
 ]
 
 { #category : #'as yet unclassified' }
-PyramidPluginDynamicLayout >> buildViewFrom: aPyramidGlobalViewBuilder [
-
-	aPyramidGlobalViewBuilder model tools add: self leftButton.
-	aPyramidGlobalViewBuilder model tools add: self rightButton
-]
-
-{ #category : #'as yet unclassified' }
 PyramidPluginDynamicLayout >> changeEditorLayout [
 
 	| strategy |
@@ -58,7 +51,6 @@ PyramidPluginDynamicLayout >> changeEditorLayout [
 { #category : #'as yet unclassified' }
 PyramidPluginDynamicLayout >> connectOn: aPyramidEditor [
 
-	editorView := aPyramidEditor view.
 	self flag: #TODO. "Changement de layout désactiver à cause de la nouvelle vue"
 	"self changeEditorLayout"
 ]
@@ -71,28 +63,12 @@ PyramidPluginDynamicLayout >> editorView [
 { #category : #initialization }
 PyramidPluginDynamicLayout >> initialize [
 
-	"leftButton := PyramidToggleButton new
-		              icon: (self iconNamed: #solidMenu);
-		              alignStart;
-		              order: -1000;
-		              callback: [ self changeEditorLayout ];
-		              state: true;
-		              yourself.
-	rightButton := PyramidToggleButton new
-		               icon: (self iconNamed: #solidMenu);
-		               alignEnd;
-		               order: 1000;
-		               callback: [ self changeEditorLayout ];
-		               state: true;
-		               yourself"
-		leftButton := SpButtonPresenter new
+	leftButton := SpButtonPresenter new
 		              icon: (self iconNamed: #solidMenu);
 		              yourself.
 	rightButton := SpButtonPresenter new
 		               icon: (self iconNamed: #solidMenu);
-		      
 		               yourself
-		
 ]
 
 { #category : #accessing }

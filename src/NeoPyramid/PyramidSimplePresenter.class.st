@@ -5,7 +5,7 @@ Class {
 		'presenter',
 		'constraints'
 	],
-	#category : #'NeoPyramid-views'
+	#category : #'NeoPyramid-views-deprecated'
 }
 
 { #category : #accessing }

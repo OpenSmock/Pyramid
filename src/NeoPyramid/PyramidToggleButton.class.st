@@ -5,7 +5,7 @@ Class {
 		'state',
 		'spec'
 	],
-	#category : #'NeoPyramid-views'
+	#category : #'NeoPyramid-views-deprecated'
 }
 
 { #category : #converting }

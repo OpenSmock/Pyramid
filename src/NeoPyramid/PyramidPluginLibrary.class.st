@@ -4,7 +4,6 @@ Class {
 	#traits : 'TPyramidPlugin',
 	#classTraits : 'TPyramidPlugin classTrait',
 	#instVars : [
-		'spaceView',
 		'addButton',
 		'popover',
 		'libraryView'
@@ -26,18 +25,10 @@ PyramidPluginLibrary >> addButton [
 { #category : #adding }
 PyramidPluginLibrary >> addPanelsOn: aPyramidSimpleWindow [
 
-	self flag: #TODO.
-	
 	aPyramidSimpleWindow
 		at: #topLeft
 		addItem: [ :builder |
-		builder makeButtonWithIcon: self addButton order: 10 ].
-]
-
-{ #category : #'as yet unclassified' }
-PyramidPluginLibrary >> buildViewFrom: aPyramidGlobalViewBuilder [
-
-	aPyramidGlobalViewBuilder model tools add: self addButton
+		builder makeButtonWithIcon: self addButton order: 10 ]
 ]
 
 { #category : #'as yet unclassified' }

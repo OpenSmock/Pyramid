@@ -1,7 +1,7 @@
 Class {
 	#name : #PyramidSimpleLayoutStrategy,
 	#superclass : #PyramidLayoutStrategy,
-	#category : #'NeoPyramid-views'
+	#category : #'NeoPyramid-views-deprecated'
 }
 
 { #category : #'as yet unclassified' }

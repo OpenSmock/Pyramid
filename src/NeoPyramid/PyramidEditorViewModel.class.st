@@ -11,7 +11,7 @@ Class {
 		'centralView',
 		'centralViews'
 	],
-	#category : #'NeoPyramid-views'
+	#category : #'NeoPyramid-views-deprecated'
 }
 
 { #category : #accessing }

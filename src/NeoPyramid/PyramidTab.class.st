@@ -6,7 +6,7 @@ Class {
 		'title',
 		'presenter'
 	],
-	#category : #'NeoPyramid-views'
+	#category : #'NeoPyramid-views-deprecated'
 }
 
 { #category : #accessing }

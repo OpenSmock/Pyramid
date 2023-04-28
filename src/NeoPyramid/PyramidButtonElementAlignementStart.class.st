@@ -1,7 +1,7 @@
 Class {
 	#name : #PyramidButtonElementAlignementStart,
 	#superclass : #PyramidButtonElementAlignement,
-	#category : #'NeoPyramid-views'
+	#category : #'NeoPyramid-views-deprecated'
 }
 
 { #category : #adding }

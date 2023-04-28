@@ -5,7 +5,7 @@ Class {
 		'model',
 		'layoutStrategy'
 	],
-	#category : #'NeoPyramid-views'
+	#category : #'NeoPyramid-views-deprecated'
 }
 
 { #category : #layout }

@@ -3,9 +3,9 @@ Class {
 	#superclass : #Object,
 	#instVars : [
 		'plugins',
-		'view',
 		'activeProject',
-		'commandPipeline'
+		'commandPipeline',
+		'window'
 	],
 	#category : #'NeoPyramid-core'
 }
@@ -26,7 +26,6 @@ PyramidEditor >> commandPipeline [
 PyramidEditor >> initialize [
 
 	activeProject := PyramidActiveProjectModel new.
-	view := PyramidEditorVoidView new.
 	commandPipeline := PyramidPipeline new.
 	plugins := {  }
 ]
@@ -45,11 +44,18 @@ PyramidEditor >> plugins: aCollection [
 
 { #category : #accessing }
 PyramidEditor >> view [
- ^ view
+
+	^ self window presenter
 ]
 
 { #category : #accessing }
-PyramidEditor >> view: aSpPresenter [
+PyramidEditor >> window [
 
-	view:= aSpPresenter
+	^ window
+]
+
+{ #category : #accessing }
+PyramidEditor >> window: anObject [
+
+	window := anObject
 ]

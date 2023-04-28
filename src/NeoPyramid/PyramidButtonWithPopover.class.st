@@ -8,7 +8,7 @@ Class {
 		'button',
 		'position'
 	],
-	#category : #'NeoPyramid-views'
+	#category : #'NeoPyramid-views-deprecated'
 }
 
 { #category : #converting }

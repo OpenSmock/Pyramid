@@ -49,13 +49,6 @@ PyramidSavePlugin >> addPanelsOn: aPyramidSimpleWindow [
 ]
 
 { #category : #'as yet unclassified' }
-PyramidSavePlugin >> buildViewFrom: aPyramidGlobalViewBuilder [
-
-	aPyramidGlobalViewBuilder model tools add: self saveButton.
-	aPyramidGlobalViewBuilder model tools add: self inputsButton
-]
-
-{ #category : #'as yet unclassified' }
 PyramidSavePlugin >> connectOn: aPyramidEditor [
 
 	self activeProject: aPyramidEditor activeProject

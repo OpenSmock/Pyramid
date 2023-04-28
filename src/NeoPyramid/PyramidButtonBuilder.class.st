@@ -5,7 +5,7 @@ Class {
 		'buttonContraints',
 		'popoverStrategy'
 	],
-	#category : #'NeoPyramid-views'
+	#category : #'NeoPyramid-views-deprecated'
 }
 
 { #category : #accessing }

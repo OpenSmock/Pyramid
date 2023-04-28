@@ -2,9 +2,7 @@ Class {
 	#name : #PyramidEditorBuilder,
 	#superclass : #Object,
 	#instVars : [
-		'editor',
-		'plugins',
-		'viewBuilder'
+		'plugins'
 	],
 	#category : #'NeoPyramid-core'
 }
@@ -12,49 +10,26 @@ Class {
 { #category : #building }
 PyramidEditorBuilder >> build [
 
-	| builder |
-	builder := self viewBuilder.
-	self plugins do: [ :each | each buildViewFrom: self viewBuilder ].
+	| editor simpleWindow |
+	editor := PyramidEditor new.
+	simpleWindow := PyramidSimpleWindow new.
 
-	self editor view: builder build.
-	self plugins do: [ :each | each connectOn: self editor ].
+	editor window: simpleWindow.
+	editor plugins: self plugins.
 
-	self editor plugins: self plugins.
-
-	^ self editor
-]
-
-{ #category : #accessing }
-PyramidEditorBuilder >> editor [
+	self plugins do: [ :each | each addPanelsOn: simpleWindow ].
+	self plugins do: [ :each | each connectOn: editor ].
 	^ editor
-]
-
-{ #category : #initialization }
-PyramidEditorBuilder >> initialize [
-
-	editor := PyramidEditor new
 ]
 
 { #category : #accessing }
 PyramidEditorBuilder >> plugins [
+
 	^ plugins
 ]
 
 { #category : #accessing }
-PyramidEditorBuilder >> plugins: aCollection [
+PyramidEditorBuilder >> plugins: anObject [
 
-	plugins := aCollection
-]
-
-{ #category : #accessing }
-PyramidEditorBuilder >> viewBuilder [
-
-	viewBuilder ifNil: [ viewBuilder := PyramidEditorViewBuilder new ].
-	^ viewBuilder
-]
-
-{ #category : #accessing }
-PyramidEditorBuilder >> viewBuilder: aBuilder [
-
-	viewBuilder := aBuilder
+	plugins := anObject
 ]

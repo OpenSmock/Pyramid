@@ -3,10 +3,8 @@ Trait {
 	#category : #'NeoPyramid-core'
 }
 
-{ #category : #'as yet unclassified' }
-TPyramidPlugin >> buildViewFrom: aPyramidGlobalViewBuilder [
-
-	
+{ #category : #adding }
+TPyramidPlugin >> addPanelsOn: aPyramidSimpleWindow [
 ]
 
 { #category : #'as yet unclassified' }

@@ -1,7 +1,7 @@
 Class {
 	#name : #PyramidEditorVoidView,
 	#superclass : #SpPresenter,
-	#category : #'NeoPyramid-views'
+	#category : #'NeoPyramid-views-deprecated'
 }
 
 { #category : #layout }

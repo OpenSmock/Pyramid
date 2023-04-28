@@ -21,37 +21,22 @@ PyramidPluginSelection >> addPanelsOn: aPyramidSimpleWindow [
 
 	aPyramidSimpleWindow at: #tabRight addItem: [ :builder |
 		builder
-			makeTab: self view presenter
+			makeTab: self view
 			label: 'Playground'
 			icon: (self iconNamed: #open)
 			order: 1 ]
 ]
 
 { #category : #'as yet unclassified' }
-PyramidPluginSelection >> buildViewFrom: aPyramidGlobalViewBuilder [
-
-	aPyramidGlobalViewBuilder model rightTabs add: self view
-]
-
-{ #category : #'as yet unclassified' }
 PyramidPluginSelection >> connectOn: aPyramidEditor [
 
-	self view presenter activeProject: aPyramidEditor activeProject
+	self view activeProject: aPyramidEditor activeProject
 ]
 
 { #category : #initialization }
 PyramidPluginSelection >> initialize [
-	self initializeView
-]
 
-{ #category : #initialization }
-PyramidPluginSelection >> initializeView [
-
-	view := PyramidTab new
-		        title: 'Playground';
-		        icon: (self iconNamed: #open);
-		        presenter: PyramidSelectionView new;
-		        yourself
+	view := PyramidSelectionView new
 ]
 
 { #category : #initialization }

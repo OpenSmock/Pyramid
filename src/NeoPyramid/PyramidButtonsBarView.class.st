@@ -9,7 +9,7 @@ Class {
 		'spacing',
 		'builder'
 	],
-	#category : #'NeoPyramid-views'
+	#category : #'NeoPyramid-views-deprecated'
 }
 
 { #category : #adding }

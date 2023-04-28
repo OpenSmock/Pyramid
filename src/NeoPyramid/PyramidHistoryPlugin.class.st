@@ -39,12 +39,6 @@ PyramidHistoryPlugin >> addPanelsOn: aPyramidSimpleWindow [
 ]
 
 { #category : #'as yet unclassified' }
-PyramidHistoryPlugin >> buildViewFrom: aPyramidGlobalViewBuilder [
-
-	
-]
-
-{ #category : #'as yet unclassified' }
 PyramidHistoryPlugin >> connectOn: aPyramidEditor [
 
 	self history installHistoryOn: aPyramidEditor commandPipeline

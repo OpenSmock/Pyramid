@@ -6,7 +6,7 @@ Class {
 		'align',
 		'callback'
 	],
-	#category : #'NeoPyramid-views'
+	#category : #'NeoPyramid-views-deprecated'
 }
 
 { #category : #accessing }

@@ -4,7 +4,7 @@ Class {
 	#instVars : [
 		'order'
 	],
-	#category : #'NeoPyramid-views'
+	#category : #'NeoPyramid-views-deprecated'
 }
 
 { #category : #accessing }

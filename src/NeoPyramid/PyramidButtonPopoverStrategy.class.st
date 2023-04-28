@@ -1,7 +1,7 @@
 Class {
 	#name : #PyramidButtonPopoverStrategy,
 	#superclass : #Object,
-	#category : #'NeoPyramid-views'
+	#category : #'NeoPyramid-views-deprecated'
 }
 
 { #category : #'as yet unclassified' }
