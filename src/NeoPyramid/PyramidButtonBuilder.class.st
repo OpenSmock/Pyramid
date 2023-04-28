@@ -39,5 +39,6 @@ PyramidButtonBuilder >> popoverStrategy [
 
 { #category : #accessing }
 PyramidButtonBuilder >> popoverStrategy: aStrategy [
+
 	popoverStrategy:=aStrategy
 ]

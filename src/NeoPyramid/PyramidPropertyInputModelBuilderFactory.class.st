@@ -41,7 +41,6 @@ PyramidPropertyInputModelBuilderFactory class >> mockPresenter [
 		  sectionName: 'Mock';
 		  inputClass: PyramidMockSpecPresenter;
 		  initializeBlock: [ :input |  ];
-		inputToInputBlock: [ :source :target | target text: source text ];
 		  mutliValuesDefault: '# mixed values';
 		  noValueDefault: '# no values';
 		  transformInBlock: [ :input :value |
