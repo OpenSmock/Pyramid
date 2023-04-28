@@ -16,6 +16,12 @@ PyramidPluginTree class >> initialize [
 	PyramidPluginManager uniqueInstance addPlugin: self
 ]
 
+{ #category : #adding }
+PyramidPluginTree >> addPanelsOn: aPyramidSimpleWindow [
+
+	aPyramidSimpleWindow at: #tabLeft addItem: [ :builder | builder makeTab: self view presenter label: 'Tree' icon: (self iconNamed: #catalog) order: 1 ]
+]
+
 { #category : #'as yet unclassified' }
 PyramidPluginTree >> buildViewFrom: aPyramidGlobalViewBuilder [
 

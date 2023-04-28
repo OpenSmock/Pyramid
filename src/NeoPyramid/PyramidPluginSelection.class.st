@@ -16,6 +16,17 @@ PyramidPluginSelection class >> initialize [
 	PyramidPluginManager uniqueInstance addPlugin: self
 ]
 
+{ #category : #adding }
+PyramidPluginSelection >> addPanelsOn: aPyramidSimpleWindow [
+
+	aPyramidSimpleWindow at: #tabRight addItem: [ :builder |
+		builder
+			makeTab: self view presenter
+			label: 'Playground'
+			icon: (self iconNamed: #open)
+			order: 1 ]
+]
+
 { #category : #'as yet unclassified' }
 PyramidPluginSelection >> buildViewFrom: aPyramidGlobalViewBuilder [
 

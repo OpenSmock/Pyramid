@@ -1,14 +1,13 @@
 Class {
 	#name : #PyramidHistoryPlugin,
 	#superclass : #Object,
-	#traits : 'TPyramidPlugin',
-	#classTraits : 'TPyramidPlugin classTrait',
+	#traits : 'TPyramidPlugin + TPyramidHistoryObserver',
+	#classTraits : 'TPyramidPlugin classTrait + TPyramidHistoryObserver classTrait',
 	#instVars : [
 		'history',
 		'undoButton',
 		'redoButton',
-		'historyView',
-		'historyTab'
+		'historyView'
 	],
 	#category : #'NeoPyramid-plugin-history'
 }
@@ -19,12 +18,30 @@ PyramidHistoryPlugin class >> initialize [
 	PyramidPluginManager uniqueInstance addPlugin: self
 ]
 
+{ #category : #adding }
+PyramidHistoryPlugin >> addPanelsOn: aPyramidSimpleWindow [
+
+	aPyramidSimpleWindow at: #tabRight addItem: [ :builder |
+		builder
+			makeTab: self historyView
+			label: 'History'
+			icon: (self iconNamed: #history)
+			order: 30 ].
+
+	aPyramidSimpleWindow
+		at: #topCenter
+		addItem: [ :builder |
+		builder makeButtonWithIcon: self undoButton order: 1 ].
+	aPyramidSimpleWindow
+		at: #topCenter
+		addItem: [ :builder |
+		builder makeButtonWithIcon: self redoButton order: 2 ]
+]
+
 { #category : #'as yet unclassified' }
 PyramidHistoryPlugin >> buildViewFrom: aPyramidGlobalViewBuilder [
 
-	aPyramidGlobalViewBuilder model tools add: self undoButton.
-	aPyramidGlobalViewBuilder model tools add: self redoButton.
-	aPyramidGlobalViewBuilder model rightTabs add: self historyTab
+	
 ]
 
 { #category : #'as yet unclassified' }
@@ -40,46 +57,45 @@ PyramidHistoryPlugin >> history [
 ]
 
 { #category : #accessing }
-PyramidHistoryPlugin >> historyTab [
-^ historyTab
+PyramidHistoryPlugin >> historyView [
+^ historyView
 ]
 
 { #category : #initialization }
-PyramidHistoryPlugin >> initialize [ 
+PyramidHistoryPlugin >> initialize [
 
 	history := PyramidHistory new.
+	history addObserver: self.
+	
+	historyView  := PyramidHistoryView new
+		               history: self history;
+		               yourself.
+		
 	self initializeButtons.
-	self initializeHistoryTab.
+
 ]
 
 { #category : #initialization }
 PyramidHistoryPlugin >> initializeButtons [
 
-	undoButton := PyramidToggleButton new
+	undoButton := SpButtonPresenter new
 		              icon: (self iconNamed: #smallUndo);
-		              alignStart;
-		              order: 100;
-		              callback: [ self history undo ];
-		              state: [ self history canUndo ];
+		              action: [ self history undo ];
+		              enabled: self history canUndo;
 		              yourself.
-	redoButton := PyramidToggleButton new
+	redoButton := SpButtonPresenter new
 		              icon: (self iconNamed: #smallRedo);
-		              alignStart;
-		              order: 101;
-		              callback: [ self history redo ];
-		              state: [ self history canRedo ];
+		              action: [
+			              self history redo.
+			               ];
+		              enabled: self history canRedo;
 		              yourself
 ]
 
-{ #category : #initialization }
-PyramidHistoryPlugin >> initializeHistoryTab [
+{ #category : #'as yet unclassified' }
+PyramidHistoryPlugin >> pyramidHistoryCounterReset [
 
-	historyView := PyramidHistoryView new history: self history; yourself.
-	historyTab := PyramidTab new
-		              presenter: [ historyView ];
-		              title: 'History';
-		              icon: (self iconNamed: #history);
-		              yourself
+	self updateButtons
 ]
 
 { #category : #'as yet unclassified' }
@@ -91,4 +107,11 @@ PyramidHistoryPlugin >> redoButton [
 { #category : #'as yet unclassified' }
 PyramidHistoryPlugin >> undoButton [
 ^ undoButton
+]
+
+{ #category : #'as yet unclassified' }
+PyramidHistoryPlugin >> updateButtons [
+
+	self undoButton enabled: self history canUndo.
+	self redoButton enabled: self history canRedo
 ]

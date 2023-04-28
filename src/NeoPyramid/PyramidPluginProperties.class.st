@@ -16,6 +16,17 @@ PyramidPluginProperties class >> initialize [
 	PyramidPluginManager uniqueInstance addPlugin: self
 ]
 
+{ #category : #adding }
+PyramidPluginProperties >> addPanelsOn: aPyramidSimpleWindow [
+
+	aPyramidSimpleWindow at: #tabRight addItem: [ :builder |
+		builder
+			makeTab: self propertiesView
+			label: 'Properties'
+			icon: (self iconNamed: #edit)
+			order: 1 ]
+]
+
 { #category : #'as yet unclassified' }
 PyramidPluginProperties >> buildViewFrom: aPyramidGlobalViewBuilder [
 

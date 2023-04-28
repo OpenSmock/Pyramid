@@ -15,6 +15,16 @@ PyramidPluginCentral class >> initialize [
 	PyramidPluginManager uniqueInstance addPlugin: self
 ]
 
+{ #category : #adding }
+PyramidPluginCentral >> addPanelsOn: aPyramidSimpleWindow [
+
+	self flag: #TODO. "Remove self spaceView presenter and modify connectOn: method."
+	aPyramidSimpleWindow
+		at: #center
+		addItem: [ :builder |
+		builder makePresenter: self spaceView presenter ]
+]
+
 { #category : #'as yet unclassified' }
 PyramidPluginCentral >> buildViewFrom: aPyramidGlobalViewBuilder [
 

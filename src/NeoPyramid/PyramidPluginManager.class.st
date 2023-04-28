@@ -58,6 +58,14 @@ PyramidPluginManager >> makeEditor [
 ]
 
 { #category : #'as yet unclassified' }
+PyramidPluginManager >> makeEditorWithNewView [
+
+	^ PyramidEditorBuilderV2 new
+		  plugins: (self plugins collect: [ :class | class new ]);
+		  build
+]
+
+{ #category : #'as yet unclassified' }
 PyramidPluginManager >> plugins [
 
 	^ plugins

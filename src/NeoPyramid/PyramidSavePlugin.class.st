@@ -10,7 +10,8 @@ Class {
 		'inputsButton',
 		'savingService',
 		'saveButton',
-		'activeProject'
+		'activeProject',
+		'inputsPopover'
 	],
 	#category : #'NeoPyramid-plugin-save'
 }
@@ -32,6 +33,19 @@ PyramidSavePlugin >> activeProject: anObject [
 	self saveModel project: activeProject project.
 	activeProject addObserver: self.
 	self inputsController updateView
+]
+
+{ #category : #adding }
+PyramidSavePlugin >> addPanelsOn: aPyramidSimpleWindow [
+
+	aPyramidSimpleWindow
+		at: #topLeft
+		addItem: [ :builder |
+		builder makeButtonWithIcon: self saveButton order: 1 ].
+	aPyramidSimpleWindow
+		at: #topLeft
+		addItem: [ :builder |
+		builder makeButtonWithIcon: self inputsButton order: 2 ]
 ]
 
 { #category : #'as yet unclassified' }
@@ -59,7 +73,18 @@ PyramidSavePlugin >> initialize [
 		                 methodBuilder: PyramidSavingMethodBuilder ston;
 		                 yourself.
 
-	inputsButton := PyramidButtonWithPopover new
+	inputsButton := SpButtonPresenter new
+		                icon: (self iconNamed: #smallRemoteOpen);
+		                action: [ inputsPopover popup ]; yourself.
+	inputsPopover := PyramidPopoverFactory
+		                 makeWithPresenter: inputsView
+		                 relativeTo: inputsButton
+		                 position: SpPopoverPosition right.
+
+	saveButton := SpButtonPresenter new
+		              icon: (self iconNamed: #smallSave);
+		              action: [ self savingService save ];
+		              "inputsButton := PyramidButtonWithPopover new
 		                icon: (self iconNamed: #smallRemoteOpen);
 		                presenter: self inputsView;
 		                alignCenter;
@@ -70,7 +95,8 @@ PyramidSavePlugin >> initialize [
 		              alignCenter;
 		              order: 31;
 		              callback: [ self savingService save ];
-		              yourself
+		              yourself"
+			              yourself
 ]
 
 { #category : #accessing }
