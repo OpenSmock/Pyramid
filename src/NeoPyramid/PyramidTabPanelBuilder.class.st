@@ -20,7 +20,8 @@ PyramidTabPanelBuilder >> makeTab: aPresenter label: aString icon: anIcon order:
 	item := PyramidTabItem new
 		        presenter: aPresenter;
 		        order: aNumber;
-				  label: aString; icon: anIcon;
+		        label: aString;
+		        icon: anIcon;
 		        yourself
 ]
 
