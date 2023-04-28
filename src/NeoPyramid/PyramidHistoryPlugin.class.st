@@ -99,6 +99,19 @@ PyramidHistoryPlugin >> pyramidHistoryCounterReset [
 ]
 
 { #category : #'as yet unclassified' }
+PyramidHistoryPlugin >> pyramidHistoryRedo [
+
+	self updateButtons
+	
+]
+
+{ #category : #'as yet unclassified' }
+PyramidHistoryPlugin >> pyramidHistoryUndo [
+
+	self updateButtons
+]
+
+{ #category : #'as yet unclassified' }
 PyramidHistoryPlugin >> redoButton [
 
 	^ redoButton
