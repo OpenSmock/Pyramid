@@ -6,7 +6,7 @@ Class {
 		'savingService',
 		'savingClass'
 	],
-	#category : #'NeoPyramid-plugin-save'
+	#category : #'NeoPyramid-Tests-Cases'
 }
 
 { #category : #running }
@@ -17,7 +17,8 @@ PyramidSavingServiceTest >> savingClass [
 
 { #category : #running }
 PyramidSavingServiceTest >> savingService [
-^ savingService
+
+	^ savingService
 ]
 
 { #category : #running }
