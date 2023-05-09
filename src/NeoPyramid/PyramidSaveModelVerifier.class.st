@@ -56,11 +56,11 @@ PyramidSaveModelVerifier class >> modelNotNil [
 PyramidSaveModelVerifier class >> packageIsValid [
 
 	^ self new
-		  verifyBlock: [ :model | model savingPackageName isValidGlobalName ];
+		  verifyBlock: [ :model |
+			  ($- split: model savingPackageName) allSatisfy: [ :each |
+					  each isValidGlobalName ] ];
 		  showBlock: [ :view | view showPackageIsNotValidError ];
-		  yourself.
-		 
-		
+		  yourself
 ]
 
 { #category : #'as yet unclassified' }
