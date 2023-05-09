@@ -40,11 +40,11 @@ PyramidCommand class >> background [
 
 	^ self
 		  name: #background
-		  set: [ :state :target | target background: state background ]
+		  set: [ :state :target | target background: state arguments ]
 		  get: [ :state :source |
 			  state source: source.
 			  state arguments: source background ]
-		  isExecutableBlock: [ :obj | obj isKindOf: BlElement ]
+		  isExecutableBlock: [ :obj :state | (obj isKindOf: BlElement) ]
 ]
 
 { #category : #adding }

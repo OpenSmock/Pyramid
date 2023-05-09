@@ -33,7 +33,8 @@ PyramidPluginProperties >> connectOn: aPyramidEditor [
 	self view pipeline: aPyramidEditor commandPipeline.
 
 	self view addProperty: PyramidProperty identifier.
-	self view addProperty: PyramidProperty visibility
+	self view addProperty: PyramidProperty visibility.
+	"self view addProperty: PyramidProperty background"
 ]
 
 { #category : #'as yet unclassified' }

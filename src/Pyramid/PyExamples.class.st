@@ -3936,6 +3936,173 @@ PyExamples class >> test4 [
 }'
 ]
 
+{ #category : #'pyramid-serialized-bloc' }
+PyExamples class >> test5 [
+	"This class has been generated using Pyramid.
+
+	By: YannLEGOFF
+	2023-05-09 11:33:28"
+
+	<pySTON>
+	^ 'OrderedCollection [
+	BlElement {
+		#children : BlChildrenArray [ ],
+		#constraints : BlLayoutCommonConstraints {
+			#vertical : BlLayoutCommonConstraintsAxis {
+				#resizer : BlLayoutExactResizer {
+					#size : 50.0
+				}
+			},
+			#horizontal : BlLayoutCommonConstraintsAxis {
+				#resizer : @6
+			},
+			#position : Point [ 0.0, 0.0 ],
+			#margin : BlInsets {
+				#top : 0.0,
+				#left : 0.0,
+				#bottom : 0.0,
+				#right : 0.0
+			},
+			#padding : @9,
+			#minHeight : 0.0,
+			#minWidth : 0.0,
+			#maxHeight : Float [ #infinity ],
+			#maxWidth : @10,
+			#ignoredByLayout : false,
+			#accountTransformation : false
+		},
+		#visuals : BlCustomVisuals {
+			#background : BlPaintBackground {
+				#paint : BlColorPaint {
+					#color : Color [ #red ]
+				}
+			}
+		},
+		#userData : IdentityDictionary {
+			#elementId : BlElementNamedId {
+				#identifier : #red
+			}
+		},
+		#layout : BlBasicLayout { },
+		#eventDispatcher : BlElementEventDispatcher {
+			#owner : @2,
+			#handlers : [ ]
+		}
+	},
+	BlElement {
+		#children : BlChildrenArray [ ],
+		#constraints : BlLayoutCommonConstraints {
+			#vertical : BlLayoutCommonConstraintsAxis {
+				#resizer : @6
+			},
+			#horizontal : BlLayoutCommonConstraintsAxis {
+				#resizer : @6
+			},
+			#position : Point [ 0.0, 0.0 ],
+			#margin : @9,
+			#padding : @9,
+			#minHeight : 0.0,
+			#minWidth : 0.0,
+			#maxHeight : @10,
+			#maxWidth : @10,
+			#ignoredByLayout : false,
+			#accountTransformation : false
+		},
+		#visuals : BlCustomVisuals {
+			#background : BlPaintBackground {
+				#paint : BlColorPaint {
+					#color : @14
+				}
+			}
+		},
+		#userData : IdentityDictionary {
+			#elementId : BlElementNamedId {
+				#identifier : #red
+			}
+		},
+		#layout : @17,
+		#eventDispatcher : BlElementEventDispatcher {
+			#owner : @20,
+			#handlers : [ ]
+		}
+	},
+	BlElement {
+		#children : BlChildrenArray [ ],
+		#constraints : BlLayoutCommonConstraints {
+			#vertical : BlLayoutCommonConstraintsAxis {
+				#resizer : @6
+			},
+			#horizontal : BlLayoutCommonConstraintsAxis {
+				#resizer : @6
+			},
+			#position : Point [ 0.0, 0.0 ],
+			#margin : @9,
+			#padding : @9,
+			#minHeight : 0.0,
+			#minWidth : 0.0,
+			#maxHeight : @10,
+			#maxWidth : @10,
+			#ignoredByLayout : false,
+			#accountTransformation : false
+		},
+		#visuals : BlCustomVisuals {
+			#background : BlPaintBackground {
+				#paint : BlColorPaint {
+					#color : @14
+				}
+			}
+		},
+		#userData : IdentityDictionary {
+			#elementId : BlElementNamedId {
+				#identifier : #red
+			}
+		},
+		#layout : @17,
+		#eventDispatcher : BlElementEventDispatcher {
+			#owner : @33,
+			#handlers : [ ]
+		}
+	},
+	BlElement {
+		#children : BlChildrenArray [ ],
+		#constraints : BlLayoutCommonConstraints {
+			#vertical : BlLayoutCommonConstraintsAxis {
+				#resizer : @6
+			},
+			#horizontal : BlLayoutCommonConstraintsAxis {
+				#resizer : @6
+			},
+			#position : Point [ 0.0, 0.0 ],
+			#margin : @9,
+			#padding : @9,
+			#minHeight : 0.0,
+			#minWidth : 0.0,
+			#maxHeight : @10,
+			#maxWidth : @10,
+			#ignoredByLayout : false,
+			#accountTransformation : false
+		},
+		#visuals : BlCustomVisuals {
+			#background : BlPaintBackground {
+				#paint : BlColorPaint {
+					#color : @14
+				}
+			}
+		},
+		#userData : IdentityDictionary {
+			#elementId : BlElementNamedId {
+				#identifier : #red
+			}
+		},
+		#layout : @17,
+		#eventDispatcher : BlElementEventDispatcher {
+			#owner : @46,
+			#handlers : [ ]
+		}
+	}
+]'
+]
+
 { #category : #'bloc-STON' }
 PyExamples class >> testABC [
 	<pySTON>

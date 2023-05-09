@@ -36,12 +36,15 @@ PyramidPropertyInputModelBuilder >> build [
 ]
 
 { #category : #'as yet unclassified' }
-PyramidPropertyInputModelBuilder >> buildButtonFor: aCollection withInput: aSourceInput [
+PyramidPropertyInputModelBuilder >> buildButtonFor: aBlockCollection withInput: aSourceInput [
 
 	| button |
 	button := SpButtonPresenter new.
 	button action: [
-		self buttonCallbackBlock value: aSourceInput value: aCollection value: self inputModel ].
+		self buttonCallbackBlock
+			value: aSourceInput
+			value: aBlockCollection value
+			value: self inputModel ].
 	^ button
 ]
 
@@ -59,14 +62,14 @@ PyramidPropertyInputModelBuilder >> buildElementInputFor: aCollection withArgume
 PyramidPropertyInputModelBuilder >> buildInputModelFor: aTarget withArguments: anArgument [
 
 	| model |
-	model := PyramidPropertyInputForObjectModel new.
+	model := PyramidPropertyInputForElementModel new.
 	model elementInput:
 		(self buildElementInputFor: { aTarget } withArguments: anArgument).
 	model stateInput: (self
-			 buildButtonFor: (self targetModel targetsAt: anArgument)
+			 buildButtonFor: [(self targetModel targetsAt: anArgument)]
 			 withInput: model elementInput).
 	model modelInput: (self
-			 buildButtonFor: self targetModel targets
+			 buildButtonFor: [self targetModel targets]
 			 withInput: model elementInput).
 	model referenceObject: aTarget.
 	^ model

@@ -85,6 +85,25 @@ PyramidCommandTest >> testAddElementOnCollection [
 ]
 
 { #category : #tests }
+PyramidCommandTest >> testBackground [
+
+	| e1 b1 state |
+	state := PyramidCommandState new.
+	e1 := BlElement new.
+	PyramidCommand background getState: state from: e1.
+	self assert: state arguments equals: BlBackground transparent.
+	e1 id: #toto.
+	PyramidCommand identifier getState: state from: e1.
+	self assert: state arguments equals: #toto.
+
+	b1 := BlElement new.
+	PyramidCommand background
+		setState: (PyramidCommandState new arguments:( BlBackground paint: Color red))
+		on: b1.
+	self assert: b1 background paint color equals: Color red
+]
+
+{ #category : #tests }
 PyramidCommandTest >> testIdentifier [
 
 	| e1 b1 state |

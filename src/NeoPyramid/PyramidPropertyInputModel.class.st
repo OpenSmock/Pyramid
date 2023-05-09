@@ -2,8 +2,9 @@ Class {
 	#name : #PyramidPropertyInputModel,
 	#superclass : #Object,
 	#instVars : [
-		'globalInput',
-		'elementInputModel',
+		'applyToAllInput',
+		'elementInputsModel',
+		'stateInputsModel',
 		'sectionName'
 	],
 	#category : #'NeoPyramid-plugin-properties'
@@ -12,7 +13,19 @@ Class {
 { #category : #accessing }
 PyramidPropertyInputModel >> addElementInput: anObject [
 
-	elementInputModel add: anObject
+	elementInputsModel add: anObject
+]
+
+{ #category : #accessing }
+PyramidPropertyInputModel >> addStateInput: anObject [
+
+	stateInputsModel add: anObject
+]
+
+{ #category : #'as yet unclassified' }
+PyramidPropertyInputModel >> allElementInputs [
+
+	^ self elementInputModel collect: [ :each | each elementInput ]
 ]
 
 { #category : #'as yet unclassified' }
@@ -34,15 +47,33 @@ PyramidPropertyInputModel >> allInputsOf: aCollection [
 	^ inputs
 ]
 
-{ #category : #accessing }
-PyramidPropertyInputModel >> elementInputModel [
+{ #category : #'as yet unclassified' }
+PyramidPropertyInputModel >> allStateInputs [
 
-	^ elementInputModel
+	^ self allStateInputs collect: [ :each | each stateInput ]
+]
+
+{ #category : #accessing }
+PyramidPropertyInputModel >> applyToAllInput [
+
+	^ applyToAllInput
+]
+
+{ #category : #accessing }
+PyramidPropertyInputModel >> applyToAllInput: anObject [
+
+	applyToAllInput := anObject
 ]
 
 { #category : #'as yet unclassified' }
 PyramidPropertyInputModel >> elementInputSize [
 	^ self elementInputModel size
+]
+
+{ #category : #accessing }
+PyramidPropertyInputModel >> elementInputsModel [
+
+	^ elementInputsModel
 ]
 
 { #category : #'as yet unclassified' }
@@ -54,28 +85,23 @@ PyramidPropertyInputModel >> getElementInputModelFor: anObject [
 	^ values
 ]
 
-{ #category : #accessing }
-PyramidPropertyInputModel >> globalInput [
-
-	^ globalInput
-]
-
-{ #category : #accessing }
-PyramidPropertyInputModel >> globalInput: anObject [
-
-	globalInput := anObject
-]
-
 { #category : #initialization }
 PyramidPropertyInputModel >> initialize [
 
-	elementInputModel := OrderedCollection new.
+	elementInputsModel := OrderedCollection new.
+	stateInputsModel := OrderedCollection new
 ]
 
 { #category : #accessing }
 PyramidPropertyInputModel >> removeElementInput: anObject [
 
-	elementInputModel remove: anObject
+	elementInputsModel remove: anObject
+]
+
+{ #category : #accessing }
+PyramidPropertyInputModel >> removeStateInput: anObject [
+
+	stateInputsModel remove: anObject
 ]
 
 { #category : #accessing }
@@ -87,4 +113,10 @@ PyramidPropertyInputModel >> sectionName [
 { #category : #accessing }
 PyramidPropertyInputModel >> sectionName: aString [
 	sectionName:=aString
+]
+
+{ #category : #accessing }
+PyramidPropertyInputModel >> stateInputsModel [
+
+	^ stateInputsModel
 ]

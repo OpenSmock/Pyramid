@@ -12,6 +12,15 @@ Class {
 }
 
 { #category : #accessing }
+PyramidProperty class >> background [
+
+	^ self
+		  fromCommand: PyramidCommand background
+		  inputBuilder:
+		  PyramidPropertyInputModelBuilderFactory backgroundInput
+]
+
+{ #category : #accessing }
 PyramidProperty class >> fromCommand: aPyramidCommand inputBuilder: aPyramidPropertyInputModelBuilderFactory [
 
 	| property |

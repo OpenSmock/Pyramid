@@ -5,6 +5,17 @@ Class {
 }
 
 { #category : #tests }
+PyramidPropertyInputModelBuilderFactoryTest >> testBackgroundInput [
+
+	| property inputModel |
+	property := PyramidProperty new.
+	PyramidPropertyInputModelBuilderFactory backgroundInput
+		installBuilderOn: property.
+	inputModel := property inputBuilder build.
+	self assert: inputModel elementInputModel size equals: 0
+]
+
+{ #category : #tests }
 PyramidPropertyInputModelBuilderFactoryTest >> testIdentifierTextInput [
 
 	| property inputModel |

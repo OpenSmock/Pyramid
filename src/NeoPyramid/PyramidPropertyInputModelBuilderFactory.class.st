@@ -16,6 +16,25 @@ Class {
 }
 
 { #category : #'as yet unclassified' }
+PyramidPropertyInputModelBuilderFactory class >> backgroundInput [
+
+	^ self new
+		  sectionName: 'Background';
+		  inputClass: PyramidBackgroundPropertyInput;
+		  initializeBlock: [ :input |  ];
+		  mutliValuesDefault:
+			  PyramidBackgroundPropertyInputMixedValuesModel new;
+		  noValueDefault: PyramidBackgroundPropertyInputNoValueModel new;
+		  transformInBlock: [ :input :value |
+			  input background: (PyramidBackgroundPropertyInputModelAbstract new background: value) ];
+		  transformOutBlock: [ :input | input model background ];
+		  triggerBlockStrategy: (PyramidNoArgTrigger new
+				   selector: #whenSubmitDo:;
+				   yourself);
+		  yourself
+]
+
+{ #category : #'as yet unclassified' }
 PyramidPropertyInputModelBuilderFactory class >> identifierTextInput [
 
 	^ self new
