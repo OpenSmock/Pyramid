@@ -72,8 +72,7 @@ PyramidPluginDynamicLayout >> configureBuilder: aPyramidBuilder [
 { #category : #'as yet unclassified' }
 PyramidPluginDynamicLayout >> connectOn: aPyramidEditor [
 
-	self flag: #TODO. "Changement de layout désactiver à cause de la nouvelle vue"
-	"self changeEditorLayout"
+	self changeEditorLayout
 ]
 
 { #category : #accessing }

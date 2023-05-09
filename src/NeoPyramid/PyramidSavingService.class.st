@@ -60,14 +60,14 @@ PyramidSavingService >> save [
 { #category : #tests }
 PyramidSavingService >> savingClass [
 
-	self class environment
-		at: self savingModel savingClassName
-		ifPresent: [ :class | ^ class ]
-		ifAbsent: [
-			^ self class classInstaller make: [ :aClassBuilder |
-				aClassBuilder
-					name: self savingModel savingClassName;
-					package: self savingModel savingPackageName ] ]
+	| class |
+	class := self class environment classNamed:
+		         self savingModel savingClassName.
+	class ifNotNil: [ ^ class ].
+	^ self class classInstaller make: [ :aClassBuilder |
+		aClassBuilder
+			name: self savingModel savingClassName;
+			package: self savingModel savingPackageName ]
 ]
 
 { #category : #tests }

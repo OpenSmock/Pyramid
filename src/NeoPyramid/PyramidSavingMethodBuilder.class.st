@@ -16,10 +16,10 @@ PyramidSavingMethodBuilder class >> ston [
 	^ self new
 		  classifier: #'pyramid-serialized-bloc';
 		  comment:
-			  ('This class has been generated using Pyramid.<r><r><t>By: <1s><r><t><2s> <3s>'
+			  [('This class has been generated using Pyramid.<r><r><t>By: <1s><r><t><2s> <3s>'
 				   expandMacrosWith: Author uniqueInstance fullName
-				with: Date today yyyymmdd
-				   with: Time now print24);
+				   with: Date today yyyymmdd
+				   with: Time now print24)];
 		  pragma: 'pySTON';
 		  serializeBlock: [ :collection |
 			  BlSerializer serialize: collection ];
@@ -32,12 +32,14 @@ PyramidSavingMethodBuilder >> build: aSaveModel [
 	| result |
 	result := '<1s><r>' expandMacrosWith: aSaveModel savingMethodName.
 	self comment ifNotNil: [
-		result := result , ('<t>"<1s>"<r>' expandMacrosWith: self comment) ].
+		result := result , ('<t>"<1s>"<r>' expandMacrosWith: self comment value) ].
 	result := result , '<r>' expandMacros.
 	self pragma ifNotNil: [
-		result := result , ('<t>%<<1s>><r>' expandMacrosWith: self pragma) ].
-	result := result , ('<t>^ <1p>' expandMacrosWith:
-		          (self serializedString: aSaveModel)).
+		result := result , ('<t>%<<1s>><r>' expandMacrosWith: self pragma value) ].
+	result := result
+	          ,
+	          ('<t>^ <1p>' expandMacrosWith:
+		           (self serializedString: aSaveModel)).
 
 	^ result
 ]
