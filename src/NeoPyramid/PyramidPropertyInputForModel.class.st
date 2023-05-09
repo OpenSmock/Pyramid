@@ -3,21 +3,21 @@ Class {
 	#superclass : #Object,
 	#instVars : [
 		'input',
-		'applyForAllButton'
+		'applyToAllButton'
 	],
 	#category : #'NeoPyramid-plugin-properties'
 }
 
 { #category : #accessing }
-PyramidPropertyInputForModel >> applyForAllButton [
+PyramidPropertyInputForModel >> applyToAllButton [
 
-	^ applyForAllButton
+	^ applyToAllButton
 ]
 
 { #category : #accessing }
-PyramidPropertyInputForModel >> applyForAllButton: anObject [
+PyramidPropertyInputForModel >> applyToAllButton: anObject [
 
-	applyForAllButton := anObject
+	applyToAllButton := anObject
 ]
 
 { #category : #accessing }

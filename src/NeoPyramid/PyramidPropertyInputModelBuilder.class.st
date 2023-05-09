@@ -22,16 +22,17 @@ PyramidPropertyInputModelBuilder >> build [
 
 	self inputModel: (PyramidPropertyInputModel new
 			 sectionName: self sectionName;
-			 globalInput: self makeInput;
+			 applyToAllInput: self makeInput;
 			 yourself).
 	self
-		connectInput: self inputModel globalInput
-		toCollection: self targetModel targets fromModel: self inputModel.
-	self setDefautValueOfGlobalInput: self inputModel globalInput.
+		connectInput: self inputModel applyToAllInput
+		toCollection: self targetModel targets
+		fromModel: self inputModel.
+	self setDefautValueOfGlobalInput: self inputModel applyToAllInput.
 	self targetModel argumentsDict keysAndValuesDo: [ :arguments :targets |
+		self buildStateInputModelFor: targets withArguments: arguments.
 		targets do: [ :single |
-			self inputModel addElementInput:
-				(self buildInputModelFor: single withArguments: arguments) ] ].
+			self buildElementInputModelFor: single withArguments: arguments ] ].
 	^ self inputModel
 ]
 
@@ -48,31 +49,45 @@ PyramidPropertyInputModelBuilder >> buildButtonFor: aBlockCollection withInput: 
 	^ button
 ]
 
+{ #category : #building }
+PyramidPropertyInputModelBuilder >> buildElementInputModelFor: aTarget withArguments: anArgument [
+
+	| elementModel |
+	elementModel := PyramidPropertyInputForElementModel new.
+	elementModel input:
+		(self buildInputFor: { aTarget } withArguments: anArgument).
+	elementModel applyToAllButton: (self
+			 buildButtonFor: [ self targetModel targets ]
+			 withInput: elementModel input).
+	elementModel referenceObject: aTarget.
+	self inputModel addElementInput: elementModel
+]
+
 { #category : #'as yet unclassified' }
-PyramidPropertyInputModelBuilder >> buildElementInputFor: aCollection withArguments: anArgument [
+PyramidPropertyInputModelBuilder >> buildInputFor: aCollection withArguments: anArgument [
 
 	| elementInput |
 	elementInput := self makeInput.
-	self connectInput: elementInput toCollection: aCollection fromModel: self inputModel.
+	self
+		connectInput: elementInput
+		toCollection: aCollection
+		fromModel: self inputModel.
 	self setDefautValueOf: elementInput with: anArgument.
 	^ elementInput
 ]
 
 { #category : #building }
-PyramidPropertyInputModelBuilder >> buildInputModelFor: aTarget withArguments: anArgument [
+PyramidPropertyInputModelBuilder >> buildStateInputModelFor: aCollection withArguments: anArgument [
 
-	| model |
-	model := PyramidPropertyInputForElementModel new.
-	model elementInput:
-		(self buildElementInputFor: { aTarget } withArguments: anArgument).
-	model stateInput: (self
-			 buildButtonFor: [(self targetModel targetsAt: anArgument)]
-			 withInput: model elementInput).
-	model modelInput: (self
-			 buildButtonFor: [self targetModel targets]
-			 withInput: model elementInput).
-	model referenceObject: aTarget.
-	^ model
+	| stateModel |
+	stateModel := PyramidPropertyInputForStateModel new.
+	stateModel input:
+		(self buildInputFor: aCollection withArguments: anArgument).
+	stateModel applyToAllButton: (self
+			 buildButtonFor: [ self targetModel targets ]
+			 withInput: stateModel input).
+	stateModel referenceState: anArgument.
+	self inputModel addStateInput: stateModel
 ]
 
 { #category : #accessing }

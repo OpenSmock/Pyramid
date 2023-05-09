@@ -27,7 +27,7 @@ PyramidPropertyInputView >> defaultLayout [
 					   c
 						   width: 24;
 						   height: 24 ];
-				   add: self model globalInput expand: true;
+				   add: self model applyToAllInput expand: true;
 				   yourself);
 		 add: SpNullPresenter new height: 8;
 		  yourself
@@ -106,80 +106,13 @@ PyramidPropertyInputView >> popoverButton [
 { #category : #'as yet unclassified' }
 PyramidPropertyInputView >> popoverLayout [
 
-	| popoverLayout inputsLayout label |
-	label := SpLabelPresenter new
-		         displayBold: [ true ];
-		         label: self model sectionName;
-		         yourself.
-	popoverLayout := SpBoxLayout newVertical
-		                 spacing: 4;
-		                 add: label height: 24;
-		                 yourself.
-
-	inputsLayout := SpBoxLayout new
-		                spacing: 4;
-		                yourself.
-	self model elementInputModel do: [ :each |
-		inputsLayout add: (self singlePopoverElementLayout: each) ].
-
-	self model elementInputSize * 25 > (self popoverMaxHeight - 80)
-		ifTrue: [
-			popoverLayout
-				add: (SpScrollableLayout new
-						 child: inputsLayout;
-						 yourself)
-				withConstraints: [ :c |
-					c width: self popoverMaxWidth.
-					c height: self popoverMaxHeight ] ]
-		ifFalse: [
-			self flag: #BUG. "The SpTextFieldPresenter seem to not be displayed of the
-			correct size. I added a null presenter to make sure every inputs are visible."
-			inputsLayout add: SpNullPresenter new height: 24.
-			popoverLayout add: inputsLayout width: self popoverMaxWidth ].
-	^ popoverLayout
-]
-
-{ #category : #'as yet unclassified' }
-PyramidPropertyInputView >> popoverMaxHeight [
-^ 300
-]
-
-{ #category : #'as yet unclassified' }
-PyramidPropertyInputView >> popoverMaxWidth [
-
-	^ 300
+	^ (PyramidPropertyViewBuilder new model: self model) buildPopoverLayout
 ]
 
 { #category : #'as yet unclassified' }
 PyramidPropertyInputView >> showPopover [
 
 	self popover popup
-]
-
-{ #category : #'as yet unclassified' }
-PyramidPropertyInputView >> singlePopoverElementLayout: aModel [
-
-	| label |
-	label := SpLabelPresenter new
-		         label: aModel referenceObject hash printString;
-		         yourself.
-	
-	aModel stateInput icon: (self iconNamed: #merge).
-	aModel modelInput icon: (self iconNamed: #smallExpert).
-
-	^ SpBoxLayout newHorizontal
-		  spacing: 4;
-		  add: label width: 70;
-		  add: aModel elementInput expand: true;
-		  add: aModel stateInput withConstraints: [ :c |
-					 c
-						 width: 24;
-						 height: 24 ];
-		  add: aModel modelInput withConstraints: [ :c |
-					 c
-						 width: 24;
-						 height: 24 ];
-		  yourself
 ]
 
 { #category : #'as yet unclassified' }
@@ -192,8 +125,8 @@ PyramidPropertyInputView >> updatePopover [
 PyramidPropertyInputView >> updateView [
 
 	self model elementInputSize = 0
-		ifTrue: [ self model globalInput enabled: false ]
-		ifFalse: [ self model globalInput enabled: true ].
+		ifTrue: [ self model applyToAllInput enabled: false ]
+		ifFalse: [ self model applyToAllInput enabled: true ].
 
 	self model elementInputSize < 2
 		ifTrue: [

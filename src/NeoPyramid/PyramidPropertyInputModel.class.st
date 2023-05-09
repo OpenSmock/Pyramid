@@ -31,7 +31,7 @@ PyramidPropertyInputModel >> allElementInputs [
 { #category : #'as yet unclassified' }
 PyramidPropertyInputModel >> allInputs [
 
-	^ self elementInputModel collect: [ :each | each elementInput ].
+	^ self elementInputsModel collect: [ :each | each input ].
 
 ]
 
@@ -39,11 +39,11 @@ PyramidPropertyInputModel >> allInputs [
 PyramidPropertyInputModel >> allInputsOf: aCollection [
 
 	| inputs |
-	inputs := self elementInputModel
+	inputs := self elementInputsModel 
 		          select: [ :each |
 			          aCollection anySatisfy: [ :obj |
 				          obj = each referenceObject ] ]
-		          thenCollect: [ :each | each elementInput ].
+		          thenCollect: [ :each | each input ].
 	^ inputs
 ]
 
@@ -67,7 +67,7 @@ PyramidPropertyInputModel >> applyToAllInput: anObject [
 
 { #category : #'as yet unclassified' }
 PyramidPropertyInputModel >> elementInputSize [
-	^ self elementInputModel size
+	^ self elementInputsModel size
 ]
 
 { #category : #accessing }

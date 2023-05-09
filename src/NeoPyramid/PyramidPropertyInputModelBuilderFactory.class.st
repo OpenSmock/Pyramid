@@ -306,9 +306,9 @@ PyramidPropertyInputModelBuilderFactory >> updateInputs: input collection: colle
 	((model allInputs collect:
 		 [ :each | self transformOutBlock value: each ]) asSet) size = 1
 		ifTrue: [
-		self transformInBlock value: model globalInput value: valueToSet ]
+		self transformInBlock value: model applyToAllInput value: valueToSet ]
 		ifFalse: [
 			self transformInBlock
-				value: model globalInput
+				value: model applyToAllInput
 				value: self mutliValuesDefault ]
 ]
