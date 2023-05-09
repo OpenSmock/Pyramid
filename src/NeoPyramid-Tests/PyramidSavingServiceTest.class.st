@@ -90,11 +90,21 @@ PyramidSavingServiceTest >> testCanSave [
 	model savingPackageName: 'PyramidSavingPackage'.
 	self assert: self savingService canSave.
 	
+	model savingClassName: 'PyramidSavingClass'.
+	model savingMethodName: 'aPyramidSavingMethod'.
+	model savingPackageName: 'PyramidSavingPackage-abc'.
+	self deny: self savingService canSave.
+	
+	model savingClassName: 'PyramidSavingClass'.
+	model savingMethodName: 'aPyramidSavingMethod'.
+	model savingPackageName: 'PyramidSavingPackage-Abc-Def'.
+	self assert: self savingService canSave.
+
 	model savingClassName: self savingClass name.
 	model savingMethodName: 'aPyramidSavingMethod'.
 	model savingPackageName: self savingClass package name.
 	self assert: self savingService canSave.
-	
+
 	model savingClassName: self savingClass name.
 	model savingMethodName: 'aPyramidSavingMethod'.
 	model savingPackageName: self savingClass package name , 'notTheSame'.
