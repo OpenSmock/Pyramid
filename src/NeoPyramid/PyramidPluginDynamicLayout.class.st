@@ -4,10 +4,11 @@ Class {
 	#traits : 'TPyramidPlugin',
 	#classTraits : 'TPyramidPlugin classTrait',
 	#instVars : [
-		'spaceView',
 		'leftButton',
 		'rightButton',
-		'editorView'
+		'isLeftOpened',
+		'isRightOpened',
+		'editorWindow'
 	],
 	#category : #'NeoPyramid-plugin-dynamic-layout'
 }
@@ -19,13 +20,13 @@ PyramidPluginDynamicLayout class >> initialize [
 ]
 
 { #category : #adding }
-PyramidPluginDynamicLayout >> addPanelsOn: aPyramidSimpleWindow [
+PyramidPluginDynamicLayout >> addPanelsOn: aPyramidWindow [
 
-	aPyramidSimpleWindow
+	aPyramidWindow
 		at: #topLeft
 		addItem: [ :builder |
-		builder makeButtonWithIcon: self leftButton order: -1000 ].
-	aPyramidSimpleWindow
+		builder makeButtonWithIcon: self leftButton order: -9999 ].
+	aPyramidWindow
 		at: #topRight
 		addItem: [ :builder |
 		builder makeButtonWithIcon: self rightButton order: 9999 ]
@@ -35,17 +36,37 @@ PyramidPluginDynamicLayout >> addPanelsOn: aPyramidSimpleWindow [
 PyramidPluginDynamicLayout >> changeEditorLayout [
 
 	| strategy |
-	strategy := self leftButton state
+	strategy := self isLeftOpened
 		            ifTrue: [
-			            self rightButton state
-				            ifTrue: [ PyramidSimpleLayoutStrategy new ]
-				            ifFalse: [ PyramidLeftLayoutStrategy new ] ]
+			            self isRightOpened
+				            ifTrue: [ PyramidDynamicLayoutAllPanels new ]
+				            ifFalse: [ PyramidDynamicLayoutOnlyLeft new ] ]
 		            ifFalse: [
-			            self rightButton state
-				            ifTrue: [ PyramidRightLayoutStrategy new ]
-				            ifFalse: [ PyramidCenterLayoutStrategy new ] ].
-	self editorView layoutStrategy: strategy.
-	self editorView updateLayout
+			            self isRightOpened
+				            ifTrue: [ PyramidDynamicLayoutOnlyRight new ]
+				            ifFalse: [ PyramidDynamicLayoutOnlyCenter new ] ].
+	self editorWindow layoutStrategy: strategy
+]
+
+{ #category : #'as yet unclassified' }
+PyramidPluginDynamicLayout >> changeLeftLayout [
+
+	self isLeftOpened: self isLeftOpened not.
+	self changeEditorLayout
+]
+
+{ #category : #'as yet unclassified' }
+PyramidPluginDynamicLayout >> changeRightLayout [
+
+	self isRightOpened: self isRightOpened not.
+	self changeEditorLayout
+]
+
+{ #category : #actions }
+PyramidPluginDynamicLayout >> configureBuilder: aPyramidBuilder [
+
+	editorWindow := PyramidDynamicWindow new.
+	aPyramidBuilder window: editorWindow
 ]
 
 { #category : #'as yet unclassified' }
@@ -56,19 +77,48 @@ PyramidPluginDynamicLayout >> connectOn: aPyramidEditor [
 ]
 
 { #category : #accessing }
-PyramidPluginDynamicLayout >> editorView [
-	^ editorView
+PyramidPluginDynamicLayout >> editorWindow [
+	^ editorWindow
 ]
 
 { #category : #initialization }
 PyramidPluginDynamicLayout >> initialize [
 
+	isLeftOpened := true.
+	isRightOpened := true.
+
 	leftButton := SpButtonPresenter new
 		              icon: (self iconNamed: #solidMenu);
+		              action: [ self changeLeftLayout ];
 		              yourself.
 	rightButton := SpButtonPresenter new
 		               icon: (self iconNamed: #solidMenu);
+		               action: [ self changeRightLayout ];
 		               yourself
+]
+
+{ #category : #accessing }
+PyramidPluginDynamicLayout >> isLeftOpened [
+
+	^ isLeftOpened
+]
+
+{ #category : #accessing }
+PyramidPluginDynamicLayout >> isLeftOpened: anObject [
+
+	isLeftOpened := anObject
+]
+
+{ #category : #accessing }
+PyramidPluginDynamicLayout >> isRightOpened [
+
+	^ isRightOpened
+]
+
+{ #category : #accessing }
+PyramidPluginDynamicLayout >> isRightOpened: anObject [
+
+	isRightOpened := anObject
 ]
 
 { #category : #accessing }

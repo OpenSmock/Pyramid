@@ -99,8 +99,8 @@ PyramidHistoryView >> redoTree [
 PyramidHistoryView >> undoChildrenBlock [
 
 	^ [ :each |
-	  each isSequence
-		  ifTrue: [ each mementos ]
+	  each undoMemento isSequence
+		  ifTrue: [ each undoMemento mementos ]
 		  ifFalse: [ {  } ] ]
 ]
 

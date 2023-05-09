@@ -2,7 +2,9 @@ Class {
 	#name : #PyramidEditorBuilder,
 	#superclass : #Object,
 	#instVars : [
-		'plugins'
+		'plugins',
+		'editor',
+		'window'
 	],
 	#category : #'NeoPyramid-core'
 }
@@ -10,16 +12,21 @@ Class {
 { #category : #building }
 PyramidEditorBuilder >> build [
 
-	| editor simpleWindow |
-	editor := PyramidEditor new.
-	simpleWindow := PyramidSimpleWindow new.
+	self plugins do: [ :each | each configureBuilder: self ].
 
-	editor window: simpleWindow.
-	editor plugins: self plugins.
+	self editor window: self window.
+	self editor plugins: self plugins.
 
-	self plugins do: [ :each | each addPanelsOn: simpleWindow ].
-	self plugins do: [ :each | each connectOn: editor ].
+	self plugins do: [ :each | each addPanelsOn: self window ].
+	self plugins do: [ :each | each connectOn: self editor ].
 	^ editor
+]
+
+{ #category : #accessing }
+PyramidEditorBuilder >> editor [
+editor ifNil: [ editor := PyramidEditor new ].
+ ^ editor
+
 ]
 
 { #category : #accessing }
@@ -32,4 +39,21 @@ PyramidEditorBuilder >> plugins [
 PyramidEditorBuilder >> plugins: anObject [
 
 	plugins := anObject
+]
+
+{ #category : #building }
+PyramidEditorBuilder >> window [
+
+window ifNil: [ window := PyramidSimpleWindow new ].
+^ window
+
+	
+]
+
+{ #category : #building }
+PyramidEditorBuilder >> window: aPyramidWindow [
+
+	window ifNotNil: [
+		Error signal: 'The window is already set by another plugin !' ].
+	window := aPyramidWindow
 ]
