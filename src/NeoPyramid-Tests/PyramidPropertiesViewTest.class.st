@@ -1,7 +1,7 @@
 Class {
 	#name : #PyramidPropertiesViewTest,
 	#superclass : #TestCase,
-	#category : #'NeoPyramid-plugin-properties'
+	#category : #'NeoPyramid-Tests-Cases'
 }
 
 { #category : #'as yet unclassified' }

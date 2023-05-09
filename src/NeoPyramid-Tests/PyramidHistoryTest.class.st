@@ -8,7 +8,7 @@ Class {
 		'history',
 		'pipeline'
 	],
-	#category : #'NeoPyramid-plugin-history'
+	#category : #'NeoPyramid-Tests-Cases'
 }
 
 { #category : #'as yet unclassified' }

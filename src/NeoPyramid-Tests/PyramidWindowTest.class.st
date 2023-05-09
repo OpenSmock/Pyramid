@@ -4,7 +4,7 @@ Class {
 	#instVars : [
 		'window'
 	],
-	#category : #'NeoPyramid-aaa-views'
+	#category : #'NeoPyramid-Tests-Cases'
 }
 
 { #category : #running }

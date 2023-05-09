@@ -1,7 +1,7 @@
 Class {
 	#name : #PyramidPipelineTest,
 	#superclass : #TestCase,
-	#category : #'NeoPyramid-commands'
+	#category : #'NeoPyramid-Tests-Cases'
 }
 
 { #category : #tests }

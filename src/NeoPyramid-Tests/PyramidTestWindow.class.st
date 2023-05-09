@@ -1,7 +1,7 @@
 Class {
 	#name : #PyramidTestWindow,
 	#superclass : #PyramidWindow,
-	#category : #'NeoPyramid-aaa-views'
+	#category : #'NeoPyramid-Tests-Utils'
 }
 
 { #category : #initialization }

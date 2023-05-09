@@ -76,20 +76,8 @@ PyramidSavePlugin >> initialize [
 
 	saveButton := SpButtonPresenter new
 		              icon: (self iconNamed: #smallSave);
-		              action: [ self savingService save ];
-		              "inputsButton := PyramidButtonWithPopover new
-		                icon: (self iconNamed: #smallRemoteOpen);
-		                presenter: self inputsView;
-		                alignCenter;
-		                order: 30;
-		                yourself.
-	saveButton := PyramidButton new
-		              icon: (self iconNamed: #smallSave);
-		              alignCenter;
-		              order: 31;
-		              callback: [ self savingService save ];
-		              yourself"
-			              yourself
+		              action: [ self saveAction ];
+			           yourself.
 ]
 
 { #category : #accessing }
@@ -114,6 +102,16 @@ PyramidSavePlugin >> inputsView [
 PyramidSavePlugin >> pyramidActiveProjectChanged [
 
 	self saveModel project: self activeProject project
+]
+
+{ #category : #actions }
+PyramidSavePlugin >> saveAction [ 
+	"Action executed by save button"
+
+	[ self savingService save ] 
+	on: PyramidSaveError do: [
+		^ UIManager default alert: 'Cannot save the project, check project properties before.' title: 'Error'.
+	]. 
 ]
 
 { #category : #accessing }

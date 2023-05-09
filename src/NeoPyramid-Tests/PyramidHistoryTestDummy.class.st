@@ -4,7 +4,7 @@ Class {
 	#instVars : [
 		'integer'
 	],
-	#category : #'NeoPyramid-plugin-history'
+	#category : #'NeoPyramid-Tests-Utils'
 }
 
 { #category : #'actions api' }
