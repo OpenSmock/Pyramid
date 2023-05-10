@@ -113,26 +113,5 @@ PyramidPropertiesView >> updateLayout [
 PyramidPropertiesView >> updatePropertyViews [
 
 	self properties do: [ :property |
-		               property makeNewInputsFor:
-			               self activeProject selection elements].
-
-	"| inputModels |
-	inputModels := self properties collect: [ :property |
-		               property makeNewInputsFor:
-			               self activeProject selection elements.
-		               property inputsModel ]."
-
-
-	self flag: #TODO
-	"self layout removeAll.
-	self propertyViews: (inputModels
-			 select: [ :each | each elementInputSize > 0 ]
-			 thenCollect: [ :each |
-				 | view |
-				 view := PyramidPropertyInputView new
-					         model: each;
-					         updateView;
-					         yourself.
-				 self layout add: view expand: false.
-				 view ])"
+		property makeNewInputsFor: self activeProject selection elements ].
 ]

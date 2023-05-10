@@ -115,11 +115,11 @@ PyramidPropertiesViewTest >> testUpdatePropertyViews [
 			PyramidPropertiesTestDummy new }.
 	self assert: view propertyViews size equals: 1.
 	self assert: (view propertyViews anySatisfy: [ :each |
-			 each model applyToAllInput text = '<A>' ]).
+			 each property inputsModel applyToAllInput text = '<A>' ]).
 	self assert: (view propertyViews noneSatisfy: [ :each |
-			 each model applyToAllInput text = '<B>' ]).
+			 each property inputsModel applyToAllInput text = '<B>' ]).
 	self assert: (view propertyViews noneSatisfy: [ :each |
-			 each model applyToAllInput text = '<C>' ]).
+			 each property inputsModel applyToAllInput text = '<C>' ]).
 	self assert: propertyA targetModel size equals: 2.
 	self assert: propertyB targetModel isEmpty.
 	self assert: propertyC targetModel isEmpty.
@@ -131,11 +131,11 @@ PyramidPropertiesViewTest >> testUpdatePropertyViews [
 			PyramidPropertiesTestDummy new }.
 	self assert: view propertyViews size equals: 2.
 	self assert: (view propertyViews anySatisfy: [ :each |
-			 each model applyToAllInput text = '<A>' ]).
+			 each property inputsModel applyToAllInput text = '<A>' ]).
 	self assert: (view propertyViews anySatisfy: [ :each |
-			 each model applyToAllInput text = '<B>' ]).
+			 each property inputsModel applyToAllInput text = '<B>' ]).
 	self assert: (view propertyViews noneSatisfy: [ :each |
-			 each model applyToAllInput text = '<C>' ]).
+			 each property inputsModel applyToAllInput text = '<C>' ]).
 	self assert: propertyA targetModel size equals: 4.
 	self assert: propertyB targetModel size equals: 1.
 	self assert: propertyC targetModel isEmpty

@@ -30,6 +30,20 @@ PyramidPropertyInputModelBuilderTest >> inputModelFromCollection: aCollection [
 	^ property inputsModel
 ]
 
+{ #category : #'as yet unclassified' }
+PyramidPropertyInputModelBuilderTest >> propertyFromCollection: aCollection [
+
+	| property |
+	property := PyramidProperty new
+		            command: self dummyCommand;
+		            pipeline: PyramidPipeline new;
+		            yourself.
+	PyramidPropertyInputModelBuilderFactory mockPresenter
+		installBuilderOn: property.
+	property makeNewInputsFor: aCollection.
+	^ property
+]
+
 { #category : #tests }
 PyramidPropertyInputModelBuilderTest >> testBuild [
 
@@ -42,212 +56,253 @@ PyramidPropertyInputModelBuilderTest >> testBuild [
 { #category : #tests }
 PyramidPropertyInputModelBuilderTest >> testEmptyModel [
 
-	| inputModel |
-	inputModel := self inputModelFromCollection: {  }.
+	| property |
+	property := self propertyFromCollection: {  }.
 
-	self assert: inputModel elementInputsModel size equals: 0.
-	self assert: inputModel stateInputsModel size equals: 0.
-	self assert: inputModel applyToAllInput text equals: '# no values'
+	self assert: property inputsModel elementInputsModel size equals: 0.
+	self assert: property inputsModel stateInputsModel size equals: 0.
+	self assert: property inputsModel applyToAllInput text equals: '# no values'
 ]
 
 { #category : #tests }
 PyramidPropertyInputModelBuilderTest >> testMultiStatesMultiElementsModel [
 
-	| inputModel e1 e2 e3 |
-	e1 := BlElement new
-		      id: #'hello world';
+	| property e1 e2 e3 |
+	e1 := PyramidPropertiesTestDummy new
+		      string: #'hello world';
 		      yourself.
-	e2 := BlElement new
-		      id: #'hello world';
+	e2 := PyramidPropertiesTestDummy new
+		      string: #'hello world';
 		      yourself.
-	e3 := BlElement new
-		      id: #'Bonjour monde';
+	e3 := PyramidPropertiesTestDummy new
+		      string: #'Bonjour monde';
 		      yourself.
-	inputModel := self inputModelFrom: {
-			              e1.
-			              e2.
-			              e3 }.
-	self assert: inputModel elementInputsModel size equals: 3.
-	self assert: inputModel stateInputsModel size equals: 2.
-	self assert: inputModel applyToAllInput text equals: 'multi values'.
+	property := self propertyFromCollection: {
+			            e1.
+			            e2.
+			            e3 }.
+	self assert: property inputsModel elementInputsModel size equals: 3.
+	self assert: property inputsModel stateInputsModel size equals: 2.
+	self
+		assert: property inputsModel applyToAllInput text
+		equals: '# mixed values'.
 
-	inputModel stateInputsModel first input
+	(property inputsModel stateInputsFor: e1) input
 		text: 'test1';
 		submit.
-	self assert: e1 id asSymbol equals: #test1.
-	self assert: e2 id asSymbol equals: #test1.
-	self assert: e3 id asSymbol equals: #'Bonjour monde'.
-	self assert: inputModel elementInputsModel size equals: 3.
-	self assert: inputModel stateInputsModel size equals: 2.
-	self assert: inputModel applyToAllInput text equals: 'multi values'.
+	self assert: e1 string equals: #test1.
+	self assert: e2 string equals: #test1.
+	self assert: e3 string equals: #'Bonjour monde'.
+	self assert: property inputsModel elementInputsModel size equals: 3.
+	self assert: property inputsModel stateInputsModel size equals: 2.
+	self
+		assert: property inputsModel applyToAllInput text
+		equals: '# mixed values'.
 
-	inputModel elementInputsModel first input
+	(property inputsModel elementInputsFor: e1) input
 		text: 'test2';
 		submit.
-	self assert: e1 id asSymbol equals: #test2.
-	self assert: e2 id asSymbol equals: #test1.
-	self assert: e3 id asSymbol equals: #'Bonjour monde'.
-	self assert: inputModel elementInputsModel size equals: 3.
-	self assert: inputModel stateInputsModel size equals: 3.
-	self assert: inputModel applyToAllInput text equals: 'multi values'.
+	self assert: e1 string equals: #test2.
+	self assert: e2 string equals: #test1.
+	self assert: e3 string equals: #'Bonjour monde'.
+	self assert: property inputsModel elementInputsModel size equals: 3.
+	self assert: property inputsModel stateInputsModel size equals: 3.
+	self
+		assert: property inputsModel applyToAllInput text
+		equals: '# mixed values'.
 
-	inputModel stateInputsModel first input
+	(property inputsModel stateInputsFor: e1) input
 		text: 'test3';
 		submit.
-	self assert: e1 id asSymbol equals: #test3.
-	self assert: e2 id asSymbol equals: #test1.
-	self assert: e3 id asSymbol equals: #'Bonjour monde'.
-	self assert: inputModel elementInputsModel size equals: 3.
-	self assert: inputModel stateInputsModel size equals: 3.
-	self assert: inputModel applyToAllInput text equals: 'multi values'.
+	self assert: e1 string equals: #test3.
+	self assert: e2 string equals: #test1.
+	self assert: e3 string equals: #'Bonjour monde'.
+	self assert: property inputsModel elementInputsModel size equals: 3.
+	self assert: property inputsModel stateInputsModel size equals: 3.
+	self
+		assert: property inputsModel applyToAllInput text
+		equals: '# mixed values'.
 
-	inputModel elementInputsModel first input text: 'test4'.
-	inputModel elementInputsModel first applyToAllButton click.
-	self assert: e1 id asSymbol equals: #test4.
-	self assert: e2 id asSymbol equals: #test4.
-	self assert: e3 id asSymbol equals: #test4.
-	self assert: inputModel elementInputsModel size equals: 3.
-	self assert: inputModel stateInputsModel size equals: 1.
-	self assert: inputModel applyToAllInput text equals: 'test4'.
+	(property inputsModel elementInputsFor: e1) input text: 'test4'.
+	(property inputsModel elementInputsFor: e1) applyToAllButton click.
+	self assert: e1 string equals: #test4.
+	self assert: e2 string equals: #test4.
+	self assert: e3 string equals: #test4.
+	self assert: property inputsModel elementInputsModel size equals: 3.
+	self assert: property inputsModel stateInputsModel size equals: 1.
+	self
+		assert: property inputsModel applyToAllInput text
+		equals: 'test4'.
 
-	inputModel stateInputsModel first input text: 'test5'.
-	inputModel stateInputsModel first applyToAllButton click.
-	self assert: e1 id asSymbol equals: #test5.
-	self assert: e2 id asSymbol equals: #test5.
-	self assert: e2 id asSymbol equals: #test5.
-	self assert: inputModel elementInputsModel size equals: 3.
-	self assert: inputModel stateInputsModel size equals: 1.
-	self assert: inputModel applyToAllInput text equals: 'test5'.
+	(property inputsModel stateInputsFor: e1) input text: 'test5'.
+	(property inputsModel stateInputsFor: e1) applyToAllButton click.
+	self assert: e1 string equals: #test5.
+	self assert: e2 string equals: #test5.
+	self assert: e2 string equals: #test5.
+	self assert: property inputsModel elementInputsModel size equals: 3.
+	self assert: property inputsModel stateInputsModel size equals: 1.
+	self
+		assert: property inputsModel applyToAllInput text
+		equals: 'test5'.
 
-	inputModel applyToAllInput
+	property inputsModel applyToAllInput
 		text: 'goodbye';
 		submit.
-	self assert: e1 id asSymbol equals: #goodbye.
-	self assert: e2 id asSymbol equals: #goodbye.
-	self assert: e3 id asSymbol equals: #goodbye.
-	self assert: inputModel elementInputsModel size equals: 3.
-	self assert: inputModel stateInputsModel size equals: 1.
-	self assert: inputModel applyToAllInput text equals: 'goodbye'
+	self assert: e1 string equals: #goodbye.
+	self assert: e2 string equals: #goodbye.
+	self assert: e3 string equals: #goodbye.
+	self assert: property inputsModel elementInputsModel size equals: 3.
+	self assert: property inputsModel stateInputsModel size equals: 1.
+	self
+		assert: property inputsModel applyToAllInput text
+		equals: 'goodbye'
 ]
 
 { #category : #tests }
 PyramidPropertyInputModelBuilderTest >> testSingleStateMultiElementsModel [
 
-	| inputModel e1 e2 |
-	e1 := BlElement new
-		      id: #'hello world';
+	| property e1 e2 |
+	e1 := PyramidPropertiesTestDummy new
+		      string: #'hello world';
 		      yourself.
-	e2 := BlElement new
-		      id: #'hello world';
+	e2 := PyramidPropertiesTestDummy new
+		      string: #'hello world';
 		      yourself.
-	inputModel := self inputModelFrom: {
-			              e1.
-			              e2 }.
-	self assert: inputModel elementInputsModel size equals: 2.
-	self assert: inputModel stateInputsModel size equals: 1.
-	self assert: inputModel applyToAllInput text equals: 'hello world'.
+	property := self propertyFromCollection: {
+			            e1.
+			            e2 }.
 
-	inputModel stateInputsModel first input
+	self assert: property inputsModel elementInputsModel size equals: 2.
+	self assert: property inputsModel stateInputsModel size equals: 1.
+	self
+		assert: property inputsModel applyToAllInput text
+		equals: 'hello world'.
+
+	(property inputsModel stateInputsFor: e1) input
 		text: 'test1';
 		submit.
-	self assert: e1 id asSymbol equals: #test1.
-	self assert: e2 id asSymbol equals: #test1.
-	self assert: inputModel elementInputsModel size equals: 2.
-	self assert: inputModel stateInputsModel size equals: 1.
-	self assert: inputModel applyToAllInput text equals: 'test1'.
+	self assert: e1 string equals: #test1.
+	self assert: e2 string equals: #test1.
+	self assert: property inputsModel elementInputsModel size equals: 2.
+	self assert: property inputsModel stateInputsModel size equals: 1.
+	self
+		assert: property inputsModel applyToAllInput text
+		equals: 'test1'.
 
-	inputModel elementInputsModel first input
+	(property inputsModel elementInputsFor: e1) input
 		text: 'test2';
 		submit.
-	self assert: e1 id asSymbol equals: #test2.
-	self assert: e2 id asSymbol equals: #test1.
-	self assert: inputModel elementInputsModel size equals: 2.
-	self assert: inputModel stateInputsModel size equals: 2.
-	self assert: inputModel applyToAllInput text equals: 'multi values'.
+	self assert: e1 string equals: #test2.
+	self assert: e2 string equals: #test1.
+	self assert: property inputsModel elementInputsModel size equals: 2.
+	self assert: property inputsModel stateInputsModel size equals: 2.
+	self
+		assert: property inputsModel applyToAllInput text
+		equals: '# mixed values'.
 
-	inputModel stateInputsModel first input
+	(property inputsModel stateInputsFor: e1) input
 		text: 'test3';
 		submit.
-	self assert: e1 id asSymbol equals: #test3.
-	self assert: e2 id asSymbol equals: #test1.
-	self assert: inputModel elementInputsModel size equals: 2.
-	self assert: inputModel stateInputsModel size equals: 2.
-	self assert: inputModel applyToAllInput text equals: 'multi values'.
+	self assert: e1 string equals: #test3.
+	self assert: e2 string equals: #test1.
+	self assert: property inputsModel elementInputsModel size equals: 2.
+	self assert: property inputsModel stateInputsModel size equals: 2.
+	self
+		assert: property inputsModel applyToAllInput text
+		equals: '# mixed values'.
 
-	inputModel elementInputsModel first input text: 'test4'.
-	inputModel elementInputsModel first applyToAllButton click.
-	self assert: e1 id asSymbol equals: #test4.
-	self assert: e2 id asSymbol equals: #test4.
-	self assert: inputModel elementInputsModel size equals: 2.
-	self assert: inputModel stateInputsModel size equals: 1.
-	self assert: inputModel applyToAllInput text equals: 'test4'.
+	(property inputsModel elementInputsFor: e1) input text: 'test4'.
+	(property inputsModel elementInputsFor: e1) applyToAllButton click.
+	self assert: e1 string equals: #test4.
+	self assert: e2 string equals: #test4.
+	self assert: property inputsModel elementInputsModel size equals: 2.
+	self assert: property inputsModel stateInputsModel size equals: 1.
+	self
+		assert: property inputsModel applyToAllInput text
+		equals: 'test4'.
 
-	inputModel stateInputsModel first input text: 'test5'.
-	inputModel stateInputsModel first applyToAllButton click.
-	self assert: e1 id asSymbol equals: #test5.
-	self assert: e2 id asSymbol equals: #test5.
-	self assert: inputModel elementInputsModel size equals: 2.
-	self assert: inputModel stateInputsModel size equals: 1.
-	self assert: inputModel applyToAllInput text equals: 'test5'.
+	(property inputsModel stateInputsFor: e1) input text: 'test5'.
+	(property inputsModel stateInputsFor: e1) applyToAllButton click.
+	self assert: e1 string equals: #test5.
+	self assert: e2 string equals: #test5.
+	self assert: property inputsModel elementInputsModel size equals: 2.
+	self assert: property inputsModel stateInputsModel size equals: 1.
+	self
+		assert: property inputsModel applyToAllInput text
+		equals: 'test5'.
 
-	inputModel applyToAllInput
+	property inputsModel applyToAllInput
 		text: 'goodbye';
 		submit.
-	self assert: e1 id asSymbol equals: #goodbye.
-	self assert: e2 id asSymbol equals: #goodbye.
-	self assert: inputModel elementInputsModel size equals: 2.
-	self assert: inputModel stateInputsModel size equals: 1.
-	self assert: inputModel applyToAllInput text equals: 'goodbye'
+	self assert: e1 string equals: #goodbye.
+	self assert: e2 string equals: #goodbye.
+	self assert: property inputsModel elementInputsModel size equals: 2.
+	self assert: property inputsModel stateInputsModel size equals: 1.
+	self
+		assert: property inputsModel applyToAllInput text
+		equals: 'goodbye'
 ]
 
 { #category : #tests }
 PyramidPropertyInputModelBuilderTest >> testSingleStateSingleElementModel [
 
-	| inputModel e1 |
+	| property e1 |
 	e1 := PyramidPropertiesTestDummy new
 		      string: #'hello world';
 		      yourself.
-	inputModel := self inputModelFromCollection: { e1 }.
+	property := self propertyFromCollection: { e1 }.
 
-	self assert: inputModel elementInputsModel size equals: 1.
-	self assert: inputModel stateInputsModel size equals: 1.
-	self assert: inputModel applyToAllInput text equals: 'hello world'.
+	self assert: property inputsModel elementInputsModel size equals: 1.
+	self assert: property inputsModel stateInputsModel size equals: 1.
+	self
+		assert: property inputsModel applyToAllInput text
+		equals: 'hello world'.
 
-	inputModel elementInputsModel first input
+	(property inputsModel elementInputsFor: e1) input
 		text: 'test1';
 		submit.
 	self assert: e1 string equals: 'test1'.
-	self assert: inputModel elementInputsModel size equals: 1.
-	self assert: inputModel stateInputsModel size equals: 1.
-	self assert: inputModel applyToAllInput text equals: 'test1'.
+	self assert: property inputsModel elementInputsModel size equals: 1.
+	self assert: property inputsModel stateInputsModel size equals: 1.
+	self
+		assert: property inputsModel applyToAllInput text
+		equals: 'test1'.
 
-	inputModel stateInputsModel first input
+	(property inputsModel stateInputsFor: e1) input
 		text: 'test2';
 		submit.
 	self assert: e1 string equals: 'test2'.
-	self assert: inputModel elementInputsModel size equals: 1.
-	self assert: inputModel stateInputsModel size equals: 1.
-	self assert: inputModel applyToAllInput text equals: 'test2'.
+	self assert: property inputsModel elementInputsModel size equals: 1.
+	self assert: property inputsModel stateInputsModel size equals: 1.
+	self
+		assert: property inputsModel applyToAllInput text
+		equals: 'test2'.
 
-	inputModel elementInputsModel first input text: 'test3'.
-	inputModel elementInputsModel first applyToAllButton click.
-	self assert:e1 string equals: 'test3'.
-	self assert: inputModel elementInputsModel size equals: 1.
-	self assert: inputModel stateInputsModel size equals: 1.
-	self assert: inputModel applyToAllInput text equals: 'test3'.
+	(property inputsModel elementInputsFor: e1) input text: 'test3'.
+	(property inputsModel elementInputsFor: e1) applyToAllButton click.
+	self assert: e1 string equals: 'test3'.
+	self assert: property inputsModel elementInputsModel size equals: 1.
+	self assert: property inputsModel stateInputsModel size equals: 1.
+	self
+		assert: property inputsModel applyToAllInput text
+		equals: 'test3'.
 
-	inputModel stateInputsModel first input text: 'test4'.
-	inputModel stateInputsModel first applyToAllButton click.
+	(property inputsModel stateInputsFor: e1) input text: 'test4'.
+	(property inputsModel stateInputsFor: e1) applyToAllButton click.
 	self assert: e1 string equals: 'test4'.
-	self assert: inputModel elementInputsModel size equals: 1.
-	self assert: inputModel stateInputsModel size equals: 1.
-	self assert: inputModel applyToAllInput text equals: 'test4'.
+	self assert: property inputsModel elementInputsModel size equals: 1.
+	self assert: property inputsModel stateInputsModel size equals: 1.
+	self
+		assert: property inputsModel applyToAllInput text
+		equals: 'test4'.
 
-	inputModel applyToAllInput
+	property inputsModel applyToAllInput
 		text: 'goodbye';
 		submit.
 	self assert: e1 string equals: 'goodbye'.
-	self assert: inputModel elementInputsModel size equals: 1.
-	self assert: inputModel stateInputsModel size equals: 1.
-	self assert: inputModel applyToAllInput text equals: 'goodbye'
+	self assert: property inputsModel elementInputsModel size equals: 1.
+	self assert: property inputsModel stateInputsModel size equals: 1.
+	self
+		assert: property inputsModel applyToAllInput text
+		equals: 'goodbye'
 ]

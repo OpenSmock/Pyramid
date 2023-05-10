@@ -19,13 +19,13 @@ PyramidPropertyPopoverView >> defaultLayout [
 PyramidPropertyPopoverView >> defaultLayoutFor: aPresenter [
 
 	| popoverLayout |
-
 	popoverLayout := SpBoxLayout newVertical
 		                 spacing: 4;
 		                 add: self topbarLayout height: 24;
 		                 yourself.
 
-	self property inputsModel elementInputSize * 25 > (self popoverMaxHeight - 80)
+	self property inputsModel elementInputsSize * 25
+	> (self popoverMaxHeight - 80)
 		ifTrue: [
 			popoverLayout
 				add: (SpScrollableLayout new

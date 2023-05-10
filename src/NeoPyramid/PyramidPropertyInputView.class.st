@@ -152,11 +152,11 @@ PyramidPropertyInputView >> pyramidInputsUpdated [
 	self currentApplyToAllInput:
 		self property inputsModel applyToAllInput.
 
-	self property inputsModel elementInputSize = 0
+	self property inputsModel elementInputsSize = 0
 		ifTrue: [ self propertiesView hide: self ]
 		ifFalse: [ self propertiesView show: self ].
 
-	self property inputsModel elementInputSize < 2
+	self property inputsModel elementInputsSize < 2
 		ifTrue: [ self popoverButton enabled: false ]
 		ifFalse: [ self popoverButton enabled: true ].
 
