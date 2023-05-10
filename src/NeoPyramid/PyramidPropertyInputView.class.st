@@ -57,7 +57,7 @@ PyramidPropertyInputView >> makePopover [
 		  presenter: (SpPresenter new
 				   layout: (SpBoxLayout newTopToBottom
 						    spacing: 4;
-						    add: self popoverLayout;
+						    add: self popoverPresenter;
 						    add: (SpButtonPresenter new
 								     label: 'Close';
 								     action: [ self hidePopover ];
@@ -104,9 +104,11 @@ PyramidPropertyInputView >> popoverButton [
 ]
 
 { #category : #'as yet unclassified' }
-PyramidPropertyInputView >> popoverLayout [
+PyramidPropertyInputView >> popoverPresenter [
 
-	^ (PyramidPropertyViewBuilder new model: self model) buildPopoverLayout
+	^ PyramidPropertyPopoverView new
+		  model: self model;
+		  yourself
 ]
 
 { #category : #'as yet unclassified' }

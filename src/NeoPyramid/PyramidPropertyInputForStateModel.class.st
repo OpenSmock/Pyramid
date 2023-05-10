@@ -2,10 +2,23 @@ Class {
 	#name : #PyramidPropertyInputForStateModel,
 	#superclass : #PyramidPropertyInputForModel,
 	#instVars : [
-		'referenceState'
+		'referenceState',
+		'referenceCollection'
 	],
 	#category : #'NeoPyramid-plugin-properties'
 }
+
+{ #category : #accessing }
+PyramidPropertyInputForStateModel >> referenceCollection [
+
+	^ referenceCollection
+]
+
+{ #category : #accessing }
+PyramidPropertyInputForStateModel >> referenceCollection: anObject [
+
+	referenceCollection := anObject
+]
 
 { #category : #accessing }
 PyramidPropertyInputForStateModel >> referenceState [

@@ -86,7 +86,7 @@ PyramidPropertyInputModelBuilder >> buildStateInputModelFor: aCollection withArg
 	stateModel applyToAllButton: (self
 			 buildButtonFor: [ self targetModel targets ]
 			 withInput: stateModel input).
-	stateModel referenceState: anArgument.
+	stateModel referenceState: anArgument; referenceCollection: aCollection.
 	self inputModel addStateInput: stateModel
 ]
 

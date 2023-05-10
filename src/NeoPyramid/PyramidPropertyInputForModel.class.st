@@ -31,3 +31,15 @@ PyramidPropertyInputForModel >> input: anObject [
 
 	input := anObject
 ]
+
+{ #category : #accessing }
+PyramidPropertyInputForModel >> preview [
+
+	^ self shouldBeImplemented
+]
+
+{ #category : #accessing }
+PyramidPropertyInputForModel >> previewConstraints [
+
+	^ self shouldBeImplemented
+]
