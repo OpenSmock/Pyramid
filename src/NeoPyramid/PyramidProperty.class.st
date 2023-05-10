@@ -91,6 +91,7 @@ PyramidProperty >> makeNewInputsFor: aCollection [
 
 	self updateTargetModelFrom: aCollection.
 	inputsModel := self inputBuilder build.
+	self informInputsUpdated
 ]
 
 { #category : #'as yet unclassified' }
@@ -115,12 +116,23 @@ PyramidProperty >> stateOf: anObject [
 
 { #category : #'as yet unclassified' }
 PyramidProperty >> submit: anArguments on: aCollection [
+	"
+	Verify the submission does something.
+	Use command.
+	Update inputs model.
+	"
+
+	| previousTargets |
+	previousTargets := self targetModel targetsAt: anArguments.
+	(aCollection allSatisfy: [ :target |
+		 previousTargets anySatisfy: [ :each | each == target ] ]) ifTrue: [
+		^ self ].
 
 	self command state arguments: anArguments.
 	self pipeline
 		useCommand: self command
 		on: (PyramidPipelineTarget new collection: aCollection).
-	self makeNewInputsFor: self targetModel targets
+	self makeNewInputsFor: self targetModel targets asArray
 ]
 
 { #category : #accessing }

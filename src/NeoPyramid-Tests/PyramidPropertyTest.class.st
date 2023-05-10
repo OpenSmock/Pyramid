@@ -10,7 +10,7 @@ PyramidPropertyTest >> testSubmitOn [
 	| property command elements boolean |
 	boolean := true.
 	command := PyramidCommand
-		           set: [ :state :target | target add: state arguments ]
+		           set: [ :state :target | target string: state arguments ]
 		           get: [ :state :obj |
 			           state source: obj.
 			           state arguments: boolean.
@@ -19,29 +19,30 @@ PyramidPropertyTest >> testSubmitOn [
 	property := PyramidProperty new
 		            command: command;
 		            pipeline: PyramidPipeline new;
+						inputBuilder: PyramidDummyBuilder new;
 		            yourself.
 
-	property updateTargetModelFrom: {
-			(OrderedCollection new
-				 add: $a;
+	elements := {
+			(PyramidPropertiesTestDummy new
+				 string: 'aaaa';
 				 yourself).
-			(OrderedCollection new
-				 add: $b;
+			(PyramidPropertiesTestDummy new
+				 string: 'aaaa';
 				 yourself).
-			(OrderedCollection new
-				 add: $c;
+			(PyramidPropertiesTestDummy new
+				 string: 'aaaa';
 				 yourself).
-			(OrderedCollection new
-				 add: $d;
+			(PyramidPropertiesTestDummy new
+				 string: 'aaaa';
 				 yourself) }.
-	elements := property targetModel targets.
-	self assert: elements size equals: 4.
-	self assert: (elements allSatisfy: [ :each | each size = 1 ]).
-	property submit: $e on: elements.
-	self assert: elements size equals: 4.
+				
+	property makeNewInputsFor: elements.			
+	
+	self assert: (elements allSatisfy: [ :each | each string = 'aaaa' ]).
+	property submit: 'bbbb' on: elements.
 	self assert:
 		(elements allSatisfy: [ :each |
-			 each size = 2 and: [ each last = $e ] ])
+			 each string = 'bbbb' ])
 ]
 
 { #category : #tests }

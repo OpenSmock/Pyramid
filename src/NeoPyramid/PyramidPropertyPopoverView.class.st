@@ -2,7 +2,7 @@ Class {
 	#name : #PyramidPropertyPopoverView,
 	#superclass : #SpPresenter,
 	#instVars : [
-		'model',
+		'property',
 		'groupButton',
 		'soloButton'
 	],
@@ -25,7 +25,7 @@ PyramidPropertyPopoverView >> defaultLayoutFor: aPresenter [
 		                 add: self topbarLayout height: 24;
 		                 yourself.
 
-	self model elementInputSize * 25 > (self popoverMaxHeight - 80)
+	self property inputsModel elementInputSize * 25 > (self popoverMaxHeight - 80)
 		ifTrue: [
 			popoverLayout
 				add: (SpScrollableLayout new
@@ -69,7 +69,7 @@ PyramidPropertyPopoverView >> groupLayout [
 	inputsLayout := SpBoxLayout new
 		                spacing: 4;
 		                yourself.
-	self model stateInputsModel do: [ :each |
+	self property inputsModel stateInputsModel do: [ :each |
 		inputsLayout add: (self groupInputOnPopoverLayout: each) ].
 	^ inputsLayout
 ]
@@ -104,20 +104,6 @@ PyramidPropertyPopoverView >> inputOnPopoverLayout: aModel withLabel: aLabel [
 		  yourself
 ]
 
-{ #category : #accessing }
-PyramidPropertyPopoverView >> model [
-
-	model ifNil: [ model := PyramidPropertyMultiInputsModel new ].
-	^ model
-]
-
-{ #category : #accessing }
-PyramidPropertyPopoverView >> model: aModel [
-
-	model := aModel.
-	self updateLayout
-]
-
 { #category : #'as yet unclassified' }
 PyramidPropertyPopoverView >> popoverMaxHeight [
 ^ 300
@@ -127,6 +113,18 @@ PyramidPropertyPopoverView >> popoverMaxHeight [
 PyramidPropertyPopoverView >> popoverMaxWidth [
 
 	^ 300
+]
+
+{ #category : #accessing }
+PyramidPropertyPopoverView >> property [
+
+	^ property
+]
+
+{ #category : #accessing }
+PyramidPropertyPopoverView >> property: aProperty [
+
+	property := aProperty
 ]
 
 { #category : #accessing }
@@ -151,7 +149,7 @@ PyramidPropertyPopoverView >> soloLayout [
 	inputsLayout := SpBoxLayout new
 		                spacing: 4;
 		                yourself.
-	self model elementInputsModel do: [ :each |
+	self property inputsModel elementInputsModel do: [ :each |
 		inputsLayout add: (self soloInputOnPopoverLayout: each) ].
 	^ inputsLayout
 ]
@@ -162,7 +160,7 @@ PyramidPropertyPopoverView >> topbarLayout [
 	| label |
 	label := SpLabelPresenter new
 		         displayBold: [ true ];
-		         label: self model sectionName;
+		         label: self property inputsModel sectionName;
 		         yourself.
 
 	^ SpBoxLayout newVertical

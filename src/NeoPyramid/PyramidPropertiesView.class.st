@@ -27,10 +27,17 @@ PyramidPropertiesView >> activeProject: anObject [
 { #category : #accessing }
 PyramidPropertiesView >> addProperty: aProperty [
 
+	| view |
 	(self properties anySatisfy: [ :each | each = aProperty ]) ifTrue: [
 		^ self ].
 	self properties add: aProperty.
-	aProperty pipeline: self pipeline
+	aProperty pipeline: self pipeline.
+
+	view := PyramidPropertyInputView new
+		        property: aProperty;
+		        propertiesView: self;
+		        yourself.
+	aProperty addObserver: view
 ]
 
 { #category : #layout }
@@ -40,9 +47,14 @@ PyramidPropertiesView >> defaultLayout [
 	defaultLayout := SpBoxLayout newVertical
 		                 spacing: 4;
 		                 yourself.
-	self propertyViews do: [ :each |
-			defaultLayout add: each expand: false ].
 	^ defaultLayout
+]
+
+{ #category : #showing }
+PyramidPropertiesView >> hide: aPresenter [
+
+	self propertyViews remove: aPresenter ifAbsent: [].
+	self updateLayout
 ]
 
 { #category : #accessing }
@@ -66,7 +78,7 @@ PyramidPropertiesView >> properties [
 { #category : #accessing }
 PyramidPropertiesView >> propertyViews [
 
-	propertyViews ifNil: [ propertyViews := {  } ].
+	propertyViews ifNil: [ propertyViews := Set new ].
 	^ propertyViews
 ]
 
@@ -82,15 +94,37 @@ PyramidPropertiesView >> pyramidSelectionChangedOnActiveProject [
 	self updatePropertyViews
 ]
 
+{ #category : #showing }
+PyramidPropertiesView >> show: aPresenter [
+
+	self propertyViews add: aPresenter.
+	self updateLayout
+]
+
+{ #category : #private }
+PyramidPropertiesView >> updateLayout [
+
+	self layout removeAll.
+	self propertyViews do: [ :each | self layout add: each expand: false ].
+	self layout add: SpNullPresenter new expand: true
+]
+
 { #category : #'as yet unclassified' }
 PyramidPropertiesView >> updatePropertyViews [
 
-	| inputModels |
+	self properties do: [ :property |
+		               property makeNewInputsFor:
+			               self activeProject selection elements].
+
+	"| inputModels |
 	inputModels := self properties collect: [ :property |
 		               property makeNewInputsFor:
 			               self activeProject selection elements.
-			property inputsModel ].
-	self layout removeAll.
+		               property inputsModel ]."
+
+
+	self flag: #TODO
+	"self layout removeAll.
 	self propertyViews: (inputModels
 			 select: [ :each | each elementInputSize > 0 ]
 			 thenCollect: [ :each |
@@ -100,5 +134,5 @@ PyramidPropertiesView >> updatePropertyViews [
 					         updateView;
 					         yourself.
 				 self layout add: view expand: false.
-				 view ])
+				 view ])"
 ]

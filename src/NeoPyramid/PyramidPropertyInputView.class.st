@@ -1,13 +1,31 @@
 Class {
 	#name : #PyramidPropertyInputView,
 	#superclass : #SpPresenter,
+	#traits : 'TPyramidPropertyObserver',
+	#classTraits : 'TPyramidPropertyObserver classTrait',
 	#instVars : [
 		'popoverButton',
 		'popover',
-		'model'
+		'model',
+		'property',
+		'propertiesView',
+		'currentApplyToAllInput',
+		'inputLayout',
+		'popoverPresenter'
 	],
 	#category : #'NeoPyramid-plugin-properties'
 }
+
+{ #category : #accessing }
+PyramidPropertyInputView >> currentApplyToAllInput [
+^ currentApplyToAllInput
+]
+
+{ #category : #accessing }
+PyramidPropertyInputView >> currentApplyToAllInput: anObject [
+
+	currentApplyToAllInput := anObject
+]
 
 { #category : #layout }
 PyramidPropertyInputView >> defaultLayout [
@@ -15,36 +33,48 @@ PyramidPropertyInputView >> defaultLayout [
 	| label |
 	label := SpLabelPresenter new
 		         displayBold: [ true ];
-		         label: self model sectionName;
+		         label: self property inputsModel sectionName;
 		         yourself.
-
-	^ SpBoxLayout newVertical
-		  spacing: 4;
-		  add: label;
-		  add: (SpBoxLayout newHorizontal
+	inputLayout := (SpBoxLayout newHorizontal
 				   spacing: 4;
 				   add: self popoverButton withConstraints: [ :c |
 					   c
 						   width: 24;
 						   height: 24 ];
-				   add: self model applyToAllInput expand: true;
-				   yourself);
-		 add: SpNullPresenter new height: 8;
+				   add: self currentApplyToAllInput expand: true;
+				   yourself).
+	^ SpBoxLayout newVertical
+		  spacing: 4;
+		  add: label;
+		  add: inputLayout;
+		  add: SpNullPresenter new height: 8;
 		  yourself
 ]
 
 { #category : #'as yet unclassified' }
 PyramidPropertyInputView >> hidePopover [
 
-	self popover ifNotNil: [ self popover dismiss ]
-	
+	self popover ifNotNil: [
+		self popover dismiss. ]
 ]
 
 { #category : #'as yet unclassified' }
 PyramidPropertyInputView >> initializePresenters [
 
-	popoverButton := self makePopoverButton.
+	popoverButton := SpButtonPresenter new
+		                 icon: (self iconNamed: #edit);
+		                 action: [ self popover popup ];
+		                 enabled: false;
+		                 yourself.
+	popoverPresenter := PyramidPropertyPopoverView new
+		                    property: self property;
+		                    yourself.
+	popover := self makePopover
+]
 
+{ #category : #accessing }
+PyramidPropertyInputView >> inputLayout [
+	^ inputLayout
 ]
 
 { #category : #'as yet unclassified' }
@@ -68,29 +98,6 @@ PyramidPropertyInputView >> makePopover [
 		  yourself
 ]
 
-{ #category : #'as yet unclassified' }
-PyramidPropertyInputView >> makePopoverButton [
-
-	^ SpButtonPresenter new
-		                 icon: (self iconNamed: #edit);
-		                 action: [ self showPopover ];
-		                 enabled: false;
-		                 yourself
-]
-
-{ #category : #accessing }
-PyramidPropertyInputView >> model [
-
-	model ifNil: [ model := PyramidPropertyMultiInputsModel new ].
-	^ model
-]
-
-{ #category : #accessing }
-PyramidPropertyInputView >> model: anObject [
-
-	model := anObject
-]
-
 { #category : #accessing }
 PyramidPropertyInputView >> popover [
 
@@ -106,34 +113,52 @@ PyramidPropertyInputView >> popoverButton [
 { #category : #'as yet unclassified' }
 PyramidPropertyInputView >> popoverPresenter [
 
-	^ PyramidPropertyPopoverView new
-		  model: self model;
-		  yourself
+	^ popoverPresenter
+]
+
+{ #category : #accessing }
+PyramidPropertyInputView >> propertiesView [
+
+	^ propertiesView
+]
+
+{ #category : #accessing }
+PyramidPropertyInputView >> propertiesView: anObject [
+
+	propertiesView := anObject
+]
+
+{ #category : #accessing }
+PyramidPropertyInputView >> property [
+
+	^ property
+]
+
+{ #category : #accessing }
+PyramidPropertyInputView >> property: anObject [
+
+	property := anObject.
+	self popoverPresenter property: anObject
 ]
 
 { #category : #'as yet unclassified' }
-PyramidPropertyInputView >> showPopover [
+PyramidPropertyInputView >> pyramidInputsUpdated [
 
-	self popover popup
-]
+	(self inputLayout isNotNil and: [
+		 self currentApplyToAllInput isNotNil ]) ifTrue: [
+		self inputLayout
+			replace: self currentApplyToAllInput
+			with: self property inputsModel applyToAllInput ].
+	self currentApplyToAllInput:
+		self property inputsModel applyToAllInput.
 
-{ #category : #'as yet unclassified' }
-PyramidPropertyInputView >> updatePopover [
+	self property inputsModel elementInputSize = 0
+		ifTrue: [ self propertiesView hide: self ]
+		ifFalse: [ self propertiesView show: self ].
 
-	popover := self makePopover
-]
+	self property inputsModel elementInputSize < 2
+		ifTrue: [ self popoverButton enabled: false ]
+		ifFalse: [ self popoverButton enabled: true ].
 
-{ #category : #'as yet unclassified' }
-PyramidPropertyInputView >> updateView [
-
-	self model elementInputSize = 0
-		ifTrue: [ self model applyToAllInput enabled: false ]
-		ifFalse: [ self model applyToAllInput enabled: true ].
-
-	self model elementInputSize < 2
-		ifTrue: [
-			self popoverButton enabled: false ]
-		ifFalse: [
-			self popoverButton enabled: true.
-			self updatePopover ]
+	self popoverPresenter updateLayout
 ]
