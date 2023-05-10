@@ -29,15 +29,15 @@ PyramidPropertiesViewTest >> alwaysTrueCommand [
 ]
 
 { #category : #'as yet unclassified' }
-PyramidPropertiesViewTest >> booleanCommand [
+PyramidPropertiesViewTest >> isTotoCommand [
 
 	^ PyramidCommand
 		  name: '<A>'
 		  set: [ :state :obj |  ]
-		 get: [ :state :obj |
+		  get: [ :state :obj |
 			  state source: obj.
 			  state arguments: '<B>' ]
-		  isExecutableBlock: [ :obj :state | obj == true ]
+		  isExecutableBlock: [ :obj :state | obj isToto ]
 ]
 
 { #category : #tests }
@@ -52,6 +52,7 @@ PyramidPropertiesViewTest >> testAddProperty [
 	| view property |
 	property := PyramidProperty new.
 	view := PyramidPropertiesView new.
+	self assert: view properties size equals: 0.
 
 	view addProperty: property.
 	self assert: view properties size equals: 1.
@@ -69,12 +70,15 @@ PyramidPropertiesViewTest >> testUpdatePropertyViews [
 	"Test:
 	
 	Add a property <A> that should always be displayed.
-	Add a property <B> that should be displayed if selection contains boolean.
+	Add a property <B> that should be displayed if object in selection is toto.
 	Add a property <C> that should never be displayed.
-	Update the selection (pyramidActiveProjectSelectionHasBeenUpdated) with no boolean.
+	Verify <A> <B> <C> targetModel is empty.
+	Update the selection (pyramidActiveProjectSelectionHasBeenUpdated) with no toto.
 	Verify only <A> is displayed.
-	Update the selection (pyramidActiveProjectSelectionHasBeenUpdated) with a boolean.
-	Verify only <A> and <B> are displayed."
+	Verify <A> targetModel is not empty, <B> <C> targetModel is empty.
+	Update the selection (pyramidActiveProjectSelectionHasBeenUpdated) with one toto.
+	Verify only <A> and <B> are displayed.
+	Verify <A> <B> targetModel is not empty, <C> targetModel is empty."
 
 	| propertyA propertyB propertyC view activeProject |
 	activeProject := PyramidActiveProjectModel new.
@@ -83,7 +87,7 @@ PyramidPropertiesViewTest >> testUpdatePropertyViews [
 		             command: self alwaysTrueCommand;
 		             yourself.
 	propertyB := PyramidProperty new
-		             command: self booleanCommand;
+		             command: self isTotoCommand;
 		             yourself.
 	propertyC := PyramidProperty new
 		             command: self alwaysFalseCommand;
@@ -102,21 +106,37 @@ PyramidPropertiesViewTest >> testUpdatePropertyViews [
 	view addProperty: propertyB.
 	view addProperty: propertyC.
 
-	activeProject selection replaceAll: { 'hello'. 'test' }.
+	self assert: propertyA targetModel isEmpty.
+	self assert: propertyB targetModel isEmpty.
+	self assert: propertyC targetModel isEmpty.
+
+	activeProject selection replaceAll: {
+			PyramidPropertiesTestDummy new.
+			PyramidPropertiesTestDummy new }.
 	self assert: view propertyViews size equals: 1.
 	self assert: (view propertyViews anySatisfy: [ :each |
-			 each model globalInput text = '<A>' ]).
+			 each model applyToAllInput text = '<A>' ]).
 	self assert: (view propertyViews noneSatisfy: [ :each |
-			 each model globalInput text = '<B>' ]).
+			 each model applyToAllInput text = '<B>' ]).
 	self assert: (view propertyViews noneSatisfy: [ :each |
-			 each model globalInput text = '<C>' ]).
+			 each model applyToAllInput text = '<C>' ]).
+	self assert: propertyA targetModel size equals: 2.
+	self assert: propertyB targetModel isEmpty.
+	self assert: propertyC targetModel isEmpty.
 
-	activeProject selection replaceAll: { 'hello' . true. $a. 'test' }.
+	activeProject selection replaceAll: {
+			PyramidPropertiesTestDummy new.
+			PyramidPropertiesTestDummy new beToto.
+			PyramidPropertiesTestDummy new.
+			PyramidPropertiesTestDummy new }.
 	self assert: view propertyViews size equals: 2.
 	self assert: (view propertyViews anySatisfy: [ :each |
-			 each model globalInput text = '<A>' ]).
+			 each model applyToAllInput text = '<A>' ]).
 	self assert: (view propertyViews anySatisfy: [ :each |
-			 each model globalInput text = '<B>' ]).
+			 each model applyToAllInput text = '<B>' ]).
 	self assert: (view propertyViews noneSatisfy: [ :each |
-			 each model globalInput text = '<C>' ])
+			 each model applyToAllInput text = '<C>' ]).
+	self assert: propertyA targetModel size equals: 4.
+	self assert: propertyB targetModel size equals: 1.
+	self assert: propertyC targetModel isEmpty
 ]

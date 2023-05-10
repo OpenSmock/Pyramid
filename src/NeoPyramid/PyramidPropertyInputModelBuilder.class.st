@@ -20,7 +20,7 @@ Class {
 { #category : #building }
 PyramidPropertyInputModelBuilder >> build [
 
-	self inputModel: (PyramidPropertyInputModel new
+	self inputModel: (PyramidPropertyMultiInputsModel new
 			 sectionName: self sectionName;
 			 applyToAllInput: self makeInput;
 			 yourself).
@@ -53,13 +53,13 @@ PyramidPropertyInputModelBuilder >> buildButtonFor: aBlockCollection withInput: 
 PyramidPropertyInputModelBuilder >> buildElementInputModelFor: aTarget withArguments: anArgument [
 
 	| elementModel |
-	elementModel := PyramidPropertyInputForElementModel new.
+	elementModel := PyramidPropertySingleInputModel new.
 	elementModel input:
 		(self buildInputFor: { aTarget } withArguments: anArgument).
 	elementModel applyToAllButton: (self
 			 buildButtonFor: [ self targetModel targets ]
 			 withInput: elementModel input).
-	elementModel referenceObject: aTarget.
+	elementModel reference: aTarget.
 	self inputModel addElementInput: elementModel
 ]
 
@@ -80,13 +80,13 @@ PyramidPropertyInputModelBuilder >> buildInputFor: aCollection withArguments: an
 PyramidPropertyInputModelBuilder >> buildStateInputModelFor: aCollection withArguments: anArgument [
 
 	| stateModel |
-	stateModel := PyramidPropertyInputForStateModel new.
+	stateModel := PyramidPropertySingleInputModel new.
 	stateModel input:
 		(self buildInputFor: aCollection withArguments: anArgument).
 	stateModel applyToAllButton: (self
 			 buildButtonFor: [ self targetModel targets ]
 			 withInput: stateModel input).
-	stateModel referenceState: anArgument; referenceCollection: aCollection.
+	stateModel reference: aCollection.
 	self inputModel addStateInput: stateModel
 ]
 

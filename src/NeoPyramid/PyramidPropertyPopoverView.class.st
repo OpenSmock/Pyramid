@@ -52,7 +52,7 @@ PyramidPropertyPopoverView >> groupButton [
 PyramidPropertyPopoverView >> groupInputOnPopoverLayout: aModel [
 
 	| collectionSize string label |
-	collectionSize := aModel referenceCollection size.
+	collectionSize := aModel reference size.
 	string := collectionSize printString , ' element'.
 	collectionSize > 1 ifTrue: [ string := string , 's' ].
 
@@ -77,15 +77,15 @@ PyramidPropertyPopoverView >> groupLayout [
 { #category : #initialization }
 PyramidPropertyPopoverView >> initializePresenters [
 
-	groupButton := SpRadioButtonPresenter new
-		               label: 'Group';
-		               yourself.
 	soloButton := SpRadioButtonPresenter new
 		              label: 'Solo';
 		              yourself.
-	groupButton associatedRadioButtons: { soloButton }.
-	groupButton whenActivatedDo: [ self updateLayout ].
-	groupButton whenDeactivatedDo: [ self updateLayout ]
+	groupButton := SpRadioButtonPresenter new
+		               label: 'Group';
+		               yourself.
+	soloButton associatedRadioButtons: { groupButton }.
+	soloButton whenActivatedDo: [ self updateLayout ].
+	soloButton whenDeactivatedDo: [ self updateLayout ]
 ]
 
 { #category : #'as yet unclassified' }
@@ -107,7 +107,7 @@ PyramidPropertyPopoverView >> inputOnPopoverLayout: aModel withLabel: aLabel [
 { #category : #accessing }
 PyramidPropertyPopoverView >> model [
 
-	model ifNil: [ model := PyramidPropertyInputModel new ].
+	model ifNil: [ model := PyramidPropertyMultiInputsModel new ].
 	^ model
 ]
 
@@ -139,9 +139,9 @@ PyramidPropertyPopoverView >> soloInputOnPopoverLayout: aModel [
 
 	| label |
 	label := SpLabelPresenter new
-		         label: aModel referenceObject hash printString;
+		         label: aModel reference hash printString;
 		         yourself.
-		^ self inputOnPopoverLayout: aModel withLabel: label.
+	^ self inputOnPopoverLayout: aModel withLabel: label
 ]
 
 { #category : #'as yet unclassified' }
@@ -185,6 +185,8 @@ PyramidPropertyPopoverView >> topbarLayout [
 PyramidPropertyPopoverView >> updateLayout [
 
 	| layoutToShow |
-	layoutToShow := self groupButton state ifTrue: [ self groupLayout ] ifFalse: [ self soloLayout ].
+	layoutToShow := self soloButton state
+		                ifTrue: [ self soloLayout ]
+		                ifFalse: [ self groupLayout ].
 	self layout: (self defaultLayoutFor: layoutToShow)
 ]

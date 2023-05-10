@@ -5,52 +5,29 @@ Class {
 }
 
 { #category : #'as yet unclassified' }
-PyramidPropertyInputModelBuilderTest >> builderFrom: aPopertyTargetModel [
+PyramidPropertyInputModelBuilderTest >> dummyCommand [
 
-	| transformIn transformOut callback connectTriggerBlock initializeBlock builder |
-	transformOut := [ :input |
-	                input text
-		                ifEmpty: [ nil ]
-		                ifNotEmpty: [ input text ] ].
-	transformIn := [ :input :value |
-	               input text: (value ifNil: [ '' ] ifNotNil: [ value asSymbol ]) ].
-	callback := [ :input :col :model |
-	            col do: [ :each | each id: (transformOut value: input) ] ].
-	connectTriggerBlock := [ :input :col :model |
-	                       input whenSubmitDo: [ :val |
-		                       callback value: input value: col value: model ] ].
-	initializeBlock := [ :input |  ].
-
-	builder := PyramidPropertyInputModelBuilder new
-		           targetModel: aPopertyTargetModel;
-		           inputClass: PyramidMockSpecPresenter;
-		           connectInputBlock: connectTriggerBlock;
-		           setDefautValueBlock: transformIn;
-		           buttonCallbackBlock: callback;
-		           initializeInputBlock: initializeBlock;
-		           noValue: 'no value';
-		           multiValue: 'multi values';
-		           yourself.
-	^ builder
+	^ PyramidCommand name: #dummy
+		  set: [ :state :target | target string: state arguments ]
+		  get: [ :state :source |
+			  state source: source.
+			  state arguments: source string ]
+		  isExecutableBlock: [ :obj :state |
+			  true ]
 ]
 
 { #category : #'as yet unclassified' }
-PyramidPropertyInputModelBuilderTest >> inputModelFrom: aCollection [
+PyramidPropertyInputModelBuilderTest >> inputModelFromCollection: aCollection [
 
-
-	| targetModel builder |
-	targetModel := self targetModelFrom: aCollection.
-	builder := self builderFrom: targetModel.
-	^ builder build.
-]
-
-{ #category : #'as yet unclassified' }
-PyramidPropertyInputModelBuilderTest >> targetModelFrom: aCollection [
-
-	| targetModel |
-	targetModel := PyramidPropertyTargetModel new.
-	aCollection do: [ :each | targetModel at: each id put: each ].
-	^ targetModel
+	| property |
+	property := PyramidProperty new
+		            command: self dummyCommand;
+		            pipeline: PyramidPipeline new;
+		            yourself.
+	PyramidPropertyInputModelBuilderFactory mockPresenter
+		installBuilderOn: property.
+	property makeNewInputsFor: aCollection.
+	^ property inputsModel
 ]
 
 { #category : #tests }
@@ -65,12 +42,12 @@ PyramidPropertyInputModelBuilderTest >> testBuild [
 { #category : #tests }
 PyramidPropertyInputModelBuilderTest >> testEmptyModel [
 
-	| inputModel  |
-	inputModel := self inputModelFrom: { }.
+	| inputModel |
+	inputModel := self inputModelFromCollection: {  }.
 
 	self assert: inputModel elementInputsModel size equals: 0.
 	self assert: inputModel stateInputsModel size equals: 0.
-	self assert: inputModel applyToAllInput text equals: 'no value'
+	self assert: inputModel applyToAllInput text equals: '# no values'
 ]
 
 { #category : #tests }
@@ -100,10 +77,6 @@ PyramidPropertyInputModelBuilderTest >> testMultiStatesMultiElementsModel [
 	self assert: e1 id asSymbol equals: #test1.
 	self assert: e2 id asSymbol equals: #test1.
 	self assert: e3 id asSymbol equals: #'Bonjour monde'.
-	inputModel := self inputModelFrom: {
-			              e1.
-			              e2.
-			              e3 }.
 	self assert: inputModel elementInputsModel size equals: 3.
 	self assert: inputModel stateInputsModel size equals: 2.
 	self assert: inputModel applyToAllInput text equals: 'multi values'.
@@ -114,10 +87,6 @@ PyramidPropertyInputModelBuilderTest >> testMultiStatesMultiElementsModel [
 	self assert: e1 id asSymbol equals: #test2.
 	self assert: e2 id asSymbol equals: #test1.
 	self assert: e3 id asSymbol equals: #'Bonjour monde'.
-	inputModel := self inputModelFrom: {
-			              e1.
-			              e2.
-			              e3 }.
 	self assert: inputModel elementInputsModel size equals: 3.
 	self assert: inputModel stateInputsModel size equals: 3.
 	self assert: inputModel applyToAllInput text equals: 'multi values'.
@@ -128,10 +97,6 @@ PyramidPropertyInputModelBuilderTest >> testMultiStatesMultiElementsModel [
 	self assert: e1 id asSymbol equals: #test3.
 	self assert: e2 id asSymbol equals: #test1.
 	self assert: e3 id asSymbol equals: #'Bonjour monde'.
-	inputModel := self inputModelFrom: {
-			              e1.
-			              e2.
-			              e3 }.
 	self assert: inputModel elementInputsModel size equals: 3.
 	self assert: inputModel stateInputsModel size equals: 3.
 	self assert: inputModel applyToAllInput text equals: 'multi values'.
@@ -141,10 +106,6 @@ PyramidPropertyInputModelBuilderTest >> testMultiStatesMultiElementsModel [
 	self assert: e1 id asSymbol equals: #test4.
 	self assert: e2 id asSymbol equals: #test4.
 	self assert: e3 id asSymbol equals: #test4.
-	inputModel := self inputModelFrom: {
-			              e1.
-			              e2.
-			              e3 }.
 	self assert: inputModel elementInputsModel size equals: 3.
 	self assert: inputModel stateInputsModel size equals: 1.
 	self assert: inputModel applyToAllInput text equals: 'test4'.
@@ -154,10 +115,6 @@ PyramidPropertyInputModelBuilderTest >> testMultiStatesMultiElementsModel [
 	self assert: e1 id asSymbol equals: #test5.
 	self assert: e2 id asSymbol equals: #test5.
 	self assert: e2 id asSymbol equals: #test5.
-	inputModel := self inputModelFrom: {
-			              e1.
-			              e2.
-			              e3 }.
 	self assert: inputModel elementInputsModel size equals: 3.
 	self assert: inputModel stateInputsModel size equals: 1.
 	self assert: inputModel applyToAllInput text equals: 'test5'.
@@ -168,10 +125,6 @@ PyramidPropertyInputModelBuilderTest >> testMultiStatesMultiElementsModel [
 	self assert: e1 id asSymbol equals: #goodbye.
 	self assert: e2 id asSymbol equals: #goodbye.
 	self assert: e3 id asSymbol equals: #goodbye.
-	inputModel := self inputModelFrom: {
-			              e1.
-			              e2.
-			              e3 }.
 	self assert: inputModel elementInputsModel size equals: 3.
 	self assert: inputModel stateInputsModel size equals: 1.
 	self assert: inputModel applyToAllInput text equals: 'goodbye'
@@ -199,9 +152,6 @@ PyramidPropertyInputModelBuilderTest >> testSingleStateMultiElementsModel [
 		submit.
 	self assert: e1 id asSymbol equals: #test1.
 	self assert: e2 id asSymbol equals: #test1.
-	inputModel := self inputModelFrom: {
-			              e1.
-			              e2 }.
 	self assert: inputModel elementInputsModel size equals: 2.
 	self assert: inputModel stateInputsModel size equals: 1.
 	self assert: inputModel applyToAllInput text equals: 'test1'.
@@ -211,9 +161,6 @@ PyramidPropertyInputModelBuilderTest >> testSingleStateMultiElementsModel [
 		submit.
 	self assert: e1 id asSymbol equals: #test2.
 	self assert: e2 id asSymbol equals: #test1.
-	inputModel := self inputModelFrom: {
-			              e1.
-			              e2 }.
 	self assert: inputModel elementInputsModel size equals: 2.
 	self assert: inputModel stateInputsModel size equals: 2.
 	self assert: inputModel applyToAllInput text equals: 'multi values'.
@@ -223,9 +170,6 @@ PyramidPropertyInputModelBuilderTest >> testSingleStateMultiElementsModel [
 		submit.
 	self assert: e1 id asSymbol equals: #test3.
 	self assert: e2 id asSymbol equals: #test1.
-	inputModel := self inputModelFrom: {
-			              e1.
-			              e2 }.
 	self assert: inputModel elementInputsModel size equals: 2.
 	self assert: inputModel stateInputsModel size equals: 2.
 	self assert: inputModel applyToAllInput text equals: 'multi values'.
@@ -234,9 +178,6 @@ PyramidPropertyInputModelBuilderTest >> testSingleStateMultiElementsModel [
 	inputModel elementInputsModel first applyToAllButton click.
 	self assert: e1 id asSymbol equals: #test4.
 	self assert: e2 id asSymbol equals: #test4.
-	inputModel := self inputModelFrom: {
-			              e1.
-			              e2 }.
 	self assert: inputModel elementInputsModel size equals: 2.
 	self assert: inputModel stateInputsModel size equals: 1.
 	self assert: inputModel applyToAllInput text equals: 'test4'.
@@ -245,9 +186,6 @@ PyramidPropertyInputModelBuilderTest >> testSingleStateMultiElementsModel [
 	inputModel stateInputsModel first applyToAllButton click.
 	self assert: e1 id asSymbol equals: #test5.
 	self assert: e2 id asSymbol equals: #test5.
-	inputModel := self inputModelFrom: {
-			              e1.
-			              e2 }.
 	self assert: inputModel elementInputsModel size equals: 2.
 	self assert: inputModel stateInputsModel size equals: 1.
 	self assert: inputModel applyToAllInput text equals: 'test5'.
@@ -257,9 +195,6 @@ PyramidPropertyInputModelBuilderTest >> testSingleStateMultiElementsModel [
 		submit.
 	self assert: e1 id asSymbol equals: #goodbye.
 	self assert: e2 id asSymbol equals: #goodbye.
-	inputModel := self inputModelFrom: {
-			              e1.
-			              e2 }.
 	self assert: inputModel elementInputsModel size equals: 2.
 	self assert: inputModel stateInputsModel size equals: 1.
 	self assert: inputModel applyToAllInput text equals: 'goodbye'
@@ -269,10 +204,10 @@ PyramidPropertyInputModelBuilderTest >> testSingleStateMultiElementsModel [
 PyramidPropertyInputModelBuilderTest >> testSingleStateSingleElementModel [
 
 	| inputModel e1 |
-	e1 := BlElement new
-		      id: #'hello world';
+	e1 := PyramidPropertiesTestDummy new
+		      string: #'hello world';
 		      yourself.
-	inputModel := self inputModelFrom: { e1 }.
+	inputModel := self inputModelFromCollection: { e1 }.
 
 	self assert: inputModel elementInputsModel size equals: 1.
 	self assert: inputModel stateInputsModel size equals: 1.
@@ -281,8 +216,7 @@ PyramidPropertyInputModelBuilderTest >> testSingleStateSingleElementModel [
 	inputModel elementInputsModel first input
 		text: 'test1';
 		submit.
-	self assert: e1 id asSymbol equals: #test1.
-	inputModel := self inputModelFrom: { e1 }.
+	self assert: e1 string equals: 'test1'.
 	self assert: inputModel elementInputsModel size equals: 1.
 	self assert: inputModel stateInputsModel size equals: 1.
 	self assert: inputModel applyToAllInput text equals: 'test1'.
@@ -290,24 +224,21 @@ PyramidPropertyInputModelBuilderTest >> testSingleStateSingleElementModel [
 	inputModel stateInputsModel first input
 		text: 'test2';
 		submit.
-	self assert: e1 id asSymbol equals: #test2.
-	inputModel := self inputModelFrom: { e1 }.
+	self assert: e1 string equals: 'test2'.
 	self assert: inputModel elementInputsModel size equals: 1.
 	self assert: inputModel stateInputsModel size equals: 1.
 	self assert: inputModel applyToAllInput text equals: 'test2'.
 
 	inputModel elementInputsModel first input text: 'test3'.
 	inputModel elementInputsModel first applyToAllButton click.
-	self assert: e1 id asSymbol equals: #test3.
-	inputModel := self inputModelFrom: { e1 }.
+	self assert:e1 string equals: 'test3'.
 	self assert: inputModel elementInputsModel size equals: 1.
 	self assert: inputModel stateInputsModel size equals: 1.
 	self assert: inputModel applyToAllInput text equals: 'test3'.
 
 	inputModel stateInputsModel first input text: 'test4'.
 	inputModel stateInputsModel first applyToAllButton click.
-	self assert: e1 id asSymbol equals: #test4.
-	inputModel := self inputModelFrom: { e1 }.
+	self assert: e1 string equals: 'test4'.
 	self assert: inputModel elementInputsModel size equals: 1.
 	self assert: inputModel stateInputsModel size equals: 1.
 	self assert: inputModel applyToAllInput text equals: 'test4'.
@@ -315,9 +246,8 @@ PyramidPropertyInputModelBuilderTest >> testSingleStateSingleElementModel [
 	inputModel applyToAllInput
 		text: 'goodbye';
 		submit.
-	self assert: e1 id asSymbol equals: #goodbye.
-	inputModel := self inputModelFrom: { e1 }.
+	self assert: e1 string equals: 'goodbye'.
 	self assert: inputModel elementInputsModel size equals: 1.
 	self assert: inputModel stateInputsModel size equals: 1.
-	self assert: inputModel applyToAllInput text equals: 'goodbye'.
+	self assert: inputModel applyToAllInput text equals: 'goodbye'
 ]

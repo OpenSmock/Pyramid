@@ -81,7 +81,7 @@ PyramidPropertyInputView >> makePopoverButton [
 { #category : #accessing }
 PyramidPropertyInputView >> model [
 
-	model ifNil: [ model := PyramidPropertyInputModel new ].
+	model ifNil: [ model := PyramidPropertyMultiInputsModel new ].
 	^ model
 ]
 

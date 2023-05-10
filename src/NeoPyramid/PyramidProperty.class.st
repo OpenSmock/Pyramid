@@ -1,12 +1,14 @@
 Class {
 	#name : #PyramidProperty,
 	#superclass : #Object,
-	#classTraits : 'TPyramidPipelineObserver classTrait',
+	#traits : 'TPyramidProperty',
+	#classTraits : 'TPyramidProperty classTrait',
 	#instVars : [
 		'command',
 		'pipeline',
 		'targetModel',
-		'inputBuilder'
+		'inputBuilder',
+		'inputsModel'
 	],
 	#category : #'NeoPyramid-plugin-properties'
 }
@@ -80,6 +82,18 @@ PyramidProperty >> inputBuilder: anObject [
 ]
 
 { #category : #'as yet unclassified' }
+PyramidProperty >> inputsModel [
+	^ inputsModel
+]
+
+{ #category : #'as yet unclassified' }
+PyramidProperty >> makeNewInputsFor: aCollection [
+
+	self updateTargetModelFrom: aCollection.
+	inputsModel := self inputBuilder build.
+]
+
+{ #category : #'as yet unclassified' }
 PyramidProperty >> pipeline [
 
 	^ pipeline.
@@ -103,7 +117,10 @@ PyramidProperty >> stateOf: anObject [
 PyramidProperty >> submit: anArguments on: aCollection [
 
 	self command state arguments: anArguments.
-	self pipeline useCommand: self command on: (PyramidPipelineTarget new collection: aCollection)
+	self pipeline
+		useCommand: self command
+		on: (PyramidPipelineTarget new collection: aCollection).
+	self makeNewInputsFor: self targetModel targets
 ]
 
 { #category : #accessing }

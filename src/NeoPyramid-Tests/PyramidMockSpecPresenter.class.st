@@ -5,7 +5,7 @@ Class {
 		'text',
 		'submitBloc'
 	],
-	#category : #'NeoPyramid-plugin-properties'
+	#category : #'NeoPyramid-Tests-Utils'
 }
 
 { #category : #accessing }

@@ -28,10 +28,28 @@ PyramidPropertyTargetModel >> initialize [
 	targets := Set new
 ]
 
+{ #category : #testing }
+PyramidPropertyTargetModel >> isEmpty [
+
+	^ argumentsDict isEmpty
+]
+
+{ #category : #testing }
+PyramidPropertyTargetModel >> isNotEmpty [
+
+	^ argumentsDict isNotEmpty
+]
+
 { #category : #initialization }
 PyramidPropertyTargetModel >> reset [
 	self targets removeAll.
 	self argumentsDict removeAll.
+]
+
+{ #category : #accessing }
+PyramidPropertyTargetModel >> size [
+
+	^ self targets size
 ]
 
 { #category : #accessing }

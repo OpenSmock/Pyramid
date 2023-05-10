@@ -170,22 +170,18 @@ PyramidPropertyInputModelBuilderFactory >> installBuilderOn: aPorperty [
 
 { #category : #'as yet unclassified' }
 PyramidPropertyInputModelBuilderFactory >> makeCallBackBlock: aProperty [
+	"
+	Transform input value into a commande argument.
+	if (self shouldTriggerOnNil) or (value isNotNil):
+		property submit value on collection
+		inputs in model are updated
+	"
 
-	self shouldTriggerOnNil
-		ifTrue: [
-			^ [ :input :collection :model |
-			  aProperty
-				  submit: (self transformOutBlock value: input)
-				  on: collection.
-			  self updateInputs: input collection: collection model: model ] ]
-		ifFalse: [
-			^ [ :input :collection :model |
-			  | value |
-			  value := self transformOutBlock value: input.
-			  value ifNotNil: [
-				  aProperty submit: value on: collection.
-				  self updateInputs: input collection: collection model: model.
-				   ] ] ]
+	^ [ :input :collection :model |
+	  | value |
+	  value := self transformOutBlock value: input.
+	  (self shouldTriggerOnNil or: [ value isNotNil ]) ifTrue: [
+		  aProperty submit: value on: collection ] ]
 ]
 
 { #category : #'as yet unclassified' }
@@ -292,23 +288,4 @@ PyramidPropertyInputModelBuilderFactory >> triggerBlockStrategy [
 PyramidPropertyInputModelBuilderFactory >> triggerBlockStrategy: anObject [
 
 	triggerBlockStrategy := anObject
-]
-
-{ #category : #'as yet unclassified' }
-PyramidPropertyInputModelBuilderFactory >> updateInputs: input collection: collection model: model [
-
-	| valueToSet |
-	valueToSet := self transformOutBlock value: input.
-
-	(model allInputsOf: collection) do: [ :each |
-		self transformInBlock value: each value: valueToSet ].
-
-	((model allInputs collect:
-		 [ :each | self transformOutBlock value: each ]) asSet) size = 1
-		ifTrue: [
-		self transformInBlock value: model applyToAllInput value: valueToSet ]
-		ifFalse: [
-			self transformInBlock
-				value: model applyToAllInput
-				value: self mutliValuesDefault ]
 ]

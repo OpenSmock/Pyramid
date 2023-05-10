@@ -87,9 +87,9 @@ PyramidPropertiesView >> updatePropertyViews [
 
 	| inputModels |
 	inputModels := self properties collect: [ :property |
-		               property updateTargetModelFrom:
+		               property makeNewInputsFor:
 			               self activeProject selection elements.
-		               property inputBuilder build ].
+			property inputsModel ].
 	self layout removeAll.
 	self propertyViews: (inputModels
 			 select: [ :each | each elementInputSize > 0 ]
