@@ -12,11 +12,11 @@ Class {
 { #category : #'as yet unclassified' }
 PyramidPropertyPopoverView >> defaultLayout [
 
-	^ self defaultLayoutFor: self soloLayout.
+	^ self defaultLayoutFor: self soloLayout withSize: 0
 ]
 
 { #category : #'as yet unclassified' }
-PyramidPropertyPopoverView >> defaultLayoutFor: aPresenter [
+PyramidPropertyPopoverView >> defaultLayoutFor: aPresenter withSize: numberOfInputs [
 
 	| popoverLayout |
 	popoverLayout := SpBoxLayout newVertical
@@ -24,7 +24,7 @@ PyramidPropertyPopoverView >> defaultLayoutFor: aPresenter [
 		                 add: self topbarLayout height: 24;
 		                 yourself.
 
-	self property inputsModel elementInputsSize * 25
+	numberOfInputs * 25
 	> (self popoverMaxHeight - 80)
 		ifTrue: [
 			popoverLayout
@@ -182,9 +182,13 @@ PyramidPropertyPopoverView >> topbarLayout [
 { #category : #private }
 PyramidPropertyPopoverView >> updateLayout [
 
-	| layoutToShow |
-	layoutToShow := self soloButton state
-		                ifTrue: [ self soloLayout ]
-		                ifFalse: [ self groupLayout ].
-	self layout: (self defaultLayoutFor: layoutToShow)
+	| layoutToShow numberOfInputs |
+	self soloButton state
+		ifTrue: [
+			layoutToShow := self soloLayout.
+			numberOfInputs := self property inputsModel elementInputsModel size ]
+		ifFalse: [
+			layoutToShow := self groupLayout.
+			numberOfInputs := self property inputsModel stateInputsModel size ].
+	self layout: (self defaultLayoutFor: layoutToShow withSize: numberOfInputs)
 ]

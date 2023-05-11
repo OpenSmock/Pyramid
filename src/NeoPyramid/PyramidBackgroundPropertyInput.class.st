@@ -3,24 +3,35 @@ Class {
 	#superclass : #SpPresenter,
 	#instVars : [
 		'submitBlock',
-		'model',
-		'modeSelector',
-		'colorPreview',
-		'inputPresenter'
+		'preview',
+		'button',
+		'strategy'
 	],
 	#category : #'NeoPyramid-plugin-properties-custom'
 }
 
-{ #category : #'as yet unclassified' }
-PyramidBackgroundPropertyInput >> changeMode: aMode [
+{ #category : #'api - text style' }
+PyramidBackgroundPropertyInput >> background [
 
-	self inputPresenter: aMode
+	self strategy background
+]
+
+{ #category : #'api - text style' }
+PyramidBackgroundPropertyInput >> background: aBlBackground [
+
+	self strategy: aBlBackground pyramidBackgroundStrategy
 ]
 
 { #category : #accessing }
-PyramidBackgroundPropertyInput >> colorPreview [
+PyramidBackgroundPropertyInput >> button [
 
-	^ colorPreview
+	^ button
+]
+
+{ #category : #accessing }
+PyramidBackgroundPropertyInput >> button: anObject [
+
+	button := anObject
 ]
 
 { #category : #layout }
@@ -28,53 +39,46 @@ PyramidBackgroundPropertyInput >> defaultLayout [
 
 	^ SpBoxLayout newHorizontal
 		  spacing: 4;
-		  add: self modeSelector width: 120;
-		  add: self inputPresenter expand: true;
+		  add: self preview expand: true;
+		  add: self button withConstraints: [ :c | c width: 24. c height: 24 ];
 		  yourself
 ]
 
 { #category : #initialization }
 PyramidBackgroundPropertyInput >> initializePresenters [
 
-	modeSelector := PyramidBackgroundModeSelector new.
-	modeSelector backgroundInput: self.
-
-	colorPreview := PyramidBackgroundColorPreview new.
-	inputPresenter := SpNullPresenter new
+	preview := self strategy preview.
+	button := self strategy button.
 ]
 
 { #category : #accessing }
-PyramidBackgroundPropertyInput >> inputPresenter [
+PyramidBackgroundPropertyInput >> preview [
 
-	^ inputPresenter
+	^ preview
 ]
 
 { #category : #accessing }
-PyramidBackgroundPropertyInput >> inputPresenter: aPresenter [
+PyramidBackgroundPropertyInput >> preview: anObject [
 
-	inputPresenter := aPresenter.
-	self layout: self
+	preview := anObject
 ]
 
 { #category : #accessing }
-PyramidBackgroundPropertyInput >> modeSelector [
+PyramidBackgroundPropertyInput >> strategy [
 
-	^ modeSelector
+	strategy ifNil: [
+		strategy := PyramidBackgroundPropertyInputUnknownStrategy new ].
+	^ strategy
 ]
 
-{ #category : #accessing }
-PyramidBackgroundPropertyInput >> model [
+{ #category : #'api - text style' }
+PyramidBackgroundPropertyInput >> strategy: aStrategy [
 
-	^ model
-]
-
-{ #category : #accessing }
-PyramidBackgroundPropertyInput >> model: aPyramidBackgroundPropertyInputModel [
-
-	model := aPyramidBackgroundPropertyInputModel.
-	self modeSelector model: aPyramidBackgroundPropertyInputModel.
-	self colorPreview model: aPyramidBackgroundPropertyInputModel.
-	self inputPresenter model: aPyramidBackgroundPropertyInputModel.
+	strategy := aStrategy.
+	self layout replace: self button with: aStrategy button.
+	self layout replace: self preview with: aStrategy preview.
+	self button: aStrategy button.
+	self preview: aStrategy preview
 ]
 
 { #category : #accessing }
