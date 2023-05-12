@@ -5,7 +5,8 @@ Class {
 		'previewPresenter',
 		'colorPickerButton',
 		'textInput',
-		'color'
+		'color',
+		'whenSubmitDo'
 	],
 	#category : #'NeoPyramid-plugin-properties-custom'
 }
@@ -41,6 +42,7 @@ PyramidBackgroundInputSolidColor >> color [
 { #category : #accessing }
 PyramidBackgroundInputSolidColor >> color: aColor [
 
+	color = aColor ifFalse: [ self submitColor: aColor ].
 	color := aColor.
 	self previewPresenter color: aColor.
 	self textInput text: (self hexStringWithAlphaFrom: aColor).
@@ -130,6 +132,12 @@ PyramidBackgroundInputSolidColor >> previewPresenter [
 ]
 
 { #category : #'as yet unclassified' }
+PyramidBackgroundInputSolidColor >> submitColor: aColor [
+
+	self whenSubmitDo value: aColor
+]
+
+{ #category : #'as yet unclassified' }
 PyramidBackgroundInputSolidColor >> submitText: aString [
 
 	(self validateString: aString)
@@ -161,4 +169,17 @@ PyramidBackgroundInputSolidColor >> validateString: aString [
 		  c isDigit or: [
 			  { $a. $b. $c. $d. $e. $f. $A. $B. $C. $D. $E. $F } anySatisfy: [
 				  :any | any = c ] ] ]
+]
+
+{ #category : #accessing }
+PyramidBackgroundInputSolidColor >> whenSubmitDo [
+
+	whenSubmitDo ifNil: [ whenSubmitDo := [ :c | ] ].
+	^ whenSubmitDo
+]
+
+{ #category : #accessing }
+PyramidBackgroundInputSolidColor >> whenSubmitDo: aBloc [
+
+	whenSubmitDo := aBloc
 ]
