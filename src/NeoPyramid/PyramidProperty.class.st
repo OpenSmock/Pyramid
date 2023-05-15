@@ -43,6 +43,15 @@ PyramidProperty class >> identifier [
 ]
 
 { #category : #accessing }
+PyramidProperty class >> text [
+
+	^ self
+		  fromCommand: PyramidCommand text
+		  inputBuilder:
+		  PyramidPropertyInputModelBuilderFactory textInput
+]
+
+{ #category : #accessing }
 PyramidProperty class >> visibility [
 
 	^ self

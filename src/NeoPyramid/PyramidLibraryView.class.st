@@ -38,7 +38,7 @@ PyramidLibraryView >> defaultItemsList [
 			   blockMaker: [
 				   BlElement new
 					   background: Color green;
-					id: #green;
+					   id: #green;
 					   yourself ];
 			   yourself).
 		  (PyramidLibraryElement new
@@ -46,8 +46,13 @@ PyramidLibraryView >> defaultItemsList [
 			   blockMaker: [
 				   BlElement new
 					   background: Color blue;
-					id: #blue;
+					   id: #blue;
 					   yourself ];
+			   yourself).
+			(PyramidLibraryElement new
+			   title: 'Text';
+			   blockMaker: [
+				  'Example' asRopedText asElement ];
 			   yourself) }
 ]
 

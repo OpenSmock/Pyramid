@@ -56,8 +56,10 @@ PyramidCommand class >> identifier [
 		  get: [ :state :source |
 			  state source: source.
 			  state arguments: source id asSymbol ]
-		  isExecutableBlock: [ :obj :state | (obj isKindOf: BlElement) and: [
-				  state arguments ~= obj id asSymbol ]]
+		  isExecutableBlock: [ :obj :state |
+			  (obj isKindOf: BlElement) and: [
+					state arguments ifNil: [ true ] ifNotNil: [ state arguments ~= obj id asSymbol ]
+				   ] ]
 ]
 
 { #category : #adding }
@@ -104,6 +106,19 @@ PyramidCommand class >> set: aSetter get: aGetter isExecutableBlock: aBlock [
 		  getBlock: aGetter;
 		  isExecutableBlock: aBlock;
 		  yourself
+]
+
+{ #category : #adding }
+PyramidCommand class >> text [
+
+	^ self
+		  name: #text
+		  set: [ :state :target | target text: state arguments ]
+		  get: [ :state :source |
+			  state source: source.
+			  state arguments: source text ]
+		  isExecutableBlock: [ :obj :state |
+			  (obj isKindOf: BlTextElement) ]
 ]
 
 { #category : #adding }

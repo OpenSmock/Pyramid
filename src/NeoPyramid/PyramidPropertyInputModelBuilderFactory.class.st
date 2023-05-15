@@ -72,6 +72,23 @@ PyramidPropertyInputModelBuilderFactory class >> mockPresenter [
 ]
 
 { #category : #'as yet unclassified' }
+PyramidPropertyInputModelBuilderFactory class >> textInput [
+
+	^ self new
+		  sectionName: 'Text';
+		  inputClass: SpTextInputFieldPresenter;
+		  initializeBlock: [ :input |  ];
+		  mutliValuesDefault: '# mixed values';
+		  noValueDefault: '# no values';
+		  transformInBlock: [ :input :value | input text: value asString ];
+		  transformOutBlock: [ :input | input text ];
+		  triggerBlockStrategy: (PyramidOneArgTrigger new
+				   selector: #whenSubmitDo:;
+				   yourself);
+		  yourself
+]
+
+{ #category : #'as yet unclassified' }
 PyramidPropertyInputModelBuilderFactory class >> visibilityDropList [
 
 	^ self new

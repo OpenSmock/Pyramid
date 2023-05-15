@@ -34,7 +34,8 @@ PyramidPluginProperties >> connectOn: aPyramidEditor [
 
 	self view addProperty: PyramidProperty identifier.
 	self view addProperty: PyramidProperty visibility.
-	self view addProperty: PyramidProperty background
+	self view addProperty: PyramidProperty background.
+	self view addProperty: PyramidProperty text
 ]
 
 { #category : #'as yet unclassified' }

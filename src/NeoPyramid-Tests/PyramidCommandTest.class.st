@@ -193,6 +193,22 @@ PyramidCommandTest >> testRemoveElementOnCollection [
 ]
 
 { #category : #tests }
+PyramidCommandTest >> testText [
+
+	| e1 b1 state |
+	state := PyramidCommandState new.
+	e1 := 'abcde' asRopedText asElement.
+	PyramidCommand text getState: state from: e1.
+	self assert: state arguments asString equals: 'abcde'.
+
+	b1 := '123' asRopedText asElement..
+	PyramidCommand text
+		setState: (PyramidCommandState new arguments: '456')
+		on: b1.
+	self assert: b1 text equals: '456'
+]
+
+{ #category : #tests }
 PyramidCommandTest >> testVisibility [
 
 	| e1 b1 state |
