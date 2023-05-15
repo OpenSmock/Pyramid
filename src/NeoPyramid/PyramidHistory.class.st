@@ -82,7 +82,7 @@ PyramidHistory >> redo [
 	self canRedo ifFalse: [ ^ self ].
 	self redoCollection first redoMemento restore.
 	self undoCounterDecrement.
-	self mainPipeline informPipelineExecuteCommand.
+	self mainPipeline informPipelineTerminateCommand.
 	self informRedo
 ]
 
@@ -106,7 +106,7 @@ PyramidHistory >> undo [
 	self canUndo ifFalse: [ ^ self ].
 	self undoCollection first undoMemento restore.
 	self undoCounterIncrement.
-	self mainPipeline informPipelineExecuteCommand.
+	self mainPipeline informPipelineTerminateCommand.
 	self informUndo
 ]
 

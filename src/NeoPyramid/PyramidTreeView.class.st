@@ -145,7 +145,7 @@ PyramidTreeView >> pyramidActiveProjectChangedChanged [
 ]
 
 { #category : #'as yet unclassified' }
-PyramidTreeView >> pyramidPipelineExecuteCommand [
+PyramidTreeView >> pyramidPipelineTerminateCommand [
 
 	self updateTree
 ]
