@@ -20,10 +20,10 @@ PyramidPropertyInputModelBuilderFactory class >> backgroundInput [
 
 	^ self new
 		  sectionName: 'Background';
+		  dontTriggerOnNil;
 		  inputClass: PyramidBackgroundPropertyInput;
 		  initializeBlock: [ :input |  ];
-		  mutliValuesDefault:
-			  PyramidFakeBackgroundMixedValues new;
+		  mutliValuesDefault: PyramidFakeBackgroundMixedValues new;
 		  noValueDefault: PyramidFakeBackgroundNoValue new;
 		  transformInBlock: [ :input :value | input background: value ];
 		  transformOutBlock: [ :input | input background ];

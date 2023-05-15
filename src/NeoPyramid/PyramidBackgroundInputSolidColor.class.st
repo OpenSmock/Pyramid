@@ -1,6 +1,6 @@
 Class {
 	#name : #PyramidBackgroundInputSolidColor,
-	#superclass : #PyFormAbstract,
+	#superclass : #PyramidBackgroundAbstractPaintInput,
 	#instVars : [
 		'previewPresenter',
 		'colorPickerButton',
@@ -120,9 +120,14 @@ PyramidBackgroundInputSolidColor >> initializePresenters [
 	textInput whenSubmitDo: [ :text | self submitText: text ].
 	textInput whenTextChangedDo: [ :text | self changedText: text ].
 
-	previewPresenter := PyramidBackgroundPreviewSolidColor new
-		                    yourself.
-		self color: self color.
+	previewPresenter := PyramidBackgroundPreviewSolidColor new yourself.
+	self color: self color
+]
+
+{ #category : #accessing }
+PyramidBackgroundInputSolidColor >> paint [
+
+	^ self color
 ]
 
 { #category : #accessing }

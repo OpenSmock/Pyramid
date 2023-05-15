@@ -13,6 +13,12 @@ PyramidBackgroundPropertyInputUnknownStrategy >> button [
 ]
 
 { #category : #accessing }
+PyramidBackgroundPropertyInputUnknownStrategy >> hasModal [
+
+	^ false
+]
+
+{ #category : #accessing }
 PyramidBackgroundPropertyInputUnknownStrategy >> preview [
 
 	^ SpLabelPresenter new

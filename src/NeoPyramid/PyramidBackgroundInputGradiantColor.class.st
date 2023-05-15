@@ -2,7 +2,8 @@ Class {
 	#name : #PyramidBackgroundInputGradiantColor,
 	#superclass : #SpPresenter,
 	#instVars : [
-		'stopManager'
+		'stopManager',
+		'whenStopsChangedDo'
 	],
 	#category : #'NeoPyramid-plugin-properties-custom'
 }
@@ -11,7 +12,8 @@ Class {
 PyramidBackgroundInputGradiantColor >> addNewColorAt: aStop [
 
 	self stopManager addStopNextTo: aStop.
-	self layout: self defaultLayout
+	self layout: self defaultLayout.
+	self whenStopsChangedDo value
 ]
 
 { #category : #adding }
@@ -64,25 +66,10 @@ PyramidBackgroundInputGradiantColor >> addStopButton: aStop to: aLayout [
 	aLayout add: button
 ]
 
-{ #category : #adding }
-PyramidBackgroundInputGradiantColor >> addStopWithNoRemove: aStop to: aLayout [
+{ #category : #accessing }
+PyramidBackgroundInputGradiantColor >> asStopsArray [
 
-	| inputColor inputNumber |
-	inputColor := PyramidBackgroundInputSolidColor new
-		              color: aStop color;
-							whenSubmitDo: [ :c | self updateStopColor: aStop withColor: c ];
-		              yourself.
-	inputNumber := SpTextInputFieldPresenter new
-		               text: aStop number asFloat printString;
-		               editable: false;
-		               yourself.
-	aLayout
-		add: (SpBoxLayout newHorizontal
-				 spacing: 4;
-				 add: inputNumber width: 96;
-				 add: inputColor expand: true;
-				 yourself);
-		yourself
+	^ self stopManager asStopsArray
 ]
 
 { #category : #layout }
@@ -112,16 +99,13 @@ PyramidBackgroundInputGradiantColor >> getNumberFrom: aString [
 	^ ('0.', cleanString) asNumber
 ]
 
-{ #category : #initialization }
-PyramidBackgroundInputGradiantColor >> initializePresenters [
-
-]
-
 { #category : #removing }
 PyramidBackgroundInputGradiantColor >> removeNextStop: aStop [
 
-	aStop next: aStop next next.
-	self layout: self defaultLayout
+
+	self stopManager removeNextStop: aStop.
+	self layout: self defaultLayout.
+	self whenStopsChangedDo value
 ]
 
 { #category : #accessing }
@@ -135,6 +119,12 @@ PyramidBackgroundInputGradiantColor >> stopManager [
 PyramidBackgroundInputGradiantColor >> stopManager: aStopManager [
 
 	stopManager := aStopManager
+]
+
+{ #category : #'as yet unclassified' }
+PyramidBackgroundInputGradiantColor >> stopsSize [
+
+	^ self stopManager stopsSize
 ]
 
 { #category : #'as yet unclassified' }
@@ -154,4 +144,16 @@ PyramidBackgroundInputGradiantColor >> updateStopNumber: aStop withText: aString
 	aStop number: number.
 	self stopManager correctStopOrderOf: aStop withPrevious: aPreviousStop.
 	self layout: self defaultLayout
+]
+
+{ #category : #accessing }
+PyramidBackgroundInputGradiantColor >> whenStopsChangedDo [
+
+	^ whenStopsChangedDo 
+]
+
+{ #category : #accessing }
+PyramidBackgroundInputGradiantColor >> whenStopsChangedDo: aBlock [
+
+	whenStopsChangedDo := aBlock
 ]

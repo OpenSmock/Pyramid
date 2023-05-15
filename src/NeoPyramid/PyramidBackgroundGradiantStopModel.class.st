@@ -9,6 +9,14 @@ Class {
 	#category : #'NeoPyramid-plugin-properties-custom'
 }
 
+{ #category : #'as yet unclassified' }
+PyramidBackgroundGradiantStopModel >> collectOn: aCollection [
+
+	aCollection add: self number -> self color.
+	self next ifNotNil: [ self next collectOn: aCollection ].
+	
+]
+
 { #category : #accessing }
 PyramidBackgroundGradiantStopModel >> color [
 
@@ -43,4 +51,10 @@ PyramidBackgroundGradiantStopModel >> number [
 PyramidBackgroundGradiantStopModel >> number: anObject [
 
 	number := anObject
+]
+
+{ #category : #accessing }
+PyramidBackgroundGradiantStopModel >> size [
+
+	self next ifNil: [ ^ 1 ] ifNotNil: [ ^ 1 + self next size ]
 ]

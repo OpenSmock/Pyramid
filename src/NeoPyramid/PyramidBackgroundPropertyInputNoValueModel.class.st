@@ -4,11 +4,10 @@ Class {
 	#category : #'NeoPyramid-plugin-properties-custom'
 }
 
-{ #category : #accessing }
-PyramidBackgroundPropertyInputNoValueModel >> button [
-^ super button
-		  enabled: false;
-		  yourself
+{ #category : #testing }
+PyramidBackgroundPropertyInputNoValueModel >> hasModal [
+
+	^ false
 ]
 
 { #category : #accessing }

@@ -1,6 +1,6 @@
 Class {
 	#name : #PyramidBackgroundInputPaint,
-	#superclass : #SpPresenter,
+	#superclass : #PyramidBackgroundAbstractBackgroundInput,
 	#instVars : [
 		'buttonColor',
 		'buttonGradient',
@@ -9,6 +9,12 @@ Class {
 	],
 	#category : #'NeoPyramid-plugin-properties-custom'
 }
+
+{ #category : #accessing }
+PyramidBackgroundInputPaint >> background [
+
+	^ BlBackground paint: self paint
+]
 
 { #category : #accessing }
 PyramidBackgroundInputPaint >> buttonColor [
@@ -84,6 +90,20 @@ PyramidBackgroundInputPaint >> inputGradient [
 PyramidBackgroundInputPaint >> inputSolid [
 
 	^ inputSolid
+]
+
+{ #category : #accessing }
+PyramidBackgroundInputPaint >> paint [
+
+	self buttonColor state
+		  ifTrue: [ ^ self inputSolid paint ]
+		  ifFalse: [ ^ self inputGradient paint ]
+]
+
+{ #category : #initialization }
+PyramidBackgroundInputPaint >> setDefaultPaint: aPaint [
+
+	aPaint pyramidModalDefaultPaint: self
 ]
 
 { #category : #private }

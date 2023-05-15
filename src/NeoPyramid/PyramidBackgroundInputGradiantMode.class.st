@@ -92,6 +92,34 @@ PyramidBackgroundInputGradiantMode >> linearDirection [
 ]
 
 { #category : #'as yet unclassified' }
+PyramidBackgroundInputGradiantMode >> makeLinearPaintWithStops: anArray [
+
+	^ BlLinearGradientPaint new
+		  stops: anArray;
+		  start: 0 @ 0;
+		  end: self linearDirection point;
+		  yourself
+]
+
+{ #category : #'as yet unclassified' }
+PyramidBackgroundInputGradiantMode >> makePaintWithStops: aStopsArray [
+
+	self buttonLinear state
+		ifTrue: [ ^ self makeLinearPaintWithStops: aStopsArray ]
+		ifFalse: [ ^ self makeRadialPaintWithStops: aStopsArray ]
+]
+
+{ #category : #'as yet unclassified' }
+PyramidBackgroundInputGradiantMode >> makeRadialPaintWithStops: anArray [
+
+	^ (BlRadialGradientPaint new
+			           stops: anArray;
+			           center: self radialPosition point;
+			           radius: self radialRadius number;
+			           yourself)
+]
+
+{ #category : #'as yet unclassified' }
 PyramidBackgroundInputGradiantMode >> radialPosition [
 
 	^ radialPosition

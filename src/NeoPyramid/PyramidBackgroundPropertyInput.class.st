@@ -4,8 +4,10 @@ Class {
 	#instVars : [
 		'submitBlock',
 		'preview',
-		'button',
-		'strategy'
+		'strategy',
+		'modalButton',
+		'modal',
+		'background'
 	],
 	#category : #'NeoPyramid-plugin-properties-custom'
 }
@@ -13,25 +15,16 @@ Class {
 { #category : #'api - text style' }
 PyramidBackgroundPropertyInput >> background [
 
-	self strategy background
+	^ background
 ]
 
 { #category : #'api - text style' }
 PyramidBackgroundPropertyInput >> background: aBlBackground [
 
-	self strategy: aBlBackground pyramidBackgroundStrategy
-]
-
-{ #category : #accessing }
-PyramidBackgroundPropertyInput >> button [
-
-	^ button
-]
-
-{ #category : #accessing }
-PyramidBackgroundPropertyInput >> button: anObject [
-
-	button := anObject
+	background := aBlBackground.
+	self strategy:
+		aBlBackground pyramidBackgroundStrategy.
+	self submitBlock value
 ]
 
 { #category : #layout }
@@ -40,15 +33,33 @@ PyramidBackgroundPropertyInput >> defaultLayout [
 	^ SpBoxLayout newHorizontal
 		  spacing: 4;
 		  add: self preview expand: true;
-		  add: self button withConstraints: [ :c | c width: 24. c height: 24 ];
+		  add: self modalButton withConstraints: [ :c |
+			  c width: 24.
+			  c height: 24 ];
 		  yourself
 ]
 
 { #category : #initialization }
 PyramidBackgroundPropertyInput >> initializePresenters [
 
-	preview := self strategy preview.
-	button := self strategy button.
+	modal := PyramidBackgroundModalPresenter new whenSubmitDo: [ :back |
+		         self background: back ].
+	modalButton := SpButtonPresenter new
+		               icon: (self iconNamed: #smallCogInitialState);
+		               action: [ self modal selectBackground: self background; openDialog ];
+		               yourself
+]
+
+{ #category : #accessing }
+PyramidBackgroundPropertyInput >> modal [
+
+	^ modal
+]
+
+{ #category : #accessing }
+PyramidBackgroundPropertyInput >> modalButton [
+
+	^ modalButton
 ]
 
 { #category : #accessing }
@@ -75,9 +86,7 @@ PyramidBackgroundPropertyInput >> strategy [
 PyramidBackgroundPropertyInput >> strategy: aStrategy [
 
 	strategy := aStrategy.
-	self layout replace: self button with: aStrategy button.
 	self layout replace: self preview with: aStrategy preview.
-	self button: aStrategy button.
 	self preview: aStrategy preview
 ]
 

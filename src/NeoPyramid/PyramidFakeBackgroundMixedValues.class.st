@@ -4,8 +4,24 @@ Class {
 	#category : #'NeoPyramid-plugin-properties-custom'
 }
 
+{ #category : #testing }
+PyramidFakeBackgroundMixedValues >> isNil [
+
+	^ true
+]
+
+{ #category : #testing }
+PyramidFakeBackgroundMixedValues >> isNotNil [
+
+	^ false
+]
+
 { #category : #'as yet unclassified' }
 PyramidFakeBackgroundMixedValues >> pyramidBackgroundStrategy [
 
 	^ PyramidBackgroundPropertyInputMixedValuesModel new
+]
+
+{ #category : #'as yet unclassified' }
+PyramidFakeBackgroundMixedValues >> pyramidSelectMenuOnModal: aModal [
 ]

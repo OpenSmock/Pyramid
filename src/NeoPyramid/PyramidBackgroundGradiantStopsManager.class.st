@@ -38,6 +38,15 @@ PyramidBackgroundGradiantStopsManager >> addStopNextTo: aPreviousStop withColor:
 	aPreviousStop next: stopToAdd.
 ]
 
+{ #category : #converting }
+PyramidBackgroundGradiantStopsManager >> asStopsArray [
+
+	| collection |
+	collection := OrderedCollection new.
+	self first collectOn: collection.
+	^ collection asArray
+]
+
 { #category : #'as yet unclassified' }
 PyramidBackgroundGradiantStopsManager >> correctStopOrderOf: aStop withPrevious: aPreviousStop [
 
@@ -59,6 +68,30 @@ PyramidBackgroundGradiantStopsManager >> first [
 	^ first
 ]
 
+{ #category : #'instance creation' }
+PyramidBackgroundGradiantStopsManager >> first: aNewFirst last: aNewLast [
+
+	first := aNewFirst.
+	last := aNewLast
+]
+
+{ #category : #'instance creation' }
+PyramidBackgroundGradiantStopsManager >> from: aCollection [
+
+	| firstToAdd lastToAdd current |
+	firstToAdd := nil.
+	lastToAdd := nil.
+	aCollection do: [ :each |
+		current := PyramidBackgroundGradiantStopModel new
+			           number: each key;
+			           color: each value;
+			           yourself.
+		firstToAdd ifNil: [ firstToAdd := current ].
+		lastToAdd ifNotNil: [ lastToAdd next: current ].
+		lastToAdd := current ].
+	self first: firstToAdd last: lastToAdd
+]
+
 { #category : #initialization }
 PyramidBackgroundGradiantStopsManager >> initialize [
 
@@ -77,4 +110,16 @@ PyramidBackgroundGradiantStopsManager >> initialize [
 PyramidBackgroundGradiantStopsManager >> last [
 
 	^ last
+]
+
+{ #category : #removing }
+PyramidBackgroundGradiantStopsManager >> removeNextStop: aStop [
+
+aStop next: aStop next next.
+]
+
+{ #category : #'as yet unclassified' }
+PyramidBackgroundGradiantStopsManager >> stopsSize [
+
+	^ self first size
 ]

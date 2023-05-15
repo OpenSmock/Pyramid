@@ -31,3 +31,16 @@ PyramidPointPresenter >> inputY [
 
 	^ inputY
 ]
+
+{ #category : #accessing }
+PyramidPointPresenter >> point [
+
+	^ self inputX number @ self inputY number
+]
+
+{ #category : #accessing }
+PyramidPointPresenter >> point: aPoint [
+
+	self inputX number: aPoint x.
+	self inputY number: aPoint y
+]
