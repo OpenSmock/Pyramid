@@ -72,7 +72,7 @@ PyramidPluginCentral >> initialize [
 PyramidPluginCentral >> initializeLayers [
 
 	| layer presenter |
-	layer := PyramidBlocWindowForLayout new.
+	layer := PyramidBlocWindowForLayoutLayer new.
 	presenter := PyramidBlocWindowForLayoutPresenter new layer: layer; yourself.
 	self spaceView builder addLayer: layer.
 	buttonWindowProperty := SpButtonPresenter new

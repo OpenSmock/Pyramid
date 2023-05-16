@@ -1,5 +1,5 @@
 Class {
-	#name : #PyramidBlocWindowForLayout,
+	#name : #PyramidBlocWindowForLayoutLayer,
 	#superclass : #PyramidSpaceLayer,
 	#instVars : [
 		'extent',
@@ -12,7 +12,7 @@ Class {
 }
 
 { #category : #accessing }
-PyramidBlocWindowForLayout >> builder: aPyramidSpaceBuilder [
+PyramidBlocWindowForLayoutLayer >> builder: aPyramidSpaceBuilder [
 
 	aPyramidSpaceBuilder space
 		when: BlSpaceResizedEvent
@@ -21,19 +21,19 @@ PyramidBlocWindowForLayout >> builder: aPyramidSpaceBuilder [
 ]
 
 { #category : #initialization }
-PyramidBlocWindowForLayout >> closeButton [
+PyramidBlocWindowForLayoutLayer >> closeButton [
 ^ closeButton
 ]
 
 { #category : #initialization }
-PyramidBlocWindowForLayout >> extent [
+PyramidBlocWindowForLayoutLayer >> extent [
 
 	extent ifNil: [ extent := 500 @ 300 ].
 	^ extent
 ]
 
 { #category : #initialization }
-PyramidBlocWindowForLayout >> extent: aPoint [
+PyramidBlocWindowForLayoutLayer >> extent: aPoint [
 
 	extent := aPoint.
 	self canvas size: aPoint.
@@ -42,12 +42,12 @@ PyramidBlocWindowForLayout >> extent: aPoint [
 ]
 
 { #category : #accessing }
-PyramidBlocWindowForLayout >> iconElement [
+PyramidBlocWindowForLayoutLayer >> iconElement [
 ^ iconElement
 ]
 
 { #category : #initialization }
-PyramidBlocWindowForLayout >> initialize [
+PyramidBlocWindowForLayoutLayer >> initialize [
 
 	isFullScreenModeEnabled := false.
 	iconElement := BlElement new
@@ -77,36 +77,36 @@ PyramidBlocWindowForLayout >> initialize [
 ]
 
 { #category : #accessing }
-PyramidBlocWindowForLayout >> isFullScreenModeEnabled [
+PyramidBlocWindowForLayoutLayer >> isFullScreenModeEnabled [
 ^ isFullScreenModeEnabled
 ]
 
 { #category : #accessing }
-PyramidBlocWindowForLayout >> isFullScreenModeEnabled: aBoolean [
+PyramidBlocWindowForLayoutLayer >> isFullScreenModeEnabled: aBoolean [
 
 	isFullScreenModeEnabled := aBoolean.
 	aBoolean ifTrue: [ self spaceResized: self space extent ].
 ]
 
 { #category : #accessing }
-PyramidBlocWindowForLayout >> space [
+PyramidBlocWindowForLayoutLayer >> space [
 ^ space
 ]
 
 { #category : #accessing }
-PyramidBlocWindowForLayout >> space: anObject [
+PyramidBlocWindowForLayoutLayer >> space: anObject [
 
 	space := anObject 
 ]
 
 { #category : #'as yet unclassified' }
-PyramidBlocWindowForLayout >> spaceResized: anExtent [
+PyramidBlocWindowForLayoutLayer >> spaceResized: anExtent [
 
 	self isFullScreenModeEnabled ifTrue: [ self extent: anExtent - self windowOffset]
 ]
 
 { #category : #'as yet unclassified' }
-PyramidBlocWindowForLayout >> windowOffset [
+PyramidBlocWindowForLayoutLayer >> windowOffset [
 
 	^ 0@22
 ]
