@@ -6,16 +6,22 @@ Class {
 	#instVars : [
 		'morphPresenter',
 		'space',
-		'editor'
+		'editor',
+		'builder'
 	],
 	#category : #'NeoPyramid-plugin-central'
 }
+
+{ #category : #accessing }
+PyramidSpaceView >> builder [
+^ builder
+]
 
 { #category : #layout }
 PyramidSpaceView >> defaultLayout [
 
 	^ SpBoxLayout newLeftToRight
-		  add: self morphPresenter expand: true;
+		  add: self builder presenter expand: true;
 		  yourself
 ]
 
@@ -33,34 +39,10 @@ PyramidSpaceView >> editor: anEditor [
 ]
 
 { #category : #initialization }
-PyramidSpaceView >> initializeNewMorphicSpace [
-
-	| host morph |
-	morph := Morph new.
-	morph layoutPolicy: TableLayout new.
-
-	host := PyMorphicAlexandrieHost new.
-	host containerMorph: morph.
-
-	space := BlSpace new.
-	space host: host.
-
-	self whenDisplayDo: [ space show ].
-
-	^ morph
-]
-
-{ #category : #initialization }
 PyramidSpaceView >> initializePresenters [
 
-	morphPresenter := self newMorph.
-	morphPresenter morph: self initializeNewMorphicSpace.
-]
-
-{ #category : #accessing }
-PyramidSpaceView >> morphPresenter [
-
-	^ morphPresenter
+	builder := PyramidSpaceBuilder new.
+	self whenDisplayDo: [ builder space show ].
 ]
 
 { #category : #'as yet unclassified' }
@@ -76,20 +58,8 @@ PyramidSpaceView >> pyramidRootsChangedOnActiveProject [
 ]
 
 { #category : #accessing }
-PyramidSpaceView >> rootLayer [
-
-	^ self space root
-]
-
-{ #category : #accessing }
 PyramidSpaceView >> roots: aCollection [
 
-	self rootLayer removeChildren.
-	self rootLayer addChildren: aCollection elements
-]
-
-{ #category : #accessing }
-PyramidSpaceView >> space [
-
-	^ space
+	self builder rootElement removeChildren.
+	self builder rootElement addChildren: aCollection elements
 ]

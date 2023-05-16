@@ -124,6 +124,25 @@ PyramidCommandTest >> testIdentifier [
 ]
 
 { #category : #tests }
+PyramidCommandTest >> testPosition [
+
+	| e1 b1 state |
+	state := PyramidCommandState new.
+	e1 := BlElement new position: 10 @ 10.
+	PyramidCommand position getState: state from: e1.
+	self assert: state arguments equals: 10 @ 10.
+	e1 position: 20 @ 20.
+	PyramidCommand position getState: state from: e1.
+	self assert: state arguments equals: 20 @ 20.
+
+	b1 := BlElement new.
+	PyramidCommand position
+		setState: (PyramidCommandState new arguments: 30 @ 30)
+		on: b1.
+	self assert: b1 constraints position equals: 30 @ 30
+]
+
+{ #category : #tests }
 PyramidCommandTest >> testRemoveChildren [
 
 	| e1 e2 e3 b1 b2 b3 state |

@@ -38,6 +38,17 @@ PyramidPropertyInputModelBuilderFactoryTest >> testMockPresenter [
 ]
 
 { #category : #tests }
+PyramidPropertyInputModelBuilderFactoryTest >> testPositionInput [
+
+	| property |
+	property := PyramidProperty new.
+	PyramidPropertyInputModelBuilderFactory positionInput installBuilderOn:
+		property.
+	property makeNewInputsFor: {  }.
+	self assert: property inputsModel elementInputsModel size equals: 0
+]
+
+{ #category : #tests }
 PyramidPropertyInputModelBuilderFactoryTest >> testTextInput [
 
 	| property |

@@ -85,8 +85,9 @@ PyramidPropertyMultiInputsModel >> sectionName: aString [
 { #category : #'as yet unclassified' }
 PyramidPropertyMultiInputsModel >> stateInputsFor: anObject [
 
+	"Use for testing"
 	^ (self stateInputsModel select: [ :each |
-		  each reference anySatisfy: [ :ref | ref = anObject ] ]) first
+		   each reference anySatisfy: [ :ref | ref = anObject ] ]) first
 ]
 
 { #category : #accessing }

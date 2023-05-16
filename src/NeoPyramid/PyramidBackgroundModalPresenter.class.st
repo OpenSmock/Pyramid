@@ -1,6 +1,7 @@
 Class {
 	#name : #PyramidBackgroundModalPresenter,
 	#superclass : #SpPresenter,
+	#classTraits : 'TPyramidProjectModelObserver classTrait',
 	#instVars : [
 		'buttonTransparent',
 		'buttonImage',

@@ -72,6 +72,24 @@ PyramidPropertyInputModelBuilderFactory class >> mockPresenter [
 ]
 
 { #category : #'as yet unclassified' }
+PyramidPropertyInputModelBuilderFactory class >> positionInput [
+
+	^ self new
+		  sectionName: 'Position';
+		  dontTriggerOnNil;
+		  inputClass: PyramidPointPresenter;
+		  initializeBlock: [ :input |  ];
+		  mutliValuesDefault: nil;
+		  noValueDefault: nil;
+		  transformInBlock: [ :input :value | input point: value ];
+		  transformOutBlock: [ :input | input point ];
+		  triggerBlockStrategy: (PyramidOneArgTrigger new
+				   selector: #whenSubmitDo:;
+				   yourself);
+		  yourself
+]
+
+{ #category : #'as yet unclassified' }
 PyramidPropertyInputModelBuilderFactory class >> textInput [
 
 	^ self new
@@ -81,7 +99,7 @@ PyramidPropertyInputModelBuilderFactory class >> textInput [
 		  mutliValuesDefault: '# mixed values';
 		  noValueDefault: '# no values';
 		  transformInBlock: [ :input :value | input text: value asString ];
-		  transformOutBlock: [ :input | input text ];
+		  transformOutBlock: [ :input | input text asRopedText ];
 		  triggerBlockStrategy: (PyramidOneArgTrigger new
 				   selector: #whenSubmitDo:;
 				   yourself);

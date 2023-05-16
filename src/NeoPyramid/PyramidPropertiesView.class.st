@@ -117,6 +117,7 @@ PyramidPropertiesView >> updateLayout [
 
 { #category : #'as yet unclassified' }
 PyramidPropertiesView >> updatePropertyViews [
+
 	self propertyViews do: [ :each | each hidePopover ].
 	self properties do: [ :property |
 		property makeNewInputsFor: self activeProject selection elements ]

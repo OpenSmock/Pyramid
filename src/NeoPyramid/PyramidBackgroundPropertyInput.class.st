@@ -7,7 +7,8 @@ Class {
 		'strategy',
 		'modalButton',
 		'modal',
-		'background'
+		'background',
+		'modalWindow'
 	],
 	#category : #'NeoPyramid-plugin-properties-custom'
 }
@@ -25,6 +26,12 @@ PyramidBackgroundPropertyInput >> background: aBlBackground [
 	self strategy:
 		aBlBackground pyramidBackgroundStrategy.
 	self submitBlock value
+]
+
+{ #category : #'as yet unclassified' }
+PyramidBackgroundPropertyInput >> closeModalWindow [
+
+	self modalWindow ifNotNil: [ self modalWindow close ].
 ]
 
 { #category : #layout }
@@ -46,7 +53,10 @@ PyramidBackgroundPropertyInput >> initializePresenters [
 		         self background: back ].
 	modalButton := SpButtonPresenter new
 		               icon: (self iconNamed: #smallCogInitialState);
-		               action: [ self modal selectBackground: self background; openDialog ];
+		               action: [
+			               self modalWindow:( self modal
+				               selectBackground: self background;
+				               openDialog) ];
 		               yourself
 ]
 
@@ -60,6 +70,18 @@ PyramidBackgroundPropertyInput >> modal [
 PyramidBackgroundPropertyInput >> modalButton [
 
 	^ modalButton
+]
+
+{ #category : #'as yet unclassified' }
+PyramidBackgroundPropertyInput >> modalWindow [
+
+	^ modalWindow
+]
+
+{ #category : #'as yet unclassified' }
+PyramidBackgroundPropertyInput >> modalWindow: anObject [
+
+	 modalWindow := anObject
 ]
 
 { #category : #accessing }

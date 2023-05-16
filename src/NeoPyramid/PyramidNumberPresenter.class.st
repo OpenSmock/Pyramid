@@ -19,7 +19,7 @@ PyramidNumberPresenter >> defaultLayout [
 { #category : #'as yet unclassified' }
 PyramidNumberPresenter >> getNumberFrom: aString [
 
-	^ aString asNumber
+	^ NumberParser parse: aString onError: [ nil ]
 ]
 
 { #category : #'initialization - deprecated' }
@@ -46,6 +46,7 @@ PyramidNumberPresenter >> number [
 { #category : #accessing }
 PyramidNumberPresenter >> number: aNumber [
 
+	aNumber ifNil: [ self inputNumber text: '--'. ^ self ].
 	self inputNumber text: aNumber asFloat printString
 ]
 

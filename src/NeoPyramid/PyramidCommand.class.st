@@ -74,6 +74,18 @@ PyramidCommand class >> name: aString set: aSetter get: aGetter isExecutableBloc
 ]
 
 { #category : #adding }
+PyramidCommand class >> position [
+
+	^ self
+		  name: #position
+		  set: [ :state :target | target position: state arguments ]
+		  get: [ :state :source |
+			  state source: source.
+			  state arguments: source constraints position ]
+		  isExecutableBlock: [ :obj :state | obj isKindOf: BlElement ]
+]
+
+{ #category : #adding }
 PyramidCommand class >> removeChildren [
 
 	^ self

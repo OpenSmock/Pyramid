@@ -69,7 +69,7 @@ PyramidPropertyInputView >> initializePresenters [
 	popoverPresenter := PyramidPropertyPopoverView new
 		                    property: self property;
 		                    yourself.
-	popover := self makePopover
+	popover := self makePopover.
 ]
 
 { #category : #accessing }
