@@ -4,7 +4,9 @@ Class {
 	#traits : 'TPyramidPlugin',
 	#classTraits : 'TPyramidPlugin classTrait',
 	#instVars : [
-		'spaceView'
+		'spaceView',
+		'buttonWindowProperty',
+		'buttonWindowPropertyPopover'
 	],
 	#category : #'NeoPyramid-plugin-central'
 }
@@ -18,10 +20,8 @@ PyramidPluginCentral class >> initialize [
 { #category : #adding }
 PyramidPluginCentral >> addPanelsOn: aPyramidSimpleWindow [
 
-	| buttonTesting1 buttonTesting2 buttonTesting3 |
-	buttonTesting1 := SpButtonPresenter new
-		                  icon: (self iconNamed: #abstract);
-		                  yourself.
+	| buttonTesting2 buttonTesting3 |
+	
 	buttonTesting2 := SpButtonPresenter new
 		                  icon: (self iconNamed: #abstract);
 		                  yourself.
@@ -32,10 +32,8 @@ PyramidPluginCentral >> addPanelsOn: aPyramidSimpleWindow [
 	aPyramidSimpleWindow
 		at: #space
 		addItem: [ :builder | builder makePresenter: self spaceView ].
-	aPyramidSimpleWindow
-		at: #spaceToolbarLeft
-		addItem: [ :builder |
-		builder makeButtonWithIcon: buttonTesting1 order: 1 ].
+	aPyramidSimpleWindow at: #spaceToolbarLeft addItem: [ :builder |
+		builder makeButtonWithIcon: self buttonWindowProperty order: 1 ].
 	aPyramidSimpleWindow
 		at: #spaceToolbarCenter
 		addItem: [ :builder |
@@ -46,16 +44,46 @@ PyramidPluginCentral >> addPanelsOn: aPyramidSimpleWindow [
 		builder makeButtonWithIcon: buttonTesting3 order: 1 ]
 ]
 
+{ #category : #accessing }
+PyramidPluginCentral >> buttonWindowProperty [
+^ buttonWindowProperty
+]
+
+{ #category : #accessing }
+PyramidPluginCentral >> buttonWindowPropertyPopover [
+^ buttonWindowPropertyPopover
+]
+
 { #category : #'as yet unclassified' }
 PyramidPluginCentral >> connectOn: aPyramidEditor [
 
-	self spaceView editor: aPyramidEditor
+	self spaceView editor: aPyramidEditor.
 ]
 
 { #category : #initialization }
 PyramidPluginCentral >> initialize [
 
-	spaceView := PyramidSpaceView new
+	spaceView := PyramidSpaceView new.
+	self initializeLayers.
+	self inspect
+]
+
+{ #category : #initialization }
+PyramidPluginCentral >> initializeLayers [
+
+	| layer presenter |
+	layer := PyramidBlocWindowForLayout new.
+	presenter := PyramidBlocWindowForLayoutPresenter new layer: layer; yourself.
+	self spaceView builder addLayer: layer.
+	buttonWindowProperty := SpButtonPresenter new
+		                        icon: (self iconNamed: #add);
+		                        action: [
+			                        self buttonWindowPropertyPopover popup ];
+		                        yourself.
+	buttonWindowPropertyPopover := PyramidPopoverFactory
+		                               makeWithPresenter: presenter
+		                               relativeTo: self buttonWindowProperty
+		                               position: SpPopoverPosition top
 ]
 
 { #category : #accessing }

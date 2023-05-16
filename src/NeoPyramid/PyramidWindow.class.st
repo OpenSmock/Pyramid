@@ -2,8 +2,8 @@ Class {
 	#name : #PyramidWindow,
 	#superclass : #Object,
 	#instVars : [
-		'services',
-		'presenter'
+		'presenter',
+		'services'
 	],
 	#category : #'NeoPyramid-aaa-views'
 }

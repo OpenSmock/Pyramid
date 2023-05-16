@@ -4,8 +4,6 @@ Class {
 	#traits : 'TPyramidActiveProjectModelObserver',
 	#classTraits : 'TPyramidActiveProjectModelObserver classTrait',
 	#instVars : [
-		'morphPresenter',
-		'space',
 		'editor',
 		'builder'
 	],
