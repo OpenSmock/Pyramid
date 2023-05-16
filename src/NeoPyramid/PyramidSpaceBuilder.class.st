@@ -35,6 +35,13 @@ PyramidSpaceBuilder >> initialize [
 ]
 
 { #category : #accessing }
+PyramidSpaceBuilder >> layers [
+
+	| collection |
+	collection := OrderedCollection new
+]
+
+{ #category : #accessing }
 PyramidSpaceBuilder >> presenter [
 	^ presenter
 ]

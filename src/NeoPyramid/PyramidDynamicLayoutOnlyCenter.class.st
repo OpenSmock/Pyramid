@@ -7,5 +7,5 @@ Class {
 { #category : #'as yet unclassified' }
 PyramidDynamicLayoutOnlyCenter >> centerLayoutFor: aWindow [
 
-	^ (aWindow services at: #center) presenter
+	^ (self spaceAndToolBarFor: aWindow)
 ]

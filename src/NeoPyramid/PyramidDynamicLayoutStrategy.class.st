@@ -22,6 +22,26 @@ PyramidDynamicLayoutStrategy >> layoutFor: aWindow [
 	^ mainLayout
 ]
 
+{ #category : #'as yet unclassified' }
+PyramidDynamicLayoutStrategy >> spaceAndToolBarFor: aWindow [
+
+	^ SpBoxLayout newVertical
+		  spacing: 4;
+		add: (aWindow services at: #space) presenter expand: true;
+		  add: (SpBoxLayout newHorizontal
+				   add: (aWindow services at: #spaceToolbarLeft) presenter
+				   expand: false;
+				   add: SpNullPresenter new expand: true;
+				   add: (aWindow services at: #spaceToolbarCenter) presenter
+				   expand: false;
+				   add: SpNullPresenter new expand: true;
+				   add: (aWindow services at: #spaceToolbarRight) presenter
+				   expand: false;
+				   yourself)
+		  expand: false;
+		  yourself
+]
+
 { #category : #specs }
 PyramidDynamicLayoutStrategy >> topLayoutFor: aWindow [
 

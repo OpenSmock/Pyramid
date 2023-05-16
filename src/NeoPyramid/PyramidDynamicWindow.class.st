@@ -14,7 +14,16 @@ PyramidDynamicWindow >> initialize [
 	PyramidPanelModel toolbarHorizontal installOn: self at: #topCenter.
 	PyramidPanelModel toolbarHorizontal installOn: self at: #topRight.
 
-	PyramidPanelModel presenter installOn: self at: #center.
+	PyramidPanelModel presenter installOn: self at: #space.
+	PyramidPanelModel toolbarHorizontal
+		installOn: self
+		at: #spaceToolbarLeft.
+	PyramidPanelModel toolbarHorizontal
+		installOn: self
+		at: #spaceToolbarCenter.
+	PyramidPanelModel toolbarHorizontal
+		installOn: self
+		at: #spaceToolbarRight.
 
 	PyramidPanelModel tab installOn: self at: #tabLeft.
 	PyramidPanelModel tab installOn: self at: #tabRight

@@ -12,7 +12,7 @@ PyramidDynamicLayoutAllPanels >> centerLayoutFor: aWindow [
 		  add: (aWindow services at: #tabLeft) presenter;
 		  add: (SpPanedLayout newLeftToRight
 				   positionOfSlider: 3 / 4;
-				   add: (aWindow services at: #center) presenter;
+				   add: (self spaceAndToolBarFor: aWindow);
 				   add: (aWindow services at: #tabRight) presenter;
 				   yourself);
 		  yourself

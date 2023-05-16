@@ -12,10 +12,10 @@ PyramidSimpleWindow >> centerLayout [
 		  add: (self services at: #tabLeft) presenter;
 		  add: (SpPanedLayout newLeftToRight
 				   positionOfSlider: 3 / 4;
-				   add: (self services at: #center) presenter;
+				   add: (self services at: #space) presenter;
 				   add: (self services at: #tabRight) presenter;
 				   yourself);
-		  yourself.
+		  yourself
 ]
 
 { #category : #initialization }
@@ -24,9 +24,18 @@ PyramidSimpleWindow >> initialize [
 	PyramidPanelModel toolbarHorizontal installOn: self at: #topLeft.
 	PyramidPanelModel toolbarHorizontal installOn: self at: #topCenter.
 	PyramidPanelModel toolbarHorizontal installOn: self at: #topRight.
-	
-	PyramidPanelModel presenter installOn: self at: #center.
-	
+
+	PyramidPanelModel presenter installOn: self at: #space.
+	PyramidPanelModel toolbarHorizontal
+		installOn: self
+		at: #spaceToolbarLeft.
+	PyramidPanelModel toolbarHorizontal
+		installOn: self
+		at: #spaceToolbarCenter.
+	PyramidPanelModel toolbarHorizontal
+		installOn: self
+		at: #spaceToolbarRight.
+
 	PyramidPanelModel tab installOn: self at: #tabLeft.
 	PyramidPanelModel tab installOn: self at: #tabRight
 ]
