@@ -24,9 +24,11 @@ PyramidPluginManager class >> new [
 
 { #category : #initialization }
 PyramidPluginManager class >> reset [
-<script>
-self initialize.
-TPyramidPlugin users do: [ :each | each initialize ]
+	"Use this script to initiliaze each class implementing the trait TPyramidPlugin."
+
+	<script>
+	self initialize.
+	TPyramidPlugin users do: [ :each | each initialize ]
 ]
 
 { #category : #'instance creation' }
