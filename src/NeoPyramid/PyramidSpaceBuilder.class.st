@@ -40,7 +40,7 @@ PyramidSpaceBuilder >> initialize [
 	morph := Morph new.
 	morph layoutPolicy: TableLayout new.
 
-	host := PyMorphicAlexandrieHost new.
+	host := PyramidMorphicAlexandrieHost new.
 	host containerMorph: morph.
 
 	space := BlSpace new.
