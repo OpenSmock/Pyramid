@@ -55,6 +55,16 @@ PyramidToolbarPanelBuilder >> makeButtonWithIcon: anObject order: aNumber [
 ]
 
 { #category : #accessing }
+PyramidToolbarPanelBuilder >> makeEmptyWith: aConstraintsBlock order: aNumber [
+
+	item := PyramidToolbarItem new
+		        presenter: SpNullPresenter new;
+		        order: aNumber;
+		        constraints: aConstraintsBlock;
+		        yourself
+]
+
+{ #category : #accessing }
 PyramidToolbarPanelBuilder >> presenterOf: aCollectionOfItems [
 
 	| layout |

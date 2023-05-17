@@ -8,8 +8,8 @@ Class {
 	#category : #'NeoPyramid-plugin-central'
 }
 
-{ #category : #accessing }
-PyramidSpaceLayer >> builder: aPyramidSpaceBuilder [
+{ #category : #adding }
+PyramidSpaceLayer >> addPanelsOn: aPyramidSimpleWindow [
 ]
 
 { #category : #accessing }
@@ -17,6 +17,16 @@ PyramidSpaceLayer >> canvas [
 
 	canvas ifNil: [ canvas := BlElement new ].
 	^ canvas
+]
+
+{ #category : #accessing }
+PyramidSpaceLayer >> configureSpaceBuilder: aPyramidSpaceBuilder [
+
+	
+]
+
+{ #category : #'as yet unclassified' }
+PyramidSpaceLayer >> connectOn: aPyramidEditor [
 ]
 
 { #category : #accessing }

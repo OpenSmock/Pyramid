@@ -34,7 +34,6 @@ PyramidDynamicLayoutStrategy >> spaceAndToolBarFor: aWindow [
 				   add: SpNullPresenter new expand: true;
 				   add: (aWindow services at: #spaceToolbarBottom) presenter
 				   expand: false;
-					add: SpNullPresenter new height: 100;
 				   yourself)
 		  expand: false;
 		  add: (aWindow services at: #space) presenter expand: true;

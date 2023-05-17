@@ -58,6 +58,6 @@ PyramidSpaceView >> pyramidRootsChangedOnActiveProject [
 { #category : #accessing }
 PyramidSpaceView >> roots: aCollection [
 
-	self builder rootElement removeChildren.
-	self builder rootElement addChildren: aCollection elements
+	self builder canvas removeChildren.
+	self builder canvas addChildren: aCollection elements
 ]

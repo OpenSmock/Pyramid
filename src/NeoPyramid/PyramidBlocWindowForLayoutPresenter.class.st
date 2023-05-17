@@ -4,7 +4,9 @@ Class {
 	#instVars : [
 		'isFullScreenCheckbox',
 		'extentInput',
-		'layer'
+		'layer',
+		'whenFullScreenChangedDo',
+		'whenExtentChangedDo'
 	],
 	#category : #'NeoPyramid-plugin-central'
 }
@@ -13,12 +15,6 @@ Class {
 PyramidBlocWindowForLayoutPresenter >> defaultLayout [
 
 	^ SpBoxLayout newVertical spacing: 4; add: 'Window parameters'; add: self isFullScreenCheckbox; add: self extentInput; yourself.
-]
-
-{ #category : #'as yet unclassified' }
-PyramidBlocWindowForLayoutPresenter >> extentChange: aPoint [
-
-	self layer extent: aPoint
 ]
 
 { #category : #layout }
@@ -32,22 +28,20 @@ PyramidBlocWindowForLayoutPresenter >> initializePresenter [
 
 	isFullScreenCheckbox := SpCheckBoxPresenter new
 		                        label: 'fullScreen';
-		                        whenActivatedDo: [ self isFullScreen: true ];
+		                        whenActivatedDo: [
+			                        self whenFullScreenChangedDo value: true ];
 		                        whenDeactivatedDo: [
-			                        self isFullScreen: false ];
+			                        self whenFullScreenChangedDo value: false ];
 		                        yourself.
 
 	extentInput := PyramidPointPresenter new whenSubmitDo: [ :point |
-		               self extentChange: point ]
+		               self whenExtentChangedDo value: point ]
 ]
 
 { #category : #testing }
 PyramidBlocWindowForLayoutPresenter >> isFullScreen: aBoolean [
 
-	self layer isFullScreenModeEnabled: aBoolean.
-	self extentInput enabled: aBoolean not.
-	aBoolean ifFalse: [ self extentChange: self extentInput point ]
-	
+	self isFullScreenCheckbox state: aBoolean
 ]
 
 { #category : #layout }
@@ -55,16 +49,40 @@ PyramidBlocWindowForLayoutPresenter >> isFullScreenCheckbox [
 ^ isFullScreenCheckbox
 ]
 
-{ #category : #accessing }
-PyramidBlocWindowForLayoutPresenter >> layer [
+{ #category : #'as yet unclassified' }
+PyramidBlocWindowForLayoutPresenter >> requestedExtent [
 
-	^ layer
+	^ self extentInput point
+]
+
+{ #category : #'as yet unclassified' }
+PyramidBlocWindowForLayoutPresenter >> requestedExtent: aPoint [
+
+	self extentInput point: aPoint
 ]
 
 { #category : #accessing }
-PyramidBlocWindowForLayoutPresenter >> layer: aLayer [
+PyramidBlocWindowForLayoutPresenter >> whenExtentChangedDo [
+whenExtentChangedDo ifNil: [
+		whenExtentChangedDo := [ :a |  ] ].
+	^ whenExtentChangedDo
+]
 
-	layer := aLayer.
-	self extentInput point: aLayer extent.
-	self isFullScreenCheckbox state: aLayer isFullScreenModeEnabled
+{ #category : #accessing }
+PyramidBlocWindowForLayoutPresenter >> whenExtentChangedDo: aBlock [
+
+	whenExtentChangedDo := aBlock
+]
+
+{ #category : #accessing }
+PyramidBlocWindowForLayoutPresenter >> whenFullScreenChangedDo [
+
+	whenFullScreenChangedDo ifNil: [whenFullScreenChangedDo := [ :a | ]].
+	^ whenFullScreenChangedDo
+]
+
+{ #category : #accessing }
+PyramidBlocWindowForLayoutPresenter >> whenFullScreenChangedDo: aBlock [
+
+	whenFullScreenChangedDo:= aBlock
 ]

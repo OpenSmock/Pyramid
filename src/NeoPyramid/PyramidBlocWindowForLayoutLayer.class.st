@@ -2,54 +2,91 @@ Class {
 	#name : #PyramidBlocWindowForLayoutLayer,
 	#superclass : #PyramidSpaceLayer,
 	#instVars : [
-		'extent',
-		'iconElement',
-		'closeButton',
-		'isFullScreenModeEnabled',
-		'space'
+		'space',
+		'presenter',
+		'isFullScreen',
+		'buttonWindowProperty'
 	],
 	#category : #'NeoPyramid-plugin-central'
 }
 
-{ #category : #accessing }
-PyramidBlocWindowForLayoutLayer >> builder: aPyramidSpaceBuilder [
+{ #category : #adding }
+PyramidBlocWindowForLayoutLayer >> addPanelsOn: aPyramidSimpleWindow [
 
-	"aPyramidSpaceBuilder space
+	aPyramidSimpleWindow at: #spaceToolbarBottom addItem: [ :builder |
+		builder makeButtonWithIcon: self buttonWindowProperty order: 9998 ].
+	aPyramidSimpleWindow
+		at: #spaceToolbarBottom
+		addItem: [ :builder | builder makeEmptyWith: [ :c | c height: 100 ] order: 9999 ]
+]
+
+{ #category : #accessing }
+PyramidBlocWindowForLayoutLayer >> buttonWindowProperty [
+
+	^ buttonWindowProperty 
+]
+
+{ #category : #accessing }
+PyramidBlocWindowForLayoutLayer >> configureSpaceBuilder: aPyramidSpaceBuilder [
+
+	aPyramidSpaceBuilder space
 		when: BlSpaceResizedEvent
-		do: [ :evt | self spaceResized: evt extent ]."
+		do: [ :evt | self spaceResized: evt extent ].
 	self space: aPyramidSpaceBuilder space
 ]
 
 { #category : #initialization }
-PyramidBlocWindowForLayoutLayer >> closeButton [
-^ closeButton
+PyramidBlocWindowForLayoutLayer >> defaultExtent [
+
+	^ 600 @ 400
 ]
 
 { #category : #initialization }
-PyramidBlocWindowForLayoutLayer >> extent [
+PyramidBlocWindowForLayoutLayer >> extentCanvas: anExtent [
+	"
+	isFullScreen
+	true: canvas size = anExtent ; position : 0 @ 0
+	false: canvas size = anExtent ; position : windowoffset
+	"
+	| requestedExtent|
+	requestedExtent := self isFullScreen ifTrue: [ self space extent ]
+		ifFalse: [ anExtent ].
 
-	extent ifNil: [ extent := 500 @ 300 ].
-	^ extent
-]
-
-{ #category : #initialization }
-PyramidBlocWindowForLayoutLayer >> extent: aPoint [
-
-	extent := aPoint.
-	self canvas size: aPoint.
-	self root size: self windowOffset + aPoint.
-	self closeButton position: aPoint x - 44 @ 0
-]
-
-{ #category : #accessing }
-PyramidBlocWindowForLayoutLayer >> iconElement [
-^ iconElement
+	self canvas size: requestedExtent.
+	self root size: requestedExtent + self windowOffset.
+	self isFullScreen
+		ifTrue: [ self root position: self windowOffset * -1 ]
+		ifFalse: [ self root position: 0 @ 0 ]
 ]
 
 { #category : #initialization }
 PyramidBlocWindowForLayoutLayer >> initialize [
 
-	isFullScreenModeEnabled := false.
+	isFullScreen := false.
+	presenter := PyramidBlocWindowForLayoutPresenter new
+		             isFullScreen: self isFullScreen;
+		             requestedExtent: self defaultExtent;
+		             whenFullScreenChangedDo: [ :bool |
+			             self isFullScreen: bool ];
+		             whenExtentChangedDo: [ :point |
+			             self extentCanvas: point ];
+		             yourself.
+	buttonWindowProperty := SpButtonPresenter new
+		                        icon: (self iconNamed: #window);
+		                        action: [
+			                        (PyramidPopoverFactory
+				                         makeWithPresenter: self presenter
+				                         relativeTo: self buttonWindowProperty
+				                         position: SpPopoverPosition right) popup ];
+		                        yourself.
+
+	self initializeBlocWindowLike.
+]
+
+{ #category : #initialization }
+PyramidBlocWindowForLayoutLayer >> initializeBlocWindowLike [
+
+	| iconElement |
 	iconElement := BlElement new
 		               size: 22 asPoint;
 		               position: 3 asPoint;
@@ -57,52 +94,55 @@ PyramidBlocWindowForLayoutLayer >> initialize [
 			               (BlBackground image:
 					                (self iconNamed: #komitterNewSlice));
 		               yourself.
-	closeButton := BlElement new
-		               size: 44 @ 22;
-		               background: Color red;
-		               position: self extent x - 44 @ 0;
-		               yourself.
 	self canvas
-		size: self extent;
+		size: self defaultExtent;
 		position: self windowOffset;
 		background: Color white;
 		yourself.
 
 	self root
 		background: Color white darker;
-		size: self windowOffset + self extent;
+		size: self windowOffset + self defaultExtent;
 		addChild: iconElement;
-		addChild: closeButton;
 		yourself
 ]
 
 { #category : #accessing }
-PyramidBlocWindowForLayoutLayer >> isFullScreenModeEnabled [
-^ isFullScreenModeEnabled
+PyramidBlocWindowForLayoutLayer >> isFullScreen [
+
+	^ isFullScreen
 ]
 
 { #category : #accessing }
-PyramidBlocWindowForLayoutLayer >> isFullScreenModeEnabled: aBoolean [
+PyramidBlocWindowForLayoutLayer >> isFullScreen: aBoolean [
 
-	isFullScreenModeEnabled := aBoolean.
-	aBoolean ifTrue: [ self spaceResized: self space extent ].
+	isFullScreen := aBoolean.
+	self extentCanvas: self presenter requestedExtent
+]
+
+{ #category : #accessing }
+PyramidBlocWindowForLayoutLayer >> presenter [
+^ presenter
 ]
 
 { #category : #accessing }
 PyramidBlocWindowForLayoutLayer >> space [
-^ space
+
+	^ space
 ]
 
 { #category : #accessing }
 PyramidBlocWindowForLayoutLayer >> space: anObject [
 
-	space := anObject 
+	space := anObject.
+	self presenter isFullScreenCheckbox state: true
 ]
 
 { #category : #'as yet unclassified' }
 PyramidBlocWindowForLayoutLayer >> spaceResized: anExtent [
 
-	self isFullScreenModeEnabled ifTrue: [ self extent: anExtent - self windowOffset]
+	self isFullScreen ifTrue: [ self extentCanvas: anExtent ]
+	
 ]
 
 { #category : #'as yet unclassified' }

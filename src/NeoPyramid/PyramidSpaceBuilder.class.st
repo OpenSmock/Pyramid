@@ -6,8 +6,8 @@ Class {
 		'presenter',
 		'morph',
 		'host',
-		'rootElement',
-		'layers'
+		'layers',
+		'canvas'
 	],
 	#category : #'NeoPyramid-plugin-central'
 }
@@ -21,17 +21,23 @@ PyramidSpaceBuilder >> addLayer: aLayer [
 	add rootElement to Layer canvas.
 	"
 
-	aLayer builder: self.
+	aLayer configureSpaceBuilder: self.
 	self layers add: aLayer.
-	self rootElement parent addChild: aLayer root.
-	self rootElement parent removeChild: self rootElement.
-	aLayer canvas addChild: self rootElement
+	self canvas parent addChild: aLayer root.
+	self canvas parent removeChild: self canvas.
+	aLayer canvas addChild: self canvas
+]
+
+{ #category : #accessing }
+PyramidSpaceBuilder >> canvas [
+
+	^ canvas
 ]
 
 { #category : #initialization }
 PyramidSpaceBuilder >> initialize [
 
-	rootElement := BlElement new
+	canvas := BlElement new
 		               clipChildren: false;
 		               yourself.
 
@@ -47,7 +53,7 @@ PyramidSpaceBuilder >> initialize [
 	space host: host.
 	space root background: self spaceBackground.
 
-	space addChild: rootElement.
+	space addChild: canvas.
 
 	presenter morph: morph
 ]
@@ -61,11 +67,6 @@ layers ifNil: [ layers := OrderedCollection new ].
 { #category : #accessing }
 PyramidSpaceBuilder >> presenter [
 	^ presenter
-]
-
-{ #category : #accessing }
-PyramidSpaceBuilder >> rootElement [
-^ rootElement
 ]
 
 { #category : #accessing }
