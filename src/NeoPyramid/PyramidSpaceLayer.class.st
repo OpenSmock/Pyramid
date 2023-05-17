@@ -15,7 +15,9 @@ PyramidSpaceLayer >> addPanelsOn: aPyramidSimpleWindow [
 { #category : #accessing }
 PyramidSpaceLayer >> canvas [
 
-	canvas ifNil: [ canvas := BlElement new ].
+	canvas ifNil: [ canvas := BlElement new constraintsDo: [ :c |
+				        c horizontal matchParent.
+				        c vertical matchParent ]; yourself ].
 	^ canvas
 ]
 
@@ -32,6 +34,12 @@ PyramidSpaceLayer >> connectOn: aPyramidEditor [
 { #category : #accessing }
 PyramidSpaceLayer >> root [
 
-	root ifNil: [ root := BlElement new addChild: self canvas; yourself ].
+	root ifNil: [
+		root := BlElement new
+			        addChild: self canvas;
+			constraintsDo: [ :c |
+			  c horizontal matchParent.
+			  c vertical matchParent ];
+			        yourself ].
 	^ root
 ]

@@ -46,8 +46,8 @@ PyramidPluginCentral >> initialize [
 { #category : #initialization }
 PyramidPluginCentral >> initializeLayers [
 
+self spaceView builder addLayer: PyramidControlMoveLayer new.
 	self spaceView builder addLayer: PyramidBlocWindowForLayoutLayer new.
-	self spaceView builder addLayer: PyramidControlMoveLayer new
 	
 ]
 
