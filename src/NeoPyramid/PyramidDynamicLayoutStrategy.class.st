@@ -24,21 +24,20 @@ PyramidDynamicLayoutStrategy >> layoutFor: aWindow [
 
 { #category : #'as yet unclassified' }
 PyramidDynamicLayoutStrategy >> spaceAndToolBarFor: aWindow [
+	"^ (aWindow services at: #space) presenter"
 
-	^ SpBoxLayout newVertical
+	^ SpBoxLayout newHorizontal
 		  spacing: 4;
-		add: (aWindow services at: #space) presenter expand: true;
-		  add: (SpBoxLayout newHorizontal
-				   add: (aWindow services at: #spaceToolbarLeft) presenter
+		  add: (SpBoxLayout newVertical
+				   add: (aWindow services at: #spaceToolbarTop) presenter
 				   expand: false;
 				   add: SpNullPresenter new expand: true;
-				   add: (aWindow services at: #spaceToolbarCenter) presenter
+				   add: (aWindow services at: #spaceToolbarBottom) presenter
 				   expand: false;
-				   add: SpNullPresenter new expand: true;
-				   add: (aWindow services at: #spaceToolbarRight) presenter
-				   expand: false;
+					add: SpNullPresenter new height: 100;
 				   yourself)
 		  expand: false;
+		  add: (aWindow services at: #space) presenter expand: true;
 		  yourself
 ]
 

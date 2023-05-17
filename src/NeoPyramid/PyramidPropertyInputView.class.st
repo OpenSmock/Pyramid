@@ -69,33 +69,12 @@ PyramidPropertyInputView >> initializePresenters [
 	popoverPresenter := PyramidPropertyPopoverView new
 		                    property: self property;
 		                    yourself.
-	popover := self makePopover.
+	popover := PyramidPopoverFactory makeWithPresenter: popoverPresenter relativeTo: popoverButton position: SpPopoverPosition left
 ]
 
 { #category : #accessing }
 PyramidPropertyInputView >> inputLayout [
 	^ inputLayout
-]
-
-{ #category : #'as yet unclassified' }
-PyramidPropertyInputView >> makePopover [
-
-	^ SpPopoverPresenter new
-		  borderColor: Color black;
-		  relativeTo: self popoverButton;
-		  position: SpPopoverPosition left;
-		  presenter: (SpPresenter new
-				   layout: (SpBoxLayout newTopToBottom
-						    spacing: 4;
-						    add: self popoverPresenter;
-						    add: (SpButtonPresenter new
-								     label: 'Close';
-								     action: [ self hidePopover ];
-								     yourself)
-						    height: 24;
-						    yourself);
-				   yourself);
-		  yourself
 ]
 
 { #category : #accessing }

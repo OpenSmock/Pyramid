@@ -34,6 +34,16 @@ PyramidPanelModel class >> toolbarHorizontal [
 		  yourself
 ]
 
+{ #category : #'as yet unclassified' }
+PyramidPanelModel class >> toolbarVertical [
+
+	^ self new
+		  builder: (PyramidToolbarPanelBuilder new
+				   isHorizontal: false;
+				   yourself);
+		  yourself
+]
+
 { #category : #adding }
 PyramidPanelModel >> addItem: aBlock [
 

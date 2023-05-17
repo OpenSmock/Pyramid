@@ -14,9 +14,9 @@ Class {
 { #category : #accessing }
 PyramidBlocWindowForLayoutLayer >> builder: aPyramidSpaceBuilder [
 
-	aPyramidSpaceBuilder space
+	"aPyramidSpaceBuilder space
 		when: BlSpaceResizedEvent
-		do: [ :evt | self spaceResized: evt extent ].
+		do: [ :evt | self spaceResized: evt extent ]."
 	self space: aPyramidSpaceBuilder space
 ]
 

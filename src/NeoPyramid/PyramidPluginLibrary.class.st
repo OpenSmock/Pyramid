@@ -5,7 +5,6 @@ Class {
 	#classTraits : 'TPyramidPlugin classTrait',
 	#instVars : [
 		'addButton',
-		'popover',
 		'libraryView'
 	],
 	#category : #'NeoPyramid-plugin-adders'
@@ -26,7 +25,7 @@ PyramidPluginLibrary >> addButton [
 PyramidPluginLibrary >> addPanelsOn: aPyramidSimpleWindow [
 
 	aPyramidSimpleWindow
-		at: #topLeft
+		at: #spaceToolbarTop
 		addItem: [ :builder |
 		builder makeButtonWithIcon: self addButton order: 10 ]
 ]
@@ -43,21 +42,14 @@ PyramidPluginLibrary >> initialize [
 	libraryView := PyramidLibraryView new.
 	addButton := SpButtonPresenter new
 		             icon: (self iconNamed: #add);
-		             action: [ self popover popup ];
-		             yourself.
-	popover := PyramidPopoverFactory
+		             action: [ (PyramidPopoverFactory
 		           makeWithPresenter: libraryView
 		           relativeTo: self addButton
-		           position: SpPopoverPosition right
+		           position: SpPopoverPosition right) popup ];
+		             yourself.
 ]
 
 { #category : #accessing }
 PyramidPluginLibrary >> libraryView [
 	^ libraryView
-]
-
-{ #category : #accessing }
-PyramidPluginLibrary >> popover [
-
-	^ popover
 ]

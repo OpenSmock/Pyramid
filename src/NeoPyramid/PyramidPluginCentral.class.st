@@ -20,28 +20,12 @@ PyramidPluginCentral class >> initialize [
 { #category : #adding }
 PyramidPluginCentral >> addPanelsOn: aPyramidSimpleWindow [
 
-	| buttonTesting2 buttonTesting3 |
-	
-	buttonTesting2 := SpButtonPresenter new
-		                  icon: (self iconNamed: #abstract);
-		                  yourself.
-	buttonTesting3 := SpButtonPresenter new
-		                  icon: (self iconNamed: #abstract);
-		                  yourself.
-
 	aPyramidSimpleWindow
 		at: #space
 		addItem: [ :builder | builder makePresenter: self spaceView ].
-	aPyramidSimpleWindow at: #spaceToolbarLeft addItem: [ :builder |
+
+	aPyramidSimpleWindow at: #spaceToolbarBottom addItem: [ :builder |
 		builder makeButtonWithIcon: self buttonWindowProperty order: 1 ].
-	aPyramidSimpleWindow
-		at: #spaceToolbarCenter
-		addItem: [ :builder |
-		builder makeButtonWithIcon: buttonTesting2 order: 1 ].
-	aPyramidSimpleWindow
-		at: #spaceToolbarRight
-		addItem: [ :builder |
-		builder makeButtonWithIcon: buttonTesting3 order: 1 ]
 ]
 
 { #category : #accessing }
@@ -64,8 +48,7 @@ PyramidPluginCentral >> connectOn: aPyramidEditor [
 PyramidPluginCentral >> initialize [
 
 	spaceView := PyramidSpaceView new.
-	self initializeLayers.
-	self inspect
+	self initializeLayers
 ]
 
 { #category : #initialization }
@@ -73,17 +56,22 @@ PyramidPluginCentral >> initializeLayers [
 
 	| layer presenter |
 	layer := PyramidBlocWindowForLayoutLayer new.
-	presenter := PyramidBlocWindowForLayoutPresenter new layer: layer; yourself.
+	presenter := PyramidBlocWindowForLayoutPresenter new
+		             layer: layer;
+		             yourself.
 	self spaceView builder addLayer: layer.
 	buttonWindowProperty := SpButtonPresenter new
-		                        icon: (self iconNamed: #add);
+		                        icon: (self iconNamed: #window);
 		                        action: [
-			                        self buttonWindowPropertyPopover popup ];
+			                        (PyramidPopoverFactory
+				                         makeWithPresenter: presenter
+				                         relativeTo: self buttonWindowProperty
+				                         position: SpPopoverPosition right) popup ];
 		                        yourself.
 	buttonWindowPropertyPopover := PyramidPopoverFactory
 		                               makeWithPresenter: presenter
 		                               relativeTo: self buttonWindowProperty
-		                               position: SpPopoverPosition top
+		                               position: SpPopoverPosition right
 ]
 
 { #category : #accessing }
