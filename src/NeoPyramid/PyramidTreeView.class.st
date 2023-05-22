@@ -12,6 +12,18 @@ Class {
 	#category : #'NeoPyramid-plugin-tree'
 }
 
+{ #category : #visiting }
+PyramidTreeView >> acceptDrop: aCollection on: aTarget [
+
+	| elementsToAdd |
+	elementsToAdd := aCollection collect: [ :each | each asElement ].
+	aTarget ifNil: [
+		self activeProject roots addAll: elementsToAdd.
+		^ self ].
+	aTarget addChildren: elementsToAdd.
+	self activeProject roots informCollectionChanged
+]
+
 { #category : #accessing }
 PyramidTreeView >> activeProject [
 
@@ -130,12 +142,13 @@ PyramidTreeView >> initializePresenters [
 		contextMenu: [ self contextMenu ];
 		expandRoots.
 
-	self columns do: [ :each | "tree acceptDrop: true.
+	tree acceptDrop: true.
 	tree wantsDrop: [ :transfert |
 		self validatedrop: transfert passenger ].
-	tree acceptDrop: [ :transfert | ""self acceptDrop: transfert passenger""
-		 ]"
-		tree addColumn: each ]
+	tree acceptDrop: [ :transfert | 
+		self acceptDrop: transfert passenger on: transfert target].
+
+	self columns do: [ :each | tree addColumn: each ]
 ]
 
 { #category : #'as yet unclassified' }
@@ -204,5 +217,5 @@ PyramidTreeView >> validatedrop: aCollection [
 { #category : #'as yet unclassified' }
 PyramidTreeView >> validatedropForAnObject: anObject [
 
-	^ anObject isKindOf: BlElement
+	^ anObject respondsTo: #asElement
 ]

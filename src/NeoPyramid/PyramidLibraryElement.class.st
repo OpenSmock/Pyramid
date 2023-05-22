@@ -9,6 +9,12 @@ Class {
 	#category : #'NeoPyramid-plugin-adders'
 }
 
+{ #category : #converting }
+PyramidLibraryElement >> asElement [
+
+	^ self blockMaker value
+]
+
 { #category : #accessing }
 PyramidLibraryElement >> blockMaker [
 
