@@ -4,8 +4,7 @@ Class {
 	#traits : 'TPyramidObservableElementCollection',
 	#classTraits : 'TPyramidObservableElementCollection classTrait',
 	#instVars : [
-		'elements',
-		'collection'
+		'elements'
 	],
 	#category : #'NeoPyramid-models'
 }
@@ -22,6 +21,12 @@ PyramidObservableElementCollection >> addAll: aCollection [
 
 	self elements addAll: aCollection.
 	self informCollectionChanged
+]
+
+{ #category : #enumerating }
+PyramidObservableElementCollection >> do: aBlock [
+
+	self elements do: aBlock
 ]
 
 { #category : #initialization }
@@ -47,6 +52,12 @@ PyramidObservableElementCollection >> initialize [
 { #category : #testing }
 PyramidObservableElementCollection >> isCollection [
 	^ true
+]
+
+{ #category : #testing }
+PyramidObservableElementCollection >> isEmpty [
+
+	^ self elements isEmpty
 ]
 
 { #category : #initialization }

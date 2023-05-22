@@ -14,7 +14,12 @@ Class {
 { #category : #layout }
 PyramidBlocWindowForLayoutPresenter >> defaultLayout [
 
-	^ SpBoxLayout newVertical spacing: 4; add: 'Window parameters'; add: self isFullScreenCheckbox; add: self extentInput; yourself.
+	^ SpBoxLayout newVertical
+		  spacing: 4;
+		  add: (SpLabelPresenter new label: 'Window parameters'; displayBold: [ :a | true]; yourself);
+		  add: self isFullScreenCheckbox;
+		  add: self extentInput;
+		  yourself
 ]
 
 { #category : #layout }

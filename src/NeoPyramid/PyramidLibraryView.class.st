@@ -5,15 +5,31 @@ Class {
 		'list',
 		'preview',
 		'addRootButton',
-		'editor'
+		'editor',
+		'addChildButton'
 	],
 	#category : #'NeoPyramid-plugin-adders'
 }
+
+{ #category : #accessing }
+PyramidLibraryView >> addChildButton [
+
+	^ addChildButton
+]
 
 { #category : #adding }
 PyramidLibraryView >> addOnRoot [
 
 	self editor activeProject roots add: self list selectedItem blockMaker value
+]
+
+{ #category : #adding }
+PyramidLibraryView >> addOnSelection [
+
+	self editor activeProject roots isEmpty ifTrue: [ self addOnRoot. ^ self ].
+	self editor activeProject selection do: [ :each |
+		each addChild: self list selectedItem blockMaker value ].
+	self editor activeProject roots informCollectionChanged
 ]
 
 { #category : #accessing }
@@ -59,20 +75,32 @@ PyramidLibraryView >> defaultItemsList [
 { #category : #initialization }
 PyramidLibraryView >> defaultLayout [
 
-	^ SpBoxLayout newHorizontal
+	^ SpBoxLayout newVertical
 		  spacing: 4;
-		  add: self list width: 200;
-		  add: (SpBoxLayout newVertical
+		  add: (SpLabelPresenter new
+				   label: 'Library';
+				   displayBold: [ :a | true ];
+				   yourself);
+		  add: (SpBoxLayout newHorizontal
 				   spacing: 4;
-				   add: self preview expand: true;
-				   add: (SpBoxLayout newVertical spacing: 4;
-						    add: SpNullPresenter new expand: true;
-						    add: self addRootButton expand: false;
+				   add: self list width: 200;
+				   add: (SpBoxLayout newVertical
+						    spacing: 4;
+						    add: self preview expand: true;
+						    add: (SpBoxLayout newVertical
+								     spacing: 4;
+								     add: SpNullPresenter new expand: true;
+								     add: (SpBoxLayout newHorizontal
+										      spacing: 4;
+										      add: self addChildButton;
+										      add: self addRootButton;
+										      yourself)
+								     expand: false;
+								     yourself)
+						    expand: false;
 						    yourself)
-				   expand: false;
+				   width: 300;
 				   yourself)
-		  width: 300;
-		  yourself
 ]
 
 { #category : #accessing }
@@ -93,17 +121,20 @@ PyramidLibraryView >> initializePresenters [
 		                 label: 'Add as root';
 		                 action: [ self addOnRoot ];
 		                 yourself.
+	addChildButton := SpButtonPresenter new
+		                  label: 'Add as child';
+		                  action: [ self addOnSelection ];
+		                  yourself.
 	preview := SpImagePresenter new.
 	list := SpListPresenter new
 		        beSingleSelection;
 		        dragEnabled: true;
 		        items: self defaultItemsList;
+				  display: [ :each | each title ];
 		        whenSelectedDo: [ :element |
 			        self updatePreviewWith: element ];
 		        selectFirst;
-		        yourself.
-
-	
+		        yourself
 ]
 
 { #category : #accessing }
