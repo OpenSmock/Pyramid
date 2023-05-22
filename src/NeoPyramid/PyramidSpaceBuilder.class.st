@@ -38,8 +38,11 @@ PyramidSpaceBuilder >> canvas [
 PyramidSpaceBuilder >> initialize [
 
 	canvas := BlElement new
-		               clipChildren: false;
-		               yourself.
+		          clipChildren: false;
+		          constraintsDo: [ :c |
+			          c horizontal matchParent.
+			          c vertical matchParent ];
+		          yourself.
 
 	presenter := SpMorphPresenter new.
 
