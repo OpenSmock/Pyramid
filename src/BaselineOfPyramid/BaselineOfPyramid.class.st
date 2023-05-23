@@ -17,10 +17,11 @@ BaselineOfPyramid >> baseline: spec [
 			baseline: #BlocSerialization
 			with: [
 			spec repository: 'github://OpenSmock/Bloc-Serialization:main/src' ].
-		spec package: #'Pyramid-Commands'.
 		spec package: #'Pyramid-Spec'.
-		spec
-			package: #Pyramid
-			with: [
-			spec requires: #( #BlocSerialization #Bloc #'Pyramid-Spec' #'Pyramid-Commands' ) ] ]
+		spec package: #Pyramid with: [
+			spec requires:
+				#( #BlocSerialization #Bloc #'Pyramid-Spec' ) ] .
+			spec package: #'Pyramid-Tests'  with: [
+			spec requires:
+				#( #Pyramid ) ].]
 ]
