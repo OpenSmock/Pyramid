@@ -59,7 +59,7 @@ PyramidBackgroundModalPresenter >> changeToComposite [
 { #category : #'initialization - deprecated' }
 PyramidBackgroundModalPresenter >> changeToImage [
 
-	self updateLayoutWith: PyramidBackgroundInputTransparent new
+	self updateLayoutWith: PyramidBackgroundInputImage new
 ]
 
 { #category : #'initialization - deprecated' }

@@ -1,6 +1,6 @@
 Class {
 	#name : #PyramidBackgroundInputTransparent,
-	#superclass : #PyramidBackgroundAbstractPaintInput,
+	#superclass : #PyramidBackgroundAbstractBackgroundInput,
 	#category : #'NeoPyramid-plugin-properties-custom'
 }
 
