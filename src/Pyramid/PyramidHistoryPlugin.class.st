@@ -6,8 +6,7 @@ Class {
 	#instVars : [
 		'history',
 		'undoButton',
-		'redoButton',
-		'historyView'
+		'redoButton'
 	],
 	#category : #'Pyramid-plugin-history'
 }
@@ -20,13 +19,6 @@ PyramidHistoryPlugin class >> initialize [
 
 { #category : #adding }
 PyramidHistoryPlugin >> addPanelsOn: aPyramidSimpleWindow [
-
-	aPyramidSimpleWindow at: #tabRight addItem: [ :builder |
-		builder
-			makeTab: self historyView
-			label: 'History'
-			icon: (self iconNamed: #history)
-			order: 30 ].
 
 	aPyramidSimpleWindow
 		at: #topCenter
@@ -50,23 +42,13 @@ PyramidHistoryPlugin >> history [
 	^history
 ]
 
-{ #category : #accessing }
-PyramidHistoryPlugin >> historyView [
-^ historyView
-]
-
 { #category : #initialization }
 PyramidHistoryPlugin >> initialize [
 
 	history := PyramidHistory new.
 	history addObserver: self.
-	
-	historyView  := PyramidHistoryView new
-		               history: self history;
-		               yourself.
-		
-	self initializeButtons.
 
+	self initializeButtons
 ]
 
 { #category : #initialization }
