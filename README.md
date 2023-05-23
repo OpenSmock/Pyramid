@@ -4,12 +4,12 @@ Pyramid is an user-interface builder for Bloc
 
 ## Installation
 
-To install pyramid, use the following script inside a Playground.
+To install the latest version of pyramid, use the following script inside a Playground.
 
 ```st
 [ Metacello new
 	baseline: 'Pyramid';
-	repository: 'github://OpenSmock/Pyramid:main/src';
+	repository: 'github://OpenSmock/Pyramid:dev/src';
 	onConflictUseIncoming;
 	ignoreImage;
 	load ]
