@@ -49,7 +49,7 @@ PyramidSpaceBuilder >> initialize [
 	morph := Morph new.
 	morph layoutPolicy: TableLayout new.
 
-	host := PyramidMorphicAlexandrieHost new.
+	host := BlMorphicHost new.
 	host containerMorph: morph.
 
 	space := BlSpace new.

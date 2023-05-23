@@ -9,6 +9,18 @@ BaselineOfPyramid >> baseline: spec [
 
 	<baseline>
 	spec for: #common do: [
+		spec postLoadDoIt: #postload:package:.
+		self dependencies: spec.
+		spec
+			package: #Pyramid
+			with: [ spec requires: #( #BlocSerialization #Bloc ) ];
+			package: #'Pyramid-Tests'
+			with: [ spec requires: #( #Pyramid ) ] ]
+]
+
+{ #category : #baselines }
+BaselineOfPyramid >> dependencies: spec [
+
 		spec
 			baseline: #Bloc
 			with: [
@@ -17,11 +29,10 @@ BaselineOfPyramid >> baseline: spec [
 			baseline: #BlocSerialization
 			with: [
 			spec repository: 'github://OpenSmock/Bloc-Serialization:main/src' ].
-		spec package: #'Pyramid-Spec'.
-		spec package: #Pyramid with: [
-			spec requires:
-				#( #BlocSerialization #Bloc #'Pyramid-Spec' ) ] .
-			spec package: #'Pyramid-Tests'  with: [
-			spec requires:
-				#( #Pyramid ) ].]
+]
+
+{ #category : #actions }
+BaselineOfPyramid >> postload: loader package: packageSpec [
+
+	PyramidPluginManager reset
 ]
