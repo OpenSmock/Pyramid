@@ -10,17 +10,8 @@ Class {
 		'inputBuilder',
 		'inputsModel'
 	],
-	#category : #'Pyramid-plugin-properties'
+	#category : #'Pyramid-properties'
 }
-
-{ #category : #accessing }
-PyramidProperty class >> background [
-
-	^ self
-		  fromCommand: PyramidCommand background
-		  inputBuilder:
-		  PyramidPropertyInputModelBuilderFactory backgroundInput
-]
 
 { #category : #accessing }
 PyramidProperty class >> fromCommand: aPyramidCommand inputBuilder: aPyramidPropertyInputModelBuilderFactory [
@@ -31,42 +22,6 @@ PyramidProperty class >> fromCommand: aPyramidCommand inputBuilder: aPyramidProp
 		            yourself.
 	aPyramidPropertyInputModelBuilderFactory installBuilderOn: property.
 	^ property
-]
-
-{ #category : #accessing }
-PyramidProperty class >> identifier [
-
-	^ self
-		  fromCommand: PyramidCommand identifier
-		  inputBuilder:
-		  PyramidPropertyInputModelBuilderFactory identifierTextInput
-]
-
-{ #category : #accessing }
-PyramidProperty class >> position [
-
-	^ self
-		  fromCommand: PyramidCommand position
-		  inputBuilder:
-		  PyramidPropertyInputModelBuilderFactory positionInput
-]
-
-{ #category : #accessing }
-PyramidProperty class >> text [
-
-	^ self
-		  fromCommand: PyramidCommand text
-		  inputBuilder:
-		  PyramidPropertyInputModelBuilderFactory textInput
-]
-
-{ #category : #accessing }
-PyramidProperty class >> visibility [
-
-	^ self
-		  fromCommand: PyramidCommand visibility
-		  inputBuilder:
-		  PyramidPropertyInputModelBuilderFactory visibilityDropList
 ]
 
 { #category : #accessing }

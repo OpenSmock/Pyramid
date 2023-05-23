@@ -12,57 +12,6 @@ Class {
 }
 
 { #category : #adding }
-PyramidCommand class >> addChildren [
-
-	^ self
-		  name: #addChildren
-		  set: [ :state :target | target addChildren: state arguments ]
-		  get: [ :state :source |
-			  state source: source.
-			  state arguments: source children asArray ]
-		  isExecutableBlock: [ :obj :state | obj isKindOf: BlElement ]
-]
-
-{ #category : #adding }
-PyramidCommand class >> addElementOnCollection [
-
-	^ self
-		  name: #addElementOnCollection
-		  set: [ :state :target | target addAll: state arguments ]
-		  get: [ :state :source |
-			  state source: source.
-			  state arguments: source elements asArray ]
-		  isExecutableBlock: [ :obj :state| obj isCollection ]
-]
-
-{ #category : #adding }
-PyramidCommand class >> background [
-
-	^ self
-		  name: #background
-		  set: [ :state :target | target background: state arguments ]
-		  get: [ :state :source |
-			  state source: source.
-			  state arguments: source background ]
-		  isExecutableBlock: [ :obj :state | (obj isKindOf: BlElement) ]
-]
-
-{ #category : #adding }
-PyramidCommand class >> identifier [
-
-	^ self
-		  name: #identifier
-		  set: [ :state :target | target id: state arguments ]
-		  get: [ :state :source |
-			  state source: source.
-			  state arguments: source id asSymbol ]
-		  isExecutableBlock: [ :obj :state |
-			  (obj isKindOf: BlElement) and: [
-					state arguments ifNil: [ true ] ifNotNil: [ state arguments ~= obj id asSymbol ]
-				   ] ]
-]
-
-{ #category : #adding }
 PyramidCommand class >> name: aString set: aSetter get: aGetter isExecutableBlock: aBlock [
 
 	^ self new
@@ -74,42 +23,6 @@ PyramidCommand class >> name: aString set: aSetter get: aGetter isExecutableBloc
 ]
 
 { #category : #adding }
-PyramidCommand class >> position [
-
-	^ self
-		  name: #position
-		  set: [ :state :target | target position: state arguments ]
-		  get: [ :state :source |
-			  state source: source.
-			  state arguments: source constraints position ]
-		  isExecutableBlock: [ :obj :state | obj isKindOf: BlElement ]
-]
-
-{ #category : #adding }
-PyramidCommand class >> removeChildren [
-
-	^ self
-		  name: #removeChildren
-		  set: [ :state :target | target removeChildren: state arguments ]
-		  get: [ :state :source |
-			  state source: source.
-			  state arguments: source children asArray ]
-		  isExecutableBlock: [ :obj :state| obj isKindOf: BlElement ]
-]
-
-{ #category : #adding }
-PyramidCommand class >> removeElementOnCollection [
-
-	^ self
-		  name: #removeElementOnCollection
-		  set: [ :state :target | target removeAll: state arguments ]
-		  get: [ :state :source |
-			  state source: source.
-			  state arguments: source elements asArray ]
-		  isExecutableBlock: [ :obj :state| obj isCollection ]
-]
-
-{ #category : #adding }
 PyramidCommand class >> set: aSetter get: aGetter isExecutableBlock: aBlock [
 
 	^ self new
@@ -118,31 +31,6 @@ PyramidCommand class >> set: aSetter get: aGetter isExecutableBlock: aBlock [
 		  getBlock: aGetter;
 		  isExecutableBlock: aBlock;
 		  yourself
-]
-
-{ #category : #adding }
-PyramidCommand class >> text [
-
-	^ self
-		  name: #text
-		  set: [ :state :target | target text: state arguments ]
-		  get: [ :state :source |
-			  state source: source.
-			  state arguments: source text ]
-		  isExecutableBlock: [ :obj :state |
-			  (obj isKindOf: BlTextElement) ]
-]
-
-{ #category : #adding }
-PyramidCommand class >> visibility [
-
-	^ self
-		  name: #visibility
-		  set: [ :state :target | target visibility: state arguments ]
-		  get: [ :state :source |
-			  state source: source.
-			  state arguments: source visibility ]
-		  isExecutableBlock: [ :obj :state | (obj isKindOf: BlElement) and: [ state arguments ~= obj visibility ] ]
 ]
 
 { #category : #operations }

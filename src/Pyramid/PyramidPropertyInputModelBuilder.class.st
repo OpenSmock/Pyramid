@@ -14,7 +14,7 @@ Class {
 		'inputModel',
 		'setDefautValueBlock'
 	],
-	#category : #'Pyramid-plugin-properties'
+	#category : #'Pyramid-properties'
 }
 
 { #category : #building }

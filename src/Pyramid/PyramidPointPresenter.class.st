@@ -6,7 +6,7 @@ Class {
 		'inputY',
 		'submitBlock'
 	],
-	#category : #'Pyramid-plugin-properties-custom'
+	#category : #'Pyramid-properties-custom'
 }
 
 { #category : #layout }

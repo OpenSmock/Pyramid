@@ -13,7 +13,7 @@ Class {
 		'inputLayout',
 		'popoverPresenter'
 	],
-	#category : #'Pyramid-plugin-properties'
+	#category : #'Pyramid-properties'
 }
 
 { #category : #accessing }

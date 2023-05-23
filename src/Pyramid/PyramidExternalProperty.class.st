@@ -5,7 +5,7 @@ Class {
 		'selector',
 		'target'
 	],
-	#category : #'Pyramid-plugin-properties-external'
+	#category : #'Pyramid-properties-external'
 }
 
 { #category : #'instance creation' }

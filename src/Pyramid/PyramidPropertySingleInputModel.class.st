@@ -6,7 +6,7 @@ Class {
 		'applyToAllButton',
 		'reference'
 	],
-	#category : #'Pyramid-plugin-properties'
+	#category : #'Pyramid-properties'
 }
 
 { #category : #accessing }

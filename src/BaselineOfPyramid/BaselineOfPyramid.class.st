@@ -13,9 +13,9 @@ BaselineOfPyramid >> baseline: spec [
 		self dependencies: spec.
 		spec
 			package: #Pyramid
-			with: [ spec requires: #( #BlocSerialization #Bloc ) ];
-			package: #'Pyramid-Tests'
-			with: [ spec requires: #( #Pyramid ) ] ]
+			with: [ spec requires: #( #BlocSerialization ) ];
+			package: #'Pyramid-Bloc' with: [ spec requires: #( #Pyramid #Bloc ) ];
+			package: #'Pyramid-Tests' with: [ spec requires: #( #Pyramid ) ] ]
 ]
 
 { #category : #baselines }

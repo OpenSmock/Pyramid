@@ -6,7 +6,7 @@ Class {
 		'groupButton',
 		'soloButton'
 	],
-	#category : #'Pyramid-plugin-properties'
+	#category : #'Pyramid-properties'
 }
 
 { #category : #'as yet unclassified' }

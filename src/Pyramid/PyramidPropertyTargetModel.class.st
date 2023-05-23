@@ -5,7 +5,7 @@ Class {
 		'argumentsDict',
 		'targets'
 	],
-	#category : #'Pyramid-plugin-properties'
+	#category : #'Pyramid-properties'
 }
 
 { #category : #accessing }

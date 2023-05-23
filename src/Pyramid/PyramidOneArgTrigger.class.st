@@ -1,7 +1,7 @@
 Class {
 	#name : #PyramidOneArgTrigger,
 	#superclass : #PyramidPropertyInputTrigger,
-	#category : #'Pyramid-plugin-properties'
+	#category : #'Pyramid-properties'
 }
 
 { #category : #'as yet unclassified' }

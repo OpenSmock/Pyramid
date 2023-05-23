@@ -64,7 +64,7 @@ PyramidPropertyInputModelBuilderFactoryTest >> testVisibilityDropList [
 
 	| property |
 	property := PyramidProperty new.
-	property command: PyramidCommand visibility.
+	property command: PyramidBlocCommand visibility.
 	PyramidPropertyInputModelBuilderFactory visibilityDropList
 		installBuilderOn: property.
 	property makeNewInputsFor: {  }.

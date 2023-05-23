@@ -1,0 +1,47 @@
+Class {
+	#name : #PyramidBackgroundInputImage,
+	#superclass : #PyramidBackgroundAbstractBackgroundInput,
+	#instVars : [
+		'externalRessourceInput'
+	],
+	#category : #'Pyramid-Bloc-custom-specs'
+}
+
+{ #category : #accessing }
+PyramidBackgroundInputImage >> background [
+
+	^ BlBackground image: self form
+]
+
+{ #category : #layout }
+PyramidBackgroundInputImage >> defaultLayout [
+
+	^ SpBoxLayout newHorizontal
+		  add: 'Image, There will be something here';
+		add: self externalRessourceInput ;
+		  yourself
+]
+
+{ #category : #accessing }
+PyramidBackgroundInputImage >> externalRessourceInput [
+	^ externalRessourceInput
+]
+
+{ #category : #accessing }
+PyramidBackgroundInputImage >> form [
+
+	^ self externalRessourceInput externalProperty.
+]
+
+{ #category : #initialization }
+PyramidBackgroundInputImage >> initializePresenters [ 
+
+	externalRessourceInput := PyramidExternalPropertyPresenter new.
+]
+
+{ #category : #initialization }
+PyramidBackgroundInputImage >> setImage: anImage [
+
+	(anImage respondsTo: #pyramidExternalRessource) ifTrue: [ self externalRessourceInput setExternalProperty: anImage pyramidExternalRessource ]
+	
+]

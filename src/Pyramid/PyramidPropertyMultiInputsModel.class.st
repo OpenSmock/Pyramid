@@ -7,7 +7,7 @@ Class {
 		'stateInputsModel',
 		'sectionName'
 	],
-	#category : #'Pyramid-plugin-properties'
+	#category : #'Pyramid-properties'
 }
 
 { #category : #accessing }

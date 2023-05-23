@@ -5,7 +5,8 @@ Class {
 		'plugins',
 		'activeProject',
 		'commandPipeline',
-		'window'
+		'window',
+		'properties'
 	],
 	#category : #'Pyramid-core'
 }
@@ -27,6 +28,11 @@ PyramidEditor >> initialize [
 
 	activeProject := PyramidActiveProjectModel new.
 	commandPipeline := PyramidPipeline new.
+	properties := PyramidPropertiesView
+		              new
+		              pipeline: commandPipeline;
+		              activeProject: activeProject;
+		              yourself.
 	plugins := {  }
 ]
 
@@ -40,6 +46,12 @@ PyramidEditor >> plugins [
 PyramidEditor >> plugins: aCollection [
 
 	plugins := aCollection
+]
+
+{ #category : #accessing }
+PyramidEditor >> properties [
+
+	^ properties
 ]
 
 { #category : #accessing }
@@ -57,5 +69,11 @@ PyramidEditor >> window [
 { #category : #accessing }
 PyramidEditor >> window: anObject [
 
-	window := anObject
+	window := anObject.
+	window at: #tabRight addItem: [ :builder |
+		builder
+			makeTab: self properties
+			label: 'Properties'
+			icon: (self iconNamed: #edit)
+			order: 1 ]
 ]
