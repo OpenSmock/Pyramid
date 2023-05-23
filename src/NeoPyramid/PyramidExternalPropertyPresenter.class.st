@@ -120,6 +120,13 @@ PyramidExternalPropertyPresenter >> selectorInput [
 	^ selectorInput
 ]
 
+{ #category : #'as yet unclassified' }
+PyramidExternalPropertyPresenter >> setExternalProperty: anObject [
+
+	self classInput text: anObject target name.
+	self selectorInput text: anObject selector
+]
+
 { #category : #submit }
 PyramidExternalPropertyPresenter >> submit [
 

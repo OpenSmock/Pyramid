@@ -30,11 +30,18 @@ PyramidBackgroundInputImage >> externalRessourceInput [
 { #category : #accessing }
 PyramidBackgroundInputImage >> form [
 
-	^ self externalRessourceInput externalRessource.
+	^ self externalRessourceInput externalProperty.
 ]
 
 { #category : #initialization }
 PyramidBackgroundInputImage >> initializePresenters [ 
 
 	externalRessourceInput := PyramidExternalPropertyPresenter new.
+]
+
+{ #category : #initialization }
+PyramidBackgroundInputImage >> setImage: anImage [
+
+	(anImage respondsTo: #pyramidExternalRessource) ifTrue: [ self externalRessourceInput setExternalProperty: anImage pyramidExternalRessource ]
+	
 ]

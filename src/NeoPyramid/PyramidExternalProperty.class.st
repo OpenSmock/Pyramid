@@ -38,10 +38,12 @@ PyramidExternalProperty class >> makeAnonymousSubClassOf: aPyramidExternalProper
 		'= anObject<r><r><t>^ self == anObject pyramidExternalRessource'
 			expandMacros.
 	anonClass instanceSide compile:
-		'stonOn: stonWriter<r><r><t>stonWriter writeObject: self pyramidExternalRessource'
+		'stonOn: stonWriter<r><r><t>self pyramidExternalRessource stonOn: stonWriter'
 			expandMacros.
 	object := object as: anonClass.
-	object perform: #pyramidExternalRessource: with: aPyramidExternalProperty.
+	object
+		perform: #pyramidExternalRessource:
+		with: aPyramidExternalProperty.
 	^ object
 ]
 
@@ -59,6 +61,14 @@ PyramidExternalProperty >> asExternalRessource [
 	^ self class makeAnonymousSubClassOf: self
 ]
 
+{ #category : #'ston persistence' }
+PyramidExternalProperty >> fromSton: stonReader [
+
+	stonReader parseMapDo: [ :key :value |
+		key = #target ifTrue: [ target := self class environment classNamed: value ].
+		key = #selector ifTrue: [ selector := value ] ]
+]
+
 { #category : #accessing }
 PyramidExternalProperty >> selector [
 
@@ -69,6 +79,15 @@ PyramidExternalProperty >> selector [
 PyramidExternalProperty >> selector: anObject [
 
 	selector := anObject
+]
+
+{ #category : #'ston persistence' }
+PyramidExternalProperty >> stonOn: stonWriter [
+
+	stonWriter writeObject: self streamMap: [ :map |
+		map
+			at: #selector put: self selector;
+			at: #target put: self target name ]
 ]
 
 { #category : #accessing }
