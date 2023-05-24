@@ -84,7 +84,7 @@ PyramidExternalPropertyPresenter >> externalProperty [
 ]
 
 { #category : #'initialization - deprecated' }
-PyramidExternalPropertyPresenter >> initializePresenter [
+PyramidExternalPropertyPresenter >> initializePresenters [
 
 	classInput := SpTextInputFieldPresenter new
 		              placeholder: 'Enter a class name';
@@ -92,8 +92,7 @@ PyramidExternalPropertyPresenter >> initializePresenter [
 		              whenTextChangedDo: [ :text |
 			              self updateSelectorInput: text ];
 		              yourself.
-	selectorInput := self makeEmptySelectorInput
-		                 yourself.
+	selectorInput := self makeEmptySelectorInput yourself.
 	validateButton := SpButtonPresenter new
 		                  icon: (self iconNamed: #smallOk);
 		                  action: [ self submit ];
