@@ -5,7 +5,7 @@ Class {
 		'target',
 		'selector'
 	],
-	#category : #'Pyramid-properties-external'
+	#category : #'Pyramid-external-ressources'
 }
 
 { #category : #initialization }

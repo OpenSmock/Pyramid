@@ -1,7 +1,7 @@
 Class {
 	#name : #PyramidExternalRessourceSource,
 	#superclass : #Object,
-	#category : #'Pyramid-properties-external'
+	#category : #'Pyramid-external-ressources'
 }
 
 { #category : #'as yet unclassified' }

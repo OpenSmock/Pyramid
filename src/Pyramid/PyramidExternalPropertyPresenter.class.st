@@ -8,7 +8,7 @@ Class {
 		'validateButton',
 		'whenSubmitDo'
 	],
-	#category : #'Pyramid-properties-external'
+	#category : #'Pyramid-properties-custom'
 }
 
 { #category : #accessing }
