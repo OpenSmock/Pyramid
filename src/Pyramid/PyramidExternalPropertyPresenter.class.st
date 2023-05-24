@@ -80,10 +80,7 @@ PyramidExternalPropertyPresenter >> externalProperty [
 	| class selector |
 	class := self class environment classNamed: self classInput text.
 	selector := self selectorInput text asSymbol.
-	^ (PyramidExternalProperty new
-		   target: class;
-		   selector: selector;
-		   yourself) asExternalRessource
+	^ (PyramidExternalRessourceProxy fromSource: (PyramidERClassSelector target: class selector: selector))
 ]
 
 { #category : #'initialization - deprecated' }

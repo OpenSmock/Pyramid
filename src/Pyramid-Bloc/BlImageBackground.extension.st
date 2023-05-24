@@ -3,13 +3,13 @@ Extension { #name : #BlImageBackground }
 { #category : #'*Pyramid-Bloc' }
 BlImageBackground >> pyramidBackgroundStrategy [
 
-	(self image respondsTo: #pyramidExternalRessource) ifTrue: [ ^ PyramidBackgroundPropertyInputImage new
-		  ressource: self image pyramidExternalRessource;
-		  yourself ].
+	(self image respondsTo: #pyramidExternalRessourceSource) ifTrue: [
+		^ PyramidBackgroundPropertyInputImage new
+			  ressource: self image pyramidExternalRessourceSource;
+			  yourself ].
 	^ PyramidBackgroundPropertyInputImage new
 		  ressource: nil;
 		  yourself
-	
 ]
 
 { #category : #'*Pyramid-Bloc' }

@@ -42,6 +42,7 @@ PyramidBackgroundInputImage >> initializePresenters [
 { #category : #initialization }
 PyramidBackgroundInputImage >> setImage: anImage [
 
-	(anImage respondsTo: #pyramidExternalRessource) ifTrue: [ self externalRessourceInput setExternalProperty: anImage pyramidExternalRessource ]
-	
+	(anImage respondsTo: #pyramidExternalRessourceSource) ifTrue: [
+		self externalRessourceInput setExternalProperty:
+			anImage pyramidExternalRessourceSource ]
 ]
