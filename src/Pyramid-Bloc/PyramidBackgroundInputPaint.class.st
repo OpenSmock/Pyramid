@@ -64,7 +64,7 @@ PyramidBackgroundInputPaint >> defaultLayoutSolid [
 ]
 
 { #category : #'initialization - deprecated' }
-PyramidBackgroundInputPaint >> initializePresenter [
+PyramidBackgroundInputPaint >> initializePresenters [
 
 	buttonColor := SpRadioButtonPresenter new
 		               label: 'Solid color';

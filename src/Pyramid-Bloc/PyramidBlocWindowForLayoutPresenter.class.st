@@ -29,7 +29,7 @@ PyramidBlocWindowForLayoutPresenter >> extentInput [
 ]
 
 { #category : #'initialization - deprecated' }
-PyramidBlocWindowForLayoutPresenter >> initializePresenter [
+PyramidBlocWindowForLayoutPresenter >> initializePresenters [
 
 	isFullScreenCheckbox := SpCheckBoxPresenter new
 		                        label: 'fullScreen';

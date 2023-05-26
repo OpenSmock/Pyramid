@@ -16,10 +16,14 @@ PyramidPointPresenter >> defaultLayout [
 ]
 
 { #category : #'initialization - deprecated' }
-PyramidPointPresenter >> initializePresenter [
+PyramidPointPresenter >> initializePresenters [
 
-	inputX := PyramidNumberPresenter new whenSubmitDo: [ :n | self submit ]; yourself.
-	inputY := PyramidNumberPresenter new whenSubmitDo: [ :n | self submit ]; yourself.
+	inputX := PyramidNumberPresenter new
+		          whenSubmitDo: [ :n | self submit ];
+		          yourself.
+	inputY := PyramidNumberPresenter new
+		          whenSubmitDo: [ :n | self submit ];
+		          yourself
 ]
 
 { #category : #'initialization - deprecated' }

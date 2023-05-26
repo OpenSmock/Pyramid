@@ -30,11 +30,12 @@ PyramidBackgroundInputGradiant >> defaultLayout [
 ]
 
 { #category : #'initialization - deprecated' }
-PyramidBackgroundInputGradiant >> initializePresenter [
+PyramidBackgroundInputGradiant >> initializePresenters [
 
 	modeSelector := PyramidBackgroundInputGradiantMode new.
 	stopsColor := PyramidBackgroundInputGradiantColor new
-		              whenStopsChangedDo: [ self updateLayout ]; yourself
+		              whenStopsChangedDo: [ self updateLayout ];
+		              yourself
 ]
 
 { #category : #accessing }

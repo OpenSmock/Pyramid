@@ -68,7 +68,7 @@ PyramidBackgroundInputGradiantMode >> defaultLayoutSelection [
 ]
 
 { #category : #'initialization - deprecated' }
-PyramidBackgroundInputGradiantMode >> initializePresenter [
+PyramidBackgroundInputGradiantMode >> initializePresenters [
 
 	buttonRadial := SpRadioButtonPresenter new
 		                label: 'Radial';

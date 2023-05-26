@@ -23,7 +23,7 @@ PyramidNumberPresenter >> getNumberFrom: aString [
 ]
 
 { #category : #'initialization - deprecated' }
-PyramidNumberPresenter >> initializePresenter [
+PyramidNumberPresenter >> initializePresenters [
 
 	inputNumber := SpTextInputFieldPresenter new
 		               whenSubmitDo: [ :text |

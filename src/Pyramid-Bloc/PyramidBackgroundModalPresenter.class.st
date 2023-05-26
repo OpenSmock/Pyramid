@@ -109,7 +109,7 @@ PyramidBackgroundModalPresenter >> initializeDialogWindow: aDialogWindowPresente
 ]
 
 { #category : #'initialization - deprecated' }
-PyramidBackgroundModalPresenter >> initializePresenter [
+PyramidBackgroundModalPresenter >> initializePresenters [
 
 	currentPresenter := PyramidBackgroundInputTransparent new.
 	buttonTransparent := SpRadioButtonPresenter new
