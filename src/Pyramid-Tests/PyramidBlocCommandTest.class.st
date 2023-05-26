@@ -216,15 +216,20 @@ PyramidBlocCommandTest >> testText [
 
 	| e1 b1 state |
 	state := PyramidCommandState new.
-	e1 := 'abcde' asRopedText asElement.
+	e1 := 'abcde' asRopedText
+		      fontSize: 36;
+		      asElement.
 	PyramidBlocCommand text getState: state from: e1.
 	self assert: state arguments asString equals: 'abcde'.
 
-	b1 := '123' asRopedText asElement..
+	b1 := '123' asRopedText
+		      fontSize: 36;
+		      asElement.
 	PyramidBlocCommand text
-		setState: (PyramidCommandState new arguments: '456')
+		setState: (PyramidCommandState new arguments: '456789' asRopedText)
 		on: b1.
-	self assert: b1 text equals: '456'
+	self assert: b1 text asString equals: '456789'.
+	self assert: (b1 text hasAttribute: (BlFontSizeAttribute size: 36))
 ]
 
 { #category : #tests }

@@ -96,12 +96,14 @@ PyramidBlocCommand class >> text [
 
 	^ PyramidCommand
 		  name: #text
-		  set: [ :state :target | target text: state arguments ]
+		  set: [ :state :target |
+			  | rope |
+			  rope := target text rope.
+			  target text: (BlRopedText rope: (rope class attributes: rope attributes rope: state arguments rope)) ]
 		  get: [ :state :source |
 			  state source: source.
 			  state arguments: source text ]
-		  isExecutableBlock: [ :obj :state |
-			  (obj isKindOf: BlTextElement) ]
+		  isExecutableBlock: [ :obj :state | obj isKindOf: BlTextElement ]
 ]
 
 { #category : #adding }
