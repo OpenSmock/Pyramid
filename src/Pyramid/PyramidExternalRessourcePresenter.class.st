@@ -1,5 +1,5 @@
 Class {
-	#name : #PyramidExternalPropertyPresenter,
+	#name : #PyramidExternalRessourcePresenter,
 	#superclass : #SpPresenter,
 	#instVars : [
 		'classInput',
@@ -12,19 +12,19 @@ Class {
 }
 
 { #category : #accessing }
-PyramidExternalPropertyPresenter >> classApplicants [
+PyramidExternalRessourcePresenter >> classApplicants [
 
 	classApplicants ifNil: [classApplicants :=  Smalltalk globals classNames sorted ].
 	^ classApplicants
 ]
 
 { #category : #accessing }
-PyramidExternalPropertyPresenter >> classInput [
+PyramidExternalRessourcePresenter >> classInput [
 ^ classInput
 ]
 
 { #category : #layout }
-PyramidExternalPropertyPresenter >> defaultLayout [
+PyramidExternalRessourcePresenter >> defaultLayout [
 
 	^ SpBoxLayout newHorizontal
 		  spacing: 4;
@@ -47,7 +47,7 @@ PyramidExternalPropertyPresenter >> defaultLayout [
 ]
 
 { #category : #'as yet unclassified' }
-PyramidExternalPropertyPresenter >> entryCompletionForClass [
+PyramidExternalRessourcePresenter >> entryCompletionForClass [
 
 	| entryCompletion |
 	entryCompletion := EntryCompletion new
@@ -61,7 +61,7 @@ PyramidExternalPropertyPresenter >> entryCompletionForClass [
 ]
 
 { #category : #'as yet unclassified' }
-PyramidExternalPropertyPresenter >> entryCompletionForSelector: aString [
+PyramidExternalRessourcePresenter >> entryCompletionForSelector: aString [
 
 	| class applicants entryCompletion |
 	class := self class environment at: aString.
@@ -75,7 +75,7 @@ PyramidExternalPropertyPresenter >> entryCompletionForSelector: aString [
 ]
 
 { #category : #'as yet unclassified' }
-PyramidExternalPropertyPresenter >> externalProperty [
+PyramidExternalRessourcePresenter >> externalProperty [
 
 	| class selector |
 	class := self class environment classNamed: self classInput text.
@@ -84,7 +84,7 @@ PyramidExternalPropertyPresenter >> externalProperty [
 ]
 
 { #category : #'initialization - deprecated' }
-PyramidExternalPropertyPresenter >> initializePresenters [
+PyramidExternalRessourcePresenter >> initializePresenters [
 
 	classInput := SpTextInputFieldPresenter new
 		              placeholder: 'Enter a class name';
@@ -101,7 +101,7 @@ PyramidExternalPropertyPresenter >> initializePresenters [
 ]
 
 { #category : #'initialization - deprecated' }
-PyramidExternalPropertyPresenter >> makeEmptySelectorInput [
+PyramidExternalRessourcePresenter >> makeEmptySelectorInput [
 
 	^ SpTextInputFieldPresenter new
 		  placeholder: 'Enter a selector name';
@@ -111,26 +111,26 @@ PyramidExternalPropertyPresenter >> makeEmptySelectorInput [
 ]
 
 { #category : #accessing }
-PyramidExternalPropertyPresenter >> selectorInput [
+PyramidExternalRessourcePresenter >> selectorInput [
 
 	^ selectorInput
 ]
 
 { #category : #'as yet unclassified' }
-PyramidExternalPropertyPresenter >> setExternalProperty: anObject [
+PyramidExternalRessourcePresenter >> setExternalProperty: anObject [
 
 	self classInput text: anObject target name.
 	self selectorInput text: anObject selector
 ]
 
 { #category : #submit }
-PyramidExternalPropertyPresenter >> submit [
+PyramidExternalRessourcePresenter >> submit [
 
 	self whenSubmitDo value: self externalProperty
 ]
 
 { #category : #'as yet unclassified' }
-PyramidExternalPropertyPresenter >> updateSelectorInput: aString [
+PyramidExternalRessourcePresenter >> updateSelectorInput: aString [
 
 	| existingClass |
 	existingClass := self classApplicants select: [ :each |
@@ -140,7 +140,7 @@ PyramidExternalPropertyPresenter >> updateSelectorInput: aString [
 ]
 
 { #category : #'as yet unclassified' }
-PyramidExternalPropertyPresenter >> updateSelectorTextCompletionForClassNamed: aCollection [
+PyramidExternalRessourcePresenter >> updateSelectorTextCompletionForClassNamed: aCollection [
 
 	| input |
 	aCollection ifEmpty: [
@@ -153,27 +153,27 @@ PyramidExternalPropertyPresenter >> updateSelectorTextCompletionForClassNamed: a
 ]
 
 { #category : #'as yet unclassified' }
-PyramidExternalPropertyPresenter >> updateValidateButton [
+PyramidExternalRessourcePresenter >> updateValidateButton [
 
 	self validateButton enabled:
 		(self classInput text isNotEmpty and: [ self selectorInput text isNotEmpty ])
 ]
 
 { #category : #accessing }
-PyramidExternalPropertyPresenter >> validateButton [
+PyramidExternalRessourcePresenter >> validateButton [
 
 	^ validateButton
 ]
 
 { #category : #submit }
-PyramidExternalPropertyPresenter >> whenSubmitDo [
+PyramidExternalRessourcePresenter >> whenSubmitDo [
 
 	whenSubmitDo ifNil: [ whenSubmitDo := [ :external | external inspect ] ].
 	^ whenSubmitDo
 ]
 
 { #category : #submit }
-PyramidExternalPropertyPresenter >> whenSubmitDo: aBlock [
+PyramidExternalRessourcePresenter >> whenSubmitDo: aBlock [
 
 	whenSubmitDo := aBlock
 ]

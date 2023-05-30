@@ -2,7 +2,8 @@ Class {
 	#name : #PyramidBackgroundInputImage,
 	#superclass : #PyramidBackgroundAbstractBackgroundInput,
 	#instVars : [
-		'externalRessourceInput'
+		'form',
+		'classMethodPresenter'
 	],
 	#category : #'Pyramid-Bloc-custom-specs'
 }
@@ -13,36 +14,51 @@ PyramidBackgroundInputImage >> background [
 	^ BlBackground image: self form
 ]
 
+{ #category : #accessing }
+PyramidBackgroundInputImage >> classMethodPresenter [
+
+	^ classMethodPresenter
+]
+
 { #category : #layout }
 PyramidBackgroundInputImage >> defaultLayout [
 
 	^ SpBoxLayout newHorizontal
 		  add: 'Image, There will be something here';
-		add: self externalRessourceInput ;
+		  add: self classMethodPresenter;
 		  yourself
-]
-
-{ #category : #accessing }
-PyramidBackgroundInputImage >> externalRessourceInput [
-	^ externalRessourceInput
 ]
 
 { #category : #accessing }
 PyramidBackgroundInputImage >> form [
 
-	^ self externalRessourceInput externalProperty.
+	^ form
+]
+
+{ #category : #accessing }
+PyramidBackgroundInputImage >> form: anObject [
+
+	form := anObject
 ]
 
 { #category : #initialization }
-PyramidBackgroundInputImage >> initializePresenters [ 
+PyramidBackgroundInputImage >> initializePresenters [
 
-	externalRessourceInput := PyramidExternalPropertyPresenter new.
+	classMethodPresenter := PyramidClassMethodPresenter new
+		                          submitBlock: [ :model |
+			                          | selector |
+			                          selector := model targetClass compile:
+				                                      model methodString.
+			                          self form:
+				                          (PyramidERClassSelector
+					                           target: model targetClass
+					                           selector: selector) ]
 ]
 
 { #category : #initialization }
 PyramidBackgroundInputImage >> setImage: anImage [
 
 	(anImage respondsTo: #pyramidExternalRessourceSource) ifTrue: [
-		self externalRessourceInput setExternalProperty:
+		self classMethodPresenter setExternalProperty:
 			anImage pyramidExternalRessourceSource ]
 ]
