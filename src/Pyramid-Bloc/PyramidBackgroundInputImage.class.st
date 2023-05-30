@@ -45,14 +45,18 @@ PyramidBackgroundInputImage >> form: anObject [
 PyramidBackgroundInputImage >> initializePresenters [
 
 	classMethodPresenter := PyramidClassMethodPresenter new
-		                          submitBlock: [ :model |
-			                          | selector |
-			                          selector := model targetClass compile:
-				                                      model methodString.
-			                          self form:
-				                          (PyramidERClassSelector
-					                           target: model targetClass
-					                           selector: selector) ]
+		                        packages: Smalltalk organization packages;
+		                        submitBlock: [ :model |
+			                        | selector |
+			                        selector := model targetClass classSide compile:
+					                                    model methodString.
+			                        self form:
+					                        (PyramidExternalRessourceProxy
+						                         fromSource:
+							                         (PyramidERClassSelector
+								                          target: model targetClass
+								                          selector: selector)) ];
+		                        yourself
 ]
 
 { #category : #initialization }

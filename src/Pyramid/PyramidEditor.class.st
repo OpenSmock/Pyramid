@@ -54,6 +54,12 @@ PyramidEditor >> properties [
 	^ properties
 ]
 
+{ #category : #'as yet unclassified' }
+PyramidEditor >> test [
+
+	^ self iconNamed: #pharoBig
+]
+
 { #category : #accessing }
 PyramidEditor >> view [
 
