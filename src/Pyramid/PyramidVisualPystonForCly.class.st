@@ -184,7 +184,7 @@ PyramidVisualPystonForCly >> openInNewSpace [
 	elements isCollection ifFalse: [ elements := { elements } ].
 	
 	elements ifEmpty: [ ^ self ].
-	space := elements first openInNewSpaceWithPyramidShortcut.
+	space := elements first openInNewSpace.
 	space root addChildren: elements allButFirst.
 ]
 

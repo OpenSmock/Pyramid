@@ -46,7 +46,7 @@ PyramidBackgroundInputImage >> form: anObject [
 PyramidBackgroundInputImage >> formFromClass: class andSelector: selector [
 
 	self form: (PyramidExternalRessourceProxy fromSource:
-		  (PyramidERClassSelector target: class selector: selector))
+		  (PyramidExternalRessourceSource target: class selector: selector))
 ]
 
 { #category : #initialization }

@@ -1,14 +1,14 @@
 Class {
-	#name : #PyramidERClassSelectorTest,
+	#name : #PyramidExternalRessourceSourceTest,
 	#superclass : #TestCase,
 	#category : #'Pyramid-Tests-Cases'
 }
 
 { #category : #tests }
-PyramidERClassSelectorTest >> testGetRessource [
+PyramidExternalRessourceSourceTest >> testGetRessource [
 
 	| externalRessource object |
-	externalRessource := PyramidERClassSelector
+	externalRessource := PyramidExternalRessourceSource
 		                     target: PyramidExternalRessourceDummyForTest
 		                     selector: #startAt3.
 	object := externalRessource getRessource.
@@ -16,11 +16,11 @@ PyramidERClassSelectorTest >> testGetRessource [
 ]
 
 { #category : #tests }
-PyramidERClassSelectorTest >> testSerialize [
+PyramidExternalRessourceSourceTest >> testSerialize [
 
 	| array arrayColors |
 	array := { #red. #green. #blue. #red } collect: [ :each |
-		         PyramidERClassSelector target: Color selector: each ].
+		         PyramidExternalRessourceSource target: Color selector: each ].
 	arrayColors := array collect: [ :each | each getRessource ].
 	self assert: (arrayColors at: 1) equals: Color red.
 	self assert: (arrayColors at: 2) equals: Color green.

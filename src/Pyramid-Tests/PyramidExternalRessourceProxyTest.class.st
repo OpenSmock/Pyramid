@@ -15,7 +15,7 @@ PyramidExternalRessourceProxyTest >> testFromSource [
 
 	| externalRessourceProxy |
 	externalRessourceProxy := PyramidExternalRessourceProxy fromSource:
-		                          (PyramidERClassSelector
+		                          (PyramidExternalRessourceSource
 			                           target:
 			                           PyramidExternalRessourceProxyTest
 			                           selector: #dummyExample).
