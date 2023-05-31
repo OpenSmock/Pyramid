@@ -98,6 +98,14 @@ PyramidSavePlugin >> inputsView [
 	^ inputsView
 ]
 
+{ #category : #'instance creation' }
+PyramidSavePlugin >> openOn: aSaveModel [
+
+	self inputsView inputClass text: aSaveModel savingClassName.
+	self inputsView inputMethod text: aSaveModel savingMethodName.
+	self inputsView inputPackage text: aSaveModel savingPackageName
+]
+
 { #category : #'as yet unclassified' }
 PyramidSavePlugin >> pyramidActiveProjectChanged [
 

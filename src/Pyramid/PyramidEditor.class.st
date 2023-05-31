@@ -36,6 +36,14 @@ PyramidEditor >> initialize [
 	plugins := {  }
 ]
 
+{ #category : #'instance creation' }
+PyramidEditor >> openOn: aCollection saveModel: aSaveModel [
+
+	self plugins select: [ :each | each class canUnderstand: #openOn: ] thenDo: [ :each | each openOn: aSaveModel ].
+	self activeProject roots addAll: aCollection.
+	self view open
+]
+
 { #category : #accessing }
 PyramidEditor >> plugins [
 

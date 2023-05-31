@@ -36,6 +36,21 @@ PyramidVisualPystonForCly >> activationPriority [
 	^ self tabOrder
 ]
 
+{ #category : #converting }
+PyramidVisualPystonForCly >> asSaveModel [
+
+	| class model  |
+	model := PyramidSaveModel new.
+	class := method classBinding value.
+	class isMeta ifTrue: [ class := class instanceSide. model onClass] ifFalse: [ model onInstance ] .
+	
+	^ model
+		  savingClassName: class name;
+		  savingMethodName: method selector;
+		  savingPackageName: class package name;
+		  yourself
+]
+
 { #category : #controlling }
 PyramidVisualPystonForCly >> attachToSystem [
 
@@ -121,18 +136,6 @@ PyramidVisualPystonForCly >> detachFromSystem [
 ]
 
 { #category : #'as yet unclassified' }
-PyramidVisualPystonForCly >> getClassName [
-
-	^ (Character space split: method classBinding value name) first
-]
-
-{ #category : #'as yet unclassified' }
-PyramidVisualPystonForCly >> getMethodName [
-
-	^ method selector
-]
-
-{ #category : #'as yet unclassified' }
 PyramidVisualPystonForCly >> getStonFromMethod [
 
 	^(method literals select: [ :e | e isString ]) first.
@@ -155,20 +158,20 @@ PyramidVisualPystonForCly >> method [
 { #category : #accessing }
 PyramidVisualPystonForCly >> openEditor [
 
-	| class openStrategy |
-	"openStrategy := PyOpenStrategyObjectSelector new
-		                sourceSelector: method selector;
-		                yourself.
+	| class elements editor |
 	class := method classBinding value.
-	class isMeta
-		ifTrue: [ openStrategy sourceObject: class instanceSide ]
-		ifFalse: [ openStrategy sourceObject: class new ].
+	elements := class isMeta
+		            ifTrue: [
+			            (method classBinding value instanceSide perform:
+				             method selector) materializeAsBlElement ]
+		            ifFalse: [
+			            (method classBinding value new perform: method selector)
+				            materializeAsBlElement ].
 
-	PyBusiness new
-		openStrategy: openStrategy;
-		open"
-		self flag: #TODO.
-		self halt.
+	elements isCollection ifFalse: [ elements := { elements } ].
+	elements ifEmpty: [ ^ self ].
+	editor := PyramidPluginManager uniqueInstance makeEditor.
+	editor openOn: elements saveModel: self asSaveModel
 ]
 
 { #category : #accessing }
