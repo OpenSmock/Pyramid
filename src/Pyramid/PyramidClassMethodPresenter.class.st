@@ -8,18 +8,22 @@ Class {
 		'textPresenter',
 		'buttonBar',
 		'template',
-		'submitBlock'
+		'whenSelectionChangedDo',
+		'whenCompiledDo'
 	],
 	#category : #'Pyramid-properties-custom'
 }
 
 { #category : #'as yet unclassified' }
-PyramidClassMethodPresenter >> actionSubmit [
+PyramidClassMethodPresenter >> actionCompile [
 
-	self submitBlock value: (PyramidClassMethodModel new
-			 targetClass: classListPresenter selectedItem;
-			 methodString: textPresenter text;
-			 yourself)
+	self whenCompiledDo value: self model
+]
+
+{ #category : #'as yet unclassified' }
+PyramidClassMethodPresenter >> actionSelection [
+
+	self whenSelectionChangedDo value: self model
 ]
 
 { #category : #'as yet unclassified' }
@@ -90,9 +94,9 @@ PyramidClassMethodPresenter >> initializePresenters [
 				 action: [ self actionTemplate ];
 				 yourself);
 		add: (self newButton
-				 icon: (self iconNamed: #submit);
-				 label: 'Sumbit';
-				 action: [ self actionSubmit ];
+				 icon: (self iconNamed: #doit);
+				 label: 'Compile';
+				 action: [ self actionCompile ];
 				 yourself);
 		yourself.
 
@@ -103,16 +107,28 @@ PyramidClassMethodPresenter >> initializePresenters [
 	methodListPresenter display: #selector.
 	classListPresenter displayIcon: [ :aClass |
 		aClass iconNamed: aClass systemIconName ].
+	
+	methodListPresenter whenSelectionChangedDo: [ :item | self actionSelection ].
 
 	textPresenter := self newCode.
-	textPresenter whenSubmitDo: [ :text |
-		self actionSubmit ].
+	textPresenter whenSubmitDo: [ :text | self actionCompile ].
 
 	self focusOrder
 		add: packageListPresenter;
 		add: classListPresenter;
 		add: methodListPresenter;
 		add: textPresenter
+]
+
+{ #category : #'as yet unclassified' }
+PyramidClassMethodPresenter >> model [
+	| model |
+	model := PyramidClassMethodModel new
+		  targetClass: classListPresenter selectedItem;
+		  methodString: textPresenter text;
+		  yourself.
+	methodListPresenter selectedItem ifNotNil: [ model  methodSelector: methodListPresenter selectedItem selector ].
+	^ model
 ]
 
 { #category : #api }
@@ -126,17 +142,15 @@ PyramidClassMethodPresenter >> packages: aList [
 		selectIndex: 1
 ]
 
-{ #category : #accessing }
-PyramidClassMethodPresenter >> submitBlock [
+{ #category : #'as yet unclassified' }
+PyramidClassMethodPresenter >> selectFromExternalRessource: anExternalRessource [
 
-	submitBlock ifNil: [ submitBlock := [ :model |  ] ].
-	^ submitBlock
-]
+	| method |
+	packageListPresenter selectItem: anExternalRessource target package.
+	classListPresenter selectItem: anExternalRessource target.
+	method := (methodListPresenter items select: [ :each | each selector = anExternalRessource selector ]) first.
+	methodListPresenter selectItem: method
 
-{ #category : #accessing }
-PyramidClassMethodPresenter >> submitBlock: aBlock [
-
-	 submitBlock := aBlock
 ]
 
 { #category : #accessing }
@@ -152,4 +166,30 @@ PyramidClassMethodPresenter >> template: aString [
 
 	template := aString.
 	self actionTemplate
+]
+
+{ #category : #accessing }
+PyramidClassMethodPresenter >> whenCompiledDo [
+
+	whenCompiledDo ifNil: [ whenCompiledDo := [ :m |  ] ].
+	^ whenCompiledDo
+]
+
+{ #category : #accessing }
+PyramidClassMethodPresenter >> whenCompiledDo: anObject [
+
+	whenCompiledDo := anObject
+]
+
+{ #category : #accessing }
+PyramidClassMethodPresenter >> whenSelectionChangedDo [
+
+	whenSelectionChangedDo ifNil: [ whenSelectionChangedDo := [ :m |  ] ].
+	^ whenSelectionChangedDo
+]
+
+{ #category : #accessing }
+PyramidClassMethodPresenter >> whenSelectionChangedDo: anObject [
+
+	whenSelectionChangedDo := anObject
 ]

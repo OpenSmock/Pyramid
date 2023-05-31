@@ -3,10 +3,23 @@ Class {
 	#superclass : #Object,
 	#instVars : [
 		'targetClass',
-		'methodString'
+		'methodString',
+		'methodSelector'
 	],
 	#category : #'Pyramid-properties-custom'
 }
+
+{ #category : #accessing }
+PyramidClassMethodModel >> methodSelector [
+
+	^ methodSelector
+]
+
+{ #category : #accessing }
+PyramidClassMethodModel >> methodSelector: anObject [
+
+	methodSelector := anObject
+]
 
 { #category : #accessing }
 PyramidClassMethodModel >> methodString [

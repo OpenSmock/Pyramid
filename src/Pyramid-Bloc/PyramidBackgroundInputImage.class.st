@@ -41,21 +41,30 @@ PyramidBackgroundInputImage >> form: anObject [
 	form := anObject
 ]
 
+{ #category : #'as yet unclassified' }
+PyramidBackgroundInputImage >> formFromClass: class andSelector: selector [
+
+	self form: (PyramidExternalRessourceProxy fromSource:
+		  (PyramidERClassSelector target: class selector: selector))
+]
+
 { #category : #initialization }
 PyramidBackgroundInputImage >> initializePresenters [
 
 	classMethodPresenter := PyramidClassMethodPresenter new
 		                        packages: Smalltalk organization packages;
-		                        submitBlock: [ :model |
+		                        whenSelectionChangedDo: [ :model |
+			(self validateSelection: model) ifTrue: [ 
+			                        self
+				                        formFromClass: model targetClass
+				                        andSelector: model methodSelector ] ];
+		                        whenCompiledDo: [ :model |
 			                        | selector |
-			                        selector := model targetClass classSide compile:
+			                        selector := model targetClass compile:
 					                                    model methodString.
-			                        self form:
-					                        (PyramidExternalRessourceProxy
-						                         fromSource:
-							                         (PyramidERClassSelector
-								                          target: model targetClass
-								                          selector: selector)) ];
+			                        self
+				                        formFromClass: model targetClass
+				                        andSelector: selector ];
 		                        yourself
 ]
 
@@ -63,6 +72,16 @@ PyramidBackgroundInputImage >> initializePresenters [
 PyramidBackgroundInputImage >> setImage: anImage [
 
 	(anImage respondsTo: #pyramidExternalRessourceSource) ifTrue: [
-		self classMethodPresenter setExternalProperty:
+		self classMethodPresenter selectFromExternalRessource: 
 			anImage pyramidExternalRessourceSource ]
+]
+
+{ #category : #'as yet unclassified' }
+PyramidBackgroundInputImage >> validateSelection: model [
+
+	model targetClass ifNil: [ ^ false ].
+	model methodSelector ifNil: [ ^ false ].
+	(model targetClass class canUnderstand: model methodSelector) ifFalse: [ ^ false ].
+	^ (model targetClass perform: model methodSelector) isKindOf: Form
+	
 ]
