@@ -12,10 +12,9 @@ Class {
 { #category : #layout }
 PyramidPCMWithPreviewPresenter >> defaultLayout [
 
-	^ SpBoxLayout newVertical
-		  spacing: 4;
+	^ SpPanedLayout newVertical
 		  add: self pcm;
-		  add: self preview height: 300;
+		  add: self preview;
 		  yourself
 ]
 
@@ -55,7 +54,7 @@ PyramidPCMWithPreviewPresenter >> preview [
 { #category : #accessing }
 PyramidPCMWithPreviewPresenter >> preview: aPresenter [
 
-	self layout replace: self preview with: aPresenter.
+	self layout second: aPresenter.
 	preview := aPresenter
 ]
 
