@@ -97,9 +97,10 @@ PyramidBlocCommand class >> text [
 	^ PyramidCommand
 		  name: #text
 		  set: [ :state :target |
-			  | rope |
+			  | rope attributes |
 			  rope := target text rope.
-			  target text: (BlRopedText rope: (rope class attributes: rope attributes rope: state arguments rope)) ]
+			  attributes := (rope class canUnderstand: #attributes) ifTrue: [ rope attributes ] ifFalse: [ {  } ].
+			  target text: (BlRopedText rope: (BlAttributeRope attributes: attributes rope: state arguments rope)) ]
 		  get: [ :state :source |
 			  state source: source.
 			  state arguments: source text ]

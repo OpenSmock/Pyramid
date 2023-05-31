@@ -65,10 +65,11 @@ PyramidLibraryView >> defaultItemsList [
 					   id: #blue;
 					   yourself ];
 			   yourself).
-			(PyramidLibraryElement new
+		  (PyramidLibraryElement new
 			   title: 'Text';
 			   blockMaker: [
-				  'Example' asRopedText asElement ];
+				   ('Example' asRopedText )
+					   asElement ];
 			   yourself) }
 ]
 

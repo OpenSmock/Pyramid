@@ -11,6 +11,7 @@ Class {
 { #category : #accessing }
 PyramidBackgroundInputImage >> background [
 
+	self form ifNil: [ ^ BlBackground transparent ].
 	^ BlBackground image: self form
 ]
 
@@ -51,21 +52,36 @@ PyramidBackgroundInputImage >> formFromClass: class andSelector: selector [
 { #category : #initialization }
 PyramidBackgroundInputImage >> initializePresenters [
 
-	classMethodPresenter := PyramidClassMethodPresenter new
-		                        packages: Smalltalk organization packages;
+	classMethodPresenter := PyramidPCMWithPreviewPresenter new
 		                        whenSelectionChangedDo: [ :model |
-			(self validateSelection: model) ifTrue: [ 
-			                        self
-				                        formFromClass: model targetClass
-				                        andSelector: model methodSelector ] ];
-		                        whenCompiledDo: [ :model |
-			                        | selector |
-			                        selector := model targetClass compile:
-					                                    model methodString.
-			                        self
-				                        formFromClass: model targetClass
-				                        andSelector: selector ];
+			                        (self validateSelection: model) ifTrue: [
+					                        self
+						                        formFromClass: model targetClass
+						                        andSelector: model methodSelector ] ];
+		                        presenterFromModelBlock: [ :model | self previewPresenterFrom: model.
+			                        ];
 		                        yourself
+]
+
+{ #category : #initialization }
+PyramidBackgroundInputImage >> previewPresenterFrom: model [
+
+	| object |
+	model targetClass ifNil: [
+		^ SpLabelPresenter new
+			  label: 'No class selected.';
+			  yourself ].
+	(model targetClass canUnderstand: model methodSelector) ifFalse: [
+		^ SpLabelPresenter new
+			  label: 'Can not perform method.';
+			  yourself ].
+	object := model targetClass perform: model methodSelector.
+	(object isKindOf: Form) ifFalse: [ ^ SpLabelPresenter new
+			  label: 'Image is not a Form. Will be remplaced by a BlTransparentBackground.';
+			  yourself ].
+	^ SpImagePresenter new
+		  image: object;
+		  yourself
 ]
 
 { #category : #initialization }

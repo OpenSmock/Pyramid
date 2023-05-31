@@ -9,3 +9,9 @@ PyTest class >> test [
 
 	^ self iconNamed: #pharoBig
 ]
+
+{ #category : #'as yet unclassified' }
+PyTest >> test [
+
+	^ self iconNamed: #pharoBig
+]
