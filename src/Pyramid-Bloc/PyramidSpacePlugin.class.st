@@ -39,6 +39,7 @@ PyramidSpacePlugin >> initialize [
 
 	extensions := OrderedCollection new.
 	overlaysManager := PyramidOverlaysManager new.
+	extensions add: PyramidSPEMousePosition new.
 ]
 
 { #category : #accessing }
