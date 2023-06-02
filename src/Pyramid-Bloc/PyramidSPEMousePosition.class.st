@@ -6,7 +6,8 @@ Class {
 		'displayPositionOverlay',
 		'elementDisplay',
 		'positionText',
-		'mutex'
+		'mutex',
+		'rootElement'
 	],
 	#category : #'Pyramid-Bloc-plugin-space'
 }
@@ -43,8 +44,9 @@ PyramidSPEMousePosition >> initializeElementDisplay [
 	positionText := self makePositionText: 0 @ 0.
 	elementDisplay := BlElement new
 		                  id: #mouse_display;
-		                  background: Color white;
-		                  size: 100 @ 20;
+		                   constraintsDo: [ :c |
+			                       c vertical matchParent.
+			                       c horizontal matchParent ];
 		                  addChild: positionText;
 		                  yourself.
 
@@ -79,13 +81,15 @@ PyramidSPEMousePosition >> installOnSpacePlugin: aSpacePlugin [
 
 	aSpacePlugin overlaysManager addOverlay: self catchPositionOverlay.
 	aSpacePlugin overlaysManager addOverlay: self displayPositionOverlay.
+	self rootElement: aSpacePlugin overlaysManager rootElement
 ]
 
 { #category : #'as yet unclassified' }
 PyramidSPEMousePosition >> makePositionText: aPoint [
-
-	^ aPoint printString asRopedText asElement
-	
+	| element |
+	element := aPoint printString asRopedText asElement.
+	element background: Color white.
+	^ element
 ]
 
 { #category : #accessing }
@@ -103,10 +107,22 @@ PyramidSPEMousePosition >> positionText: anObject [
 { #category : #'as yet unclassified' }
 PyramidSPEMousePosition >> refreshPosition: aPoint [
 
-	| newPositionText |
+	| newPositionText newPosition |
 	mutex critical: [
-	newPositionText := self makePositionText: aPoint.
-	self elementDisplay removeChild: self positionText.
-	self elementDisplay addChild: newPositionText.
-	self positionText: newPositionText ]
+		newPosition := aPoint - ( self rootElement localPointToGlobal: 0 @ 0 ).
+		newPositionText := self makePositionText: newPosition.
+		self elementDisplay removeChild: self positionText.
+		self elementDisplay addChild: newPositionText.
+		self positionText: newPositionText ]
+]
+
+{ #category : #'as yet unclassified' }
+PyramidSPEMousePosition >> rootElement [
+
+	^ rootElement
+]
+
+{ #category : #'as yet unclassified' }
+PyramidSPEMousePosition >> rootElement: anObject [
+rootElement:= anObject
 ]

@@ -80,6 +80,12 @@ PyramidOverlaysManager >> rootElement [
 ]
 
 { #category : #accessing }
+PyramidOverlaysManager >> space [
+
+	^ space
+]
+
+{ #category : #accessing }
 PyramidOverlaysManager >> spaceElement [
 ^ spaceElement
 ]
