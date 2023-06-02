@@ -30,12 +30,15 @@ PyramidOverlaysManager >> computeOverlays [
 PyramidOverlaysManager >> computeOverlaysFor: aCollection [
 
 	| current |
-	self rootElement allParentsDo: [ :parent | parent removeChildren ].
+	current := self rootElement.
+	self rootElement allParentsDo: [ :parent |
+		parent removeChild: current.
+		current := parent ].
 	current := self spaceElement.
 	aCollection do: [ :each |
 		current addChild: each element.
 		current := each element ].
-	current addChild: self rootElement 
+	current addChild: self rootElement
 ]
 
 { #category : #initialization }
