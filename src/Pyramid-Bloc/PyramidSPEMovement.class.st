@@ -108,8 +108,10 @@ PyramidSPEMovement >> initializeElementTransformation [
 	elementTransformation := BlElement new
 		                         id: #movement_transformation;
 		                         constraintsDo: [ :c |
-			                  c vertical matchParent.
-			                  c horizontal matchParent ];
+			                         c vertical matchParent.
+			                         c horizontal matchParent ];
+		                         transformDo: [ :t |
+			                         t translateBy: 20 @ 40 ];
 		                         yourself.
 	transformationOverlay := PyramidOverlay new
 		                         position: 100;

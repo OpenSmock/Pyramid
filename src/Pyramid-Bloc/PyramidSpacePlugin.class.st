@@ -40,6 +40,7 @@ PyramidSpacePlugin >> initialize [
 	extensions := OrderedCollection new.
 	overlaysManager := PyramidOverlaysManager new.
 	extensions add: PyramidSPEMousePosition new.
+	extensions add: PyramidSPEWindow new.
 	extensions add: PyramidSPEMovement new
 ]
 
