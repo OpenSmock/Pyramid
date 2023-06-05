@@ -7,10 +7,18 @@ Class {
 		'elementTransformation',
 		'transformationOverlay',
 		'isDragging',
-		'dragOrigin'
+		'dragOrigin',
+		'isShiftKeyPressed'
 	],
 	#category : #'Pyramid-Bloc-plugin-space'
 }
+
+{ #category : #wheel }
+PyramidSPEMovement >> anyShiftPressed: anEvent do: aBlock [
+
+	(anEvent key = KeyboardKey shiftRight or: [
+		 anEvent key = KeyboardKey shiftLeft ]) ifTrue: [ aBlock value ]
+]
 
 { #category : #accessing }
 PyramidSPEMovement >> catchEventOverlay [
@@ -18,25 +26,34 @@ PyramidSPEMovement >> catchEventOverlay [
 	^ catchEventOverlay
 ]
 
-{ #category : #initialization }
+{ #category : #accessing }
+PyramidSPEMovement >> currentTranslation [
+
+	| matrix|
+	matrix := self elementTransformation transformation matrix.
+	^ matrix x @ matrix y.
+	
+]
+
+{ #category : #'drag and drop' }
 PyramidSPEMovement >> dragEvent: evt [
 
-mutex critical: [
+	mutex critical: [
 		self isDragging ifFalse: [ ^ self ].
 		evt middleButtonPressed ifFalse: [
 			self isDragging: false.
 			^ self ].
 		self elementTransformation transformDo: [ :t |
-			t translateBy: evt position - self dragOrigin ] ]
+		t translateBy: evt position - self dragOrigin ] ].
 ]
 
-{ #category : #initialization }
+{ #category : #'drag and drop' }
 PyramidSPEMovement >> dragOrigin [
 
 	^ dragOrigin
 ]
 
-{ #category : #initialization }
+{ #category : #'drag and drop' }
 PyramidSPEMovement >> dragOrigin: anObject [
 
 	dragOrigin := anObject
@@ -51,6 +68,7 @@ PyramidSPEMovement >> elementTransformation [
 { #category : #initialization }
 PyramidSPEMovement >> initialize [
 
+	isShiftKeyPressed := false.
 	isDragging := false.
 	mutex := Mutex new.
 	self initializeElementTransformation.
@@ -74,6 +92,9 @@ PyramidSPEMovement >> initializeElementEventCatcher [
 	elementEventCatcher
 		when: BlMouseMoveEvent
 		do: [ :evt | self dragEvent: evt ].
+	elementEventCatcher
+		when: BlMouseWheelEvent
+		do: [ :evt | self wheelEvent: evt ].
 
 	catchEventOverlay := PyramidOverlay new
 		                     position: 20;
@@ -99,36 +120,83 @@ PyramidSPEMovement >> initializeElementTransformation [
 { #category : #'as yet unclassified' }
 PyramidSPEMovement >> installOnSpacePlugin: aSpacePlugin [
 
+	| space |
+
 	aSpacePlugin overlaysManager addOverlay: self catchEventOverlay.
-	aSpacePlugin overlaysManager addOverlay: self transformationOverlay
+	aSpacePlugin overlaysManager addOverlay: self transformationOverlay.
+	
+	space := aSpacePlugin overlaysManager space.
+space when: BlKeyDownEvent do: [ :evt |
+		self anyShiftPressed: evt do: [ self isShiftKeyPressed: true ] ].
+	space when: BlKeyUpEvent do: [ :evt |
+		self anyShiftPressed: evt do: [ self isShiftKeyPressed: false ] ].
 ]
 
-{ #category : #accessing }
+{ #category : #'drag and drop' }
 PyramidSPEMovement >> isDragging [
 
 ^ isDragging
 ]
 
-{ #category : #accessing }
+{ #category : #'drag and drop' }
 PyramidSPEMovement >> isDragging: aBoolean [
 
 	isDragging := aBoolean
 ]
 
-{ #category : #initialization }
+{ #category : #wheel }
+PyramidSPEMovement >> isShiftKeyPressed [
+
+	^ isShiftKeyPressed
+]
+
+{ #category : #wheel }
+PyramidSPEMovement >> isShiftKeyPressed: aBoolean [
+
+	isShiftKeyPressed := aBoolean
+]
+
+{ #category : #wheel }
+PyramidSPEMovement >> keyBoardEvent: anEvent [
+
+	| vector |
+	vector := self isShiftKeyPressed
+		          ifTrue: [
+		          anEvent vector asPoint leftRotated * self wheelSpeed ]
+		          ifFalse: [ anEvent vector asPoint * self wheelSpeed ].
+
+	self elementTransformation transformDo: [ :t |
+		t translateBy: vector + self currentTranslation ]
+]
+
+{ #category : #'drag and drop' }
 PyramidSPEMovement >> startDragEvent: evt [
 
-	| matrix translation |
 	self isDragging ifTrue: [ ^ self ].
 	self isDragging: true.
-
-	matrix := self elementTransformation transformation matrix.
-	translation := matrix x @ matrix y.
-	self dragOrigin: evt position - translation
+	self dragOrigin: evt position - self currentTranslation
 ]
 
 { #category : #accessing }
 PyramidSPEMovement >> transformationOverlay [
 
 ^ transformationOverlay
+]
+
+{ #category : #wheel }
+PyramidSPEMovement >> wheelEvent: anEvent [
+
+	| vector |
+	vector := self isShiftKeyPressed
+		          ifTrue: [
+		          anEvent vector asPoint leftRotated * self wheelSpeed ]
+		          ifFalse: [ anEvent vector asPoint * self wheelSpeed ].
+
+	self elementTransformation transformDo: [ :t | t translateBy: vector + self currentTranslation ]
+]
+
+{ #category : #wheel }
+PyramidSPEMovement >> wheelSpeed [
+
+	^ 10
 ]
