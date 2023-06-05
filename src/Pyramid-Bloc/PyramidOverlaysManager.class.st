@@ -1,16 +1,29 @@
 Class {
 	#name : #PyramidOverlaysManager,
 	#superclass : #Object,
-	#traits : 'TPyramidOverlayObserver',
-	#classTraits : 'TPyramidOverlayObserver classTrait',
+	#traits : 'TPyramidOverlayObserver + TPyramidActiveProjectModelObserver',
+	#classTraits : 'TPyramidOverlayObserver classTrait + TPyramidActiveProjectModelObserver classTrait',
 	#instVars : [
 		'overlays',
 		'space',
 		'spaceElement',
-		'rootElement'
+		'rootElement',
+		'activeProject'
 	],
 	#category : #'Pyramid-Bloc-plugin-space'
 }
+
+{ #category : #accessing }
+PyramidOverlaysManager >> activeProject [
+^ activeProject
+]
+
+{ #category : #accessing }
+PyramidOverlaysManager >> activeProject: anObject [
+
+	activeProject := anObject.
+	anObject addObserver: self
+]
 
 { #category : #adding }
 PyramidOverlaysManager >> addOverlay: anOverlay [
@@ -65,6 +78,13 @@ PyramidOverlaysManager >> overlays [
 PyramidOverlaysManager >> overlays: aCollection [
 
 	 overlays := aCollection
+]
+
+{ #category : #'as yet unclassified' }
+PyramidOverlaysManager >> pyramidRootsChangedOnActiveProject [
+
+	self rootElement removeChildren.
+	self rootElement addChildren: self activeProject roots elements
 ]
 
 { #category : #'as yet unclassified' }

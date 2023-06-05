@@ -66,8 +66,9 @@ PyramidSPEMousePosition >> initializeElementEventCatcher [
 			                       c vertical matchParent.
 			                       c horizontal matchParent ];
 		                       yourself.
+
 	elementEventCatcher
-		when: BlMouseMoveEvent
+		when: BlMouseEvent
 		do: [ :evt | self refreshPosition: evt position ].
 
 	catchPositionOverlay := PyramidOverlay new

@@ -18,22 +18,23 @@ PyramidPluginCentral class >> initialize [
 
 { #category : #adding }
 PyramidPluginCentral >> addPanelsOn: aPyramidSimpleWindow [
-
-	aPyramidSimpleWindow
+	"aPyramidSimpleWindow
 		at: #space
-		addItem: [ :builder | builder makePresenter: self spaceView ].
+		addItem: [ :builder | builder makePresenter: self spaceView ]."
 
-	self spaceView builder layers do: [ :layer |
-		layer addPanelsOn: aPyramidSimpleWindow ]
+	"self spaceView builder layers do: [ :layer |
+		layer addPanelsOn: aPyramidSimpleWindow ]"
+
+	
 ]
 
 { #category : #'as yet unclassified' }
 PyramidPluginCentral >> connectOn: aPyramidEditor [
 
-	self spaceView editor: aPyramidEditor.
+	"self spaceView editor: aPyramidEditor.
 
 	self spaceView builder layers do: [ :layer |
-		layer connectOn: aPyramidEditor ]
+		layer connectOn: aPyramidEditor ]"
 ]
 
 { #category : #initialization }
