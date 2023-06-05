@@ -15,6 +15,14 @@ Class {
 }
 
 { #category : #'as yet unclassified' }
+PyramidSPESelection >> accumulateChildrenOf: aBlElement in: aCollection [
+
+	aCollection add: aBlElement.
+	aBlElement childrenDo: [ :each |
+		self accumulateChildrenOf: each in: aCollection ].
+]
+
+{ #category : #'as yet unclassified' }
 PyramidSPESelection >> activeProject [
 
 	^ activeProject
@@ -23,6 +31,15 @@ PyramidSPESelection >> activeProject [
 { #category : #'as yet unclassified' }
 PyramidSPESelection >> activeProject: anObject [
 	activeProject:= anObject
+]
+
+{ #category : #'as yet unclassified' }
+PyramidSPESelection >> allElementsInGraph [
+
+	| ret |
+	ret := OrderedCollection new.
+	self rootElement childrenDo: [ :each | self accumulateChildrenOf: each in: ret. ].
+	^ ret
 ]
 
 { #category : #accessing }
@@ -65,8 +82,7 @@ PyramidSPESelection >> dragEvent: evt [
 		self selectionElement size: (evt position - self dragOrigin) abs.
 		xmin := self dragOrigin x min: evt position x.
 		ymin := self dragOrigin y min: evt position y.
-		self selectionElement position: xmin @ ymin.
-		self selectElementsInBounds: self selectionElement boundsInSpace ]
+		self selectionElement position: xmin @ ymin ]
 ]
 
 { #category : #'drag and drop' }
@@ -85,6 +101,7 @@ PyramidSPESelection >> dragOrigin: anObject [
 PyramidSPESelection >> endDragEvent: evt [
 
 	self isDragging: false.
+	self selectElementsInBounds: self selectionElement boundsInSpace.
 	self selectionElement
 		size: 1 @ 1;
 		position: -10 @ -10.
@@ -162,13 +179,13 @@ PyramidSPESelection >> rootElement: anObject [
 PyramidSPESelection >> selectElementsInBounds: aBound [
 
 	| selectedElements |
-	selectedElements := self rootElement children select: [ :each |
+	selectedElements := self allElementsInGraph select: [ :each |
 		                    aBound intersects: each boundsInSpace ].
 	(self activeProject selection isEmpty and: [
 		 selectedElements isEmpty ]) ifTrue: [ ^ self ].
 	(self activeProject selection size = selectedElements size and: [
-		(self activeProject selection elements allSatisfy: [ :a |
-			 selectedElements anySatisfy: [ :b | b = a ] ])]) ifTrue: [ ^ self ].
+		 self activeProject selection elements allSatisfy: [ :a |
+			 selectedElements anySatisfy: [ :b | b = a ] ] ]) ifTrue: [ ^ self ].
 	self activeProject selection replaceAll: selectedElements
 ]
 

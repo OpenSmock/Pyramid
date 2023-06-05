@@ -88,3 +88,9 @@ PyramidObservableElementCollection >> replaceAll: aCollection [
 	self elements addAll: aCollection.
 	self informCollectionChanged
 ]
+
+{ #category : #accessing }
+PyramidObservableElementCollection >> size [
+
+	^ elements size
+]
