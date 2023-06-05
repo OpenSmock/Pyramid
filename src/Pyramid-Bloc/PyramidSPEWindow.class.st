@@ -17,7 +17,7 @@ PyramidSPEWindow >> defaultBorder [
 { #category : #hooks }
 PyramidSPEWindow >> defaultSize [
 
- ^ 800 @ 600
+	^ 600 @ 400
 ]
 
 { #category : #initialization }

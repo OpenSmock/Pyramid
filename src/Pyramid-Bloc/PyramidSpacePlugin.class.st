@@ -10,6 +10,23 @@ Class {
 	#category : #'Pyramid-Bloc-plugin-space'
 }
 
+{ #category : #examples }
+PyramidSpacePlugin class >> example [
+
+	| plugin |
+
+	plugin := PyramidSpacePlugin new.
+plugin configureBuilder: nil.
+plugin overlaysManager rootElement addChild: (BlElement new background: Color red; yourself); yourself.
+plugin overlaysManager space show.
+]
+
+{ #category : #accessing }
+PyramidSpacePlugin class >> extensions [
+
+	^ { PyramidSPEMousePosition new. PyramidSPEWindow new. PyramidSPEMovement new }
+]
+
 { #category : #adding }
 PyramidSpacePlugin >> addPanelsOn: aPyramidSimpleWindow [
 
@@ -37,11 +54,8 @@ PyramidSpacePlugin >> extensions [
 { #category : #initialization }
 PyramidSpacePlugin >> initialize [
 
-	extensions := OrderedCollection new.
+	extensions := self class extensions.
 	overlaysManager := PyramidOverlaysManager new.
-	extensions add: PyramidSPEMousePosition new.
-	extensions add: PyramidSPEWindow new.
-	extensions add: PyramidSPEMovement new
 ]
 
 { #category : #accessing }
