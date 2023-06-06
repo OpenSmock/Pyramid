@@ -60,12 +60,10 @@ PyramidOverlaysManager >> initialize [
 	overlays := OrderedCollection new.
 	space := BlSpace new.
 	spaceElement := space root.
-	rootElement := BlElement new constraintsDo: [ :c |
+	rootElement := BlElement new clipChildren: false; constraintsDo: [ :c |
 		               c horizontal matchParent.
-		               c vertical matchParent ].
-	spaceElement addChild: rootElement.
-
-
+		               c vertical matchParent ];yourself.
+	spaceElement addChild: rootElement
 ]
 
 { #category : #accessing }
