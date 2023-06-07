@@ -28,6 +28,7 @@ PyramidSPEWindow >> initialize [
 		                 size: self defaultSize;
 		                 border: self defaultBorder;
 		                 outskirts: BlOutskirts inside;
+		clipChildren: false;
 		                 yourself.
 
 
