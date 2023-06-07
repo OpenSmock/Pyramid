@@ -22,7 +22,7 @@ PyramidPCMWithPreviewPresenter >> defaultLayout [
 PyramidPCMWithPreviewPresenter >> initializePresenters [
 
 	pcm := PyramidPCMWithTextFieldsPresenter new
-		       packages: Smalltalk organization packages;
+		       packages: RPackage organizer packages;
 		       yourself.
 	pcm whenSelectionChangedDo: [ :model | self updatePreviewWith: model ].
 	preview := SpNullPresenter new.

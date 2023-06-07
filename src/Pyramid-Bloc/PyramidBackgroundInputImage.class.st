@@ -52,15 +52,15 @@ PyramidBackgroundInputImage >> formFromClass: class andSelector: selector [
 { #category : #initialization }
 PyramidBackgroundInputImage >> initializePresenters [
 
-	classMethodPresenter := PyramidPCMWithPreviewPresenter new
-		                        whenSelectionChangedDo: [ :model |
+	self flag: #TODO. "Create a better presenter working with the new Proxy."
+	classMethodPresenter := PyramidPCMWithPreviewPresenter new yourself
+	" whenSelectionChangedDo: [ :model |
 			                        (self validateSelection: model) ifTrue: [
 					                        self
 						                        formFromClass: model targetClass
 						                        andSelector: model methodSelector ] ];
 		                        presenterFromModelBlock: [ :model | self previewPresenterFrom: model.
-			                        ];
-		                        yourself
+			                        ];"
 ]
 
 { #category : #initialization }
@@ -98,6 +98,6 @@ PyramidBackgroundInputImage >> validateSelection: model [
 	model targetClass ifNil: [ ^ false ].
 	model methodSelector ifNil: [ ^ false ].
 	(model targetClass class canUnderstand: model methodSelector) ifFalse: [ ^ false ].
-	^ (model targetClass perform: model methodSelector) isKindOf: Form
+	^ (model targetClass perform: model methodSelector withArguments: model methodArguments) isKindOf: Form
 	
 ]

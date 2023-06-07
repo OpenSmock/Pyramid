@@ -4,10 +4,29 @@ Class {
 	#instVars : [
 		'targetClass',
 		'methodString',
-		'methodSelector'
+		'methodSelector',
+		'methodArguments'
 	],
 	#category : #'Pyramid-properties-custom'
 }
+
+{ #category : #initialization }
+PyramidClassMethodModel >> initialize [
+
+methodArguments := {  }
+]
+
+{ #category : #accessing }
+PyramidClassMethodModel >> methodArguments [
+
+	^ methodArguments
+]
+
+{ #category : #accessing }
+PyramidClassMethodModel >> methodArguments: anArray [
+
+	methodArguments := anArray
+]
 
 { #category : #accessing }
 PyramidClassMethodModel >> methodSelector [
