@@ -2,7 +2,7 @@ Class {
 	#name : #PyramidPluginManager,
 	#superclass : #Object,
 	#instVars : [
-		'plugins'
+		'pluginClasses'
 	],
 	#classInstVars : [
 		'uniqueInstance'
@@ -41,13 +41,13 @@ PyramidPluginManager class >> uniqueInstance [
 { #category : #adding }
 PyramidPluginManager >> addPlugin: aPluginClass [
 
-	self plugins add: aPluginClass
+	self pluginClasses add: aPluginClass
 ]
 
 { #category : #initialization }
 PyramidPluginManager >> initialize [
 
-	plugins := Set new
+	pluginClasses := Set new
 ]
 
 { #category : #'as yet unclassified' }
@@ -59,7 +59,7 @@ PyramidPluginManager >> makeEditor [
 ]
 
 { #category : #'as yet unclassified' }
-PyramidPluginManager >> plugins [
+PyramidPluginManager >> pluginClasses [
 
-	^ plugins
+	^ pluginClasses
 ]
