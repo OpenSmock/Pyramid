@@ -78,10 +78,10 @@ PyramidPropertyPopoverView >> groupLayout [
 PyramidPropertyPopoverView >> initializePresenters [
 
 	soloButton := SpRadioButtonPresenter new
-		              label: 'Solo';
+		              label: 'Unique';
 		              yourself.
 	groupButton := SpRadioButtonPresenter new
-		               label: 'Group';
+		               label: 'Grouped';
 		               yourself.
 	soloButton associatedRadioButtons: { groupButton }.
 	soloButton whenActivatedDo: [ self updateLayout ].
@@ -170,8 +170,8 @@ PyramidPropertyPopoverView >> topbarLayout [
 				   add: label expand: true;
 				   add: (SpBoxLayout newHorizontal
 						    spacing: 4;
-						    add: self soloButton width: 70;
-						    add: self groupButton width: 70;
+						    add: self soloButton width: 75;
+						    add: self groupButton width: 75;
 						    yourself)
 				   expand: false;
 				   yourself)
