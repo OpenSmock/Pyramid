@@ -22,6 +22,21 @@ PyramidSavePlugin class >> initialize [
 	PyramidPluginManager uniqueInstance addPlugin: self
 ]
 
+{ #category : #'instance creation' }
+PyramidSavePlugin class >> openOn: aCollectionOfBlElement saveModel: aSaveModel [
+
+	| editor savePlugin |
+	editor := PyramidEditorBuilder makeEditor.
+	savePlugin := editor plugins select: [ :each | each class = self ].
+	savePlugin size = 1 ifFalse: [
+		Error signal:
+			'Wrong installation of SavePlugin. Should only be one instance.' ].
+	savePlugin := savePlugin asArray first.
+	savePlugin openOn: aSaveModel.
+	editor activeProject roots addAll: aCollectionOfBlElement.
+	editor view open
+]
+
 { #category : #accessing }
 PyramidSavePlugin >> activeProject [ ^activeProject
 ]

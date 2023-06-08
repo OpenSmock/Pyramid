@@ -170,8 +170,7 @@ PyramidVisualPystonForCly >> openEditor [
 
 	elements isCollection ifFalse: [ elements := { elements } ].
 	elements ifEmpty: [ ^ self ].
-	editor := PyramidPluginManager uniqueInstance makeEditor.
-	editor openOn: elements saveModel: self asSaveModel
+	PyramidSavePlugin openOn: elements saveModel: self asSaveModel
 ]
 
 { #category : #accessing }
