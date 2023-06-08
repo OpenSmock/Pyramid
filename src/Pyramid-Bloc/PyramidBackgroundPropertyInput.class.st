@@ -93,7 +93,9 @@ PyramidBackgroundPropertyInput >> preview [
 { #category : #accessing }
 PyramidBackgroundPropertyInput >> preview: anObject [
 
-	preview := anObject
+	self layout replace: preview with: anObject.
+	preview := anObject.
+	
 ]
 
 { #category : #accessing }
@@ -108,7 +110,6 @@ PyramidBackgroundPropertyInput >> strategy [
 PyramidBackgroundPropertyInput >> strategy: aStrategy [
 
 	strategy := aStrategy.
-	self layout replace: self preview with: aStrategy preview.
 	self preview: aStrategy preview
 ]
 
