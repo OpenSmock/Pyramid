@@ -74,7 +74,6 @@ PyramidSPESelection >> defaultSelectionElement [
 PyramidSPESelection >> dragEvent: evt [
 
 	| xmin ymin |
-	mutex critical: [
 		self isDragging ifFalse: [ ^ self ].
 		evt primaryButtonPressed ifFalse: [
 			self endDragEvent: evt.
@@ -82,7 +81,7 @@ PyramidSPESelection >> dragEvent: evt [
 		self selectionElement size: (evt position - self dragOrigin) abs.
 		xmin := self dragOrigin x min: evt position x.
 		ymin := self dragOrigin y min: evt position y.
-		self selectionElement position: xmin @ ymin ]
+		self selectionElement position: xmin @ ymin
 ]
 
 { #category : #'drag and drop' }
@@ -112,7 +111,6 @@ PyramidSPESelection >> endDragEvent: evt [
 PyramidSPESelection >> initialize [
 
 	isDragging := false.
-	mutex := Mutex new.
 	selectionElement := self defaultSelectionElement.
 	self initializeElementEventCatcher
 ]
@@ -199,6 +197,7 @@ PyramidSPESelection >> selectionElement [
 PyramidSPESelection >> startDragEvent: evt [
 
 	self isDragging ifTrue: [ ^ self ].
+	evt primaryButtonPressed ifFalse: [ ^ self ].
 	self isDragging: true.
 	self dragOrigin: evt position.
 	self canvasElement addChild: self selectionElement
