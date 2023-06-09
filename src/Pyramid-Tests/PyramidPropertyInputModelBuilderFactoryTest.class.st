@@ -16,6 +16,28 @@ PyramidPropertyInputModelBuilderFactoryTest >> testBackgroundInput [
 ]
 
 { #category : #tests }
+PyramidPropertyInputModelBuilderFactoryTest >> testFontSize [
+
+	| property |
+	property := PyramidProperty new.
+	PyramidPropertyInputModelBuilderFactory fontSize installBuilderOn:
+		property.
+	property makeNewInputsFor: {  }.
+	self assert: property inputsModel elementInputsModel size equals: 0
+]
+
+{ #category : #tests }
+PyramidPropertyInputModelBuilderFactoryTest >> testFontWeight [
+
+	| property |
+	property := PyramidProperty new.
+	PyramidPropertyInputModelBuilderFactory fontWeight installBuilderOn:
+		property.
+	property makeNewInputsFor: {  }.
+	self assert: property inputsModel elementInputsModel size equals: 0
+]
+
+{ #category : #tests }
 PyramidPropertyInputModelBuilderFactoryTest >> testIdentifierTextInput [
 
 	| property |

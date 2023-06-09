@@ -233,6 +233,30 @@ PyramidBlocCommandTest >> testText [
 ]
 
 { #category : #tests }
+PyramidBlocCommandTest >> testTextAttribute [
+
+	| e1 b1 state |
+	state := PyramidCommandState new.
+	e1 := 'abcde' asRopedText
+		      fontSize: 36;
+		      bold;
+		      asElement.
+	PyramidBlocCommand textAttribute getState: state from: e1.
+	self assert: state arguments size equals: 2.
+	self assert: (state arguments anySatisfy: [ :each |( each isKindOf: BlFontSizeAttribute) and: [ each equals: (BlFontSizeAttribute size: 36)]  ]).
+	self assert: (state arguments anySatisfy: [ :each | ( each isKindOf: BlFontWeightAttribute) and: [each equals: (BlFontWeightAttribute bold)]  ]).
+
+	b1 := '123' asRopedText
+		      fontSize: 36;
+		      asElement.
+	PyramidBlocCommand textAttribute
+		setState: (PyramidCommandState new arguments: (BlFontWeightAttribute thin))
+		on: b1.
+	self assert: (b1 text attributesFinder hasAttributeSuchThat: [ :each |( each isKindOf: BlFontSizeAttribute) and: [ each equals: (BlFontSizeAttribute size: 36)]  ]).
+	self assert: (b1 text attributesFinder hasAttributeSuchThat: [ :each | ( each isKindOf: BlFontWeightAttribute) and: [each equals: (BlFontWeightAttribute thin)]  ]).
+]
+
+{ #category : #tests }
 PyramidBlocCommandTest >> testVisibility [
 
 	| e1 b1 state |

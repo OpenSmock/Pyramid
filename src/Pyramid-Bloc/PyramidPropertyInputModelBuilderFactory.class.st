@@ -34,6 +34,54 @@ PyramidPropertyInputModelBuilderFactory class >> backgroundInput [
 ]
 
 { #category : #'as yet unclassified' }
+PyramidPropertyInputModelBuilderFactory class >> fontSize [
+
+	^ self new
+		  sectionName: 'Font size';
+		  inputClass: PyramidNumberPresenter;
+		  initializeBlock: [ :input |  ];
+		  mutliValuesDefault: '# mixed values';
+		  noValueDefault: '# no values';
+		  transformInBlock: [ :input :value |
+			  | collection |
+			  collection := value select: [ :each |
+					                each isKindOf: BlFontSizeAttribute ].
+			  collection
+				  ifNotEmpty: [ input number: collection first size ]
+				  ifEmpty: [ input number: nil ] ];
+		  transformOutBlock: [ :input |
+			  BlFontSizeAttribute size: input number ];
+		  triggerBlockStrategy: (PyramidOneArgTrigger new
+				   selector: #whenSubmitDo:;
+				   yourself);
+		  yourself
+]
+
+{ #category : #'as yet unclassified' }
+PyramidPropertyInputModelBuilderFactory class >> fontWeight [
+
+	^ self new
+		  sectionName: 'Font weight';
+		  inputClass: PyramidNumberPresenter;
+		  initializeBlock: [ :input |  ];
+		  mutliValuesDefault: '# mixed values';
+		  noValueDefault: '# no values';
+		  transformInBlock: [ :input :value |
+			  | collection |
+			  collection := value select: [ :each |
+					                each isKindOf: BlFontWeightAttribute ].
+			  collection
+				  ifNotEmpty: [ input number: collection first weight ]
+				  ifEmpty: [ input number: nil ] ];
+		  transformOutBlock: [ :input |
+			  BlFontWeightAttribute weight: input number ];
+		  triggerBlockStrategy: (PyramidOneArgTrigger new
+				   selector: #whenSubmitDo:;
+				   yourself);
+		  yourself
+]
+
+{ #category : #'as yet unclassified' }
 PyramidPropertyInputModelBuilderFactory class >> identifierTextInput [
 
 	^ self new

@@ -108,6 +108,22 @@ PyramidBlocCommand class >> text [
 ]
 
 { #category : #adding }
+PyramidBlocCommand class >> textAttribute [
+
+	^ PyramidCommand
+		  name: #textAttribute
+		  set: [ :state :target |
+			  target text attribute: state arguments.
+			  target textChanged ]
+		  get: [ :state :source |
+			  state source: source.
+			  state arguments:
+				  ((source text attributesFinder attributesAndIndicesSuchThat: [
+					    :each | true ]) collect: [ :each | each key ]) ]
+		  isExecutableBlock: [ :obj :state | obj isKindOf: BlTextElement ]
+]
+
+{ #category : #adding }
 PyramidBlocCommand class >> visibility [
 
 	^ PyramidCommand

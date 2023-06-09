@@ -16,6 +16,22 @@ PyramidBlocProperties class >> background [
 ]
 
 { #category : #accessing }
+PyramidBlocProperties class >> fontSize [
+
+	^ PyramidProperty
+		  fromCommand: PyramidBlocCommand textAttribute
+		  inputBuilder: PyramidPropertyInputModelBuilderFactory fontSize
+]
+
+{ #category : #accessing }
+PyramidBlocProperties class >> fontWeight [
+
+	^ PyramidProperty
+		  fromCommand: PyramidBlocCommand textAttribute
+		  inputBuilder: PyramidPropertyInputModelBuilderFactory fontWeight
+]
+
+{ #category : #accessing }
 PyramidBlocProperties class >> identifier [
 
 	^ PyramidProperty
@@ -64,6 +80,8 @@ PyramidBlocProperties >> connectOn: aPyramidEditor [
 	aPyramidEditor properties addProperty: self class visibility.
 	aPyramidEditor properties addProperty: self class background.
 	aPyramidEditor properties addProperty: self class position.
+	aPyramidEditor properties addProperty: self class fontSize.
+	aPyramidEditor properties addProperty: self class fontWeight.
 	aPyramidEditor properties addProperty: self class text
 ]
 
