@@ -6,6 +6,11 @@ Class {
 }
 
 { #category : #adding }
+PyramidSpacePluginExtension >> addElementTo: aBlElement [
+aBlElement addChild: self element.
+]
+
+{ #category : #adding }
 PyramidSpacePluginExtension >> addPanelsOn: aPyramidSimpleWindow [
 
 	.

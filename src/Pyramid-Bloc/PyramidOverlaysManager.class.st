@@ -47,11 +47,16 @@ PyramidOverlaysManager >> computeOverlaysFor: aCollection [
 	self rootElement allParentsDo: [ :parent |
 		parent removeChild: current.
 		current := parent ].
+	aCollection ifEmpty: [
+		self spaceElement addChild: self rootElement.
+		^ self ].
 	current := self spaceElement.
 	aCollection do: [ :each |
 		current addChild: each element.
+		each receiveElement.
 		current := each element ].
-	current addChild: self rootElement
+	current addChild: self rootElement.
+	aCollection last receiveElement.
 ]
 
 { #category : #initialization }

@@ -26,15 +26,22 @@ PyramidSPEWindow >> initialize [
 	windowElement := BlElement new
 		                 id: #window;
 		                 size: self defaultSize;
-		                 border: self defaultBorder;
-		                 outskirts: BlOutskirts inside;
-		clipChildren: false;
+		                 clipChildren: false;
 		                 yourself.
 
 
 	windowOverlay := PyramidOverlay new
 		                 position: 1000;
 		                 element: windowElement;
+		                 whenReceiveDo: [
+			                 windowElement addChild: (BlElement new
+						                  id: #visual;
+						                  constraintsDo: [ :c |
+							                  c horizontal matchParent.
+							                  c vertical matchParent ];
+						                  border: self defaultBorder;
+						                  outskirts: BlOutskirts outside;
+						                  yourself) ];
 		                 yourself
 ]
 

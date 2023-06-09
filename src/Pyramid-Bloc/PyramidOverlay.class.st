@@ -6,7 +6,8 @@ Class {
 	#instVars : [
 		'element',
 		'position',
-		'visible'
+		'visible',
+		'whenReceiveDo'
 	],
 	#category : #'Pyramid-Bloc-plugin-space'
 }
@@ -39,9 +40,10 @@ PyramidOverlay >> hide [
 ]
 
 { #category : #initialization }
-PyramidOverlay >> initialize [ 
+PyramidOverlay >> initialize [
 
-	visible := true
+	visible := true.
+	whenReceiveDo := [  ]
 ]
 
 { #category : #testing }
@@ -62,10 +64,28 @@ PyramidOverlay >> position: aNumber [
 	position := aNumber
 ]
 
+{ #category : #'as yet unclassified' }
+PyramidOverlay >> receiveElement [
+
+	self whenReceiveDo value
+]
+
 { #category : #'host space - displaying' }
 PyramidOverlay >> show [
 
 		self isVisible ifTrue: [ ^ self ].
 	visible := true.
 	self informVisibilityChanged
+]
+
+{ #category : #accessing }
+PyramidOverlay >> whenReceiveDo [
+
+	^ whenReceiveDo
+]
+
+{ #category : #accessing }
+PyramidOverlay >> whenReceiveDo: anObject [
+
+	whenReceiveDo := anObject
 ]
