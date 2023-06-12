@@ -1,8 +1,7 @@
 Class {
-	#name : #PyramidSPESelection,
+	#name : #PyramidSPEMakeSelection,
 	#superclass : #PyramidSpacePluginExtension,
 	#instVars : [
-		'mutex',
 		'catchEventOverlay',
 		'isDragging',
 		'dragOrigin',
@@ -15,7 +14,7 @@ Class {
 }
 
 { #category : #'as yet unclassified' }
-PyramidSPESelection >> accumulateChildrenOf: aBlElement in: aCollection [
+PyramidSPEMakeSelection >> accumulateChildrenOf: aBlElement in: aCollection [
 
 	aCollection add: aBlElement.
 	aBlElement childrenDo: [ :each |
@@ -23,18 +22,18 @@ PyramidSPESelection >> accumulateChildrenOf: aBlElement in: aCollection [
 ]
 
 { #category : #'as yet unclassified' }
-PyramidSPESelection >> activeProject [
+PyramidSPEMakeSelection >> activeProject [
 
 	^ activeProject
 ]
 
 { #category : #'as yet unclassified' }
-PyramidSPESelection >> activeProject: anObject [
+PyramidSPEMakeSelection >> activeProject: anObject [
 	activeProject:= anObject
 ]
 
 { #category : #'as yet unclassified' }
-PyramidSPESelection >> allElementsInGraph [
+PyramidSPEMakeSelection >> allElementsInGraph [
 
 	| ret |
 	ret := OrderedCollection new.
@@ -43,25 +42,25 @@ PyramidSPESelection >> allElementsInGraph [
 ]
 
 { #category : #accessing }
-PyramidSPESelection >> canvasElement [
+PyramidSPEMakeSelection >> canvasElement [
 
 	^ canvasElement
 ]
 
 { #category : #accessing }
-PyramidSPESelection >> catchEventOverlay [
+PyramidSPEMakeSelection >> catchEventOverlay [
 
 	^ catchEventOverlay
 ]
 
 { #category : #'as yet unclassified' }
-PyramidSPESelection >> connectOn: aPyramidEditor [
+PyramidSPEMakeSelection >> connectOn: aPyramidEditor [
 
 	self activeProject: aPyramidEditor activeProject
 ]
 
 { #category : #initialization }
-PyramidSPESelection >> defaultSelectionElement [
+PyramidSPEMakeSelection >> defaultSelectionElement [
 
 	^ BlElement new
 		  background: Color blue muchLighter translucent;
@@ -71,7 +70,7 @@ PyramidSPESelection >> defaultSelectionElement [
 ]
 
 { #category : #'drag and drop' }
-PyramidSPESelection >> dragEvent: evt [
+PyramidSPEMakeSelection >> dragEvent: evt [
 
 	| xmin ymin |
 		self isDragging ifFalse: [ ^ self ].
@@ -85,19 +84,19 @@ PyramidSPESelection >> dragEvent: evt [
 ]
 
 { #category : #'drag and drop' }
-PyramidSPESelection >> dragOrigin [
+PyramidSPEMakeSelection >> dragOrigin [
 
 	^ dragOrigin
 ]
 
 { #category : #'drag and drop' }
-PyramidSPESelection >> dragOrigin: anObject [
+PyramidSPEMakeSelection >> dragOrigin: anObject [
 
 	dragOrigin := anObject
 ]
 
 { #category : #'drag and drop' }
-PyramidSPESelection >> endDragEvent: evt [
+PyramidSPEMakeSelection >> endDragEvent: evt [
 
 	self isDragging: false.
 	self selectElementsInBounds: self selectionElement boundsInSpace.
@@ -108,7 +107,7 @@ PyramidSPESelection >> endDragEvent: evt [
 ]
 
 { #category : #initialization }
-PyramidSPESelection >> initialize [
+PyramidSPEMakeSelection >> initialize [
 
 	isDragging := false.
 	selectionElement := self defaultSelectionElement.
@@ -116,7 +115,7 @@ PyramidSPESelection >> initialize [
 ]
 
 { #category : #initialization }
-PyramidSPESelection >> initializeElementEventCatcher [
+PyramidSPEMakeSelection >> initializeElementEventCatcher [
 
 	canvasElement := BlElement new
 		                 id: #selection_canvas;
@@ -143,38 +142,38 @@ PyramidSPESelection >> initializeElementEventCatcher [
 ]
 
 { #category : #'as yet unclassified' }
-PyramidSPESelection >> installOnSpacePlugin: aSpacePlugin [
+PyramidSPEMakeSelection >> installOnSpacePlugin: aSpacePlugin [
 
 	aSpacePlugin overlaysManager addOverlay: self catchEventOverlay.
 	self rootElement: aSpacePlugin overlaysManager rootElement
 ]
 
 { #category : #'drag and drop' }
-PyramidSPESelection >> isDragging [
+PyramidSPEMakeSelection >> isDragging [
 
 ^ isDragging
 ]
 
 { #category : #'drag and drop' }
-PyramidSPESelection >> isDragging: aBoolean [
+PyramidSPEMakeSelection >> isDragging: aBoolean [
 
 	isDragging := aBoolean
 ]
 
 { #category : #accessing }
-PyramidSPESelection >> rootElement [
+PyramidSPEMakeSelection >> rootElement [
 
 	^ rootElement
 ]
 
 { #category : #accessing }
-PyramidSPESelection >> rootElement: anObject [
+PyramidSPEMakeSelection >> rootElement: anObject [
 
 	rootElement := anObject
 ]
 
 { #category : #'as yet unclassified' }
-PyramidSPESelection >> selectElementsInBounds: aBound [
+PyramidSPEMakeSelection >> selectElementsInBounds: aBound [
 
 	| selectedElements |
 	selectedElements := self allElementsInGraph select: [ :each |
@@ -188,13 +187,13 @@ PyramidSPESelection >> selectElementsInBounds: aBound [
 ]
 
 { #category : #accessing }
-PyramidSPESelection >> selectionElement [
+PyramidSPEMakeSelection >> selectionElement [
 
 	^ selectionElement
 ]
 
 { #category : #'drag and drop' }
-PyramidSPESelection >> startDragEvent: evt [
+PyramidSPEMakeSelection >> startDragEvent: evt [
 
 	self isDragging ifTrue: [ ^ self ].
 	evt primaryButtonPressed ifFalse: [ ^ self ].

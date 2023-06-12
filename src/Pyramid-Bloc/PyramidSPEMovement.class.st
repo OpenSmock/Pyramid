@@ -2,7 +2,6 @@ Class {
 	#name : #PyramidSPEMovement,
 	#superclass : #PyramidSpacePluginExtension,
 	#instVars : [
-		'mutex',
 		'catchEventOverlay',
 		'elementTransformation',
 		'transformationOverlay',
@@ -38,13 +37,12 @@ PyramidSPEMovement >> currentTranslation [
 { #category : #'drag and drop' }
 PyramidSPEMovement >> dragEvent: evt [
 
-	mutex critical: [
 		self isDragging ifFalse: [ ^ self ].
 		evt middleButtonPressed ifFalse: [
 			self isDragging: false.
 			^ self ].
 		self elementTransformation transformDo: [ :t |
-		t translateBy: evt position - self dragOrigin ] ].
+			t translateBy: evt position - self dragOrigin ]
 ]
 
 { #category : #'drag and drop' }
@@ -70,7 +68,6 @@ PyramidSPEMovement >> initialize [
 
 	isShiftKeyPressed := false.
 	isDragging := false.
-	mutex := Mutex new.
 	self initializeElementTransformation.
 	self initializeElementEventCatcher
 ]

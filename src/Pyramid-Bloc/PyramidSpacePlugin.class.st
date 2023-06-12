@@ -28,7 +28,8 @@ PyramidSpacePlugin class >> extensions [
 		  PyramidSPEMousePosition new.
 		  PyramidSPEWindow new.
 		  PyramidSPEMovement new.
-		PyramidSPESelection new }
+		  PyramidSPEMakeSelection new.
+		PyramidSPEShowSelection new }
 ]
 
 { #category : #'class initialization' }

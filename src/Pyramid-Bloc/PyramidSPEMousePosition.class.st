@@ -6,7 +6,6 @@ Class {
 		'displayPositionOverlay',
 		'elementDisplay',
 		'positionText',
-		'mutex',
 		'rootElement'
 	],
 	#category : #'Pyramid-Bloc-plugin-space'
@@ -33,7 +32,6 @@ PyramidSPEMousePosition >> elementDisplay [
 { #category : #initialization }
 PyramidSPEMousePosition >> initialize [
 
-	mutex := Mutex new.
 	self initializeElementDisplay.
 	self initializeElementEventCatcher
 ]
@@ -109,12 +107,11 @@ PyramidSPEMousePosition >> positionText: anObject [
 PyramidSPEMousePosition >> refreshPosition: aPoint [
 
 	| newPositionText newPosition |
-	mutex critical: [
-		newPosition := aPoint - ( self rootElement localPointToGlobal: 0 @ 0 ).
+		newPosition := aPoint - (self rootElement localPointToGlobal: 0 @ 0).
 		newPositionText := self makePositionText: newPosition.
 		self elementDisplay removeChild: self positionText.
 		self elementDisplay addChild: newPositionText.
-		self positionText: newPositionText ]
+		self positionText: newPositionText
 ]
 
 { #category : #'as yet unclassified' }

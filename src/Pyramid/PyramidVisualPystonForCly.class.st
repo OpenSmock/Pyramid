@@ -158,7 +158,7 @@ PyramidVisualPystonForCly >> method [
 { #category : #accessing }
 PyramidVisualPystonForCly >> openEditor [
 
-	| class elements editor |
+	| class elements |
 	class := method classBinding value.
 	elements := class isMeta
 		            ifTrue: [
@@ -169,7 +169,6 @@ PyramidVisualPystonForCly >> openEditor [
 				            materializeAsBlElement ].
 
 	elements isCollection ifFalse: [ elements := { elements } ].
-	elements ifEmpty: [ ^ self ].
 	PyramidSavePlugin openOn: elements saveModel: self asSaveModel
 ]
 
