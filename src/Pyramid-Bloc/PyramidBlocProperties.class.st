@@ -50,6 +50,15 @@ PyramidBlocProperties class >> fontWeight [
 ]
 
 { #category : #accessing }
+PyramidBlocProperties class >> geometry [
+
+	^ PyramidProperty
+		  fromCommand: PyramidBlocCommand geometry
+		  inputBuilder:
+		  PyramidPropertyInputModelBuilderFactory geometryInput
+]
+
+{ #category : #accessing }
 PyramidBlocProperties class >> identifier [
 
 	^ PyramidProperty
@@ -97,12 +106,14 @@ PyramidBlocProperties >> connectOn: aPyramidEditor [
 	aPyramidEditor properties addProperty: self class identifier.
 	aPyramidEditor properties addProperty: self class visibility.
 	aPyramidEditor properties addProperty: self class background.
+	aPyramidEditor properties addProperty: self class geometry.
 	aPyramidEditor properties addProperty: self class position.
 	aPyramidEditor properties addProperty: self class fontSize.
 	aPyramidEditor properties addProperty: self class fontWeight.
 	aPyramidEditor properties addProperty: self class text.
 	aPyramidEditor properties addProperty: self class contraintsVertical.
-	aPyramidEditor properties addProperty: self class contraintsHorizontal
+	aPyramidEditor properties addProperty:
+		self class contraintsHorizontal
 ]
 
 { #category : #'see class side' }

@@ -60,6 +60,17 @@ PyramidPropertyInputModelBuilderFactoryTest >> testFontWeight [
 ]
 
 { #category : #tests }
+PyramidPropertyInputModelBuilderFactoryTest >> testGeometryInput [
+
+	| property |
+	property := PyramidProperty new.
+	PyramidPropertyInputModelBuilderFactory geometryInput
+		installBuilderOn: property.
+	property makeNewInputsFor: {  }.
+	self assert: property inputsModel elementInputsModel size equals: 0
+]
+
+{ #category : #tests }
 PyramidPropertyInputModelBuilderFactoryTest >> testIdentifierTextInput [
 
 	| property |

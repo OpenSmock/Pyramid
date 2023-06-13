@@ -4,7 +4,8 @@ Class {
 	#instVars : [
 		'model',
 		'whenSubmitDo',
-		'geometry'
+		'geometry',
+		'shouldTrigger'
 	],
 	#category : #'Pyramid-Bloc-custom-specs-geometry'
 }
@@ -12,7 +13,10 @@ Class {
 { #category : #accessing }
 PyramidGeometryPresenter class >> default [
 
-	^ self new model: { PyramidGeometryModel rectangle . PyramidGeometryModel roundedRectangle . PyramidGeometryModel ellipse }; yourself
+	^ self new
+		  model:
+				  PyramidGeometryModel default;
+		  yourself
 ]
 
 { #category : #layout }
@@ -35,6 +39,14 @@ PyramidGeometryPresenter >> defaultLayout [
 ]
 
 { #category : #accessing }
+PyramidGeometryPresenter >> defaultValue: aBlGeometry [
+
+	self shouldTrigger: false.
+	aBlGeometry pyramidSelectOnPresenter: self.
+	self shouldTrigger: true
+]
+
+{ #category : #accessing }
 PyramidGeometryPresenter >> geometry [
 	^ geometry 
 ]
@@ -47,7 +59,9 @@ PyramidGeometryPresenter >> geometry: aGeometry [
 
 { #category : #initialization }
 PyramidGeometryPresenter >> initializePresenters [
-	model := {  }
+
+	model := {  }.
+	shouldTrigger := true
 ]
 
 { #category : #'as yet unclassified' }
@@ -80,9 +94,22 @@ PyramidGeometryPresenter >> model: aCollection [
 	self layout: self defaultLayout
 ]
 
+{ #category : #accessing }
+PyramidGeometryPresenter >> shouldTrigger [
+
+	^ shouldTrigger
+]
+
+{ #category : #accessing }
+PyramidGeometryPresenter >> shouldTrigger: aBoolean [
+
+	shouldTrigger:= aBoolean
+]
+
 { #category : #'as yet unclassified' }
 PyramidGeometryPresenter >> submit: aGeometryModel [
 
+	self shouldTrigger ifFalse: [ ^ self ].
 	self geometry: aGeometryModel makeGeometry.
 	self whenSubmitDo value
 ]

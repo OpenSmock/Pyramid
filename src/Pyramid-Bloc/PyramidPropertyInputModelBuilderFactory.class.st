@@ -119,6 +119,24 @@ PyramidPropertyInputModelBuilderFactory class >> fontWeight [
 ]
 
 { #category : #'as yet unclassified' }
+PyramidPropertyInputModelBuilderFactory class >> geometryInput [
+
+	^ self new
+		  sectionName: 'Geometry';
+		  inputClass: PyramidGeometryPresenter;
+		  initializeBlock: [ :input |
+			  input model: PyramidGeometryModel default ];
+		  mutliValuesDefault: PyramidFakeGeometry new;
+		  noValueDefault: PyramidFakeGeometry new;
+		  transformInBlock: [ :input :value | input defaultValue: value ];
+		  transformOutBlock: [ :input | input geometry ];
+		  triggerBlockStrategy: (PyramidNoArgTrigger new
+				   selector: #whenSubmitDo:;
+				   yourself);
+		  yourself
+]
+
+{ #category : #'as yet unclassified' }
 PyramidPropertyInputModelBuilderFactory class >> identifierTextInput [
 
 	^ self new

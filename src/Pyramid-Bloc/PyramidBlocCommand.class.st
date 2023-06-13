@@ -56,6 +56,18 @@ PyramidBlocCommand class >> constraints [
 ]
 
 { #category : #adding }
+PyramidBlocCommand class >> geometry [
+
+	^ PyramidCommand
+		  name: #geometry
+		  set: [ :state :target | target geometry: state arguments ]
+		  get: [ :state :source |
+			  state source: source.
+			  state arguments: source geometry ]
+		  isExecutableBlock: [ :obj :state | obj isKindOf: BlElement ]
+]
+
+{ #category : #adding }
 PyramidBlocCommand class >> identifier [
 
 	^ PyramidCommand

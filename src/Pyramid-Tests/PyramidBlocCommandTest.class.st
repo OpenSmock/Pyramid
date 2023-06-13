@@ -89,18 +89,18 @@ PyramidBlocCommandTest >> testBackground [
 
 	| e1 b1 state |
 	state := PyramidCommandState new.
-	e1 := BlElement new.
-	PyramidBlocCommand background getState: state from: e1.
-	self assert: state arguments equals: BlBackground transparent.
-	e1 id: #toto.
-	PyramidBlocCommand identifier getState: state from: e1.
-	self assert: state arguments equals: #toto.
+	e1 := BlElement new
+		      geometry: (BlRoundedRectangleGeometry cornerRadius: 17);
+		      yourself.
+	PyramidBlocCommand geometry getState: state from: e1.
+	self assert: state arguments class equals: BlRoundedRectangleGeometry.
+	self assert: state arguments cornerRadii equals: (BlCornerRadii radius: 17).
 
 	b1 := BlElement new.
-	PyramidBlocCommand background
-		setState: (PyramidCommandState new arguments:( BlBackground paint: Color red))
+	PyramidBlocCommand geometry
+		setState: (PyramidCommandState new arguments: BlEllipseGeometry new)
 		on: b1.
-	self assert: b1 background paint color equals: Color red
+	self assert: b1 geometry class equals: BlEllipseGeometry
 ]
 
 { #category : #tests }
