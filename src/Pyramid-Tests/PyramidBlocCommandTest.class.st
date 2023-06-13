@@ -104,6 +104,25 @@ PyramidBlocCommandTest >> testBackground [
 ]
 
 { #category : #tests }
+PyramidBlocCommandTest >> testConstraints [
+
+	| e1 b1 state |
+	state := PyramidCommandState new.
+	e1 := BlElement new constraintsDo: [ :c | c horizontal matchParent. c vertical exact: 50 ].
+	PyramidBlocCommand constraints getState: state from: e1.
+	self assert: state arguments vertical resizer isExact.
+	self assert: state arguments vertical resizer size equals: 50.
+	self assert: state arguments horizontal resizer isMatchParent.
+
+	b1 := BlElement new.
+	PyramidBlocCommand constraints
+		setState: (PyramidCommandState new arguments: [ :c | c vertical fitContent. c horizontal matchParent])
+		on: b1.
+	self assert: b1 constraints vertical resizer isFitContent.
+	self assert: b1 constraints horizontal resizer isMatchParent.
+]
+
+{ #category : #tests }
 PyramidBlocCommandTest >> testIdentifier [
 
 	| e1 b1 state |

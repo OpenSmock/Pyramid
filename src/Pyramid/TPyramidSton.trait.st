@@ -7,7 +7,7 @@ Trait {
 TPyramidSton classSide >> edit [
 
 	<script>
-	| model |
+	| model element children |
 	model := PyramidSaveModel new
 		         savingClassName: self name;
 		         savingMethodName: #pystonSpec;
@@ -15,10 +15,10 @@ TPyramidSton classSide >> edit [
 		         onClass;
 		         yourself.
 
-
-	PyramidSavePlugin
-		openOn: self pystonSpec materializeAsBlElement
-		saveModel: model
+	element := self new buildElements.
+	children := element children.
+	element removeChildren.
+	PyramidSavePlugin openOn: children saveModel: model
 ]
 
 { #category : #inspecting }
@@ -51,5 +51,5 @@ TPyramidSton classSide >> pystonSpec [
 TPyramidSton >> buildElements [
 
 	self hasChildren ifTrue: [ self removeChildren ].
-	self addChild: self class pystonSpec materializeAsBlElement.
+	self addChildren: self class pystonSpec materializeAsBlElement
 ]

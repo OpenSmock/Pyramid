@@ -34,6 +34,43 @@ PyramidPropertyInputModelBuilderFactory class >> backgroundInput [
 ]
 
 { #category : #'as yet unclassified' }
+PyramidPropertyInputModelBuilderFactory class >> constraintsInputHorizontal [
+
+	^ self new
+		  sectionName: 'Constraints horizontal';
+		  inputClass: PyramidConstraintsPresenter;
+		  initializeBlock: [ :input |
+			  input model: PyramidConstraintsModel horizontal ];
+		  mutliValuesDefault: PyramidFakeConstraintsMixed new;
+		  noValueDefault: PyramidFakeConstraintsNoValue new;
+		  transformInBlock: [ :input :value |
+			  input defaultValue: value horizontal ];
+		  transformOutBlock: [ :input | input submit ];
+		  triggerBlockStrategy: (PyramidNoArgTrigger new
+				   selector: #whenSubmitDo:;
+				   yourself);
+		  yourself
+]
+
+{ #category : #'as yet unclassified' }
+PyramidPropertyInputModelBuilderFactory class >> constraintsInputVertical [
+
+	^ self new
+		  sectionName: 'Constraints vertical';
+		  inputClass: PyramidConstraintsPresenter;
+		  initializeBlock: [ :input |
+			  input model: PyramidConstraintsModel vertical ];
+		  mutliValuesDefault: PyramidFakeConstraintsMixed new;
+		  noValueDefault: PyramidFakeConstraintsNoValue new;
+		  transformInBlock: [ :input :value | input defaultValue: value vertical ];
+		  transformOutBlock: [ :input | input submit ];
+		  triggerBlockStrategy: (PyramidNoArgTrigger new
+				   selector: #whenSubmitDo:;
+				   yourself);
+		  yourself
+]
+
+{ #category : #'as yet unclassified' }
 PyramidPropertyInputModelBuilderFactory class >> fontSize [
 
 	^ self new

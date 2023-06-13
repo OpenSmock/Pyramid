@@ -16,6 +16,28 @@ PyramidPropertyInputModelBuilderFactoryTest >> testBackgroundInput [
 ]
 
 { #category : #tests }
+PyramidPropertyInputModelBuilderFactoryTest >> testConstraintsInputHorizontal [
+
+	| property |
+	property := PyramidProperty new.
+	PyramidPropertyInputModelBuilderFactory constraintsInputHorizontal
+		installBuilderOn: property.
+	property makeNewInputsFor: {  }.
+	self assert: property inputsModel elementInputsModel size equals: 0
+]
+
+{ #category : #tests }
+PyramidPropertyInputModelBuilderFactoryTest >> testConstraintsInputVertical [
+
+	| property |
+	property := PyramidProperty new.
+	PyramidPropertyInputModelBuilderFactory constraintsInputVertical
+		installBuilderOn: property.
+	property makeNewInputsFor: {  }.
+	self assert: property inputsModel elementInputsModel size equals: 0
+]
+
+{ #category : #tests }
 PyramidPropertyInputModelBuilderFactoryTest >> testFontSize [
 
 	| property |

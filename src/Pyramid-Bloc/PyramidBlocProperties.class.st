@@ -16,6 +16,24 @@ PyramidBlocProperties class >> background [
 ]
 
 { #category : #accessing }
+PyramidBlocProperties class >> contraintsHorizontal [
+
+	^ PyramidProperty
+		  fromCommand: PyramidBlocCommand constraints
+		  inputBuilder:
+		  PyramidPropertyInputModelBuilderFactory constraintsInputHorizontal
+]
+
+{ #category : #accessing }
+PyramidBlocProperties class >> contraintsVertical [
+
+	^ PyramidProperty
+		  fromCommand: PyramidBlocCommand constraints
+		  inputBuilder:
+		  PyramidPropertyInputModelBuilderFactory constraintsInputVertical
+]
+
+{ #category : #accessing }
 PyramidBlocProperties class >> fontSize [
 
 	^ PyramidProperty
@@ -82,7 +100,9 @@ PyramidBlocProperties >> connectOn: aPyramidEditor [
 	aPyramidEditor properties addProperty: self class position.
 	aPyramidEditor properties addProperty: self class fontSize.
 	aPyramidEditor properties addProperty: self class fontWeight.
-	aPyramidEditor properties addProperty: self class text
+	aPyramidEditor properties addProperty: self class text.
+	aPyramidEditor properties addProperty: self class contraintsVertical.
+	aPyramidEditor properties addProperty: self class contraintsHorizontal
 ]
 
 { #category : #'see class side' }

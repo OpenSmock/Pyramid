@@ -5,7 +5,7 @@ Class {
 		'morphColorStart',
 		'morphColorEnd'
 	],
-	#category : #'Pyramid-Bloc-custom-specs'
+	#category : #'Pyramid-Bloc-custom-specs-background'
 }
 
 { #category : #initialization }

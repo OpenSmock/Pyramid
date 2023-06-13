@@ -8,7 +8,7 @@ Class {
 		'color',
 		'whenSubmitDo'
 	],
-	#category : #'Pyramid-Bloc-custom-specs'
+	#category : #'Pyramid-Bloc-custom-specs-background'
 }
 
 { #category : #'menu actions' }

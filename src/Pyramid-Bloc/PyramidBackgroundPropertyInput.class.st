@@ -10,7 +10,7 @@ Class {
 		'background',
 		'modalWindow'
 	],
-	#category : #'Pyramid-Bloc-custom-specs'
+	#category : #'Pyramid-Bloc-custom-specs-background'
 }
 
 { #category : #'api - text style' }

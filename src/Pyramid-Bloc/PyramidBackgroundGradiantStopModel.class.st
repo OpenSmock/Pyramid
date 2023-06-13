@@ -6,7 +6,7 @@ Class {
 		'color',
 		'next'
 	],
-	#category : #'Pyramid-Bloc-custom-specs'
+	#category : #'Pyramid-Bloc-custom-specs-background'
 }
 
 { #category : #'as yet unclassified' }

@@ -5,7 +5,7 @@ Class {
 		'form',
 		'classMethodPresenter'
 	],
-	#category : #'Pyramid-Bloc-custom-specs'
+	#category : #'Pyramid-Bloc-custom-specs-background'
 }
 
 { #category : #accessing }

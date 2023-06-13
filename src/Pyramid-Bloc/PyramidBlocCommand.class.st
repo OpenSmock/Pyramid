@@ -41,6 +41,21 @@ PyramidBlocCommand class >> background [
 ]
 
 { #category : #adding }
+PyramidBlocCommand class >> constraints [
+
+	^ PyramidCommand
+		  name: #constraints
+		  set: [ :state :target |
+			  state arguments isBlock
+				  ifTrue: [ target constraintsDo: state arguments ]
+				  ifFalse: [ target constraints: state arguments ] ]
+		  get: [ :state :source |
+			  state source: source.
+			  state arguments: source constraints ]
+		  isExecutableBlock: [ :obj :state | obj isKindOf: BlElement ]
+]
+
+{ #category : #adding }
 PyramidBlocCommand class >> identifier [
 
 	^ PyramidCommand
