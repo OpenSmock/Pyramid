@@ -25,7 +25,6 @@ PyramidBackgroundInputImage >> classMethodPresenter [
 PyramidBackgroundInputImage >> defaultLayout [
 
 	^ SpBoxLayout newHorizontal
-		  add: 'Image, There will be something here';
 		  add: self classMethodPresenter;
 		  yourself
 ]

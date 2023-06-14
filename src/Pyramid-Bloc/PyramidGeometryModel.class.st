@@ -80,7 +80,7 @@ PyramidGeometryModel class >> roundedRectangle [
 		               yourself.
 
 	model := self new
-		         title: 'RoundedRectangle';
+		         title: 'Rounded';
 		         geometryBlock: [
 			         (inputRadius number isNil or: [ inputRadius number < 1 ])
 				         ifTrue: [ BlRoundedRectangleGeometry cornerRadius: 8 ]
@@ -92,8 +92,12 @@ PyramidGeometryModel class >> roundedRectangle [
 					          (BlRoundedRectangleGeometry cornerRadius: 8));
 		         associatedPresenter: inputRadius;
 		         yourself.
-	model initializeBlock: [ :presenter |
-		inputRadius whenSubmitDo: [ :n | presenter submit: model ] ];selectBlock: [ :geo | inputRadius number: geo cornerRadii max. model buttonPresenter click ].
+	model
+		initializeBlock: [ :presenter |
+			inputRadius whenSubmitDo: [ :n | presenter submit: model ] ];
+		selectBlock: [ :geo |
+			inputRadius number: geo cornerRadii max.
+			model buttonPresenter click ].
 	^ model
 ]
 

@@ -56,7 +56,7 @@ PyramidOverlaysManager >> computeOverlaysFor: aCollection [
 		each receiveElement.
 		current := each element ].
 	current addChild: self rootElement.
-	aCollection last receiveElement.
+	aCollection last receiveElement
 ]
 
 { #category : #initialization }
