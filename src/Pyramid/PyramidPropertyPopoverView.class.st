@@ -149,7 +149,7 @@ PyramidPropertyPopoverView >> soloLayout [
 	inputsLayout := SpBoxLayout new
 		                spacing: 4;
 		                yourself.
-	self property inputsModel elementInputsModel do: [ :each |
+	self property inputsModel elementInputsModel sorted do: [ :each |
 		inputsLayout add: (self soloInputOnPopoverLayout: each) ].
 	^ inputsLayout
 ]
