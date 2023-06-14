@@ -56,8 +56,7 @@ PyramidPropertiesView >> defaultLayout [
 { #category : #showing }
 PyramidPropertiesView >> hide: aPresenter [
 
-	self propertyViews remove: aPresenter ifAbsent: [].
-	self updateLayout
+	self propertyViews remove: aPresenter ifAbsent: [  ]
 ]
 
 { #category : #accessing }
@@ -75,7 +74,7 @@ PyramidPropertiesView >> pipeline: aPyramidPipeline [
 { #category : #accessing }
 PyramidPropertiesView >> properties [
 
-	properties ifNil: [ properties := OrderedCollection new ].
+	properties ifNil: [ properties := SortedCollection new ].
 	^ properties
 ]
 
@@ -111,8 +110,7 @@ PyramidPropertiesView >> pyramidSelectionChangedOnActiveProject [
 { #category : #showing }
 PyramidPropertiesView >> show: aPresenter [
 
-	self propertyViews add: aPresenter.
-	self updateLayout
+	self propertyViews add: aPresenter
 ]
 
 { #category : #private }
@@ -120,7 +118,8 @@ PyramidPropertiesView >> updateLayout [
 
 	self propertylayout ifNil: [ ^ self ].
 	self propertylayout removeAll.
-	self propertyViews do: [ :each | self propertylayout add: each expand: false ].
+	self propertyViews sorted do: [ :each |
+		self propertylayout add: each expand: false ].
 	self propertylayout add: SpNullPresenter new expand: true
 ]
 
@@ -129,5 +128,6 @@ PyramidPropertiesView >> updatePropertyViews [
 
 	self propertyViews do: [ :each | each hidePopover ].
 	self properties do: [ :property |
-		property makeNewInputsFor: self activeProject selection elements ]
+		property makeNewInputsFor: self activeProject selection elements ].
+	self updateLayout
 ]

@@ -12,13 +12,8 @@ Class {
 { #category : #comparing }
 PyramidPropertySingleInputModel >> <= aPyramidPropertySingleInputModel [
 
-	self reference parent = aPyramidPropertySingleInputModel reference parent
-		ifTrue: [
-			^ (self reference parent childIndexOf:
-				  self reference) <= (self reference parent childIndexOf: aPyramidPropertySingleInputModel reference) ].
-	self reference allParentsDo: [ :p | p == aPyramidPropertySingleInputModel reference ifTrue: [ ^ false ] ].
-	aPyramidPropertySingleInputModel reference allParentsDo: [ :p | p == self reference ifTrue: [ ^ true ] ].
-	^ self reference hash <= aPyramidPropertySingleInputModel reference hash
+	^ PyramidProperty sortBlElements: self reference and: aPyramidPropertySingleInputModel reference
+	
 ]
 
 { #category : #accessing }

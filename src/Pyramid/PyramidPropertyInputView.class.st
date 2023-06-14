@@ -16,6 +16,12 @@ Class {
 	#category : #'Pyramid-properties'
 }
 
+{ #category : #comparing }
+PyramidPropertyInputView >> <= anObject [
+
+	^ self property <= anObject property
+]
+
 { #category : #accessing }
 PyramidPropertyInputView >> currentApplyToAllInput [
 ^ currentApplyToAllInput

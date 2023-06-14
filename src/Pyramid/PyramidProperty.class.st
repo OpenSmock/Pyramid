@@ -8,20 +8,44 @@ Class {
 		'pipeline',
 		'targetModel',
 		'inputBuilder',
-		'inputsModel'
+		'inputsModel',
+		'order'
 	],
 	#category : #'Pyramid-properties'
 }
 
 { #category : #accessing }
-PyramidProperty class >> fromCommand: aPyramidCommand inputBuilder: aPyramidPropertyInputModelBuilderFactory [
+PyramidProperty class >> fromCommand: aPyramidCommand inputBuilder: aPyramidPropertyInputModelBuilderFactory order: aNumber [
 
 	| property |
 	property := self new
 		            command: aPyramidCommand;
+						order: aNumber;
 		            yourself.
 	aPyramidPropertyInputModelBuilderFactory installBuilderOn: property.
 	^ property
+]
+
+{ #category : #sorting }
+PyramidProperty class >> sortBlElements: a and: b [
+
+	a parent
+	=  b parent ifTrue: [
+		^ (a parent childIndexOf: a)
+		  <= (a parent childIndexOf:
+				   b) ].
+	a allParentsDo: [ :p |
+		p == b ifTrue: [ ^ false ] ].
+	b allParentsDo: [ :p |
+		p == a ifTrue: [ ^ true ] ].
+	^ a hash
+	  <= b hash
+]
+
+{ #category : #comparing }
+PyramidProperty >> <= aPyramidProperty [
+
+	^ self order <= aPyramidProperty order
 ]
 
 { #category : #accessing }
@@ -64,7 +88,20 @@ PyramidProperty >> makeNewInputsFor: aCollection [
 
 	self updateTargetModelFrom: aCollection.
 	inputsModel := self inputBuilder build.
-	self informInputsUpdated
+	self informInputsUpdated.
+]
+
+{ #category : #accessing }
+PyramidProperty >> order [
+
+	order ifNil: [ order := 100 ].
+	^ order
+]
+
+{ #category : #accessing }
+PyramidProperty >> order: aNumber [
+
+	order := aNumber
 ]
 
 { #category : #'as yet unclassified' }

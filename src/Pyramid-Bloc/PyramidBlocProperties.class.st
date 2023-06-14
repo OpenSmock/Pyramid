@@ -13,6 +13,7 @@ PyramidBlocProperties class >> background [
 		  fromCommand: PyramidBlocCommand background
 		  inputBuilder:
 		  PyramidPropertyInputModelBuilderFactory backgroundInput
+		 order: 20
 ]
 
 { #category : #accessing }
@@ -22,6 +23,7 @@ PyramidBlocProperties class >> contraintsHorizontal [
 		  fromCommand: PyramidBlocCommand constraints
 		  inputBuilder:
 		  PyramidPropertyInputModelBuilderFactory constraintsInputHorizontal
+		 order: 61
 ]
 
 { #category : #accessing }
@@ -31,6 +33,7 @@ PyramidBlocProperties class >> contraintsVertical [
 		  fromCommand: PyramidBlocCommand constraints
 		  inputBuilder:
 		  PyramidPropertyInputModelBuilderFactory constraintsInputVertical
+		 order: 62
 ]
 
 { #category : #accessing }
@@ -39,6 +42,7 @@ PyramidBlocProperties class >> fontSize [
 	^ PyramidProperty
 		  fromCommand: PyramidBlocCommand textAttribute
 		  inputBuilder: PyramidPropertyInputModelBuilderFactory fontSize
+		 order: 11
 ]
 
 { #category : #accessing }
@@ -47,6 +51,7 @@ PyramidBlocProperties class >> fontWeight [
 	^ PyramidProperty
 		  fromCommand: PyramidBlocCommand textAttribute
 		  inputBuilder: PyramidPropertyInputModelBuilderFactory fontWeight
+		 order: 12
 ]
 
 { #category : #accessing }
@@ -56,6 +61,7 @@ PyramidBlocProperties class >> geometry [
 		  fromCommand: PyramidBlocCommand geometry
 		  inputBuilder:
 		  PyramidPropertyInputModelBuilderFactory geometryInput
+		 order: 30
 ]
 
 { #category : #accessing }
@@ -65,6 +71,7 @@ PyramidBlocProperties class >> identifier [
 		  fromCommand: PyramidBlocCommand identifier
 		  inputBuilder:
 		  PyramidPropertyInputModelBuilderFactory identifierTextInput
+		 order: 1
 ]
 
 { #category : #'class initialization' }
@@ -80,6 +87,7 @@ PyramidBlocProperties class >> position [
 		  fromCommand: PyramidBlocCommand position
 		  inputBuilder:
 		  PyramidPropertyInputModelBuilderFactory positionInput
+		 order: 60
 ]
 
 { #category : #accessing }
@@ -87,8 +95,8 @@ PyramidBlocProperties class >> text [
 
 	^ PyramidProperty
 		  fromCommand: PyramidBlocCommand text
-		  inputBuilder:
-		  PyramidPropertyInputModelBuilderFactory textInput
+		  inputBuilder: PyramidPropertyInputModelBuilderFactory textInput
+		  order: 10
 ]
 
 { #category : #accessing }
@@ -98,6 +106,7 @@ PyramidBlocProperties class >> visibility [
 		  fromCommand: PyramidBlocCommand visibility
 		  inputBuilder:
 		  PyramidPropertyInputModelBuilderFactory visibilityDropList
+		order: 2
 ]
 
 { #category : #'as yet unclassified' }
