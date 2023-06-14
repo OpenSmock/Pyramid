@@ -1,0 +1,189 @@
+Class {
+	#name : #PyramidSearchAndSelectPresenter,
+	#superclass : #SpPresenter,
+	#instVars : [
+		'unselectButton',
+		'flatRadioButton',
+		'treeRadioButton',
+		'inspectButton',
+		'codePresenter',
+		'selectButton',
+		'examplesDropList',
+		'activeProjectRoots',
+		'activeProject'
+	],
+	#category : #'Pyramid-Bloc-plugin-tree'
+}
+
+{ #category : #'as yet unclassified' }
+PyramidSearchAndSelectPresenter >> actionExample: aModel [
+
+	aModel isTree
+		ifTrue: [ self treeRadioButton click ]
+		ifFalse: [ self flatRadioButton click ].
+	self codePresenter text: aModel code.
+	self actionSelect
+]
+
+{ #category : #'as yet unclassified' }
+PyramidSearchAndSelectPresenter >> actionInspect [
+
+	self codePresenter doItReceiver inspect
+]
+
+{ #category : #'as yet unclassified' }
+PyramidSearchAndSelectPresenter >> actionSelect [
+
+	self activeProject ifNil: [ ^self ].
+	self activeProject selection replaceAll:
+		self codePresenter doItReceiver
+]
+
+{ #category : #'as yet unclassified' }
+PyramidSearchAndSelectPresenter >> actionUnselect [
+
+	self activeProject ifNil: [ ^ self ].
+	self activeProject selection removeAll
+]
+
+{ #category : #accessing }
+PyramidSearchAndSelectPresenter >> activeProject [
+
+	^ activeProject
+]
+
+{ #category : #accessing }
+PyramidSearchAndSelectPresenter >> activeProject: anObject [
+
+	activeProject := anObject.
+	flatRadioButton click.
+]
+
+{ #category : #accessing }
+PyramidSearchAndSelectPresenter >> codeIsForFlat [
+
+	self activeProject ifNil: [ ^ self ].
+	self codePresenter interactionModel:
+		(SpCodeObjectInteractionModel on:
+			 (PyramidTreeToFlat flattenChildrenOfCollection:
+				  self activeProject roots elements))
+]
+
+{ #category : #accessing }
+PyramidSearchAndSelectPresenter >> codeIsForTree [
+
+	self activeProject ifNil: [ ^ self ].
+	self codePresenter interactionModel:
+		(SpCodeObjectInteractionModel on: self activeProject roots elements)
+]
+
+{ #category : #accessing }
+PyramidSearchAndSelectPresenter >> codePresenter [
+
+	^ codePresenter
+]
+
+{ #category : #layout }
+PyramidSearchAndSelectPresenter >> defaultLayout [
+
+	^ SpBoxLayout newVertical
+		  spacing: 4;
+		  add: (SpBoxLayout newHorizontal
+				   spacing: 4;
+				   add: self unselectButton;
+				   add: self flatRadioButton;
+				   add: self treeRadioButton;
+				   add: self inspectButton width: 70;
+				   yourself)
+		  expand: false;
+		  add: (SpBoxLayout newHorizontal
+				   spacing: 4;
+				   add: self codePresenter;
+				   add: self selectButton width: 70;
+				   yourself)
+		  expand: true;
+		  add: (SpBoxLayout newHorizontal
+				   spacing: 4;
+				   add: 'Examples' expand: false;
+				   add: self examplesDropList expand: true;
+				   add: SpNullPresenter new width: 70;
+				   yourself) expand: false;
+		  yourself
+]
+
+{ #category : #accessing }
+PyramidSearchAndSelectPresenter >> examplesDropList [
+
+	^ examplesDropList
+]
+
+{ #category : #accessing }
+PyramidSearchAndSelectPresenter >> flatRadioButton [
+
+	^ flatRadioButton
+]
+
+{ #category : #initialization }
+PyramidSearchAndSelectPresenter >> initializeExamples [
+	self examplesDropList items: PyramidSearchAndSelectModel default
+]
+
+{ #category : #initialization }
+PyramidSearchAndSelectPresenter >> initializePresenters [
+
+	codePresenter := SpCodePresenter new
+		                 text: 'self';
+		                 yourself.
+	treeRadioButton := SpRadioButtonPresenter new
+		                   label: 'self is tree';
+		                   yourself.
+	flatRadioButton := SpRadioButtonPresenter new
+		                   label: 'self is flat';
+		                   yourself.
+	treeRadioButton associatedRadioButtons: { flatRadioButton }.
+	treeRadioButton whenActivatedDo: [ self codeIsForTree ].
+	flatRadioButton whenActivatedDo: [ self codeIsForFlat ].
+
+	inspectButton := SpButtonPresenter new
+		                 label: 'inspect';
+		                 action: [ self actionInspect ];
+		                 yourself.
+	unselectButton := SpButtonPresenter new
+		                  label: 'unselect';
+		                  action: [ self actionUnselect ];
+		                  yourself.
+	selectButton := SpButtonPresenter new
+		                label: 'select';
+		                action: [ self actionSelect ];
+		                yourself.
+	examplesDropList := SpDropListPresenter new
+		                    display: [ :each | each name ];
+		                    whenSelectedItemChangedDo: [ :model |
+			                    self actionExample: model ];
+		                    yourself.
+		self initializeExamples 
+]
+
+{ #category : #accessing }
+PyramidSearchAndSelectPresenter >> inspectButton [
+
+	^ inspectButton
+]
+
+{ #category : #accessing }
+PyramidSearchAndSelectPresenter >> selectButton [
+
+	^ selectButton
+]
+
+{ #category : #accessing }
+PyramidSearchAndSelectPresenter >> treeRadioButton [
+
+	^ treeRadioButton
+]
+
+{ #category : #accessing }
+PyramidSearchAndSelectPresenter >> unselectButton [
+
+	^ unselectButton
+]

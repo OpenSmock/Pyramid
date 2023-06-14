@@ -14,14 +14,6 @@ Class {
 }
 
 { #category : #'as yet unclassified' }
-PyramidSPEMakeSelection >> accumulateChildrenOf: aBlElement in: aCollection [
-
-	aCollection add: aBlElement.
-	aBlElement childrenDo: [ :each |
-		self accumulateChildrenOf: each in: aCollection ].
-]
-
-{ #category : #'as yet unclassified' }
 PyramidSPEMakeSelection >> activeProject [
 
 	^ activeProject
@@ -35,10 +27,8 @@ PyramidSPEMakeSelection >> activeProject: anObject [
 { #category : #'as yet unclassified' }
 PyramidSPEMakeSelection >> allElementsInGraph [
 
-	| ret |
-	ret := OrderedCollection new.
-	self rootElement childrenDo: [ :each | self accumulateChildrenOf: each in: ret. ].
-	^ ret
+	^ PyramidTreeToFlat flattenChildrenOfCollection: self rootElement children.
+	
 ]
 
 { #category : #accessing }

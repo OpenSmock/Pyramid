@@ -7,7 +7,8 @@ Class {
 		'tree',
 		'roots',
 		'activeProject',
-		'shouldChangeSelection'
+		'shouldChangeSelection',
+		'searchAndSelect'
 	],
 	#category : #'Pyramid-Bloc-plugin-tree'
 }
@@ -36,6 +37,7 @@ PyramidTreeView >> activeProject: aPyramidActiveProject [
 
 	activeProject := aPyramidActiveProject.
 	activeProject addObserver: self.
+	self searchAndSelect activeProject: aPyramidActiveProject.
 	self updateRoots
 ]
 
@@ -118,7 +120,8 @@ PyramidTreeView >> currentSelection [
 PyramidTreeView >> defaultLayout [
 
 	^ SpBoxLayout newVertical
-		  add: #tree expand: true;
+		  add: self searchAndSelect height: 160;
+		  add: self tree expand: true;
 		  yourself
 ]
 
@@ -126,6 +129,7 @@ PyramidTreeView >> defaultLayout [
 PyramidTreeView >> initializePresenters [
 
 	shouldChangeSelection := true.
+	searchAndSelect := PyramidSearchAndSelectPresenter new.
 	tree := self newTreeTable.
 
 	tree whenSelectionChangedDo: [ :newSelection |
@@ -145,8 +149,8 @@ PyramidTreeView >> initializePresenters [
 	tree acceptDrop: true.
 	tree wantsDrop: [ :transfert |
 		self validatedrop: transfert passenger ].
-	tree acceptDrop: [ :transfert | 
-		self acceptDrop: transfert passenger on: transfert target].
+	tree acceptDrop: [ :transfert |
+		self acceptDrop: transfert passenger on: transfert target ].
 
 	self columns do: [ :each | tree addColumn: each ]
 ]
@@ -167,6 +171,12 @@ PyramidTreeView >> pyramidPipelineTerminateCommand [
 PyramidTreeView >> pyramidRootsChangedOnActiveProject [
 
 	self updateTree
+]
+
+{ #category : #accessing }
+PyramidTreeView >> searchAndSelect [
+
+	^ searchAndSelect
 ]
 
 { #category : #accessing }
