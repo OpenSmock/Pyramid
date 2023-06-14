@@ -32,10 +32,12 @@ PyramidSPEShowSelection >> initialize [
 		        yourself.
 
 	showSelectionOverlay := PyramidOverlay new
-		                        position: 101;
+		                        position: 200;
 		                        element: root;
 		                        whenReceiveDo: [
 			                        rootSelectionElement := BlElement new
+				                                                clipChildren:
+					                                                false;
 				                                                id:
 					                                                #show_selection_elements;
 				                                                constraintsDo: [
@@ -56,35 +58,61 @@ PyramidSPEShowSelection >> installOnSpacePlugin: aSpacePlugin [
 ]
 
 { #category : #'as yet unclassified' }
+PyramidSPEShowSelection >> makeEmptySelectionElement [
+
+	^ BlElement new
+		  border: (BlBorderBuilder new
+				   width: 1;
+				   paint: Color black;
+				   build);
+		  clipChildren: false;
+		  addChild: (BlElement new
+				   clipChildren: false;
+				   constraintsDo: [ :c |
+					   c vertical matchParent.
+					   c horizontal matchParent ];
+				   border: (BlBorderBuilder new
+						    width: 1;
+						    paint: Color white;
+						    capButt;
+						    dashArray: #( 3 3 );
+						    joinBevel;
+						    build);
+				   yourself);
+		  yourself
+]
+
+{ #category : #'as yet unclassified' }
+PyramidSPEShowSelection >> makeRootSelectionElement [
+
+	self rootSelectionElement ifNotNil: [
+		self showSelectionOverlay element removeChild: rootSelectionElement ].
+	rootSelectionElement := BlElement new
+		                        clipChildren: false;
+		                        id: #show_selection_elements;
+		                        constraintsDo: [ :c |
+			                        c horizontal matchParent.
+			                        c vertical matchParent ];
+		                        yourself.
+	self showSelectionOverlay element addChild: rootSelectionElement
+]
+
+{ #category : #'as yet unclassified' }
 PyramidSPEShowSelection >> makeSelectionFor: anElement [
 
-	| element aBoundsInLocal aBoundsInParent |
+	| element aBoundsInLocal aBoundsInGlobal offset |
+	offset := 10.
 	anElement requestParentLayout.
 	aBoundsInLocal := (anElement effectBounds: BlBounds new)
 		                  merge: anElement boundsInLocal;
 		                  merge: anElement visualBounds.
 
-	aBoundsInParent := anElement localBoundsToParent: aBoundsInLocal copy.
-	element := BlElement new.
-	element border: (BlBorderBuilder new
-			 width: 2;
-			 paint: Color black;
-			 build).
-	element outskirts: BlOutskirts outside.
-	element size: aBoundsInParent extent.
-	element clipChildren: false.
-	element position: aBoundsInParent origin.
-	element addChild: (BlElement new
-			 size: aBoundsInParent extent;
-			 outskirts: BlOutskirts outside;
-			 border: (BlBorderBuilder new
-					  width: 2;
-					  paint: Color white;
-					  capButt;
-					  dashArray: #( 3 3 );
-					  joinBevel;
-					  build);
-			 yourself).
+	aBoundsInGlobal := anElement localBoundsToGlobal: aBoundsInLocal copy.
+	element := self makeEmptySelectionElement.
+	element size: aBoundsInGlobal extent + (offset * 2) asPoint.
+	element position:
+		aBoundsInGlobal origin - self rootSelectionElement positionInSpace
+		- offset asPoint.
 	^ element
 ]
 
@@ -126,6 +154,7 @@ PyramidSPEShowSelection >> showSelectionOverlay [
 { #category : #'as yet unclassified' }
 PyramidSPEShowSelection >> updateRootSelectionElement [
 
-	self rootSelectionElement removeChildren.
-	self selection elements do: [ :each | self rootSelectionElement addChild: (self makeSelectionFor: each) ]
+	self makeRootSelectionElement.
+	self selection elements do: [ :each |
+		self rootSelectionElement addChild: (self makeSelectionFor: each) ]
 ]

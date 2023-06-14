@@ -111,7 +111,7 @@ PyramidSPEMakeSelection >> initialize [
 
 	isDragging := false.
 	selectionElement := self defaultSelectionElement.
-	self initializeElementEventCatcher
+	self initializeElementEventCatcher.
 ]
 
 { #category : #initialization }
@@ -177,7 +177,7 @@ PyramidSPEMakeSelection >> selectElementsInBounds: aBound [
 
 	| selectedElements |
 	selectedElements := self allElementsInGraph select: [ :each |
-		                    aBound intersects: each boundsInSpace ].
+		                    aBound containsRect: each boundsInSpace ].
 	(self activeProject selection isEmpty and: [
 		 selectedElements isEmpty ]) ifTrue: [ ^ self ].
 	(self activeProject selection size = selectedElements size and: [
