@@ -5,6 +5,25 @@ Class {
 }
 
 { #category : #'as yet unclassified' }
+PyramidDynamicLayoutStrategy class >> proportion [
+
+	^ 1 / 6
+]
+
+{ #category : #'as yet unclassified' }
+PyramidDynamicLayoutStrategy class >> proportionRight [
+
+	^ self proportion denominator - 1
+	  / self proportion denominator
+]
+
+{ #category : #'as yet unclassified' }
+PyramidDynamicLayoutStrategy class >> proportionRightAndLeft [
+
+	^ self proportion denominator - 2 / (self proportion denominator - 1)
+]
+
+{ #category : #'as yet unclassified' }
 PyramidDynamicLayoutStrategy >> centerLayoutFor: aWindow [
 
 	^ self shouldBeImplemented 

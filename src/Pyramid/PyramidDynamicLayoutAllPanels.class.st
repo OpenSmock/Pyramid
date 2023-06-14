@@ -8,10 +8,10 @@ Class {
 PyramidDynamicLayoutAllPanels >> centerLayoutFor: aWindow [
 
 	^ SpPanedLayout newLeftToRight
-		  positionOfSlider: 1 / 5;
+		  positionOfSlider: self class proportion;
 		  add: (aWindow services at: #tabLeft) presenter;
 		  add: (SpPanedLayout newLeftToRight
-				   positionOfSlider: 3 / 4;
+				   positionOfSlider: self class proportionRightAndLeft;
 				   add: (self spaceAndToolBarFor: aWindow);
 				   add: (aWindow services at: #tabRight) presenter;
 				   yourself);
