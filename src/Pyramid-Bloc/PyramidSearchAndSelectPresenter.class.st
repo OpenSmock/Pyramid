@@ -19,8 +19,10 @@ Class {
 PyramidSearchAndSelectPresenter >> actionExample: aModel [
 
 	aModel isTree
-		ifTrue: [ self treeRadioButton click ]
-		ifFalse: [ self flatRadioButton click ].
+		ifTrue: [
+			self treeRadioButton click ]
+		ifFalse: [
+			self flatRadioButton click ].
 	self codePresenter text: aModel code.
 	self actionSelect
 ]
@@ -28,15 +30,22 @@ PyramidSearchAndSelectPresenter >> actionExample: aModel [
 { #category : #'as yet unclassified' }
 PyramidSearchAndSelectPresenter >> actionInspect [
 
-	self codePresenter doItReceiver inspect
+	self activeProject ifNil: [ ^ self ].
+	self treeRadioButton state
+		ifTrue: [ self codeIsForTree ]
+		ifFalse: [ self codeIsForFlat ].
+	self doit inspect
 ]
 
 { #category : #'as yet unclassified' }
 PyramidSearchAndSelectPresenter >> actionSelect [
 
-	self activeProject ifNil: [ ^self ].
+	self activeProject ifNil: [ ^ self ].
+	self treeRadioButton state
+		ifTrue: [ self codeIsForTree ]
+		ifFalse: [ self codeIsForFlat ].
 	self activeProject selection replaceAll:
-		self codePresenter doItReceiver
+		self doit
 ]
 
 { #category : #'as yet unclassified' }
@@ -109,6 +118,12 @@ PyramidSearchAndSelectPresenter >> defaultLayout [
 				   add: SpNullPresenter new width: 70;
 				   yourself) expand: false;
 		  yourself
+]
+
+{ #category : #'as yet unclassified' }
+PyramidSearchAndSelectPresenter >> doit [
+
+	^ self codePresenter evaluate: self codePresenter text onCompileError: [ ^ {  } ] onError: [ ^ {  } ]. 
 ]
 
 { #category : #accessing }
