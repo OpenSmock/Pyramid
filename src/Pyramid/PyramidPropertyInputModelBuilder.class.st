@@ -24,15 +24,19 @@ PyramidPropertyInputModelBuilder >> build [
 			 sectionName: self sectionName;
 			 applyToAllInput: self makeInput;
 			 yourself).
+	self targetModel targets ifEmpty: [
+		self inputModel shouldDisplay: false.
+		^ self inputModel ].
+	self inputModel shouldDisplay: true.
 	self
 		connectInput: self inputModel applyToAllInput
 		toCollection: self targetModel targets
 		fromModel: self inputModel.
 	self setDefautValueOfGlobalInput: self inputModel applyToAllInput.
 	self targetModel argumentsDict keysAndValuesDo: [ :arguments :targets |
-		self buildStateInputModelFor: targets withArguments: arguments.
-		targets do: [ :single |
-			self buildElementInputModelFor: single withArguments: arguments ] ].
+			self buildStateInputModelFor: targets withArguments: arguments.
+			targets do: [ :single |
+				self buildElementInputModelFor: single withArguments: arguments ] ].
 	^ self inputModel
 ]
 

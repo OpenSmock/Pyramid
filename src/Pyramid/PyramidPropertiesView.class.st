@@ -7,7 +7,8 @@ Class {
 		'properties',
 		'activeProject',
 		'pipeline',
-		'propertyViews'
+		'propertyViews',
+		'propertylayout'
 	],
 	#category : #'Pyramid-properties'
 }
@@ -43,11 +44,13 @@ PyramidPropertiesView >> addProperty: aProperty [
 { #category : #layout }
 PyramidPropertiesView >> defaultLayout [
 
-	| defaultLayout |
-	defaultLayout := SpBoxLayout newVertical
-		                 spacing: 4;
-		                 yourself.
-	^ defaultLayout
+	propertylayout := SpBoxLayout newVertical
+		                  spacing: 4;
+								add: (SpLabelPresenter new label: ''; yourself)
+		                  yourself.
+	^ SpScrollableLayout new
+		  child: propertylayout;
+		  yourself
 ]
 
 { #category : #showing }
@@ -88,10 +91,15 @@ PyramidPropertiesView >> propertyViews: aCollection [
 	propertyViews:= aCollection
 ]
 
+{ #category : #accessing }
+PyramidPropertiesView >> propertylayout [
+^ propertylayout
+]
+
 { #category : #'as yet unclassified' }
 PyramidPropertiesView >> pyramidPipelineTerminateCommand [
 
-	self updatePropertyViews
+	"self updatePropertyViews"
 ]
 
 { #category : #'as yet unclassified' }
@@ -110,9 +118,10 @@ PyramidPropertiesView >> show: aPresenter [
 { #category : #private }
 PyramidPropertiesView >> updateLayout [
 
-	self layout removeAll.
-	self propertyViews do: [ :each | self layout add: each expand: false ].
-	self layout add: SpNullPresenter new expand: true
+	self propertylayout ifNil: [ ^ self ].
+	self propertylayout removeAll.
+	self propertyViews do: [ :each | self propertylayout add: each expand: false ].
+	self propertylayout add: SpNullPresenter new expand: true
 ]
 
 { #category : #'as yet unclassified' }

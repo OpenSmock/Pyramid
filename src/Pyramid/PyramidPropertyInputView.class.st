@@ -131,13 +131,16 @@ PyramidPropertyInputView >> pyramidInputsUpdated [
 	self currentApplyToAllInput:
 		self property inputsModel applyToAllInput.
 
-	self property inputsModel elementInputsSize = 0
-		ifTrue: [ self propertiesView hide: self ]
-		ifFalse: [ self propertiesView show: self ].
+
+	self property inputsModel shouldDisplay
+		ifFalse: [ self propertiesView hide: self ]
+		ifTrue: [ self propertiesView show: self ].
 
 	self property inputsModel elementInputsSize < 2
 		ifTrue: [ self popoverButton enabled: false ]
 		ifFalse: [ self popoverButton enabled: true ].
+
+	popover := PyramidPopoverFactory makeWithPresenter: popoverPresenter relativeTo: popoverButton position: SpPopoverPosition left.
 
 	self popoverPresenter updateLayout
 ]

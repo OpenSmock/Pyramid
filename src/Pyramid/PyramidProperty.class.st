@@ -115,6 +115,11 @@ PyramidProperty >> targetModel [
 
 { #category : #'as yet unclassified' }
 PyramidProperty >> updateTargetModelFrom: aCollection [
+
 	self targetModel reset.
-	aCollection select: [ :each | self command isExecutableBy: each ] thenDo: [ :each | self targetModel at: (self stateOf: each) arguments put: each ]
+
+	aCollection
+		select: [ :each | self command isExecutableBy: each ]
+		thenDo: [ :each |
+			self targetModel at: (self stateOf: each) arguments put: each ]
 ]

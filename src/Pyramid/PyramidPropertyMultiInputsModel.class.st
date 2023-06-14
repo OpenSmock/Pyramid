@@ -5,7 +5,8 @@ Class {
 		'applyToAllInput',
 		'elementInputsModel',
 		'stateInputsModel',
-		'sectionName'
+		'sectionName',
+		'shouldDisplay'
 	],
 	#category : #'Pyramid-properties'
 }
@@ -80,6 +81,18 @@ PyramidPropertyMultiInputsModel >> sectionName [
 { #category : #accessing }
 PyramidPropertyMultiInputsModel >> sectionName: aString [
 	sectionName:=aString
+]
+
+{ #category : #accessing }
+PyramidPropertyMultiInputsModel >> shouldDisplay [
+
+	^ shouldDisplay
+]
+
+{ #category : #accessing }
+PyramidPropertyMultiInputsModel >> shouldDisplay: anObject [
+
+	shouldDisplay := anObject
 ]
 
 { #category : #'as yet unclassified' }
