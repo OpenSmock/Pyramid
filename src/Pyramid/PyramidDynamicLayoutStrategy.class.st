@@ -13,14 +13,13 @@ PyramidDynamicLayoutStrategy class >> proportion [
 { #category : #'as yet unclassified' }
 PyramidDynamicLayoutStrategy class >> proportionRight [
 
-	^ self proportion denominator - 1
-	  / self proportion denominator
+	^ 1 - self proportion
 ]
 
 { #category : #'as yet unclassified' }
 PyramidDynamicLayoutStrategy class >> proportionRightAndLeft [
 
-	^ self proportion denominator - 2 / (self proportion denominator - 1)
+	^ (1 - (2 * self proportion)) / (1 - self proportion)
 ]
 
 { #category : #'as yet unclassified' }

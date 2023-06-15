@@ -4,7 +4,6 @@ Class {
 	#traits : 'TPyramidProjectModel',
 	#classTraits : 'TPyramidProjectModel classTrait',
 	#instVars : [
-		'extensions',
 		'roots',
 		'selection'
 	],
@@ -21,8 +20,6 @@ PyramidProjectModel >> initialize [
 	selection := PyramidSelectionModel new
 		             project: self;
 		             yourself.
-	
-	extensions := OrderedCollection new.
 ]
 
 { #category : #accessing }
