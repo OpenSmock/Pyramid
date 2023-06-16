@@ -79,8 +79,14 @@ PyramidVisualPystonForCly >> build [
 	| buttonEditor buttonOpen |
 	buttonEditor := self buttonEditor.
 	buttonOpen := self buttonOpen.
-	"imageMorph := ImageMorph withForm: blElement exportAsForm.
-	self addMorph: imageMorph fullFrame: LayoutFrame identity."
+	blElement := self getStonFromMethod materializeAsBlElement.
+	blElement isCollection ifTrue: [
+		blElement := BlElement new
+			             addChildren: blElement;
+			             size: 1500 @ 1500;
+			             yourself ].
+	imageMorph := ImageMorph withForm: blElement exportAsForm.
+	self addMorph: imageMorph fullFrame: LayoutFrame identity.
 	self addMorph: buttonEditor.
 	self addMorph: buttonOpen
 ]

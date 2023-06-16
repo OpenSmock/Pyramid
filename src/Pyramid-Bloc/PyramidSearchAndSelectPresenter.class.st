@@ -75,7 +75,7 @@ PyramidSearchAndSelectPresenter >> codeIsForFlat [
 	self codePresenter interactionModel:
 		(SpCodeObjectInteractionModel on:
 			 (PyramidTreeToFlat flattenChildrenOfCollection:
-				  self activeProject roots elements))
+				  self activeProject roots))
 ]
 
 { #category : #accessing }

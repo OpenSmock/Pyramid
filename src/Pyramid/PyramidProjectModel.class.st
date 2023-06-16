@@ -10,38 +10,23 @@ Class {
 	#category : #'Pyramid-models'
 }
 
-{ #category : #initialization }
-PyramidProjectModel >> initialize [
+{ #category : #accessing }
+PyramidProjectModel >> initialize [ 
 
-	roots := PyramidRootsModel new
-		         project: self;
-		         yourself.
-
-	selection := PyramidSelectionModel new
-		             project: self;
-		             yourself.
+	selection := PyramidCollectionWithCallbacks new.
+	roots := PyramidCollectionWithCallbacks new.
+	
+	selection subscribe: self withCallback: [ self informSelectionChanged ].
+	roots subscribe: self withCallback: [ self informRootsChanged ].
 ]
 
 { #category : #accessing }
 PyramidProjectModel >> roots [
-
-	^ roots collection
-]
-
-{ #category : #'event handling' }
-PyramidProjectModel >> rootsChanged [
-
-	self informRootsChanged
+^ roots
 ]
 
 { #category : #accessing }
 PyramidProjectModel >> selection [
 
-	^ selection collection
-]
-
-{ #category : #'event handling' }
-PyramidProjectModel >> selectionChanged [
-
-	self informSelectionChanged
+	^ selection
 ]

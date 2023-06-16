@@ -1,8 +1,8 @@
 Class {
 	#name : #PyramidOverlaysManager,
 	#superclass : #Object,
-	#traits : 'TPyramidOverlayObserver + TPyramidActiveProjectModelObserver',
-	#classTraits : 'TPyramidOverlayObserver classTrait + TPyramidActiveProjectModelObserver classTrait',
+	#traits : 'TPyramidOverlayObserver + TPyramidProjectModelObserver',
+	#classTraits : 'TPyramidOverlayObserver classTrait + TPyramidProjectModelObserver classTrait',
 	#instVars : [
 		'overlays',
 		'space',
@@ -84,10 +84,10 @@ PyramidOverlaysManager >> overlays: aCollection [
 ]
 
 { #category : #'as yet unclassified' }
-PyramidOverlaysManager >> pyramidRootsChangedOnActiveProject [
+PyramidOverlaysManager >> pyramidRootsChanged [
 
 	self rootElement removeChildren.
-	self rootElement addChildren: self activeProject roots elements
+	self rootElement addChildren: self activeProject roots
 ]
 
 { #category : #'as yet unclassified' }

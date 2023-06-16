@@ -1,8 +1,8 @@
 Class {
 	#name : #PyramidSavePlugin,
 	#superclass : #Object,
-	#traits : 'TPyramidPlugin + TPyramidActiveProjectModelObserver',
-	#classTraits : 'TPyramidPlugin classTrait + TPyramidActiveProjectModelObserver classTrait',
+	#traits : 'TPyramidPlugin',
+	#classTraits : 'TPyramidPlugin classTrait',
 	#instVars : [
 		'inputsController',
 		'inputsView',
@@ -45,8 +45,7 @@ PyramidSavePlugin >> activeProject [ ^activeProject
 PyramidSavePlugin >> activeProject: anObject [
 
 	activeProject := anObject.
-	self saveModel project: activeProject project.
-	activeProject addObserver: self.
+	self saveModel project: activeProject.
 	self inputsController updateView
 ]
 
@@ -119,12 +118,6 @@ PyramidSavePlugin >> openOn: aSaveModel [
 	self inputsView inputClass text: aSaveModel savingClassName.
 	self inputsView inputMethod text: aSaveModel savingMethodName.
 	self inputsView inputPackage text: aSaveModel savingPackageName
-]
-
-{ #category : #'as yet unclassified' }
-PyramidSavePlugin >> pyramidActiveProjectChanged [
-
-	self saveModel project: self activeProject project
 ]
 
 { #category : #actions }

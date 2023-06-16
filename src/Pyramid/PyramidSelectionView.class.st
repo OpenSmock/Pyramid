@@ -1,8 +1,8 @@
 Class {
 	#name : #PyramidSelectionView,
 	#superclass : #SpPresenter,
-	#traits : 'TPyramidActiveProjectModelObserver',
-	#classTraits : 'TPyramidActiveProjectModelObserver classTrait',
+	#traits : 'TPyramidProjectModelObserver',
+	#classTraits : 'TPyramidProjectModelObserver classTrait',
 	#instVars : [
 		'activeProject',
 		'list',
@@ -36,7 +36,7 @@ PyramidSelectionView >> connectPlaygroundTo: anObject [
 { #category : #'as yet unclassified' }
 PyramidSelectionView >> currentSelection [
 
-	^ self activeProject selection elements
+	^ self activeProject selection
 ]
 
 { #category : #layout }
@@ -66,13 +66,7 @@ PyramidSelectionView >> playground [
 ]
 
 { #category : #'as yet unclassified' }
-PyramidSelectionView >> pyramidActiveProjectChangedChanged [
-
-	self updateSelection
-]
-
-{ #category : #'as yet unclassified' }
-PyramidSelectionView >> pyramidSelectionChangedOnActiveProject [
+PyramidSelectionView >> pyramidSelectionChanged [
 
 	self updateSelection
 ]

@@ -52,15 +52,6 @@ PyramidCollectionWithCallbacksTest >> testAddAll [
 ]
 
 { #category : #tests }
-PyramidCollectionWithCallbacksTest >> testNew [
-
-	self assert: PyramidCollectionWithCallbacks new collection class equals: OrderedCollection.
-	self assert: (PyramidCollectionWithCallbacks new: Bag) collection class equals: Bag.
-	self assert: (PyramidCollectionWithCallbacks new: Set) collection class equals: Set.
-	self assert: (PyramidCollectionWithCallbacks new: Dictionary) collection class equals: Dictionary.
-]
-
-{ #category : #tests }
 PyramidCollectionWithCallbacksTest >> testRemove [
 
 	self assert: self valueToCheck equals: 0.

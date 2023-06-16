@@ -1,8 +1,8 @@
 Class {
 	#name : #PyramidSPEShowSelection,
 	#superclass : #PyramidSpacePluginExtension,
-	#traits : 'TPyramidActiveProjectModelObserver + TPyramidPipelineObserver',
-	#classTraits : 'TPyramidActiveProjectModelObserver classTrait + TPyramidPipelineObserver classTrait',
+	#traits : 'TPyramidProjectModelObserver + TPyramidPipelineObserver',
+	#classTraits : 'TPyramidProjectModelObserver classTrait + TPyramidPipelineObserver classTrait',
 	#instVars : [
 		'rootSelectionElement',
 		'showSelectionOverlay',
@@ -123,7 +123,7 @@ PyramidSPEShowSelection >> pyramidPipelineExecuteCommand [
 ]
 
 { #category : #'as yet unclassified' }
-PyramidSPEShowSelection >> pyramidSelectionChangedOnActiveProject [
+PyramidSPEShowSelection >> pyramidSelectionChanged [
 
 	self updateRootSelectionElement
 ]
@@ -155,6 +155,6 @@ PyramidSPEShowSelection >> showSelectionOverlay [
 PyramidSPEShowSelection >> updateRootSelectionElement [
 
 	self makeRootSelectionElement.
-	self selection elements do: [ :each |
+	self selection do: [ :each |
 		self rootSelectionElement addChild: (self makeSelectionFor: each) ]
 ]

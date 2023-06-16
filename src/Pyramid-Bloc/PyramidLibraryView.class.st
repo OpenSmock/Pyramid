@@ -29,7 +29,7 @@ PyramidLibraryView >> addOnSelection [
 	self editor activeProject roots isEmpty ifTrue: [ self addOnRoot. ^ self ].
 	self editor activeProject selection do: [ :each |
 		each addChild: self list selectedItem blockMaker value ].
-	self editor activeProject roots informCollectionChanged
+	self editor activeProject informRootsChanged
 ]
 
 { #category : #accessing }

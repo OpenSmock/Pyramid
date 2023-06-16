@@ -1,8 +1,8 @@
 Class {
 	#name : #PyramidPropertiesView,
 	#superclass : #SpPresenter,
-	#traits : 'TPyramidActiveProjectModelObserver + TPyramidPipelineObserver',
-	#classTraits : 'TPyramidActiveProjectModelObserver classTrait + TPyramidPipelineObserver classTrait',
+	#traits : 'TPyramidProjectModelObserver + TPyramidPipelineObserver',
+	#classTraits : 'TPyramidProjectModelObserver classTrait + TPyramidPipelineObserver classTrait',
 	#instVars : [
 		'properties',
 		'activeProject',
@@ -102,7 +102,7 @@ PyramidPropertiesView >> pyramidPipelineTerminateCommand [
 ]
 
 { #category : #'as yet unclassified' }
-PyramidPropertiesView >> pyramidSelectionChangedOnActiveProject [
+PyramidPropertiesView >> pyramidSelectionChanged [
 
 	self updatePropertyViews
 ]
@@ -128,6 +128,6 @@ PyramidPropertiesView >> updatePropertyViews [
 
 	self propertyViews do: [ :each | each hidePopover ].
 	self properties do: [ :property |
-		property makeNewInputsFor: self activeProject selection elements ].
+		property makeNewInputsFor: self activeProject selection ].
 	self updateLayout
 ]

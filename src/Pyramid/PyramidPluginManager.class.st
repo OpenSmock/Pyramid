@@ -54,7 +54,7 @@ PyramidPluginManager >> initialize [
 PyramidPluginManager >> makeEditor [
 
 	^ PyramidEditorBuilder new
-		  plugins: (self plugins collect: [ :class | class new ]);
+		  plugins: (self pluginClasses collect: [ :class | class new ]);
 		  build
 ]
 

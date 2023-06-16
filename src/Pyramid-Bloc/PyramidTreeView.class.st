@@ -1,8 +1,8 @@
 Class {
 	#name : #PyramidTreeView,
 	#superclass : #SpPresenter,
-	#traits : 'TPyramidActiveProjectModelObserver + TPyramidPipelineObserver',
-	#classTraits : 'TPyramidActiveProjectModelObserver classTrait + TPyramidPipelineObserver classTrait',
+	#traits : 'TPyramidProjectModelObserver + TPyramidPipelineObserver',
+	#classTraits : 'TPyramidProjectModelObserver classTrait + TPyramidPipelineObserver classTrait',
 	#instVars : [
 		'tree',
 		'roots',
@@ -28,7 +28,6 @@ PyramidTreeView >> acceptDrop: aCollection on: aTarget [
 { #category : #accessing }
 PyramidTreeView >> activeProject [
 
-	activeProject ifNil: [ activeProject := PyramidNilPrjectModel new. ].
 	^ activeProject
 ]
 
@@ -107,13 +106,13 @@ PyramidTreeView >> contextMenu [
 { #category : #accessing }
 PyramidTreeView >> currentRoots [
 
-	^ self activeProject roots elements
+	^ self activeProject roots
 ]
 
 { #category : #accessing }
 PyramidTreeView >> currentSelection [
 
-	^ self activeProject selection elements
+	^ self activeProject selection
 ]
 
 { #category : #layout }
@@ -133,10 +132,11 @@ PyramidTreeView >> initializePresenters [
 	tree := self newTreeTable.
 
 	tree whenSelectionChangedDo: [ :newSelection |
-		self activeProject removeObserver: self.
+		self activeProject ifNotNil: [ self activeProject removeObserver: self.
 		self shouldChangeSelection ifTrue: [
 			self activeProject selection replaceAll: newSelection selectedItems ].
 		self activeProject addObserver: self ].
+		 ].
 
 	tree
 		beMultipleSelection;
@@ -156,19 +156,13 @@ PyramidTreeView >> initializePresenters [
 ]
 
 { #category : #'as yet unclassified' }
-PyramidTreeView >> pyramidActiveProjectChangedChanged [
-
-	self updateRoots
-]
-
-{ #category : #'as yet unclassified' }
 PyramidTreeView >> pyramidPipelineTerminateCommand [
 
 	self updateTree
 ]
 
 { #category : #'as yet unclassified' }
-PyramidTreeView >> pyramidRootsChangedOnActiveProject [
+PyramidTreeView >> pyramidRootsChanged [
 
 	self updateTree
 ]
@@ -198,7 +192,7 @@ PyramidTreeView >> tree [
 { #category : #accessing }
 PyramidTreeView >> updateRoots [
 
-	self tree roots: self currentRoots
+	self tree roots: self currentRoots asArray
 ]
 
 { #category : #accessing }
@@ -210,12 +204,10 @@ PyramidTreeView >> updateSelection [
 { #category : #accessing }
 PyramidTreeView >> updateTree [
 
-	self activeProject selection lock.
 	self shouldChangeSelection: false.
 	self updateRoots.
 	self updateSelection.
 		self shouldChangeSelection: true.
-	self activeProject selection unlock
 ]
 
 { #category : #'as yet unclassified' }

@@ -1,24 +1,12 @@
 Class {
 	#name : #PyramidCollectionWithCallbacks,
-	#superclass : #Collection,
+	#superclass : #SequenceableCollection,
 	#instVars : [
 		'collection',
 		'subscriptions'
 	],
 	#category : #'Pyramid-models'
 }
-
-{ #category : #'instance creation' }
-PyramidCollectionWithCallbacks class >> new [
-
-	^ self new: OrderedCollection
-]
-
-{ #category : #'instance creation' }
-PyramidCollectionWithCallbacks class >> new: aCollectionClass [
-
-	^ self basicNew initialize: aCollectionClass
-]
 
 { #category : #adding }
 PyramidCollectionWithCallbacks >> add: newObject [
@@ -40,6 +28,12 @@ PyramidCollectionWithCallbacks >> addAll: newObjects [
 ]
 
 { #category : #accessing }
+PyramidCollectionWithCallbacks >> at: anInteger [
+
+	^ self collection at: anInteger
+]
+
+{ #category : #accessing }
 PyramidCollectionWithCallbacks >> collection [
 
 	^ collection
@@ -52,9 +46,9 @@ PyramidCollectionWithCallbacks >> do: aBlock [
 ]
 
 { #category : #initialization }
-PyramidCollectionWithCallbacks >> initialize: aClass [
+PyramidCollectionWithCallbacks >> initialize [
 
-	collection := aClass new.
+	collection := OrderedCollection new.
 	subscriptions := Dictionary new
 ]
 
@@ -113,6 +107,12 @@ PyramidCollectionWithCallbacks >> replaceAll: newObjects [
 PyramidCollectionWithCallbacks >> signalChanged [
 
 	self subscriptions do: [ :callback | callback value ]
+]
+
+{ #category : #accessing }
+PyramidCollectionWithCallbacks >> size [ 
+
+^ self collection size
 ]
 
 { #category : #'as yet unclassified' }

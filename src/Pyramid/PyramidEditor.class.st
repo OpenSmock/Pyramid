@@ -26,10 +26,9 @@ PyramidEditor >> commandPipeline [
 { #category : #'as yet unclassified' }
 PyramidEditor >> initialize [
 
-	activeProject := PyramidActiveProjectModel new.
+	activeProject := PyramidProjectModel new.
 	commandPipeline := PyramidPipeline new.
-	properties := PyramidPropertiesView
-		              new
+	properties := PyramidPropertiesView new
 		              pipeline: commandPipeline;
 		              activeProject: activeProject;
 		              yourself.
