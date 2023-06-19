@@ -193,6 +193,30 @@ PyramidPropertyInputModelBuilderFactory class >> positionInput [
 ]
 
 { #category : #'as yet unclassified' }
+PyramidPropertyInputModelBuilderFactory class >> textForeground [
+
+	^ self new
+		  sectionName: 'Text foreground';
+		  inputClass: PyramidBackgroundInputSolidColor;
+		  initializeBlock: [ :input |  ];
+		  mutliValuesDefault: '# mixed values';
+		  noValueDefault: '# no values';
+		  transformInBlock: [ :input :value |
+			  | collection |
+			  collection := value select: [ :each |
+					                each isKindOf: BlTextForegroundAttribute ].
+			  collection
+				  ifNotEmpty: [ input defaultColor: collection first paint ]
+				  ifEmpty: [ input defaultColor: Color black ] ];
+		  transformOutBlock: [ :input |
+			  BlTextForegroundAttribute color: input color ];
+		  triggerBlockStrategy: (PyramidOneArgTrigger new
+				   selector: #whenSubmitDo:;
+				   yourself);
+		  yourself
+]
+
+{ #category : #'as yet unclassified' }
 PyramidPropertyInputModelBuilderFactory class >> textInput [
 
 	^ self new
@@ -203,6 +227,30 @@ PyramidPropertyInputModelBuilderFactory class >> textInput [
 		  noValueDefault: '# no values';
 		  transformInBlock: [ :input :value | input text: value asString ];
 		  transformOutBlock: [ :input | input text asRopedText ];
+		  triggerBlockStrategy: (PyramidOneArgTrigger new
+				   selector: #whenSubmitDo:;
+				   yourself);
+		  yourself
+]
+
+{ #category : #'as yet unclassified' }
+PyramidPropertyInputModelBuilderFactory class >> textSpacing [
+
+	^ self new
+		  sectionName: 'Text spacing';
+		  inputClass: PyramidNumberPresenter;
+		  initializeBlock: [ :input |  ];
+		  mutliValuesDefault: '# mixed values';
+		  noValueDefault: '# no values';
+		  transformInBlock: [ :input :value |
+			  | collection |
+			  collection := value select: [ :each |
+					                each isKindOf: BlTextSpacingAttribute ].
+			  collection
+				  ifNotEmpty: [ input number: collection first spacing ]
+				  ifEmpty: [ input number: nil ] ];
+		  transformOutBlock: [ :input |
+			  BlTextSpacingAttribute spacing: input number ];
 		  triggerBlockStrategy: (PyramidOneArgTrigger new
 				   selector: #whenSubmitDo:;
 				   yourself);

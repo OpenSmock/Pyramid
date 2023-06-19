@@ -77,6 +77,7 @@ PyramidBlocProperties class >> identifier [
 { #category : #'class initialization' }
 PyramidBlocProperties class >> initialize [
 
+	PyramidPluginManager uniqueInstance removePlugin: self.
 	PyramidPluginManager uniqueInstance addPlugin: self
 ]
 
@@ -100,6 +101,24 @@ PyramidBlocProperties class >> text [
 ]
 
 { #category : #accessing }
+PyramidBlocProperties class >> textForeground [
+
+	^ PyramidProperty
+		  fromCommand: PyramidBlocCommand textAttribute
+		  inputBuilder: PyramidPropertyInputModelBuilderFactory textForeground
+		  order: 12
+]
+
+{ #category : #accessing }
+PyramidBlocProperties class >> textSpacing [
+
+	^ PyramidProperty
+		  fromCommand: PyramidBlocCommand textAttribute
+		  inputBuilder: PyramidPropertyInputModelBuilderFactory textSpacing
+		  order: 2
+]
+
+{ #category : #accessing }
 PyramidBlocProperties class >> visibility [
 
 	^ PyramidProperty
@@ -117,12 +136,15 @@ PyramidBlocProperties >> connectOn: aPyramidEditor [
 	aPyramidEditor properties addProperty: self class background.
 	aPyramidEditor properties addProperty: self class geometry.
 	aPyramidEditor properties addProperty: self class position.
+	aPyramidEditor properties addProperty: self class contraintsVertical.
+	aPyramidEditor properties addProperty:
+		self class contraintsHorizontal.
 	aPyramidEditor properties addProperty: self class fontSize.
 	aPyramidEditor properties addProperty: self class fontWeight.
 	aPyramidEditor properties addProperty: self class text.
-	aPyramidEditor properties addProperty: self class contraintsVertical.
-	aPyramidEditor properties addProperty:
-		self class contraintsHorizontal
+	aPyramidEditor properties addProperty: self class textSpacing.
+	aPyramidEditor properties addProperty: self class textForeground.
+	
 ]
 
 { #category : #'see class side' }

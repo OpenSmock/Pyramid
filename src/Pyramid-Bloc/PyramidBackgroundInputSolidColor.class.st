@@ -5,8 +5,7 @@ Class {
 		'previewPresenter',
 		'colorPickerButton',
 		'textInput',
-		'color',
-		'whenSubmitDo'
+		'color'
 	],
 	#category : #'Pyramid-Bloc-custom-specs-background'
 }
@@ -42,8 +41,9 @@ PyramidBackgroundInputSolidColor >> color [
 { #category : #accessing }
 PyramidBackgroundInputSolidColor >> color: aColor [
 
-	color = aColor ifFalse: [ self submitColor: aColor ].
+	color = aColor ifTrue: [ ^ self ].
 	color := aColor.
+	self submitColor: aColor.
 	self previewPresenter color: aColor.
 	self textInput text: (self hexStringWithAlphaFrom: aColor).
 	self hasUnacceptedEdits: false
@@ -64,6 +64,16 @@ PyramidBackgroundInputSolidColor >> colorPickerAction [
 PyramidBackgroundInputSolidColor >> colorPickerButton [
 
 	^ colorPickerButton
+]
+
+{ #category : #accessing }
+PyramidBackgroundInputSolidColor >> defaultColor: aColor [
+
+	"color = aColor ifTrue: [ ^ self ]."
+	color := aColor.
+	self previewPresenter color: aColor.
+	self textInput text: (self hexStringWithAlphaFrom: aColor).
+	self hasUnacceptedEdits: false
 ]
 
 { #category : #'as yet unclassified' }
@@ -121,13 +131,13 @@ PyramidBackgroundInputSolidColor >> initializePresenters [
 	textInput whenTextChangedDo: [ :text | self changedText: text ].
 
 	previewPresenter := PyramidBackgroundPreviewSolidColor new yourself.
-	self color: self color
+	self defaultColor: self color
 ]
 
 { #category : #accessing }
 PyramidBackgroundInputSolidColor >> paint [
 
-	^ self color
+	^ self color asBlPaint
 ]
 
 { #category : #accessing }
@@ -174,17 +184,4 @@ PyramidBackgroundInputSolidColor >> validateString: aString [
 		  c isDigit or: [
 			  { $a. $b. $c. $d. $e. $f. $A. $B. $C. $D. $E. $F } anySatisfy: [
 				  :any | any = c ] ] ]
-]
-
-{ #category : #accessing }
-PyramidBackgroundInputSolidColor >> whenSubmitDo [
-
-	whenSubmitDo ifNil: [ whenSubmitDo := [ :c | ] ].
-	^ whenSubmitDo
-]
-
-{ #category : #accessing }
-PyramidBackgroundInputSolidColor >> whenSubmitDo: aBloc [
-
-	whenSubmitDo := aBloc
 ]

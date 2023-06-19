@@ -171,7 +171,7 @@ PyramidSPEMakeSelection >> selectElementsInBounds: aBound [
 	(self activeProject selection isEmpty and: [
 		 selectedElements isEmpty ]) ifTrue: [ ^ self ].
 	(self activeProject selection size = selectedElements size and: [
-		 self activeProject selection elements allSatisfy: [ :a |
+		 self activeProject selection allSatisfy: [ :a |
 			 selectedElements anySatisfy: [ :b | b = a ] ] ]) ifTrue: [ ^ self ].
 	self activeProject selection replaceAll: selectedElements
 ]

@@ -63,3 +63,9 @@ PyramidPluginManager >> pluginClasses [
 
 	^ pluginClasses
 ]
+
+{ #category : #adding }
+PyramidPluginManager >> removePlugin: aPluginClass [
+
+	self pluginClasses remove: aPluginClass ifAbsent: [  ]
+]

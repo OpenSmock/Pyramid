@@ -10,5 +10,5 @@ BlColorPaint >> pyramidBackgroundPreview [
 BlColorPaint >> pyramidModalDefaultPaint: aPyramidPaintInput [
 
 	aPyramidPaintInput buttonColor click.
-	aPyramidPaintInput inputSolid color: self color
+	aPyramidPaintInput inputSolid defaultColor: self color
 ]

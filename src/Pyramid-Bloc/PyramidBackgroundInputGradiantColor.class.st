@@ -21,9 +21,9 @@ PyramidBackgroundInputGradiantColor >> addStop: aStop to: aLayout withPrevious: 
 
 	| inputColor inputNumber removeButton |
 	inputColor := PyramidBackgroundInputSolidColor new
-		              color: aStop color;
 		              whenSubmitDo: [ :c |
 			              self updateStopColor: aStop withColor: c ];
+						  color: aStop color;
 		              yourself.
 	inputNumber := SpTextInputFieldPresenter new
 		               text: aStop number asFloat printString;

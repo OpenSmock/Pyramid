@@ -5,7 +5,8 @@ Class {
 		'buttonColor',
 		'buttonGradient',
 		'inputSolid',
-		'inputGradient'
+		'inputGradient',
+		'whenSubmitDo'
 	],
 	#category : #'Pyramid-Bloc-custom-specs-background'
 }
@@ -76,8 +77,8 @@ PyramidBackgroundInputPaint >> initializePresenters [
 	buttonColor whenActivatedDo: [ self updateLayout ].
 	buttonColor whenDeactivatedDo: [ self updateLayout ].
 
-	inputSolid := PyramidBackgroundInputSolidColor new.
-	inputGradient := PyramidBackgroundInputGradiant new
+	inputSolid := PyramidBackgroundInputSolidColor new whenSubmitDo: [:paint | self whenSubmitDo value: paint ]; yourself.
+	inputGradient := PyramidBackgroundInputGradiant new whenSubmitDo: [:paint | self whenSubmitDo value: paint ]; yourself.
 ]
 
 { #category : #accessing }
@@ -112,4 +113,17 @@ PyramidBackgroundInputPaint >> updateLayout [
 	self buttonColor state
 		ifTrue: [ self layout: self defaultLayoutSolid ]
 		ifFalse: [ self layout: self defaultLayoutGradient ]
+]
+
+{ #category : #accessing }
+PyramidBackgroundInputPaint >> whenSubmitDo [
+
+	whenSubmitDo ifNil: [ whenSubmitDo := [ :paint | ] ].
+	^ whenSubmitDo
+]
+
+{ #category : #accessing }
+PyramidBackgroundInputPaint >> whenSubmitDo: aBlock [
+
+	whenSubmitDo:= aBlock
 ]

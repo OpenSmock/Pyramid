@@ -34,7 +34,7 @@ PyramidBackgroundInputGradiant >> initializePresenters [
 
 	modeSelector := PyramidBackgroundInputGradiantMode new.
 	stopsColor := PyramidBackgroundInputGradiantColor new
-		              whenStopsChangedDo: [ self updateLayout ];
+		              whenStopsChangedDo: [ self updateLayout. self whenSubmitDo value: self paint ];
 		              yourself
 ]
 
