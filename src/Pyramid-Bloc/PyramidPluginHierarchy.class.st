@@ -1,5 +1,5 @@
 Class {
-	#name : #PyramidPluginTree,
+	#name : #PyramidPluginHierarchy,
 	#superclass : #Object,
 	#traits : 'TPyramidPlugin',
 	#classTraits : 'TPyramidPlugin classTrait',
@@ -7,17 +7,17 @@ Class {
 		'activeProject',
 		'view'
 	],
-	#category : #'Pyramid-Bloc-plugin-tree'
+	#category : #'Pyramid-Bloc-plugin-hierarchy'
 }
 
 { #category : #initialization }
-PyramidPluginTree class >> initialize [
+PyramidPluginHierarchy class >> initialize [
 
 	PyramidPluginManager uniqueInstance addPlugin: self
 ]
 
 { #category : #adding }
-PyramidPluginTree >> addPanelsOn: aPyramidSimpleWindow [
+PyramidPluginHierarchy >> addPanelsOn: aPyramidSimpleWindow [
 
 	aPyramidSimpleWindow at: #tabLeft addItem: [ :builder |
 		builder
@@ -28,20 +28,20 @@ PyramidPluginTree >> addPanelsOn: aPyramidSimpleWindow [
 ]
 
 { #category : #'as yet unclassified' }
-PyramidPluginTree >> connectOn: aPyramidEditor [
+PyramidPluginHierarchy >> connectOn: aPyramidEditor [
 
-	self view activeProject: aPyramidEditor activeProject.
-	aPyramidEditor commandPipeline addObserver: self view
+	self view connectOn: aPyramidEditor.
+	
 ]
 
 { #category : #initialization }
-PyramidPluginTree >> initialize [
+PyramidPluginHierarchy >> initialize [
 
-		view := PyramidTreeView new
+	view := PyramidHierarchyPresenter new
 ]
 
 { #category : #initialization }
-PyramidPluginTree >> view [
+PyramidPluginHierarchy >> view [
 
 	^ view
 ]

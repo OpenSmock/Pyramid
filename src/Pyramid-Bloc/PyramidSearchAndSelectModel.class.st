@@ -6,7 +6,7 @@ Class {
 		'isTree',
 		'name'
 	],
-	#category : #'Pyramid-Bloc-plugin-tree'
+	#category : #'Pyramid-Bloc-plugin-hierarchy'
 }
 
 { #category : #'as yet unclassified' }

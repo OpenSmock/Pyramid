@@ -12,7 +12,7 @@ Class {
 		'activeProjectRoots',
 		'activeProject'
 	],
-	#category : #'Pyramid-Bloc-plugin-tree'
+	#category : #'Pyramid-Bloc-plugin-hierarchy'
 }
 
 { #category : #'as yet unclassified' }
