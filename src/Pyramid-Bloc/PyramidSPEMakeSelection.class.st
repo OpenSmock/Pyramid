@@ -65,9 +65,9 @@ PyramidSPEMakeSelection >> doubleClickEvent: event [
 	| selectedElements |
 	selectedElements := self allElementsInGraph select: [ :each |
 		                    each boundsInSpace containsPoint: event position ].
-	"(self activeProject selection isEmpty and: [
-		 selectedElements isEmpty ]) ifTrue: [ ^ self ]."
-	self activeProject selection replaceAll: selectedElements
+	"We only keep the last one since it should always be the last to be drawn."
+	selectedElements ifEmpty: [ ^ self ].
+	self activeProject selection replaceAll: { selectedElements last }
 ]
 
 { #category : #'drag and drop' }
