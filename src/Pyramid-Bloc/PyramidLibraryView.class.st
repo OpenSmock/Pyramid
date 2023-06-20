@@ -4,37 +4,27 @@ Class {
 	#instVars : [
 		'list',
 		'preview',
-		'addRootButton',
 		'editor',
-		'addChildButton'
+		'addButton'
 	],
 	#category : #'Pyramid-Bloc-plugin-library'
 }
 
-{ #category : #accessing }
-PyramidLibraryView >> addChildButton [
-
-	^ addChildButton
+{ #category : #initialization }
+PyramidLibraryView >> addButton [
+^ addButton
 ]
 
-{ #category : #adding }
-PyramidLibraryView >> addOnRoot [
+{ #category : #'as yet unclassified' }
+PyramidLibraryView >> buttonAction [
 
-	self editor activeProject roots add: self list selectedItem blockMaker value
+	^ self shouldBeImplemented
 ]
 
-{ #category : #adding }
-PyramidLibraryView >> addOnSelection [
+{ #category : #'as yet unclassified' }
+PyramidLibraryView >> buttonLabel [
 
-	self editor activeProject roots isEmpty ifTrue: [ self addOnRoot. ^ self ].
-	self editor activeProject selection do: [ :each |
-		each addChild: self list selectedItem blockMaker value ].
-	self editor activeProject informRootsChanged
-]
-
-{ #category : #accessing }
-PyramidLibraryView >> addRootButton [
-	^ addRootButton
+	^ self shouldBeImplemented
 ]
 
 { #category : #'as yet unclassified' }
@@ -93,8 +83,7 @@ PyramidLibraryView >> defaultLayout [
 								     add: SpNullPresenter new expand: true;
 								     add: (SpBoxLayout newHorizontal
 										      spacing: 4;
-										      add: self addChildButton;
-										      add: self addRootButton;
+										      add: self addButton;
 										      yourself)
 								     expand: false;
 								     yourself)
@@ -118,20 +107,16 @@ PyramidLibraryView >> editor: aPyramidEditor [
 { #category : #initialization }
 PyramidLibraryView >> initializePresenters [
 
-	addRootButton := SpButtonPresenter new
-		                 label: 'Add as root';
-		                 action: [ self addOnRoot ];
-		                 yourself.
-	addChildButton := SpButtonPresenter new
-		                  label: 'Add as child';
-		                  action: [ self addOnSelection ];
+	addButton := SpButtonPresenter new
+		                  label: self buttonLabel;
+		                  action: [ self buttonAction ];
 		                  yourself.
 	preview := SpImagePresenter new.
 	list := SpListPresenter new
 		        beSingleSelection;
 		        dragEnabled: true;
 		        items: self defaultItemsList;
-				  display: [ :each | each title ];
+		        display: [ :each | each title ];
 		        whenSelectedDo: [ :element |
 			        self updatePreviewWith: element ];
 		        selectFirst;
