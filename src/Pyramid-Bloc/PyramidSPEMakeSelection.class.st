@@ -59,6 +59,17 @@ PyramidSPEMakeSelection >> defaultSelectionElement [
 		  yourself
 ]
 
+{ #category : #'mouse handlers' }
+PyramidSPEMakeSelection >> doubleClickEvent: event [
+
+	| selectedElements |
+	selectedElements := self allElementsInGraph select: [ :each |
+		                    each boundsInSpace containsPoint: event position ].
+	"(self activeProject selection isEmpty and: [
+		 selectedElements isEmpty ]) ifTrue: [ ^ self ]."
+	self activeProject selection replaceAll: selectedElements
+]
+
 { #category : #'drag and drop' }
 PyramidSPEMakeSelection >> dragEvent: evt [
 
@@ -114,6 +125,12 @@ PyramidSPEMakeSelection >> initializeElementEventCatcher [
 			                 c horizontal matchParent ];
 		                 yourself.
 
+	canvasElement
+		when: BlDoubleClickEvent
+		do: [ :evt | self doubleClickEvent: evt ].
+	canvasElement
+		when: BlMouseDownEvent
+		do: [ :evt | self startDragEvent: evt ].
 	canvasElement
 		when: BlMouseDownEvent
 		do: [ :evt | self startDragEvent: evt ].
