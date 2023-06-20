@@ -32,10 +32,13 @@ PyramidHierarchyPresenter >> connectOn: aPyramidEditor [
 { #category : #initialization }
 PyramidHierarchyPresenter >> defaultLayout [
 
-	^ SpBoxLayout newVertical
-		  spacing: 4;
-		  add: self buttonAddRoot expand: false;
-		  add: self tree;
+	^ SpPanedLayout newVertical
+		  positionOfSlider: 2/3;
+		  add: (SpBoxLayout newVertical
+				   spacing: 4;
+				   add: self buttonAddRoot expand: false;
+				   add: self tree;
+				   yourself);
 		  add: self search;
 		  yourself
 ]

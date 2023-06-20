@@ -5,7 +5,6 @@ Class {
 		'unselectButton',
 		'flatRadioButton',
 		'treeRadioButton',
-		'inspectButton',
 		'codePresenter',
 		'selectButton',
 		'examplesDropList',
@@ -83,7 +82,7 @@ PyramidSearchAndSelectPresenter >> codeIsForTree [
 
 	self activeProject ifNil: [ ^ self ].
 	self codePresenter interactionModel:
-		(SpCodeObjectInteractionModel on: self activeProject roots elements)
+		(SpCodeObjectInteractionModel on: self activeProject roots)
 ]
 
 { #category : #accessing }
@@ -100,23 +99,26 @@ PyramidSearchAndSelectPresenter >> defaultLayout [
 		  add: (SpBoxLayout newHorizontal
 				   spacing: 4;
 				   add: self unselectButton;
+				   add: self selectButton;
+				   yourself)
+		  expand: false;
+		add: (SpBoxLayout newHorizontal
+				   spacing: 4;
 				   add: self flatRadioButton;
 				   add: self treeRadioButton;
-				   add: self inspectButton width: 70;
 				   yourself)
 		  expand: false;
 		  add: (SpBoxLayout newHorizontal
 				   spacing: 4;
 				   add: self codePresenter;
-				   add: self selectButton width: 70;
 				   yourself)
 		  expand: true;
 		  add: (SpBoxLayout newHorizontal
 				   spacing: 4;
 				   add: 'Examples' expand: false;
 				   add: self examplesDropList expand: true;
-				   add: SpNullPresenter new width: 70;
-				   yourself) expand: false;
+				   yourself)
+		  expand: false;
 		  yourself
 ]
 
@@ -150,19 +152,15 @@ PyramidSearchAndSelectPresenter >> initializePresenters [
 		                 text: 'self';
 		                 yourself.
 	treeRadioButton := SpRadioButtonPresenter new
-		                   label: 'self is tree';
+		                   label: 'self = tree';
 		                   yourself.
 	flatRadioButton := SpRadioButtonPresenter new
-		                   label: 'self is flat';
+		                   label: 'self = flat';
 		                   yourself.
 	treeRadioButton associatedRadioButtons: { flatRadioButton }.
 	treeRadioButton whenActivatedDo: [ self codeIsForTree ].
 	flatRadioButton whenActivatedDo: [ self codeIsForFlat ].
 
-	inspectButton := SpButtonPresenter new
-		                 label: 'inspect';
-		                 action: [ self actionInspect ];
-		                 yourself.
 	unselectButton := SpButtonPresenter new
 		                  label: 'unselect';
 		                  action: [ self actionUnselect ];
@@ -176,13 +174,7 @@ PyramidSearchAndSelectPresenter >> initializePresenters [
 		                    whenSelectedItemChangedDo: [ :model |
 			                    self actionExample: model ];
 		                    yourself.
-		self initializeExamples 
-]
-
-{ #category : #accessing }
-PyramidSearchAndSelectPresenter >> inspectButton [
-
-	^ inspectButton
+	self initializeExamples
 ]
 
 { #category : #accessing }

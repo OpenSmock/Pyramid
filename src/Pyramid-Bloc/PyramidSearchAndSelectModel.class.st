@@ -43,7 +43,15 @@ PyramidSearchAndSelectModel class >> blTextElement [
 { #category : #accessing }
 PyramidSearchAndSelectModel class >> default [
 
-	^ { self noSelection . self all. self named. self roots. self transparentBackground . self blTextElement . self notVisible . self allChildrenOf }
+	^ {
+		  self all.
+		  self noSelection.
+		self named.
+		  self roots.
+		  self transparentBackground.
+		  self blTextElement.
+		  self notVisible.
+		  self allChildrenOf }
 ]
 
 { #category : #'as yet unclassified' }
