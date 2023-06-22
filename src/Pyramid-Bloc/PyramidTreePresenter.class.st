@@ -5,8 +5,8 @@ Class {
 	#classTraits : 'TPyramidProjectModelObserver classTrait + TPyramidPipelineObserver classTrait',
 	#instVars : [
 		'treePresenter',
-		'project',
-		'shouldUpdateSelection'
+		'shouldUpdateSelection',
+		'editor'
 	],
 	#category : #'Pyramid-Bloc-plugin-hierarchy'
 }
@@ -20,7 +20,7 @@ PyramidTreePresenter >> columns [
 { #category : #accessing }
 PyramidTreePresenter >> connectOn: aPyramidEditor [
 
-	self project: aPyramidEditor activeProject.
+	self editor: aPyramidEditor.
 	aPyramidEditor activeProject addObserver: self.
 	aPyramidEditor commandPipeline addObserver: self
 ]
@@ -37,13 +37,30 @@ PyramidTreePresenter >> contextMenu [
 { #category : #api }
 PyramidTreePresenter >> contextMenuGroups [
 
-	^ { PyramidTreeMenuGroup browseAndInspect: self }
+	^ {
+		  (PyramidTreeMenuGroup browseAndInspect: self).
+		  (PyramidTreeMenuGroup addNewElement: self).
+		(PyramidTreeMenuGroup removeElement: self)
+		 }
 ]
 
 { #category : #layout }
 PyramidTreePresenter >> defaultLayout [
 
 	^ SpBoxLayout newVertical add: self treePresenter; yourself
+]
+
+{ #category : #accessing }
+PyramidTreePresenter >> editor [
+
+	^ editor
+]
+
+{ #category : #accessing }
+PyramidTreePresenter >> editor: anObject [
+
+	editor := anObject.
+	self updateRoots
 ]
 
 { #category : #initialization }
@@ -64,19 +81,6 @@ PyramidTreePresenter >> initializePresenters [
 		expandRoots.
 
 	self columns do: [ :each | treePresenter addColumn: each ]
-]
-
-{ #category : #accessing }
-PyramidTreePresenter >> project [ 
-
-	^ project 
-]
-
-{ #category : #accessing }
-PyramidTreePresenter >> project: anObject [
-
-	project := anObject.
-	self updateRoots
 ]
 
 { #category : #'as yet unclassified' }
@@ -117,18 +121,18 @@ PyramidTreePresenter >> treePresenter [
 { #category : #'as yet unclassified' }
 PyramidTreePresenter >> treeSelectionChanged: aCollection [
 
-	self project ifNil: [ ^ self ].
+	self editor ifNil: [ ^ self ].
 	self shouldUpdateSelection ifFalse: [ ^ self ].
 	self shouldUpdateSelection: false.
-	self project selection replaceAll: aCollection selectedItems.
-	self shouldUpdateSelection: true.
+	self editor activeProject selection replaceAll: aCollection selectedItems.
+	self shouldUpdateSelection: true
 ]
 
 { #category : #accessing }
 PyramidTreePresenter >> updateRoots [
 
 	self shouldUpdateSelection: false.
-	self treePresenter roots: self project roots asArray.
+	self treePresenter roots: self editor activeProject roots asArray.
 	self shouldUpdateSelection: true.
 	self updateSelection
 ]
@@ -136,9 +140,12 @@ PyramidTreePresenter >> updateRoots [
 { #category : #'as yet unclassified' }
 PyramidTreePresenter >> updateSelection [
 
-	self project ifNil: [ ^ self ].
+	self editor activeProject ifNil: [ ^ self ].
 	self shouldUpdateSelection ifFalse: [ ^ self ].
 	self shouldUpdateSelection: false.
-	self project selection ifEmpty: [ self treePresenter unselectAll ] ifNotEmpty: [ self treePresenter selectItems: self project selection. ].
+	self editor activeProject selection
+		ifEmpty: [ self treePresenter unselectAll ]
+		ifNotEmpty: [
+		self treePresenter selectItems: self editor activeProject selection ].
 	self shouldUpdateSelection: true
 ]

@@ -20,6 +20,15 @@ PyramidProjectModel >> initialize [
 	roots subscribe: self withCallback: [ self informRootsChanged ].
 ]
 
+{ #category : #removing }
+PyramidProjectModel >> removeSelection [
+
+	(self selection asArray difference: self roots asArray) do: [ :each |
+		each parent ifNotNil: [ :p | p removeChild: each ] ].
+	self roots removeAllFoundIn: self selection asArray.
+	self selection removeAll
+]
+
 { #category : #accessing }
 PyramidProjectModel >> roots [
 ^ roots

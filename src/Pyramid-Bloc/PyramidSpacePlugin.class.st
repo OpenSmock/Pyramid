@@ -1,11 +1,12 @@
 Class {
 	#name : #PyramidSpacePlugin,
 	#superclass : #Object,
-	#traits : 'TPyramidPlugin',
-	#classTraits : 'TPyramidPlugin classTrait',
+	#traits : 'TPyramidPlugin + TPyramidProjectModelObserver',
+	#classTraits : 'TPyramidPlugin classTrait + TPyramidProjectModelObserver classTrait',
 	#instVars : [
 		'extensions',
-		'overlaysManager'
+		'overlaysManager',
+		'activeProject'
 	],
 	#category : #'Pyramid-Bloc-plugin-space'
 }
@@ -38,40 +39,39 @@ PyramidSpacePlugin class >> initialize [
 	PyramidPluginManager uniqueInstance addPlugin: self
 ]
 
+{ #category : #accessing }
+PyramidSpacePlugin >> activeProject [
+
+	^ activeProject
+]
+
+{ #category : #accessing }
+PyramidSpacePlugin >> activeProject: anObject [
+
+	activeProject := anObject
+]
+
 { #category : #adding }
 PyramidSpacePlugin >> addPanelsOn: aPyramidSimpleWindow [
 
-	self extensions do: [ :each | each addPanelsOn: aPyramidSimpleWindow ].
 	aPyramidSimpleWindow
 		at: #space
 		addItem: [ :builder |
 		builder makePresenter: self makeSpacePresenter ]
 ]
 
-{ #category : #actions }
-PyramidSpacePlugin >> configureBuilder: aPyramidBuilder [
-
-	self extensions do: [ :each | each installOnSpacePlugin: self ].
-	self extensions do: [ :each | each configureBuilder: aPyramidBuilder ].
-]
-
 { #category : #'as yet unclassified' }
 PyramidSpacePlugin >> connectOn: aPyramidEditor [
 
-	self overlaysManager activeProject: aPyramidEditor activeProject.
-	self extensions do: [ :each | each connectOn: aPyramidEditor ].
-]
-
-{ #category : #accessing }
-PyramidSpacePlugin >> extensions [
-^ extensions
+	(self overlaysManager model at: #editor) object: aPyramidEditor.
+	self activeProject: aPyramidEditor activeProject.
+	activeProject addObserver: self
 ]
 
 { #category : #initialization }
 PyramidSpacePlugin >> initialize [
 
-	extensions := self class extensions.
-	overlaysManager := PyramidOverlaysManager new.
+	overlaysManager := NeoPyramidOverlaysManagerFactory editManager
 ]
 
 { #category : #'as yet unclassified' }
@@ -96,4 +96,19 @@ PyramidSpacePlugin >> makeSpacePresenter [
 { #category : #accessing }
 PyramidSpacePlugin >> overlaysManager [
 ^ overlaysManager
+]
+
+{ #category : #'as yet unclassified' }
+PyramidSpacePlugin >> pyramidRootsChanged [
+
+	self updateRoots
+]
+
+{ #category : #accessing }
+PyramidSpacePlugin >> updateRoots [
+
+	| canvas |
+	canvas := self overlaysManager frontLayer overlayElement.
+	canvas removeChildren.
+	canvas addChildren: self activeProject roots
 ]
