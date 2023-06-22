@@ -1,15 +1,15 @@
 Class {
-	#name : #NeoPyramidOverlaysManagerFactory,
+	#name : #PyramidOverlaysManagerFactory,
 	#superclass : #Object,
 	#instVars : [
 		'manager',
 		'model'
 	],
-	#category : #'Pyramid-Bloc-plugin-overlays'
+	#category : #'Pyramid-Bloc-plugin-space'
 }
 
 { #category : #'as yet unclassified' }
-NeoPyramidOverlaysManagerFactory class >> editManager [
+PyramidOverlaysManagerFactory class >> editManager [
 
 	| factory |
 	factory := self new.
@@ -27,19 +27,19 @@ NeoPyramidOverlaysManagerFactory class >> editManager [
 		(factory model at: #keyboardPressed) triggerCallbacks ].
 
 	factory addOverlays: {
-			NeoPyramidOverlayBuilder mousePositionBlock.
-			NeoPyramidOverlayBuilder selectionDisplayBlock.
-			NeoPyramidOverlayBuilder movementWheelEventBlock.
-			NeoPyramidOverlayBuilder movementMouseEventBlock.
-			NeoPyramidOverlayBuilder selectionMakerBlock.
-			NeoPyramidOverlayBuilder movementTransformationBlock.
-			NeoPyramidOverlayBuilder fakeWindowBlock }.
+			PyramidOverlayBuilder mousePositionBlock.
+			PyramidOverlayBuilder selectionDisplayBlock.
+			PyramidOverlayBuilder movementWheelEventBlock.
+			PyramidOverlayBuilder movementMouseEventBlock.
+			PyramidOverlayBuilder selectionMakerBlock.
+			PyramidOverlayBuilder movementTransformationBlock.
+			PyramidOverlayBuilder fakeWindowBlock }.
 
 	^ factory manager
 ]
 
 { #category : #tests }
-NeoPyramidOverlaysManagerFactory class >> testEditManager [
+PyramidOverlaysManagerFactory class >> testEditManager [
 
 	<script>
 	| manager |
@@ -52,14 +52,14 @@ NeoPyramidOverlaysManagerFactory class >> testEditManager [
 ]
 
 { #category : #adding }
-NeoPyramidOverlaysManagerFactory >> addOverlay: aBlockOrAnOverlay [
+PyramidOverlaysManagerFactory >> addOverlay: aBlockOrAnOverlay [
 
 	| overlayBuilder |
 	aBlockOrAnOverlay isBlock ifFalse: [
 		self manager addOverlay: aBlockOrAnOverlay.
 		^ self ].
 
-	overlayBuilder := NeoPyramidOverlayBuilder new
+	overlayBuilder := PyramidOverlayBuilder new
 		                  model: self model;
 		                  yourself.
 	aBlockOrAnOverlay value: overlayBuilder.
@@ -67,34 +67,34 @@ NeoPyramidOverlaysManagerFactory >> addOverlay: aBlockOrAnOverlay [
 ]
 
 { #category : #adding }
-NeoPyramidOverlaysManagerFactory >> addOverlays: aCollection [
+PyramidOverlaysManagerFactory >> addOverlays: aCollection [
 
 	aCollection do: [ :each | self addOverlay: each ]
 ]
 
 { #category : #accessing }
-NeoPyramidOverlaysManagerFactory >> at: aKey put: anObject [
+PyramidOverlaysManagerFactory >> at: aKey put: anObject [
 
 	self model
 		at: aKey
-		put: (NeoPyramidOverlayGlobalModelValue new object: anObject; yourself)
+		put: (PyramidOverlayGlobalModelValue new object: anObject; yourself)
 ]
 
 { #category : #initialization }
-NeoPyramidOverlaysManagerFactory >> initialize [
+PyramidOverlaysManagerFactory >> initialize [
 
-	manager := NeoPyramidOverlaysManager new.
+	manager := PyramidOverlaysManager new.
 	model := Dictionary new.
 	manager model: model
 ]
 
 { #category : #adding }
-NeoPyramidOverlaysManagerFactory >> manager [
+PyramidOverlaysManagerFactory >> manager [
 
 	^ manager
 ]
 
 { #category : #adding }
-NeoPyramidOverlaysManagerFactory >> model [
+PyramidOverlaysManagerFactory >> model [
 	^ model
 ]

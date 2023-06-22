@@ -1,15 +1,15 @@
 Class {
-	#name : #NeoPyramidOverlayBuilder,
+	#name : #PyramidOverlayBuilder,
 	#superclass : #Object,
 	#instVars : [
 		'model',
 		'overlay'
 	],
-	#category : #'Pyramid-Bloc-plugin-overlays'
+	#category : #'Pyramid-Bloc-plugin-space'
 }
 
 { #category : #'as yet unclassified' }
-NeoPyramidOverlayBuilder class >> fakeWindowBlock [
+PyramidOverlayBuilder class >> fakeWindowBlock [
 
 	^ [ :builder |
 	  | windowDisplay |
@@ -34,7 +34,7 @@ NeoPyramidOverlayBuilder class >> fakeWindowBlock [
 ]
 
 { #category : #'as yet unclassified' }
-NeoPyramidOverlayBuilder class >> mousePositionBlock [
+PyramidOverlayBuilder class >> mousePositionBlock [
 
 	^ [ :builder |
 	  | textDisplay rope |
@@ -52,7 +52,7 @@ NeoPyramidOverlayBuilder class >> mousePositionBlock [
 ]
 
 { #category : #'as yet unclassified' }
-NeoPyramidOverlayBuilder class >> movementMouseEventBlock [
+PyramidOverlayBuilder class >> movementMouseEventBlock [
 
 	^ [ :builder |
 	  | isDragging startPosition |
@@ -78,7 +78,7 @@ NeoPyramidOverlayBuilder class >> movementMouseEventBlock [
 ]
 
 { #category : #'as yet unclassified' }
-NeoPyramidOverlayBuilder class >> movementTransformationBlock [
+PyramidOverlayBuilder class >> movementTransformationBlock [
 
 	^ [ :builder |
 	  builder
@@ -94,7 +94,7 @@ NeoPyramidOverlayBuilder class >> movementTransformationBlock [
 ]
 
 { #category : #'as yet unclassified' }
-NeoPyramidOverlayBuilder class >> movementWheelEventBlock [
+PyramidOverlayBuilder class >> movementWheelEventBlock [
 
 	^ [ :builder |
 	  | noKeyPressed shiftKeyPressed |
@@ -125,7 +125,7 @@ NeoPyramidOverlayBuilder class >> movementWheelEventBlock [
 ]
 
 { #category : #'as yet unclassified' }
-NeoPyramidOverlayBuilder class >> selectionDisplayBlock [
+PyramidOverlayBuilder class >> selectionDisplayBlock [
 
 	^ [ :builder |
 	  | controller |
@@ -133,7 +133,7 @@ NeoPyramidOverlayBuilder class >> selectionDisplayBlock [
 		  name: #selectionDisplay;
 		  constraintsMatchParent;
 		  clipChildren: false.
-	  controller := NeoPyramidSelectionDisplayController new
+	  controller := PyramidSelectionDisplayController new
 		                overlay: builder overlay;
 		                origin: (builder model at: #origin);
 		                yourself.
@@ -149,7 +149,7 @@ NeoPyramidOverlayBuilder class >> selectionDisplayBlock [
 ]
 
 { #category : #'as yet unclassified' }
-NeoPyramidOverlayBuilder class >> selectionMakerBlock [
+PyramidOverlayBuilder class >> selectionMakerBlock [
 
 	^ [ :builder |
 	  | controller |
@@ -157,7 +157,7 @@ NeoPyramidOverlayBuilder class >> selectionMakerBlock [
 		  name: #selectionMaker;
 		  constraintsMatchParent;
 		  clipChildren: false.
-	  controller := NeoPyramidSelectionMakerController new
+	  controller := PyramidSelectionMakerController new
 		                overlay: builder overlay;
 		                yourself.
 	  builder
@@ -166,57 +166,57 @@ NeoPyramidOverlayBuilder class >> selectionMakerBlock [
 ]
 
 { #category : #'api - resizer' }
-NeoPyramidOverlayBuilder >> addElement: aBlElement [
+PyramidOverlayBuilder >> addElement: aBlElement [
 
 	self addElement: aBlElement atElevation: 200
 ]
 
 { #category : #'api - resizer' }
-NeoPyramidOverlayBuilder >> addElement: aBlElement atElevation: aNumber [
+PyramidOverlayBuilder >> addElement: aBlElement atElevation: aNumber [
 
 	aBlElement zIndex: aNumber.
 	self overlay overlayElement addChild: aBlElement
 ]
 
 { #category : #'api - resizer' }
-NeoPyramidOverlayBuilder >> addEventWhen: anEventClass do: aBlock [
+PyramidOverlayBuilder >> addEventWhen: anEventClass do: aBlock [
 
 	self overlay overlayElement when: anEventClass do: aBlock
 ]
 
 { #category : #accessing }
-NeoPyramidOverlayBuilder >> at: aKey [
+PyramidOverlayBuilder >> at: aKey [
 
 	^ (self model at: aKey )object
 ]
 
 { #category : #accessing }
-NeoPyramidOverlayBuilder >> at: aKey put: anObject [
+PyramidOverlayBuilder >> at: aKey put: anObject [
 
 	(self model at: aKey) object: anObject
 ]
 
 { #category : #accessing }
-NeoPyramidOverlayBuilder >> at: aKey subscribeWith: aBlock [
+PyramidOverlayBuilder >> at: aKey subscribeWith: aBlock [
 
 		(self model
 		at: aKey) subcribe: self with: aBlock
 ]
 
 { #category : #building }
-NeoPyramidOverlayBuilder >> build [
+PyramidOverlayBuilder >> build [
 
 	^ self overlay
 ]
 
 { #category : #'api - resizer' }
-NeoPyramidOverlayBuilder >> clipChildren: aBoolean [
+PyramidOverlayBuilder >> clipChildren: aBoolean [
 
 	self overlay overlayElement clipChildren: aBoolean
 ]
 
 { #category : #'api - resizer' }
-NeoPyramidOverlayBuilder >> constraintsMatchParent [
+PyramidOverlayBuilder >> constraintsMatchParent [
 
 	self overlay overlayElement constraintsDo: [ :c |
 		c horizontal matchParent.
@@ -224,7 +224,7 @@ NeoPyramidOverlayBuilder >> constraintsMatchParent [
 ]
 
 { #category : #'api - resizer' }
-NeoPyramidOverlayBuilder >> constraintsSize: anExtent [
+PyramidOverlayBuilder >> constraintsSize: anExtent [
 
 	self overlay overlayElement constraintsDo: [ :c |
 		c horizontal exact: anExtent x.
@@ -232,38 +232,38 @@ NeoPyramidOverlayBuilder >> constraintsSize: anExtent [
 ]
 
 { #category : #initialization }
-NeoPyramidOverlayBuilder >> initialize [
+PyramidOverlayBuilder >> initialize [
 
-	overlay := NeoPyramidOverlay new
+	overlay := PyramidOverlay new
 ]
 
 { #category : #accessing }
-NeoPyramidOverlayBuilder >> model [
+PyramidOverlayBuilder >> model [
 
 	^ model
 ]
 
 { #category : #accessing }
-NeoPyramidOverlayBuilder >> model: anObject [
+PyramidOverlayBuilder >> model: anObject [
 
 	model := anObject
 ]
 
 { #category : #accessing }
-NeoPyramidOverlayBuilder >> name: aString [
+PyramidOverlayBuilder >> name: aString [
 
 	self overlay name: aString.
 	self overlay overlayElement id: aString asSymbol
 ]
 
 { #category : #building }
-NeoPyramidOverlayBuilder >> overlay [
+PyramidOverlayBuilder >> overlay [
 
 	^ overlay
 ]
 
 { #category : #'api - resizer' }
-NeoPyramidOverlayBuilder >> position: aPoint [
+PyramidOverlayBuilder >> position: aPoint [
 
 	self overlay overlayElement position: aPoint
 ]

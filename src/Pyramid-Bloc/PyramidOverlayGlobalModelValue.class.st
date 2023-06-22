@@ -1,51 +1,51 @@
 Class {
-	#name : #NeoPyramidOverlayGlobalModelValue,
+	#name : #PyramidOverlayGlobalModelValue,
 	#superclass : #Object,
 	#instVars : [
 		'callbacks',
 		'object'
 	],
-	#category : #'Pyramid-Bloc-plugin-overlays'
+	#category : #'Pyramid-Bloc-plugin-space'
 }
 
 { #category : #accessing }
-NeoPyramidOverlayGlobalModelValue >> callbacks [
+PyramidOverlayGlobalModelValue >> callbacks [
 
 	^ callbacks
 ]
 
 { #category : #initialization }
-NeoPyramidOverlayGlobalModelValue >> initialize [
+PyramidOverlayGlobalModelValue >> initialize [
 
 	callbacks := Dictionary new.
 ]
 
 { #category : #accessing }
-NeoPyramidOverlayGlobalModelValue >> object [
+PyramidOverlayGlobalModelValue >> object [
 
 	^ object
 ]
 
 { #category : #accessing }
-NeoPyramidOverlayGlobalModelValue >> object: anObject [
+PyramidOverlayGlobalModelValue >> object: anObject [
 
 	object := anObject.
 	self triggerCallbacks
 ]
 
 { #category : #'as yet unclassified' }
-NeoPyramidOverlayGlobalModelValue >> subcribe: anObject with: aBlock [
+PyramidOverlayGlobalModelValue >> subcribe: anObject with: aBlock [
 
 	self callbacks at: anObject put: aBlock
 ]
 
 { #category : #accessing }
-NeoPyramidOverlayGlobalModelValue >> triggerCallbacks [
+PyramidOverlayGlobalModelValue >> triggerCallbacks [
 	self callbacks valuesDo: [ :block | block value: self object ]
 ]
 
 { #category : #'as yet unclassified' }
-NeoPyramidOverlayGlobalModelValue >> unsubcribe: anObject [
+PyramidOverlayGlobalModelValue >> unsubcribe: anObject [
 
 	self callbacks remove: anObject
 ]

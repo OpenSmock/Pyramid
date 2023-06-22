@@ -71,7 +71,7 @@ PyramidSpacePlugin >> connectOn: aPyramidEditor [
 { #category : #initialization }
 PyramidSpacePlugin >> initialize [
 
-	overlaysManager := NeoPyramidOverlaysManagerFactory editManager
+	overlaysManager := PyramidOverlaysManagerFactory editManager
 ]
 
 { #category : #'as yet unclassified' }

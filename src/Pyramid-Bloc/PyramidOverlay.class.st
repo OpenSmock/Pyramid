@@ -1,5 +1,5 @@
 Class {
-	#name : #NeoPyramidOverlay,
+	#name : #PyramidOverlay,
 	#superclass : #Object,
 	#instVars : [
 		'overlayElement',
@@ -7,11 +7,11 @@ Class {
 		'name',
 		'model'
 	],
-	#category : #'Pyramid-Bloc-plugin-overlays'
+	#category : #'Pyramid-Bloc-plugin-space'
 }
 
 { #category : #adding }
-NeoPyramidOverlay >> addNextOverlay: aPyramidOverlay [
+PyramidOverlay >> addNextOverlay: aPyramidOverlay [
 
 	self nextOverlay ifNotNil: [ Error signal: 'Overlay currently in use' ].
 	self overlayElement addChild: aPyramidOverlay overlayElement.
@@ -19,7 +19,7 @@ NeoPyramidOverlay >> addNextOverlay: aPyramidOverlay [
 ]
 
 { #category : #initialization }
-NeoPyramidOverlay >> initialize [
+PyramidOverlay >> initialize [
 
 	overlayElement := BlElement new
 		                  zIndex: 100;
@@ -28,55 +28,55 @@ NeoPyramidOverlay >> initialize [
 ]
 
 { #category : #accessing }
-NeoPyramidOverlay >> model [
+PyramidOverlay >> model [
 
 	^ model
 ]
 
 { #category : #accessing }
-NeoPyramidOverlay >> model: anObject [
+PyramidOverlay >> model: anObject [
 
 	model := anObject
 ]
 
 { #category : #accessing }
-NeoPyramidOverlay >> name [
+PyramidOverlay >> name [
 
 	^ name
 ]
 
 { #category : #accessing }
-NeoPyramidOverlay >> name: anObject [
+PyramidOverlay >> name: anObject [
 
 	name := anObject
 ]
 
 { #category : #accessing }
-NeoPyramidOverlay >> nextOverlay [
+PyramidOverlay >> nextOverlay [
 
 	^ nextOverlay
 ]
 
 { #category : #accessing }
-NeoPyramidOverlay >> nextOverlay: anObject [
+PyramidOverlay >> nextOverlay: anObject [
 
 	nextOverlay := anObject
 ]
 
 { #category : #accessing }
-NeoPyramidOverlay >> overlayElement [
+PyramidOverlay >> overlayElement [
 
 	^ overlayElement
 ]
 
 { #category : #accessing }
-NeoPyramidOverlay >> overlayElement: anObject [
+PyramidOverlay >> overlayElement: anObject [
 
 	overlayElement := anObject
 ]
 
 { #category : #adding }
-NeoPyramidOverlay >> removeNextOverlay [
+PyramidOverlay >> removeNextOverlay [
 
 	self nextOverlay ifNil: [ Error signal: 'Overlay currently not in use' ].
 	self overlayElement removeChild: self nextOverlay overlayElement.

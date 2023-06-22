@@ -1,5 +1,5 @@
 Class {
-	#name : #NeoPyramidSelectionDisplayController,
+	#name : #PyramidSelectionDisplayController,
 	#superclass : #Object,
 	#traits : 'TPyramidProjectModelObserver + TPyramidPipelineObserver',
 	#classTraits : 'TPyramidProjectModelObserver classTrait + TPyramidPipelineObserver classTrait',
@@ -9,17 +9,17 @@ Class {
 		'allSelectionPreviews',
 		'origin'
 	],
-	#category : #'Pyramid-Bloc-plugin-overlays'
+	#category : #'Pyramid-Bloc-plugin-space'
 }
 
 { #category : #accessing }
-NeoPyramidSelectionDisplayController >> activeProject [
+PyramidSelectionDisplayController >> activeProject [
 
 	^ activeProject
 ]
 
 { #category : #accessing }
-NeoPyramidSelectionDisplayController >> activeProject: anObject [
+PyramidSelectionDisplayController >> activeProject: anObject [
 
 	activeProject ifNotNil: [ anObject removeObserver: self ].
 	activeProject := anObject.
@@ -27,13 +27,13 @@ NeoPyramidSelectionDisplayController >> activeProject: anObject [
 ]
 
 { #category : #accessing }
-NeoPyramidSelectionDisplayController >> allSelectionPreviews [
+PyramidSelectionDisplayController >> allSelectionPreviews [
 
 	^ allSelectionPreviews
 ]
 
 { #category : #'as yet unclassified' }
-NeoPyramidSelectionDisplayController >> createSelectionPreview: anElement [
+PyramidSelectionDisplayController >> createSelectionPreview: anElement [
 
 	| element offset |
 	offset := 10.
@@ -66,38 +66,38 @@ NeoPyramidSelectionDisplayController >> createSelectionPreview: anElement [
 ]
 
 { #category : #initialization }
-NeoPyramidSelectionDisplayController >> initialize [
+PyramidSelectionDisplayController >> initialize [
 
 	allSelectionPreviews := OrderedCollection new.
 ]
 
 { #category : #accessing }
-NeoPyramidSelectionDisplayController >> origin [
+PyramidSelectionDisplayController >> origin [
 
 	^ origin
 ]
 
 { #category : #accessing }
-NeoPyramidSelectionDisplayController >> origin: anObject [
+PyramidSelectionDisplayController >> origin: anObject [
 
 	origin := anObject.
 ]
 
 { #category : #accessing }
-NeoPyramidSelectionDisplayController >> overlay [
+PyramidSelectionDisplayController >> overlay [
 
 	^ overlay
 ]
 
 { #category : #accessing }
-NeoPyramidSelectionDisplayController >> overlay: anObject [
+PyramidSelectionDisplayController >> overlay: anObject [
 
 	overlay := anObject.
 
 ]
 
 { #category : #accessing }
-NeoPyramidSelectionDisplayController >> pipeline: aPipeline [
+PyramidSelectionDisplayController >> pipeline: aPipeline [
 
 	pipeline ifNotNil: [ pipeline removeObserver: self ].
 	pipeline := aPipeline.
@@ -105,26 +105,26 @@ NeoPyramidSelectionDisplayController >> pipeline: aPipeline [
 ]
 
 { #category : #'as yet unclassified' }
-NeoPyramidSelectionDisplayController >> pyramidPipelineExecuteCommand [
+PyramidSelectionDisplayController >> pyramidPipelineExecuteCommand [
 
 	self updateSelectionPreviews
 ]
 
 { #category : #'as yet unclassified' }
-NeoPyramidSelectionDisplayController >> pyramidSelectionChanged [
+PyramidSelectionDisplayController >> pyramidSelectionChanged [
 
 	self updateSelectionPreviews.
 ]
 
 { #category : #'as yet unclassified' }
-NeoPyramidSelectionDisplayController >> updateOriginPreviews [
+PyramidSelectionDisplayController >> updateOriginPreviews [
 
 	self allSelectionPreviews do: [ :each |
 		each transformDo: [ :t | t translateBy: self origin object ] ]
 ]
 
 { #category : #'as yet unclassified' }
-NeoPyramidSelectionDisplayController >> updateSelectionPreviews [
+PyramidSelectionDisplayController >> updateSelectionPreviews [
 
 	self activeProject ifNil: [ ^ self ].
 

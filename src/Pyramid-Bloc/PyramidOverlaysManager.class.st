@@ -1,5 +1,5 @@
 Class {
-	#name : #NeoPyramidOverlaysManager,
+	#name : #PyramidOverlaysManager,
 	#superclass : #Object,
 	#classTraits : 'TPyramidProjectModelObserver classTrait',
 	#instVars : [
@@ -9,11 +9,11 @@ Class {
 		'space',
 		'spaceLayer'
 	],
-	#category : #'Pyramid-Bloc-plugin-overlays'
+	#category : #'Pyramid-Bloc-plugin-space'
 }
 
 { #category : #adding }
-NeoPyramidOverlaysManager >> addOverlay: anOverlay [
+PyramidOverlaysManager >> addOverlay: anOverlay [
 
 	self uninstallOverlays.
 	self overlays add: anOverlay.
@@ -21,7 +21,7 @@ NeoPyramidOverlaysManager >> addOverlay: anOverlay [
 ]
 
 { #category : #adding }
-NeoPyramidOverlaysManager >> addOverlays: aCollection [
+PyramidOverlaysManager >> addOverlays: aCollection [
 
 	self uninstallOverlays.
 	self overlays addAll: aCollection.
@@ -29,13 +29,13 @@ NeoPyramidOverlaysManager >> addOverlays: aCollection [
 ]
 
 { #category : #accessing }
-NeoPyramidOverlaysManager >> frontLayer [
+PyramidOverlaysManager >> frontLayer [
 
 	^ frontLayer
 ]
 
 { #category : #accessing }
-NeoPyramidOverlaysManager >> frontLayer: anObject [
+PyramidOverlaysManager >> frontLayer: anObject [
 
 	self uninstallOverlays.
 	frontLayer := anObject.
@@ -43,25 +43,25 @@ NeoPyramidOverlaysManager >> frontLayer: anObject [
 ]
 
 { #category : #initialization }
-NeoPyramidOverlaysManager >> initialize [
+PyramidOverlaysManager >> initialize [
 
 	space := BlSpace new.
 
 	overlays := OrderedCollection new.
-	spaceLayer := NeoPyramidOverlay new.
+	spaceLayer := PyramidOverlay new.
 	spaceLayer overlayElement: space root.
 	space root constraintsDo: [ :c |
 		c horizontal matchParent.
 		c vertical matchParent ].
 
-	frontLayer := NeoPyramidOverlay new.
+	frontLayer := PyramidOverlay new.
 	frontLayer overlayElement constraintsDo: [ :c |
 		c horizontal matchParent.
 		c vertical matchParent ]; clipChildren: false
 ]
 
 { #category : #adding }
-NeoPyramidOverlaysManager >> installOverlays [
+PyramidOverlaysManager >> installOverlays [
 
 	self overlays overlappingPairsDo: [ :each :next |
 		each addNextOverlay: next ].
@@ -70,43 +70,43 @@ NeoPyramidOverlaysManager >> installOverlays [
 ]
 
 { #category : #accessing }
-NeoPyramidOverlaysManager >> model [
+PyramidOverlaysManager >> model [
 
 	^ model
 ]
 
 { #category : #accessing }
-NeoPyramidOverlaysManager >> model: anObject [
+PyramidOverlaysManager >> model: anObject [
 
 	model := anObject
 ]
 
 { #category : #accessing }
-NeoPyramidOverlaysManager >> overlays [
+PyramidOverlaysManager >> overlays [
 
 	^ overlays
 ]
 
 { #category : #accessing }
-NeoPyramidOverlaysManager >> overlays: anObject [
+PyramidOverlaysManager >> overlays: anObject [
 
 	overlays := anObject
 ]
 
 { #category : #accessing }
-NeoPyramidOverlaysManager >> space [
+PyramidOverlaysManager >> space [
 
 	^ space
 ]
 
 { #category : #accessing }
-NeoPyramidOverlaysManager >> spaceLayer [
+PyramidOverlaysManager >> spaceLayer [
 
 	^ spaceLayer
 ]
 
 { #category : #accessing }
-NeoPyramidOverlaysManager >> spaceLayer: anObject [
+PyramidOverlaysManager >> spaceLayer: anObject [
 
 	self uninstallOverlays.
 	spaceLayer := anObject.
@@ -114,7 +114,7 @@ NeoPyramidOverlaysManager >> spaceLayer: anObject [
 ]
 
 { #category : #adding }
-NeoPyramidOverlaysManager >> uninstallOverlays [
+PyramidOverlaysManager >> uninstallOverlays [
 
 	self overlays ifEmpty: [ ^ self ].
 	self spaceLayer removeNextOverlay.

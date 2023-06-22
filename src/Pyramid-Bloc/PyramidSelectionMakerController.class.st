@@ -1,5 +1,5 @@
 Class {
-	#name : #NeoPyramidSelectionMakerController,
+	#name : #PyramidSelectionMakerController,
 	#superclass : #Object,
 	#classTraits : 'TPyramidProjectModelObserver classTrait',
 	#instVars : [
@@ -9,23 +9,23 @@ Class {
 		'isDragging',
 		'elementPreview'
 	],
-	#category : #'Pyramid-Bloc-plugin-overlays'
+	#category : #'Pyramid-Bloc-plugin-space'
 }
 
 { #category : #accessing }
-NeoPyramidSelectionMakerController >> activeProject [
+PyramidSelectionMakerController >> activeProject [
 
 	^ activeProject
 ]
 
 { #category : #accessing }
-NeoPyramidSelectionMakerController >> activeProject: anObject [
+PyramidSelectionMakerController >> activeProject: anObject [
 
 	activeProject := anObject.
 ]
 
 { #category : #adding }
-NeoPyramidSelectionMakerController >> addEventsTo: aBlElement [
+PyramidSelectionMakerController >> addEventsTo: aBlElement [
 
 
 	aBlElement when: BlDoubleClickEvent do: [ :evt | self doubleClickEvent: evt ].
@@ -45,7 +45,7 @@ NeoPyramidSelectionMakerController >> addEventsTo: aBlElement [
 ]
 
 { #category : #'as yet unclassified' }
-NeoPyramidSelectionMakerController >> computeNewSelectionInBounds: aBound [
+PyramidSelectionMakerController >> computeNewSelectionInBounds: aBound [
 
 	| allElements selectedElements |
 	self activeProject ifNil: [ ^ self ].
@@ -60,7 +60,7 @@ NeoPyramidSelectionMakerController >> computeNewSelectionInBounds: aBound [
 ]
 
 { #category : #'as yet unclassified' }
-NeoPyramidSelectionMakerController >> doubleClickEvent: anEvent [
+PyramidSelectionMakerController >> doubleClickEvent: anEvent [
 
 	| allElements selectedElements last |
 	self activeProject ifNil: [ ^ self ].
@@ -75,7 +75,7 @@ NeoPyramidSelectionMakerController >> doubleClickEvent: anEvent [
 ]
 
 { #category : #'as yet unclassified' }
-NeoPyramidSelectionMakerController >> dragEvent: aPosition [
+PyramidSelectionMakerController >> dragEvent: aPosition [
 
 	| xmin ymin |
 	xmin := self dragOrigin x min: aPosition x.
@@ -84,25 +84,25 @@ NeoPyramidSelectionMakerController >> dragEvent: aPosition [
 ]
 
 { #category : #accessing }
-NeoPyramidSelectionMakerController >> dragOrigin [
+PyramidSelectionMakerController >> dragOrigin [
 
 	^ dragOrigin
 ]
 
 { #category : #accessing }
-NeoPyramidSelectionMakerController >> dragOrigin: anObject [
+PyramidSelectionMakerController >> dragOrigin: anObject [
 
 	dragOrigin := anObject
 ]
 
 { #category : #accessing }
-NeoPyramidSelectionMakerController >> elementPreview [
+PyramidSelectionMakerController >> elementPreview [
 
 	^ elementPreview
 ]
 
 { #category : #'as yet unclassified' }
-NeoPyramidSelectionMakerController >> endDragEvent [
+PyramidSelectionMakerController >> endDragEvent [
 
 	self elementPreview
 		visibility: BlVisibility gone.
@@ -110,7 +110,7 @@ NeoPyramidSelectionMakerController >> endDragEvent [
 ]
 
 { #category : #initialization }
-NeoPyramidSelectionMakerController >> initialize [
+PyramidSelectionMakerController >> initialize [
 
 	dragOrigin := 0 @ 0.
 	isDragging := false.
@@ -122,25 +122,25 @@ NeoPyramidSelectionMakerController >> initialize [
 ]
 
 { #category : #accessing }
-NeoPyramidSelectionMakerController >> isDragging [
+PyramidSelectionMakerController >> isDragging [
 
 	^ isDragging
 ]
 
 { #category : #accessing }
-NeoPyramidSelectionMakerController >> isDragging: anObject [
+PyramidSelectionMakerController >> isDragging: anObject [
 
 	isDragging := anObject
 ]
 
 { #category : #accessing }
-NeoPyramidSelectionMakerController >> overlay [
+PyramidSelectionMakerController >> overlay [
 
 	^ overlay
 ]
 
 { #category : #accessing }
-NeoPyramidSelectionMakerController >> overlay: anObject [
+PyramidSelectionMakerController >> overlay: anObject [
 
 	overlay := anObject.
 	anObject overlayElement addChild: self elementPreview.
@@ -148,7 +148,7 @@ NeoPyramidSelectionMakerController >> overlay: anObject [
 ]
 
 { #category : #'as yet unclassified' }
-NeoPyramidSelectionMakerController >> startDragEvent [
+PyramidSelectionMakerController >> startDragEvent [
 
 	self elementPreview
 		position: self dragOrigin;
