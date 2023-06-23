@@ -78,7 +78,7 @@ PyramidConstraintsPresenter >> selectorInputs: anObject [
 { #category : #'as yet unclassified' }
 PyramidConstraintsPresenter >> submit [
 
-	^ self selectorInput selectedItem block
+	^ submit
 ]
 
 { #category : #'as yet unclassified' }
