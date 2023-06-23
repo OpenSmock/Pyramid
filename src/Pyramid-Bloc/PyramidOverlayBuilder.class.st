@@ -159,10 +159,12 @@ PyramidOverlayBuilder class >> selectionMakerBlock [
 		  clipChildren: false.
 	  controller := PyramidSelectionMakerController new
 		                overlay: builder overlay;
+							keyboardPressed: ( builder at: #keyboardPressed);
 		                yourself.
-	  builder
+		  builder
 		  at: #editor
-		  subscribeWith: [ :editor | controller activeProject: editor activeProject ] ]
+		  subscribeWith: [ :editor |
+		  controller activeProject: editor activeProject ] ]
 ]
 
 { #category : #'api - resizer' }

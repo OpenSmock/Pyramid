@@ -7,7 +7,9 @@ Class {
 		'overlay',
 		'dragOrigin',
 		'isDragging',
-		'elementPreview'
+		'elementPreview',
+		'keyboardPressed',
+		'selectionStrategy'
 	],
 	#category : #'Pyramid-Bloc-plugin-space'
 }
@@ -45,6 +47,31 @@ PyramidSelectionMakerController >> addEventsTo: aBlElement [
 ]
 
 { #category : #'as yet unclassified' }
+PyramidSelectionMakerController >> computeNewSelection: aCollection [
+
+	self computeStrategy.
+
+	self selectionStrategy
+		changeSelection: self activeProject selection
+		with: aCollection
+]
+
+{ #category : #'as yet unclassified' }
+PyramidSelectionMakerController >> computeNewSelectionForPosition: aPosition [
+
+	| allElements selectedElements last |
+	self activeProject ifNil: [ ^ self ].
+	allElements := PyramidTreeToFlat flattenChildrenOfCollection:
+		               self activeProject roots.
+
+	selectedElements := allElements select: [ :each |
+		                    each boundsInSpace containsPoint: aPosition ].
+	selectedElements ifEmpty: [ self computeNewSelection: { }. ^ self ].
+	last := selectedElements last.
+	self computeNewSelection: { last }
+]
+
+{ #category : #'as yet unclassified' }
 PyramidSelectionMakerController >> computeNewSelectionInBounds: aBound [
 
 	| allElements selectedElements |
@@ -55,23 +82,38 @@ PyramidSelectionMakerController >> computeNewSelectionInBounds: aBound [
 	selectedElements := allElements select: [ :each |
 		                    aBound containsRect: each boundsInSpace ].
 
-	self activeProject selection = selectedElements ifTrue: [ ^ self ].
-	self activeProject selection replaceAll: selectedElements
+	self computeNewSelection: selectedElements.
+]
+
+{ #category : #'as yet unclassified' }
+PyramidSelectionMakerController >> computeStrategy [
+
+
+	self keyboardPressed
+			  ifEmpty: [
+				  self selectionStrategy:
+					  PyramidSelectionMakerNoKeyStrategy new. ^ self ].
+			  
+				  (self keyboardPressed allSatisfy: [ :key | key isShift ])
+					  ifTrue: [
+						  self selectionStrategy:
+							  PyramidSelectionMakerShiftKeyStrategy new. ^ self ].
+					 
+						  (self keyboardPressed allSatisfy: [ :key |
+							   key = key class controlLeft or: [
+								   key = key class controlRight ] ])
+							  ifTrue: [
+								  self selectionStrategy:
+									  PyramidSelectionMakerCtrlKeyStrategy new. ^ self ].
+
+								  self selectionStrategy:
+									  PyramidSelectionMakerDoNothingStrategy new 
 ]
 
 { #category : #'as yet unclassified' }
 PyramidSelectionMakerController >> doubleClickEvent: anEvent [
 
-	| allElements selectedElements last |
-	self activeProject ifNil: [ ^ self ].
-	allElements := PyramidTreeToFlat flattenChildrenOfCollection:
-		               self activeProject roots.
-
-	selectedElements := allElements select: [ :each |
-		                    each boundsInSpace containsPoint: anEvent position ].
-	selectedElements ifEmpty: [ ^ self ].
-	last := selectedElements last.
-	self activeProject selection replaceAll: { last }
+	self computeNewSelectionForPosition: anEvent position.
 ]
 
 { #category : #'as yet unclassified' }
@@ -117,8 +159,9 @@ PyramidSelectionMakerController >> initialize [
 	elementPreview := BlElement new
 		                  visibility: BlVisibility gone;
 		                  background: Color blue translucent;
-		zIndex: 200;
-		                  yourself
+		                  zIndex: 200;
+		                  yourself.
+	selectionStrategy := PyramidSelectionMakerNoKeyStrategy new.
 ]
 
 { #category : #accessing }
@@ -134,6 +177,18 @@ PyramidSelectionMakerController >> isDragging: anObject [
 ]
 
 { #category : #accessing }
+PyramidSelectionMakerController >> keyboardPressed [
+
+	^ keyboardPressed
+]
+
+{ #category : #accessing }
+PyramidSelectionMakerController >> keyboardPressed: anObject [
+
+	keyboardPressed := anObject
+]
+
+{ #category : #accessing }
 PyramidSelectionMakerController >> overlay [
 
 	^ overlay
@@ -145,6 +200,18 @@ PyramidSelectionMakerController >> overlay: anObject [
 	overlay := anObject.
 	anObject overlayElement addChild: self elementPreview.
 	self addEventsTo: anObject overlayElement.
+]
+
+{ #category : #accessing }
+PyramidSelectionMakerController >> selectionStrategy [
+
+	^ selectionStrategy
+]
+
+{ #category : #accessing }
+PyramidSelectionMakerController >> selectionStrategy: anObject [
+
+	selectionStrategy := anObject
 ]
 
 { #category : #'as yet unclassified' }
