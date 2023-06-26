@@ -4,8 +4,7 @@ Class {
 	#traits : 'TPyramidPlugin + TPyramidProjectModelObserver',
 	#classTraits : 'TPyramidPlugin classTrait + TPyramidProjectModelObserver classTrait',
 	#instVars : [
-		'extensions',
-		'overlaysManager',
+		'spacePresenter',
 		'activeProject'
 	],
 	#category : #'Pyramid-Bloc-plugin-space'
@@ -57,45 +56,22 @@ PyramidSpacePlugin >> addPanelsOn: aPyramidSimpleWindow [
 	aPyramidSimpleWindow
 		at: #space
 		addItem: [ :builder |
-		builder makePresenter: self makeSpacePresenter ]
+		builder makePresenter: self spacePresenter ]
 ]
 
 { #category : #'as yet unclassified' }
 PyramidSpacePlugin >> connectOn: aPyramidEditor [
 
-	(self overlaysManager model at: #editor) object: aPyramidEditor.
-	self activeProject: aPyramidEditor activeProject.
-	activeProject addObserver: self
+	(self spacePresenter overlaysManager model at: #editor) object:
+		aPyramidEditor.
+			self activeProject: aPyramidEditor activeProject.
+	self activeProject addObserver: self
 ]
 
 { #category : #initialization }
 PyramidSpacePlugin >> initialize [
 
-	overlaysManager := PyramidOverlaysManagerFactory editManager
-]
-
-{ #category : #'as yet unclassified' }
-PyramidSpacePlugin >> makeSpacePresenter [
-
-	| presenter morph host |
-	presenter := SpMorphPresenter new.
-
-	morph := Morph new.
-	morph layoutPolicy: TableLayout new.
-
-	host := BlMorphicHost new.
-	host containerMorph: morph.
-
-	self overlaysManager space host: host.
-
-	presenter morph: morph.
-	presenter whenDisplayDo: [ self overlaysManager space show ].
-	^ presenter
-]
-
-{ #category : #accessing }
-PyramidSpacePlugin >> overlaysManager [
-^ overlaysManager
+	spacePresenter := PyramidSpacePresenter new.
 ]
 
 { #category : #'as yet unclassified' }
@@ -105,10 +81,16 @@ PyramidSpacePlugin >> pyramidRootsChanged [
 ]
 
 { #category : #accessing }
+PyramidSpacePlugin >> spacePresenter [
+
+	^ spacePresenter
+]
+
+{ #category : #accessing }
 PyramidSpacePlugin >> updateRoots [
 
 	| canvas |
-	canvas := self overlaysManager frontLayer overlayElement.
+	canvas := self spacePresenter overlaysManager frontLayer overlayElement.
 	canvas removeChildren.
 	canvas addChildren: self activeProject roots
 ]
