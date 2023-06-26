@@ -40,8 +40,7 @@ PyramidTreePresenter >> contextMenuGroups [
 	^ {
 		  (PyramidTreeMenuGroup browseAndInspect: self).
 		  (PyramidTreeMenuGroup addNewElement: self).
-		(PyramidTreeMenuGroup removeElement: self)
-		 }
+		  (PyramidTreeMenuGroup removeElement: self) }
 ]
 
 { #category : #layout }

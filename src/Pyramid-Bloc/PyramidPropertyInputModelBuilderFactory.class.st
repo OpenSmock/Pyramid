@@ -71,6 +71,30 @@ PyramidPropertyInputModelBuilderFactory class >> constraintsInputVertical [
 ]
 
 { #category : #'as yet unclassified' }
+PyramidPropertyInputModelBuilderFactory class >> fontName [
+
+	^ self new
+		  sectionName: 'Font name';
+		  inputClass: SpTextInputFieldPresenter;
+		  initializeBlock: [ :input |  ];
+		  mutliValuesDefault: '# mixed values';
+		  noValueDefault: '# no values';
+		  transformInBlock: [ :input :value |
+			  | collection |
+			  collection := value select: [ :each |
+					                each isKindOf: BlFontFamilyAttribute ].
+			  collection
+				  ifNotEmpty: [ input text: collection first name ]
+				  ifEmpty: [ input text: '' ] ];
+		  transformOutBlock: [ :input |
+			  BlFontFamilyAttribute named: input text ];
+		  triggerBlockStrategy: (PyramidOneArgTrigger new
+				   selector: #whenSubmitDo:;
+				   yourself);
+		  yourself
+]
+
+{ #category : #'as yet unclassified' }
 PyramidPropertyInputModelBuilderFactory class >> fontSize [
 
 	^ self new
