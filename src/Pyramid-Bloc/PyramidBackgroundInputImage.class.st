@@ -3,30 +3,44 @@ Class {
 	#superclass : #PyramidBackgroundAbstractBackgroundInput,
 	#instVars : [
 		'form',
-		'classMethodPresenter'
+		'classMethodPresenter',
+		'pathInput',
+		'exploreButton'
 	],
 	#category : #'Pyramid-Bloc-custom-specs-background'
 }
 
-{ #category : #accessing }
-PyramidBackgroundInputImage >> background [
+{ #category : #'as yet unclassified' }
+PyramidBackgroundInputImage >> actionOpenFileExplorer [
 
-	self form ifNil: [ ^ BlBackground transparent ].
-	^ BlBackground image: self form
+	| dialog result |
+	dialog := FileDialogWindow onFileSystem: FileSystem disk.
+	result := dialog openModal answer.
+	result
+		ifNil: [ self pathInput text: '' ]
+		ifNotNil: [ self pathInput text: result ].
 ]
 
 { #category : #accessing }
-PyramidBackgroundInputImage >> classMethodPresenter [
+PyramidBackgroundInputImage >> background [
 
-	^ classMethodPresenter
+	self submitFormFromText: self pathInput text.
+	self form ifNil: [ ^ BlBackground transparent ].
+	^ BlBackground image: self form
 ]
 
 { #category : #layout }
 PyramidBackgroundInputImage >> defaultLayout [
 
 	^ SpBoxLayout newHorizontal
-		  add: self classMethodPresenter;
+		  add: self pathInput expand: true;
+		add: self exploreButton expand: false;
 		  yourself
+]
+
+{ #category : #accessing }
+PyramidBackgroundInputImage >> exploreButton [
+^ exploreButton
 ]
 
 { #category : #accessing }
@@ -51,15 +65,18 @@ PyramidBackgroundInputImage >> formFromClass: class andSelector: selector [
 { #category : #initialization }
 PyramidBackgroundInputImage >> initializePresenters [
 
-	self flag: #TODO. "Create a better presenter working with the new Proxy."
-	classMethodPresenter := PyramidPCMWithPreviewPresenter new yourself
-	" whenSelectionChangedDo: [ :model |
-			                        (self validateSelection: model) ifTrue: [
-					                        self
-						                        formFromClass: model targetClass
-						                        andSelector: model methodSelector ] ];
-		                        presenterFromModelBlock: [ :model | self previewPresenterFrom: model.
-			                        ];"
+	pathInput := SpTextInputFieldPresenter new whenSubmitDo: [ :text |
+		             self submitFormFromText: text ].
+	exploreButton := SpButtonPresenter new
+		                 icon: (self iconNamed: #configNew);
+		                 action: [ self actionOpenFileExplorer ];
+		                 yourself
+]
+
+{ #category : #accessing }
+PyramidBackgroundInputImage >> pathInput [
+
+	^ pathInput
 ]
 
 { #category : #initialization }
@@ -87,8 +104,16 @@ PyramidBackgroundInputImage >> previewPresenterFrom: model [
 PyramidBackgroundInputImage >> setImage: anImage [
 
 	(anImage respondsTo: #pyramidExternalRessourceSource) ifTrue: [
-		self classMethodPresenter selectFromExternalRessource: 
-			anImage pyramidExternalRessourceSource ]
+		self pathInput text: anImage pyramidExternalRessourceSource arguments first fullName ]
+]
+
+{ #category : #'as yet unclassified' }
+PyramidBackgroundInputImage >> submitFormFromText: aString [
+
+	aString asFileReference exists ifFalse: [ self pathInput text: '' ].
+	self form: (PyramidExternalRessourceProxy fromSource:
+			 (PyramidExternalRessourceSource formFromFileNamed:
+				  (aString)))
 ]
 
 { #category : #'as yet unclassified' }
