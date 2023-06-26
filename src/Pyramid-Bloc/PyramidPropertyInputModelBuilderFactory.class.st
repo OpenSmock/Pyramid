@@ -34,6 +34,40 @@ PyramidPropertyInputModelBuilderFactory class >> backgroundInput [
 ]
 
 { #category : #'as yet unclassified' }
+PyramidPropertyInputModelBuilderFactory class >> borderPaint [
+
+	^ self new
+		  sectionName: 'Border paint';
+		  inputClass: PyramidBackgroundInputPaint;
+		  initializeBlock: [ :input |  ];
+		  mutliValuesDefault: PyramidFakeBackgroundMixedValues new;
+		  noValueDefault: PyramidFakeBackgroundNoValue new;
+		  transformInBlock: [ :input :value | input setDefaultPaint: value ];
+		  transformOutBlock: [ :input | input paint ];
+		  triggerBlockStrategy: (PyramidOneArgTrigger new
+				   selector: #whenSubmitDo:;
+				   yourself);
+		  yourself
+]
+
+{ #category : #'as yet unclassified' }
+PyramidPropertyInputModelBuilderFactory class >> borderWidth [
+
+	^ self new
+		  sectionName: 'Border width';
+		  inputClass: PyramidNumberPresenter;
+		  initializeBlock: [ :input |  ];
+		  mutliValuesDefault: nil;
+		  noValueDefault: nil;
+		  transformInBlock: [ :input :value | input number: value ];
+		  transformOutBlock: [ :input | input number ];
+		  triggerBlockStrategy: (PyramidOneArgTrigger new
+				   selector: #whenSubmitDo:;
+				   yourself);
+		  yourself
+]
+
+{ #category : #'as yet unclassified' }
 PyramidPropertyInputModelBuilderFactory class >> constraintsInputHorizontal [
 
 	^ self new

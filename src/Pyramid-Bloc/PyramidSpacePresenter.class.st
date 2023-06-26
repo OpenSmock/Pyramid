@@ -18,7 +18,8 @@ PyramidSpacePresenter >> defaultLayout [
 PyramidSpacePresenter >> initializePresenters [
 
 	overlaysManager := PyramidOverlaysManagerFactory editManager.
-	presenter := self makeSpacePresenter
+	presenter := self makeSpacePresenter.
+	presenter inspect.
 ]
 
 { #category : #initialization }
@@ -67,9 +68,8 @@ PyramidSpacePresenter >> presenter: anObject [
 PyramidSpacePresenter >> resetSpacePresenter [
 
 	| previousPresenter |
-	self overlaysManager space hide.
+	self overlaysManager resetSpace.
 	previousPresenter := self presenter.
 	self presenter: self makeSpacePresenter.
 	self layout replace: previousPresenter with: self presenter.
-	
 ]

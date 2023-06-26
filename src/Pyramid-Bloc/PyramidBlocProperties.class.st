@@ -11,9 +11,26 @@ PyramidBlocProperties class >> background [
 
 	^ PyramidProperty
 		  fromCommand: PyramidBlocCommand background
-		  inputBuilder:
-		  PyramidPropertyInputModelBuilderFactory backgroundInput
-		 order: 20
+		  inputBuilder: PyramidPropertyInputModelBuilderFactory backgroundInput
+		  order: 21
+]
+
+{ #category : #accessing }
+PyramidBlocProperties class >> borderPaint [
+
+	^ PyramidProperty
+		  fromCommand: PyramidBlocCommand borderPaint
+		  inputBuilder: PyramidPropertyInputModelBuilderFactory borderPaint
+		  order: 21
+]
+
+{ #category : #accessing }
+PyramidBlocProperties class >> borderWidth [
+
+	^ PyramidProperty
+		  fromCommand: PyramidBlocCommand borderWidth
+		  inputBuilder: PyramidPropertyInputModelBuilderFactory borderWidth
+		  order: 21
 ]
 
 { #category : #accessing }
@@ -143,6 +160,8 @@ PyramidBlocProperties >> connectOn: aPyramidEditor [
 	aPyramidEditor properties addProperty: self class identifier.
 	aPyramidEditor properties addProperty: self class visibility.
 	aPyramidEditor properties addProperty: self class background.
+	aPyramidEditor properties addProperty: self class borderWidth.
+	aPyramidEditor properties addProperty: self class borderPaint.
 	aPyramidEditor properties addProperty: self class geometry.
 	aPyramidEditor properties addProperty: self class position.
 	aPyramidEditor properties addProperty: self class contraintsVertical.

@@ -45,19 +45,27 @@ PyramidOverlaysManager >> frontLayer: anObject [
 { #category : #initialization }
 PyramidOverlaysManager >> initialize [
 
-	space := BlSpace new.
+	self initializeSpace.
 
 	overlays := OrderedCollection new.
+
+	frontLayer := PyramidOverlay new.
+	frontLayer overlayElement
+		constraintsDo: [ :c |
+			c horizontal matchParent.
+			c vertical matchParent ];
+		clipChildren: false
+]
+
+{ #category : #initialization }
+PyramidOverlaysManager >> initializeSpace [
+
+	space := BlSpace new.
 	spaceLayer := PyramidOverlay new.
 	spaceLayer overlayElement: space root.
 	space root constraintsDo: [ :c |
 		c horizontal matchParent.
 		c vertical matchParent ].
-
-	frontLayer := PyramidOverlay new.
-	frontLayer overlayElement constraintsDo: [ :c |
-		c horizontal matchParent.
-		c vertical matchParent ]; clipChildren: false
 ]
 
 { #category : #adding }
@@ -91,6 +99,16 @@ PyramidOverlaysManager >> overlays [
 PyramidOverlaysManager >> overlays: anObject [
 
 	overlays := anObject
+]
+
+{ #category : #initialization }
+PyramidOverlaysManager >> resetSpace [
+
+	self space hide.
+	self uninstallOverlays.
+	self initializeSpace.
+	self installOverlays.
+	self space show
 ]
 
 { #category : #accessing }

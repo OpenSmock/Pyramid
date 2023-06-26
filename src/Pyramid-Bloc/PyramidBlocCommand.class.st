@@ -41,6 +41,44 @@ PyramidBlocCommand class >> background [
 ]
 
 { #category : #adding }
+PyramidBlocCommand class >> border [
+
+	^ PyramidCommand
+		  name: #border
+		  set: [ :state :target | target border: state arguments ]
+		  get: [ :state :source |
+			  state source: source.
+			  state arguments: source border ]
+		  isExecutableBlock: [ :obj :state | obj isKindOf: BlElement ]
+]
+
+{ #category : #adding }
+PyramidBlocCommand class >> borderPaint [
+
+	^ PyramidCommand
+		  name: #borderPaint
+		  set: [ :state :target |
+			  target border:
+				  (BlBorder paint: state arguments width: target border width) ]
+		  get: [ :state :source |
+			  state source: source.
+			  state arguments: source border paint ]
+		  isExecutableBlock: [ :obj :state | obj isKindOf: BlElement ]
+]
+
+{ #category : #adding }
+PyramidBlocCommand class >> borderWidth [
+
+	^ PyramidCommand
+		  name: #borderWidth
+		  set: [ :state :target | target border: (BlBorder paint: target border paint width: state arguments) ]
+		  get: [ :state :source |
+			  state source: source.
+			  state arguments: source border width ]
+		  isExecutableBlock: [ :obj :state | obj isKindOf: BlElement ]
+]
+
+{ #category : #adding }
 PyramidBlocCommand class >> constraints [
 
 	^ PyramidCommand
