@@ -136,7 +136,7 @@ PyramidBackgroundModalPresenter >> initializePresenters [
 
 { #category : #'initialization - deprecated' }
 PyramidBackgroundModalPresenter >> paintPresenter [
-paintPresenter ifNil: [ paintPresenter := PyramidBackgroundInputPaint new].
+paintPresenter ifNil: [ paintPresenter := PyramidPaintInputPresenter new].
 ^ paintPresenter
 ]
 

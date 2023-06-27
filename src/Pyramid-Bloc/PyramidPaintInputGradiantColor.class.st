@@ -1,15 +1,15 @@
 Class {
-	#name : #PyramidBackgroundInputGradiantColor,
+	#name : #PyramidPaintInputGradiantColor,
 	#superclass : #SpPresenter,
 	#instVars : [
 		'stopManager',
 		'whenStopsChangedDo'
 	],
-	#category : #'Pyramid-Bloc-custom-specs-background'
+	#category : #'Pyramid-Bloc-custom-specs-paint'
 }
 
 { #category : #accessing }
-PyramidBackgroundInputGradiantColor >> addNewColorAt: aStop [
+PyramidPaintInputGradiantColor >> addNewColorAt: aStop [
 
 	self stopManager addStopNextTo: aStop.
 	self layout: self defaultLayout.
@@ -17,10 +17,10 @@ PyramidBackgroundInputGradiantColor >> addNewColorAt: aStop [
 ]
 
 { #category : #adding }
-PyramidBackgroundInputGradiantColor >> addStop: aStop to: aLayout withPrevious: aPreviousStop [
+PyramidPaintInputGradiantColor >> addStop: aStop to: aLayout withPrevious: aPreviousStop [
 
 	| inputColor inputNumber removeButton |
-	inputColor := PyramidBackgroundInputSolidColor new
+	inputColor := PyramidColorInputPresenter new
 		              whenSubmitDo: [ :c |
 			              self updateStopColor: aStop withColor: c ];
 						  color: aStop color;
@@ -54,7 +54,7 @@ PyramidBackgroundInputGradiantColor >> addStop: aStop to: aLayout withPrevious: 
 ]
 
 { #category : #adding }
-PyramidBackgroundInputGradiantColor >> addStopButton: aStop to: aLayout [
+PyramidPaintInputGradiantColor >> addStopButton: aStop to: aLayout [
 
 	| button |
 	button := SpButtonPresenter new
@@ -67,13 +67,13 @@ PyramidBackgroundInputGradiantColor >> addStopButton: aStop to: aLayout [
 ]
 
 { #category : #accessing }
-PyramidBackgroundInputGradiantColor >> asStopsArray [
+PyramidPaintInputGradiantColor >> asStopsArray [
 
 	^ self stopManager asStopsArray
 ]
 
 { #category : #layout }
-PyramidBackgroundInputGradiantColor >> defaultLayout [
+PyramidPaintInputGradiantColor >> defaultLayout [
 
 	| defaultLayout stop previousStop |
 	defaultLayout := SpBoxLayout newVertical
@@ -90,7 +90,7 @@ PyramidBackgroundInputGradiantColor >> defaultLayout [
 ]
 
 { #category : #'as yet unclassified' }
-PyramidBackgroundInputGradiantColor >> getNumberFrom: aString [
+PyramidPaintInputGradiantColor >> getNumberFrom: aString [
 
 	| cleanString |
 	cleanString := aString withoutPrefix: '0'.
@@ -100,7 +100,7 @@ PyramidBackgroundInputGradiantColor >> getNumberFrom: aString [
 ]
 
 { #category : #removing }
-PyramidBackgroundInputGradiantColor >> removeNextStop: aStop [
+PyramidPaintInputGradiantColor >> removeNextStop: aStop [
 
 
 	self stopManager removeNextStop: aStop.
@@ -109,32 +109,32 @@ PyramidBackgroundInputGradiantColor >> removeNextStop: aStop [
 ]
 
 { #category : #accessing }
-PyramidBackgroundInputGradiantColor >> stopManager [
+PyramidPaintInputGradiantColor >> stopManager [
 
-	stopManager ifNil: [ stopManager := PyramidBackgroundGradiantStopsManager new ].
+	stopManager ifNil: [ stopManager := PyramidPaintGradiantStopsManager new ].
 	^ stopManager
 ]
 
 { #category : #accessing }
-PyramidBackgroundInputGradiantColor >> stopManager: aStopManager [
+PyramidPaintInputGradiantColor >> stopManager: aStopManager [
 
 	stopManager := aStopManager
 ]
 
 { #category : #'as yet unclassified' }
-PyramidBackgroundInputGradiantColor >> stopsSize [
+PyramidPaintInputGradiantColor >> stopsSize [
 
 	^ self stopManager stopsSize
 ]
 
 { #category : #'as yet unclassified' }
-PyramidBackgroundInputGradiantColor >> updateStopColor: aStop withColor: aColor [
+PyramidPaintInputGradiantColor >> updateStopColor: aStop withColor: aColor [
 
 	aStop color: aColor
 ]
 
 { #category : #'as yet unclassified' }
-PyramidBackgroundInputGradiantColor >> updateStopNumber: aStop withText: aString withPrevious: aPreviousStop [
+PyramidPaintInputGradiantColor >> updateStopNumber: aStop withText: aString withPrevious: aPreviousStop [
 
 	| number |
 	number := self getNumberFrom: aString.
@@ -147,13 +147,13 @@ PyramidBackgroundInputGradiantColor >> updateStopNumber: aStop withText: aString
 ]
 
 { #category : #accessing }
-PyramidBackgroundInputGradiantColor >> whenStopsChangedDo [
+PyramidPaintInputGradiantColor >> whenStopsChangedDo [
 
 	^ whenStopsChangedDo 
 ]
 
 { #category : #accessing }
-PyramidBackgroundInputGradiantColor >> whenStopsChangedDo: aBlock [
+PyramidPaintInputGradiantColor >> whenStopsChangedDo: aBlock [
 
 	whenStopsChangedDo := aBlock
 ]

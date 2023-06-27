@@ -3,7 +3,7 @@ Extension { #name : #BlColorPaint }
 { #category : #'*Pyramid-Bloc' }
 BlColorPaint >> pyramidBackgroundPreview [
 
-	^ PyramidBackgroundPreviewSolidColor new color: self color
+	^ PyramidPaintPreviewSolidColor new color: self color
 ]
 
 { #category : #'*Pyramid-Bloc' }

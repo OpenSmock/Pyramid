@@ -3,7 +3,7 @@ Extension { #name : #BlLinearGradientPaint }
 { #category : #'*Pyramid-Bloc' }
 BlLinearGradientPaint >> pyramidBackgroundPreview [
 
-	^ PyramidBackgroundPreviewGradientColor new
+	^ PyramidPaintPreviewGradientColor new
 		  stops: self stops;
 		  yourself
 ]

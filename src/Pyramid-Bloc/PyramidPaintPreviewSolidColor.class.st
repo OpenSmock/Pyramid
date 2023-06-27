@@ -1,20 +1,20 @@
 Class {
-	#name : #PyramidBackgroundPreviewSolidColor,
-	#superclass : #PyramidBackgroundPreviewAbstract,
+	#name : #PyramidPaintPreviewSolidColor,
+	#superclass : #PyramidPaintPreviewAbstract,
 	#instVars : [
 		'morphColor'
 	],
-	#category : #'Pyramid-Bloc-custom-specs-background'
+	#category : #'Pyramid-Bloc-custom-specs-paint'
 }
 
 { #category : #accessing }
-PyramidBackgroundPreviewSolidColor >> color: aColor [
+PyramidPaintPreviewSolidColor >> color: aColor [
 
 	self morphColor color: aColor
 ]
 
 { #category : #initialization }
-PyramidBackgroundPreviewSolidColor >> initializePresenters [
+PyramidPaintPreviewSolidColor >> initializePresenters [
 
 	super initializePresenters.
 	morphColor := Morph new
@@ -26,7 +26,7 @@ PyramidBackgroundPreviewSolidColor >> initializePresenters [
 ]
 
 { #category : #accessing }
-PyramidBackgroundPreviewSolidColor >> morphColor [
+PyramidPaintPreviewSolidColor >> morphColor [
 
 	^ morphColor
 ]

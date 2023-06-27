@@ -1,5 +1,5 @@
 Class {
-	#name : #PyramidBackgroundInputPaint,
+	#name : #PyramidPaintInputPresenter,
 	#superclass : #PyramidBackgroundAbstractBackgroundInput,
 	#instVars : [
 		'buttonColor',
@@ -8,35 +8,35 @@ Class {
 		'inputGradient',
 		'whenSubmitDo'
 	],
-	#category : #'Pyramid-Bloc-custom-specs-background'
+	#category : #'Pyramid-Bloc-custom-specs-paint'
 }
 
 { #category : #accessing }
-PyramidBackgroundInputPaint >> background [
+PyramidPaintInputPresenter >> background [
 
 	^ BlBackground paint: self paint
 ]
 
 { #category : #accessing }
-PyramidBackgroundInputPaint >> buttonColor [
+PyramidPaintInputPresenter >> buttonColor [
 
 	^ buttonColor
 ]
 
 { #category : #accessing }
-PyramidBackgroundInputPaint >> buttonGradient [
+PyramidPaintInputPresenter >> buttonGradient [
 
 	^ buttonGradient
 ]
 
 { #category : #layout }
-PyramidBackgroundInputPaint >> defaultLayout [
+PyramidPaintInputPresenter >> defaultLayout [
 
 	^ self defaultLayoutSolid
 ]
 
 { #category : #layout }
-PyramidBackgroundInputPaint >> defaultLayoutGradient [
+PyramidPaintInputPresenter >> defaultLayoutGradient [
 
 	^ self defaultLayoutSelector
 		add: self inputGradient;
@@ -44,7 +44,7 @@ PyramidBackgroundInputPaint >> defaultLayoutGradient [
 ]
 
 { #category : #layout }
-PyramidBackgroundInputPaint >> defaultLayoutSelector [
+PyramidPaintInputPresenter >> defaultLayoutSelector [
 
 	^ SpBoxLayout newVertical
 		  spacing: 4;
@@ -56,7 +56,7 @@ PyramidBackgroundInputPaint >> defaultLayoutSelector [
 ]
 
 { #category : #layout }
-PyramidBackgroundInputPaint >> defaultLayoutSolid [
+PyramidPaintInputPresenter >> defaultLayoutSolid [
 
 	^ self defaultLayoutSelector
 		  add: self inputSolid expand: false;
@@ -65,7 +65,7 @@ PyramidBackgroundInputPaint >> defaultLayoutSolid [
 ]
 
 { #category : #'initialization - deprecated' }
-PyramidBackgroundInputPaint >> initializePresenters [
+PyramidPaintInputPresenter >> initializePresenters [
 
 	buttonColor := SpRadioButtonPresenter new
 		               label: 'Solid color';
@@ -77,24 +77,24 @@ PyramidBackgroundInputPaint >> initializePresenters [
 	buttonColor whenActivatedDo: [ self updateLayout ].
 	buttonColor whenDeactivatedDo: [ self updateLayout ].
 
-	inputSolid := PyramidBackgroundInputSolidColor new whenSubmitDo: [:paint | self whenSubmitDo value: paint ]; yourself.
-	inputGradient := PyramidBackgroundInputGradiant new whenSubmitDo: [:paint | self whenSubmitDo value: paint ]; yourself.
+	inputSolid := PyramidColorInputPresenter new whenSubmitDo: [:paint | self whenSubmitDo value: paint ]; yourself.
+	inputGradient := PyramidPaintInputGradiant new whenSubmitDo: [:paint | self whenSubmitDo value: paint ]; yourself.
 ]
 
 { #category : #accessing }
-PyramidBackgroundInputPaint >> inputGradient [
+PyramidPaintInputPresenter >> inputGradient [
 
 	^ inputGradient
 ]
 
 { #category : #accessing }
-PyramidBackgroundInputPaint >> inputSolid [
+PyramidPaintInputPresenter >> inputSolid [
 
 	^ inputSolid
 ]
 
 { #category : #accessing }
-PyramidBackgroundInputPaint >> paint [
+PyramidPaintInputPresenter >> paint [
 
 	self buttonColor state
 		  ifTrue: [ ^ self inputSolid paint ]
@@ -102,13 +102,13 @@ PyramidBackgroundInputPaint >> paint [
 ]
 
 { #category : #initialization }
-PyramidBackgroundInputPaint >> setDefaultPaint: aPaint [
+PyramidPaintInputPresenter >> setDefaultPaint: aPaint [
 
 	aPaint pyramidModalDefaultPaint: self
 ]
 
 { #category : #private }
-PyramidBackgroundInputPaint >> updateLayout [
+PyramidPaintInputPresenter >> updateLayout [
 
 	self buttonColor state
 		ifTrue: [ self layout: self defaultLayoutSolid ]
@@ -116,14 +116,14 @@ PyramidBackgroundInputPaint >> updateLayout [
 ]
 
 { #category : #accessing }
-PyramidBackgroundInputPaint >> whenSubmitDo [
+PyramidPaintInputPresenter >> whenSubmitDo [
 
 	whenSubmitDo ifNil: [ whenSubmitDo := [ :paint | ] ].
 	^ whenSubmitDo
 ]
 
 { #category : #accessing }
-PyramidBackgroundInputPaint >> whenSubmitDo: aBlock [
+PyramidPaintInputPresenter >> whenSubmitDo: aBlock [
 
 	whenSubmitDo:= aBlock
 ]

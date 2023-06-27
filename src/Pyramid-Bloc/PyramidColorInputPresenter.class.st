@@ -1,23 +1,24 @@
 Class {
-	#name : #PyramidBackgroundInputSolidColor,
-	#superclass : #PyramidBackgroundAbstractPaintInput,
+	#name : #PyramidColorInputPresenter,
+	#superclass : #SpPresenter,
 	#instVars : [
 		'previewPresenter',
 		'colorPickerButton',
 		'textInput',
-		'color'
+		'color',
+		'whenSubmitDo'
 	],
-	#category : #'Pyramid-Bloc-custom-specs-background'
+	#category : #'Pyramid-Bloc-custom-specs-color'
 }
 
 { #category : #'menu actions' }
-PyramidBackgroundInputSolidColor >> awaitSubmition [
+PyramidColorInputPresenter >> awaitSubmition [
 
 	self previewPresenter showWarning
 ]
 
 { #category : #'as yet unclassified' }
-PyramidBackgroundInputSolidColor >> changedText: aText [
+PyramidColorInputPresenter >> changedText: aText [
 
 	(self validateString: aText)
 		ifTrue: [
@@ -27,19 +28,19 @@ PyramidBackgroundInputSolidColor >> changedText: aText [
 ]
 
 { #category : #resolution }
-PyramidBackgroundInputSolidColor >> clearSelection [
+PyramidColorInputPresenter >> clearSelection [
 	self textInput text: ''.
 ]
 
 { #category : #accessing }
-PyramidBackgroundInputSolidColor >> color [
+PyramidColorInputPresenter >> color [
 
 	color ifNil: [ color := Color black ].
 	^ color
 ]
 
 { #category : #accessing }
-PyramidBackgroundInputSolidColor >> color: aColor [
+PyramidColorInputPresenter >> color: aColor [
 
 	color = aColor ifTrue: [ ^ self ].
 	color := aColor.
@@ -50,7 +51,7 @@ PyramidBackgroundInputSolidColor >> color: aColor [
 ]
 
 { #category : #'as yet unclassified' }
-PyramidBackgroundInputSolidColor >> colorPickerAction [
+PyramidColorInputPresenter >> colorPickerAction [
 
 	| dialog |
 	dialog := ColorSelectorDialogWindow new
@@ -61,15 +62,14 @@ PyramidBackgroundInputSolidColor >> colorPickerAction [
 ]
 
 { #category : #accessing }
-PyramidBackgroundInputSolidColor >> colorPickerButton [
+PyramidColorInputPresenter >> colorPickerButton [
 
 	^ colorPickerButton
 ]
 
 { #category : #accessing }
-PyramidBackgroundInputSolidColor >> defaultColor: aColor [
+PyramidColorInputPresenter >> defaultColor: aColor [
 
-	"color = aColor ifTrue: [ ^ self ]."
 	color := aColor.
 	self previewPresenter color: aColor.
 	self textInput text: (self hexStringWithAlphaFrom: aColor).
@@ -77,7 +77,7 @@ PyramidBackgroundInputSolidColor >> defaultColor: aColor [
 ]
 
 { #category : #'as yet unclassified' }
-PyramidBackgroundInputSolidColor >> defaultLayout [
+PyramidColorInputPresenter >> defaultLayout [
 
 	^ SpBoxLayout newHorizontal
 		  spacing: 4;
@@ -94,7 +94,7 @@ PyramidBackgroundInputSolidColor >> defaultLayout [
 ]
 
 { #category : #testing }
-PyramidBackgroundInputSolidColor >> hasUnacceptedEdits: aBoolean [
+PyramidColorInputPresenter >> hasUnacceptedEdits: aBoolean [
 
 	aBoolean
 		ifTrue: [ self previewPresenter showError ]
@@ -103,7 +103,7 @@ PyramidBackgroundInputSolidColor >> hasUnacceptedEdits: aBoolean [
 ]
 
 { #category : #'as yet unclassified' }
-PyramidBackgroundInputSolidColor >> hexStringWithAlphaFrom: aColor [
+PyramidColorInputPresenter >> hexStringWithAlphaFrom: aColor [
 
 	| s alpha |
 
@@ -118,7 +118,7 @@ PyramidBackgroundInputSolidColor >> hexStringWithAlphaFrom: aColor [
 ]
 
 { #category : #accessing }
-PyramidBackgroundInputSolidColor >> initializePresenters [
+PyramidColorInputPresenter >> initializePresenters [
 
 	colorPickerButton := SpButtonPresenter new
 		                     icon: (self iconNamed: #haloRecolor);
@@ -130,30 +130,30 @@ PyramidBackgroundInputSolidColor >> initializePresenters [
 	textInput whenSubmitDo: [ :text | self submitText: text ].
 	textInput whenTextChangedDo: [ :text | self changedText: text ].
 
-	previewPresenter := PyramidBackgroundPreviewSolidColor new yourself.
+	previewPresenter := PyramidPaintPreviewSolidColor new yourself.
 	self defaultColor: self color
 ]
 
 { #category : #accessing }
-PyramidBackgroundInputSolidColor >> paint [
+PyramidColorInputPresenter >> paint [
 
 	^ self color asBlPaint
 ]
 
 { #category : #accessing }
-PyramidBackgroundInputSolidColor >> previewPresenter [
+PyramidColorInputPresenter >> previewPresenter [
 
 	^ previewPresenter 
 ]
 
 { #category : #'as yet unclassified' }
-PyramidBackgroundInputSolidColor >> submitColor: aColor [
+PyramidColorInputPresenter >> submitColor: aColor [
 
 	self whenSubmitDo value: aColor
 ]
 
 { #category : #'as yet unclassified' }
-PyramidBackgroundInputSolidColor >> submitText: aString [
+PyramidColorInputPresenter >> submitText: aString [
 
 	(self validateString: aString)
 		ifTrue: [ self color: (Color fromHexString: self textInput text) ]
@@ -163,13 +163,13 @@ PyramidBackgroundInputSolidColor >> submitText: aString [
 ]
 
 { #category : #accessing }
-PyramidBackgroundInputSolidColor >> textInput [
+PyramidColorInputPresenter >> textInput [
 
 	^ textInput
 ]
 
 { #category : #'as yet unclassified' }
-PyramidBackgroundInputSolidColor >> validateString: aString [
+PyramidColorInputPresenter >> validateString: aString [
 
 	| text |
 	aString ifEmpty: [ ^ false ].
@@ -184,4 +184,16 @@ PyramidBackgroundInputSolidColor >> validateString: aString [
 		  c isDigit or: [
 			  { $a. $b. $c. $d. $e. $f. $A. $B. $C. $D. $E. $F } anySatisfy: [
 				  :any | any = c ] ] ]
+]
+
+{ #category : #accessing }
+PyramidColorInputPresenter >> whenSubmitDo [
+
+	^ whenSubmitDo
+]
+
+{ #category : #accessing }
+PyramidColorInputPresenter >> whenSubmitDo: aBlock [
+
+	whenSubmitDo := aBlock
 ]

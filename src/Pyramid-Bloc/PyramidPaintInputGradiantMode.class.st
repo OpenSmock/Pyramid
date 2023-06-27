@@ -1,5 +1,5 @@
 Class {
-	#name : #PyramidBackgroundInputGradiantMode,
+	#name : #PyramidPaintInputGradiantMode,
 	#superclass : #SpPresenter,
 	#instVars : [
 		'buttonRadial',
@@ -8,28 +8,28 @@ Class {
 		'radialPosition',
 		'radialRadius'
 	],
-	#category : #'Pyramid-Bloc-custom-specs-background'
+	#category : #'Pyramid-Bloc-custom-specs-paint'
 }
 
 { #category : #accessing }
-PyramidBackgroundInputGradiantMode >> buttonLinear [
+PyramidPaintInputGradiantMode >> buttonLinear [
 ^ buttonLinear
 ]
 
 { #category : #accessing }
-PyramidBackgroundInputGradiantMode >> buttonRadial [
+PyramidPaintInputGradiantMode >> buttonRadial [
 
 	^ buttonRadial
 ]
 
 { #category : #private }
-PyramidBackgroundInputGradiantMode >> defaultLayout [
+PyramidPaintInputGradiantMode >> defaultLayout [
 
 	^ self defaultLayoutLinear
 ]
 
 { #category : #private }
-PyramidBackgroundInputGradiantMode >> defaultLayoutLinear [
+PyramidPaintInputGradiantMode >> defaultLayoutLinear [
 
 	^ self defaultLayoutSelection
 		  add: (SpBoxLayout newHorizontal
@@ -41,7 +41,7 @@ PyramidBackgroundInputGradiantMode >> defaultLayoutLinear [
 ]
 
 { #category : #private }
-PyramidBackgroundInputGradiantMode >> defaultLayoutRadial [
+PyramidPaintInputGradiantMode >> defaultLayoutRadial [
 
 	^ self defaultLayoutSelection
 		  add: (SpBoxLayout newHorizontal
@@ -56,7 +56,7 @@ PyramidBackgroundInputGradiantMode >> defaultLayoutRadial [
 ]
 
 { #category : #private }
-PyramidBackgroundInputGradiantMode >> defaultLayoutSelection [
+PyramidPaintInputGradiantMode >> defaultLayoutSelection [
 
 	^ SpBoxLayout newVertical
 		  spacing: 4;
@@ -68,7 +68,7 @@ PyramidBackgroundInputGradiantMode >> defaultLayoutSelection [
 ]
 
 { #category : #'initialization - deprecated' }
-PyramidBackgroundInputGradiantMode >> initializePresenters [
+PyramidPaintInputGradiantMode >> initializePresenters [
 
 	buttonRadial := SpRadioButtonPresenter new
 		                label: 'Radial';
@@ -86,13 +86,13 @@ PyramidBackgroundInputGradiantMode >> initializePresenters [
 ]
 
 { #category : #'as yet unclassified' }
-PyramidBackgroundInputGradiantMode >> linearDirection [
+PyramidPaintInputGradiantMode >> linearDirection [
 
 	^ linearDirection
 ]
 
 { #category : #'as yet unclassified' }
-PyramidBackgroundInputGradiantMode >> makeLinearPaintWithStops: anArray [
+PyramidPaintInputGradiantMode >> makeLinearPaintWithStops: anArray [
 
 	^ BlLinearGradientPaint new
 		  stops: anArray;
@@ -102,7 +102,7 @@ PyramidBackgroundInputGradiantMode >> makeLinearPaintWithStops: anArray [
 ]
 
 { #category : #'as yet unclassified' }
-PyramidBackgroundInputGradiantMode >> makePaintWithStops: aStopsArray [
+PyramidPaintInputGradiantMode >> makePaintWithStops: aStopsArray [
 
 	self buttonLinear state
 		ifTrue: [ ^ self makeLinearPaintWithStops: aStopsArray ]
@@ -110,7 +110,7 @@ PyramidBackgroundInputGradiantMode >> makePaintWithStops: aStopsArray [
 ]
 
 { #category : #'as yet unclassified' }
-PyramidBackgroundInputGradiantMode >> makeRadialPaintWithStops: anArray [
+PyramidPaintInputGradiantMode >> makeRadialPaintWithStops: anArray [
 
 	^ (BlRadialGradientPaint new
 			           stops: anArray;
@@ -120,18 +120,18 @@ PyramidBackgroundInputGradiantMode >> makeRadialPaintWithStops: anArray [
 ]
 
 { #category : #'as yet unclassified' }
-PyramidBackgroundInputGradiantMode >> radialPosition [
+PyramidPaintInputGradiantMode >> radialPosition [
 
 	^ radialPosition
 ]
 
 { #category : #'as yet unclassified' }
-PyramidBackgroundInputGradiantMode >> radialRadius [
+PyramidPaintInputGradiantMode >> radialRadius [
 
 	^ radialRadius
 ]
 
 { #category : #private }
-PyramidBackgroundInputGradiantMode >> updateLayout [
+PyramidPaintInputGradiantMode >> updateLayout [
 	self buttonLinear state ifTrue: [ self layout: self defaultLayoutLinear ] ifFalse: [ self layout: self defaultLayoutRadial ]
 ]

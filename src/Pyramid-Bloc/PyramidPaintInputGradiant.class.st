@@ -1,15 +1,16 @@
 Class {
-	#name : #PyramidBackgroundInputGradiant,
-	#superclass : #PyramidBackgroundAbstractPaintInput,
+	#name : #PyramidPaintInputGradiant,
+	#superclass : #SpPresenter,
 	#instVars : [
 		'modeSelector',
-		'stopsColor'
+		'stopsColor',
+		'whenSubmitDo'
 	],
-	#category : #'Pyramid-Bloc-custom-specs-background'
+	#category : #'Pyramid-Bloc-custom-specs-paint'
 }
 
 { #category : #layout }
-PyramidBackgroundInputGradiant >> defaultLayout [
+PyramidPaintInputGradiant >> defaultLayout [
 
 	| defaultLayout |
 	defaultLayout := SpBoxLayout newVertical
@@ -30,33 +31,33 @@ PyramidBackgroundInputGradiant >> defaultLayout [
 ]
 
 { #category : #'initialization - deprecated' }
-PyramidBackgroundInputGradiant >> initializePresenters [
+PyramidPaintInputGradiant >> initializePresenters [
 
-	modeSelector := PyramidBackgroundInputGradiantMode new.
-	stopsColor := PyramidBackgroundInputGradiantColor new
+	modeSelector := PyramidPaintInputGradiantMode new.
+	stopsColor := PyramidPaintInputGradiantColor new
 		              whenStopsChangedDo: [ self updateLayout. self whenSubmitDo value: self paint ];
 		              yourself
 ]
 
 { #category : #accessing }
-PyramidBackgroundInputGradiant >> maximumHeight [
+PyramidPaintInputGradiant >> maximumHeight [
 
 	^ 250
 ]
 
 { #category : #accessing }
-PyramidBackgroundInputGradiant >> maximumStopsBeforeScroll [
+PyramidPaintInputGradiant >> maximumStopsBeforeScroll [
 
 	^ 6
 ]
 
 { #category : #accessing }
-PyramidBackgroundInputGradiant >> modeSelector [
+PyramidPaintInputGradiant >> modeSelector [
 ^ modeSelector
 ]
 
 { #category : #accessing }
-PyramidBackgroundInputGradiant >> paint [
+PyramidPaintInputGradiant >> paint [
 
 	| stopsArray |
 	stopsArray := self stopsColor asStopsArray.
@@ -64,13 +65,25 @@ PyramidBackgroundInputGradiant >> paint [
 ]
 
 { #category : #accessing }
-PyramidBackgroundInputGradiant >> stopsColor [
+PyramidPaintInputGradiant >> stopsColor [
 
 	^ stopsColor
 ]
 
 { #category : #private }
-PyramidBackgroundInputGradiant >> updateLayout [
+PyramidPaintInputGradiant >> updateLayout [
 
 	self layout: self defaultLayout
+]
+
+{ #category : #accessing }
+PyramidPaintInputGradiant >> whenSubmitDo [
+
+	^ whenSubmitDo
+]
+
+{ #category : #accessing }
+PyramidPaintInputGradiant >> whenSubmitDo: aBlock [
+
+	whenSubmitDo := aBlock
 ]

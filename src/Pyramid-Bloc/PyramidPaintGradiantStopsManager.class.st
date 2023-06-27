@@ -1,22 +1,22 @@
 Class {
-	#name : #PyramidBackgroundGradiantStopsManager,
+	#name : #PyramidPaintGradiantStopsManager,
 	#superclass : #Object,
 	#instVars : [
 		'first',
 		'last'
 	],
-	#category : #'Pyramid-Bloc-custom-specs-background'
+	#category : #'Pyramid-Bloc-custom-specs-paint'
 }
 
 { #category : #adding }
-PyramidBackgroundGradiantStopsManager >> addStopNextTo: aPreviousStop [
+PyramidPaintGradiantStopsManager >> addStopNextTo: aPreviousStop [
 self addStopNextTo: aPreviousStop withColor: aPreviousStop color
 
 	
 ]
 
 { #category : #adding }
-PyramidBackgroundGradiantStopsManager >> addStopNextTo: aPreviousStop withColor: aColor [
+PyramidPaintGradiantStopsManager >> addStopNextTo: aPreviousStop withColor: aColor [
 
 	| number |
 	number := aPreviousStop number + aPreviousStop next number / 2..
@@ -27,10 +27,10 @@ PyramidBackgroundGradiantStopsManager >> addStopNextTo: aPreviousStop withColor:
 ]
 
 { #category : #adding }
-PyramidBackgroundGradiantStopsManager >> addStopNextTo: aPreviousStop withColor: aColor withNumber: aNumber [
+PyramidPaintGradiantStopsManager >> addStopNextTo: aPreviousStop withColor: aColor withNumber: aNumber [
 
 	| stopToAdd |
-	stopToAdd := PyramidBackgroundGradiantStopModel new
+	stopToAdd := PyramidPaintGradiantStopModel new
 		             color: aColor;
 		             number: aNumber;
 		             yourself.
@@ -39,7 +39,7 @@ PyramidBackgroundGradiantStopsManager >> addStopNextTo: aPreviousStop withColor:
 ]
 
 { #category : #converting }
-PyramidBackgroundGradiantStopsManager >> asStopsArray [
+PyramidPaintGradiantStopsManager >> asStopsArray [
 
 	| collection |
 	collection := OrderedCollection new.
@@ -48,7 +48,7 @@ PyramidBackgroundGradiantStopsManager >> asStopsArray [
 ]
 
 { #category : #'as yet unclassified' }
-PyramidBackgroundGradiantStopsManager >> correctStopOrderOf: aStop withPrevious: aPreviousStop [
+PyramidPaintGradiantStopsManager >> correctStopOrderOf: aStop withPrevious: aPreviousStop [
 
 	| after before |
 	aPreviousStop next: aStop next.
@@ -63,26 +63,26 @@ PyramidBackgroundGradiantStopsManager >> correctStopOrderOf: aStop withPrevious:
 ]
 
 { #category : #accessing }
-PyramidBackgroundGradiantStopsManager >> first [
+PyramidPaintGradiantStopsManager >> first [
 
 	^ first
 ]
 
 { #category : #'instance creation' }
-PyramidBackgroundGradiantStopsManager >> first: aNewFirst last: aNewLast [
+PyramidPaintGradiantStopsManager >> first: aNewFirst last: aNewLast [
 
 	first := aNewFirst.
 	last := aNewLast
 ]
 
 { #category : #'instance creation' }
-PyramidBackgroundGradiantStopsManager >> from: aCollection [
+PyramidPaintGradiantStopsManager >> from: aCollection [
 
 	| firstToAdd lastToAdd current |
 	firstToAdd := nil.
 	lastToAdd := nil.
 	aCollection do: [ :each |
-		current := PyramidBackgroundGradiantStopModel new
+		current := PyramidPaintGradiantStopModel new
 			           number: each key;
 			           color: each value;
 			           yourself.
@@ -93,13 +93,13 @@ PyramidBackgroundGradiantStopsManager >> from: aCollection [
 ]
 
 { #category : #initialization }
-PyramidBackgroundGradiantStopsManager >> initialize [
+PyramidPaintGradiantStopsManager >> initialize [
 
-	first := PyramidBackgroundGradiantStopModel new
+	first := PyramidPaintGradiantStopModel new
 		         color: Color white;
 		         number: 0;
 		         yourself.
-	last := PyramidBackgroundGradiantStopModel new
+	last := PyramidPaintGradiantStopModel new
 		        color: Color black;
 		        number: 1;
 		        yourself.
@@ -107,19 +107,19 @@ PyramidBackgroundGradiantStopsManager >> initialize [
 ]
 
 { #category : #accessing }
-PyramidBackgroundGradiantStopsManager >> last [
+PyramidPaintGradiantStopsManager >> last [
 
 	^ last
 ]
 
 { #category : #removing }
-PyramidBackgroundGradiantStopsManager >> removeNextStop: aStop [
+PyramidPaintGradiantStopsManager >> removeNextStop: aStop [
 
 aStop next: aStop next next.
 ]
 
 { #category : #'as yet unclassified' }
-PyramidBackgroundGradiantStopsManager >> stopsSize [
+PyramidPaintGradiantStopsManager >> stopsSize [
 
 	^ self first size
 ]

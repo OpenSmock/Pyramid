@@ -38,7 +38,7 @@ PyramidPropertyInputModelBuilderFactory class >> borderPaint [
 
 	^ self new
 		  sectionName: 'Border paint';
-		  inputClass: PyramidBackgroundInputPaint;
+		  inputClass: PyramidPaintInputPresenter;
 		  initializeBlock: [ :input |  ];
 		  mutliValuesDefault: PyramidFakeBackgroundMixedValues new;
 		  noValueDefault: PyramidFakeBackgroundNoValue new;
@@ -255,7 +255,7 @@ PyramidPropertyInputModelBuilderFactory class >> textForeground [
 
 	^ self new
 		  sectionName: 'Text foreground';
-		  inputClass: PyramidBackgroundInputSolidColor;
+		  inputClass: PyramidColorInputPresenter;
 		  initializeBlock: [ :input |  ];
 		  mutliValuesDefault: '# mixed values';
 		  noValueDefault: '# no values';

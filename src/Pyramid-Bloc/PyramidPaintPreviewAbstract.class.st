@@ -1,16 +1,16 @@
 Class {
-	#name : #PyramidBackgroundPreviewAbstract,
+	#name : #PyramidPaintPreviewAbstract,
 	#superclass : #SpPresenter,
 	#instVars : [
 		'morphPresenter',
 		'morphTag',
 		'morphBack'
 	],
-	#category : #'Pyramid-Bloc-custom-specs-background'
+	#category : #'Pyramid-Bloc-custom-specs-paint'
 }
 
 { #category : #accessing }
-PyramidBackgroundPreviewAbstract >> backgroundMorph [
+PyramidPaintPreviewAbstract >> backgroundMorph [
 
 	| morph littleOne littleOneExtent position isPrimaryColor |
 	morph := Morph new
@@ -43,31 +43,31 @@ PyramidBackgroundPreviewAbstract >> backgroundMorph [
 ]
 
 { #category : #accessing }
-PyramidBackgroundPreviewAbstract >> backgroundPrimary [
+PyramidPaintPreviewAbstract >> backgroundPrimary [
 
 	^ Color white adjustBrightness: -0.15
 ]
 
 { #category : #accessing }
-PyramidBackgroundPreviewAbstract >> backgroundSecond [
+PyramidPaintPreviewAbstract >> backgroundSecond [
 
 	^ Color black adjustBrightness: 0.15
 ]
 
 { #category : #layout }
-PyramidBackgroundPreviewAbstract >> defaultLayout [ 
+PyramidPaintPreviewAbstract >> defaultLayout [ 
 
 	^ SpBoxLayout newVertical add: self morphPresenter; yourself
 ]
 
 { #category : #accessing }
-PyramidBackgroundPreviewAbstract >> height [
+PyramidPaintPreviewAbstract >> height [
 
 	^ 24
 ]
 
 { #category : #initialization }
-PyramidBackgroundPreviewAbstract >> initializePresenters [
+PyramidPaintPreviewAbstract >> initializePresenters [
 
 	morphTag := self tagMorph.
 	morphBack := self backgroundMorph.
@@ -78,56 +78,56 @@ PyramidBackgroundPreviewAbstract >> initializePresenters [
 ]
 
 { #category : #accessing }
-PyramidBackgroundPreviewAbstract >> morphPresenter [
+PyramidPaintPreviewAbstract >> morphPresenter [
 ^morphPresenter
 ]
 
 { #category : #'as yet unclassified' }
-PyramidBackgroundPreviewAbstract >> morphTag [
+PyramidPaintPreviewAbstract >> morphTag [
 ^ morphTag
 ]
 
 { #category : #'as yet unclassified' }
-PyramidBackgroundPreviewAbstract >> numberOfSquares [
+PyramidPaintPreviewAbstract >> numberOfSquares [
 
 	^ self numberOfSquaresHorizontal * self numberOfSquaresVertical 
 ]
 
 { #category : #'as yet unclassified' }
-PyramidBackgroundPreviewAbstract >> numberOfSquaresHorizontal [
+PyramidPaintPreviewAbstract >> numberOfSquaresHorizontal [
 
 	^ 80
 ]
 
 { #category : #'as yet unclassified' }
-PyramidBackgroundPreviewAbstract >> numberOfSquaresVertical [
+PyramidPaintPreviewAbstract >> numberOfSquaresVertical [
 
 	^ 4
 ]
 
 { #category : #settings }
-PyramidBackgroundPreviewAbstract >> showError [
+PyramidPaintPreviewAbstract >> showError [
 
 	self morphTag color: Color red.
 	self morphTag borderColor: Color black
 ]
 
 { #category : #settings }
-PyramidBackgroundPreviewAbstract >> showOk [
+PyramidPaintPreviewAbstract >> showOk [
 
 	self morphTag color: Color transparent.
 	self morphTag borderColor: Color transparent
 ]
 
 { #category : #settings }
-PyramidBackgroundPreviewAbstract >> showWarning [
+PyramidPaintPreviewAbstract >> showWarning [
 
 	self morphTag color: Color orange.
 	self morphTag borderColor: Color black
 ]
 
 { #category : #'as yet unclassified' }
-PyramidBackgroundPreviewAbstract >> tagMorph [
+PyramidPaintPreviewAbstract >> tagMorph [
 
 	| size |
 	size := ((self height min: self width)) asPoint.
@@ -139,7 +139,7 @@ PyramidBackgroundPreviewAbstract >> tagMorph [
 ]
 
 { #category : #accessing }
-PyramidBackgroundPreviewAbstract >> width [
+PyramidPaintPreviewAbstract >> width [
 
 	^ 480
 ]

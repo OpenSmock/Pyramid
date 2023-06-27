@@ -1,15 +1,15 @@
 Class {
-	#name : #PyramidBackgroundPreviewGradientColor,
-	#superclass : #PyramidBackgroundPreviewAbstract,
+	#name : #PyramidPaintPreviewGradientColor,
+	#superclass : #PyramidPaintPreviewAbstract,
 	#instVars : [
 		'morphColorStart',
 		'morphColorEnd'
 	],
-	#category : #'Pyramid-Bloc-custom-specs-background'
+	#category : #'Pyramid-Bloc-custom-specs-paint'
 }
 
 { #category : #initialization }
-PyramidBackgroundPreviewGradientColor >> initializePresenters [
+PyramidPaintPreviewGradientColor >> initializePresenters [
 
 	super initializePresenters.
 	morphColorStart := Morph new
@@ -27,19 +27,19 @@ PyramidBackgroundPreviewGradientColor >> initializePresenters [
 ]
 
 { #category : #accessing }
-PyramidBackgroundPreviewGradientColor >> morphColorEnd [
+PyramidPaintPreviewGradientColor >> morphColorEnd [
 
 	^ morphColorEnd
 ]
 
 { #category : #accessing }
-PyramidBackgroundPreviewGradientColor >> morphColorStart [
+PyramidPaintPreviewGradientColor >> morphColorStart [
 
 	^ morphColorStart
 ]
 
 { #category : #accessing }
-PyramidBackgroundPreviewGradientColor >> stops: aCollection [
+PyramidPaintPreviewGradientColor >> stops: aCollection [
 
 	self morphColorStart color: aCollection first value.
 	self morphColorEnd color: aCollection last value
