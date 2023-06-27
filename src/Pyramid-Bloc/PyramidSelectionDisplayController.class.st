@@ -38,9 +38,10 @@ PyramidSelectionDisplayController >> createSelectionPreview: anElement [
 	| element offset |
 	offset := 10.
 	anElement requestParentLayout.
-	
+
 	element := BlElement new
 		           zIndex: 200;
+		preventMeAndChildrenMouseEvents;
 		           border: (BlBorderBuilder new
 				            width: 1;
 				            paint: Color black;
