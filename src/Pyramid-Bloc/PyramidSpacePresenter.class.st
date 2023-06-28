@@ -18,8 +18,7 @@ PyramidSpacePresenter >> defaultLayout [
 PyramidSpacePresenter >> initializePresenters [
 
 	overlaysManager := PyramidOverlaysManagerFactory editManager.
-	presenter := self makeSpacePresenter.
-	presenter inspect.
+	presenter := self makeSpacePresenter
 ]
 
 { #category : #initialization }
