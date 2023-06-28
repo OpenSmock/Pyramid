@@ -1,3 +1,5 @@
+[![Pharo 11 CI](https://github.com/OpenSmock/Pyramid/actions/workflows/Pharo11CI.yml/badge.svg)](https://github.com/OpenSmock/Pyramid/actions/workflows/Pharo11CI.yml)
+
 # Pyramid
 Pyramid is an user-interface builder for Bloc
 
