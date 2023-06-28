@@ -14,6 +14,13 @@ PyramidWindow >> at: aSymbol addItem: aBlock [
 	(self services at: aSymbol) addItem: aBlock
 ]
 
+{ #category : #'api - showing' }
+PyramidWindow >> close [
+
+	self isOpen ifFalse:[ ^ self ].
+	self presenter owner close
+]
+
 { #category : #initialization }
 PyramidWindow >> initialize [
 
@@ -36,6 +43,18 @@ PyramidWindow >> initializePresenter [
 
 	presenter := SpPresenter new layout: self layout; yourself.
 	^ presenter
+]
+
+{ #category : #'api - showing' }
+PyramidWindow >> isClosed [
+
+	^ self presenter owner ifNotNil: [ :w | w isClosed ] ifNil: [ true ]
+]
+
+{ #category : #'api - showing' }
+PyramidWindow >> isOpen [
+
+	^ self isClosed not
 ]
 
 { #category : #accessing }

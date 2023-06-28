@@ -40,7 +40,7 @@ PyramidWorld class >> menuNewOn: aBuilder [
 		action: [ self startNewDesign ];
 		icon: (self iconNamed: #page);
 		help: 'Create a new User-Interface';
-		label: 'New UI'
+		label: 'New project'
 ]
 
 { #category : #'menu - root' }
