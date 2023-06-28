@@ -55,7 +55,7 @@ PyramidBlocCommandTest >> testAddElementOnCollection [
 	| e1 e2 e3 b1 b2 b3 state |
 	state := PyramidCommandState new.
 
-	e1 := PyramidObservableElementCollection new.
+	e1 := PyramidCollectionWithCallbacks new.
 	e2 := BlElement new.
 	e3 := BlElement new.
 	e1 addAll: {
@@ -70,7 +70,7 @@ PyramidBlocCommandTest >> testAddElementOnCollection [
 
 
 
-	b1 := PyramidObservableElementCollection new.
+	b1 := PyramidCollectionWithCallbacks new.
 	b2 := BlElement new.
 	b3 := BlElement new.
 
@@ -79,9 +79,9 @@ PyramidBlocCommandTest >> testAddElementOnCollection [
 					 b2.
 					 b3 })
 		on: b1.
-	self assert: b1 elements size equals: 2.
-	b1 elements indexOf: b2 ifAbsent: [ self fail ].
-	b1 elements indexOf: b3 ifAbsent: [ self fail ]
+	self assert: b1 collection size equals: 2.
+	b1 collection indexOf: b2 ifAbsent: [ self fail ].
+	b1 collection indexOf: b3 ifAbsent: [ self fail ]
 ]
 
 { #category : #tests }
@@ -202,7 +202,7 @@ PyramidBlocCommandTest >> testRemoveElementOnCollection [
 	| e1 e2 e3 b1 b2 b3 state |
 	state := PyramidCommandState new.
 
-	e1 := PyramidObservableElementCollection new.
+	e1 := PyramidCollectionWithCallbacks new.
 	e2 := BlElement new.
 	e3 := BlElement new.
 	e1 addAll: {
@@ -215,7 +215,7 @@ PyramidBlocCommandTest >> testRemoveElementOnCollection [
 	self assert: state arguments first equals: e2.
 	self assert: state arguments last equals: e3.
 
-	b1 := PyramidObservableElementCollection new.
+	b1 := PyramidCollectionWithCallbacks new.
 	b2 := BlElement new.
 	b3 := BlElement new.
 	b1 addAll: {
@@ -225,9 +225,9 @@ PyramidBlocCommandTest >> testRemoveElementOnCollection [
 	PyramidBlocCommand removeElementOnCollection
 		setState: (PyramidCommandState new arguments: { b2 })
 		on: b1.
-	self assert: b1 elements size equals: 1.
-	self assert: (b1 elements indexOf: b2) equals: 0.
-	b1 elements indexOf: b3 ifAbsent: [ self fail ]
+	self assert: b1 collection size equals: 1.
+	self assert: (b1 collection indexOf: b2) equals: 0.
+	b1 collection indexOf: b3 ifAbsent: [ self fail ]
 ]
 
 { #category : #tests }

@@ -29,8 +29,8 @@ PyramidProperty class >> fromCommand: aPyramidCommand inputBuilder: aPyramidProp
 { #category : #sorting }
 PyramidProperty class >> sortBlElements: a and: b [
 
-	a parent
-	=  b parent ifTrue: [
+	(a parent
+	=  b parent and: [ a parent isNotNil ]) ifTrue: [
 		^ (a parent childIndexOf: a)
 		  <= (a parent childIndexOf:
 				   b) ].

@@ -81,7 +81,7 @@ PyramidPropertiesViewTest >> testUpdatePropertyViews [
 	Verify <A> <B> targetModel is not empty, <C> targetModel is empty."
 
 	| propertyA propertyB propertyC view activeProject |
-	activeProject := PyramidActiveProjectModel new.
+	activeProject := PyramidProjectModel new.
 
 	propertyA := PyramidProperty new
 		             command: self alwaysTrueCommand;

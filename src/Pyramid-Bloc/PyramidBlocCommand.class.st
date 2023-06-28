@@ -24,7 +24,7 @@ PyramidBlocCommand class >> addElementOnCollection [
 		  set: [ :state :target | target addAll: state arguments ]
 		  get: [ :state :source |
 			  state source: source.
-			  state arguments: source elements asArray ]
+			  state arguments: source collection asArray ]
 		  isExecutableBlock: [ :obj :state| obj isCollection ]
 ]
 
@@ -152,7 +152,7 @@ PyramidBlocCommand class >> removeElementOnCollection [
 		  set: [ :state :target | target removeAll: state arguments ]
 		  get: [ :state :source |
 			  state source: source.
-			  state arguments: source elements asArray ]
+			  state arguments: source collection asArray ]
 		  isExecutableBlock: [ :obj :state| obj isCollection ]
 ]
 

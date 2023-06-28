@@ -61,7 +61,7 @@ PyramidPropertyInputModelBuilderTest >> testEmptyModel [
 
 	self assert: property inputsModel elementInputsModel size equals: 0.
 	self assert: property inputsModel stateInputsModel size equals: 0.
-	self assert: property inputsModel applyToAllInput text equals: '# no values'
+	self deny: property inputsModel shouldDisplay
 ]
 
 { #category : #tests }

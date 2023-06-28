@@ -1,6 +1,6 @@
 Class {
 	#name : #PyramidPropertiesTestDummy,
-	#superclass : #Object,
+	#superclass : #BlElement,
 	#instVars : [
 		'isToto',
 		'string'
