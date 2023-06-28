@@ -8,6 +8,12 @@ Pyramid is a WYSIWYG application (What You See Is What You Get) in other terms i
 
 Pyramid help you to produce final UI using Bloc library (and also Toplo).
 
+## How to start
+
+Open the Pyramid menu into Library and click `New Project`.
+
+![image](https://github.com/OpenSmock/Pyramid/assets/49183340/09b28b8e-f2df-489b-8855-68141efa6bf3)
+
 ## Installation
 
 You can load the last stable version of Pyramid or the development version. The Development version can provide the new incoming functionalities but can be unstable.
