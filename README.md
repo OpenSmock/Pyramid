@@ -10,22 +10,27 @@ Pyramid help you to produce final UI using Bloc library (and also Toplo).
 
 ## Installation
 
-To install the latest version of pyramid, use the following script inside a Playground.
+You can load the last stable version of Pyramid or the development version. The Development version can provide the new incoming functionalities but can be unstable.
+
+To install a version of Pyramid, use one of the following scripts inside a playground.
+
+### Stable version
 
 ```st
-[ Metacello new
+Metacello new
 	baseline: 'Pyramid';
-	repository: 'github://OpenSmock/Pyramid:dev/src';
-	onConflictUseIncoming;
-	ignoreImage;
-	load ]
-		on: MCMergeOrLoadWarning
-		do: [ :warning | warning load ]
+	repository: 'github://OpenSmock/Pyramid:main/src';
+	load
 ```
 
-## Examples
+### Latest development version
 
-Examples can be found in the class `PyExamples`.
+```st
+Metacello new
+	baseline: 'Pyramid';
+	repository: 'github://OpenSmock/Pyramid:dev/src';
+	load
+```
 
 ## Dependencies
 
