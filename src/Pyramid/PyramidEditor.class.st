@@ -23,7 +23,7 @@ PyramidEditor >> commandPipeline [
 	^ commandPipeline
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #initialization }
 PyramidEditor >> initialize [
 
 	activeProject := PyramidProjectModel new.
@@ -51,12 +51,6 @@ PyramidEditor >> plugins: aCollection [
 PyramidEditor >> properties [
 
 	^ properties
-]
-
-{ #category : #'as yet unclassified' }
-PyramidEditor >> test [
-
-	^ self iconNamed: #pharoBig
 ]
 
 { #category : #accessing }
