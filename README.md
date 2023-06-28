@@ -1,8 +1,12 @@
 [![Pharo 11 CI](https://github.com/OpenSmock/Pyramid/actions/workflows/Pharo11CI.yml/badge.svg)](https://github.com/OpenSmock/Pyramid/actions/workflows/Pharo11CI.yml)
 
 # Pyramid
-Pyramid is an user-interface builder for Bloc
 
+Pyramid is a User-Interface (UI) editor. 
+
+Pyramid is a WYSIWYG application (What You See Is What You Get) in other terms it allows you to visually design the expected outcome.
+
+Pyramid help you to produce final UI using Bloc library (and also Toplo).
 
 ## Installation
 
