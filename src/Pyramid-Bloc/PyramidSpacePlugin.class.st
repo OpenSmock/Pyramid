@@ -1,36 +1,14 @@
 Class {
 	#name : #PyramidSpacePlugin,
 	#superclass : #Object,
-	#traits : 'TPyramidPlugin + TPyramidProjectModelObserver',
-	#classTraits : 'TPyramidPlugin classTrait + TPyramidProjectModelObserver classTrait',
+	#traits : 'TPyramidPlugin',
+	#classTraits : 'TPyramidPlugin classTrait',
 	#instVars : [
-		'spacePresenter',
-		'activeProject'
+		'resetSpaceButton',
+		'spaceSwitch'
 	],
 	#category : #'Pyramid-Bloc-plugin-space'
 }
-
-{ #category : #examples }
-PyramidSpacePlugin class >> example [
-
-	| plugin |
-
-	plugin := PyramidSpacePlugin new.
-plugin configureBuilder: nil.
-plugin overlaysManager rootElement addChild: (BlElement new background: Color red; yourself); yourself.
-plugin overlaysManager space show.
-]
-
-{ #category : #accessing }
-PyramidSpacePlugin class >> extensions [
-
-	^ {
-		  PyramidSPEMousePosition new.
-		  PyramidSPEWindow new.
-		  PyramidSPEMovement new.
-		  PyramidSPEMakeSelection new.
-		PyramidSPEShowSelection new }
-]
 
 { #category : #'class initialization' }
 PyramidSpacePlugin class >> initialize [
@@ -38,59 +16,48 @@ PyramidSpacePlugin class >> initialize [
 	PyramidPluginManager uniqueInstance addPlugin: self
 ]
 
-{ #category : #accessing }
-PyramidSpacePlugin >> activeProject [
-
-	^ activeProject
-]
-
-{ #category : #accessing }
-PyramidSpacePlugin >> activeProject: anObject [
-
-	activeProject := anObject
-]
-
 { #category : #adding }
 PyramidSpacePlugin >> addPanelsOn: aPyramidSimpleWindow [
 
 	aPyramidSimpleWindow
 		at: #space
-		addItem: [ :builder |
-		builder makePresenter: self spacePresenter ]
+		addItem: [ :builder | builder makePresenter: self spaceSwitch ].
+	aPyramidSimpleWindow at: #topLeft addItem: [ :builder |
+		builder makeButtonWithIcon: self resetSpaceButton order: 5 ]
 ]
 
 { #category : #'as yet unclassified' }
 PyramidSpacePlugin >> connectOn: aPyramidEditor [
 
-	(self spacePresenter overlaysManager model at: #editor) object:
-		aPyramidEditor.
-			self activeProject: aPyramidEditor activeProject.
-	self activeProject addObserver: self
+	| spacePresenter |
+	spacePresenter := PyramidSpacePresenter new.
+	self spaceSwitch editor: aPyramidEditor.
+	self spaceSwitch spacePresenter: spacePresenter
 ]
 
 { #category : #initialization }
 PyramidSpacePlugin >> initialize [
 
-	spacePresenter := PyramidSpacePresenter new.
+	spaceSwitch := PyramidSpaceSwitchPresenter new.
+	resetSpaceButton := SpButtonPresenter new
+		                    icon: (self iconNamed: #smallUpdate);
+		                    action: [ self resetSpacePresenter ];
+		                    yourself
+]
+
+{ #category : #initialization }
+PyramidSpacePlugin >> resetSpaceButton [
+	^ resetSpaceButton
+]
+
+{ #category : #initialization }
+PyramidSpacePlugin >> resetSpacePresenter [
+
+	self spaceSwitch spacePresenter: PyramidSpacePresenter new
 ]
 
 { #category : #'as yet unclassified' }
-PyramidSpacePlugin >> pyramidRootsChanged [
+PyramidSpacePlugin >> spaceSwitch [
 
-	self updateRoots
-]
-
-{ #category : #accessing }
-PyramidSpacePlugin >> spacePresenter [
-
-	^ spacePresenter
-]
-
-{ #category : #accessing }
-PyramidSpacePlugin >> updateRoots [
-
-	| canvas |
-	canvas := self spacePresenter overlaysManager frontLayer overlayElement.
-	canvas removeChildren.
-	canvas addChildren: self activeProject roots
+	^ spaceSwitch
 ]
