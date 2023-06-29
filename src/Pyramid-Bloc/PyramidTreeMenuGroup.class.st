@@ -58,6 +58,28 @@ PyramidTreeMenuGroup class >> browseAndInspect: aPyramidTreePresenter [
 ]
 
 { #category : #'as yet unclassified' }
+PyramidTreeMenuGroup class >> contextNotWorkingButton: aPyramidTreePresenter [
+
+	| context selection |
+	selection := aPyramidTreePresenter editor activeProject selection.
+	context := SpMenuItemPresenter new
+		           enabled: false;
+		           yourself.
+	selection ifEmpty: [ context name: 'No element in selection' ].
+
+	selection size = 1 ifTrue: [
+		context icon: (self iconNamed: selection systemIconName).
+		context name:
+			selection first id asSymbol , ' '
+			, selection first hash printString ].
+	selection size > 1 ifTrue: [
+		context icon: (self iconNamed: #collection).
+		context name: selection size printString , ' elements' ].
+
+	^ [ :aGroup | aGroup addMenuItem: context ]
+]
+
+{ #category : #'as yet unclassified' }
 PyramidTreeMenuGroup class >> removeElement: aPyramidTreePresenter [
 
 	aPyramidTreePresenter editor activeProject selection ifEmpty: [

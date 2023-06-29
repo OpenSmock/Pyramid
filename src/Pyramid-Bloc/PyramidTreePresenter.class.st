@@ -37,7 +37,7 @@ PyramidTreePresenter >> contextMenu [
 { #category : #api }
 PyramidTreePresenter >> contextMenuGroups [
 
-	^ {
+	^ { (PyramidTreeMenuGroup contextNotWorkingButton: self).
 		  (PyramidTreeMenuGroup browseAndInspect: self).
 		  (PyramidTreeMenuGroup addNewElement: self).
 		  (PyramidTreeMenuGroup removeElement: self) }
