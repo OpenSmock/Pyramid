@@ -86,9 +86,10 @@ PyramidSpacePresenter >> overlaysManager [
 ]
 
 { #category : #accessing }
-PyramidSpacePresenter >> overlaysManager: anObject [
+PyramidSpacePresenter >> overlaysManager: newManager [
 
-	overlaysManager := anObject
+	self flag: #TODO. "overlaysManager space host = self makeSpacePresenter host "
+	overlaysManager := newManager
 ]
 
 { #category : #accessing }

@@ -39,7 +39,9 @@ PyramidOverlayBuilder class >> mousePositionBlock [
 	^ [ :builder |
 	  | textDisplay rope |
 	  textDisplay := (builder at: #origin) asRopedText asElement.
-	  textDisplay background: Color white.
+	  textDisplay
+		  background: Color white;
+		  padding: (BlInsets top: 3).
 	  builder
 		  name: #mousePosition;
 		  constraintsMatchParent;

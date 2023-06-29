@@ -55,9 +55,9 @@ PyramidDynamicLayoutStrategy >> topLayoutFor: aWindow [
 
 	| layout |
 	layout := SpBoxLayout newHorizontal.
-	layout add: (aWindow services at: #topLeft) presenter expand: false.
+	layout add: (aWindow services at: #topLeft) presenter expand: true.
 	layout add: SpNullPresenter new expand: true.
-	layout add: (aWindow services at: #topCenter) presenter expand: false.
+	layout add: (aWindow services at: #topCenter) presenter expand: true.
 	layout add: SpNullPresenter new expand: true.
 	layout add: (aWindow services at: #topRight) presenter expand: false.
 	^ layout
