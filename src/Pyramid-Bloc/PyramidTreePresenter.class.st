@@ -77,7 +77,7 @@ PyramidTreePresenter >> initializePresenters [
 		roots: {  };
 		children: [ :each | each children ];
 		contextMenu: [ self contextMenu ];
-		expandRoots.
+		expandAll.
 
 	self columns do: [ :each | treePresenter addColumn: each ]
 ]
