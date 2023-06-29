@@ -46,14 +46,6 @@ PyramidDynamicLayoutStrategy >> spaceAndToolBarFor: aWindow [
 
 	^ SpBoxLayout newHorizontal
 		  spacing: 4;
-		  add: (SpBoxLayout newVertical
-				   add: (aWindow services at: #spaceToolbarTop) presenter
-				   expand: false;
-				   add: SpNullPresenter new expand: true;
-				   add: (aWindow services at: #spaceToolbarBottom) presenter
-				   expand: false;
-				   yourself)
-		  expand: false;
 		  add: (aWindow services at: #space) presenter expand: true;
 		  yourself
 ]

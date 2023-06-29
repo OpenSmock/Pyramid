@@ -23,5 +23,9 @@ PyramidFakeBackgroundMixedValues >> pyramidBackgroundStrategy [
 ]
 
 { #category : #'as yet unclassified' }
+PyramidFakeBackgroundMixedValues >> pyramidModalDefaultPaint: aPyramidPaintInputPresenter [
+]
+
+{ #category : #'as yet unclassified' }
 PyramidFakeBackgroundMixedValues >> pyramidSelectMenuOnModal: aModal [
 ]
