@@ -11,6 +11,14 @@ Class {
 }
 
 { #category : #accessing }
+PyramidPanelModel class >> menu [
+
+	^ self new
+		  builder: PyramidMenuPanelBuilder new;
+		  yourself
+]
+
+{ #category : #accessing }
 PyramidPanelModel class >> presenter [
 
 	^ self new
