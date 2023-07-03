@@ -18,6 +18,12 @@ PyramidOverlaysManagerFactory class >> editManager [
 	factory at: #size put: 600 @ 400.
 	factory at: #origin put: 50 @ 50.
 	factory at: #editor put: nil.
+	factory at: #spaceColor put: Color gray.
+
+	(factory model at: #spaceColor)
+		subcribe: factory
+		with: [ :color | factory manager space root background: color ].
+	(factory model at: #spaceColor)triggerCallbacks.
 
 	factory manager space when: BlKeyDownEvent do: [ :evt |
 		(factory model at: #keyboardPressed) object add: evt key.

@@ -145,9 +145,7 @@ PyramidSelectionMakerController >> endDragEvent: evt [
 		ifFalse: [
 		self computeNewSelectionInBounds: self elementPreview boundsInSpace ].
 
-	evt secondaryButtonPressed ifTrue: [
-		(self subMenu builder
-		        menuFor: self activeProject selection) openWithSpecAt: self currentHand position ]
+	evt secondaryButtonPressed ifTrue: [ self showSubMenu  ]
 ]
 
 { #category : #initialization }
@@ -218,6 +216,46 @@ PyramidSelectionMakerController >> selectionStrategy [
 PyramidSelectionMakerController >> selectionStrategy: anObject [
 
 	selectionStrategy := anObject
+]
+
+{ #category : #'as yet unclassified' }
+PyramidSelectionMakerController >> showSubMenu [
+
+	| menu |
+	menu := self subMenu builder menuFor: self activeProject selection.
+	menu addGroup: [ :group |
+		group addItem: [ :item |
+			item
+				name: 'Space backgorund color';
+				subMenu: (SpMenuPresenter new
+						 addItem: [ :subItem |
+							 subItem
+								 name: 'Color black';
+								 icon: [
+									 (self overlay model at: #spaceColor) object = Color black
+										 ifTrue: [ self iconNamed: #testGreen ]
+										 ifFalse: [ self iconNamed: #testNotRun ] ];
+								 action: [
+									 (self overlay model at: #spaceColor) object: Color black ] ];
+						 addItem: [ :subItem |
+							 subItem
+								 name: 'Color gray';
+								 icon: [
+									 (self overlay model at: #spaceColor) object = Color gray
+										 ifTrue: [ self iconNamed: #testGreen ]
+										 ifFalse: [ self iconNamed: #testNotRun ] ];
+								 action: [
+									 (self overlay model at: #spaceColor) object: Color gray ] ];
+						 addItem: [ :subItem |
+							 subItem
+								 name: 'Color white';
+								icon: [
+									 (self overlay model at: #spaceColor) object = Color white
+										 ifTrue: [ self iconNamed: #testGreen ]
+										 ifFalse: [ self iconNamed: #testNotRun ] ];
+								 action: [
+									 (self overlay model at: #spaceColor) object: Color white ] ]) ] ].
+	menu openWithSpecAt: self currentHand position
 ]
 
 { #category : #'as yet unclassified' }

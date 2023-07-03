@@ -29,8 +29,8 @@ PyramidTreePresenter >> connectOn: aPyramidEditor [
 PyramidTreePresenter >> contextMenu [
 
 	| menu |
-	menu := (self editor window services at: #selectionMenu) builder menuFor: self editor activeProject selection.
-	
+	menu := (self editor window services at: #selectionMenu) builder
+		        menuFor: self editor activeProject selection.
 	^ menu
 ]
 

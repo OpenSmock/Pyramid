@@ -250,7 +250,8 @@ PyramidOverlayBuilder >> model [
 { #category : #accessing }
 PyramidOverlayBuilder >> model: anObject [
 
-	model := anObject
+	model := anObject.
+	self overlay model: anObject
 ]
 
 { #category : #accessing }
