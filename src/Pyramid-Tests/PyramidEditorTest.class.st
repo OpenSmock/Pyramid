@@ -5,13 +5,17 @@ Class {
 }
 
 { #category : #tests }
-PyramidEditorTest >> testOpenNewEditor [ 
+PyramidEditorTest >> testOpenNewEditor [
 
-	| editor |
+	| editor spec |
 	editor := PyramidPluginManager uniqueInstance makeEditor.
-	editor window open.
+	spec := editor window open.
+	(Duration milliSeconds:  10) wait.
 	self assert: editor window isOpen.
-	
+	self assert: spec window isInWorld.
+
 	editor window close.
+	(Duration milliSeconds:  10) wait.
 	self assert: editor window isClosed.
+	self deny: spec window isInWorld
 ]

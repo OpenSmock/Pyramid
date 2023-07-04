@@ -66,7 +66,8 @@ PyramidWindow >> open [
 
 	| spec |
 	spec := self presenter asWindow open.
-	spec maximize
+	spec maximize.
+	^ spec
 ]
 
 { #category : #private }

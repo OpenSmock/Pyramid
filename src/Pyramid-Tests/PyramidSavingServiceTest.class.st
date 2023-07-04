@@ -89,12 +89,12 @@ PyramidSavingServiceTest >> testCanSave [
 	model savingMethodName: 'aPyramidSavingMethod'.
 	model savingPackageName: 'PyramidSavingPackage'.
 	self assert: self savingService canSave.
-	
+
 	model savingClassName: 'PyramidSavingClass'.
 	model savingMethodName: 'aPyramidSavingMethod'.
 	model savingPackageName: 'PyramidSavingPackage-abc'.
 	self deny: self savingService canSave.
-	
+
 	model savingClassName: 'PyramidSavingClass'.
 	model savingMethodName: 'aPyramidSavingMethod'.
 	model savingPackageName: 'PyramidSavingPackage-Abc-Def'.
@@ -139,8 +139,10 @@ PyramidSavingServiceTest >> testSave [
 	self savingService savingModel: model.
 
 	self deny: (self savingClass classSide canUnderstand: #classMethod).
-	self deny: (self savingClass instanceSide canUnderstand: #classMethod).
-	self deny: (self savingClass classSide canUnderstand: #instanceMethod).
+	self deny:
+		(self savingClass instanceSide canUnderstand: #classMethod).
+	self deny:
+		(self savingClass classSide canUnderstand: #instanceMethod).
 	self deny:
 		(self savingClass instanceSide canUnderstand: #instanceMethod).
 
@@ -148,12 +150,14 @@ PyramidSavingServiceTest >> testSave [
 	model savingMethodName: 'classMethod'.
 	self savingService save.
 	self assert: (self savingClass classSide canUnderstand: #classMethod).
-	self deny: (self savingClass instanceSide canUnderstand: #classMethod).
+	self deny:
+		(self savingClass instanceSide canUnderstand: #classMethod).
 
 	model onInstance.
 	model savingMethodName: 'instanceMethod'.
 	self savingService save.
-	self deny: (self savingClass classSide canUnderstand: #instanceMethod).
+	self deny:
+		(self savingClass classSide canUnderstand: #instanceMethod).
 	self assert:
 		(self savingClass instanceSide canUnderstand: #instanceMethod)
 ]
