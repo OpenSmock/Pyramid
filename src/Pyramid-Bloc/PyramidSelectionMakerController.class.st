@@ -221,40 +221,28 @@ PyramidSelectionMakerController >> selectionStrategy: anObject [
 { #category : #'as yet unclassified' }
 PyramidSelectionMakerController >> showSubMenu [
 
-	| menu |
+	| menu colors chooseColorSubMenu |
 	menu := self subMenu builder menuFor: self activeProject selection.
+	colors := {
+		          Color white.
+		          Color gray.
+		          Color black }.
+	chooseColorSubMenu := SpMenuPresenter new.
+	colors do: [ :color |
+		chooseColorSubMenu addItem: [ :item |
+			item
+				name: color printString;
+				action: [ (self overlay model at: #spaceColor) object: color ];
+				icon: [
+					(self overlay model at: #spaceColor) object = color
+						ifTrue: [ self iconNamed: #testGreen ]
+						ifFalse: [ self iconNamed: #testNotRun ] ] ] ].
+
 	menu addGroup: [ :group |
 		group addItem: [ :item |
 			item
 				name: 'Space backgorund color';
-				subMenu: (SpMenuPresenter new
-						 addItem: [ :subItem |
-							 subItem
-								 name: 'Color black';
-								 icon: [
-									 (self overlay model at: #spaceColor) object = Color black
-										 ifTrue: [ self iconNamed: #testGreen ]
-										 ifFalse: [ self iconNamed: #testNotRun ] ];
-								 action: [
-									 (self overlay model at: #spaceColor) object: Color black ] ];
-						 addItem: [ :subItem |
-							 subItem
-								 name: 'Color gray';
-								 icon: [
-									 (self overlay model at: #spaceColor) object = Color gray
-										 ifTrue: [ self iconNamed: #testGreen ]
-										 ifFalse: [ self iconNamed: #testNotRun ] ];
-								 action: [
-									 (self overlay model at: #spaceColor) object: Color gray ] ];
-						 addItem: [ :subItem |
-							 subItem
-								 name: 'Color white';
-								icon: [
-									 (self overlay model at: #spaceColor) object = Color white
-										 ifTrue: [ self iconNamed: #testGreen ]
-										 ifFalse: [ self iconNamed: #testNotRun ] ];
-								 action: [
-									 (self overlay model at: #spaceColor) object: Color white ] ]) ] ].
+				subMenu: chooseColorSubMenu ] ].
 	menu openWithSpecAt: self currentHand position
 ]
 
