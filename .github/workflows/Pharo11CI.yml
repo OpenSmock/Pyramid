@@ -23,7 +23,7 @@ jobs:
         with:
           smalltalk-image: ${{ matrix.smalltalk }}
       - name: Load in New Image and Run Tests
-        run: smalltalkci -s ${{ matrix.smalltalk }} ${{ matrix.ston }}
+        run: smalltalkci -s ${{ matrix.smalltalk }} --headfull ${{ matrix.ston }}
         shell: bash
         timeout-minutes: 10
         env: 
