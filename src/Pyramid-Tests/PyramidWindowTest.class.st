@@ -53,22 +53,6 @@ PyramidWindowTest >> testServices [
 	self assert:( buttons at: 4) equals: t4.
 ]
 
-{ #category : #tests }
-PyramidWindowTest >> testWorldRenderer [
-
-	| worldRenderer |
-	worldRenderer := self currentWorld worldState worldRenderer.
-	self
-		deny: [ worldRenderer class = BlMorphicWorldRenderer ]
-		description: 'BlMorphicWorldRenderer'.
-	self
-		deny: [ worldRenderer class = NullWorldRenderer ]
-		description: 'NullWorldRenderer'.
-	self
-		assert: [ worldRenderer class = OSWorldRenderer ]
-		description: 'OSWorldRenderer'
-]
-
 { #category : #accessing }
 PyramidWindowTest >> window [
 ^ window

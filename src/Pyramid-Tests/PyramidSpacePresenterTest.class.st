@@ -5,6 +5,12 @@ Class {
 }
 
 { #category : #tests }
+PyramidSpacePresenterTest >> testIsInteractive [
+
+	self assert: Smalltalk isInteractiveGraphic
+]
+
+{ #category : #tests }
 PyramidSpacePresenterTest >> testMakeSpacePresenter [
 
 	| morphPresenter overlaysManager spec |
@@ -29,4 +35,34 @@ PyramidSpacePresenterTest >> testMakeSpacePresenter [
 	self currentWorld doOneCycle.
 	self deny: spec window isInWorld.
 	self deny: overlaysManager space isOpened
+]
+
+{ #category : #tests }
+PyramidSpacePresenterTest >> testSpace [
+
+	| space |
+	space := BlSpace new.
+	self deny: space isOpened.
+	space show.
+	(Duration milliSeconds: 100) wait.
+	self assert: space isOpened.
+	space close.
+	(Duration milliSeconds: 100) wait.
+	self deny: space isOpened
+]
+
+{ #category : #tests }
+PyramidSpacePresenterTest >> testWorldRenderer [
+
+	| worldRenderer |
+	worldRenderer := self currentWorld worldState worldRenderer.
+	self
+		deny: [ worldRenderer class = BlMorphicWorldRenderer ]
+		description: 'BlMorphicWorldRenderer'.
+	self
+		deny: [ worldRenderer class = NullWorldRenderer ]
+		description: 'NullWorldRenderer'.
+	self
+		assert: [ worldRenderer class = OSWorldRenderer ]
+		description: 'OSWorldRenderer'
 ]
