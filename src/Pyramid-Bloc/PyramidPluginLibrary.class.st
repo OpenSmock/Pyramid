@@ -21,15 +21,6 @@ PyramidPluginLibrary >> addButton [
 ^ addButton
 ]
 
-{ #category : #adding }
-PyramidPluginLibrary >> addPanelsOn: aPyramidSimpleWindow [
-
-	aPyramidSimpleWindow
-		at: #spaceToolbarTop
-		addItem: [ :builder |
-		builder makeButtonWithIcon: self addButton order: 10 ]
-]
-
 { #category : #'as yet unclassified' }
 PyramidPluginLibrary >> connectOn: aPyramidEditor [
 

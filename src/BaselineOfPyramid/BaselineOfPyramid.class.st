@@ -12,10 +12,11 @@ BaselineOfPyramid >> baseline: spec [
 		spec postLoadDoIt: #postload:package:.
 		self dependencies: spec.
 		spec
-			package: #Pyramid
-			with: [ spec requires: #( #BlocSerialization ) ];
-			package: #'Pyramid-Bloc' with: [ spec requires: #( #Pyramid #Bloc ) ];
-			package: #'Pyramid-Tests' with: [ spec requires: #( #Pyramid ) ] ]
+			package: #Pyramid with: [ spec requires: #( #BlocSerialization ) ];
+			package: #'Pyramid-Bloc'
+			with: [ spec requires: #( #Pyramid #Bloc ) ];
+			package: #'Pyramid-Tests' with: [ spec requires: #( #Pyramid ) ];
+			package: #'Pyramid-IDE' with: [ spec requires: #( #Pyramid ) ] ]
 ]
 
 { #category : #baselines }

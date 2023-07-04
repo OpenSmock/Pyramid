@@ -1,7 +1,7 @@
 Class {
 	#name : #PyramidTreeToFlat,
 	#superclass : #Object,
-	#category : #'Pyramid-utils'
+	#category : #'Pyramid-Bloc-utils'
 }
 
 { #category : #'as yet unclassified' }

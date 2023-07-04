@@ -24,7 +24,7 @@ PyramidPluginSelection >> addPanelsOn: aPyramidSimpleWindow [
 			makeTab: self view
 			label: 'Playground'
 			icon: (self iconNamed: #open)
-			order: 1 ]
+			order: 1 ].
 ]
 
 { #category : #'as yet unclassified' }

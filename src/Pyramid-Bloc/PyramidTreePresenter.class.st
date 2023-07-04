@@ -29,18 +29,9 @@ PyramidTreePresenter >> connectOn: aPyramidEditor [
 PyramidTreePresenter >> contextMenu [
 
 	| menu |
-	menu := SpMenuPresenter new.
-	self contextMenuGroups do: [ :each | menu addGroup: each ].
+	menu := (self editor window services at: #selectionMenu) builder
+		        menuFor: self editor activeProject selection.
 	^ menu
-]
-
-{ #category : #api }
-PyramidTreePresenter >> contextMenuGroups [
-
-	^ {
-		  (PyramidTreeMenuGroup browseAndInspect: self).
-		  (PyramidTreeMenuGroup addNewElement: self).
-		  (PyramidTreeMenuGroup removeElement: self) }
 ]
 
 { #category : #layout }
@@ -77,7 +68,7 @@ PyramidTreePresenter >> initializePresenters [
 		roots: {  };
 		children: [ :each | each children ];
 		contextMenu: [ self contextMenu ];
-		expandRoots.
+		expandAll.
 
 	self columns do: [ :each | treePresenter addColumn: each ]
 ]

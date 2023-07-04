@@ -39,7 +39,9 @@ PyramidOverlayBuilder class >> mousePositionBlock [
 	^ [ :builder |
 	  | textDisplay rope |
 	  textDisplay := (builder at: #origin) asRopedText asElement.
-	  textDisplay background: Color white.
+	  textDisplay
+		  background: Color white;
+		  padding: (BlInsets top: 3).
 	  builder
 		  name: #mousePosition;
 		  constraintsMatchParent;
@@ -159,12 +161,12 @@ PyramidOverlayBuilder class >> selectionMakerBlock [
 		  clipChildren: false.
 	  controller := PyramidSelectionMakerController new
 		                overlay: builder overlay;
-							keyboardPressed: ( builder at: #keyboardPressed);
+		                keyboardPressed: (builder at: #keyboardPressed);
 		                yourself.
-		  builder
+	  builder
 		  at: #editor
 		  subscribeWith: [ :editor |
-		  controller activeProject: editor activeProject ] ]
+		  controller updateEditor: editor ] ]
 ]
 
 { #category : #'api - resizer' }
@@ -248,7 +250,8 @@ PyramidOverlayBuilder >> model [
 { #category : #accessing }
 PyramidOverlayBuilder >> model: anObject [
 
-	model := anObject
+	model := anObject.
+	self overlay model: anObject
 ]
 
 { #category : #accessing }

@@ -27,14 +27,12 @@ PyramidWindow >> initialize [
 	PyramidPanelModel toolbarHorizontal installOn: self at: #topLeft.
 	PyramidPanelModel toolbarHorizontal installOn: self at: #topCenter.
 	PyramidPanelModel toolbarHorizontal installOn: self at: #topRight.
-
 	PyramidPanelModel presenter installOn: self at: #space.
-	
-	PyramidPanelModel toolbarVertical installOn: self at: #spaceToolbarTop.
-	PyramidPanelModel toolbarVertical installOn: self at: #spaceToolbarBottom.
-
 	PyramidPanelModel tab installOn: self at: #tabLeft.
-	PyramidPanelModel tab installOn: self at: #tabRight
+	PyramidPanelModel tab installOn: self at: #tabRight.
+	PyramidPanelModel menu
+		installOn: self
+		at: #selectionMenu.
 ]
 
 { #category : #initialization }
@@ -68,7 +66,8 @@ PyramidWindow >> open [
 
 	| spec |
 	spec := self presenter asWindow open.
-	spec maximize
+	spec maximize.
+	^ spec
 ]
 
 { #category : #private }
