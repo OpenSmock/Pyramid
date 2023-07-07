@@ -52,6 +52,7 @@ PyramidPluginDynamicLayout >> changeEditorLayout [
 PyramidPluginDynamicLayout >> changeLeftLayout [
 
 	self isLeftOpened: self isLeftOpened not.
+	self leftButton help: self leftButtonHelp.
 	self changeEditorLayout
 ]
 
@@ -59,6 +60,7 @@ PyramidPluginDynamicLayout >> changeLeftLayout [
 PyramidPluginDynamicLayout >> changeRightLayout [
 
 	self isRightOpened: self isRightOpened not.
+	self rightButton help: self rightButtonHelp.
 	self changeEditorLayout
 ]
 
@@ -89,10 +91,12 @@ PyramidPluginDynamicLayout >> initialize [
 	leftButton := SpButtonPresenter new
 		              icon: (self iconNamed: #solidMenu);
 		              action: [ self changeLeftLayout ];
+		              help: self leftButtonHelp;
 		              yourself.
 	rightButton := SpButtonPresenter new
 		               icon: (self iconNamed: #solidMenu);
 		               action: [ self changeRightLayout ];
+		               help: self rightButtonHelp;
 		               yourself
 ]
 
@@ -125,8 +129,22 @@ PyramidPluginDynamicLayout >> leftButton [
 	^ leftButton
 ]
 
+{ #category : #'as yet unclassified' }
+PyramidPluginDynamicLayout >> leftButtonHelp [
+
+	self isLeftOpened ifTrue: [ ^ 'Hide left panel' ] ifFalse: [ ^ 'Show left panel' ]
+]
+
 { #category : #accessing }
 PyramidPluginDynamicLayout >> rightButton [
 
 	^ rightButton
+]
+
+{ #category : #'as yet unclassified' }
+PyramidPluginDynamicLayout >> rightButtonHelp [
+
+	self isRightOpened
+		ifTrue: [ ^ 'Hide right panel' ]
+		ifFalse: [ ^ 'Show right panel' ]
 ]

@@ -42,6 +42,7 @@ PyramidSpacePlugin >> initialize [
 	resetSpaceButton := SpButtonPresenter new
 		                    icon: (self iconNamed: #smallUpdate);
 		                    action: [ self resetSpacePresenter ];
+		help: 'Refresh space in case of an issue';
 		                    yourself
 ]
 
