@@ -130,7 +130,7 @@ PyramidSavePlugin >> saveAction [
 
 	[ self savingService save ] 
 	on: PyramidSaveError do: [
-		^ UIManager default alert: 'Cannot save the project, check project properties before.' title: 'Error'.
+		^ UIManager default alert: 'Cannot save the project, check project configuration before.' title: 'Error'.
 	]. 
 ]
 
