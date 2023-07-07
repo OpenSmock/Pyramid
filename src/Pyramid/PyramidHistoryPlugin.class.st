@@ -58,13 +58,13 @@ PyramidHistoryPlugin >> initializeButtons [
 		              icon: (self iconNamed: #smallUndo);
 		              action: [ self history undo ];
 		              enabled: self history canUndo;
+		              help: 'Undo';
 		              yourself.
 	redoButton := SpButtonPresenter new
 		              icon: (self iconNamed: #smallRedo);
-		              action: [
-			              self history redo.
-			               ];
+		              action: [ self history redo ];
 		              enabled: self history canRedo;
+						 help: 'Redo';
 		              yourself
 ]
 

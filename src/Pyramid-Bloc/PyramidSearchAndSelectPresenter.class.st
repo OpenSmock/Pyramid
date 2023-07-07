@@ -3,8 +3,9 @@ Class {
 	#superclass : #SpPresenter,
 	#instVars : [
 		'unselectButton',
-		'flatRadioButton',
-		'treeRadioButton',
+		'allRadioButton',
+		'rootsRadioButton',
+		'selectionRadioButton',
 		'codePresenter',
 		'selectButton',
 		'examplesDropList',
@@ -17,11 +18,9 @@ Class {
 { #category : #'as yet unclassified' }
 PyramidSearchAndSelectPresenter >> actionExample: aModel [
 
-	aModel isTree
-		ifTrue: [
-			self treeRadioButton click ]
-		ifFalse: [
-			self flatRadioButton click ].
+	aModel isRoots ifTrue: [ self rootsRadioButton click ].
+	aModel isSelection ifTrue: [ self selectionRadioButton click ].
+	aModel isAll ifTrue: [ self allRadioButton click ].
 	self codePresenter text: aModel code.
 	self actionSelect
 ]
@@ -64,11 +63,17 @@ PyramidSearchAndSelectPresenter >> activeProject [
 PyramidSearchAndSelectPresenter >> activeProject: anObject [
 
 	activeProject := anObject.
-	flatRadioButton click.
+	allRadioButton click
 ]
 
 { #category : #accessing }
-PyramidSearchAndSelectPresenter >> codeIsForFlat [
+PyramidSearchAndSelectPresenter >> allRadioButton [
+
+	^ allRadioButton
+]
+
+{ #category : #accessing }
+PyramidSearchAndSelectPresenter >> codeIsForAll [
 
 	self activeProject ifNil: [ ^ self ].
 	self codePresenter interactionModel:
@@ -78,11 +83,19 @@ PyramidSearchAndSelectPresenter >> codeIsForFlat [
 ]
 
 { #category : #accessing }
-PyramidSearchAndSelectPresenter >> codeIsForTree [
+PyramidSearchAndSelectPresenter >> codeIsForRoots [
 
 	self activeProject ifNil: [ ^ self ].
 	self codePresenter interactionModel:
 		(SpCodeObjectInteractionModel on: self activeProject roots)
+]
+
+{ #category : #accessing }
+PyramidSearchAndSelectPresenter >> codeIsForSelection [
+
+	self activeProject ifNil: [ ^ self ].
+	self codePresenter interactionModel:
+		(SpCodeObjectInteractionModel on: self activeProject selection)
 ]
 
 { #category : #accessing }
@@ -102,10 +115,11 @@ PyramidSearchAndSelectPresenter >> defaultLayout [
 				   add: self selectButton;
 				   yourself)
 		  expand: false;
-		add: (SpBoxLayout newHorizontal
+		  add: (SpBoxLayout newHorizontal
 				   spacing: 4;
-				   add: self flatRadioButton;
-				   add: self treeRadioButton;
+				   add: self allRadioButton;
+				   add: self rootsRadioButton;
+				add: self selectionRadioButton;
 				   yourself)
 		  expand: false;
 		  add: (SpBoxLayout newHorizontal
@@ -134,12 +148,6 @@ PyramidSearchAndSelectPresenter >> examplesDropList [
 	^ examplesDropList
 ]
 
-{ #category : #accessing }
-PyramidSearchAndSelectPresenter >> flatRadioButton [
-
-	^ flatRadioButton
-]
-
 { #category : #initialization }
 PyramidSearchAndSelectPresenter >> initializeExamples [
 	self examplesDropList items: PyramidSearchAndSelectModel default
@@ -151,16 +159,20 @@ PyramidSearchAndSelectPresenter >> initializePresenters [
 	codePresenter := SpCodePresenter new
 		                 text: 'self';
 		                 yourself.
-	treeRadioButton := SpRadioButtonPresenter new
-		                   label: 'self = tree';
+	rootsRadioButton := SpRadioButtonPresenter new
+		                   label: 'self = {roots}';
 		                   yourself.
-	flatRadioButton := SpRadioButtonPresenter new
-		                   label: 'self = flat';
+	selectionRadioButton := SpRadioButtonPresenter new
+		                   label: 'self = {selection}';
 		                   yourself.
-	treeRadioButton associatedRadioButtons: { flatRadioButton }.
-	treeRadioButton whenActivatedDo: [ self codeIsForTree ].
-	flatRadioButton whenActivatedDo: [ self codeIsForFlat ].
-
+	allRadioButton := SpRadioButtonPresenter new
+		                   label: 'self = {all}';
+		                   yourself.
+	allRadioButton associatedRadioButtons: { selectionRadioButton . rootsRadioButton }.
+	allRadioButton whenActivatedDo: [ self codeIsForAll ].
+	selectionRadioButton whenActivatedDo: [ self codeIsForSelection ].
+	rootsRadioButton whenActivatedDo: [ self codeIsForRoots ].
+	
 	unselectButton := SpButtonPresenter new
 		                  label: 'unselect';
 		                  action: [ self actionUnselect ];
@@ -178,15 +190,21 @@ PyramidSearchAndSelectPresenter >> initializePresenters [
 ]
 
 { #category : #accessing }
+PyramidSearchAndSelectPresenter >> rootsRadioButton [
+
+	^ rootsRadioButton
+]
+
+{ #category : #accessing }
 PyramidSearchAndSelectPresenter >> selectButton [
 
 	^ selectButton
 ]
 
 { #category : #accessing }
-PyramidSearchAndSelectPresenter >> treeRadioButton [
+PyramidSearchAndSelectPresenter >> selectionRadioButton [
 
-	^ treeRadioButton
+	^ selectionRadioButton
 ]
 
 { #category : #accessing }

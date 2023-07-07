@@ -8,7 +8,9 @@ TPyramidPlugin >> addPanelsOn: aPyramidSimpleWindow [
 ]
 
 { #category : #actions }
-TPyramidPlugin >> configureBuilder: aPyramidBuilder [
+TPyramidPlugin >> configureBuilder: aPyramidEditorBuilder [
+
+	
 ]
 
 { #category : #'as yet unclassified' }

@@ -3,8 +3,10 @@ Class {
 	#superclass : #Object,
 	#instVars : [
 		'code',
-		'isTree',
-		'name'
+		'name',
+		'isRoots',
+		'isAll',
+		'isSelection'
 	],
 	#category : #'Pyramid-Bloc-plugin-hierarchy'
 }
@@ -13,17 +15,17 @@ Class {
 PyramidSearchAndSelectModel class >> all [
 
 	^ self new
-		isTree: false;
-		code: 'self';
-		name: 'Select all';
-		yourself
+		  beAll;
+		  code: 'self';
+		  name: 'Select all';
+		  yourself
 ]
 
 { #category : #'as yet unclassified' }
 PyramidSearchAndSelectModel class >> allChildrenOf [
 
 	^ self new
-		  isTree: false;
+		  beAll;
 		  code:
 			  '(self select: [ :e | e id asSymbol = #toto ]) flatCollect: [ :each | each children ]';
 		  name: 'Select all children elements of all elements named #toto';
@@ -34,7 +36,7 @@ PyramidSearchAndSelectModel class >> allChildrenOf [
 PyramidSearchAndSelectModel class >> blTextElement [
 
 	^ self new
-		  isTree: false;
+		  beAll;
 		  code: 'self select: [ :e | e isKindOf: BlTextElement ]';
 		  name: 'Select all text element';
 		  yourself
@@ -58,7 +60,7 @@ PyramidSearchAndSelectModel class >> default [
 PyramidSearchAndSelectModel class >> named [
 
 	^ self new
-		  isTree: false;
+		 beAll;
 		  code: 'self select: [ :e | e id asSymbol = #toto ]';
 		  name: 'Select all elements named #toto';
 		  yourself
@@ -68,17 +70,17 @@ PyramidSearchAndSelectModel class >> named [
 PyramidSearchAndSelectModel class >> noSelection [
 
 	^ self new
-		isTree: true;
-		code: '{ }';
-		name: 'Unselect all';
-		yourself
+		  beAll;
+		  code: '{ }';
+		  name: 'Unselect all';
+		  yourself
 ]
 
 { #category : #'as yet unclassified' }
 PyramidSearchAndSelectModel class >> notVisible [
 
 	^ self new
-		  isTree: false;
+		  beAll;
 		  code: 'self select: [ :e | e visibility isVisible not ]';
 		  name: 'Select all non visible element';
 		  yourself
@@ -88,20 +90,44 @@ PyramidSearchAndSelectModel class >> notVisible [
 PyramidSearchAndSelectModel class >> roots [
 
 	^ self new
-		isTree: true;
-		code: 'self';
-		name: 'Select all roots';
-		yourself
+		  beRoots;
+		  code: 'self';
+		  name: 'Select all roots';
+		  yourself
 ]
 
 { #category : #'as yet unclassified' }
 PyramidSearchAndSelectModel class >> transparentBackground [
 
 	^ self new
-		  isTree: false;
+		  beAll;
 		  code: 'self select: [ :e | e background isTransparent ]';
 		  name: 'Select all elements with transparent background';
 		  yourself
+]
+
+{ #category : #accessing }
+PyramidSearchAndSelectModel >> beAll [
+
+	isAll := true.
+	isRoots := false.
+	isSelection := false
+]
+
+{ #category : #accessing }
+PyramidSearchAndSelectModel >> beRoots [
+
+	isAll := false.
+	isRoots := true.
+	isSelection := false
+]
+
+{ #category : #accessing }
+PyramidSearchAndSelectModel >> beSelection [
+
+	isAll := false.
+	isRoots := false.
+	isSelection := true
 ]
 
 { #category : #accessing }
@@ -116,16 +142,28 @@ PyramidSearchAndSelectModel >> code: anObject [
 	code := anObject
 ]
 
-{ #category : #accessing }
-PyramidSearchAndSelectModel >> isTree [
+{ #category : #initialization }
+PyramidSearchAndSelectModel >> initialize [
 
-	^ isTree
+	self beAll
 ]
 
 { #category : #accessing }
-PyramidSearchAndSelectModel >> isTree: anObject [
+PyramidSearchAndSelectModel >> isAll [
 
-	isTree := anObject
+	^ isAll
+]
+
+{ #category : #accessing }
+PyramidSearchAndSelectModel >> isRoots [
+
+	^ isRoots
+]
+
+{ #category : #accessing }
+PyramidSearchAndSelectModel >> isSelection [
+
+	^ isSelection
 ]
 
 { #category : #accessing }

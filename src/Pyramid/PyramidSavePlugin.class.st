@@ -34,7 +34,7 @@ PyramidSavePlugin class >> openOn: aCollectionOfBlElement saveModel: aSaveModel 
 	savePlugin := savePlugin asArray first.
 	savePlugin openOn: aSaveModel.
 	editor activeProject roots addAll: aCollectionOfBlElement.
-	editor view open
+	editor window open
 ]
 
 { #category : #accessing }
@@ -77,12 +77,15 @@ PyramidSavePlugin >> initialize [
 
 	savingService := PyramidSavingService new
 		                 savingModel: saveModel;
+		         
 		                 methodBuilder: PyramidSavingMethodBuilder ston;
 		                 yourself.
 
 	inputsButton := SpButtonPresenter new
 		                icon: (self iconNamed: #smallRemoteOpen);
-		                action: [ inputsPopover popup ]; yourself.
+							help: 'Project configuration';
+		                action: [ inputsPopover popup ];
+		                yourself.
 	inputsPopover := PyramidPopoverFactory
 		                 makeWithPresenter: inputsView
 		                 relativeTo: inputsButton
@@ -90,8 +93,9 @@ PyramidSavePlugin >> initialize [
 
 	saveButton := SpButtonPresenter new
 		              icon: (self iconNamed: #smallSave);
+		 					help: 'Save project';
 		              action: [ self saveAction ];
-			           yourself.
+		              yourself
 ]
 
 { #category : #accessing }
