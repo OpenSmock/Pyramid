@@ -44,7 +44,9 @@ PyramidHistory >> initialize [
 	undoCounter := 0.
 	mementos := OrderedCollection new.
 	undoPipeline := PyramidPipeline new.
-	self flag: #TODO. "Changer le nom de la classe des memento svaers"
+	self flag: #TODO. 
+	"Changer le nom de la classe des memento savers"
+	
 	beforeMementoSaver := PyramidMementoSaverWithModelBefore new
 		                      collection: self mementos;
 		                      pipeline: self undoPipeline;
