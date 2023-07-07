@@ -11,13 +11,13 @@ Pyramid is a WYSIWYG application (What You See Is What You Get) in other terms i
 
 Pyramid help you to produce final UI using Bloc library (and also Toplo).
 
-## How to start
+## <img src="/resources/puce.svg" width="75" height="75" align="bottom"> How to start
 
 Open the Pyramid menu into Library and click `New Project`.
 
 ![image](https://github.com/OpenSmock/Pyramid/assets/49183340/09b28b8e-f2df-489b-8855-68141efa6bf3)
 
-## Installation
+## <img src="/resources/puce.svg" width="75" height="75" align="bottom"> Installation
 
 You can load the last stable version of Pyramid or the development version. The Development version can provide the new incoming functionalities but can be unstable.
 
@@ -41,11 +41,11 @@ Metacello new
 	load
 ```
 
-## Dependencies
+## <img src="/resources/puce.svg" width="75" height="75" align="bottom"> Dependencies
 
 - [Bloc-Serialization](https://github.com/OpenSmock/Bloc-Serialization)
 - [Bloc](https://github.com/pharo-graphics/Bloc)
 
-## License
+## <img src="/resources/puce.svg" width="75" height="75" align="bottom"> License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
