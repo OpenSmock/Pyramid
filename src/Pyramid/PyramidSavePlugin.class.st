@@ -34,7 +34,7 @@ PyramidSavePlugin class >> openOn: aCollectionOfBlElement saveModel: aSaveModel 
 	savePlugin := savePlugin asArray first.
 	savePlugin openOn: aSaveModel.
 	editor activeProject roots addAll: aCollectionOfBlElement.
-	editor view open
+	editor window open
 ]
 
 { #category : #accessing }

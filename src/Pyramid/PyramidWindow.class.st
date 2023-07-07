@@ -8,6 +8,18 @@ Class {
 	#category : #'Pyramid-views'
 }
 
+{ #category : #'window - properties' }
+PyramidWindow class >> aboutText [
+
+	^ 'Pyramid is a User-Interface (UI) editor.
+
+LICENSE
+Licensed under the MIT License
+Copyright (c) 2022-2023 OpenSmock
+
+https://github.com/OpenSmock/Pyramid'
+]
+
 { #category : #accessing }
 PyramidWindow >> at: aSymbol addItem: aBlock [
 
@@ -67,6 +79,7 @@ PyramidWindow >> open [
 	| spec |
 	spec := self presenter asWindow open.
 	spec maximize.
+	spec aboutText: self class aboutText.
 	^ spec
 ]
 
