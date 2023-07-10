@@ -29,9 +29,11 @@ PyramidSearchAndSelectPresenter >> actionExample: aModel [
 PyramidSearchAndSelectPresenter >> actionInspect [
 
 	self activeProject ifNil: [ ^ self ].
-	self treeRadioButton state
-		ifTrue: [ self codeIsForTree ]
-		ifFalse: [ self codeIsForFlat ].
+	
+	self rootsRadioButton state ifTrue: [ self codeIsForRoots ].
+	self selectionRadioButton state ifTrue: [ self codeIsForSelection ].
+	self allRadioButton state ifTrue: [ self codeIsForAll ].
+	
 	self doit inspect
 ]
 
@@ -39,11 +41,12 @@ PyramidSearchAndSelectPresenter >> actionInspect [
 PyramidSearchAndSelectPresenter >> actionSelect [
 
 	self activeProject ifNil: [ ^ self ].
-	self treeRadioButton state
-		ifTrue: [ self codeIsForTree ]
-		ifFalse: [ self codeIsForFlat ].
-	self activeProject selection replaceAll:
-		self doit
+
+	self rootsRadioButton state ifTrue: [ self codeIsForRoots ].
+	self selectionRadioButton state ifTrue: [ self codeIsForSelection ].
+	self allRadioButton state ifTrue: [ self codeIsForAll ].
+
+	self activeProject selection replaceAll: self doit
 ]
 
 { #category : #'as yet unclassified' }
