@@ -8,7 +8,7 @@ Class {
 		'history',
 		'pipeline'
 	],
-	#category : #'Pyramid-Tests-Cases'
+	#category : #'Pyramid-Tests-cases-plugin-history'
 }
 
 { #category : #'as yet unclassified' }

@@ -1,7 +1,7 @@
 Class {
 	#name : #PyramidExternalRessourceProxyTest,
 	#superclass : #TestCase,
-	#category : #'Pyramid-Tests-Cases'
+	#category : #'Pyramid-Tests-cases-external-ressources'
 }
 
 { #category : #'as yet unclassified' }

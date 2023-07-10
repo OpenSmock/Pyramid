@@ -5,7 +5,7 @@ Class {
 		'isToto',
 		'string'
 	],
-	#category : #'Pyramid-Tests-Utils'
+	#category : #'Pyramid-Tests-cases-properties'
 }
 
 { #category : #accessing }

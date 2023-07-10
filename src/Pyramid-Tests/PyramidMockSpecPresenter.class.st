@@ -5,7 +5,7 @@ Class {
 		'text',
 		'submitBloc'
 	],
-	#category : #'Pyramid-Tests-Utils'
+	#category : #'Pyramid-Tests-cases-plugin-bloc-properties'
 }
 
 { #category : #accessing }

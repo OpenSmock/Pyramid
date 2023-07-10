@@ -1,7 +1,7 @@
 Class {
 	#name : #PyramidPropertyInputModelBuilderFactoryTest,
 	#superclass : #TestCase,
-	#category : #'Pyramid-Tests-Cases'
+	#category : #'Pyramid-Tests-cases-plugin-bloc-properties'
 }
 
 { #category : #tests }

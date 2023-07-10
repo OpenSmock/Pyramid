@@ -1,7 +1,7 @@
 Class {
 	#name : #PyramidPropertyInputModelBuilderTest,
 	#superclass : #TestCase,
-	#category : #'Pyramid-Tests-Cases'
+	#category : #'Pyramid-Tests-cases-properties'
 }
 
 { #category : #'as yet unclassified' }

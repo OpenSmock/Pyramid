@@ -4,7 +4,7 @@ Class {
 	#instVars : [
 		'integer'
 	],
-	#category : #'Pyramid-Tests-Utils'
+	#category : #'Pyramid-Tests-cases-plugin-history'
 }
 
 { #category : #'actions api' }

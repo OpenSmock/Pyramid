@@ -4,7 +4,7 @@ Class {
 	#instVars : [
 		'testModels'
 	],
-	#category : #'Pyramid-Tests-Cases'
+	#category : #'Pyramid-Tests-cases-plugin-bloc-properties'
 }
 
 { #category : #running }

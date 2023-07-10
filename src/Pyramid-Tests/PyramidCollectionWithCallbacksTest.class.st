@@ -5,7 +5,7 @@ Class {
 		'valueToCheck',
 		'collection'
 	],
-	#category : #'Pyramid-Tests-Cases'
+	#category : #'Pyramid-Tests-cases-models'
 }
 
 { #category : #accessing }
