@@ -39,7 +39,7 @@ PyramidWorld class >> menuNewOn: aBuilder [
 		order: 1.0;
 		action: [ self startNewDesign ];
 		icon: (self iconNamed: #page);
-		help: 'Create a new User-Interface';
+		help: 'Create a new User-Interface project !';
 		label: 'New project'
 ]
 

@@ -1,4 +1,4 @@
 {
 	'srcDirectory' : 'src',
-	'tags' : [ #opensmock ]
+	'tags' : [ #smock ]
 }

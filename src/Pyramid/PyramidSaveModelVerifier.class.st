@@ -9,7 +9,7 @@ Class {
 	#category : #'Pyramid-plugin-save'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : #constructor }
 PyramidSaveModelVerifier class >> classIsValid [
 
 	^ self new
@@ -19,7 +19,7 @@ PyramidSaveModelVerifier class >> classIsValid [
 		
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #constructor }
 PyramidSaveModelVerifier class >> classPackageIsEqual [
 
 	^ self new
@@ -33,7 +33,7 @@ PyramidSaveModelVerifier class >> classPackageIsEqual [
 		  yourself
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #constructor }
 PyramidSaveModelVerifier class >> methodIsValid [
 
 	^ self new
@@ -43,7 +43,7 @@ PyramidSaveModelVerifier class >> methodIsValid [
 		  
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #constructor }
 PyramidSaveModelVerifier class >> modelNotNil [
 
 	^ self new
@@ -52,7 +52,7 @@ PyramidSaveModelVerifier class >> modelNotNil [
 		  yourself
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #constructor }
 PyramidSaveModelVerifier class >> packageIsValid [
 
 	^ self new
@@ -63,7 +63,7 @@ PyramidSaveModelVerifier class >> packageIsValid [
 		  yourself
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #constructor }
 PyramidSaveModelVerifier class >> projectNotNil [
 
 	^ self new
@@ -73,7 +73,7 @@ PyramidSaveModelVerifier class >> projectNotNil [
 		
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #constructor }
 PyramidSaveModelVerifier class >> verifierNoError [
 
 
@@ -83,7 +83,7 @@ PyramidSaveModelVerifier class >> verifierNoError [
 
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #constructor }
 PyramidSaveModelVerifier class >> verifierNoErrorForInputsView [
 
 	^ self modelNotNil addNext: (self projectNotNil
@@ -109,6 +109,7 @@ PyramidSaveModelVerifier >> allErrors: aSaveModel [
 { #category : #'as yet unclassified' }
 PyramidSaveModelVerifier >> initialize [
 
+	super initialize.
 	nextVerifiers := OrderedCollection new
 ]
 

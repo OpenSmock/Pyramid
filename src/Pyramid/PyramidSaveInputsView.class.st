@@ -201,6 +201,14 @@ PyramidSaveInputsView >> showMethodIsNotValidError [
 ]
 
 { #category : #'as yet unclassified' }
+PyramidSaveInputsView >> showModelNilError [
+
+	self labelErrorPackage
+		displayColor: [Color red];
+		label: 'No model available.'
+]
+
+{ #category : #'as yet unclassified' }
 PyramidSaveInputsView >> showPackageIsNotValidError [
 
 	self labelErrorPackage
