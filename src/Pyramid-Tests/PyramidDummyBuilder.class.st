@@ -1,7 +1,7 @@
 Class {
 	#name : #PyramidDummyBuilder,
 	#superclass : #Object,
-	#category : #'Pyramid-Tests-Utils'
+	#category : #'Pyramid-Tests-cases-properties'
 }
 
 { #category : #building }

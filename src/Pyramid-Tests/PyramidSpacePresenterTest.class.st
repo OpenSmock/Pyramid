@@ -1,7 +1,7 @@
 Class {
 	#name : #PyramidSpacePresenterTest,
 	#superclass : #TestCase,
-	#category : #'Pyramid-Tests-Cases'
+	#category : #'Pyramid-Tests-cases-plugin-space'
 }
 
 { #category : #tests }

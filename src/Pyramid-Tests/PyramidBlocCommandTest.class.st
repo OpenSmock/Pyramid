@@ -1,18 +1,8 @@
 Class {
 	#name : #PyramidBlocCommandTest,
 	#superclass : #TestCase,
-	#instVars : [
-		'testModels'
-	],
-	#category : #'Pyramid-Tests-Cases'
+	#category : #'Pyramid-Tests-cases-plugin-bloc-properties'
 }
-
-{ #category : #running }
-PyramidBlocCommandTest >> setUp [
-
-	super setUp.
-
-]
 
 { #category : #tests }
 PyramidBlocCommandTest >> testAddChildren [

@@ -5,18 +5,19 @@ Class {
 		'isToto',
 		'string'
 	],
-	#category : #'Pyramid-Tests-Utils'
+	#category : #'Pyramid-Tests-cases-properties'
 }
 
-{ #category : #accessing }
+{ #category : #'change - properties' }
 PyramidPropertiesTestDummy >> beToto [
 
 	isToto := true
 ]
 
-{ #category : #accessing }
+{ #category : #initialization }
 PyramidPropertiesTestDummy >> initialize [
 
+	super initialize.
 	isToto := false
 ]
 

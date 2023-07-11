@@ -4,10 +4,10 @@ Class {
 	#instVars : [
 		'dummyValue'
 	],
-	#category : #'Pyramid-Tests-Utils'
+	#category : #'Pyramid-Tests-cases-external-ressources'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : #'tests - other' }
 PyramidExternalRessourceDummyForTest class >> startAt3 [
 
 	^ self new dummyValuePlus dummyValuePlus dummyValuePlus
@@ -20,13 +20,13 @@ PyramidExternalRessourceDummyForTest >> dummyValue [
 	^ dummyValue
 ]
 
-{ #category : #accessing }
+{ #category : #increment }
 PyramidExternalRessourceDummyForTest >> dummyValuePlus [
 
 	dummyValue := dummyValue + 1
 ]
 
-{ #category : #accessing }
+{ #category : #initialization }
 PyramidExternalRessourceDummyForTest >> initialize [
 
 	dummyValue := 0

@@ -1,10 +1,10 @@
 Class {
 	#name : #PyramidPropertyInputModelBuilderTest,
 	#superclass : #TestCase,
-	#category : #'Pyramid-Tests-Cases'
+	#category : #'Pyramid-Tests-cases-properties'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : #'tests - other' }
 PyramidPropertyInputModelBuilderTest >> dummyCommand [
 
 	^ PyramidCommand name: #dummy
@@ -16,7 +16,7 @@ PyramidPropertyInputModelBuilderTest >> dummyCommand [
 			  true ]
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #'tests - other' }
 PyramidPropertyInputModelBuilderTest >> inputModelFromCollection: aCollection [
 
 	| property |
@@ -30,7 +30,7 @@ PyramidPropertyInputModelBuilderTest >> inputModelFromCollection: aCollection [
 	^ property inputsModel
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #'tests - other' }
 PyramidPropertyInputModelBuilderTest >> propertyFromCollection: aCollection [
 
 	| property |

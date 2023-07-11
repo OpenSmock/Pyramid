@@ -1,7 +1,7 @@
 Class {
 	#name : #PyramidPropertyTest,
 	#superclass : #TestCase,
-	#category : #'Pyramid-Tests-Cases'
+	#category : #'Pyramid-Tests-cases-properties'
 }
 
 { #category : #tests }
