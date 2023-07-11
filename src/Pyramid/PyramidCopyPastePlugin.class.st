@@ -30,24 +30,12 @@ PyramidCopyPastePlugin >> copyAsStonInClipboard: aCollection [
 PyramidCopyPastePlugin >> copyAsStonMenu: aBuilder [
 
 	aBuilder
-		addGroupEmptySelection: [ :group :nothing |
-			group
-				addItem: [ :item |
-					item
-						icon: (self iconNamed: #smallCopy);
-						name: 'Copy as STON (select one element)';
-						enabled: false;
-						yourself ];
-				yourself ]
-		order: 20.
-
-	aBuilder
 		addGroupSingleSelection: [ :group :single |
 			group
 				addItem: [ :item |
 					item
 						icon: (self iconNamed: #smallCopy);
-						name: 'Copy as STON';
+						name: 'Copy';
 						action: [ self copyAsStonInClipboard: { single } ];
 						yourself ];
 				yourself ]
@@ -59,7 +47,7 @@ PyramidCopyPastePlugin >> copyAsStonMenu: aBuilder [
 				addItem: [ :item |
 					item
 						icon: (self iconNamed: #smallCopy);
-						name: 'Copy as STON (select only one element)';
+						name: 'Copy (select only one element)';
 						enabled: false;
 						yourself ];
 				yourself ]
