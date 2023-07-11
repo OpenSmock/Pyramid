@@ -4,19 +4,19 @@ Class {
 	#category : #'Pyramid-Tests-cases-external-ressources'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : #'tests - other' }
 PyramidExternalRessourceProxyTest class >> dummyExample [
 
 	^ PyramidExternalRessourceDummyForTest new
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #'tests - other' }
 PyramidExternalRessourceProxyTest class >> stonAsObject [
 
 	^ STON fromString: 'PyramidExternalRessourceDummyForTest{#dummyValue:0}'
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #'tests - other' }
 PyramidExternalRessourceProxyTest class >> stonOnStonAsObject [
 
 	^ STON fromString: '[

@@ -9,7 +9,7 @@ PyramidTestWindow >> initialize [
 
 	PyramidPanelModel toolbarHorizontal installOn: self at: #top.
 	PyramidPanelModel tab installOn: self at: #center.
-	PyramidPanelModel toolbarHorizontal installOn: self at: #bottom.
+	PyramidPanelModel toolbarHorizontal installOn: self at: #bottom
 ]
 
 { #category : #accessing }

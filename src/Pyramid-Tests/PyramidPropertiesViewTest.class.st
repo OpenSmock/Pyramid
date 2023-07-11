@@ -4,7 +4,7 @@ Class {
 	#category : #'Pyramid-Tests-cases-properties'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : #'tests - other' }
 PyramidPropertiesViewTest >> alwaysFalseCommand [
 
 	^ PyramidCommand
@@ -16,7 +16,7 @@ PyramidPropertiesViewTest >> alwaysFalseCommand [
 		  isExecutableBlock: [ :obj :state | false ]
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #'tests - other' }
 PyramidPropertiesViewTest >> alwaysTrueCommand [
 
 	^ PyramidCommand
@@ -28,7 +28,7 @@ PyramidPropertiesViewTest >> alwaysTrueCommand [
 		  isExecutableBlock: [ :obj :state | true ]
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #'tests - other' }
 PyramidPropertiesViewTest >> isTotoCommand [
 
 	^ PyramidCommand
