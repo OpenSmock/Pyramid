@@ -10,9 +10,9 @@ Class {
 { #category : #'as yet unclassified' }
 PyramidLibraryViewForElement >> buttonAction [
 
-	self editor activeProject selection do: [ :each |
+	self editor projectModel selection do: [ :each |
 		each addChild: self list selectedItem blockMaker value ].
-	self editor activeProject informRootsChanged
+	self editor projectModel informRootsChanged
 ]
 
 { #category : #private }

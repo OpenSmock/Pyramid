@@ -67,7 +67,7 @@ PyramidSavingServiceTest >> testCanSave [
 	self savingService savingModel: model.
 	self deny: self savingService canSave.
 
-	model project: PyramidProjectModel new.
+	model projectModel: PyramidProjectModel new.
 	self deny: self savingService canSave.
 
 	model savingClassName: 'errorPyramidSavingClass'.
@@ -133,7 +133,7 @@ PyramidSavingServiceTest >> testSave [
 
 	| model |
 	model := PyramidSaveModel new.
-	model project: PyramidProjectModel new.
+	model projectModel: PyramidProjectModel new.
 	model savingClassName: self savingClass name.
 	model savingPackageName: self savingClass package name.
 	self savingService savingModel: model.
@@ -173,7 +173,7 @@ PyramidSavingServiceTest >> testSavingClass [
 	model := PyramidSaveModel new.
 	self savingService savingModel: model.
 
-	model project: PyramidProjectModel new.
+	model projectModel: PyramidProjectModel new.
 	model savingClassName: self savingClass name.
 	model savingMethodName: 'aPyramidSavingMethod'.
 	model savingPackageName: self savingClass package name.
@@ -202,7 +202,7 @@ PyramidSavingServiceTest >> testSavingMethod [
 	model := PyramidSaveModel new.
 	self savingService savingModel: model.
 
-	model project: PyramidProjectModel new.
+	model projectModel: PyramidProjectModel new.
 	model savingClassName: self savingClass name.
 	model savingMethodName: 'aPyramidSavingMethod'.
 	model savingPackageName: self savingClass package name.

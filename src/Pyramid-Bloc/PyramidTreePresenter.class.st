@@ -21,7 +21,7 @@ PyramidTreePresenter >> columns [
 PyramidTreePresenter >> connectOn: aPyramidEditor [
 
 	self editor: aPyramidEditor.
-	aPyramidEditor activeProject addObserver: self.
+	aPyramidEditor projectModel addObserver: self.
 	aPyramidEditor commandPipeline addObserver: self
 ]
 
@@ -30,7 +30,7 @@ PyramidTreePresenter >> contextMenu [
 
 	| menu |
 	menu := (self editor window services at: #selectionMenu) builder
-		        menuFor: self editor activeProject selection.
+		        menuFor: self editor projectModel selection.
 	^ menu
 ]
 
@@ -114,7 +114,7 @@ PyramidTreePresenter >> treeSelectionChanged: aCollection [
 	self editor ifNil: [ ^ self ].
 	self shouldUpdateSelection ifFalse: [ ^ self ].
 	self shouldUpdateSelection: false.
-	self editor activeProject selection replaceAll: aCollection selectedItems.
+	self editor projectModel selection replaceAll: aCollection selectedItems.
 	self shouldUpdateSelection: true
 ]
 
@@ -122,7 +122,7 @@ PyramidTreePresenter >> treeSelectionChanged: aCollection [
 PyramidTreePresenter >> updateRoots [
 
 	self shouldUpdateSelection: false.
-	self treePresenter roots: self editor activeProject roots asArray.
+	self treePresenter roots: self editor projectModel roots asArray.
 	self shouldUpdateSelection: true.
 	self updateSelection
 ]
@@ -130,12 +130,12 @@ PyramidTreePresenter >> updateRoots [
 { #category : #'as yet unclassified' }
 PyramidTreePresenter >> updateSelection [
 
-	self editor activeProject ifNil: [ ^ self ].
+	self editor projectModel ifNil: [ ^ self ].
 	self shouldUpdateSelection ifFalse: [ ^ self ].
 	self shouldUpdateSelection: false.
-	self editor activeProject selection
+	self editor projectModel selection
 		ifEmpty: [ self treePresenter unselectAll ]
 		ifNotEmpty: [
-		self treePresenter selectItems: self editor activeProject selection ].
+		self treePresenter selectItems: self editor projectModel selection ].
 	self shouldUpdateSelection: true
 ]

@@ -5,8 +5,8 @@ Class {
 		'savingClassName',
 		'savingMethodName',
 		'savingPackageName',
-		'project',
-		'classSide'
+		'classSide',
+		'projectModel'
 	],
 	#category : #'Pyramid-plugin-save'
 }
@@ -30,15 +30,15 @@ PyramidSaveModel >> onInstance [
 ]
 
 { #category : #accessing }
-PyramidSaveModel >> project [
+PyramidSaveModel >> projectModel [
 
-	^ project
+	^ projectModel
 ]
 
 { #category : #accessing }
-PyramidSaveModel >> project: anObject [
+PyramidSaveModel >> projectModel: anObject [
 
-	project := anObject
+	projectModel := anObject
 ]
 
 { #category : #accessing }
