@@ -57,8 +57,6 @@ PyramidSpacePlugin >> initialize [
 PyramidSpacePlugin >> makePresenterWithBlSpace: aBlSpace [
 
 	| morph host |
-	
-
 	morph := Morph new
 		         color: Color blue muchLighter;
 		         yourself.
@@ -70,9 +68,7 @@ PyramidSpacePlugin >> makePresenterWithBlSpace: aBlSpace [
 
 	aBlSpace host: host.
 	aBlSpace when: BlSpaceDestroyedEvent do: [ :evt |
-		morph addMorph:
-			('Something went wrong, please refresh the space using the refresh button ↑'
-				 asMorph fontName: TextStyle defaultFont familyName size: 40) ].
+		self updateMorphInCaseOfFaillure: morph ].
 
 	self morphicPresenter morph: morph.
 	self morphicPresenter whenDisplayDo: [ aBlSpace show ]
@@ -95,4 +91,17 @@ PyramidSpacePlugin >> resetSpace [
 { #category : #accessing }
 PyramidSpacePlugin >> resetSpaceButton [
 ^ resetSpaceButton
+]
+
+{ #category : #'as yet unclassified' }
+PyramidSpacePlugin >> updateMorphInCaseOfFaillure: aMorph [
+
+	aMorph addMorph:
+		('Something went wrong, please refresh the space using the reset button ↑'
+			 asMorph fontName: TextStyle defaultFont familyName size: 40).
+	aMorph addMorph: (SimpleButtonMorph new
+			 label: 'Reset space';
+			 target: [ self resetSpace ];
+			 actionSelector: #value;
+			 yourself)
 ]

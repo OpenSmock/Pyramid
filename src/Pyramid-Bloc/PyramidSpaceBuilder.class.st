@@ -4,7 +4,7 @@ Class {
 	#traits : 'TPyramidEditorTransformation',
 	#classTraits : 'TPyramidEditorTransformation classTrait',
 	#instVars : [
-		'topMostContainer',
+		'topMostOverlay',
 		'overlays',
 		'space',
 		'keyboard',
@@ -70,21 +70,28 @@ PyramidSpaceBuilder >> addOverlayNamed: aString [
 
 	| overlay |
 	self overlays
+		at: aString
+		ifPresent: [ PyramidExistingOverlayError signal ].
+
+	self overlays
 		ifEmpty: [ overlay := PyramidSpaceMainOverlay new ]
 		ifNotEmpty: [
 			overlay := PyramidSpaceOverlayDecorator new.
-			overlay wrappee: self topMostContainer ].
+			overlay wrappee: self topMostOverlay ].
 
 	overlay element id: aString.
 	overlays at: aString put: overlay.
-	self topMostContainer: overlay
+	self topMostOverlay: overlay
 ]
 
 { #category : #'as yet unclassified' }
 PyramidSpaceBuilder >> build [
 
+	
 	self space: BlSpace new.
-
+	
+	self overlays ifEmpty: [ ^ self space ].
+	
 	self space
 		when: BlKeyDownEvent
 		do: [ :evt | self keyboard add: evt key ].
@@ -92,7 +99,7 @@ PyramidSpaceBuilder >> build [
 		when: BlKeyUpEvent
 		do: [ :evt | self keyboard remove: evt key ].
 
-	self topMostContainer buildOn: self space root.
+	self topMostOverlay buildOn: self space root.
 	^ self space
 ]
 
@@ -146,12 +153,13 @@ PyramidSpaceBuilder >> space: anObject [
 ]
 
 { #category : #accessing }
-PyramidSpaceBuilder >> topMostContainer [
-^ topMostContainer
+PyramidSpaceBuilder >> topMostOverlay [
+
+	^ topMostOverlay
 ]
 
 { #category : #accessing }
-PyramidSpaceBuilder >> topMostContainer: anObject [
+PyramidSpaceBuilder >> topMostOverlay: anObject [
 
-	topMostContainer:= anObject
+	topMostOverlay := anObject
 ]
