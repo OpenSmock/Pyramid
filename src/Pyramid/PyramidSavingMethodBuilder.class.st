@@ -95,5 +95,5 @@ PyramidSavingMethodBuilder >> serializeBlock: anObject [
 { #category : #'as yet unclassified' }
 PyramidSavingMethodBuilder >> serializedString: aSaveModel [
 
-	^ self serializeBlock value: aSaveModel project roots asArray
+	^ self serializeBlock value: aSaveModel projectModel roots asArray
 ]

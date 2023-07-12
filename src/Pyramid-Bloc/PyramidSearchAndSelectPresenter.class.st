@@ -10,7 +10,7 @@ Class {
 		'selectButton',
 		'examplesDropList',
 		'activeProjectRoots',
-		'activeProject'
+		'projectModel'
 	],
 	#category : #'Pyramid-Bloc-plugin-hierarchy'
 }
@@ -28,7 +28,7 @@ PyramidSearchAndSelectPresenter >> actionExample: aModel [
 { #category : #'as yet unclassified' }
 PyramidSearchAndSelectPresenter >> actionInspect [
 
-	self activeProject ifNil: [ ^ self ].
+	self projectModel ifNil: [ ^ self ].
 	
 	self rootsRadioButton state ifTrue: [ self codeIsForRoots ].
 	self selectionRadioButton state ifTrue: [ self codeIsForSelection ].
@@ -40,33 +40,20 @@ PyramidSearchAndSelectPresenter >> actionInspect [
 { #category : #'as yet unclassified' }
 PyramidSearchAndSelectPresenter >> actionSelect [
 
-	self activeProject ifNil: [ ^ self ].
+	self projectModel ifNil: [ ^ self ].
 
 	self rootsRadioButton state ifTrue: [ self codeIsForRoots ].
 	self selectionRadioButton state ifTrue: [ self codeIsForSelection ].
 	self allRadioButton state ifTrue: [ self codeIsForAll ].
 
-	self activeProject selection replaceAll: self doit
+	self projectModel selection replaceAll: self doit
 ]
 
 { #category : #'as yet unclassified' }
 PyramidSearchAndSelectPresenter >> actionUnselect [
 
-	self activeProject ifNil: [ ^ self ].
-	self activeProject selection removeAll
-]
-
-{ #category : #accessing }
-PyramidSearchAndSelectPresenter >> activeProject [
-
-	^ activeProject
-]
-
-{ #category : #accessing }
-PyramidSearchAndSelectPresenter >> activeProject: anObject [
-
-	activeProject := anObject.
-	allRadioButton click
+	self projectModel ifNil: [ ^ self ].
+	self projectModel selection removeAll
 ]
 
 { #category : #accessing }
@@ -78,27 +65,27 @@ PyramidSearchAndSelectPresenter >> allRadioButton [
 { #category : #accessing }
 PyramidSearchAndSelectPresenter >> codeIsForAll [
 
-	self activeProject ifNil: [ ^ self ].
+	self projectModel ifNil: [ ^ self ].
 	self codePresenter interactionModel:
 		(SpCodeObjectInteractionModel on:
 			 (PyramidTreeToFlat flattenChildrenOfCollection:
-				  self activeProject roots))
+				  self projectModel roots))
 ]
 
 { #category : #accessing }
 PyramidSearchAndSelectPresenter >> codeIsForRoots [
 
-	self activeProject ifNil: [ ^ self ].
+	self projectModel ifNil: [ ^ self ].
 	self codePresenter interactionModel:
-		(SpCodeObjectInteractionModel on: self activeProject roots)
+		(SpCodeObjectInteractionModel on: self projectModel roots)
 ]
 
 { #category : #accessing }
 PyramidSearchAndSelectPresenter >> codeIsForSelection [
 
-	self activeProject ifNil: [ ^ self ].
+	self projectModel ifNil: [ ^ self ].
 	self codePresenter interactionModel:
-		(SpCodeObjectInteractionModel on: self activeProject selection)
+		(SpCodeObjectInteractionModel on: self projectModel selection)
 ]
 
 { #category : #accessing }
@@ -190,6 +177,19 @@ PyramidSearchAndSelectPresenter >> initializePresenters [
 			                    self actionExample: model ];
 		                    yourself.
 	self initializeExamples
+]
+
+{ #category : #accessing }
+PyramidSearchAndSelectPresenter >> projectModel [
+
+	^ projectModel
+]
+
+{ #category : #accessing }
+PyramidSearchAndSelectPresenter >> projectModel: aPyramidProjectModel [
+
+	projectModel := aPyramidProjectModel.
+	allRadioButton click
 ]
 
 { #category : #accessing }

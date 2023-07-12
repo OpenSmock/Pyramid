@@ -11,12 +11,6 @@ Class {
 }
 
 { #category : #accessing }
-PyramidHierarchyPresenter >> activeProject: aPyramidProject [
-
-	self search activeProject: aPyramidProject
-]
-
-{ #category : #accessing }
 PyramidHierarchyPresenter >> buttonAddRoot [
 ^ buttonAddRoot
 ]
@@ -24,7 +18,7 @@ PyramidHierarchyPresenter >> buttonAddRoot [
 { #category : #accessing }
 PyramidHierarchyPresenter >> connectOn: aPyramidEditor [
 
-	self search activeProject: aPyramidEditor activeProject.
+	self search projectModel: aPyramidEditor projectModel.
 	self tree connectOn: aPyramidEditor.
 	self libraryView editor: aPyramidEditor
 ]
@@ -63,6 +57,12 @@ PyramidHierarchyPresenter >> initializePresenters [
 { #category : #accessing }
 PyramidHierarchyPresenter >> libraryView [
 ^ libraryView
+]
+
+{ #category : #accessing }
+PyramidHierarchyPresenter >> projectModel: aPyramidProject [
+
+	self search projectModel: aPyramidProject
 ]
 
 { #category : #accessing }

@@ -87,7 +87,7 @@ PyramidPluginHierarchy >> menuAddAndDeleteOn: aBuilder [
 			anItem
 				name: 'Remove selection';
 				icon: (self iconNamed: #delete);
-				action: [ self editor activeProject removeSelection ] ] ] order: 10.
+				action: [ self editor projectModel removeSelection ] ] ] order: 10.
 
 	aBuilder addGroupMultiSelection: [ :group :multi |
 		group addItem: [ :anItem |
@@ -105,7 +105,7 @@ PyramidPluginHierarchy >> menuAddAndDeleteOn: aBuilder [
 			anItem
 				name: 'Remove selection';
 				icon: (self iconNamed: #delete);
-				action: [ self editor activeProject removeSelection ] ] ] order: 10
+				action: [ self editor projectModel removeSelection ] ] ] order: 10
 ]
 
 { #category : #initialization }

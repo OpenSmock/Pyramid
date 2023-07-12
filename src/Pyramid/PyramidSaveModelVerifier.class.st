@@ -67,10 +67,9 @@ PyramidSaveModelVerifier class >> packageIsValid [
 PyramidSaveModelVerifier class >> projectNotNil [
 
 	^ self new
-		  verifyBlock: [ :model | model project isNotNil ];
+		  verifyBlock: [ :model | model projectModel isNotNil ];
 		  showBlock: [ :view | view showProjectNilError ];
-		  yourself.
-		
+		  yourself
 ]
 
 { #category : #constructor }

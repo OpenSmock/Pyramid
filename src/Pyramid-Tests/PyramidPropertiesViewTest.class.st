@@ -100,7 +100,7 @@ PyramidPropertiesViewTest >> testUpdatePropertyViews [
 		installBuilderOn: propertyC.
 
 	view := PyramidPropertiesView new.
-	view activeProject: activeProject.
+	view projectModel: activeProject.
 
 	view addProperty: propertyA.
 	view addProperty: propertyB.

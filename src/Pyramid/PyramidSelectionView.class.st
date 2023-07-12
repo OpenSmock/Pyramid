@@ -4,26 +4,12 @@ Class {
 	#traits : 'TPyramidProjectModelObserver',
 	#classTraits : 'TPyramidProjectModelObserver classTrait',
 	#instVars : [
-		'activeProject',
 		'list',
-		'playground'
+		'playground',
+		'projectModel'
 	],
 	#category : #'Pyramid-plugin-selection'
 }
-
-{ #category : #accessing }
-PyramidSelectionView >> activeProject [
-
-	^ activeProject
-]
-
-{ #category : #accessing }
-PyramidSelectionView >> activeProject: aPyramidActiveProject [
-
-	activeProject := aPyramidActiveProject.
-	activeProject addObserver: self.
-	self updateSelection
-]
 
 { #category : #'as yet unclassified' }
 PyramidSelectionView >> connectPlaygroundTo: anObject [
@@ -36,7 +22,7 @@ PyramidSelectionView >> connectPlaygroundTo: anObject [
 { #category : #'as yet unclassified' }
 PyramidSelectionView >> currentSelection [
 
-	^ self activeProject selection
+	^ self projectModel selection
 ]
 
 { #category : #layout }
@@ -63,6 +49,20 @@ PyramidSelectionView >> list [
 { #category : #accessing }
 PyramidSelectionView >> playground [
 	^ playground
+]
+
+{ #category : #accessing }
+PyramidSelectionView >> projectModel [
+
+	^ projectModel
+]
+
+{ #category : #accessing }
+PyramidSelectionView >> projectModel: aPyramidActiveProject [
+
+	projectModel := aPyramidActiveProject.
+	projectModel addObserver: self.
+	self updateSelection
 ]
 
 { #category : #'as yet unclassified' }

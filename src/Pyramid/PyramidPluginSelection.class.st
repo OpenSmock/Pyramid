@@ -30,7 +30,7 @@ PyramidPluginSelection >> addPanelsOn: aPyramidSimpleWindow [
 { #category : #'as yet unclassified' }
 PyramidPluginSelection >> connectOn: aPyramidEditor [
 
-	self view activeProject: aPyramidEditor activeProject
+	self view projectModel: aPyramidEditor projectModel
 ]
 
 { #category : #initialization }

@@ -5,25 +5,13 @@ Class {
 	#classTraits : 'TPyramidProjectModelObserver classTrait + TPyramidPipelineObserver classTrait',
 	#instVars : [
 		'properties',
-		'activeProject',
+		'projectModel',
 		'pipeline',
 		'propertyViews',
 		'propertylayout'
 	],
 	#category : #'Pyramid-properties'
 }
-
-{ #category : #accessing }
-PyramidPropertiesView >> activeProject [
-	^ activeProject
-]
-
-{ #category : #accessing }
-PyramidPropertiesView >> activeProject: anObject [
-
-	activeProject := anObject.
-	anObject addObserver: self
-]
 
 { #category : #accessing }
 PyramidPropertiesView >> addProperty: aProperty [
@@ -69,6 +57,19 @@ PyramidPropertiesView >> pipeline: aPyramidPipeline [
 	pipeline := aPyramidPipeline.
 	aPyramidPipeline addObserver: self.
 	self properties do: [ :each | each pipeline: aPyramidPipeline ]
+]
+
+{ #category : #accessing }
+PyramidPropertiesView >> projectModel [
+
+	^ projectModel
+]
+
+{ #category : #accessing }
+PyramidPropertiesView >> projectModel: aPyramidProjectModel [
+
+	projectModel := aPyramidProjectModel.
+	aPyramidProjectModel addObserver: self
 ]
 
 { #category : #accessing }
@@ -128,6 +129,6 @@ PyramidPropertiesView >> updatePropertyViews [
 
 	self propertyViews do: [ :each | each hidePopover ].
 	self properties do: [ :property |
-		property makeNewInputsFor: self activeProject selection ].
+		property makeNewInputsFor: self projectModel selection ].
 	self updateLayout
 ]

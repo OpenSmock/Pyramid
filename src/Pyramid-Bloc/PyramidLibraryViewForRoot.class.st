@@ -10,7 +10,7 @@ Class {
 { #category : #'as yet unclassified' }
 PyramidLibraryViewForRoot >> buttonAction [
 
-	self editor activeProject roots add: self list selectedItem blockMaker value
+	self editor projectModel roots add: self list selectedItem blockMaker value
 ]
 
 { #category : #private }

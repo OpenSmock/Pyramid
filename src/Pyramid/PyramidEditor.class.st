@@ -3,19 +3,13 @@ Class {
 	#superclass : #Object,
 	#instVars : [
 		'plugins',
-		'activeProject',
+		'projectModel',
 		'commandPipeline',
 		'window',
 		'properties'
 	],
 	#category : #'Pyramid-core'
 }
-
-{ #category : #accessing }
-PyramidEditor >> activeProject [
-
-	^ activeProject
-]
 
 { #category : #accessing }
 PyramidEditor >> commandPipeline [
@@ -26,11 +20,11 @@ PyramidEditor >> commandPipeline [
 { #category : #initialization }
 PyramidEditor >> initialize [
 
-	activeProject := PyramidProjectModel new.
+	projectModel := PyramidProjectModel new.
 	commandPipeline := PyramidPipeline new.
 	properties := PyramidPropertiesView new
 		              pipeline: commandPipeline;
-		              activeProject: activeProject;
+		              projectModel: projectModel;
 		              yourself.
 	plugins := {  }
 ]
@@ -45,6 +39,12 @@ PyramidEditor >> plugins [
 PyramidEditor >> plugins: aCollection [
 
 	plugins := aCollection
+]
+
+{ #category : #accessing }
+PyramidEditor >> projectModel [
+
+	^ projectModel
 ]
 
 { #category : #accessing }

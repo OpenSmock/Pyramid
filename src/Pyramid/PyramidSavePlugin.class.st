@@ -10,8 +10,8 @@ Class {
 		'inputsButton',
 		'savingService',
 		'saveButton',
-		'activeProject',
-		'inputsPopover'
+		'inputsPopover',
+		'projectModel'
 	],
 	#category : #'Pyramid-plugin-save'
 }
@@ -33,20 +33,8 @@ PyramidSavePlugin class >> openOn: aCollectionOfBlElement saveModel: aSaveModel 
 			'Wrong installation of SavePlugin. Should only be one instance.' ].
 	savePlugin := savePlugin asArray first.
 	savePlugin openOn: aSaveModel.
-	editor activeProject roots addAll: aCollectionOfBlElement.
+	editor projectModel roots addAll: aCollectionOfBlElement.
 	editor window open
-]
-
-{ #category : #accessing }
-PyramidSavePlugin >> activeProject [ ^activeProject
-]
-
-{ #category : #accessing }
-PyramidSavePlugin >> activeProject: anObject [
-
-	activeProject := anObject.
-	self saveModel project: activeProject.
-	self inputsController updateView
 ]
 
 { #category : #adding }
@@ -65,7 +53,7 @@ PyramidSavePlugin >> addPanelsOn: aPyramidSimpleWindow [
 { #category : #'as yet unclassified' }
 PyramidSavePlugin >> connectOn: aPyramidEditor [
 
-	self activeProject: aPyramidEditor activeProject
+	self projectModel: aPyramidEditor projectModel
 ]
 
 { #category : #initialization }
@@ -122,6 +110,20 @@ PyramidSavePlugin >> openOn: aSaveModel [
 	self inputsView inputClass text: aSaveModel savingClassName.
 	self inputsView inputMethod text: aSaveModel savingMethodName.
 	self inputsView inputPackage text: aSaveModel savingPackageName
+]
+
+{ #category : #accessing }
+PyramidSavePlugin >> projectModel [
+
+	^ projectModel
+]
+
+{ #category : #accessing }
+PyramidSavePlugin >> projectModel: aPyramidProjectModel [
+
+	projectModel := aPyramidProjectModel.
+	self saveModel projectModel: projectModel.
+	self inputsController updateView
 ]
 
 { #category : #actions }
