@@ -18,12 +18,14 @@ PyramidWheelTransformExtension >> installOn: aBuilder [
 	self elementAtEvents when: BlMouseWheelEvent do: [ :evt |
 		| moveTo |
 		moveTo := nil.
-		self isNoKeyPressed ifTrue: [
-			         moveTo :=  evt vector asPoint ].
-		self isOnlyShiftKeyPressed ifTrue: [  moveTo := evt vector asPoint leftRotated ].
-		moveTo ifNotNil: [ 
-		self elementAtTransforms transformDo: [ :t |
-			t translateBy: moveTo * self wheelSpeed + self currentTransformTranslation ] ] ]
+		self isNoKeyPressed ifTrue: [ moveTo := evt vector asPoint ].
+		self isOnlyShiftKeyPressed ifTrue: [
+			moveTo := evt vector asPoint leftRotated ].
+		moveTo ifNotNil: [
+			self elementAtTransforms transformDo: [ :t |
+				t translateBy:
+					moveTo * self wheelSpeed + self currentTransformTranslation ].
+			self signalTransformationChanged ] ]
 ]
 
 { #category : #'as yet unclassified' }

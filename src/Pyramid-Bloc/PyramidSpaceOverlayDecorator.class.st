@@ -4,7 +4,7 @@ Class {
 	#instVars : [
 		'wrappee'
 	],
-	#category : #'Pyramid-Bloc-plugin-space-extensions'
+	#category : #'Pyramid-Bloc-plugin-space'
 }
 
 { #category : #'as yet unclassified' }

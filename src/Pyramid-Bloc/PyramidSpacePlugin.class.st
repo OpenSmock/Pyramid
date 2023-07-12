@@ -8,7 +8,7 @@ Class {
 		'morphicPresenter',
 		'resetSpaceButton'
 	],
-	#category : #'Pyramid-Bloc-plugin-space-extensions'
+	#category : #'Pyramid-Bloc-plugin-space'
 }
 
 { #category : #'class initialization' }
@@ -38,7 +38,6 @@ PyramidSpacePlugin >> builder [
 PyramidSpacePlugin >> connectOn: aPyramidEditor [
 
 	builder editor: aPyramidEditor.
-	builder projectModel: aPyramidEditor activeProject.
 	self resetSpace
 ]
 
