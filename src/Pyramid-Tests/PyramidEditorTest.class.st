@@ -31,7 +31,8 @@ PyramidEditorTest >> testOpenNewEditorWithSpacePluginUninstalled [
 	editor := PyramidEditorBuilder new
 		          plugins:
 			          (PyramidPluginManager uniqueInstance pluginClasses
-				           reject: [ :class | class name = #PyramidSpacePlugin ]
+				           reject: [ :class |
+					           class name = #PyramidSpacePlugin ]
 				           thenCollect: [ :class | class new ]);
 		          build.
 
