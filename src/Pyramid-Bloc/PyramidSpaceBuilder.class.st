@@ -5,7 +5,9 @@ Class {
 		'rootsContainer',
 		'topMostContainer',
 		'overlays',
-		'space'
+		'space',
+		'keyboard',
+		'extensions'
 	],
 	#classInstVars : [
 		'defaultEditorExtensions'
@@ -16,20 +18,33 @@ Class {
 { #category : #'as yet unclassified' }
 PyramidSpaceBuilder class >> defaultEditorBuilder [
 
+	<script: '
+	| builder |
+	builder := self defaultEditorBuilder.
+	builder rootsContainer element addChild: (BlElement new background: Color red; yourself).
+	builder build show'>
 	| builder |
 	builder := self new
 		           addAllOverlaysNamed:
 			           { #widgets. #events. #displays. #transforms };
 		           yourself.
 
-	self defaultEditorExtensions do: [ :each | builder addExtension: each ].
+	self defaultEditorExtensions do: [ :class |
+		builder addExtension: class new ].
 	^ builder
 ]
 
 { #category : #accessing }
 PyramidSpaceBuilder class >> defaultEditorExtensions [
 
-	defaultEditorExtensions ifNil: [ defaultEditorExtensions := {  } ].
+	<script: 'defaultEditorExtensions := nil'>
+	defaultEditorExtensions ifNil: [
+		defaultEditorExtensions := {
+			                           PyramidPositionExtension.
+			                           PyramidMouseTransformExtension.
+			                           PyramidWheelTransformExtension.
+			                           PyramidSelectionMakerExtension.
+			PyramidSelectionWidgetExtension } ].
 	^ defaultEditorExtensions
 ]
 
@@ -40,9 +55,10 @@ PyramidSpaceBuilder >> addAllOverlaysNamed: aCollection [
 ]
 
 { #category : #adding }
-PyramidSpaceBuilder >> addExtension: aBlock [
+PyramidSpaceBuilder >> addExtension: anExtension [
 
-	aBlock installOn: self
+	anExtension installOn: self.
+	self extensions add: anExtension
 ]
 
 { #category : #adding }
@@ -63,8 +79,22 @@ PyramidSpaceBuilder >> addOverlayNamed: aString [
 PyramidSpaceBuilder >> build [
 
 	self space: BlSpace new.
+
+	self space
+		when: BlKeyDownEvent
+		do: [ :evt | self keyboard add: evt key ].
+	self space
+		when: BlKeyUpEvent
+		do: [ :evt | self keyboard remove: evt key ].
+
 	self topMostContainer buildOn: self space root.
 	^ self space
+]
+
+{ #category : #accessing }
+PyramidSpaceBuilder >> editor: aPyramidEditor [
+
+	self extensions do: [ :each | each editor: aPyramidEditor ]
 ]
 
 { #category : #accessing }
@@ -73,12 +103,25 @@ PyramidSpaceBuilder >> elementAt: aString [
 	^ (self overlays at: aString) element
 ]
 
+{ #category : #accessing }
+PyramidSpaceBuilder >> extensions [
+^ extensions
+]
+
 { #category : #initialization }
 PyramidSpaceBuilder >> initialize [
 
 	rootsContainer := PyramidSpaceRootsContainer new.
 	topMostContainer := rootsContainer.
 	overlays := Dictionary new.
+	keyboard := Set new.
+	extensions := Set new.
+]
+
+{ #category : #accessing }
+PyramidSpaceBuilder >> keyboard [
+
+	^ keyboard
 ]
 
 { #category : #initialization }
@@ -89,7 +132,8 @@ PyramidSpaceBuilder >> overlays [
 { #category : #accessing }
 PyramidSpaceBuilder >> projectModel: aProjectModel [
 
-	self rootsContainer projectModel: aProjectModel
+	self rootsContainer projectModel: aProjectModel.
+	self extensions do: [ :each | each projectModel: aProjectModel ]
 ]
 
 { #category : #accessing }

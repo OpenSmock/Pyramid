@@ -11,6 +11,13 @@ Class {
 }
 
 { #category : #accessing }
+PyramidProjectModel >> allElements [
+
+	^ PyramidTreeToFlat flattenChildrenOfCollection:
+		               self roots.
+]
+
+{ #category : #accessing }
 PyramidProjectModel >> initialize [ 
 
 	selection := PyramidCollectionWithCallbacks new.

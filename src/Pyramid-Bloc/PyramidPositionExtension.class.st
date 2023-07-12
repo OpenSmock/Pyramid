@@ -1,56 +1,18 @@
 Class {
 	#name : #PyramidPositionExtension,
 	#superclass : #Object,
-	#traits : 'TPyramidSpaceExtension',
-	#classTraits : 'TPyramidSpaceExtension classTrait',
+	#traits : 'TPyramidSpaceExtension + TPyramidEditorExtension',
+	#classTraits : 'TPyramidSpaceExtension classTrait + TPyramidEditorExtension classTrait',
 	#instVars : [
-		'display',
-		'builder'
+		'display'
 	],
 	#category : #'Pyramid-Bloc-plugin-space-extensions'
 }
 
 { #category : #accessing }
-PyramidPositionExtension >> builder [
-
-	^ builder
-]
-
-{ #category : #accessing }
-PyramidPositionExtension >> builder: anObject [
-
-	builder:= anObject
-]
-
-{ #category : #displaying }
-PyramidPositionExtension >> currentTransformTranslation [
-
-	| matrix |
-	matrix := self elementAtTransforms transformation matrix.
-	^ matrix x @ matrix y
-]
-
-{ #category : #accessing }
 PyramidPositionExtension >> display [
-^display
-]
 
-{ #category : #'as yet unclassified' }
-PyramidPositionExtension >> elementAtDisplay [
-
-	^ (self builder elementAt: #displays)
-]
-
-{ #category : #'as yet unclassified' }
-PyramidPositionExtension >> elementAtEvents [
-
-	^ self builder elementAt: #events
-]
-
-{ #category : #'as yet unclassified' }
-PyramidPositionExtension >> elementAtTransforms [
-
-	^ (self builder elementAt: #transforms)
+	^ display.
 ]
 
 { #category : #initialization }
@@ -71,5 +33,5 @@ PyramidPositionExtension >> installOn: aBuilder [
 	self elementAtEvents when: BlMouseMoveEvent do: [ :evt |
 		self display text:
 			(evt position - self currentTransformTranslation) asRopedText ].
-	self elementAtDisplay addChild: self display
+	self elementAtDisplay addChild: self display.
 ]
