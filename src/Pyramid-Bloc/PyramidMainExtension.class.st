@@ -21,7 +21,8 @@ PyramidMainExtension >> containerElement [
 { #category : #'as yet unclassified' }
 PyramidMainExtension >> informTransformationChanged [
 
-	self elementAtEvents transformDo: [ :t | t translateBy: self currentTransformTranslation negated ]
+	self elementAtEvents transformDo: [ :t |
+		t translateBy: self currentTransformTranslation negated ].
 ]
 
 { #category : #initialization }
@@ -35,7 +36,16 @@ PyramidMainExtension >> installOn: aBuilder [
 
 	self builder: aBuilder.
 	aBuilder addTransformationObserver: self.
-	self elementAtMain addChild: self containerElement
+	self elementAtMain addChild: self containerElement.
+	self elementAtTransforms transformDo: [ :t | t translateBy: self offsetTranslation ].
+	self signalTransformationChanged
+	
+]
+
+{ #category : #'as yet unclassified' }
+PyramidMainExtension >> offsetTranslation [
+
+	^ 50 @ 50
 ]
 
 { #category : #accessing }
