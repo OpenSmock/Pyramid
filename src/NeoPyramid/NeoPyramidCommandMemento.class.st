@@ -6,7 +6,7 @@ Class {
 		'target',
 		'arguments'
 	],
-	#category : #NeoPyramid
+	#category : #'NeoPyramid-history'
 }
 
 { #category : #accessing }

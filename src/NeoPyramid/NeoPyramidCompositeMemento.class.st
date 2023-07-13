@@ -4,7 +4,7 @@ Class {
 	#instVars : [
 		'mementos'
 	],
-	#category : #NeoPyramid
+	#category : #'NeoPyramid-history'
 }
 
 { #category : #initialization }

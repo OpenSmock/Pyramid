@@ -6,6 +6,33 @@ Class {
 
 { #category : #tests }
 NeoPyramidCommandTest >> testClusterOf [
+
+	| mocks cluster |
+	"0 element"
+	mocks := {  }.
+	cluster := NeoPyramidSimpleMockCommand new clusterOf: mocks.
+	
+	"1 element"
+	mocks := { NeoPyramidMockObjectForTest new count: 2; yourself }.
+	cluster := NeoPyramidSimpleMockCommand new clusterOf: mocks.
+	
+	
+	"n element same value"
+	mocks := {
+		NeoPyramidMockObjectForTest new count: 2; yourself.
+		NeoPyramidMockObjectForTest new count: 2; yourself.
+		NeoPyramidMockObjectForTest new count: 2; yourself
+	}.
+	cluster := NeoPyramidSimpleMockCommand new clusterOf: mocks.
+	
+	
+	"n element different values"
+	mocks := {
+		NeoPyramidMockObjectForTest new count: 2; yourself.
+		NeoPyramidMockObjectForTest new count: 3; yourself.
+		NeoPyramidMockObjectForTest new count: 2; yourself
+	}.
+	cluster := NeoPyramidSimpleMockCommand new clusterOf: mocks.
 ]
 
 { #category : #tests }

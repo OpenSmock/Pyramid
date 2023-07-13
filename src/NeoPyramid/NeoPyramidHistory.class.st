@@ -1,5 +1,5 @@
 Class {
 	#name : #NeoPyramidHistory,
 	#superclass : #Object,
-	#category : #NeoPyramid
+	#category : #'NeoPyramid-history'
 }
