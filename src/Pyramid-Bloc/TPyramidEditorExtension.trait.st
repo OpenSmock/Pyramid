@@ -40,9 +40,3 @@ TPyramidEditorExtension >> elementAtWidgets [
 
 	^ self builder elementAt: #widgets
 ]
-
-{ #category : #'as yet unclassified' }
-TPyramidEditorExtension >> signalTransformationChanged [
-
-	self builder transformationObservers do: [ :each | each informTransformationChanged ]
-]

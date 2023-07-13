@@ -25,7 +25,7 @@ PyramidWheelTransformExtension >> installOn: aBuilder [
 			self elementAtTransforms transformDo: [ :t |
 				t translateBy:
 					moveTo * self wheelSpeed + self currentTransformTranslation ].
-			self signalTransformationChanged ] ]
+			self builder signalTransformationChanged ] ]
 ]
 
 { #category : #'as yet unclassified' }
