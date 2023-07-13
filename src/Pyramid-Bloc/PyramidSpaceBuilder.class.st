@@ -108,7 +108,9 @@ PyramidSpaceBuilder >> build [
 PyramidSpaceBuilder >> editor: aPyramidEditor [
 
 	self extensions do: [ :each | each editor: aPyramidEditor ].
-	self extensions do: [ :each | each projectModel: aPyramidEditor projectModel ]
+	self extensions do: [ :each |
+		each projectModel: aPyramidEditor projectModel ].
+
 ]
 
 { #category : #accessing }
