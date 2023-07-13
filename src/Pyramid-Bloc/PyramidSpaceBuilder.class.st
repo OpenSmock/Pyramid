@@ -44,11 +44,12 @@ PyramidSpaceBuilder class >> defaultEditorExtensions [
 	defaultEditorExtensions ifNil: [
 		defaultEditorExtensions := {
 			                           PyramidMainExtension.
-				                           PyramidPositionExtension.
+			                           PyramidPositionExtension.
 			                           PyramidMouseTransformExtension.
 			                           PyramidWheelTransformExtension.
 			                           PyramidSelectionMakerExtension.
-			                           PyramidSelectionWidgetExtension } ].
+			                           PyramidSelectionWidgetExtension.
+			PyramidMenuExtension } ].
 	^ defaultEditorExtensions
 ]
 

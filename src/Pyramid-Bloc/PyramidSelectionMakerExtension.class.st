@@ -7,8 +7,7 @@ Class {
 		'selectionGhost',
 		'isDragging',
 		'dragOrigin',
-		'projectModel',
-		'menu'
+		'projectModel'
 	],
 	#category : #'Pyramid-Bloc-plugin-space-extensions'
 }
@@ -105,12 +104,6 @@ PyramidSelectionMakerExtension >> dragStart: anEvent [
 		visibility: BlVisibility visible
 ]
 
-{ #category : #accessing }
-PyramidSelectionMakerExtension >> editor: aPyramidEditor [
-
-	self menu:  (aPyramidEditor window services at: #selectionMenu)
-]
-
 { #category : #initialization }
 PyramidSelectionMakerExtension >> initialize [
 
@@ -143,8 +136,7 @@ PyramidSelectionMakerExtension >> installOn: aBuilder [
 		when: BlPrimaryMouseUpEvent
 		do: [ :evt | self dragEnd: evt ].
 	self elementAtEvents when: BlSecondaryMouseUpEvent do: [ :evt |
-		self dragEnd: evt.
-		self showMenuAt: evt ]
+		self dragEnd: evt ]
 ]
 
 { #category : #accessing }
@@ -157,18 +149,6 @@ PyramidSelectionMakerExtension >> isDragging [
 PyramidSelectionMakerExtension >> isDragging: anObject [
 
 	isDragging := anObject
-]
-
-{ #category : #accessing }
-PyramidSelectionMakerExtension >> menu [
-
-	^ menu
-]
-
-{ #category : #accessing }
-PyramidSelectionMakerExtension >> menu: anObject [
-
-	menu := anObject
 ]
 
 { #category : #accessing }
@@ -209,37 +189,4 @@ PyramidSelectionMakerExtension >> selectFirstElementAt: aPosition [
 PyramidSelectionMakerExtension >> selectionGhost [
 
 	^ selectionGhost
-]
-
-{ #category : #accessing }
-PyramidSelectionMakerExtension >> showMenuAt: anEvent [
-
-	| currentMenu colors chooseColorSubMenu currentColor |
-	self menu ifNil: [ ^ self ].
-	self projectModel ifNil: [ ^ self ].
-	currentColor :=  Color white.
-	currentMenu := self menu builder menuFor: self projectModel selection.
-	colors := {
-		          Color white.
-		          Color gray.
-		          Color black }.
-	chooseColorSubMenu := SpMenuPresenter new.
-	colors do: [ :color |
-		chooseColorSubMenu addItem: [ :item |
-			item
-				name: color printString;
-				action: [
-					self builder space root background: color.
-					currentColor := color ];
-				icon: [
-					currentColor = color
-						ifTrue: [ self iconNamed: #testGreen ]
-						ifFalse: [ self iconNamed: #testNotRun ] ] ] ].
-
-	currentMenu addGroup: [ :group |
-		group addItem: [ :item |
-			item
-				name: 'Space backgorund color';
-				subMenu: chooseColorSubMenu ] ].
-	currentMenu openWithSpecAt: self currentHand position
 ]
