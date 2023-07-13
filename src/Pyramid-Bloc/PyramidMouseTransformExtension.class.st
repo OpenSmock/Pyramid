@@ -31,7 +31,7 @@ PyramidMouseTransformExtension >> installOn: aBuilder [
 		self isDragging ifTrue: [
 			self elementAtTransforms transformDo: [ :t |
 				t translateBy: evt position + self origin ].
-			self signalTransformationChanged ] ].
+			self builder signalTransformationChanged ] ].
 	self elementAtEvents
 		when: BlMiddleMouseUpEvent
 		do: [ :evt | self isDragging: false ]

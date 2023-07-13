@@ -43,13 +43,13 @@ PyramidSpaceBuilder class >> defaultEditorExtensions [
 	<script: 'defaultEditorExtensions := nil'>
 	defaultEditorExtensions ifNil: [
 		defaultEditorExtensions := {
-			                           PyramidMainExtension.
-			                           PyramidPositionExtension.
+			                       			                           PyramidPositionExtension.
 			                           PyramidMouseTransformExtension.
 			                           PyramidWheelTransformExtension.
 			                           PyramidSelectionMakerExtension.
 			                           PyramidSelectionWidgetExtension.
-			PyramidMenuExtension } ].
+			                           PyramidMenuExtension.
+			PyramidMainExtension } ].
 	^ defaultEditorExtensions
 ]
 
@@ -88,11 +88,10 @@ PyramidSpaceBuilder >> addOverlayNamed: aString [
 { #category : #'as yet unclassified' }
 PyramidSpaceBuilder >> build [
 
-	
 	self space: BlSpace new.
-	
+
 	self overlays ifEmpty: [ ^ self space ].
-	
+
 	self space
 		when: BlKeyDownEvent
 		do: [ :evt | self keyboard add: evt key ].
@@ -100,6 +99,7 @@ PyramidSpaceBuilder >> build [
 		when: BlKeyUpEvent
 		do: [ :evt | self keyboard remove: evt key ].
 
+	self signalTransformationChanged.
 	self topMostOverlay buildOn: self space root.
 	^ self space
 ]

@@ -18,6 +18,13 @@ TPyramidEditorTransformation >> removeTransformationObserver: anObject [
 	self transformationObservers remove: anObject
 ]
 
+{ #category : #signalling }
+TPyramidEditorTransformation >> signalTransformationChanged [
+
+	self transformationObservers do: [ :each |
+		each informTransformationChanged ]
+]
+
 { #category : #accessing }
 TPyramidEditorTransformation >> transformationObservers [
 

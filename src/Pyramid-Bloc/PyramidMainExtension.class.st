@@ -37,9 +37,9 @@ PyramidMainExtension >> installOn: aBuilder [
 	self builder: aBuilder.
 	aBuilder addTransformationObserver: self.
 	self elementAtMain addChild: self containerElement.
-	self elementAtTransforms transformDo: [ :t | t translateBy: self offsetTranslation ].
-	self signalTransformationChanged
-	
+	self elementAtTransforms transformDo: [ :t |
+		t translateBy: self offsetTranslation ].
+	self builder signalTransformationChanged
 ]
 
 { #category : #'as yet unclassified' }
