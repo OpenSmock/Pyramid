@@ -1,7 +1,7 @@
 Class {
 	#name : #NeoPyramidCommand,
 	#superclass : #Object,
-	#category : #NeoPyramid
+	#category : #'NeoPyramid-command'
 }
 
 { #category : #testing }
@@ -21,24 +21,30 @@ NeoPyramidCommand >> clusterOf: aCollection [
 ]
 
 { #category : #'as yet unclassified' }
+NeoPyramidCommand >> commandInverse [
+
+	^ self
+]
+
+{ #category : #'as yet unclassified' }
 NeoPyramidCommand >> getValueFor: anObject [
 
 	^ self shouldBeImplemented
 ]
 
 { #category : #'as yet unclassified' }
-NeoPyramidCommand >> restaurationCommand [
+NeoPyramidCommand >> saveStatesOf: aCollection [
 
-	^ self
+	^ self saveStatesOf: aCollection withCommand: self
 ]
 
 { #category : #'as yet unclassified' }
-NeoPyramidCommand >> saveStatesOf: aCollection [
+NeoPyramidCommand >> saveStatesOf: aCollection withCommand: aCommand [
 
 	| mementos |
 	mementos := aCollection collect: [ :each |
 		            NeoPyramidCommandMemento new
-			            command: self restaurationCommand;
+			            command: aCommand;
 			            target: each;
 			            arguments: (self getValueFor: each);
 			            yourself ].
@@ -46,6 +52,14 @@ NeoPyramidCommand >> saveStatesOf: aCollection [
 	^ NeoPyramidCompositeMemento new
 		  mementos: mementos;
 		  yourself
+]
+
+{ #category : #'as yet unclassified' }
+NeoPyramidCommand >> saveStatesWithCommandInverseOf: aCollection [
+
+	^ self
+		  saveStatesOf: aCollection
+		  withCommand: self commandInverse
 ]
 
 { #category : #'as yet unclassified' }

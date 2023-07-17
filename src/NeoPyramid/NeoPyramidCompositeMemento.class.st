@@ -24,3 +24,9 @@ NeoPyramidCompositeMemento >> mementos: anObject [
 
 	mementos := anObject
 ]
+
+{ #category : #'window management' }
+NeoPyramidCompositeMemento >> restore [
+
+	self mementos do: [ :each | each restore ]
+]

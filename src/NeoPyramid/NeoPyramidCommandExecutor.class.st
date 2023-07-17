@@ -4,7 +4,7 @@ Class {
 	#instVars : [
 		'history'
 	],
-	#category : #NeoPyramid
+	#category : #'NeoPyramid-command'
 }
 
 { #category : #accessing }
@@ -27,12 +27,11 @@ NeoPyramidCommandExecutor >> use: aCommand on: aCollection with: arguments [
 	3. we use the command
 	2. we create the redo memento.
 	"
-	aCollection size ifEmpty: [ ^ self ].
+	aCollection ifEmpty: [ ^ self ].
 
-	undoMemento := aCommand saveStatesOf: aCollection.
+	undoMemento := aCommand saveStatesWithCommandInverseOf: aCollection.
 	aCommand useOn: aCollection with: arguments.
 	redoMemento := aCommand saveStatesOf: aCollection.
 
-	self history addUndo: undoMemento.
-	self history addRedo: redoMemento
+	self history previous: undoMemento current: redoMemento
 ]

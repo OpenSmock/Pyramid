@@ -44,6 +44,13 @@ NeoPyramidProperty >> commandExecutor: anObject [
 	commandExecutor := anObject
 ]
 
+{ #category : #initialization }
+NeoPyramidProperty >> initialize [
+
+	presenterBuilder := NeoPyramidPopingPresenterBuilder new.
+	name := 'Default property name'
+]
+
 { #category : #accessing }
 NeoPyramidProperty >> name [
 

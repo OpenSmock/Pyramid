@@ -33,6 +33,12 @@ NeoPyramidCommandMemento >> command: anObject [
 	command := anObject
 ]
 
+{ #category : #'window management' }
+NeoPyramidCommandMemento >> restore [
+
+	self command setValueFor: self target with: self arguments
+]
+
 { #category : #accessing }
 NeoPyramidCommandMemento >> target [
 

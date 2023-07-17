@@ -1,5 +1,5 @@
 Class {
-	#name : #NeoPyramidTextInputPresenter,
+	#name : #PyramidTextInputPresenter,
 	#superclass : #NeoPyramidInputPresenter,
 	#instVars : [
 		'textInput'
@@ -8,49 +8,49 @@ Class {
 }
 
 { #category : #layout }
-NeoPyramidTextInputPresenter >> defaultLayout [
+PyramidTextInputPresenter >> defaultLayout [
 
 	^ SpBoxLayout newVertical add: self textInput; yourself
 ]
 
 { #category : #'as yet unclassified' }
-NeoPyramidTextInputPresenter >> emptyValue [
+PyramidTextInputPresenter >> emptyValue [
 
 	self value: '# empty value'
 ]
 
 { #category : #initialization }
-NeoPyramidTextInputPresenter >> initializePresenters [
+PyramidTextInputPresenter >> initializePresenters [
 
 	textInput := SpTextInputFieldPresenter new
 ]
 
 { #category : #'as yet unclassified' }
-NeoPyramidTextInputPresenter >> mixedValues [
+PyramidTextInputPresenter >> mixedValues [
 
 	self value: '# mixed values'
 ]
 
 { #category : #accessing }
-NeoPyramidTextInputPresenter >> textInput [
+PyramidTextInputPresenter >> textInput [
 
 	^ textInput
 ]
 
 { #category : #'as yet unclassified' }
-NeoPyramidTextInputPresenter >> value [
+PyramidTextInputPresenter >> value [
 
-	self textInput text
+	^ self textInput text
 ]
 
 { #category : #'as yet unclassified' }
-NeoPyramidTextInputPresenter >> value: anObject [
+PyramidTextInputPresenter >> value: anObject [
 
 	self textInput text: anObject asString
 ]
 
 { #category : #'as yet unclassified' }
-NeoPyramidTextInputPresenter >> whenValueChangedDo: aBlock [
+PyramidTextInputPresenter >> whenValueChangedDo: aBlock [
 
 	self textInput whenSubmitDo: aBlock
 ]

@@ -1,7 +1,7 @@
 Class {
 	#name : #NeoPyramidSimpleMockCommand,
 	#superclass : #NeoPyramidMockCommand,
-	#category : #NeoPyramid
+	#category : #'NeoPyramid-command'
 }
 
 { #category : #'as yet unclassified' }

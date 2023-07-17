@@ -9,13 +9,16 @@ NeoPyramidPopingPresenterBuilder >> build [
 
 	| presenterAll presentersGrouped presentersIndividual layout |
 	presenterAll := self buildPresenterAll.
-	presentersGrouped := self buildPresentersGrouped.
-	presentersIndividual := self buildPresentersIndividual.
 
-	layout := self
-		          buildLayoutAll: presenterAll
-		          grouped: presentersGrouped
-		          individual: presentersIndividual.
+	self cluster size > 1
+		ifTrue: [
+			presentersGrouped := self buildPresentersGrouped.
+			presentersIndividual := self buildPresentersIndividual.
+			layout := self
+				          buildLayoutAll: presenterAll
+				          grouped: presentersGrouped
+				          individual: presentersIndividual ]
+		ifFalse: [ layout := self buildLayoutOnlyForAll: presenterAll ].
 
 	^ SpPresenter new
 		  layout: layout;
@@ -46,12 +49,38 @@ NeoPyramidPopingPresenterBuilder >> buildLayoutAll: presenterAll grouped: presen
 		  spacing: 4;
 		  add: (SpLabelPresenter new
 				   label: self property name;
+				displayBold: [ :t | true ];
 				   yourself)
 		  height: 24;
 		  add: (SpBoxLayout newHorizontal
 				   spacing: 4;
 				   add: buttonPopup width: 24;
-				   add: presenterPopup;
+				   add: presenterAll;
+				   yourself)
+		  height: 24;
+		  yourself
+]
+
+{ #category : #'as yet unclassified' }
+NeoPyramidPopingPresenterBuilder >> buildLayoutOnlyForAll: presenterAll [
+
+	| buttonPopup |
+	buttonPopup := SpButtonPresenter new
+		               icon: (self iconNamed: #edit);
+		               enabled: false;
+		               yourself.
+
+	^ SpBoxLayout newVertical
+		  spacing: 4;
+		  add: (SpLabelPresenter new
+				   label: self property name;
+					displayBold: [ :t | true ];
+				   yourself)
+		  height: 24;
+		  add: (SpBoxLayout newHorizontal
+				   spacing: 4;
+				   add: buttonPopup width: 24;
+				   add: presenterAll;
 				   yourself)
 		  height: 24;
 		  yourself
@@ -69,13 +98,14 @@ NeoPyramidPopingPresenterBuilder >> buildPresenterAll [
 
 	self cluster isTargetsSameArguments
 		ifTrue: [ input value: self cluster arguments first ]
-		ifFalse: [ input mixedValue ].
+		ifFalse: [ input mixedValues ].
 
 	input whenValueChangedDo: [ :value |
 		self property commandExecutor
 			use: self property command
 			on: self cluster allTargets
-			with: value ]
+			with: value ].
+	^ input
 ]
 
 { #category : #'as yet unclassified' }
@@ -108,13 +138,14 @@ NeoPyramidPopingPresenterBuilder >> buildPresenterWithButtonsFor: anAssociation 
 
 { #category : #'as yet unclassified' }
 NeoPyramidPopingPresenterBuilder >> buildPresentersGrouped [
-| size label |
+
+	| size label |
 	self cluster isEmpty ifTrue: [ ^ {  } ].
 	^ self cluster groupedAssociations associations collect: [ :each |
 		  size := each value size.
 		  label := size = 1
 			           ifTrue: [ '1 element' ]
-			           ifFalse: [ size printString , 'elements' ].
+			           ifFalse: [ size printString , ' elements' ].
 		  self buildPresenterWithButtonsFor: each withLabel: label ]
 ]
 

@@ -68,6 +68,7 @@ NeoPyramidPropertyPopupPresenter >> initializePresenters [
 		               yourself.
 
 	buttonIndividual associatedRadioButtons: { buttonGroup }.
+	self buttonGroup click.
 	buttonIndividual whenActivatedDo: [ self showIndividualPresenter ].
 	buttonGroup whenActivatedDo: [ self showGroupPresenter ]
 ]
@@ -76,16 +77,21 @@ NeoPyramidPropertyPopupPresenter >> initializePresenters [
 NeoPyramidPropertyPopupPresenter >> layoutWith: aCollection [
 
 	| inputsLayout scroll |
-	
 	inputsLayout := SpBoxLayout newVertical
 		                spacing: 4;
 		                yourself.
 	aCollection do: [ :each | inputsLayout add: each expand: false ].
-	inputsLayout add: 'hello world'.
-	
-	aCollection ifEmpty: [ scroll := SpLabelPresenter new label: 'nothing to see here'; yourself] ifNotEmpty: [ scroll := SpScrollableLayout new child: (SpPresenter new
-			           layout: inputsLayout;
-			           yourself). ].
+	inputsLayout add: ''.
+
+	aCollection
+		ifEmpty: [
+			scroll := SpLabelPresenter new
+				          label: 'nothing to see here';
+				          yourself ]
+		ifNotEmpty: [
+			scroll := SpScrollableLayout new child: (SpPresenter new
+					           layout: inputsLayout;
+					           yourself) ].
 
 	^ SpBoxLayout newVertical
 		  spacing: 4;
@@ -93,9 +99,11 @@ NeoPyramidPropertyPopupPresenter >> layoutWith: aCollection [
 				   spacing: 4;
 				   add: (SpLabelPresenter new
 						    label: self name;
-						    yourself);
-				   add: self buttonIndividual;
-				   add: self buttonGroup;
+						    displayBold: [ :t | true ];
+						    yourself)
+				   width: 150;
+				   add: self buttonGroup width: 75;
+				   add: self buttonIndividual width: 75;
 				   yourself)
 		  expand: false;
 		  add: scroll height: 300;

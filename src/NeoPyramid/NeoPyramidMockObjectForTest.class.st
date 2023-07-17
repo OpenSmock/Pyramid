@@ -4,7 +4,7 @@ Class {
 	#instVars : [
 		'count'
 	],
-	#category : #'NeoPyramid-tests'
+	#category : #'NeoPyramid-cases-command'
 }
 
 { #category : #accessing }

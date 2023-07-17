@@ -1,19 +1,19 @@
 Class {
 	#name : #NeoPyramidRemoveMockCommand,
 	#superclass : #NeoPyramidMockCommand,
-	#category : #NeoPyramid
+	#category : #'NeoPyramid-command'
 }
+
+{ #category : #'as yet unclassified' }
+NeoPyramidRemoveMockCommand >> commandInverse [
+
+	^ NeoPyramidAddMockCommand new
+]
 
 { #category : #'as yet unclassified' }
 NeoPyramidRemoveMockCommand >> getValueFor: anObject [
 
 ^ nil
-]
-
-{ #category : #'as yet unclassified' }
-NeoPyramidRemoveMockCommand >> restaurationCommand [
-
-	^ NeoPyramidAddMockCommand new
 ]
 
 { #category : #'as yet unclassified' }

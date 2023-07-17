@@ -7,7 +7,7 @@ Class {
 		'groupedAssociations',
 		'individualAssociations'
 	],
-	#category : #NeoPyramid
+	#category : #'NeoPyramid-command'
 }
 
 { #category : #'as yet unclassified' }
@@ -83,4 +83,10 @@ NeoPyramidCluster >> register: aTarget forArguments: anArguments [
 			OrderedCollection new
 				add: aTarget;
 				yourself ]
+]
+
+{ #category : #accessing }
+NeoPyramidCluster >> size [
+
+	^ self allTargets size
 ]

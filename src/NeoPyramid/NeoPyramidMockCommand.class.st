@@ -1,7 +1,7 @@
 Class {
 	#name : #NeoPyramidMockCommand,
 	#superclass : #NeoPyramidCommand,
-	#category : #NeoPyramid
+	#category : #'NeoPyramid-command'
 }
 
 { #category : #testing }
