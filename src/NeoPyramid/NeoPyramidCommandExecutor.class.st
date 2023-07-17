@@ -29,9 +29,9 @@ NeoPyramidCommandExecutor >> use: aCommand on: aCollection with: arguments [
 	"
 	aCollection ifEmpty: [ ^ self ].
 
-	undoMemento := aCommand saveStatesWithCommandInverseOf: aCollection.
+	undoMemento := aCommand saveStatesWithCommandInverseOf: aCollection with: arguments.
 	aCommand useOn: aCollection with: arguments.
-	redoMemento := aCommand saveStatesOf: aCollection.
+	redoMemento := aCommand saveStatesOf: aCollection with: arguments.
 
 	self history previous: undoMemento current: redoMemento
 ]

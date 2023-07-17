@@ -98,13 +98,13 @@ NeoPyramidCommandTest >> testClusterOf [
 ]
 
 { #category : #tests }
-NeoPyramidCommandTest >> testSaveStatesOf [
+NeoPyramidCommandTest >> testSaveStatesOfWith [
 
 	| mocks mementos |
 	"single element + simple command"
 	mocks := { NeoPyramidMockObjectForTest new }.
 
-	mementos := NeoPyramidSimpleMockCommand new saveStatesOf: mocks.
+	mementos := NeoPyramidSimpleMockCommand new saveStatesOf: mocks with: nil.
 	self assert: mementos class equals: NeoPyramidCommandMemento.
 	self assert: mementos target equals: mocks first.
 	self
@@ -119,7 +119,7 @@ NeoPyramidCommandTest >> testSaveStatesOf [
 			          count: 1;
 			          yourself) }.
 
-	mementos := NeoPyramidSimpleMockCommand new saveStatesOf: mocks.
+	mementos := NeoPyramidSimpleMockCommand new saveStatesOf: mocks with: nil.
 	self assert: mementos class equals: NeoPyramidCompositeMemento.
 	self
 		assert: mementos mementos first class
@@ -141,12 +141,10 @@ NeoPyramidCommandTest >> testSaveStatesOf [
 	"single element + complexe command"
 	mocks := { NeoPyramidMockObjectForTest new }.
 
-	mementos := NeoPyramidAddMockCommand new saveStatesOf: mocks.
+	mementos := NeoPyramidAddMockCommand new saveStatesOf: mocks with: nil.
 	self assert: mementos class equals: NeoPyramidCommandMemento.
 	self assert: mementos target equals: mocks first.
-	self
-		assert: mementos command class
-		equals: NeoPyramidAddMockCommand.
+	self assert: mementos command class equals: NeoPyramidAddMockCommand.
 	self assert: mementos arguments equals: nil.
 
 	"multi elements + complexe command"
@@ -156,7 +154,7 @@ NeoPyramidCommandTest >> testSaveStatesOf [
 			          count: 1;
 			          yourself) }.
 
-	mementos := NeoPyramidAddMockCommand new saveStatesOf: mocks.
+	mementos := NeoPyramidAddMockCommand new saveStatesOf: mocks with: nil.
 	self assert: mementos class equals: NeoPyramidCompositeMemento.
 	self
 		assert: mementos mementos first class
@@ -177,14 +175,14 @@ NeoPyramidCommandTest >> testSaveStatesOf [
 ]
 
 { #category : #tests }
-NeoPyramidCommandTest >> testSaveStatesWithCommandInverseOf [
+NeoPyramidCommandTest >> testSaveStatesWithCommandInverseOfWith [
 
 	| mocks mementos |
 	"single element + simple command"
 	mocks := { NeoPyramidMockObjectForTest new }.
 
 	mementos := NeoPyramidSimpleMockCommand new
-		            saveStatesWithCommandInverseOf: mocks.
+		            saveStatesWithCommandInverseOf: mocks  with: nil.
 	self assert: mementos class equals: NeoPyramidCommandMemento.
 	self assert: mementos target equals: mocks first.
 	self
@@ -200,7 +198,7 @@ NeoPyramidCommandTest >> testSaveStatesWithCommandInverseOf [
 			          yourself) }.
 
 	mementos := NeoPyramidSimpleMockCommand new
-		            saveStatesWithCommandInverseOf: mocks.
+		            saveStatesWithCommandInverseOf: mocks with: nil.
 	self assert: mementos class equals: NeoPyramidCompositeMemento.
 	self
 		assert: mementos mementos first class
@@ -223,7 +221,7 @@ NeoPyramidCommandTest >> testSaveStatesWithCommandInverseOf [
 	mocks := { NeoPyramidMockObjectForTest new }.
 
 	mementos := NeoPyramidAddMockCommand new
-		            saveStatesWithCommandInverseOf: mocks.
+		            saveStatesWithCommandInverseOf: mocks with: nil.
 	self assert: mementos class equals: NeoPyramidCommandMemento.
 	self assert: mementos target equals: mocks first.
 	self
@@ -239,7 +237,7 @@ NeoPyramidCommandTest >> testSaveStatesWithCommandInverseOf [
 			          yourself) }.
 
 	mementos := NeoPyramidAddMockCommand new
-		            saveStatesWithCommandInverseOf: mocks.
+		            saveStatesWithCommandInverseOf: mocks with: nil.
 	self assert: mementos class equals: NeoPyramidCompositeMemento.
 	self
 		assert: mementos mementos first class

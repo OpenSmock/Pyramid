@@ -33,13 +33,13 @@ NeoPyramidCommand >> getValueFor: anObject [
 ]
 
 { #category : #'as yet unclassified' }
-NeoPyramidCommand >> saveStatesOf: aCollection [
+NeoPyramidCommand >> saveStatesOf: aCollection with: arguments [
 
-	^ self saveStatesOf: aCollection withCommand: self
+	^ self saveStatesOf: aCollection withCommand: self withArguments: arguments
 ]
 
 { #category : #'as yet unclassified' }
-NeoPyramidCommand >> saveStatesOf: aCollection withCommand: aCommand [
+NeoPyramidCommand >> saveStatesOf: aCollection withCommand: aCommand withArguments: anArguments [
 
 	| mementos |
 	mementos := aCollection collect: [ :each |
@@ -55,11 +55,9 @@ NeoPyramidCommand >> saveStatesOf: aCollection withCommand: aCommand [
 ]
 
 { #category : #'as yet unclassified' }
-NeoPyramidCommand >> saveStatesWithCommandInverseOf: aCollection [
+NeoPyramidCommand >> saveStatesWithCommandInverseOf: aCollection with: arguments [
 
-	^ self
-		  saveStatesOf: aCollection
-		  withCommand: self commandInverse
+	^ self saveStatesOf: aCollection withCommand: self commandInverse withArguments: arguments
 ]
 
 { #category : #'as yet unclassified' }
