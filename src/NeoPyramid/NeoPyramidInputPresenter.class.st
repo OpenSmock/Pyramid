@@ -9,7 +9,9 @@ NeoPyramidInputPresenter >> emptyValue [
 ]
 
 { #category : #'as yet unclassified' }
-NeoPyramidInputPresenter >> mixedValue [
+NeoPyramidInputPresenter >> mixedValues [
+
+	
 ]
 
 { #category : #'as yet unclassified' }

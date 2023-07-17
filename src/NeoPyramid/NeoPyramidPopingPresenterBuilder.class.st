@@ -61,16 +61,16 @@ NeoPyramidPopingPresenterBuilder >> buildLayoutAll: presenterAll grouped: presen
 NeoPyramidPopingPresenterBuilder >> buildPresenterAll [
 
 	| input |
-	input := self property pyramidInputClass new.
+	input := self property pyramidInputPresenterClass new.
 
 	self cluster isEmpty ifTrue: [
 		input emptyValue.
 		^ input ].
-	
+
 	self cluster isTargetsSameArguments
 		ifTrue: [ input value: self cluster arguments first ]
 		ifFalse: [ input mixedValue ].
-	
+
 	input whenValueChangedDo: [ :value |
 		self property commandExecutor
 			use: self property command
@@ -82,7 +82,7 @@ NeoPyramidPopingPresenterBuilder >> buildPresenterAll [
 NeoPyramidPopingPresenterBuilder >> buildPresenterWithButtonsFor: anAssociation withLabel: aString [
 
 	| input buttonApplyToAll layout |
-	input := self property pyramidInputClass new.
+	input := self property pyramidInputPresenterClass new.
 	input value: anAssociation key.
 	input whenValueChangedDo: [ :value |
 		self property commandExecutor
@@ -97,16 +97,20 @@ NeoPyramidPopingPresenterBuilder >> buildPresenterWithButtonsFor: anAssociation 
 				                    use: self property command
 				                    on: self cluster allTargets
 				                    with: input value ].
-	layout := self layoutForLabel: aString input:input button: buttonApplyToAll.
-	^ SpPresenter new layout: layout; yourself
+	layout := self
+		          layoutForLabel: aString
+		          input: input
+		          button: buttonApplyToAll.
+	^ SpPresenter new
+		  layout: layout;
+		  yourself
 ]
 
 { #category : #'as yet unclassified' }
 NeoPyramidPopingPresenterBuilder >> buildPresentersGrouped [
 | size label |
 	self cluster isEmpty ifTrue: [ ^ {  } ].
-	^ self cluster groupedAssociations collect: [ :each |
-		  
+	^ self cluster groupedAssociations associations collect: [ :each |
 		  size := each value size.
 		  label := size = 1
 			           ifTrue: [ '1 element' ]

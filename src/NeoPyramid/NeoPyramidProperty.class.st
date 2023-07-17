@@ -15,9 +15,9 @@ Class {
 NeoPyramidProperty >> buildPresenterFromCluster: aCluster [
 
 	^ self presenterBuilder
-		cluster: aCluster;
-		property: self;
-		build.
+		  cluster: aCluster;
+		  property: self;
+		  build
 ]
 
 { #category : #accessing }
@@ -42,12 +42,6 @@ NeoPyramidProperty >> commandExecutor [
 NeoPyramidProperty >> commandExecutor: anObject [
 
 	commandExecutor := anObject
-]
-
-{ #category : #initialization }
-NeoPyramidProperty >> initialize [
-
- presenterBuilder := NeoPyramidPopingPresenterBuilder new
 ]
 
 { #category : #accessing }
