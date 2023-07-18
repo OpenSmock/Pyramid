@@ -8,7 +8,9 @@ Class {
 NeoPyramidHistoryTest >> testCanRedo [
 
 	| commandExec dummyCommand dummyTarget dummyArguments |
-	commandExec := NeoPyramidCommandExecutor new.
+		commandExec := PyramidHistoryCommandExecutor new
+		               wrappee: PyramidMainCommandExecutor new;
+		               yourself.
 	self deny: commandExec history canRedo.
 
 	dummyCommand := NeoPyramidIncreaseMockCommand new.
@@ -20,16 +22,15 @@ NeoPyramidHistoryTest >> testCanRedo [
 	self deny: commandExec history canRedo.
 	commandExec history undo.
 	self assert: commandExec history canRedo.
-		commandExec history redo.
-		self deny: commandExec history canRedo.
-	
+	commandExec history redo.
+	self deny: commandExec history canRedo
 ]
 
 { #category : #tests }
 NeoPyramidHistoryTest >> testCanUndo [
 
 	| commandExec dummyCommand dummyTarget dummyArguments |
-	commandExec := NeoPyramidCommandExecutor new.
+	commandExec := PyramidHistoryCommandExecutor new wrappee: PyramidMainCommandExecutor new; yourself.
 	self deny: commandExec history canUndo.
 
 	dummyCommand := NeoPyramidIncreaseMockCommand new.
@@ -58,7 +59,9 @@ NeoPyramidHistoryTest >> testCollectionHistory [
 
 	| commandExec dummyCommand dummyTarget collection |
 	collection := Bag new.
-	commandExec := NeoPyramidCommandExecutor new.
+		commandExec := PyramidHistoryCommandExecutor new
+		               wrappee: PyramidMainCommandExecutor new;
+		               yourself.
 	dummyCommand := NeoPyramidAddToCollectionCommand new.
 	dummyTarget := { collection }.
 
@@ -103,7 +106,9 @@ NeoPyramidHistoryTest >> testCollectionHistory [
 NeoPyramidHistoryTest >> testRedo [
 
 	| commandExec dummyTarget |
-	commandExec := NeoPyramidCommandExecutor new.
+		commandExec := PyramidHistoryCommandExecutor new
+		               wrappee: PyramidMainCommandExecutor new;
+		               yourself.
 	dummyTarget := { NeoPyramidMockObjectForTest new }.
 	self assert: dummyTarget first count equals: 0.
 
@@ -136,7 +141,7 @@ NeoPyramidHistoryTest >> testRedo [
 	self assert: dummyTarget first count equals: 20.
 	commandExec history redo.
 	self assert: dummyTarget first count equals: 21.
-	
+
 	commandExec history undo.
 	self assert: dummyTarget first count equals: 20.
 	commandExec history undo.
@@ -154,30 +159,32 @@ NeoPyramidHistoryTest >> testRedo [
 	commandExec history redo.
 	self assert: dummyTarget first count equals: 10.
 	commandExec history redo.
-	self assert: dummyTarget first count equals: 11.
+	self assert: dummyTarget first count equals: 11
 ]
 
 { #category : #tests }
 NeoPyramidHistoryTest >> testUndo [
 
 	| commandExec dummyCommand dummyTarget dummyArguments |
-	commandExec := NeoPyramidCommandExecutor new.
+		commandExec := PyramidHistoryCommandExecutor new
+		               wrappee: PyramidMainCommandExecutor new;
+		               yourself.
 	dummyCommand := NeoPyramidIncreaseMockCommand new.
 	dummyTarget := { NeoPyramidMockObjectForTest new }.
 	dummyArguments := nil.
 	self assert: dummyTarget first count equals: 0.
-	
+
 	commandExec use: dummyCommand on: dummyTarget with: dummyArguments.
 	self assert: dummyTarget first count equals: 1.
 	commandExec use: dummyCommand on: dummyTarget with: dummyArguments.
 	self assert: dummyTarget first count equals: 2.
 	commandExec use: dummyCommand on: dummyTarget with: dummyArguments.
 	self assert: dummyTarget first count equals: 3.
-	
+
 	commandExec history undo.
 	self assert: dummyTarget first count equals: 2.
-		commandExec history undo.
+	commandExec history undo.
 	self assert: dummyTarget first count equals: 1.
-		commandExec history undo.
-	self assert: dummyTarget first count equals: 0.
+	commandExec history undo.
+	self assert: dummyTarget first count equals: 0
 ]
