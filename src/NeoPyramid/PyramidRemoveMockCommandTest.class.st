@@ -9,10 +9,10 @@ PyramidRemoveMockCommandTest >> testGetValueFor [
 
 	| mock |
 	mock := NeoPyramidMockObjectForTest new.
-	self assert: (NeoPyramidRemoveMockCommand new getValueFor: mock) equals: nil.
+	self assert: (NeoPyramidDecreaseMockCommand new getValueFor: mock) equals: nil.
 	
 	mock count: 5.
-	self assert: (NeoPyramidRemoveMockCommand new getValueFor: mock) equals: nil.
+	self assert: (NeoPyramidDecreaseMockCommand new getValueFor: mock) equals: nil.
 ]
 
 { #category : #tests }
@@ -22,6 +22,6 @@ PyramidRemoveMockCommandTest >> testSetValueForWith [
 	mock := NeoPyramidMockObjectForTest new.
 	self assert: mock count equals: 0.
 	
-	NeoPyramidRemoveMockCommand new setValueFor: mock with: nil. 
+	NeoPyramidDecreaseMockCommand new setValueFor: mock with: nil. 
 	self assert: mock count equals: -1.
 ]

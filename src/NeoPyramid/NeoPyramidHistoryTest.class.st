@@ -11,7 +11,7 @@ NeoPyramidHistoryTest >> testCanRedo [
 	commandExec := NeoPyramidCommandExecutor new.
 	self deny: commandExec history canRedo.
 
-	dummyCommand := NeoPyramidAddMockCommand new.
+	dummyCommand := NeoPyramidIncreaseMockCommand new.
 	dummyTarget := { NeoPyramidMockObjectForTest new }.
 	dummyArguments := nil.
 
@@ -32,7 +32,7 @@ NeoPyramidHistoryTest >> testCanUndo [
 	commandExec := NeoPyramidCommandExecutor new.
 	self deny: commandExec history canUndo.
 
-	dummyCommand := NeoPyramidAddMockCommand new.
+	dummyCommand := NeoPyramidIncreaseMockCommand new.
 	dummyTarget := { NeoPyramidMockObjectForTest new }.
 	dummyArguments := nil.
 
@@ -44,35 +44,117 @@ NeoPyramidHistoryTest >> testCanUndo [
 ]
 
 { #category : #tests }
+NeoPyramidHistoryTest >> testCollectionHistory [
+	"
+	<collection>
+
+	collection add: 1 to 100
+	collection remove: 91 to 100
+	undo 10 times (collection: 1 to 100)
+	collection add: 101 to 200 (collection: 1 to 200)
+	undo 200 times (collection empty)
+	redo 200 times (collection: 1 to 200)
+	"
+
+	| commandExec dummyCommand dummyTarget collection |
+	collection := Bag new.
+	commandExec := NeoPyramidCommandExecutor new.
+	dummyCommand := NeoPyramidAddToCollectionCommand new.
+	dummyTarget := { collection }.
+
+	self assert: collection isEmpty.
+
+	1 to: 100 do: [ :i |
+		commandExec
+			use: NeoPyramidAddToCollectionCommand new
+			on: dummyTarget
+			with: i ].
+	self assert: collection size equals: 100.
+	1 to: 100 do: [ :i | self assert: (collection includes: i) ].
+
+	91 to: 100 do: [ :i |
+		commandExec
+			use: NeoPyramidRemoveFromCollectionCommand new
+			on: dummyTarget
+			with: i ].
+	self assert: collection size equals: 90.
+	1 to: 90 do: [ :i | self assert: (collection includes: i) ].
+
+	1 to: 10 do: [ :i | commandExec history undo ].
+	self assert: collection size equals: 100.
+	1 to: 100 do: [ :i | self assert: (collection includes: i) ].
+
+	101 to: 200 do: [ :i |
+		commandExec
+			use: NeoPyramidAddToCollectionCommand new
+			on: dummyTarget
+			with: i ].
+	self assert: collection size equals: 200.
+	1 to: 200 do: [ :i | self assert: (collection includes: i) ].
+
+	1 to: 200 do: [ :i | commandExec history undo ].
+	self assert: collection isEmpty.
+	1 to: 200 do: [ :i | commandExec history redo ].
+	self assert: collection size equals: 200.
+	1 to: 200 do: [ :i | self assert: (collection includes: i) ]
+]
+
+{ #category : #tests }
 NeoPyramidHistoryTest >> testRedo [
 
-	| commandExec dummyCommand dummyTarget dummyArguments |
+	| commandExec dummyTarget |
 	commandExec := NeoPyramidCommandExecutor new.
-	dummyCommand := NeoPyramidAddMockCommand new.
 	dummyTarget := { NeoPyramidMockObjectForTest new }.
-	dummyArguments := nil.
 	self assert: dummyTarget first count equals: 0.
 
-	commandExec use: dummyCommand on: dummyTarget with: dummyArguments.
-	self assert: dummyTarget first count equals: 1.
-	commandExec use: dummyCommand on: dummyTarget with: dummyArguments.
-	self assert: dummyTarget first count equals: 2.
-	commandExec use: dummyCommand on: dummyTarget with: dummyArguments.
-	self assert: dummyTarget first count equals: 3.
+	commandExec
+		use: NeoPyramidSimpleMockCommand new
+		on: dummyTarget
+		with: 10.
+	self assert: dummyTarget first count equals: 10.
+	commandExec
+		use: NeoPyramidSimpleMockCommand new
+		on: dummyTarget
+		with: 20.
+	self assert: dummyTarget first count equals: 20.
+	commandExec
+		use: NeoPyramidIncreaseMockCommand new
+		on: dummyTarget
+		with: nil.
+	self assert: dummyTarget first count equals: 21.
 
 	commandExec history undo.
-	self assert: dummyTarget first count equals: 2.
+	self assert: dummyTarget first count equals: 20.
 	commandExec history undo.
-	self assert: dummyTarget first count equals: 1.
+	self assert: dummyTarget first count equals: 10.
 	commandExec history undo.
 	self assert: dummyTarget first count equals: 0.
+
+	commandExec history redo.
+	self assert: dummyTarget first count equals: 10.
+	commandExec history redo.
+	self assert: dummyTarget first count equals: 20.
+	commandExec history redo.
+	self assert: dummyTarget first count equals: 21.
 	
+	commandExec history undo.
+	self assert: dummyTarget first count equals: 20.
+	commandExec history undo.
+	self assert: dummyTarget first count equals: 10.
+	commandExec
+		use: NeoPyramidIncreaseMockCommand new
+		on: dummyTarget
+		with: nil.
+	self assert: dummyTarget first count equals: 11.
+	self deny: commandExec history canRedo.
+	commandExec history undo.
+	self assert: dummyTarget first count equals: 10.
+	commandExec history undo.
+	self assert: dummyTarget first count equals: 0.
 	commandExec history redo.
-	self assert: dummyTarget first count equals: 1.
+	self assert: dummyTarget first count equals: 10.
 	commandExec history redo.
-	self assert: dummyTarget first count equals: 2.
-	commandExec history redo.
-	self assert: dummyTarget first count equals: 3
+	self assert: dummyTarget first count equals: 11.
 ]
 
 { #category : #tests }
@@ -80,7 +162,7 @@ NeoPyramidHistoryTest >> testUndo [
 
 	| commandExec dummyCommand dummyTarget dummyArguments |
 	commandExec := NeoPyramidCommandExecutor new.
-	dummyCommand := NeoPyramidAddMockCommand new.
+	dummyCommand := NeoPyramidIncreaseMockCommand new.
 	dummyTarget := { NeoPyramidMockObjectForTest new }.
 	dummyArguments := nil.
 	self assert: dummyTarget first count equals: 0.
