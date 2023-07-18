@@ -1,3 +1,9 @@
+"
+I create a `SpPresenter` from a `PyramidPropertiesManager` that expose multiple properties of objects inside a collection.
+
+I do that with the message `#buildPresenterFromCollection:andManager:`
+
+"
 Class {
 	#name : #PyramidPresenterPropertiesStrategy,
 	#superclass : #Object,
@@ -5,9 +11,7 @@ Class {
 }
 
 { #category : #'as yet unclassified' }
-PyramidPresenterPropertiesStrategy >> buildPresenterFromClustersAndProperties: aCollection [
-	"aCollection := { PyramidCluster -> PyramidProperty }
-	return single presenter with all properties inside"
+PyramidPresenterPropertiesStrategy >> buildPresenterFromCollection: aCollection andManager: aManager [
 
 	^ self shouldBeImplemented
 ]

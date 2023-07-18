@@ -1,61 +1,38 @@
 Class {
 	#name : #PyramidNumberInputPresenterTest,
 	#superclass : #TestCase,
+	#traits : 'TPyramidInputPresenterTest',
+	#classTraits : 'TPyramidInputPresenterTest classTrait',
 	#category : #'NeoPyramid-cases-property'
 }
 
-{ #category : #tests }
-PyramidNumberInputPresenterTest >> testEmptyValue [
+{ #category : #accessing }
+PyramidNumberInputPresenterTest >> dummyValues [
 
-	| input |
-	input := PyramidNumberInputPresenter new
-		         value: 4;
-		         yourself.
-
-	self assert: input value equals: 4.
-	input emptyValue.
-	self assert: input value equals: nil
+	^ { 1 . 0 . -5556 . 12.5687 . nil }
 ]
 
 { #category : #tests }
-PyramidNumberInputPresenterTest >> testMixedValues [
+PyramidNumberInputPresenterTest >> expectedEmptyValue [
 
-	| input |
-	input := PyramidNumberInputPresenter new
-		         value: 4;
-		         yourself.
-
-	self assert: input value equals: 4.
-	input mixedValues.
-	self assert: input value equals: nil
+	^ nil
 ]
 
 { #category : #tests }
-PyramidNumberInputPresenterTest >> testValue [
+PyramidNumberInputPresenterTest >> expectedMixedValues [
 
-	| input |
-	input := PyramidNumberInputPresenter new yourself.
-
-	self assert: input value equals: nil.
-	input value: 4.
-	self assert: input value equals: 4.
-	input value: 10.
-	self assert: input value equals: 10.
-	input value: nil.
-	self assert: input value equals: nil
+	^ nil
 ]
 
 { #category : #tests }
-PyramidNumberInputPresenterTest >> testWhenValueChangedDo [
+PyramidNumberInputPresenterTest >> makeNewInput [
 
-	| input test |
-	test := 0.
-	input := PyramidNumberInputPresenter new whenValueChangedDo: [ :n |
-		         test := n ].
+	^ PyramidNumberInputPresenter new
+]
 
-	self assert: test equals: 0.
-	input value: 4.
-	self assert: test equals: 0.
-	input inputNumber contextKeyBindings keymaps do: [:bind | bind action value].
-	self assert: test equals: 4.
+{ #category : #'as yet unclassified' }
+PyramidNumberInputPresenterTest >> triggerValueChangedOf: anInput [
+
+	anInput inputNumber contextKeyBindings keymaps do: [ :bind |
+		bind action value ]
 ]

@@ -8,9 +8,9 @@ Class {
 }
 
 { #category : #'as yet unclassified' }
-PyramidFakePropertyForTestStrategy >> buildPresenterFromClustersAndProperties: aCollection [
+PyramidFakePropertyForTestStrategy >> buildPresenterFromCollection: aCollection andManager: aManager [
 
-	self properties: (aCollection collect: [ :each | each value ])
+	self properties: aManager properties
 ]
 
 { #category : #initialization }

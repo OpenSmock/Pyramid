@@ -19,11 +19,7 @@ PyramidPropertiesManager >> addProperty: aPyramidProperty [
 { #category : #'as yet unclassified' }
 PyramidPropertiesManager >> buildPresenterFromCollection: aCollection [
 
-	| clustersAndProps |
-	clustersAndProps := self properties collect: [ :each |
-		                    (each command clusterOf: aCollection asArray) -> each ].
-	^ (self presenterStrategy buildPresenterFromClustersAndProperties:
-		  clustersAndProps)
+	^ self presenterStrategy buildPresenterFromCollection: aCollection andManager: self
 ]
 
 { #category : #accessing }
