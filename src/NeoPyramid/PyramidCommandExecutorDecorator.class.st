@@ -7,6 +7,12 @@ Class {
 	#category : #'NeoPyramid-command'
 }
 
+{ #category : #testing }
+PyramidCommandExecutorDecorator class >> isAbstract [
+
+	^ self == PyramidCommandExecutorDecorator
+]
+
 { #category : #accessing }
 PyramidCommandExecutorDecorator >> wrappee [
 

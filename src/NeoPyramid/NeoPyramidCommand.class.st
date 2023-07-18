@@ -1,8 +1,25 @@
+"
+I get and change the property of every element in a selection.
+
++ canBeUsedFor: anObject > return true if the command can be used by anObject
++ commandInverse > return a `PyramidCommand` corresponding to the inverse command (for example, add to a collection = remove to a collection, set a property = the same command).
++ getValueFor: anObject > return the value of the property
++ setValueFor: anObject with: anArgument > set anArgument as the property of anObject
+
+In some rare case, the method saveStatesOf: aCollection withCommand: aCommand withArguments: anArguments should be changed. This method create the ` NeoPyramidAbstractMemento` used by the `NeoPyramidHistory`. For some property the memento argument should not be the current element state but other thing.
+
+"
 Class {
 	#name : #NeoPyramidCommand,
 	#superclass : #Object,
 	#category : #'NeoPyramid-command'
 }
+
+{ #category : #testing }
+NeoPyramidCommand class >> isAbstract [
+
+	^ self == NeoPyramidCommand
+]
 
 { #category : #testing }
 NeoPyramidCommand >> canBeUsedFor: anObject [

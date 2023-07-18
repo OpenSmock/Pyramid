@@ -5,6 +5,12 @@ Class {
 }
 
 { #category : #testing }
+NeoPyramidCollectionCommand class >> isAbstract [
+
+	^ self == NeoPyramidCollectionCommand
+]
+
+{ #category : #testing }
 NeoPyramidCollectionCommand >> canBeUsedFor: anObject [
 
 	^ anObject isCollection

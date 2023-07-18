@@ -4,6 +4,12 @@ Class {
 	#category : #'NeoPyramid-history'
 }
 
+{ #category : #testing }
+NeoPyramidAbstractMemento class >> isAbstract [
+
+	^ self == NeoPyramidAbstractMemento
+]
+
 { #category : #'window management' }
 NeoPyramidAbstractMemento >> restore [
 

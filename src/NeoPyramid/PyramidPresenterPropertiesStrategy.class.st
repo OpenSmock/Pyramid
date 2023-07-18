@@ -10,6 +10,12 @@ Class {
 	#category : #'NeoPyramid-property'
 }
 
+{ #category : #testing }
+PyramidPresenterPropertiesStrategy class >> isAbstract [
+
+	^ self == PyramidPresenterPropertiesStrategy
+]
+
 { #category : #'as yet unclassified' }
 PyramidPresenterPropertiesStrategy >> buildPresenterFromCollection: aCollection andManager: aManager [
 

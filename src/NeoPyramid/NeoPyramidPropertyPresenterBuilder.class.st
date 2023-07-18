@@ -8,6 +8,12 @@ Class {
 	#category : #'NeoPyramid-property'
 }
 
+{ #category : #testing }
+NeoPyramidPropertyPresenterBuilder class >> isAbstract [
+
+	^ self == NeoPyramidPropertyPresenterBuilder
+]
+
 { #category : #building }
 NeoPyramidPropertyPresenterBuilder >> build [
 
