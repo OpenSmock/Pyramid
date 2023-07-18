@@ -1,3 +1,9 @@
+"
+I transform a `PyramidCluster` and a `NeoPyramidProperty` into a `SpPresenter`.
+
+I create a presenter with a main input to change property of all element at once and a button to show a popup with properties in group and in individual.
+
+"
 Class {
 	#name : #NeoPyramidPopingPresenterBuilder,
 	#superclass : #NeoPyramidPropertyPresenterBuilder,

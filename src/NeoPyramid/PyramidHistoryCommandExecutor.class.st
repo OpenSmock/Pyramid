@@ -1,3 +1,7 @@
+"
+I’m a decorator use to save the history of Pyramid.
+
+"
 Class {
 	#name : #PyramidHistoryCommandExecutor,
 	#superclass : #PyramidCommandExecutorDecorator,

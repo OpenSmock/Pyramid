@@ -1,3 +1,9 @@
+"
+I execute the command on the given targets with the given arguments.
+
+I’m an abstract class use to define the API.
+
+"
 Class {
 	#name : #NeoPyramidCommandExecutor,
 	#superclass : #Object,

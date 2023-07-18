@@ -1,3 +1,7 @@
+"
+I‘m a decorator for the `PyramidMainCommandExecutor`. The wrappe is either the `PyramidMainCommandExecutor` or another decorator.
+
+"
 Class {
 	#name : #PyramidCommandExecutorDecorator,
 	#superclass : #NeoPyramidCommandExecutor,

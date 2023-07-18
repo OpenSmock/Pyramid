@@ -1,3 +1,7 @@
+"
+I transform a `PyramidCluster` and a `NeoPyramidProperty` into a `SpPresenter`.
+
+"
 Class {
 	#name : #NeoPyramidPropertyPresenterBuilder,
 	#superclass : #Object,
