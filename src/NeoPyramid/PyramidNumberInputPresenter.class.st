@@ -1,3 +1,6 @@
+"
+I can show and edit numbers
+"
 Class {
 	#name : #PyramidNumberInputPresenter,
 	#superclass : #NeoPyramidInputPresenter,
@@ -5,7 +8,7 @@ Class {
 		'inputNumber',
 		'submitBlock'
 	],
-	#category : #'NeoPyramid-property'
+	#category : #'NeoPyramid-specs-custom'
 }
 
 { #category : #layout }
@@ -17,15 +20,9 @@ PyramidNumberInputPresenter >> defaultLayout [
 ]
 
 { #category : #'as yet unclassified' }
-PyramidNumberInputPresenter >> emptyValue [
-
-	self value: nil
-]
-
-{ #category : #'as yet unclassified' }
 PyramidNumberInputPresenter >> getNumberFrom: aString [
 
-	^ NumberParser parse: aString onError: [ nil ]
+	^ NumberParser parse: aString onError: [ PyramidUnknowState new ]
 ]
 
 { #category : #'initialization - deprecated' }
@@ -38,12 +35,6 @@ PyramidNumberInputPresenter >> initializePresenters [
 { #category : #accessing }
 PyramidNumberInputPresenter >> inputNumber [
 ^ inputNumber
-]
-
-{ #category : #'as yet unclassified' }
-PyramidNumberInputPresenter >> mixedValues [
-
-	self value: nil
 ]
 
 { #category : #accessing }
@@ -62,10 +53,9 @@ PyramidNumberInputPresenter >> value [
 { #category : #accessing }
 PyramidNumberInputPresenter >> value: aNumber [
 
-	aNumber ifNil: [
-		self inputNumber text: '--'.
-		^ self ].
-	self inputNumber text: aNumber asFloat printString
+	aNumber isNumber ifTrue: [ self inputNumber text: aNumber asFloat printString. ^ self ].
+	self inputNumber text: '--'.
+	
 ]
 
 { #category : #accessing }

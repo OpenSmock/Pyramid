@@ -12,7 +12,7 @@ I am a `SpPresenter` used to view and changed the property of a collection of ob
 Class {
 	#name : #NeoPyramidInputPresenter,
 	#superclass : #SpPresenter,
-	#category : #'NeoPyramid-property'
+	#category : #'NeoPyramid-specs-custom'
 }
 
 { #category : #testing }
@@ -23,12 +23,14 @@ NeoPyramidInputPresenter class >> isAbstract [
 
 { #category : #'as yet unclassified' }
 NeoPyramidInputPresenter >> emptyValue [
+
+	self value: PyramidEmptyValue new
 ]
 
 { #category : #'as yet unclassified' }
 NeoPyramidInputPresenter >> mixedValues [
 
-	
+	self value: PyramidMixedValues new
 ]
 
 { #category : #'as yet unclassified' }

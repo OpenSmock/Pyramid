@@ -3,7 +3,7 @@ Class {
 	#superclass : #TestCase,
 	#traits : 'TPyramidInputPresenterTest',
 	#classTraits : 'TPyramidInputPresenterTest classTrait',
-	#category : #'NeoPyramid-cases-property'
+	#category : #'NeoPyramid-cases-specs-custom'
 }
 
 { #category : #accessing }
@@ -12,16 +12,16 @@ PyramidTextInputPresenterTest >> dummyValues [
 	^ { 'hello' . 'hello world' . '123' . '' }
 ]
 
-{ #category : #tests }
+{ #category : #accessing }
 PyramidTextInputPresenterTest >> expectedEmptyValue [
 
-	^ '# empty value'
+	^ PyramidEmptyValue new asString
 ]
 
-{ #category : #tests }
+{ #category : #accessing }
 PyramidTextInputPresenterTest >> expectedMixedValues [
 
-	^ '# mixed values'
+	^ PyramidMixedValues new asString
 ]
 
 { #category : #tests }

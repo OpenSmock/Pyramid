@@ -1,10 +1,14 @@
+"
+i can show and edit text
+
+"
 Class {
 	#name : #PyramidTextInputPresenter,
 	#superclass : #NeoPyramidInputPresenter,
 	#instVars : [
 		'textInput'
 	],
-	#category : #'NeoPyramid-property'
+	#category : #'NeoPyramid-specs-custom'
 }
 
 { #category : #layout }
@@ -13,22 +17,10 @@ PyramidTextInputPresenter >> defaultLayout [
 	^ SpBoxLayout newVertical add: self textInput; yourself
 ]
 
-{ #category : #'as yet unclassified' }
-PyramidTextInputPresenter >> emptyValue [
-
-	self value: '# empty value'
-]
-
 { #category : #initialization }
 PyramidTextInputPresenter >> initializePresenters [
 
 	textInput := SpTextInputFieldPresenter new
-]
-
-{ #category : #'as yet unclassified' }
-PyramidTextInputPresenter >> mixedValues [
-
-	self value: '# mixed values'
 ]
 
 { #category : #accessing }
@@ -52,5 +44,6 @@ PyramidTextInputPresenter >> value: anObject [
 { #category : #'as yet unclassified' }
 PyramidTextInputPresenter >> whenValueChangedDo: aBlock [
 
-	self textInput whenSubmitDo: aBlock
+	self textInput whenSubmitDo: aBlock.
+
 ]

@@ -3,25 +3,32 @@ Class {
 	#superclass : #TestCase,
 	#traits : 'TPyramidInputPresenterTest',
 	#classTraits : 'TPyramidInputPresenterTest classTrait',
-	#category : #'NeoPyramid-cases-property'
+	#category : #'NeoPyramid-cases-specs-custom'
 }
 
 { #category : #accessing }
 PyramidNumberInputPresenterTest >> dummyValues [
 
-	^ { 1 . 0 . -5556 . 12.5687 . nil }
+	^ {
+		  1.
+		  0.
+		  -5556.
+		  12.5687.
+		  (nil -> PyramidUnknowState new).
+		  ('hello' -> PyramidUnknowState new).
+		('123456' -> PyramidUnknowState new) }
 ]
 
-{ #category : #tests }
+{ #category : #accessing }
 PyramidNumberInputPresenterTest >> expectedEmptyValue [
 
-	^ nil
+	^ PyramidUnknowState new
 ]
 
-{ #category : #tests }
+{ #category : #accessing }
 PyramidNumberInputPresenterTest >> expectedMixedValues [
 
-	^ nil
+	^ PyramidUnknowState new
 ]
 
 { #category : #tests }

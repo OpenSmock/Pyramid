@@ -1,6 +1,6 @@
 Trait {
 	#name : #TPyramidInputPresenterTest,
-	#category : #'NeoPyramid-cases-property'
+	#category : #'NeoPyramid-cases-specs-custom'
 }
 
 { #category : #accessing }
@@ -9,16 +9,16 @@ TPyramidInputPresenterTest >> dummyValues [
 	^ self shouldBeImplemented
 ]
 
-{ #category : #tests }
+{ #category : #accessing }
 TPyramidInputPresenterTest >> expectedEmptyValue [
 
-	^ self shouldBeImplemented
+	^ PyramidEmptyValue new
 ]
 
-{ #category : #tests }
+{ #category : #accessing }
 TPyramidInputPresenterTest >> expectedMixedValues [
 
-	^ self shouldBeImplemented
+	^ PyramidMixedValues new
 ]
 
 { #category : #tests }
@@ -77,9 +77,15 @@ TPyramidInputPresenterTest >> testValue [
 	input := self makeNewInput.
 	input whenValueChangedDo: [ :val | hasTrigger := true ].
 	self dummyValues do: [ :each |
-		input value: each.
-		self deny: hasTrigger.
-		self assert: input value equals: each ]
+		each isAssociation
+			ifFalse: [
+				input value: each.
+				self deny: hasTrigger.
+				self assert: input value equals: each ]
+			ifTrue: [
+				input value: each key.
+				self deny: hasTrigger.
+				self assert: input value equals: each value ] ]
 ]
 
 { #category : #'as yet unclassified' }
