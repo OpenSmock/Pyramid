@@ -28,7 +28,7 @@ NeoPyramidPopingPresenterBuilder >> build [
 
 	^ SpPresenter new
 		  layout: layout;
-		  yourself
+		  yourself.
 ]
 
 { #category : #'as yet unclassified' }
@@ -55,7 +55,7 @@ NeoPyramidPopingPresenterBuilder >> buildLayoutAll: presenterAll grouped: presen
 		  spacing: 4;
 		  add: (SpLabelPresenter new
 				   label: self property name;
-				displayBold: [ :t | true ];
+				   displayBold: [ :t | true ];
 				   yourself)
 		  height: 24;
 		  add: (SpBoxLayout newHorizontal
@@ -80,7 +80,7 @@ NeoPyramidPopingPresenterBuilder >> buildLayoutOnlyForAll: presenterAll [
 		  spacing: 4;
 		  add: (SpLabelPresenter new
 				   label: self property name;
-					displayBold: [ :t | true ];
+				   displayBold: [ :t | true ];
 				   yourself)
 		  height: 24;
 		  add: (SpBoxLayout newHorizontal

@@ -39,7 +39,9 @@ PyramidPropertiesManager >> commandExecutor: anObject [
 PyramidPropertiesManager >> initialize [
 
 	properties := OrderedCollection new.
-	commandExecutor := PyramidHistoryCommandExecutor new wrappee: PyramidMainCommandExecutor new; yourself.
+	commandExecutor := PyramidHistoryCommandExecutor new
+		                   wrappee: PyramidMainCommandExecutor new;
+		                   yourself.
 	presenterStrategy := PyramidHideEmptyPropertyStrategy new
 ]
 

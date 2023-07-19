@@ -16,7 +16,11 @@ PyramidPropertiesManagerForSelection >> initialize [
 	super initialize.
 	presenter := SpPresenter new
 		             layout: SpScrollableLayout new;
-		             yourself
+		             yourself.
+	commandExecutor := PyramidCallbackCommandExecutor new
+		                   wrappee: commandExecutor;
+		                   yourself.
+	commandExecutor afterDo: [ self projectModel informSelectionChanged ].
 ]
 
 { #category : #accessing }
