@@ -1,5 +1,5 @@
 Class {
-	#name : #PyramidInputModel,
+	#name : #PyramidInputStrings,
 	#superclass : #Object,
 	#instVars : [
 		'help'
@@ -8,19 +8,19 @@ Class {
 }
 
 { #category : #accessing }
-PyramidInputModel >> help [
+PyramidInputStrings >> help [
 
 	^ help
 ]
 
 { #category : #accessing }
-PyramidInputModel >> help: anObject [
+PyramidInputStrings >> help: anObject [
 
 	help := anObject
 ]
 
 { #category : #initialization }
-PyramidInputModel >> initialize [
+PyramidInputStrings >> initialize [
 
 	help := ''
 ]

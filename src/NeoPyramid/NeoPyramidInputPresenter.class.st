@@ -27,7 +27,7 @@ NeoPyramidInputPresenter class >> isAbstract [
 { #category : #accessing }
 NeoPyramidInputPresenter class >> modelClass [
 
-	^ PyramidInputModel
+	^ PyramidInputStrings
 ]
 
 { #category : #'as yet unclassified' }

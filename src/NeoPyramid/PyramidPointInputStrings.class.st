@@ -1,6 +1,6 @@
 Class {
-	#name : #PyramidPointInputModel,
-	#superclass : #PyramidInputModel,
+	#name : #PyramidPointInputStrings,
+	#superclass : #PyramidInputStrings,
 	#instVars : [
 		'labelX',
 		'labelY'
@@ -9,7 +9,7 @@ Class {
 }
 
 { #category : #initialization }
-PyramidPointInputModel >> initialize [
+PyramidPointInputStrings >> initialize [
 
 	super initialize.
 	labelX := 'x'.
@@ -17,25 +17,25 @@ PyramidPointInputModel >> initialize [
 ]
 
 { #category : #accessing }
-PyramidPointInputModel >> labelX [
+PyramidPointInputStrings >> labelX [
 
 	^ labelX
 ]
 
 { #category : #accessing }
-PyramidPointInputModel >> labelX: anObject [
+PyramidPointInputStrings >> labelX: anObject [
 
 	labelX := anObject
 ]
 
 { #category : #accessing }
-PyramidPointInputModel >> labelY [
+PyramidPointInputStrings >> labelY [
 
 	^ labelY
 ]
 
 { #category : #accessing }
-PyramidPointInputModel >> labelY: anObject [
+PyramidPointInputStrings >> labelY: anObject [
 
 	labelY := anObject
 ]

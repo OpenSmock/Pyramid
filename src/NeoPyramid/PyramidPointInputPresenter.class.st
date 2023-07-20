@@ -14,7 +14,7 @@ Class {
 { #category : #accessing }
 PyramidPointInputPresenter class >> modelClass [
 
-	^ PyramidPointInputModel
+	^ PyramidPointInputStrings
 ]
 
 { #category : #'as yet unclassified' }

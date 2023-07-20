@@ -556,7 +556,7 @@ PyramidSwitchInputPresenter class >> formToggleUncertain [
 { #category : #accessing }
 PyramidSwitchInputPresenter class >> modelClass [
 
-	^ PyramidSwitchInputModel
+	^ PyramidSwitchInputStrings
 ]
 
 { #category : #'as yet unclassified' }

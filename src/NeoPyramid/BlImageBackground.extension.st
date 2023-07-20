@@ -11,3 +11,9 @@ BlImageBackground >> asString [
 
 	^ 'Image - ', self image asString
 ]
+
+{ #category : #'*NeoPyramid' }
+BlImageBackground >> selectOnBackgroundInput: aPyramidBackgroundInputPresenter [
+
+	self shouldBeImplemented
+]

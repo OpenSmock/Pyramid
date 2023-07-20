@@ -11,3 +11,9 @@ BlPaintBackground >> asString [
 
 	^ self paint asString
 ]
+
+{ #category : #'*NeoPyramid' }
+BlPaintBackground >> selectOnBackgroundInput: aPyramidBackgroundInputPresenter [
+
+	self paint selectOnBackgroundInput: aPyramidBackgroundInputPresenter
+]

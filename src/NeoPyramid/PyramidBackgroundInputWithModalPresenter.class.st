@@ -9,10 +9,5 @@ PyramidBackgroundInputWithModalPresenter >> initializePresenters [
 
 	super initializePresenters.
 	self presenter: PyramidBackgroundPreviewPresenter new.
-]
-
-{ #category : #'as yet unclassified' }
-PyramidBackgroundInputWithModalPresenter >> value: anObject [
-
-	self presenter value: anObject
+	self presenterModal: PyramidBackgroundInputPresenter new
 ]

@@ -5,3 +5,9 @@ BlPaint >> asForm [
 
 	^ self shouldBeImplemented
 ]
+
+{ #category : #'*NeoPyramid' }
+BlPaint >> selectOnBackgroundInput: aPyramidBackgroundInputPresenter [
+
+	self shouldBeImplemented
+]

@@ -12,3 +12,9 @@ BlGradientPaint >> asForm [
 				   yourself);
 		  yourself) asForm
 ]
+
+{ #category : #'*NeoPyramid' }
+BlGradientPaint >> selectOnBackgroundInput: aPyramidBackgroundInputPresenter [
+
+	aPyramidBackgroundInputPresenter selectGradientPaintWith: self
+]

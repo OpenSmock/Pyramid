@@ -3,11 +3,11 @@ Class {
 	#superclass : #NeoPyramidInputPresenter,
 	#instVars : [
 		'notebook',
-		'presenterTransparent',
-		'presenterImage',
-		'presenterPaintSolid',
-		'presenterPaintGradient',
-		'whenValueChangedDo'
+		'whenValueChangedDo',
+		'modelPaintSolid',
+		'modelPaintGradient',
+		'modelImage',
+		'modelTransparent'
 	],
 	#category : #'NeoPyramid-specs-custom'
 }
@@ -22,49 +22,115 @@ PyramidBackgroundInputPresenter >> defaultLayout [
 ]
 
 { #category : #initialization }
+PyramidBackgroundInputPresenter >> initializeModelImage [
+
+	modelImage := PyramidBackgroundInputModel new
+		              presenter:
+			              (NeoPyramidColorInputSingleLinePresenter new
+				               whenValueChangedDo: [ :x |
+					               self whenValueChangedDo value: x asBlBackground ];
+				               yourself);
+		              page: (SpNotebookPage
+				               title: ''
+				               icon: (self iconNamed: #open)
+				               provider: [ self presenterPaintSolid ]);
+		              yourself.
+
+	notebook addPage: modelImage page
+]
+
+{ #category : #initialization }
+PyramidBackgroundInputPresenter >> initializeModelPaintGradient [
+
+	modelPaintGradient := PyramidBackgroundInputModel new
+		                      presenter:
+			                      (NeoPyramidColorInputSingleLinePresenter new
+				                       whenValueChangedDo: [ :x |
+					                       self whenValueChangedDo value:
+							                       x asBlBackground ];
+				                       yourself);
+		                      page: (SpNotebookPage
+				                       title: ''
+				                       icon: (self iconNamed: #image)
+				                       provider: [ self presenterPaintSolid ]);
+		                      yourself.
+
+	notebook addPage: modelPaintGradient page
+]
+
+{ #category : #initialization }
+PyramidBackgroundInputPresenter >> initializeModelPaintSolid [
+
+	modelPaintSolid := PyramidBackgroundInputModel new
+		                   presenter:
+			                   (NeoPyramidColorInputSingleLinePresenter new
+				                    whenValueChangedDo: [ :x |
+					                    self whenValueChangedDo value:
+							                    x asBlBackground ];
+				                    yourself);
+		                   page: (SpNotebookPage
+				                    title: ''
+				                    icon: (self iconNamed: #smallSelect)
+				                    provider: [ self presenterPaintSolid ]);
+		                   yourself.
+	
+	notebook addPage: modelPaintSolid page.
+]
+
+{ #category : #initialization }
+PyramidBackgroundInputPresenter >> initializeModelTransparent [
+
+	modelTransparent := PyramidBackgroundInputModel new
+		                    presenter:
+			                    (NeoPyramidColorInputSingleLinePresenter new
+				                     whenValueChangedDo: [ :x |
+					                     self whenValueChangedDo value:
+							                     x asBlBackground ];
+				                     yourself);
+		                    page: (SpNotebookPage
+				                     title: ''
+				                     icon: (self iconNamed: #changeRemove)
+				                     provider: [ self presenterPaintSolid ]);
+		                    yourself.
+
+	notebook addPage: modelTransparent page
+]
+
+{ #category : #initialization }
 PyramidBackgroundInputPresenter >> initializePresenters [
 
-	whenValueChangedDo := [ :back | ].
-	presenterTransparent := NeoPyramidColorInputSingleLinePresenter new
-		                        whenValueChangedDo: [ :x |
-			                        self whenValueChangedDo value:
-					                        x asBlBackground ];
-		                        yourself.
-	presenterPaintSolid := NeoPyramidColorInputSingleLinePresenter new
-		                       whenValueChangedDo: [ :x |
-			                       self whenValueChangedDo value:
-					                       x asBlBackground ];
-		                       yourself.
-	presenterPaintGradient := NeoPyramidColorInputSingleLinePresenter new
-		                          whenValueChangedDo: [ :x |
-			                          self whenValueChangedDo value:
-					                          x asBlBackground ];
-		                          yourself.
-	presenterImage := NeoPyramidColorInputSingleLinePresenter new
-		                  whenValueChangedDo: [ :x |
-			                  self whenValueChangedDo value: x asBlBackground ];
-		                  yourself.
-
-	notebook := SpNotebookPresenter new.
-	notebook addPage: (SpNotebookPage
-			 title: ''
-			 icon: (self iconNamed: #changeRemove)
-			 provider: [ self presenterTransparent ]).
-	notebook addPage: (SpNotebookPage
-			 title: ''
-			 icon: (self iconNamed: #smallSelect)
-			 provider: [ self presenterPaintSolid ]).
-	notebook addPage: (SpNotebookPage
-			 title: ''
-			 icon: (self iconNamed: #image)
-			 provider: [ self presenterPaintGradient ]).
-	notebook addPage: (SpNotebookPage
-			 title: ''
-			 icon: (self iconNamed: #open)
-			 provider: [ self presenterImage ]).
+	whenValueChangedDo := [ :back |  ].
+	self initializeModelPaintSolid.
+	self initializeModelPaintGradient.
+	self initializeModelTransparent.
+	self initializeModelImage.
 
 	notebook whenSelectedPageChangedDo: [ :page |
 		self whenValueChangedDo value: self value ]
+]
+
+{ #category : #accessing }
+PyramidBackgroundInputPresenter >> modelImage [
+
+	^ modelImage
+]
+
+{ #category : #accessing }
+PyramidBackgroundInputPresenter >> modelPaintGradient [
+
+	^ modelPaintGradient
+]
+
+{ #category : #accessing }
+PyramidBackgroundInputPresenter >> modelPaintSolid [
+
+	^ modelPaintSolid
+]
+
+{ #category : #accessing }
+PyramidBackgroundInputPresenter >> modelTransparent [
+
+	^ modelTransparent
 ]
 
 { #category : #layout }
@@ -73,28 +139,18 @@ PyramidBackgroundInputPresenter >> notebook [
 	^ notebook
 ]
 
-{ #category : #accessing }
-PyramidBackgroundInputPresenter >> presenterImage [
+{ #category : #'as yet unclassified' }
+PyramidBackgroundInputPresenter >> selectPaintGradientWith: aBlColorPaint [
 
-	^ presenterImage
+	self notebook selectPage: self modelPaintGradient page.
+	self modelPaintSolid value: aBlColorPaint
 ]
 
-{ #category : #accessing }
-PyramidBackgroundInputPresenter >> presenterPaintGradient [
+{ #category : #'as yet unclassified' }
+PyramidBackgroundInputPresenter >> selectPaintSolidWith: aBlColorPaint [
 
-	^ presenterPaintGradient
-]
-
-{ #category : #accessing }
-PyramidBackgroundInputPresenter >> presenterPaintSolid [
-
-	^ presenterPaintSolid
-]
-
-{ #category : #accessing }
-PyramidBackgroundInputPresenter >> presenterTransparent [
-
-	^ presenterTransparent
+	self notebook selectPage: self modelPaintSolid page.
+	self modelPaintSolid value: aBlColorPaint color
 ]
 
 { #category : #'as yet unclassified' }

@@ -11,3 +11,9 @@ BlTransparentBackground >> asString [
 
 	^ 'Transparent'
 ]
+
+{ #category : #'*NeoPyramid' }
+BlTransparentBackground >> selectOnBackgroundInput: aPyramidBackgroundInputPresenter [
+
+	self shouldBeImplemented
+]

@@ -8,3 +8,9 @@ BlColorPaint >> asForm [
 		  color: self color;
 		  yourself) asForm
 ]
+
+{ #category : #'*NeoPyramid' }
+BlColorPaint >> selectOnBackgroundInput: aPyramidBackgroundInputPresenter [
+
+	aPyramidBackgroundInputPresenter selectSolidPaintWith: self
+]
