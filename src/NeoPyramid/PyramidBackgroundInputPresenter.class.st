@@ -100,6 +100,7 @@ PyramidBackgroundInputPresenter >> initializeModelTransparent [
 PyramidBackgroundInputPresenter >> initializePresenters [
 
 	whenValueChangedDo := [ :back |  ].
+	notebook := SpNotebookPresenter new.
 	self initializeModelPaintSolid.
 	self initializeModelPaintGradient.
 	self initializeModelTransparent.
