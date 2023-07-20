@@ -60,7 +60,7 @@ PyramidNumberInputPresenter >> value [
 PyramidNumberInputPresenter >> value: aNumber [
 
 	aNumber isNumber ifTrue: [
-		self inputNumber text: aNumber reduce printString.
+		self inputNumber text: aNumber asFloat reduce printString.
 		^ self ].
 	self inputNumber text: '--'
 ]

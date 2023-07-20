@@ -12,6 +12,12 @@ PyramidUnknowState >> = anObject [
 ]
 
 { #category : #converting }
+PyramidUnknowState >> asColor [
+
+	^ Color transparent
+]
+
+{ #category : #converting }
 PyramidUnknowState >> asString [
 
 	^ '@ Unknow state'
