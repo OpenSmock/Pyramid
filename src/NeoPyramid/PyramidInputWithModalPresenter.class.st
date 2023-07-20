@@ -61,3 +61,16 @@ PyramidInputWithModalPresenter >> presenterModal: anObject [
 
 	presenterModal := anObject
 ]
+
+{ #category : #'as yet unclassified' }
+PyramidInputWithModalPresenter >> value [
+
+	^ self presenterModal value
+]
+
+{ #category : #'as yet unclassified' }
+PyramidInputWithModalPresenter >> value: anObject [
+
+	self presenterModal value: anObject.
+	self presenter value: anObject
+]

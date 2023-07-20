@@ -11,7 +11,9 @@ Class {
 { #category : #initialization }
 PyramidPointInputModel >> initialize [
 
-labelX := 'x'. labelY := 'y'
+	super initialize.
+	labelX := 'x'.
+	labelY := 'y'
 ]
 
 { #category : #accessing }
