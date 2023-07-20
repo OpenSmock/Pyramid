@@ -11,6 +11,12 @@ Class {
 	#category : #'NeoPyramid-specs-custom'
 }
 
+{ #category : #'as yet unclassified' }
+PyramidTextInputPresenter >> applyModel [
+
+	self textInput help: self model help
+]
+
 { #category : #layout }
 PyramidTextInputPresenter >> defaultLayout [
 

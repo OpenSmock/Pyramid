@@ -80,7 +80,7 @@ NeoPyramidPropertyPopupPresenter >> layoutWith: aCollection [
 	inputsLayout := SpBoxLayout newVertical
 		                spacing: 4;
 		                yourself.
-	aCollection do: [ :each | inputsLayout add: each expand: false ].
+	aCollection do: [ :each | inputsLayout add: each height: 24 ].
 	inputsLayout add: ''.
 
 	aCollection

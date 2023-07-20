@@ -11,6 +11,12 @@ Class {
 	#category : #'NeoPyramid-specs-custom'
 }
 
+{ #category : #'as yet unclassified' }
+PyramidNumberInputPresenter >> applyModel [
+
+	self inputNumber help: self model help
+]
+
 { #category : #layout }
 PyramidNumberInputPresenter >> defaultLayout [
 
@@ -53,9 +59,10 @@ PyramidNumberInputPresenter >> value [
 { #category : #accessing }
 PyramidNumberInputPresenter >> value: aNumber [
 
-	aNumber isNumber ifTrue: [ self inputNumber text: aNumber asFloat printString. ^ self ].
-	self inputNumber text: '--'.
-	
+	aNumber isNumber ifTrue: [
+		self inputNumber text: aNumber reduce printString.
+		^ self ].
+	self inputNumber text: '--'
 ]
 
 { #category : #accessing }

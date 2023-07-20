@@ -5,6 +5,7 @@ Class {
 		'command',
 		'commandExecutor',
 		'pyramidInputPresenterClass',
+		'pyramidInputPresenterModel',
 		'presenterBuilder',
 		'name'
 	],
@@ -84,5 +85,18 @@ NeoPyramidProperty >> pyramidInputPresenterClass [
 { #category : #accessing }
 NeoPyramidProperty >> pyramidInputPresenterClass: anObject [
 
-	pyramidInputPresenterClass := anObject
+	pyramidInputPresenterClass := anObject.
+	self pyramidInputPresenterModel: anObject modelClass new
+]
+
+{ #category : #accessing }
+NeoPyramidProperty >> pyramidInputPresenterModel [
+
+	^ pyramidInputPresenterModel
+]
+
+{ #category : #accessing }
+NeoPyramidProperty >> pyramidInputPresenterModel: anObject [
+
+	pyramidInputPresenterModel := anObject
 ]

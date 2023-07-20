@@ -12,6 +12,9 @@ I am a `SpPresenter` used to view and changed the property of a collection of ob
 Class {
 	#name : #NeoPyramidInputPresenter,
 	#superclass : #SpPresenter,
+	#instVars : [
+		'model'
+	],
 	#category : #'NeoPyramid-specs-custom'
 }
 
@@ -19,6 +22,18 @@ Class {
 NeoPyramidInputPresenter class >> isAbstract [
 
 	^ self == NeoPyramidInputPresenter
+]
+
+{ #category : #accessing }
+NeoPyramidInputPresenter class >> modelClass [
+
+	^ PyramidInputModel
+]
+
+{ #category : #'as yet unclassified' }
+NeoPyramidInputPresenter >> applyModel [
+
+	
 ]
 
 { #category : #'as yet unclassified' }
@@ -31,6 +46,19 @@ NeoPyramidInputPresenter >> emptyValue [
 NeoPyramidInputPresenter >> mixedValues [
 
 	self value: PyramidMixedValues new
+]
+
+{ #category : #accessing }
+NeoPyramidInputPresenter >> model [
+
+	^ model
+]
+
+{ #category : #accessing }
+NeoPyramidInputPresenter >> model: anObject [
+
+	model := anObject.
+	self applyModel
 ]
 
 { #category : #'as yet unclassified' }

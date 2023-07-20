@@ -43,7 +43,7 @@ PyramidHideEmptyPropertyStrategy >> emptyPresenter [
 	presenter := SpPresenter new.
 	layout := SpBoxLayout newVertical
 		          spacing: 4;
-		add: 'No element selectionned';
+		          add: 'No element selectionned';
 		          yourself.
 
 	presenter layout: layout.
@@ -56,7 +56,7 @@ PyramidHideEmptyPropertyStrategy >> presenterWith: aCollection [
 	| presenter layout |
 	presenter := SpPresenter new.
 	layout := SpBoxLayout newVertical
-		          spacing: 4;
+		          spacing: 8;
 		          yourself.
 
 	aCollection do: [ :each | layout add: each expand: false ].

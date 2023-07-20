@@ -43,6 +43,7 @@ NeoPyramidPopingPresenterBuilder >> buildLayoutAll: presenterAll grouped: presen
 
 	buttonPopup := SpButtonPresenter new
 		               icon: (self iconNamed: #edit);
+		help: 'Show groups and individuals values';
 		               yourself.
 
 	buttonPopup action: [
@@ -50,21 +51,7 @@ NeoPyramidPopingPresenterBuilder >> buildLayoutAll: presenterAll grouped: presen
 			 makeWithPresenter: presenterPopup
 			 relativeTo: buttonPopup
 			 position: SpPopoverPosition left) popup ].
-
-	^ SpBoxLayout newVertical
-		  spacing: 4;
-		  add: (SpLabelPresenter new
-				   label: self property name;
-				   displayBold: [ :t | true ];
-				   yourself)
-		  height: 24;
-		  add: (SpBoxLayout newHorizontal
-				   spacing: 4;
-				   add: buttonPopup width: 24;
-				   add: presenterAll;
-				   yourself)
-		  height: 24;
-		  yourself
+	^ self layoutForAll: presenterAll buttonPopup: buttonPopup
 ]
 
 { #category : #'as yet unclassified' }
@@ -76,27 +63,14 @@ NeoPyramidPopingPresenterBuilder >> buildLayoutOnlyForAll: presenterAll [
 		               enabled: false;
 		               yourself.
 
-	^ SpBoxLayout newVertical
-		  spacing: 4;
-		  add: (SpLabelPresenter new
-				   label: self property name;
-				   displayBold: [ :t | true ];
-				   yourself)
-		  height: 24;
-		  add: (SpBoxLayout newHorizontal
-				   spacing: 4;
-				   add: buttonPopup width: 24;
-				   add: presenterAll;
-				   yourself)
-		  height: 24;
-		  yourself
+	^ self layoutForAll: presenterAll buttonPopup: buttonPopup
 ]
 
 { #category : #'as yet unclassified' }
 NeoPyramidPopingPresenterBuilder >> buildPresenterAll [
 
 	| input |
-	input := self property pyramidInputPresenterClass new.
+	input := self makeNewInput.
 
 	self cluster isEmpty ifTrue: [
 		input emptyValue.
@@ -118,7 +92,7 @@ NeoPyramidPopingPresenterBuilder >> buildPresenterAll [
 NeoPyramidPopingPresenterBuilder >> buildPresenterWithButtonsFor: anAssociation withLabel: aString [
 
 	| input buttonApplyToAll layout |
-	input := self property pyramidInputPresenterClass new.
+	input := self makeNewInput.
 	input value: anAssociation key.
 	input whenValueChangedDo: [ :value |
 		self property commandExecutor
@@ -128,6 +102,7 @@ NeoPyramidPopingPresenterBuilder >> buildPresenterWithButtonsFor: anAssociation 
 
 	buttonApplyToAll := SpButtonPresenter new
 		                    icon: (self iconNamed: #smallExpert);
+		help: 'Apply this value to all selected elements.';
 		                    action: [
 			                    self property commandExecutor
 				                    use: self property command
@@ -161,12 +136,43 @@ NeoPyramidPopingPresenterBuilder >> buildPresentersIndividual [
 	| label |
 	self cluster isEmpty ifTrue: [ ^ {  } ].
 	^ self cluster individualAssociations collect: [ :each |
-		  label := each hash printString.
+		  label := each value first hash printString.
 		  self buildPresenterWithButtonsFor: each withLabel: label ]
+]
+
+{ #category : #'as yet unclassified' }
+NeoPyramidPopingPresenterBuilder >> layoutForAll: presenterAll buttonPopup: buttonPopup [
+
+	^ SpBoxLayout newVertical
+		  spacing: 4;
+		  add: (SpBoxLayout newHorizontal
+				   spacing: 4;
+				   vAlignCenter;
+				   add: buttonPopup width: 24;
+				   add: (SpLabelPresenter new
+						    label: self property name;
+						    displayBold: [ :t | true ];
+						    yourself);
+				   yourself)
+		  height: 24;
+		  add: presenterAll expand: false;
+		  yourself
 ]
 
 { #category : #'as yet unclassified' }
 NeoPyramidPopingPresenterBuilder >> layoutForLabel: aString input: anInput button: aButton [
 
-	^ SpBoxLayout newHorizontal spacing: 4; add: aString width: 80; add: anInput; add: aButton width: 24; yourself
+	^ SpBoxLayout newHorizontal
+		  spacing: 4;
+		vAlignCenter;
+		  add: aString width: 80;
+		  add: anInput;
+		  add: aButton width: 24;
+		  yourself
+]
+
+{ #category : #'as yet unclassified' }
+NeoPyramidPopingPresenterBuilder >> makeNewInput [
+
+	^ self property pyramidInputPresenterClass new model: self property pyramidInputPresenterModel; yourself
 ]
