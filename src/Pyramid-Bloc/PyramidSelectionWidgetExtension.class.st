@@ -200,7 +200,7 @@ PyramidSelectionWidgetExtension >> removeSelection [
 PyramidSelectionWidgetExtension >> usePositionOffsetCommand: aPosition [
 
 	self commandExecutor
-		use: NeoPyramidPositionOffsetCommand new
+		use: PyramidPositionOffsetCommand new
 		on: self projectModel selection asArray
 		with: aPosition
 ]
