@@ -1,142 +1,71 @@
 Class {
 	#name : #PyramidHistory,
 	#superclass : #Object,
-	#traits : 'TPyramidHistory',
-	#classTraits : 'TPyramidHistory classTrait',
 	#instVars : [
-		'afterMementoSaver',
-		'beforeMementoSaver',
-		'undoCounter',
-		'mementos',
-		'undoPipeline',
-		'mainPipeline'
+		'mementosStack',
+		'position'
 	],
-	#category : #'Pyramid-plugin-history'
+	#category : #'Pyramid-history'
 }
-
-{ #category : #accessing }
-PyramidHistory >> afterMementoSaver [
-
-	^ afterMementoSaver
-]
-
-{ #category : #accessing }
-PyramidHistory >> beforeMementoSaver [
-
-	^ beforeMementoSaver.
-]
 
 { #category : #testing }
 PyramidHistory >> canRedo [
 
-	^ self redoCollection isNotEmpty 
+	^ self mementosStack size - self position > 0
 ]
 
 { #category : #testing }
 PyramidHistory >> canUndo [
 
-	^ self undoCollection isNotEmpty
+ ^ self position >= 1
 ]
 
 { #category : #initialization }
 PyramidHistory >> initialize [
 
-	undoCounter := 0.
-	mementos := OrderedCollection new.
-	undoPipeline := PyramidPipeline new.
-	self flag: #TODO. 
-	"Changer le nom de la classe des memento savers"
-	
-	beforeMementoSaver := PyramidMementoSaverWithModelBefore new
-		                      collection: self mementos;
-		                      pipeline: self undoPipeline;
-		history: self;
-		                      yourself.
-	afterMementoSaver := PyramidMementoSaverWithModelAfter new
-		                     collection: self mementos;
-		                     pipeline: self undoPipeline;
-		                     yourself
+	mementosStack := OrderedCollection new.
+	position := 0
+]
+
+{ #category : #accessing }
+PyramidHistory >> mementosStack [
+
+	^ mementosStack
+]
+
+{ #category : #accessing }
+PyramidHistory >> mementosStack: anObject [
+
+	mementosStack := anObject
+]
+
+{ #category : #accessing }
+PyramidHistory >> position [
+
+	^ position
 ]
 
 { #category : #'as yet unclassified' }
-PyramidHistory >> installHistoryOn: aPipeline [
+PyramidHistory >> previous: undoMemento current: redoMemento [
 
-	aPipeline workersBeforeExecute add: self beforeMementoSaver.
-	aPipeline workersAfterExecute add: self afterMementoSaver.
-	mainPipeline := aPipeline
-]
-
-{ #category : #accessing }
-PyramidHistory >> mainPipeline [
-
-	^ mainPipeline
-]
-
-{ #category : #accessing }
-PyramidHistory >> mementos [
-
-	^ mementos
+	(self position ~= 0 and: [ self position ~= self mementosStack size ]) ifTrue: [ self mementosStack: (self mementosStack first: self position). ].
+	
+	position := position + 1.
+	self mementosStack add: undoMemento -> redoMemento
 ]
 
 { #category : #'menu messages' }
 PyramidHistory >> redo [
 
-	self canRedo ifFalse: [ ^ self ].
-	self redoCollection first redoMemento restore.
-	self undoCounterDecrement.
-	self mainPipeline informPipelineTerminateCommand.
-	self informRedo
-]
-
-{ #category : #accessing }
-PyramidHistory >> redoCollection [
-
-	^ (self mementos first: self undoCounter) reversed
-]
-
-{ #category : #initialization }
-PyramidHistory >> resetUndoCounter [
-
-	self mementos removeAll: self redoCollection.
-	undoCounter := 0.
-	self informCounterReset
+	self canRedo ifTrue: [
+		(self mementosStack at: self position + 1) value restore.
+		position := position + 1 ]
 ]
 
 { #category : #'menu messages' }
 PyramidHistory >> undo [
 
-	self canUndo ifFalse: [ ^ self ].
-	self undoCollection first undoMemento restore.
-	self undoCounterIncrement.
-	self mainPipeline informPipelineTerminateCommand.
-	self informUndo
-]
-
-{ #category : #accessing }
-PyramidHistory >> undoCollection [
-
-	^ self mementos allButFirst: self undoCounter
-]
-
-{ #category : #testing }
-PyramidHistory >> undoCounter [
-
-	^ undoCounter
-]
-
-{ #category : #testing }
-PyramidHistory >> undoCounterDecrement [
-
-	undoCounter := undoCounter - 1
-]
-
-{ #category : #testing }
-PyramidHistory >> undoCounterIncrement [
-
-	undoCounter := undoCounter + 1
-]
-
-{ #category : #accessing }
-PyramidHistory >> undoPipeline [
-^undoPipeline
+	self canUndo ifTrue: [
+		(self mementosStack at: self position) key restore.
+		position := position - 1 ]
 ]

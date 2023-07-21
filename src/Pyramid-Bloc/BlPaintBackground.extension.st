@@ -1,14 +1,26 @@
 Extension { #name : #BlPaintBackground }
 
 { #category : #'*Pyramid-Bloc' }
-BlPaintBackground >> pyramidBackgroundStrategy [
+BlPaintBackground >> = aBlBackground [
 
-	^ PyramidBackgroundPropertyInputPaint new paint: self paint; yourself
+	super = aBlBackground ifFalse: [ ^ false ].
+	^ self paint = aBlBackground paint
 ]
 
 { #category : #'*Pyramid-Bloc' }
-BlPaintBackground >> pyramidSelectMenuOnModal: aModal [
+BlPaintBackground >> asForm [
 
-	aModal buttonPaint click.
-	aModal currentPresenter setDefaultPaint: self paint
+	^ self paint asForm
+]
+
+{ #category : #'*Pyramid-Bloc' }
+BlPaintBackground >> asString [
+
+	^ self paint asString
+]
+
+{ #category : #'*Pyramid-Bloc' }
+BlPaintBackground >> selectOnBackgroundInput: aPyramidBackgroundInputPresenter [
+
+	self paint selectOnBackgroundInput: aPyramidBackgroundInputPresenter
 ]

@@ -1,14 +1,23 @@
 Extension { #name : #BlColorPaint }
 
 { #category : #'*Pyramid-Bloc' }
-BlColorPaint >> pyramidBackgroundPreview [
+BlColorPaint >> = aBlPaint [
 
-	^ PyramidPaintPreviewSolidColor new color: self color
+	super = aBlPaint ifFalse: [ ^ false ].
+	^ self color = aBlPaint color
 ]
 
 { #category : #'*Pyramid-Bloc' }
-BlColorPaint >> pyramidModalDefaultPaint: aPyramidPaintInput [
+BlColorPaint >> asForm [
 
-	aPyramidPaintInput buttonColor click.
-	aPyramidPaintInput inputSolid defaultColor: self color
+	^ (Morph new
+		  extent: 16 @ 16;
+		  color: self color;
+		  yourself) asForm
+]
+
+{ #category : #'*Pyramid-Bloc' }
+BlColorPaint >> selectOnBackgroundInput: aPyramidBackgroundInputPresenter [
+
+	aPyramidBackgroundInputPresenter selectPaintSolidWith: self
 ]

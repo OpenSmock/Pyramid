@@ -1,14 +1,15 @@
 Class {
 	#name : #PyramidHistoryPlugin,
 	#superclass : #Object,
-	#traits : 'TPyramidPlugin + TPyramidHistoryObserver',
-	#classTraits : 'TPyramidPlugin classTrait + TPyramidHistoryObserver classTrait',
+	#traits : 'TPyramidPlugin + TPyramidProjectModelObserver',
+	#classTraits : 'TPyramidPlugin classTrait + TPyramidProjectModelObserver classTrait',
 	#instVars : [
-		'history',
 		'undoButton',
-		'redoButton'
+		'redoButton',
+		'history',
+		'projectModel'
 	],
-	#category : #'Pyramid-plugin-history'
+	#category : #'Pyramid-history'
 }
 
 { #category : #'class initialization' }
@@ -23,84 +24,82 @@ PyramidHistoryPlugin >> addPanelsOn: aPyramidSimpleWindow [
 	aPyramidSimpleWindow
 		at: #topCenter
 		addItem: [ :builder |
-		builder makeButtonWithIcon: self undoButton order: 1 ].
+		builder makeButtonWithIcon: self undoButton order: 10 ].
 	aPyramidSimpleWindow
 		at: #topCenter
 		addItem: [ :builder |
-		builder makeButtonWithIcon: self redoButton order: 2 ]
+		builder makeButtonWithIcon: self redoButton order: 20 ]
 ]
 
 { #category : #'as yet unclassified' }
 PyramidHistoryPlugin >> connectOn: aPyramidEditor [
 
-	self history installHistoryOn: aPyramidEditor commandPipeline
+	self history: aPyramidEditor propertiesManager history.
+	self projectModel: aPyramidEditor projectModel.
+	self pyramidSelectionChanged
+]
+
+{ #category : #accessing }
+PyramidHistoryPlugin >> history [
+
+	^ history
+]
+
+{ #category : #accessing }
+PyramidHistoryPlugin >> history: anObject [
+
+	history := anObject
 ]
 
 { #category : #'as yet unclassified' }
-PyramidHistoryPlugin >> history [
-
-	^history
-]
-
-{ #category : #initialization }
 PyramidHistoryPlugin >> initialize [
-
-	history := PyramidHistory new.
-	history addObserver: self.
-
-	self initializeButtons
-]
-
-{ #category : #initialization }
-PyramidHistoryPlugin >> initializeButtons [
 
 	undoButton := SpButtonPresenter new
 		              icon: (self iconNamed: #smallUndo);
-		              action: [ self history undo ];
-		              enabled: self history canUndo;
+		              action: [
+			              self history undo.
+			              self projectModel informElementsChanged ];
+						 enabled: false;
 		              help: 'Undo';
 		              yourself.
 	redoButton := SpButtonPresenter new
 		              icon: (self iconNamed: #smallRedo);
-		              action: [ self history redo ];
-		              enabled: self history canRedo;
-						 help: 'Redo';
+		              action: [
+			              self history redo.
+			              self projectModel informElementsChanged ];
+						 enabled: false;
+		              help: 'Redo';
 		              yourself
 ]
 
-{ #category : #'as yet unclassified' }
-PyramidHistoryPlugin >> pyramidHistoryCounterReset [
+{ #category : #accessing }
+PyramidHistoryPlugin >> projectModel [
 
-	self updateButtons
+	^ projectModel
+]
+
+{ #category : #accessing }
+PyramidHistoryPlugin >> projectModel: anObject [
+
+	projectModel := anObject.
+	anObject addObserver: self.
 ]
 
 { #category : #'as yet unclassified' }
-PyramidHistoryPlugin >> pyramidHistoryRedo [
+PyramidHistoryPlugin >> pyramidElementsChanged [
 
-	self updateButtons
-	
+	undoButton enabled: self history canUndo.
+	redoButton enabled: self history canRedo
 ]
 
-{ #category : #'as yet unclassified' }
-PyramidHistoryPlugin >> pyramidHistoryUndo [
-
-	self updateButtons
-]
-
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 PyramidHistoryPlugin >> redoButton [
 
 	^ redoButton
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 PyramidHistoryPlugin >> undoButton [
-^ undoButton
-]
 
-{ #category : #'as yet unclassified' }
-PyramidHistoryPlugin >> updateButtons [
-
-	self undoButton enabled: self history canUndo.
-	self redoButton enabled: self history canRedo
+	^ undoButton
 ]
