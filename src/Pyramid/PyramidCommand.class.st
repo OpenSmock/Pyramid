@@ -1,131 +1,90 @@
+"
+I get and change the property of every element in a selection.
+
++ canBeUsedFor: anObject > return true if the command can be used by anObject
++ commandInverse > return a `PyramidCommand` corresponding to the inverse command (for example, add to a collection = remove to a collection, set a property = the same command).
++ getValueFor: anObject > return the value of the property
++ setValueFor: anObject with: anArgument > set anArgument as the property of anObject
+
+In some rare case, the method saveStatesOf: aCollection withCommand: aCommand withArguments: anArguments should be changed. This method create the ` NeoPyramidAbstractMemento` used by the `NeoPyramidHistory`. For some property the memento argument should not be the current element state but other thing.
+
+"
 Class {
 	#name : #PyramidCommand,
 	#superclass : #Object,
-	#instVars : [
-		'name',
-		'state',
-		'setBlock',
-		'getBlock',
-		'isExecutableBlock'
-	],
 	#category : #'Pyramid-commands'
 }
 
-{ #category : #adding }
-PyramidCommand class >> name: aString set: aSetter get: aGetter isExecutableBlock: aBlock [
+{ #category : #testing }
+PyramidCommand class >> isAbstract [
 
-	^ self new
-		  name: aString;
-		  setBlock: aSetter;
-		  getBlock: aGetter;
-		  isExecutableBlock: aBlock;
-		  yourself
-]
-
-{ #category : #adding }
-PyramidCommand class >> set: aSetter get: aGetter isExecutableBlock: aBlock [
-
-	^ self new
-		  name: #'Anonymous command';
-		  setBlock: aSetter;
-		  getBlock: aGetter;
-		  isExecutableBlock: aBlock;
-		  yourself
-]
-
-{ #category : #operations }
-PyramidCommand >> copyWithoutState [
-
-	| command |
-	command := self class new.
-	command setBlock: self setBlock.
-	command getBlock: self getBlock.
-	command name: self name.
-	command isExecutableBlock: self isExecutableBlock.
-	^ command
-]
-
-{ #category : #accessing }
-PyramidCommand >> getBlock [
-
-	^ getBlock
-]
-
-{ #category : #accessing }
-PyramidCommand >> getBlock: anObject [
-
-	getBlock := anObject
-]
-
-{ #category : #initialization }
-PyramidCommand >> getState: aPyramidCommandState from: aSource [
-
-	self getBlock value: aPyramidCommandState value: aSource
-]
-
-{ #category : #initialization }
-PyramidCommand >> getStateFrom: aSource [
-
-	| newState |
-	newState := PyramidCommandState new.
-	self getState: newState from: aSource.
-	^ newState
-]
-
-{ #category : #accessing }
-PyramidCommand >> isExecutableBlock [
-	^ isExecutableBlock 
-]
-
-{ #category : #accessing }
-PyramidCommand >> isExecutableBlock: aBlock [
-
-	isExecutableBlock:= aBlock
+	^ self == PyramidCommand
 ]
 
 { #category : #testing }
-PyramidCommand >> isExecutableBy: anObject [
+PyramidCommand >> canBeUsedFor: anObject [
 
-	^ self isExecutableBlock value: anObject value: self state
+	^ self shouldBeImplemented
 ]
 
-{ #category : #accessing }
-PyramidCommand >> name [
-	^ name
+{ #category : #'as yet unclassified' }
+PyramidCommand >> clusterOf: aCollection [
+
+	| users cluster |
+	cluster := PyramidCluster new.
+	users := aCollection select: [ :each | self canBeUsedFor: each ].
+	users do: [ :each | cluster register: each forArguments: (self getValueFor: each) ].
+	^ cluster
 ]
 
-{ #category : #accessing }
-PyramidCommand >> name: aString [
+{ #category : #'as yet unclassified' }
+PyramidCommand >> commandInverse [
 
-	name := aString
+	^ self
 ]
 
-{ #category : #accessing }
-PyramidCommand >> setBlock [
+{ #category : #'as yet unclassified' }
+PyramidCommand >> getValueFor: anObject [
 
-	^ setBlock
+	^ self shouldBeImplemented
 ]
 
-{ #category : #accessing }
-PyramidCommand >> setBlock: anObject [
+{ #category : #'as yet unclassified' }
+PyramidCommand >> saveStatesOf: aCollection with: arguments [
 
-	setBlock := anObject
+	^ self saveStatesOf: aCollection withCommand: self withArguments: arguments
 ]
 
-{ #category : #initialization }
-PyramidCommand >> setState: aPyramidCommandState on: aTarget [
+{ #category : #'as yet unclassified' }
+PyramidCommand >> saveStatesOf: aCollection withCommand: aCommand withArguments: anArguments [
 
-	self setBlock value: aPyramidCommandState value: aTarget
+	| mementos |
+	mementos := aCollection collect: [ :each |
+		            PyramidCommandMemento new
+			            command: aCommand;
+			            target: each;
+			            arguments: (self getValueFor: each);
+			            yourself ].
+	mementos size = 1 ifTrue: [ ^ mementos first ].
+	^ PyramidCompositeMemento new
+		  mementos: mementos;
+		  yourself
 ]
 
-{ #category : #accessing }
-PyramidCommand >> state [
-	state ifNil: [ state := PyramidCommandState new ].
-	^ state
+{ #category : #'as yet unclassified' }
+PyramidCommand >> saveStatesWithCommandInverseOf: aCollection with: arguments [
+
+	^ self saveStatesOf: aCollection withCommand: self commandInverse withArguments: arguments
 ]
 
-{ #category : #accessing }
-PyramidCommand >> state: aState [
+{ #category : #'as yet unclassified' }
+PyramidCommand >> setValueFor: anObject with: anArgument [
 
-	state := aState
+	self shouldBeImplemented
+]
+
+{ #category : #'as yet unclassified' }
+PyramidCommand >> useOn: aCollection with: anArgument [
+
+	aCollection do: [ :each | self setValueFor: each with: anArgument ]
 ]

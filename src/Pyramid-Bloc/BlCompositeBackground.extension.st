@@ -1,13 +1,13 @@
 Extension { #name : #BlCompositeBackground }
 
 { #category : #'*Pyramid-Bloc' }
-BlCompositeBackground >> pyramidBackgroundStrategy [
+BlCompositeBackground >> asForm [
 
-	^ PyramidBackgroundPropertyInputUnknownStrategy new
+	^ self iconNamed: #jigsawIcon
 ]
 
 { #category : #'*Pyramid-Bloc' }
-BlCompositeBackground >> pyramidSelectMenuOnModal: aModal [
+BlCompositeBackground >> asString [
 
-	aModal buttonComposite click
+	^ 'Composite'
 ]

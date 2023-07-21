@@ -4,28 +4,19 @@ Class {
 	#instVars : [
 		'plugins',
 		'projectModel',
-		'commandPipeline',
 		'window',
-		'properties'
+		'propertiesManager'
 	],
 	#category : #'Pyramid-core'
 }
-
-{ #category : #accessing }
-PyramidEditor >> commandPipeline [
-
-	^ commandPipeline
-]
 
 { #category : #initialization }
 PyramidEditor >> initialize [
 
 	projectModel := PyramidProjectModel new.
-	commandPipeline := PyramidPipeline new.
-	properties := PyramidPropertiesView new
-		              pipeline: commandPipeline;
-		              projectModel: projectModel;
-		              yourself.
+	propertiesManager := PyramidPropertiesManagerForSelection new
+		                     projectModel: projectModel;
+		                     yourself.
 	plugins := {  }
 ]
 
@@ -48,9 +39,9 @@ PyramidEditor >> projectModel [
 ]
 
 { #category : #accessing }
-PyramidEditor >> properties [
+PyramidEditor >> propertiesManager [
 
-	^ properties
+	^ propertiesManager
 ]
 
 { #category : #accessing }
@@ -71,8 +62,8 @@ PyramidEditor >> window: anObject [
 	window := anObject.
 	window at: #tabRight addItem: [ :builder |
 		builder
-			makeTab: self properties
+			makeTab: self propertiesManager presenter
 			label: 'Properties'
-			icon: (self iconNamed: #edit)
+			icon: (self iconNamed: #box)
 			order: 1 ]
 ]

@@ -25,7 +25,7 @@ PyramidLibraryElement >> blockMaker [
 PyramidLibraryElement >> blockMaker: anObject [
 
 	blockMaker := anObject.
-	form := blockMaker value aeAsForm
+	form := blockMaker value exportAsForm
 ]
 
 { #category : #accessing }

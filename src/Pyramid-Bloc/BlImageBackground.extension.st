@@ -1,20 +1,26 @@
 Extension { #name : #BlImageBackground }
 
 { #category : #'*Pyramid-Bloc' }
-BlImageBackground >> pyramidBackgroundStrategy [
+BlImageBackground >> = aBlBackground [
 
-	(self image respondsTo: #pyramidExternalRessourceSource) ifTrue: [
-		^ PyramidBackgroundPropertyInputImage new
-			  ressource: self image pyramidExternalRessourceSource;
-			  yourself ].
-	^ PyramidBackgroundPropertyInputImage new
-		  ressource: nil;
-		  yourself
+	super = aBlBackground ifFalse: [ ^ false ].
+	^ self image = aBlBackground image
 ]
 
 { #category : #'*Pyramid-Bloc' }
-BlImageBackground >> pyramidSelectMenuOnModal: aModal [
+BlImageBackground >> asForm [
 
-	aModal buttonImage click.
-	aModal currentPresenter setImage: self image
+	^ self image
+]
+
+{ #category : #'*Pyramid-Bloc' }
+BlImageBackground >> asString [
+
+	^ 'Image - ', self image asString
+]
+
+{ #category : #'*Pyramid-Bloc' }
+BlImageBackground >> selectOnBackgroundInput: aPyramidBackgroundInputPresenter [
+
+	self shouldBeImplemented
 ]

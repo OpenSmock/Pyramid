@@ -4,6 +4,12 @@ Trait {
 }
 
 { #category : #'as yet unclassified' }
+TPyramidProjectModelObserver >> pyramidElementsChanged [
+
+	
+]
+
+{ #category : #'as yet unclassified' }
 TPyramidProjectModelObserver >> pyramidRootsChanged [
 ]
 

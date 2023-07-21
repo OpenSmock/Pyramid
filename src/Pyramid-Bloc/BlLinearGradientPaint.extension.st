@@ -1,17 +1,18 @@
 Extension { #name : #BlLinearGradientPaint }
 
 { #category : #'*Pyramid-Bloc' }
-BlLinearGradientPaint >> pyramidBackgroundPreview [
+BlLinearGradientPaint >> = aBlPaint [
 
-	^ PyramidPaintPreviewGradientColor new
-		  stops: self stops;
-		  yourself
+	super = aBlPaint ifFalse: [ ^ false ].
+	^ self end = aBlPaint end and: [ self start = aBlPaint start ]
 ]
 
 { #category : #'*Pyramid-Bloc' }
-BlLinearGradientPaint >> pyramidModalDefaultPaint: aPyramidPaintInput [
+BlLinearGradientPaint >> selectOnGradientPaintInput: aPyramidGradientPaintInputPresenter [
 
-	super pyramidModalDefaultPaint: aPyramidPaintInput.
-	aPyramidPaintInput inputGradient modeSelector buttonLinear click.
-	aPyramidPaintInput inputGradient modeSelector linearDirection point: self end - self start
+	super selectOnGradientPaintInput: aPyramidGradientPaintInputPresenter.
+	aPyramidGradientPaintInputPresenter linearButton click.
+	aPyramidGradientPaintInputPresenter startInput value: self start.
+	aPyramidGradientPaintInputPresenter endInput value: self end.
+	
 ]

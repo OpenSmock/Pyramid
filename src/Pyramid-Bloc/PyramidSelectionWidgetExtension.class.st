@@ -6,20 +6,12 @@ Class {
 	#instVars : [
 		'projectModel',
 		'widgetElement',
-		'pipeline',
+		'commandExecutor',
 		'isDragging',
 		'dragOrigin'
 	],
 	#category : #'Pyramid-Bloc-plugin-space-extensions'
 }
-
-{ #category : #'as yet unclassified' }
-PyramidSelectionWidgetExtension class >> positionOffsetCommand [
-
-	^ PyramidCommand name: #position_offset set: [ :state :target | target position: target position + state arguments ] get: [ :state :source |
-			  state source: source.
-			  state arguments: source position ] isExecutableBlock: [ :obj :state | obj isKindOf: BlElement ]
-]
 
 { #category : #'as yet unclassified' }
 PyramidSelectionWidgetExtension >> alphaFactor [
@@ -57,6 +49,18 @@ PyramidSelectionWidgetExtension >> centerDragStart: anEvent [
 ]
 
 { #category : #accessing }
+PyramidSelectionWidgetExtension >> commandExecutor [
+
+	^ commandExecutor
+]
+
+{ #category : #accessing }
+PyramidSelectionWidgetExtension >> commandExecutor: anObject [
+
+	commandExecutor := anObject
+]
+
+{ #category : #accessing }
 PyramidSelectionWidgetExtension >> dragOrigin [
 
 	^ dragOrigin
@@ -71,7 +75,7 @@ PyramidSelectionWidgetExtension >> dragOrigin: anObject [
 { #category : #accessing }
 PyramidSelectionWidgetExtension >> editor: aPyramidEditor [
 
-	self pipeline: aPyramidEditor commandPipeline
+	self commandExecutor: aPyramidEditor propertiesManager commandExecutor
 ]
 
 { #category : #'as yet unclassified' }
@@ -166,18 +170,6 @@ PyramidSelectionWidgetExtension >> offset [
 ]
 
 { #category : #accessing }
-PyramidSelectionWidgetExtension >> pipeline [
-
-	^ pipeline
-]
-
-{ #category : #accessing }
-PyramidSelectionWidgetExtension >> pipeline: anObject [
-
-	pipeline:= anObject
-]
-
-{ #category : #accessing }
 PyramidSelectionWidgetExtension >> projectModel [
 
 	^ projectModel
@@ -207,12 +199,10 @@ PyramidSelectionWidgetExtension >> removeSelection [
 { #category : #'as yet unclassified' }
 PyramidSelectionWidgetExtension >> usePositionOffsetCommand: aPosition [
 
-	| command |
-	command := self class positionOffsetCommand.
-	command state arguments: aPosition.
-	self pipeline useCommand: command on: (PyramidPipelineTarget new
-			 collection: self projectModel selection collection copy;
-			 yourself)
+	self commandExecutor
+		use: PyramidPositionOffsetCommand new
+		on: self projectModel selection asArray
+		with: aPosition
 ]
 
 { #category : #removing }

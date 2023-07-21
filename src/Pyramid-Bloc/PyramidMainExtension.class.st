@@ -78,9 +78,9 @@ PyramidMainExtension >> initialize [
 						                displayBold: [ true ];
 						                label: 'Window extent';
 						                yourself);
-				               add: (PyramidPointPresenter new
-						                point: self defaultExtent;
-						                whenSubmitDo: [ :point | self extent: point ];
+				               add: (PyramidPointInputPresenter new
+						                value: self defaultExtent;
+						                whenValueChangedDo: [ :point | self extent: point ];
 						                yourself);
 				               yourself);
 		              yourself.
