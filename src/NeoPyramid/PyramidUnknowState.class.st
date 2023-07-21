@@ -12,6 +12,12 @@ PyramidUnknowState >> = anObject [
 ]
 
 { #category : #converting }
+PyramidUnknowState >> asBlBackground [
+
+	^ self
+]
+
+{ #category : #converting }
 PyramidUnknowState >> asColor [
 
 	^ Color transparent

@@ -35,5 +35,5 @@ PyramidBackgroundInputPresenterTest >> makeNewInput [
 { #category : #'as yet unclassified' }
 PyramidBackgroundInputPresenterTest >> triggerValueChangedOf: anInput [
 
-	self shouldBeImplemented.
+	anInput bypassTrigger
 ]

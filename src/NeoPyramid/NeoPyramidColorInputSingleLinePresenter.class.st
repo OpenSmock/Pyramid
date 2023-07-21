@@ -55,8 +55,12 @@ NeoPyramidColorInputSingleLinePresenter >> hexInput [
 NeoPyramidColorInputSingleLinePresenter >> initializePresenter [
 
 	whenValueChangedDo := [ :c |  ].
-	hexInput := PyramidTextInputPresenter new.
-	alphaInput := PyramidNumberInputPresenter new.
+	hexInput := PyramidTextInputPresenter new
+		            value: 'FF0000';
+		            yourself.
+	alphaInput := PyramidNumberInputPresenter new
+		              value: 100;
+		              yourself.
 	previewPresenter := SpMorphPresenter new
 		                    morph: Morph new;
 		                    yourself.
@@ -101,8 +105,7 @@ NeoPyramidColorInputSingleLinePresenter >> value [
 NeoPyramidColorInputSingleLinePresenter >> value: aColor [
 
 	aColor isColor ifFalse: [
-		self alphaInput value: aColor.
-		self hexInput value: aColor.
+		self value: PyramidUnknowState new asColor.
 		^ self ].
 	self alphaInput value: (aColor alpha * 100) rounded.
 	self hexInput value: aColor asHexString.

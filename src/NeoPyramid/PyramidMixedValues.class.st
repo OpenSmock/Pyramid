@@ -9,3 +9,9 @@ PyramidMixedValues >> asString [
 
 	^ '@ Mixed state'
 ]
+
+{ #category : #'as yet unclassified' }
+PyramidMixedValues >> selectOnBackgroundInput: aPyramidBackgroundInputPresenter [
+
+	aPyramidBackgroundInputPresenter selectMixedValues.
+]

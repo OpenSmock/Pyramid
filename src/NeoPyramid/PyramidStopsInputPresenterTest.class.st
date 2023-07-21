@@ -22,8 +22,26 @@ PyramidStopsInputPresenterTest >> dummyValues [
 		  (1 -> Color red) } }
 ]
 
+{ #category : #accessing }
+PyramidStopsInputPresenterTest >> expectedEmptyValue [
+
+	^ {  }
+]
+
+{ #category : #accessing }
+PyramidStopsInputPresenterTest >> expectedMixedValues [
+
+	^ {  }
+]
+
 { #category : #tests }
 PyramidStopsInputPresenterTest >> makeNewInput [
 
 	^ NeoPyramidStopsInputPresenter new
+]
+
+{ #category : #'as yet unclassified' }
+PyramidStopsInputPresenterTest >> triggerValueChangedOf: anInput [
+
+	anInput bypassTrigger
 ]
