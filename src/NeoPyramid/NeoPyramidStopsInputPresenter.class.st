@@ -189,7 +189,7 @@ NeoPyramidStopsInputPresenter >> updateInputsOrder [
 { #category : #'as yet unclassified' }
 NeoPyramidStopsInputPresenter >> value [
 
-	^ self inputs collect: [ :asso | asso key value ].
+	^ (self inputs collect: [ :asso | asso key value ]) asArray
 ]
 
 { #category : #'as yet unclassified' }

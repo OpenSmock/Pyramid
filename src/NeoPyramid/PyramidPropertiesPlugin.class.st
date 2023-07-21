@@ -21,6 +21,7 @@ PyramidPropertiesPlugin class >> background [
 		            yourself.
 	property pyramidInputPresenterModel help:
 		'Change the background of the element with a color, a gradient, an image'.
+		property pyramidInputPresenterModel windowTitle: 'Change background'.
 	^ property
 ]
 

@@ -33,7 +33,7 @@ PyramidBackgroundInputPresenter >> initializeModelImage [
 		              page: (SpNotebookPage
 				               title: ''
 				               icon: (self iconNamed: #open)
-				               provider: [ self presenterPaintSolid ]);
+				               provider: [ self modelImage presenter ]);
 		              yourself.
 
 	notebook addPage: modelImage page
@@ -44,7 +44,7 @@ PyramidBackgroundInputPresenter >> initializeModelPaintGradient [
 
 	modelPaintGradient := PyramidBackgroundInputModel new
 		                      presenter:
-			                      (NeoPyramidColorInputSingleLinePresenter new
+			                      (NeoPyramidGradientPaintInputPresenter new
 				                       whenValueChangedDo: [ :x |
 					                       self whenValueChangedDo value:
 							                       x asBlBackground ];
@@ -52,7 +52,8 @@ PyramidBackgroundInputPresenter >> initializeModelPaintGradient [
 		                      page: (SpNotebookPage
 				                       title: ''
 				                       icon: (self iconNamed: #image)
-				                       provider: [ self presenterPaintSolid ]);
+				                       provider: [
+				                       self modelPaintGradient presenter ]);
 		                      yourself.
 
 	notebook addPage: modelPaintGradient page
@@ -71,10 +72,10 @@ PyramidBackgroundInputPresenter >> initializeModelPaintSolid [
 		                   page: (SpNotebookPage
 				                    title: ''
 				                    icon: (self iconNamed: #smallSelect)
-				                    provider: [ self presenterPaintSolid ]);
+				                    provider: [ self modelPaintSolid presenter ]);
 		                   yourself.
-	
-	notebook addPage: modelPaintSolid page.
+
+	notebook addPage: modelPaintSolid page
 ]
 
 { #category : #initialization }
@@ -82,7 +83,7 @@ PyramidBackgroundInputPresenter >> initializeModelTransparent [
 
 	modelTransparent := PyramidBackgroundInputModel new
 		                    presenter:
-			                    (NeoPyramidColorInputSingleLinePresenter new
+			                    (NeoPyramidMonoValueInputPresenter new value: BlBackground transparent;
 				                     whenValueChangedDo: [ :x |
 					                     self whenValueChangedDo value:
 							                     x asBlBackground ];
@@ -90,7 +91,7 @@ PyramidBackgroundInputPresenter >> initializeModelTransparent [
 		                    page: (SpNotebookPage
 				                     title: ''
 				                     icon: (self iconNamed: #changeRemove)
-				                     provider: [ self presenterPaintSolid ]);
+				                     provider: [ self modelTransparent presenter ]);
 		                    yourself.
 
 	notebook addPage: modelTransparent page
@@ -144,21 +145,26 @@ PyramidBackgroundInputPresenter >> notebook [
 PyramidBackgroundInputPresenter >> selectPaintGradientWith: aBlColorPaint [
 
 	self notebook selectPage: self modelPaintGradient page.
-	self modelPaintSolid value: aBlColorPaint
+	self modelPaintGradient presenter value: aBlColorPaint
 ]
 
 { #category : #'as yet unclassified' }
 PyramidBackgroundInputPresenter >> selectPaintSolidWith: aBlColorPaint [
 
 	self notebook selectPage: self modelPaintSolid page.
-	self modelPaintSolid value: aBlColorPaint color
+	self modelPaintSolid presenter value: aBlColorPaint color
+]
+
+{ #category : #'as yet unclassified' }
+PyramidBackgroundInputPresenter >> selectTransparent [
+
+	self notebook selectPage: self modelTransparent page
 ]
 
 { #category : #'as yet unclassified' }
 PyramidBackgroundInputPresenter >> value [
 
-	^ self notebook selectedPage presenterProvider value value
-
+	^ self notebook selectedPage presenterProvider value value asBlBackground
 ]
 
 { #category : #'as yet unclassified' }

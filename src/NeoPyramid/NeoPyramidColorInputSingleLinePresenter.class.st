@@ -94,8 +94,7 @@ NeoPyramidColorInputSingleLinePresenter >> value [
 	alpha isNumber ifFalse: [
 		self alphaInput value: 100.
 		alpha := 100 ].
-	color alpha: (self alphaInput value / 100 min: 0 max: 1).
-	^ color
+	^ color alpha: (alpha / 100 min: 1 max: 0).
 ]
 
 { #category : #'as yet unclassified' }
@@ -103,7 +102,8 @@ NeoPyramidColorInputSingleLinePresenter >> value: aColor [
 
 	aColor isColor ifFalse: [
 		self alphaInput value: aColor.
-		self hexInput value: aColor ].
+		self hexInput value: aColor.
+		^ self ].
 	self alphaInput value: (aColor alpha * 100) rounded.
 	self hexInput value: aColor asHexString.
 	self updatePreview

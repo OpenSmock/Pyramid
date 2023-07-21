@@ -42,6 +42,13 @@ NeoPyramidInputPresenter >> emptyValue [
 	self value: PyramidEmptyValue new
 ]
 
+{ #category : #initialization }
+NeoPyramidInputPresenter >> initialize [
+
+	super initialize.
+	self model: self class modelClass new.
+]
+
 { #category : #'as yet unclassified' }
 NeoPyramidInputPresenter >> mixedValues [
 

@@ -4,7 +4,8 @@ Class {
 	#instVars : [
 		'presenter',
 		'button',
-		'presenterModal'
+		'presenterModal',
+		'whenValueChangedDo'
 	],
 	#category : #'NeoPyramid-specs-custom'
 }
@@ -13,6 +14,12 @@ Class {
 PyramidInputWithModalPresenter class >> isAbstract [
 
 	^ self == PyramidInputWithModalPresenter
+]
+
+{ #category : #accessing }
+PyramidInputWithModalPresenter class >> modelClass [
+
+	^ PyramidModalInputStrings
 ]
 
 { #category : #accessing }
@@ -33,10 +40,16 @@ PyramidInputWithModalPresenter >> defaultLayout [
 { #category : #initialization }
 PyramidInputWithModalPresenter >> initializePresenters [
 
-	button := SpButtonPresenter new
-		          icon: (self iconNamed: #smallCogInitialState);
-		          action: [ self presenterModal openModal ];
-		          yourself
+	whenValueChangedDo := [ :arg1 |  ].
+	button := SpButtonPresenter new.
+	button
+		icon: (self iconNamed: #smallCogInitialState);
+		action: [
+			| dialog |
+			dialog := self presenterModal openModal.
+			dialog title: self model windowTitle.
+			dialog isOk ifTrue: [
+					self whenValueChangedDo value: self presenterModal value ] ]
 ]
 
 { #category : #accessing }
@@ -73,4 +86,16 @@ PyramidInputWithModalPresenter >> value: anObject [
 
 	self presenterModal value: anObject.
 	self presenter value: anObject
+]
+
+{ #category : #accessing }
+PyramidInputWithModalPresenter >> whenValueChangedDo [
+
+	^ whenValueChangedDo
+]
+
+{ #category : #accessing }
+PyramidInputWithModalPresenter >> whenValueChangedDo: anObject [
+
+	whenValueChangedDo := anObject
 ]

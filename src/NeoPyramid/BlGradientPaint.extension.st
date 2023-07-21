@@ -1,6 +1,13 @@
 Extension { #name : #BlGradientPaint }
 
 { #category : #'*NeoPyramid' }
+BlGradientPaint >> = aBlPaint [
+
+	super = aBlPaint ifFalse: [ ^ false ].
+	^ self stops = aBlPaint stops
+]
+
+{ #category : #'*NeoPyramid' }
 BlGradientPaint >> asForm [
 
 	^ (Morph new
@@ -16,5 +23,11 @@ BlGradientPaint >> asForm [
 { #category : #'*NeoPyramid' }
 BlGradientPaint >> selectOnBackgroundInput: aPyramidBackgroundInputPresenter [
 
-	aPyramidBackgroundInputPresenter selectGradientPaintWith: self
+	aPyramidBackgroundInputPresenter selectPaintGradientWith: self
+]
+
+{ #category : #'*NeoPyramid' }
+BlGradientPaint >> selectOnGradientPaintInput: aPyramidGradientPaintInputPresenter [
+
+	aPyramidGradientPaintInputPresenter stopsInput value:self stops.
 ]

@@ -1,6 +1,13 @@
 Extension { #name : #BlImageBackground }
 
 { #category : #'*NeoPyramid' }
+BlImageBackground >> = aBlBackground [
+
+	super = aBlBackground ifFalse: [ ^ false ].
+	^ self image = aBlBackground image
+]
+
+{ #category : #'*NeoPyramid' }
 BlImageBackground >> asForm [
 
 	^ self image

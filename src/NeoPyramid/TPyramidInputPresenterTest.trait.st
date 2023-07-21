@@ -9,6 +9,14 @@ TPyramidInputPresenterTest >> dummyValues [
 	^ self shouldBeImplemented
 ]
 
+{ #category : #'as yet unclassified' }
+TPyramidInputPresenterTest >> equalityTestFor: object1 and: object2 [
+
+	object1 isAssociation ifTrue: [ ^ object1 value = object2 ].
+	object1 isCollection ifTrue: [ ^ object1 asArray = object2 asArray ].
+	^ object1 = object2
+]
+
 { #category : #accessing }
 TPyramidInputPresenterTest >> expectedEmptyValue [
 
@@ -27,17 +35,33 @@ TPyramidInputPresenterTest >> makeNewInput [
 	^ self shouldBeImplemented 
 ]
 
+{ #category : #'as yet unclassified' }
+TPyramidInputPresenterTest >> makeNewInputWithModel [
+
+	|input|
+	input := self makeNewInput.
+	input model: input class modelClass new.
+	input applyModel.
+	^ input
+]
+
+{ #category : #'as yet unclassified' }
+TPyramidInputPresenterTest >> putValue: object onInput: input [
+
+	object isAssociation ifTrue: [ input value: object key. ^ self ].
+	 input value: object
+]
+
 { #category : #tests }
 TPyramidInputPresenterTest >> testEmptyValue [
 
 	| input hasTrigger |
 	hasTrigger := false.
-	input := self makeNewInput.
+	input := self makeNewInputWithModel.
 	input whenValueChangedDo: [ :val | hasTrigger := true ].
 	input emptyValue.
 	self deny: hasTrigger.
 	self assert: input value equals: self expectedEmptyValue
-	
 ]
 
 { #category : #tests }
@@ -45,7 +69,7 @@ TPyramidInputPresenterTest >> testMixedValues [
 
 	| input hasTrigger |
 	hasTrigger := false.
-	input := self makeNewInput.
+	input := self makeNewInputWithModel.
 	input whenValueChangedDo: [ :val | hasTrigger := true ].
 	input mixedValues.
 	self deny: hasTrigger.
@@ -58,12 +82,12 @@ TPyramidInputPresenterTest >> testTrigger [
 	| input count current |
 	count := 0.
 	current := Object new.
-	input := self makeNewInput.
+	input := self makeNewInputWithModel.
 	input whenValueChangedDo: [ :val |
 		count := count + 1.
 		current := val ].
 	self dummyValues do: [ :each |
-		input value: each.
+		self putValue: each onInput: input.
 		self triggerValueChangedOf: input.
 		self assert: input value equals: current ].
 	self assert: self dummyValues size equals: count
@@ -74,18 +98,11 @@ TPyramidInputPresenterTest >> testValue [
 
 	| input hasTrigger |
 	hasTrigger := false.
-	input := self makeNewInput.
+	input := self makeNewInputWithModel.
 	input whenValueChangedDo: [ :val | hasTrigger := true ].
 	self dummyValues do: [ :each |
-		each isAssociation
-			ifFalse: [
-				input value: each.
-				self deny: hasTrigger.
-				self assert: input value equals: each ]
-			ifTrue: [
-				input value: each key.
-				self deny: hasTrigger.
-				self assert: input value equals: each value ] ]
+		self putValue: each onInput: input.
+		self assert: (self equalityTestFor: each and: input value) ]
 ]
 
 { #category : #'as yet unclassified' }
