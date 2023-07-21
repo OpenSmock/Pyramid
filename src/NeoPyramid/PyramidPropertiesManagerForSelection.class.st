@@ -20,7 +20,7 @@ PyramidPropertiesManagerForSelection >> initialize [
 	commandExecutor := PyramidCallbackCommandExecutor new
 		                   wrappee: commandExecutor;
 		                   yourself.
-	commandExecutor afterDo: [ self projectModel informSelectionChanged ].
+	commandExecutor afterDo: [ self projectModel informElementsChanged ]
 ]
 
 { #category : #accessing }
@@ -44,7 +44,15 @@ PyramidPropertiesManagerForSelection >> projectModel: aPyramidProjectModel [
 ]
 
 { #category : #'as yet unclassified' }
+PyramidPropertiesManagerForSelection >> pyramidElementsChanged [
+
+	self presenter layout child:
+		(self buildPresenterFromCollection: self projectModel selection)
+]
+
+{ #category : #'as yet unclassified' }
 PyramidPropertiesManagerForSelection >> pyramidSelectionChanged [
 
-	self presenter layout child: (self buildPresenterFromCollection: self projectModel selection).
+	self presenter layout child:
+		(self buildPresenterFromCollection: self projectModel selection)
 ]

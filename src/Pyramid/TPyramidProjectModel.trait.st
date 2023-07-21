@@ -12,6 +12,12 @@ TPyramidProjectModel >> addObserver: anObserver [
 ]
 
 { #category : #'as yet unclassified' }
+TPyramidProjectModel >> informElementsChanged [
+
+	self observers do: [ :each | each pyramidElementsChanged ]
+]
+
+{ #category : #'as yet unclassified' }
 TPyramidProjectModel >> informRootsChanged [
 
 	self observers do: [ :each | each pyramidRootsChanged ]

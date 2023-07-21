@@ -4,7 +4,8 @@ Class {
 	#instVars : [
 		'properties',
 		'commandExecutor',
-		'presenterStrategy'
+		'presenterStrategy',
+		'history'
 	],
 	#category : #'NeoPyramid-property'
 }
@@ -35,13 +36,22 @@ PyramidPropertiesManager >> commandExecutor: anObject [
 	self properties do: [ :each | each commandExecutor: anObject ]
 ]
 
+{ #category : #accessing }
+PyramidPropertiesManager >> history [
+
+	^ history
+]
+
 { #category : #initialization }
 PyramidPropertiesManager >> initialize [
 
 	properties := OrderedCollection new.
+	history := NeoPyramidHistory new.
 	commandExecutor := PyramidHistoryCommandExecutor new
+		                   history: history;
 		                   wrappee: PyramidMainCommandExecutor new;
 		                   yourself.
+
 	presenterStrategy := PyramidHideEmptyPropertyStrategy new
 ]
 

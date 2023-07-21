@@ -1,10 +1,13 @@
 Class {
 	#name : #PyramidPropertiesPlugin,
 	#superclass : #Object,
-	#traits : 'TPyramidPlugin',
-	#classTraits : 'TPyramidPlugin classTrait',
+	#traits : 'TPyramidPlugin + TPyramidProjectModelObserver',
+	#classTraits : 'TPyramidPlugin classTrait + TPyramidProjectModelObserver classTrait',
 	#instVars : [
-		'manager'
+		'undoButton',
+		'redoButton',
+		'history',
+		'projectModel'
 	],
 	#category : #'NeoPyramid-property'
 }
@@ -79,38 +82,87 @@ PyramidPropertiesPlugin class >> position [
 { #category : #adding }
 PyramidPropertiesPlugin >> addPanelsOn: aPyramidSimpleWindow [
 
-	aPyramidSimpleWindow at: #tabRight addItem: [ :builder |
-		builder
-			makeTab: self manager presenter
-			label: 'Manager'
-			icon: (self iconNamed: #box)
-			order: 2 ]
+	aPyramidSimpleWindow
+		at: #topCenter
+		addItem: [ :builder |
+		builder makeButtonWithIcon: self undoButton order: 10 ].
+	aPyramidSimpleWindow
+		at: #topCenter
+		addItem: [ :builder |
+		builder makeButtonWithIcon: self redoButton order: 20 ]
 ]
 
 { #category : #'as yet unclassified' }
 PyramidPropertiesPlugin >> connectOn: aPyramidEditor [
 
-	self manager projectModel: aPyramidEditor projectModel
+	aPyramidEditor propertiesManager addProperty: self class elementId.
+	aPyramidEditor propertiesManager addProperty: self class clipChildren.
+	aPyramidEditor propertiesManager addProperty: self class position.
+	aPyramidEditor propertiesManager addProperty: self class background.
+	self history: aPyramidEditor propertiesManager history.
+	self projectModel: aPyramidEditor projectModel.
+	self pyramidSelectionChanged
 ]
 
-{ #category : #initialization }
+{ #category : #accessing }
+PyramidPropertiesPlugin >> history [
+
+	^ history
+]
+
+{ #category : #accessing }
+PyramidPropertiesPlugin >> history: anObject [
+
+	history := anObject
+]
+
+{ #category : #'as yet unclassified' }
 PyramidPropertiesPlugin >> initialize [
 
-	manager := PyramidPropertiesManagerForSelection new.
-	manager addProperty: self class elementId.
-	manager addProperty: self class clipChildren.
-	manager addProperty: self class position.
-	manager addProperty: self class background
+	undoButton := SpButtonPresenter new
+		              icon: (self iconNamed: #smallUndo);
+		              action: [
+			              self history undo.
+			              self projectModel informElementsChanged ];
+		              help: 'Undo';
+		              yourself.
+	redoButton := SpButtonPresenter new
+		              icon: (self iconNamed: #smallRedo);
+		              action: [
+			              self history redo.
+			              self projectModel informElementsChanged ];
+		              help: 'Redo';
+		              yourself
 ]
 
 { #category : #accessing }
-PyramidPropertiesPlugin >> manager [
+PyramidPropertiesPlugin >> projectModel [
 
-	^ manager
+	^ projectModel
 ]
 
 { #category : #accessing }
-PyramidPropertiesPlugin >> manager: anObject [
+PyramidPropertiesPlugin >> projectModel: anObject [
 
-	manager := anObject
+	projectModel := anObject.
+	anObject addObserver: self.
+]
+
+{ #category : #'as yet unclassified' }
+PyramidPropertiesPlugin >> pyramidElementsChanged [
+
+	undoButton enabled: self history canUndo.
+	redoButton enabled: self history canRedo
+]
+
+{ #category : #accessing }
+PyramidPropertiesPlugin >> redoButton [
+
+	^ redoButton
+]
+
+{ #category : #accessing }
+PyramidPropertiesPlugin >> undoButton [
+
+	^ undoButton
 ]

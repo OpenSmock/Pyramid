@@ -17,10 +17,10 @@ PyramidHistoryCommandExecutor >> history [
 	^ history
 ]
 
-{ #category : #initialization }
-PyramidHistoryCommandExecutor >> initialize [
+{ #category : #accessing }
+PyramidHistoryCommandExecutor >> history: aPyramidHistory [
 
-	history := NeoPyramidHistory new
+	history := aPyramidHistory
 ]
 
 { #category : #'as yet unclassified' }

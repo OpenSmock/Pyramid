@@ -1,8 +1,8 @@
 Class {
 	#name : #PyramidTreePresenter,
 	#superclass : #SpPresenter,
-	#traits : 'TPyramidProjectModelObserver + TPyramidPipelineObserver',
-	#classTraits : 'TPyramidProjectModelObserver classTrait + TPyramidPipelineObserver classTrait',
+	#traits : 'TPyramidProjectModelObserver',
+	#classTraits : 'TPyramidProjectModelObserver classTrait',
 	#instVars : [
 		'treePresenter',
 		'shouldUpdateSelection',
@@ -22,7 +22,6 @@ PyramidTreePresenter >> connectOn: aPyramidEditor [
 
 	self editor: aPyramidEditor.
 	aPyramidEditor projectModel addObserver: self.
-	aPyramidEditor commandPipeline addObserver: self
 ]
 
 { #category : #api }
@@ -71,6 +70,12 @@ PyramidTreePresenter >> initializePresenters [
 		expandAll.
 
 	self columns do: [ :each | treePresenter addColumn: each ]
+]
+
+{ #category : #'as yet unclassified' }
+PyramidTreePresenter >> pyramidElementsChanged [
+
+	self updateSelection
 ]
 
 { #category : #'as yet unclassified' }

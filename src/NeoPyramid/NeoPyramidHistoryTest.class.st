@@ -8,7 +8,8 @@ Class {
 NeoPyramidHistoryTest >> testCanRedo [
 
 	| commandExec dummyCommand dummyTarget dummyArguments |
-		commandExec := PyramidHistoryCommandExecutor new
+	commandExec := PyramidHistoryCommandExecutor new
+							history: NeoPyramidHistory new;
 		               wrappee: PyramidMainCommandExecutor new;
 		               yourself.
 	self deny: commandExec history canRedo.
@@ -30,7 +31,10 @@ NeoPyramidHistoryTest >> testCanRedo [
 NeoPyramidHistoryTest >> testCanUndo [
 
 	| commandExec dummyCommand dummyTarget dummyArguments |
-	commandExec := PyramidHistoryCommandExecutor new wrappee: PyramidMainCommandExecutor new; yourself.
+	commandExec := PyramidHistoryCommandExecutor new
+	history: NeoPyramidHistory new;
+		               wrappee: PyramidMainCommandExecutor new;
+		               yourself.
 	self deny: commandExec history canUndo.
 
 	dummyCommand := NeoPyramidIncreaseMockCommand new.
@@ -59,7 +63,8 @@ NeoPyramidHistoryTest >> testCollectionHistory [
 
 	| commandExec dummyCommand dummyTarget collection |
 	collection := Bag new.
-		commandExec := PyramidHistoryCommandExecutor new
+	commandExec := PyramidHistoryCommandExecutor new
+	history: NeoPyramidHistory new;
 		               wrappee: PyramidMainCommandExecutor new;
 		               yourself.
 	dummyCommand := NeoPyramidAddToCollectionCommand new.
@@ -106,7 +111,8 @@ NeoPyramidHistoryTest >> testCollectionHistory [
 NeoPyramidHistoryTest >> testRedo [
 
 	| commandExec dummyTarget |
-		commandExec := PyramidHistoryCommandExecutor new
+	commandExec := PyramidHistoryCommandExecutor new
+	history: NeoPyramidHistory new;
 		               wrappee: PyramidMainCommandExecutor new;
 		               yourself.
 	dummyTarget := { NeoPyramidMockObjectForTest new }.
@@ -166,7 +172,8 @@ NeoPyramidHistoryTest >> testRedo [
 NeoPyramidHistoryTest >> testUndo [
 
 	| commandExec dummyCommand dummyTarget dummyArguments |
-		commandExec := PyramidHistoryCommandExecutor new
+	commandExec := PyramidHistoryCommandExecutor new
+	history: NeoPyramidHistory new;
 		               wrappee: PyramidMainCommandExecutor new;
 		               yourself.
 	dummyCommand := NeoPyramidIncreaseMockCommand new.

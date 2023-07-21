@@ -14,5 +14,6 @@ NeoPyramidPositionCommand >> getValueFor: aBlElement [
 NeoPyramidPositionCommand >> setValueFor: aBlElement with: anArgument [
 
 	anArgument isPoint ifFalse: [ ^ self ].
-	aBlElement constraints position: anArgument
+	aBlElement constraints position: anArgument.
+	aBlElement requestParentLayout
 ]
