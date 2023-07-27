@@ -77,6 +77,7 @@ PyramidVisualPystonForCly >> belongsToRemovedBrowserContext [
 PyramidVisualPystonForCly >> build [
 
 	| buttonEditor buttonOpen |
+	self cellInset: 5.
 	buttonEditor := self buttonEditor.
 	buttonOpen := self buttonOpen.
 	blElement := self getStonFromMethod materializeAsBlElement.
@@ -103,13 +104,13 @@ PyramidVisualPystonForCly >> buttonLabel: aLabel help: aString action: aBlock [
 
 	| button |
 	button := SimpleButtonMorph newWithLabel: aLabel.
+
 	button
 		actionSelector: #value;
 		helpText: aString;
 		extent: 200 @ 25;
-		useRoundedCorners;
-		color: Color white.
-	button target: aBlock.
+		themeChanged;
+		target: aBlock.
 
 	^ button
 ]
