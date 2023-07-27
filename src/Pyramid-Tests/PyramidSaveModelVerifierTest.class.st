@@ -22,7 +22,7 @@ PyramidSaveModelVerifierTest >> testModelNilError [
 	| verifier |
 	verifier := PyramidSaveModelVerifier modelNotNil.
 	verifier verify: nil. "Send a nil model"
-	verifier showOn: PyramidSaveInputsView new.
+	verifier showOn: PyramidSaveProjectConfigurationView new.
 ]
 
 { #category : #test }

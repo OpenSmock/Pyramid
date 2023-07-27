@@ -10,7 +10,6 @@ Class {
 		'inputsButton',
 		'savingService',
 		'saveButton',
-		'inputsPopover',
 		'projectModel'
 	],
 	#category : #'Pyramid-plugin-save'
@@ -59,29 +58,27 @@ PyramidSavePlugin >> connectOn: aPyramidEditor [
 { #category : #initialization }
 PyramidSavePlugin >> initialize [
 
-	inputsController := PyramidSaveInputsController new.
+	inputsController := PyramidSaveProjectConfigurationController new.
 	inputsView := inputsController view.
 	saveModel := inputsController model.
 
 	savingService := PyramidSavingService new
 		                 savingModel: saveModel;
-		         
 		                 methodBuilder: PyramidSavingMethodBuilder ston;
 		                 yourself.
 
 	inputsButton := SpButtonPresenter new
 		                icon: (self iconNamed: #smallRemoteOpen);
-							help: 'Project configuration';
-		                action: [ inputsPopover popup ];
-		                yourself.
-	inputsPopover := PyramidPopoverFactory
+		                help: 'Project configuration';
+		                action: [( PyramidPopoverFactory
 		                 makeWithPresenter: inputsView
 		                 relativeTo: inputsButton
-		                 position: SpPopoverPosition right.
+		                 position: SpPopoverPosition right) popup. ];
+		                yourself.
 
 	saveButton := SpButtonPresenter new
 		              icon: (self iconNamed: #smallSave);
-		 					help: 'Save project';
+		              help: 'Save project';
 		              action: [ self saveAction ];
 		              yourself
 ]
@@ -109,7 +106,9 @@ PyramidSavePlugin >> openOn: aSaveModel [
 
 	self inputsView inputClass text: aSaveModel savingClassName.
 	self inputsView inputMethod text: aSaveModel savingMethodName.
-	self inputsView inputPackage text: aSaveModel savingPackageName
+	self inputsView inputPackage text: aSaveModel savingPackageName.
+	aSaveModel isClassSide ifTrue: [ self inputsView buttonClass click ] ifFalse: [ self inputsView buttonInstance click ]
+	
 ]
 
 { #category : #accessing }
