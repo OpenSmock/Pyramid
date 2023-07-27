@@ -77,6 +77,7 @@ PyramidVisualPystonForCly >> belongsToRemovedBrowserContext [
 PyramidVisualPystonForCly >> build [
 
 	| buttonEditor buttonOpen |
+	self cellInset: 5.
 	buttonEditor := self buttonEditor.
 	buttonOpen := self buttonOpen.
 	blElement := self getStonFromMethod materializeAsBlElement.
@@ -94,15 +95,22 @@ PyramidVisualPystonForCly >> build [
 { #category : #'as yet unclassified' }
 PyramidVisualPystonForCly >> buttonEditor [
 
+	^ self buttonLabel: 'Edit' help: 'Open the design in Pyramid' action: [ self openEditor ].
+	
+]
+
+{ #category : #'as yet unclassified' }
+PyramidVisualPystonForCly >> buttonLabel: aLabel help: aString action: aBlock [
+
 	| button |
-	button := SimpleButtonMorph newWithLabel: 'Edit'.
+	button := SimpleButtonMorph newWithLabel: aLabel.
+
 	button
 		actionSelector: #value;
-		helpText: 'Open the PyEditor on this STON';
-		extent: 100 @ 25;
-		useRoundedCorners;
-		color: Color white.
-	button target: [ self openEditor ].
+		helpText: aString;
+		extent: 200 @ 25;
+		themeChanged;
+		target: aBlock.
 
 	^ button
 ]
@@ -110,17 +118,11 @@ PyramidVisualPystonForCly >> buttonEditor [
 { #category : #'as yet unclassified' }
 PyramidVisualPystonForCly >> buttonOpen [
 
-	| button |
-	button := SimpleButtonMorph newWithLabel: 'Open'.
-	button
-		actionSelector: #value;
-		helpText: 'Open the this STON in new space';
-		extent: 100 @ 25;
-		useRoundedCorners;
-		color: Color white.
-	button target: [ self openInNewSpace ].
+	^ self
+		  buttonLabel: 'Open in new Space'
+		  help: 'Open this design in a new BlSpace'
+		  action: [ self openInNewSpace ]
 
-	^ button
 ]
 
 { #category : #initialization }
@@ -132,7 +134,7 @@ PyramidVisualPystonForCly >> defaultIconName [
 { #category : #initialization }
 PyramidVisualPystonForCly >> defaultTitle [
 
-	^ 'Bloc preview'
+	^ 'Pyramid preview'
 ]
 
 { #category : #controlling }
@@ -144,14 +146,14 @@ PyramidVisualPystonForCly >> detachFromSystem [
 { #category : #'as yet unclassified' }
 PyramidVisualPystonForCly >> getStonFromMethod [
 
-	^(method literals select: [ :e | e isString ]) first.
+	^ (method valueWithReceiver: self arguments: {  })
+
 ]
 
 { #category : #testing }
 PyramidVisualPystonForCly >> isSimilarTo: anotherBrowserTool [
 
 	(super isSimilarTo: anotherBrowserTool) ifFalse: [ ^ false ].
-
 	^ self method = anotherBrowserTool method
 ]
 
@@ -212,18 +214,13 @@ PyramidVisualPystonForCly >> resetStateForSnapshot [
 { #category : #initialization }
 PyramidVisualPystonForCly >> setUpModelFromContext [
 
-	method := context firstSelectedMethod.
-	"blElement := self getStonFromMethod materializeAsBlElement.
-	blElement isCollection ifTrue: [
-		blElement := BlElement new
-			             addChildren: blElement;
-			             size: 1500 @ 1500;
-			             yourself ]"
+	method := context firstSelectedMethod
 ]
 
 { #category : #updating }
 PyramidVisualPystonForCly >> update [
 
+	super update.
 	method := method origin
 		          localMethodNamed: method selector
 		          ifAbsent: [ ^ self ].
@@ -233,8 +230,6 @@ PyramidVisualPystonForCly >> update [
 			             addChildren: blElement;
 			             size: 1500 @ 1500;
 			             yourself ].
-
-	super update.
 
 	imageMorph form: blElement exportAsForm
 ]
