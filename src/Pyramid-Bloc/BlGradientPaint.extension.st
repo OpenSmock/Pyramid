@@ -3,7 +3,8 @@ Extension { #name : #BlGradientPaint }
 { #category : #'*Pyramid-Bloc' }
 BlGradientPaint >> = aBlPaint [
 
-	super = aBlPaint ifFalse: [ ^ false ].
+	self == aBlPaint ifTrue: [ ^ true ].
+	self class == aBlPaint class ifFalse: [ ^ false ].
 	^ self stops = aBlPaint stops
 ]
 
