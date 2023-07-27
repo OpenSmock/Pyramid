@@ -1,5 +1,5 @@
 Class {
-	#name : #PyramidSaveInputsView,
+	#name : #PyramidSaveProjectConfigurationView,
 	#superclass : #SpPresenter,
 	#instVars : [
 		'inputPackage',
@@ -7,6 +7,7 @@ Class {
 		'inputMethod',
 		'buttonClass',
 		'buttonInstance',
+		'buttonBrowse',
 		'labelErrorPackage',
 		'labelErrorClass',
 		'labelErrorMethod',
@@ -16,35 +17,41 @@ Class {
 	#category : #'Pyramid-plugin-save'
 }
 
+{ #category : #layout }
+PyramidSaveProjectConfigurationView >> buttonBrowse [
+
+	^ buttonBrowse
+]
+
 { #category : #accessing }
-PyramidSaveInputsView >> buttonClass [ 
+PyramidSaveProjectConfigurationView >> buttonClass [ 
 
 	^ buttonClass
 ]
 
 { #category : #accessing }
-PyramidSaveInputsView >> buttonInstance [ 
+PyramidSaveProjectConfigurationView >> buttonInstance [ 
 
 	^ buttonInstance
 ]
 
 { #category : #accessing }
-PyramidSaveInputsView >> controller [
+PyramidSaveProjectConfigurationView >> controller [
 
 	controller ifNil: [
-		controller := PyramidSaveInputsController new
+		controller := PyramidSaveProjectConfigurationController new
 			              view: self;
 			              yourself ].
 	^ controller
 ]
 
 { #category : #accessing }
-PyramidSaveInputsView >> controller: aPySaveFormController [
+PyramidSaveProjectConfigurationView >> controller: aPySaveFormController [
 	controller := aPySaveFormController
 ]
 
 { #category : #layout }
-PyramidSaveInputsView >> defaultLayout [
+PyramidSaveProjectConfigurationView >> defaultLayout [
 
 	^ SpBoxLayout newVertical
 		  spacing: 4;
@@ -62,30 +69,31 @@ PyramidSaveInputsView >> defaultLayout [
 		  add: (SpBoxLayout newHorizontal
 				   add: self buttonClass;
 				   add: self buttonInstance;
+					add: self buttonBrowse width: 32;
 				   yourself)
 		  expand: false;
 		  yourself
 ]
 
 { #category : #'as yet unclassified' }
-PyramidSaveInputsView >> hideLabelClass [
+PyramidSaveProjectConfigurationView >> hideLabelClass [
 	self labelErrorClass label: ''.
 ]
 
 { #category : #'as yet unclassified' }
-PyramidSaveInputsView >> hideLabelMethod [
+PyramidSaveProjectConfigurationView >> hideLabelMethod [
 
 	self labelErrorMethod label: ''
 ]
 
 { #category : #'as yet unclassified' }
-PyramidSaveInputsView >> hideLabelPackage [
+PyramidSaveProjectConfigurationView >> hideLabelPackage [
 
 	self labelErrorPackage label: ''
 ]
 
 { #category : #configuration }
-PyramidSaveInputsView >> hideLabels [
+PyramidSaveProjectConfigurationView >> hideLabels [
 
 	self labelErrorClass label: ''.
 	self labelErrorMethod label: ''.
@@ -93,7 +101,7 @@ PyramidSaveInputsView >> hideLabels [
 ]
 
 { #category : #initialization }
-PyramidSaveInputsView >> initializePresenters [
+PyramidSaveProjectConfigurationView >> initializePresenters [
 
 	inputPackage := self newTextInput
 		                placeholder: 'Enter a package name';
@@ -123,50 +131,57 @@ PyramidSaveInputsView >> initializePresenters [
 		                  yourself.
 	buttonClass associatedRadioButtons: { buttonInstance }.
 
+	buttonBrowse := SpButtonPresenter new
+		                help: 'Browse project class';
+		                icon: (self iconNamed: #nautilus);
+		                action: [ self controller browseProjectClass ];
+							enabled: false;
+		                yourself.
+
 	labelErrorPackage := self newLabel.
 	labelErrorClass := self newLabel.
 	labelErrorMethod := self newLabel
 ]
 
 { #category : #accessing }
-PyramidSaveInputsView >> inputClass [
+PyramidSaveProjectConfigurationView >> inputClass [
 
 	^ inputClass
 ]
 
 { #category : #accessing }
-PyramidSaveInputsView >> inputMethod [ 
+PyramidSaveProjectConfigurationView >> inputMethod [ 
 
 	^ inputMethod
 ]
 
 { #category : #accessing }
-PyramidSaveInputsView >> inputPackage [
+PyramidSaveProjectConfigurationView >> inputPackage [
 	^ inputPackage
 
 
 ]
 
 { #category : #accessing }
-PyramidSaveInputsView >> labelErrorClass [ 
+PyramidSaveProjectConfigurationView >> labelErrorClass [ 
 
 	^ labelErrorClass
 ]
 
 { #category : #accessing }
-PyramidSaveInputsView >> labelErrorMethod [
+PyramidSaveProjectConfigurationView >> labelErrorMethod [
 
 	^ labelErrorMethod
 ]
 
 { #category : #accessing }
-PyramidSaveInputsView >> labelErrorPackage [ 
+PyramidSaveProjectConfigurationView >> labelErrorPackage [ 
 
 	^ labelErrorPackage
 ]
 
 { #category : #accessing }
-PyramidSaveInputsView >> model [
+PyramidSaveProjectConfigurationView >> model [
 
 	model ifNil: [
 		model := PyramidSaveModel new
@@ -175,14 +190,14 @@ PyramidSaveInputsView >> model [
 ]
 
 { #category : #accessing }
-PyramidSaveInputsView >> model: aPySaveModel [
+PyramidSaveProjectConfigurationView >> model: aPySaveModel [
 
 	model := aPySaveModel.
 	self updateFromModel.
 ]
 
 { #category : #'as yet unclassified' }
-PyramidSaveInputsView >> showClassIsNotValidError [
+PyramidSaveProjectConfigurationView >> showClassIsNotValidError [
 
 	self labelErrorClass
 		displayColor: [ Color red ];
@@ -190,7 +205,7 @@ PyramidSaveInputsView >> showClassIsNotValidError [
 ]
 
 { #category : #'as yet unclassified' }
-PyramidSaveInputsView >> showClassPackageIsNotEqualError [
+PyramidSaveProjectConfigurationView >> showClassPackageIsNotEqualError [
 
 	self labelErrorClass
 		displayColor: [ Color red ];
@@ -198,7 +213,7 @@ PyramidSaveInputsView >> showClassPackageIsNotEqualError [
 ]
 
 { #category : #'as yet unclassified' }
-PyramidSaveInputsView >> showMethodIsNotValidError [
+PyramidSaveProjectConfigurationView >> showMethodIsNotValidError [
 
 	self labelErrorMethod
 		displayColor: [ Color red ];
@@ -206,7 +221,7 @@ PyramidSaveInputsView >> showMethodIsNotValidError [
 ]
 
 { #category : #'as yet unclassified' }
-PyramidSaveInputsView >> showModelNilError [
+PyramidSaveProjectConfigurationView >> showModelNilError [
 
 	self labelErrorPackage
 		displayColor: [Color red];
@@ -214,7 +229,7 @@ PyramidSaveInputsView >> showModelNilError [
 ]
 
 { #category : #'as yet unclassified' }
-PyramidSaveInputsView >> showPackageIsNotValidError [
+PyramidSaveProjectConfigurationView >> showPackageIsNotValidError [
 
 	self labelErrorPackage
 		displayColor: [ Color red ];
@@ -222,7 +237,7 @@ PyramidSaveInputsView >> showPackageIsNotValidError [
 ]
 
 { #category : #'as yet unclassified' }
-PyramidSaveInputsView >> showProjectNilError [
+PyramidSaveProjectConfigurationView >> showProjectNilError [
 
 	self labelErrorPackage
 		displayColor: [Color red];
@@ -230,7 +245,7 @@ PyramidSaveInputsView >> showProjectNilError [
 ]
 
 { #category : #'as yet unclassified' }
-PyramidSaveInputsView >> updateFromModel [
+PyramidSaveProjectConfigurationView >> updateFromModel [
 
 	self inputPackage text: self model savingPackageName.
 	self inputClass text: self model savingClassName.

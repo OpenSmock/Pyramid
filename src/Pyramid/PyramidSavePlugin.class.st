@@ -58,7 +58,7 @@ PyramidSavePlugin >> connectOn: aPyramidEditor [
 { #category : #initialization }
 PyramidSavePlugin >> initialize [
 
-	inputsController := PyramidSaveInputsController new.
+	inputsController := PyramidSaveProjectConfigurationController new.
 	inputsView := inputsController view.
 	saveModel := inputsController model.
 
@@ -106,7 +106,9 @@ PyramidSavePlugin >> openOn: aSaveModel [
 
 	self inputsView inputClass text: aSaveModel savingClassName.
 	self inputsView inputMethod text: aSaveModel savingMethodName.
-	self inputsView inputPackage text: aSaveModel savingPackageName
+	self inputsView inputPackage text: aSaveModel savingPackageName.
+	aSaveModel isClassSide ifTrue: [ self inputsView buttonClass click ] ifFalse: [ self inputsView buttonInstance click ]
+	
 ]
 
 { #category : #accessing }
