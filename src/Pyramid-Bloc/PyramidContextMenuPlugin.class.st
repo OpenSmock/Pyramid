@@ -43,6 +43,13 @@ PyramidContextMenuPlugin >> editor: anObject [
 ]
 
 { #category : #'as yet unclassified' }
+PyramidContextMenuPlugin >> getNameForSingle: aBlElement [
+
+	aBlElement id asSymbol ifNil: [ ^ '@\no name\ ', aBlElement hash printString ].
+^ aBlElement id asSymbol , ' ' , aBlElement hash printString
+]
+
+{ #category : #'as yet unclassified' }
 PyramidContextMenuPlugin >> menuBrowseAndInspectOn: aBuilder [
 
 	aBuilder addGroupSingleSelection: [ :group :single |
@@ -81,23 +88,27 @@ PyramidContextMenuPlugin >> menuBrowseAndInspectOn: aBuilder [
 { #category : #'as yet unclassified' }
 PyramidContextMenuPlugin >> menuContextOn: aBuilder [
 
-	aBuilder addGroupSingleSelection: [ :group :single |
-		group
-			addItem: [ :item |
-				item
-					icon: (self iconNamed: single systemIconName);
-					name: single id asSymbol , ' ' , single hash printString;
-					enabled: false;
-					yourself ];
-			yourself ] order: 0.
+	aBuilder
+		addGroupSingleSelection: [ :group :single |
+			group
+				addItem: [ :item |
+					item
+						icon: (self iconNamed: single systemIconName);
+						name: (self getNameForSingle: single);
+						enabled: false;
+						yourself ];
+				yourself ]
+		order: 0.
 
-	aBuilder addGroupMultiSelection: [ :group :multi |
-		group
-			addItem: [ :item |
-				item
-					icon: (self iconNamed: #collection);
-					name: multi size printString , ' elements';
-					enabled: false;
-					yourself ];
-			yourself ] order: 0
+	aBuilder
+		addGroupMultiSelection: [ :group :multi |
+			group
+				addItem: [ :item |
+					item
+						icon: (self iconNamed: #collection);
+						name: multi size printString , ' elements';
+						enabled: false;
+						yourself ];
+				yourself ]
+		order: 0
 ]
