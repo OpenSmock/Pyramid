@@ -48,11 +48,16 @@ PyramidSaveInputsView >> defaultLayout [
 
 	^ SpBoxLayout newVertical
 		  spacing: 4;
+		  add: (SpLabelPresenter new
+				   label: 'Project configuration';
+				   displayBold: [ :c | true ];
+				   yourself)
+		  expand: false;
 		  add: self inputPackage expand: false;
 		  add: self labelErrorPackage expand: false;
 		  add: self inputClass expand: false;
 		  add: self labelErrorClass expand: false;
-		 add: self inputMethod expand: false;
+		  add: self inputMethod expand: false;
 		  add: self labelErrorMethod expand: false;
 		  add: (SpBoxLayout newHorizontal
 				   add: self buttonClass;

@@ -10,7 +10,6 @@ Class {
 		'inputsButton',
 		'savingService',
 		'saveButton',
-		'inputsPopover',
 		'projectModel'
 	],
 	#category : #'Pyramid-plugin-save'
@@ -65,23 +64,21 @@ PyramidSavePlugin >> initialize [
 
 	savingService := PyramidSavingService new
 		                 savingModel: saveModel;
-		         
 		                 methodBuilder: PyramidSavingMethodBuilder ston;
 		                 yourself.
 
 	inputsButton := SpButtonPresenter new
 		                icon: (self iconNamed: #smallRemoteOpen);
-							help: 'Project configuration';
-		                action: [ inputsPopover popup ];
-		                yourself.
-	inputsPopover := PyramidPopoverFactory
+		                help: 'Project configuration';
+		                action: [( PyramidPopoverFactory
 		                 makeWithPresenter: inputsView
 		                 relativeTo: inputsButton
-		                 position: SpPopoverPosition right.
+		                 position: SpPopoverPosition right) popup. ];
+		                yourself.
 
 	saveButton := SpButtonPresenter new
 		              icon: (self iconNamed: #smallSave);
-		 					help: 'Save project';
+		              help: 'Save project';
 		              action: [ self saveAction ];
 		              yourself
 ]
