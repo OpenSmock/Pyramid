@@ -1,13 +1,6 @@
 Extension { #name : #BlColorPaint }
 
 { #category : #'*Pyramid-Bloc' }
-BlColorPaint >> = aBlPaint [
-
-	super = aBlPaint ifFalse: [ ^ false ].
-	^ self color = aBlPaint color
-]
-
-{ #category : #'*Pyramid-Bloc' }
 BlColorPaint >> asForm [
 
 	^ (Morph new

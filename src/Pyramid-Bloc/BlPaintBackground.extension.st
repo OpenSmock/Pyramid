@@ -1,13 +1,6 @@
 Extension { #name : #BlPaintBackground }
 
 { #category : #'*Pyramid-Bloc' }
-BlPaintBackground >> = aBlBackground [
-
-	super = aBlBackground ifFalse: [ ^ false ].
-	^ self paint = aBlBackground paint
-]
-
-{ #category : #'*Pyramid-Bloc' }
 BlPaintBackground >> asForm [
 
 	^ self paint asForm
