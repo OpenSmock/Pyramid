@@ -60,16 +60,28 @@ PyramidSaveProjectConfigurationView >> defaultLayout [
 				   displayBold: [ :c | true ];
 				   yourself)
 		  expand: false;
-		  add: self inputPackage expand: false;
+		  add: (SpBoxLayout newHorizontal
+				   spacing: 4;
+				   add: (self iconNamed: #packageColored) expand: false;
+				   add: self inputPackage)
+		  expand: false;
 		  add: self labelErrorPackage expand: false;
-		  add: self inputClass expand: false;
+		  add: (SpBoxLayout newHorizontal
+				   spacing: 4;
+				   add: (self iconNamed: #class) expand: false;
+				   add: self inputClass)
+		  expand: false;
 		  add: self labelErrorClass expand: false;
-		  add: self inputMethod expand: false;
+		  add: (SpBoxLayout newHorizontal
+				   spacing: 4;
+				   add: (self iconNamed: #changeUpdate) expand: false;
+				   add: self inputMethod)
+		  expand: false;
 		  add: self labelErrorMethod expand: false;
 		  add: (SpBoxLayout newHorizontal
 				   add: self buttonClass;
 				   add: self buttonInstance;
-					add: self buttonBrowse width: 32;
+				   add: self buttonBrowse width: 32;
 				   yourself)
 		  expand: false;
 		  yourself

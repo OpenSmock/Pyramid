@@ -15,13 +15,18 @@ PyramidSaveProjectConfigurationController >> browseProjectClass [
 	| class |
 	class := self class environment classNamed:
 		         self model savingClassName.
-	class ifNil: [ ^ self ].
-	self model isClassSide ifTrue: [ Smalltalk tools browser
-		openOnClass: class class
-		selector: self model savingMethodName ] ifFalse: [ Smalltalk tools browser
-		openOnClass: class
-		selector: self model savingMethodName ]
-	
+	class ifNil: [ 
+		UIManager default inform: 'Class do not exist yet. It will be created the first time you saved it.'.
+		^ self ].
+	self model isClassSide
+		ifTrue: [
+			Smalltalk tools browser
+				openOnClass: class class
+				selector: self model savingMethodName ]
+		ifFalse: [
+			Smalltalk tools browser
+				openOnClass: class
+				selector: self model savingMethodName ]
 ]
 
 { #category : #accessing }
@@ -73,7 +78,7 @@ PyramidSaveProjectConfigurationController >> updateView [
 	| errors |
 	errors := self verifier allErrors: self model.
 	self view hideLabels.
-	self view buttonBrowse enabled: errors isEmpty. 
+	self view buttonBrowse enabled: errors isEmpty.
 	errors do: [ :each | each showOn: self view ]
 ]
 
