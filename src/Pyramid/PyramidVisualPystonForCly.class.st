@@ -94,15 +94,22 @@ PyramidVisualPystonForCly >> build [
 { #category : #'as yet unclassified' }
 PyramidVisualPystonForCly >> buttonEditor [
 
+	^ self buttonLabel: 'Edit' help: 'Open the design in Pyramid' action: [ self openEditor ].
+	
+]
+
+{ #category : #'as yet unclassified' }
+PyramidVisualPystonForCly >> buttonLabel: aLabel help: aString action: aBlock [
+
 	| button |
-	button := SimpleButtonMorph newWithLabel: 'Edit'.
+	button := SimpleButtonMorph newWithLabel: aLabel.
 	button
 		actionSelector: #value;
-		helpText: 'Open the design in Pyramid';
+		helpText: aString;
 		extent: 200 @ 25;
 		useRoundedCorners;
 		color: Color white.
-	button target: [ self openEditor ].
+	button target: aBlock.
 
 	^ button
 ]
@@ -110,17 +117,11 @@ PyramidVisualPystonForCly >> buttonEditor [
 { #category : #'as yet unclassified' }
 PyramidVisualPystonForCly >> buttonOpen [
 
-	| button |
-	button := SimpleButtonMorph newWithLabel: 'Open in new Space'.
-	button
-		actionSelector: #value;
-		helpText: 'Open this design in a new space';
-		extent: 200 @ 25;
-		useRoundedCorners;
-		color: Color white.
-	button target: [ self openInNewSpace ].
+	^ self
+		  buttonLabel: 'Open in new Space'
+		  help: 'Open this design in a new BlSpace'
+		  action: [ self openInNewSpace ]
 
-	^ button
 ]
 
 { #category : #initialization }
@@ -144,14 +145,14 @@ PyramidVisualPystonForCly >> detachFromSystem [
 { #category : #'as yet unclassified' }
 PyramidVisualPystonForCly >> getStonFromMethod [
 
-	^(method literals select: [ :e | e isString ]) first.
+	^ (method valueWithReceiver: self arguments: {  })
+
 ]
 
 { #category : #testing }
 PyramidVisualPystonForCly >> isSimilarTo: anotherBrowserTool [
 
 	(super isSimilarTo: anotherBrowserTool) ifFalse: [ ^ false ].
-
 	^ self method = anotherBrowserTool method
 ]
 
@@ -218,6 +219,7 @@ PyramidVisualPystonForCly >> setUpModelFromContext [
 { #category : #updating }
 PyramidVisualPystonForCly >> update [
 
+	super update.
 	method := method origin
 		          localMethodNamed: method selector
 		          ifAbsent: [ ^ self ].
@@ -227,8 +229,6 @@ PyramidVisualPystonForCly >> update [
 			             addChildren: blElement;
 			             size: 1500 @ 1500;
 			             yourself ].
-
-	super update.
 
 	imageMorph form: blElement exportAsForm
 ]
