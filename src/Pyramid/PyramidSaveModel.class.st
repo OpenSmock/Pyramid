@@ -11,6 +11,15 @@ Class {
 	#category : #'Pyramid-plugin-save'
 }
 
+{ #category : #converting }
+PyramidSaveModel >> asTitleString [
+	| string |
+	string := '[', self savingClassName ,'] '.
+	self isClassSide ifTrue: [ string := string , 'class ' ].
+	string := string , '>> ' , self savingMethodName.
+	^ string
+]
+
 { #category : #testing }
 PyramidSaveModel >> isClassSide [
 

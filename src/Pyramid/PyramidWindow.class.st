@@ -3,7 +3,9 @@ Class {
 	#superclass : #Object,
 	#instVars : [
 		'presenter',
-		'services'
+		'services',
+		'title',
+		'spec'
 	],
 	#category : #'Pyramid-views'
 }
@@ -18,6 +20,12 @@ Licensed under the MIT License
 Copyright (c) 2022-2023 OpenSmock
 
 https://github.com/OpenSmock/Pyramid'
+]
+
+{ #category : #'window - properties' }
+PyramidWindow class >> defaultTitle [
+
+	^ 'New project | Pyramid'
 ]
 
 { #category : #accessing }
@@ -36,15 +44,15 @@ PyramidWindow >> close [
 { #category : #initialization }
 PyramidWindow >> initialize [
 
+	title := self class defaultTitle.
+
 	PyramidPanelModel toolbarHorizontal installOn: self at: #topLeft.
 	PyramidPanelModel toolbarHorizontal installOn: self at: #topCenter.
 	PyramidPanelModel toolbarHorizontal installOn: self at: #topRight.
 	PyramidPanelModel presenter installOn: self at: #space.
 	PyramidPanelModel tab installOn: self at: #tabLeft.
 	PyramidPanelModel tab installOn: self at: #tabRight.
-	PyramidPanelModel menu
-		installOn: self
-		at: #selectionMenu.
+	PyramidPanelModel menu installOn: self at: #selectionMenu
 ]
 
 { #category : #initialization }
@@ -76,9 +84,9 @@ PyramidWindow >> layout [
 { #category : #'api - showing' }
 PyramidWindow >> open [
 
-	| spec |
 	spec := self presenter asWindow open.
 	spec maximize.
+	spec title: self title.
 	spec aboutText: self class aboutText.
 	^ spec
 ]
@@ -105,4 +113,17 @@ PyramidWindow >> services [
 
 	services ifNil: [ services := Dictionary new ].
 	^ services
+]
+
+{ #category : #'api - showing' }
+PyramidWindow >> title [
+
+	^ title
+]
+
+{ #category : #'api - showing' }
+PyramidWindow >> title: aString [
+
+	title := aString.
+	self isOpen ifTrue: [ self presenter owner title: aString ]
 ]

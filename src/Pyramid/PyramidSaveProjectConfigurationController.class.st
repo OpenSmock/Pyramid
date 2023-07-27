@@ -4,7 +4,8 @@ Class {
 	#instVars : [
 		'view',
 		'model',
-		'verifier'
+		'verifier',
+		'editorWindow'
 	],
 	#category : #'Pyramid-plugin-save'
 }
@@ -27,6 +28,18 @@ PyramidSaveProjectConfigurationController >> browseProjectClass [
 			Smalltalk tools browser
 				openOnClass: class
 				selector: self model savingMethodName ]
+]
+
+{ #category : #accessing }
+PyramidSaveProjectConfigurationController >> editorWindow [
+
+	^ editorWindow
+]
+
+{ #category : #accessing }
+PyramidSaveProjectConfigurationController >> editorWindow: anObject [
+
+	editorWindow := anObject
 ]
 
 { #category : #accessing }
@@ -73,13 +86,34 @@ PyramidSaveProjectConfigurationController >> textUpdatedFromPackage: aString [
 ]
 
 { #category : #'as yet unclassified' }
+PyramidSaveProjectConfigurationController >> updateEditorWindow [
+
+	| title |
+	self editorWindow ifNil: [ ^ self ].
+	title := self model asTitleString , ' | Pyramid'.
+	self editorWindow title: title
+]
+
+{ #category : #'as yet unclassified' }
+PyramidSaveProjectConfigurationController >> updateEditorWindowWithErrors: aCollection [
+
+	| title |
+	self editorWindow ifNil: [ ^ self ].
+	 title :=  aCollection
+		ifNotEmpty: [self editorWindow class defaultTitle ]
+		ifEmpty: [ self model asTitleString , ' | Pyramid' ].
+	self editorWindow title: title
+]
+
+{ #category : #'as yet unclassified' }
 PyramidSaveProjectConfigurationController >> updateView [
 
 	| errors |
 	errors := self verifier allErrors: self model.
 	self view hideLabels.
 	self view buttonBrowse enabled: errors isEmpty.
-	errors do: [ :each | each showOn: self view ]
+	errors do: [ :each | each showOn: self view ].
+	self updateEditorWindowWithErrors: errors
 ]
 
 { #category : #accessing }

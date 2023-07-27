@@ -39,6 +39,8 @@ PyramidSavePlugin class >> openOn: aCollectionOfBlElement saveModel: aSaveModel 
 { #category : #adding }
 PyramidSavePlugin >> addPanelsOn: aPyramidSimpleWindow [
 
+	self inputsController editorWindow: aPyramidSimpleWindow.
+
 	aPyramidSimpleWindow
 		at: #topLeft
 		addItem: [ :builder |
