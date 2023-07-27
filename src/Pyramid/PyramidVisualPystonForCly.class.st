@@ -98,8 +98,8 @@ PyramidVisualPystonForCly >> buttonEditor [
 	button := SimpleButtonMorph newWithLabel: 'Edit'.
 	button
 		actionSelector: #value;
-		helpText: 'Open the PyEditor on this STON';
-		extent: 100 @ 25;
+		helpText: 'Open the design in Pyramid';
+		extent: 200 @ 25;
 		useRoundedCorners;
 		color: Color white.
 	button target: [ self openEditor ].
@@ -111,11 +111,11 @@ PyramidVisualPystonForCly >> buttonEditor [
 PyramidVisualPystonForCly >> buttonOpen [
 
 	| button |
-	button := SimpleButtonMorph newWithLabel: 'Open'.
+	button := SimpleButtonMorph newWithLabel: 'Open in new Space'.
 	button
 		actionSelector: #value;
-		helpText: 'Open the this STON in new space';
-		extent: 100 @ 25;
+		helpText: 'Open this design in a new space';
+		extent: 200 @ 25;
 		useRoundedCorners;
 		color: Color white.
 	button target: [ self openInNewSpace ].
@@ -132,7 +132,7 @@ PyramidVisualPystonForCly >> defaultIconName [
 { #category : #initialization }
 PyramidVisualPystonForCly >> defaultTitle [
 
-	^ 'Bloc preview'
+	^ 'Pyramid preview'
 ]
 
 { #category : #controlling }
@@ -212,13 +212,7 @@ PyramidVisualPystonForCly >> resetStateForSnapshot [
 { #category : #initialization }
 PyramidVisualPystonForCly >> setUpModelFromContext [
 
-	method := context firstSelectedMethod.
-	"blElement := self getStonFromMethod materializeAsBlElement.
-	blElement isCollection ifTrue: [
-		blElement := BlElement new
-			             addChildren: blElement;
-			             size: 1500 @ 1500;
-			             yourself ]"
+	method := context firstSelectedMethod
 ]
 
 { #category : #updating }
