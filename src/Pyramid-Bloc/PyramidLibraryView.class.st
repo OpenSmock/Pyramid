@@ -5,7 +5,8 @@ Class {
 		'list',
 		'preview',
 		'editor',
-		'addButton'
+		'addButton',
+		'idGenerator'
 	],
 	#category : #'Pyramid-Bloc-plugin-library'
 }
@@ -32,34 +33,19 @@ PyramidLibraryView >> defaultItemsList [
 
 	^ {
 		  (PyramidLibraryElement new
-			   title: 'Square red';
+			   title: 'Square with randomized color';
 			   blockMaker: [
 				   BlElement new
-					   background: Color red;
-					   id: #red;
-					   yourself ];
-			   yourself).
-		  (PyramidLibraryElement new
-			   title: 'Square green';
-			   blockMaker: [
-				   BlElement new
-					   background: Color green;
-					   id: #green;
-					   yourself ];
-			   yourself).
-		  (PyramidLibraryElement new
-			   title: 'Square blue';
-			   blockMaker: [
-				   BlElement new
-					   background: Color blue;
-					   id: #blue;
+					   background: Color random;
+					   id: self idGenerator next;
 					   yourself ];
 			   yourself).
 		  (PyramidLibraryElement new
 			   title: 'Text';
 			   blockMaker: [
-				   ('Example' asRopedText )
-					   asElement ];
+				   'text' asRopedText asElement
+					   id: self idGenerator next;
+					   yourself ];
 			   yourself) }
 ]
 
@@ -104,13 +90,31 @@ PyramidLibraryView >> editor: aPyramidEditor [
 	editor := aPyramidEditor
 ]
 
+{ #category : #accessing }
+PyramidLibraryView >> idGenerator [
+
+	^ idGenerator
+]
+
 { #category : #initialization }
 PyramidLibraryView >> initializePresenters [
 
+	idGenerator:= Generator on: [ :generator |
+		| index |
+		index := 1.
+		[ 	Character alphabet do: [ :each |
+				| next suffix |
+				next := each asUppercase asString.
+				suffix := index = 1
+					ifTrue: [ '' ]
+					ifFalse: [ index asString ].
+				generator yield: next, suffix ].
+			index := index + 1 ] repeat ].
+
 	addButton := SpButtonPresenter new
-		                  label: self buttonLabel;
-		                  action: [ self buttonAction ];
-		                  yourself.
+		             label: self buttonLabel;
+		             action: [ self buttonAction ];
+		             yourself.
 	preview := SpImagePresenter new.
 	list := SpListPresenter new
 		        beSingleSelection;
