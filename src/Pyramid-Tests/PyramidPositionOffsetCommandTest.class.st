@@ -40,6 +40,60 @@ PyramidPositionOffsetCommandTest >> targetsWithValuesAndValues [
 ]
 
 { #category : #tests }
+PyramidPositionOffsetCommandTest >> testHistory [
+	"Do once.
+	undo
+	redo
+	undo
+	redo"
+
+	| history commandExecutor targets initialValue |
+	targets := {
+		           BlElement new.
+		           BlElement new.
+		           BlElement new }.
+	initialValue := 0 @ 0.
+	history := PyramidHistory new.
+	commandExecutor := PyramidHistoryCommandExecutor new
+		                   history: history;
+		                   wrappee: PyramidMainCommandExecutor new;
+		                   yourself.
+
+	"Do once"
+	self argumentsForHistory do: [ :each |
+		commandExecutor use: self command on: targets with: each.
+		initialValue := initialValue + each ].
+
+	"Undo all"
+	self argumentsForHistory reverseDo: [ :argument |
+		targets do: [ :target |
+			self assert: (self command getValueFor: target) equals: initialValue ].
+		initialValue := initialValue - argument.
+		history canUndo ifTrue: [ history undo ] ].
+
+	"Redo all"
+	self argumentsForHistory do: [ :argument |
+		initialValue := initialValue + argument.
+		history canRedo ifTrue: [ history redo ].
+		targets do: [ :target |
+			self assert: (self command getValueFor: target) equals: initialValue ] ].
+
+	"Undo all"
+	self argumentsForHistory reverseDo: [ :argument |
+		targets do: [ :target |
+			self assert: (self command getValueFor: target) equals: initialValue ].
+		initialValue := initialValue - argument.
+		history canUndo ifTrue: [ history undo ] ].
+
+	"Redo all"
+	self argumentsForHistory do: [ :argument |
+		initialValue := initialValue + argument.
+		history canRedo ifTrue: [ history redo ].
+		targets do: [ :target |
+			self assert: (self command getValueFor: target) equals: initialValue ] ]
+]
+
+{ #category : #tests }
 PyramidPositionOffsetCommandTest >> testSetValueForWith [
 
 	self targetsWithoutValuesAndValues do: [ :each |

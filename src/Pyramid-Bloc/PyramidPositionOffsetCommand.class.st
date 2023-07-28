@@ -5,25 +5,21 @@ Class {
 }
 
 { #category : #'as yet unclassified' }
+PyramidPositionOffsetCommand >> commandInverse [
+
+	^ PyramidPositionCommand new
+]
+
+{ #category : #'as yet unclassified' }
 PyramidPositionOffsetCommand >> getValueFor: aBlElement [
 
 	^ aBlElement constraints position
 ]
 
 { #category : #'as yet unclassified' }
-PyramidPositionOffsetCommand >> saveStatesOf: aCollection withCommand: aCommand withArguments: anArguments [
+PyramidPositionOffsetCommand >> saveStatesOf: aCollection with: arguments [
 
-	| mementos |
-	mementos := aCollection collect: [ :each |
-		            PyramidCommandMemento new
-			            command: PyramidPositionCommand new;
-			            target: each;
-			            arguments: (self getValueFor: each);
-			            yourself ].
-	mementos size = 1 ifTrue: [ ^ mementos first ].
-	^ PyramidCompositeMemento new
-		  mementos: mementos;
-		  yourself
+	^ self saveStatesWithCommandInverseOf: aCollection with: arguments
 ]
 
 { #category : #'as yet unclassified' }
