@@ -16,3 +16,9 @@ PyramidBlocTextCommand >> canBeUsedFor: anObject [
 	^ anObject class = BlTextElement or: [
 		  anObject class inheritsFrom: BlTextElement ]
 ]
+
+{ #category : #'as yet unclassified' }
+PyramidBlocTextCommand >> getAttributesOf: aBlText [
+
+	^ (aBlText attributesFinder attributesAndIndicesSuchThat: [ :a | true ]) collect: [ :each | each key ].
+]

@@ -5,12 +5,6 @@ Class {
 }
 
 { #category : #'as yet unclassified' }
-PyramidChangeTextCommand >> getAttributesOf: aBlText [
-
-	^ (aBlText attributesFinder attributesAndIndicesSuchThat: [ :a | true ]) collect: [ :each | each key ].
-]
-
-{ #category : #'as yet unclassified' }
 PyramidChangeTextCommand >> getValueFor: aBlTextElement [
 
 	^ aBlTextElement text asString
