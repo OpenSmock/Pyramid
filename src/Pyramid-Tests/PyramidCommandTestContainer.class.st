@@ -6,7 +6,7 @@ Class {
 		'targetWithProp',
 		'prop'
 	],
-	#category : #'Pyramid-Tests-cases-plugin-bloc'
+	#category : #'Pyramid-Tests-cases-command'
 }
 
 { #category : #'as yet unclassified' }
