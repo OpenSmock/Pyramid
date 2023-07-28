@@ -9,7 +9,7 @@ Pyramid is a User-Interface (UI) editor.
 
 Pyramid is a WYSIWYG application (What You See Is What You Get) in other terms it allows you to visually design the expected outcome.
 
-Pyramid help you to produce final UI using Bloc library (and also Toplo).
+Pyramid helps you to produce final UI using Bloc library (and also Toplo).
 
 ## <img src="/resources/puce.svg" width="75" height="75" align="bottom"> How to start
 
