@@ -2,7 +2,6 @@ Class {
 	#name : #PyramidVisualPystonForCly,
 	#superclass : #ClyBrowserToolMorph,
 	#instVars : [
-		'blElement',
 		'method',
 		'imageMorph'
 	],
@@ -76,7 +75,7 @@ PyramidVisualPystonForCly >> belongsToRemovedBrowserContext [
 { #category : #building }
 PyramidVisualPystonForCly >> build [
 
-	| buttonEditor buttonOpen |
+	| buttonEditor buttonOpen blElement |
 	self cellInset: 5.
 	buttonEditor := self buttonEditor.
 	buttonOpen := self buttonOpen.
@@ -185,16 +184,19 @@ PyramidVisualPystonForCly >> openInNewSpace [
 
 	| class elements space |
 	class := method classBinding value.
-	elements := class isMeta ifTrue: [
-		 (method classBinding value instanceSide perform: method selector) materializeAsBlElement
-		] ifFalse: [ 
-	(method classBinding value new perform: method selector) materializeAsBlElement ].
+	elements := class isMeta
+		            ifTrue: [
+			            (method classBinding value instanceSide perform:
+				             method selector) materializeAsBlElement ]
+		            ifFalse: [
+			            (method classBinding value new perform: method selector)
+				            materializeAsBlElement ].
 
 	elements isCollection ifFalse: [ elements := { elements } ].
-	
+
 	elements ifEmpty: [ ^ self ].
-	space := elements first openInNewSpace.
-	space root addChildren: elements allButFirst.
+	space := elements first openInNewSpaceWithPyramidShortcut.
+	space root addChildren: elements allButFirst
 ]
 
 { #category : #printing }
@@ -220,6 +222,7 @@ PyramidVisualPystonForCly >> setUpModelFromContext [
 { #category : #updating }
 PyramidVisualPystonForCly >> update [
 
+	| blElement |
 	super update.
 	method := method origin
 		          localMethodNamed: method selector
