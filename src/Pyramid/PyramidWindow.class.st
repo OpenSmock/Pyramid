@@ -40,7 +40,6 @@ PyramidWindow >> close [
 
 	self isOpen ifFalse: [ ^ self ].
 	self presenter owner close.
-	self whenClosedDo value
 ]
 
 { #category : #initialization }

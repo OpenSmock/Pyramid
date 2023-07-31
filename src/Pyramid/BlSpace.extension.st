@@ -5,8 +5,10 @@ BlSpace >> editWithPyramid [
 
 	| editor elements spacePlaceholder |
 	spacePlaceholder := (self root exportAsForm dimmed: 0.5) asElement.
-	spacePlaceholder addChildren: (PyramidLogo logoOpenInPyramid materializeAsBlElement).
+	spacePlaceholder addChildren:
+		PyramidLogo logoOpenInPyramid materializeAsBlElement.
 	editor := PyramidPluginManager uniqueInstance makeEditor.
+	editor window open.
 
 	elements := self root children asArray.
 	elements do: [ :each | self root removeChild: each ].
@@ -21,7 +23,5 @@ BlSpace >> editWithPyramid [
 		editor projectModel roots removeAll.
 		self root removeChildren.
 		self root addChildren: pyramidRoots ].
-
-	editor window open.
 	^ editor
 ]
