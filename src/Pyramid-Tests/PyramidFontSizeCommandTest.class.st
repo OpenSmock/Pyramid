@@ -1,5 +1,5 @@
 Class {
-	#name : #PyramidFontWeightCommandTest,
+	#name : #PyramidFontSizeCommandTest,
 	#superclass : #TestCase,
 	#traits : 'TPyramidFontAttributeCommandTest',
 	#classTraits : 'TPyramidFontAttributeCommandTest classTrait',
@@ -7,45 +7,45 @@ Class {
 }
 
 { #category : #'as yet unclassified' }
-PyramidFontWeightCommandTest >> attributeClass [
+PyramidFontSizeCommandTest >> attributeClass [
 
-	^ BlFontWeightAttribute
+	^ BlFontSizeAttribute
 ]
 
 { #category : #accessing }
-PyramidFontWeightCommandTest >> command [
+PyramidFontSizeCommandTest >> command [
 
-	^ PyramidFontWeightCommand new
+	^ PyramidFontSizeCommand new
 ]
 
 { #category : #'as yet unclassified' }
-PyramidFontWeightCommandTest >> targetContainers [
+PyramidFontSizeCommandTest >> targetContainers [
 
 	^ {
 		  (PyramidCommandTestContainer
 			   no: 'test1' asRopedText asElement
 			   with: ('test1' asRopedText
-					    black;
+					    fontSize: 20;
 					    yourself) asElement
-			   prop: LogicalFont weightBlack).
+			   prop: 20).
 		  (PyramidCommandTestContainer
 			   no: ('test2' asRopedText
-					    black;
+					    fontSize: 20;
 					    yourself) asElement
 			   with: ('test2' asRopedText
-					    thin;
+					     fontSize: 5;
 					    yourself) asElement
-			   prop: LogicalFont weightThin).
+			   prop: 5).
 		  (PyramidCommandTestContainer
 			   no: ('test3' asRopedText
-					    bold;
+					     bold;
 					    attribute: (BlFontSizeAttribute size: 20);
 					    attribute: (BlTextForegroundAttribute color: Color green);
 					    yourself) asElement
 			   with: ('test3' asRopedText
-					    thin;
-					    attribute: (BlFontSizeAttribute size: 20);
+					    bold;
+					    attribute: (BlFontSizeAttribute size: 30);
 					    attribute: (BlTextForegroundAttribute color: Color green);
 					    yourself) asElement
-			   prop: LogicalFont weightThin) }
+			   prop: 30) }
 ]
