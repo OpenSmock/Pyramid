@@ -53,10 +53,26 @@ PyramidBlocTextPlugin class >> initialize [
 	PyramidPluginManager uniqueInstance addPlugin: self
 ]
 
+{ #category : #accessing }
+PyramidBlocTextPlugin class >> textForeground [
+
+	| property |
+	property := PyramidProperty new
+		            name: 'Text foreground';
+		            command: PyramidTextForegroundCommand new;
+		            pyramidInputPresenterClass:
+			            PyramidColorInputSingleLinePresenter;
+		            yourself.
+	property pyramidInputPresenterModel help:
+		'Change the color of the text'.
+	^ property
+]
+
 { #category : #'as yet unclassified' }
 PyramidBlocTextPlugin >> connectOn: aPyramidEditor [
 
 	aPyramidEditor propertiesManager addProperty: self class changeText.
 	aPyramidEditor propertiesManager addProperty: self class fontSize.
-	aPyramidEditor propertiesManager addProperty: self class fontWeight
+	aPyramidEditor propertiesManager addProperty: self class fontWeight.
+	aPyramidEditor propertiesManager addProperty: self class textForeground
 ]
