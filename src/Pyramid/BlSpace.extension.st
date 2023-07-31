@@ -23,6 +23,5 @@ BlSpace >> editWithPyramid [
 		editor projectModel roots removeAll.
 		self root removeChildren.
 		self root addChildren: pyramidRoots ].
-
 	^ editor
 ]
