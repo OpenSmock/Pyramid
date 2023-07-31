@@ -91,6 +91,7 @@ PyramidWindow >> open [
 	spec maximize.
 	spec title: self title.
 	spec aboutText: self class aboutText.
+	spec whenClosedDo: [ self whenClosedDo value ].
 	^ spec
 ]
 

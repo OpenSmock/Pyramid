@@ -4,12 +4,12 @@ Extension { #name : #BlSpace }
 BlSpace >> editWithPyramid [
 
 	| editor elements spacePlaceholder |
-	spacePlaceholder := (self root exportAsForm lighter: 0.4) asElement.
+	spacePlaceholder := (self root exportAsForm lighter: 0.6) asElement.
 	editor := PyramidPluginManager uniqueInstance makeEditor.
 
 	elements := self root children asArray.
 	elements do: [ :each | self root removeChild: each ].
-	self root addChild: spacePlaceholder.
+	"self root addChild: spacePlaceholder."
 
 	editor projectModel roots addAll: elements.
 	editor window whenClosedDo: [
