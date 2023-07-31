@@ -5,7 +5,8 @@ Class {
 		'presenter',
 		'services',
 		'title',
-		'spec'
+		'spec',
+		'whenClosedDo'
 	],
 	#category : #'Pyramid-views'
 }
@@ -37,14 +38,16 @@ PyramidWindow >> at: aSymbol addItem: aBlock [
 { #category : #'api - showing' }
 PyramidWindow >> close [
 
-	self isOpen ifFalse:[ ^ self ].
-	self presenter owner close
+	self isOpen ifFalse: [ ^ self ].
+	self presenter owner close.
+	self whenClosedDo value
 ]
 
 { #category : #initialization }
 PyramidWindow >> initialize [
 
 	title := self class defaultTitle.
+	whenClosedDo := [  ].
 
 	PyramidPanelModel toolbarHorizontal installOn: self at: #topLeft.
 	PyramidPanelModel toolbarHorizontal installOn: self at: #topCenter.
@@ -126,4 +129,16 @@ PyramidWindow >> title: aString [
 
 	title := aString.
 	self isOpen ifTrue: [ self presenter owner title: aString ]
+]
+
+{ #category : #accessing }
+PyramidWindow >> whenClosedDo [
+
+	^ whenClosedDo
+]
+
+{ #category : #accessing }
+PyramidWindow >> whenClosedDo: aBlock [
+
+	whenClosedDo:= aBlock
 ]
