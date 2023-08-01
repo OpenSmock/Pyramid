@@ -58,54 +58,58 @@ PyramidPluginHierarchy >> initialize [
 { #category : #'as yet unclassified' }
 PyramidPluginHierarchy >> menuAddAndDeleteOn: aBuilder [
 
-	aBuilder addGroupEmptySelection: [ :group :empty |
-		group addItem: [ :anItem |
-			anItem
-				name: 'Add new root';
-				icon: (self iconNamed: #add);
-				action: [
-					(PyramidPopoverFactory
-						 makeWithPresenter: (PyramidLibraryViewForRoot new
-								  editor: self editor;
-								  yourself)
-						 relativeTo: self view
-						 position: SpPopoverPosition right) popup ] ] ] order: 10.
+	aBuilder
+		addGroupEmptySelection: [ :group :empty |
+			group addItem: [ :anItem |
+				anItem
+					name: 'Add new root';
+					icon: (self iconNamed: #add);
+					action: [
+						(PyramidPopoverFactory
+							 makeWithPresenter: (PyramidLibraryViewForRoot new
+									  editor: self editor;
+									  yourself)
+							 relativeTo: self view
+							 position: SpPopoverPosition right) popup ] ] ]
+		order: 10.
 
-	aBuilder addGroupSingleSelection: [ :group :single |
-		group addItem: [ :anItem |
-			anItem
-				name: 'Add new element';
-				icon: (self iconNamed: #add);
-				action: [
-					(PyramidPopoverFactory
-						 makeWithPresenter: (PyramidLibraryViewForElement new
-								  editor: self editor;
-								  yourself)
-						 relativeTo: self view
-						 position: SpPopoverPosition right) popup ] ].
-		group addItem: [ :anItem |
-			anItem
-				name: 'Remove selection';
-				icon: (self iconNamed: #delete);
-				action: [ self editor projectModel removeSelection ] ] ] order: 10.
+	aBuilder
+		addGroupSingleSelection: [ :group :single |
+			group addItem: [ :anItem |
+				anItem
+					name: 'Add new element';
+					icon: (self iconNamed: #add);
+					action: [
+						(PyramidPopoverFactory
+							 makeWithPresenter: (PyramidLibraryViewForElement new
+									  editor: self editor;
+									  yourself)
+							 relativeTo: self view
+							 position: SpPopoverPosition right) popup ] ].
+			group addItem: [ :anItem |
+				anItem
+					name: 'Remove selection';
+					icon: (self iconNamed: #delete);
+					action: [ self removeSelection ] ] ]
+		order: 10.
 
-	aBuilder addGroupMultiSelection: [ :group :multi |
-		group addItem: [ :anItem |
-			anItem
-				name: 'Add new element';
-				icon: (self iconNamed: #add);
-				action: [
-					(PyramidPopoverFactory
-						 makeWithPresenter: (PyramidLibraryViewForElement new
-								  editor: self editor;
-								  yourself)
-						 relativeTo: self view
-						 position: SpPopoverPosition right) popup ] ].
-		group addItem: [ :anItem |
-			anItem
-				name: 'Remove selection';
-				icon: (self iconNamed: #delete);
-				action: [ self editor projectModel removeSelection ] ] ] order: 10
+	aBuilder
+		addGroupMultiSelection: [ :group :multi |
+			group addItem: [ :anItem |
+				anItem
+					name: 'Remove selection';
+					icon: (self iconNamed: #delete);
+					action: [ self removeSelection ] ] ]
+		order: 10
+]
+
+{ #category : #removing }
+PyramidPluginHierarchy >> removeSelection [
+
+	self editor propertiesManager commandExecutor
+		use: PyramidRemoveSelectionCommand new
+		on: self editor projectModel selection
+		with: self editor projectModel roots
 ]
 
 { #category : #initialization }

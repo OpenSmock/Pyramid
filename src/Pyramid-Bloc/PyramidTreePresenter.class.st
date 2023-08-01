@@ -75,12 +75,6 @@ PyramidTreePresenter >> initializePresenters [
 { #category : #'as yet unclassified' }
 PyramidTreePresenter >> pyramidElementsChanged [
 
-	self updateSelection
-]
-
-{ #category : #'as yet unclassified' }
-PyramidTreePresenter >> pyramidPipelineExecuteCommand [
-
 	self updateRoots
 ]
 
