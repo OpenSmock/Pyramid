@@ -11,7 +11,7 @@ Class {
 PyramidLibraryViewForElement >> buttonAction [
 
 	self editor propertiesManager commandExecutor
-		use: PyramidAddChildrenCommand new
+		use: PyramidAddChildCommand new
 		on: self editor projectModel selection
 		with: self list selectedItem blockMaker value
 ]

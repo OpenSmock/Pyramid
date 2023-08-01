@@ -14,16 +14,16 @@ PyramidRemoveSelectionCommand >> getValueFor: anElementOfSelection [
 ]
 
 { #category : #'as yet unclassified' }
-PyramidRemoveSelectionCommand >> mementoFor: anElement withArguments: aFakeRoots onRoots: aRealRoots [
+PyramidRemoveSelectionCommand >> mementoFor: anElement withArguments: anArgument [
 
-	(aFakeRoots includes: anElement) ifTrue: [
+	(anArgument includes: anElement) ifTrue: [
 		^ PyramidCommandMemento new
-			  command: PyramidRemoveFromCollectionCommand new;
-			  target: aRealRoots;
+			  command: PyramidRemoveFromCollectionCommand new commandInverse;
+			  target: anArgument;
 			  arguments: anElement;
 			  yourself ].
 	^ PyramidCommandMemento new
-		  command: PyramidRemoveChildrenCommand new;
+		  command: PyramidRemoveChildCommand new commandInverse;
 		  target: anElement parent;
 		  arguments: anElement;
 		  yourself
@@ -42,22 +42,6 @@ PyramidRemoveSelectionCommand >> mementoInverse: anObject [
 ]
 
 { #category : #'as yet unclassified' }
-PyramidRemoveSelectionCommand >> mementoInvertedFor: anElement withArguments: aRoots [
-
-	(aRoots includes: anElement) ifTrue: [
-		^ PyramidCommandMemento new
-			  command: PyramidRemoveFromCollectionCommand new commandInverse;
-			  target: aRoots;
-			  arguments: anElement;
-			  yourself ].
-	^ PyramidCommandMemento new
-		  command: PyramidRemoveChildrenCommand new commandInverse;
-		  target: anElement parent;
-		  arguments: anElement ;
-		  yourself
-]
-
-{ #category : #'as yet unclassified' }
 PyramidRemoveSelectionCommand >> saveStatesOf: aCollection with: aRoots [
 	"We ignore the state recovery for the redo, we will force the inverse of the undo state."
 
@@ -71,13 +55,13 @@ PyramidRemoveSelectionCommand >> saveStatesWithCommandInverseOf: aCollection wit
 
 	| mementos finalMemento |
 	mementos := aCollection asArray collect: [ :anElement |
-		            self mementoInvertedFor: anElement withArguments: aRoots ].
+		            self mementoFor: anElement withArguments: aRoots ].
 	finalMemento := mementos size = 1
-		            ifTrue: [ mementos first ]
-		            ifFalse: [
-			            PyramidCompositeMemento new
-				            mementos: mementos;
-				            yourself ].
+		                ifTrue: [ mementos first ]
+		                ifFalse: [
+			                PyramidCompositeMemento new
+				                mementos: mementos;
+				                yourself ].
 	self mementoInverse: finalMemento.
 	^ finalMemento
 ]

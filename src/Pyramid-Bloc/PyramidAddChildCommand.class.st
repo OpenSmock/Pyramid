@@ -1,17 +1,17 @@
 Class {
-	#name : #PyramidAddChildrenCommand,
+	#name : #PyramidAddChildCommand,
 	#superclass : #PyramidChildrenCommand,
 	#category : #'Pyramid-Bloc-plugin-bloc'
 }
 
 { #category : #'as yet unclassified' }
-PyramidAddChildrenCommand >> commandInverse [
+PyramidAddChildCommand >> commandInverse [
 
-	^ PyramidRemoveChildrenCommand new
+	^ PyramidRemoveChildCommand new
 ]
 
 { #category : #'as yet unclassified' }
-PyramidAddChildrenCommand >> setValueFor: aBlElement with: aChildToAdd [
+PyramidAddChildCommand >> setValueFor: aBlElement with: aChildToAdd [
 
 	aBlElement addChild: aChildToAdd
 ]
