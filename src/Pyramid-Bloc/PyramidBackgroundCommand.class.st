@@ -1,6 +1,6 @@
 Class {
 	#name : #PyramidBackgroundCommand,
-	#superclass : #PyramidBlocCommand,
+	#superclass : #PyramidAbstractBlocCommand,
 	#category : #'Pyramid-Bloc-plugin-bloc'
 }
 

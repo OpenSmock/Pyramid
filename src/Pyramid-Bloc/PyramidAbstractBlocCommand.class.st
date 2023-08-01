@@ -1,17 +1,17 @@
 Class {
-	#name : #PyramidBlocCommand,
+	#name : #PyramidAbstractBlocCommand,
 	#superclass : #PyramidCommand,
 	#category : #'Pyramid-Bloc-plugin-bloc'
 }
 
 { #category : #testing }
-PyramidBlocCommand class >> isAbstract [
+PyramidAbstractBlocCommand class >> isAbstract [
 
-	^ self == PyramidBlocCommand
+	^ self == PyramidAbstractBlocCommand
 ]
 
 { #category : #testing }
-PyramidBlocCommand >> canBeUsedFor: anObject [
+PyramidAbstractBlocCommand >> canBeUsedFor: anObject [
 
 	^ anObject class = BlElement or: [anObject class inheritsFrom: BlElement]
 ]
