@@ -1,6 +1,6 @@
 Class {
 	#name : #PyramidRemoveSelectionCommand,
-	#superclass : #PyramidEditorCommand,
+	#superclass : #PyramidBlocCommand,
 	#instVars : [
 		'mementoInverse'
 	],
