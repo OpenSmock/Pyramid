@@ -77,6 +77,18 @@ PyramidBlocPlugin class >> position [
 	^ property
 ]
 
+{ #category : #accessing }
+PyramidBlocPlugin class >> visibility [
+
+	| property |
+	property := PyramidProperty new
+		            name: 'Visibility';
+		            command: PyramidVisibilityCommand new;
+		            pyramidInputPresenterClass: PyramidVisibilityInputPresenter;
+		            yourself.
+	^ property
+]
+
 { #category : #adding }
 PyramidBlocPlugin >> addPanelsOn: aPyramidSimpleWindow [
 
@@ -91,6 +103,7 @@ PyramidBlocPlugin >> connectOn: aPyramidEditor [
 
 	self editor: aPyramidEditor.
 	aPyramidEditor propertiesManager addProperty: self class elementId.
+	aPyramidEditor propertiesManager addProperty: self class visibility.
 	aPyramidEditor propertiesManager addProperty: self class clipChildren.
 	aPyramidEditor propertiesManager addProperty: self class position.
 	aPyramidEditor propertiesManager addProperty: self class background
