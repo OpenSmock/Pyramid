@@ -1,6 +1,6 @@
 Class {
 	#name : #PyramidClipChildrenCommand,
-	#superclass : #PyramidBlocCommand,
+	#superclass : #PyramidAbstractBlocCommand,
 	#category : #'Pyramid-Bloc-plugin-bloc'
 }
 

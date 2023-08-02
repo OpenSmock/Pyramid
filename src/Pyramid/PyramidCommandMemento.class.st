@@ -9,6 +9,12 @@ Class {
 	#category : #'Pyramid-history'
 }
 
+{ #category : #visiting }
+PyramidCommandMemento >> accept: aVisitor [
+
+	^ aVisitor visitCommandMemento: self
+]
+
 { #category : #accessing }
 PyramidCommandMemento >> arguments [
 

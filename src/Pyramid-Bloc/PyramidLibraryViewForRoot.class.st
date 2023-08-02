@@ -10,7 +10,7 @@ Class {
 { #category : #'as yet unclassified' }
 PyramidLibraryViewForRoot >> buttonAction [
 
-	self editor projectModel roots add: self list selectedItem blockMaker value
+	self editor propertiesManager commandExecutor use: PyramidAddToCollectionCommand new on: { 	self editor projectModel roots } with: self list selectedItem blockMaker value
 ]
 
 { #category : #private }

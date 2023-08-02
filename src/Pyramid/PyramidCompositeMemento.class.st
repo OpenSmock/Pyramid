@@ -7,6 +7,12 @@ Class {
 	#category : #'Pyramid-history'
 }
 
+{ #category : #visiting }
+PyramidCompositeMemento >> accept: aVisitor [
+
+	^ aVisitor visitCompositeMemento: self
+]
+
 { #category : #initialization }
 PyramidCompositeMemento >> initialize [
 
