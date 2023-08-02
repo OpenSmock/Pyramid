@@ -1,5 +1,5 @@
 Class {
-	#name : #PyramidGroupCommandTest,
+	#name : #PyramidUngroupCommandTest,
 	#superclass : #TestCase,
 	#traits : 'TPyramidCommandTest',
 	#classTraits : 'TPyramidCommandTest classTrait',
@@ -7,24 +7,29 @@ Class {
 }
 
 { #category : #accessing }
-PyramidGroupCommandTest >> command [
+PyramidUngroupCommandTest >> command [
 
-	^ PyramidGroupCommand new
+	^ PyramidUngroupCommand new
 ]
 
 { #category : #'as yet unclassified' }
-PyramidGroupCommandTest >> targetsCanBeUsedFor [
+PyramidUngroupCommandTest >> targetsCanBeUsedFor [
 
 	| parent elements |
 	parent := BlElement new.
-	elements := { BlElement new. BlElement new . BlElement new }.
+	elements := {
+		            BlElement new.
+		            BlElement new.
+		            BlElement new }.
 	parent addChildren: elements.
-	
-	^ { { BlElement new. BlElement new . BlElement new. BlElement new } . elements }
+
+	^ {
+		  elements }
 ]
 
 { #category : #'as yet unclassified' }
-PyramidGroupCommandTest >> targetsCannotBeUsedFor [
+PyramidUngroupCommandTest >> targetsCannotBeUsedFor [
+
 	| parent elements |
 	parent := BlElement new.
 	elements := {
@@ -35,25 +40,32 @@ PyramidGroupCommandTest >> targetsCannotBeUsedFor [
 
 	^ {
 		  {  }.
-		  (elements asOrderedCollection add: BlElement new; yourself) }
+		  {
+			  BlElement new.
+			  BlElement new.
+			  BlElement new.
+			  BlElement new }.
+		  (elements asOrderedCollection
+			   add: BlElement new;
+			   yourself) }
 ]
 
 { #category : #tests }
-PyramidGroupCommandTest >> testGetValueFor [
+PyramidUngroupCommandTest >> testGetValueFor [
 
 	self targetsCanBeUsedFor do: [ :each |
 		self assert: (self command getValueFor: each) equals: nil ]
 ]
 
 { #category : #tests }
-PyramidGroupCommandTest >> testHistory [
+PyramidUngroupCommandTest >> testHistory [
 	"Do once.
 	undo
 	redo
 	undo
 	redo"
 
-	| history commandExecutor e1 e2 e3 e4 selection roots |
+	| history commandExecutor e1 e2 e3 e4 selection roots parent |
 	history := PyramidHistory new.
 	commandExecutor := PyramidHistoryCommandExecutor new
 		                   history: history;
@@ -72,60 +84,46 @@ PyramidGroupCommandTest >> testHistory [
 		             e4 }.
 	e1 addChildren: selection.
 	roots := OrderedCollection new.
-	roots addAll: selection.
+	roots add: e1.
 
-	self assert: (roots includesAll: selection).
+	self assert: (roots includes: selection first parent).
+	self deny: (roots includesAny: selection).
 	self assert: (selection allSatisfy: [ :each | each parent = e1 ]).
 
 	"Do once"
 	commandExecutor use: self command on: { selection } with: roots.
-	self deny: (roots includesAny: selection).
+	self assert: (roots includesAll: selection).
 	self deny: (selection anySatisfy: [ :each | each parent = e1 ]).
 
 	"Undo all"
 	history undo.
-	self assert: (roots includesAll: selection).
-	self assert: (selection allSatisfy: [ :each | each parent = e1 ]).
+	parent := selection first parent.
+	self assert: (roots includes: selection first parent).
+	self deny: (roots includesAny: selection).
+	self assert: (selection allSatisfy: [ :each | each parent = parent ]).
 
 	"Redo all"
 	history redo.
-	self deny: (roots includesAny: selection).
+	self assert: (roots includesAll: selection).
 	self deny: (selection anySatisfy: [ :each | each parent = e1 ]).
 
 	"Undo all"
 	history undo.
-	self assert: (roots includesAll: selection).
-	self assert: (selection allSatisfy: [ :each | each parent = e1 ]).
+	parent := selection first parent.
+	self assert: (roots includes: selection first parent).
+	self deny: (roots includesAny: selection).
+	self assert: (selection allSatisfy: [ :each | each parent = parent ]).
 
 	"Redo all"
 	history redo.
-	self deny: (roots includesAny: selection).
-	self deny: (selection anySatisfy: [ :each | each parent = e1 ])
+	self assert: (roots includesAll: selection).
+	self deny: (selection anySatisfy: [ :each | each parent = e1 ]).
 ]
 
 { #category : #tests }
-PyramidGroupCommandTest >> testSetValueForWith [
+PyramidUngroupCommandTest >> testSetValueForWith [
 
 	| e1 e2 e3 e4 selection roots parent |
-	"parent is nil. elements are not roots."
-	e1 := BlElement new.
-	e2 := BlElement new.
-	e3 := BlElement new.
-	e4 := BlElement new.
-
-	selection := {
-		             e1.
-		             e2.
-		             e3.
-		             e4 }.
-	roots := OrderedCollection new.
-
-	selection do: [ :each | self assert: each parent equals: nil ].
-	self command setValueFor: selection with: roots.
-	parent := selection first parent.
-	self assert: parent isNotNil.
-	selection do: [ :each | self assert: each parent equals: parent ].
-
 
 	"parent is not nil. elements are not roots."
 	e1 := BlElement new.
@@ -147,30 +145,6 @@ PyramidGroupCommandTest >> testSetValueForWith [
 	selection do: [ :each | self assert: each parent equals: parent ].
 
 
-	"parent is nil. elements are roots."
-	e1 := BlElement new.
-	e2 := BlElement new.
-	e3 := BlElement new.
-	e4 := BlElement new.
-
-	selection := {
-		             e1.
-		             e2.
-		             e3.
-		             e4 }.
-	roots := OrderedCollection new.
-	roots addAll: selection.
-
-	self assert: (roots includesAll: selection).
-	selection do: [ :each | self assert: each parent equals: nil ].
-	self command setValueFor: selection with: roots.
-	parent := selection first parent.
-	self assert: parent isNotNil.
-	selection do: [ :each | self assert: each parent equals: parent ].
-	self deny: (roots includesAny: selection).
-	self assert: (roots includes: parent).
-
-
 	"parent is not nil. elements are roots."
 	e1 := BlElement new.
 	e2 := BlElement new.
@@ -183,14 +157,15 @@ PyramidGroupCommandTest >> testSetValueForWith [
 		             e4 }.
 	e1 addChildren: selection.
 	roots := OrderedCollection new.
-	roots addAll: selection.
+	roots add: e1.
 
-	self assert: (roots includesAll: selection).
+	self assert: (roots includes: e1).
+	self deny: (roots includesAny: selection).
 	selection do: [ :each | self assert: each parent equals: e1 ].
 	self command setValueFor: selection with: roots.
 	parent := selection first parent.
 	self deny: parent equals: e1.
 	selection do: [ :each | self assert: each parent equals: parent ].
-	self deny: (roots includesAny: selection).
-	self assert: (roots includes: parent)
+	self deny: (roots includes: e1).
+	self assert: (roots includesAll: selection)
 ]

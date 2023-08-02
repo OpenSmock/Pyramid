@@ -27,6 +27,38 @@ PyramidGroupCommand >> makeGroupElement [
 ]
 
 { #category : #'as yet unclassified' }
+PyramidGroupCommand >> saveStatesOf: aCollection with: arguments [
+
+	| mementos |
+	mementos := aCollection asArray collect: [ :each |
+		            PyramidCommandMemento new
+			            command: self;
+			            target: each;
+			            arguments: arguments;
+			            yourself ].
+	mementos size = 1 ifTrue: [ ^ mementos first ].
+	^ PyramidCompositeMemento new
+		  mementos: mementos;
+		  yourself
+]
+
+{ #category : #'as yet unclassified' }
+PyramidGroupCommand >> saveStatesWithCommandInverseOf: aCollection with: arguments [
+
+	| mementos |
+	mementos := aCollection asArray collect: [ :each |
+		            PyramidCommandMemento new
+			            command: self commandInverse;
+			            target: each;
+			            arguments: arguments;
+			            yourself ].
+	mementos size = 1 ifTrue: [ ^ mementos first ].
+	^ PyramidCompositeMemento new
+		  mementos: mementos;
+		  yourself
+]
+
+{ #category : #'as yet unclassified' }
 PyramidGroupCommand >> setValueFor: aCollection with: roots [
 
 	| parent groupElement |

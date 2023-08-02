@@ -8,7 +8,11 @@ Class {
 PyramidUngroupCommand >> canBeUsedFor: anObject [
 
 	^ anObject isCollection and: [
-		  anObject size = 1  ]
+		  anObject isNotEmpty and: [
+			  | parent |
+			  parent := anObject first parent.
+			parent isNotNil and: [ 
+			  anObject allSatisfy: [ :each | each parent = parent ] ] ] ]
 ]
 
 { #category : #'as yet unclassified' }
@@ -20,13 +24,15 @@ PyramidUngroupCommand >> commandInverse [
 { #category : #'as yet unclassified' }
 PyramidUngroupCommand >> setValueFor: aCollection with: roots [
 
-	| groupElement elements |
-	groupElement := aCollection first.
-	elements := groupElement removeChildren: aCollection.
+	| elements groupElement |
+	groupElement := aCollection first parent.
+	elements := groupElement children asArray.
+	groupElement removeChildren.
 	
-	groupElement hasParent ifTrue: [ groupElement parent addChildren: elements ].
+	groupElement hasParent ifTrue: [ groupElement parent addChildren: elements.
+		groupElement parent removeChild: groupElement ].
 	
 	(roots includes: groupElement) ifFalse: [ ^ self ].
-	roots removeAll: groupElement.
+	roots remove: groupElement.
 	roots addAll: elements
 ]
