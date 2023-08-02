@@ -15,3 +15,9 @@ PyramidMixedValues >> selectOnBackgroundInput: aPyramidBackgroundInputPresenter 
 
 	aPyramidBackgroundInputPresenter selectMixedValues.
 ]
+
+{ #category : #initialization }
+PyramidMixedValues >> setVisibilityOn: aPyramidVisibilityInputPresenter [
+
+	aPyramidVisibilityInputPresenter setVisibilityMixedValues
+]
