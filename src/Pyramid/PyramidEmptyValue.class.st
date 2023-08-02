@@ -15,3 +15,9 @@ PyramidEmptyValue >> selectOnBackgroundInput: aPyramidBackgroundInputPresenter [
 
 	aPyramidBackgroundInputPresenter selectEmptyValue
 ]
+
+{ #category : #initialization }
+PyramidEmptyValue >> setVisibilityOn: aPyramidVisibilityInputPresenter [
+
+	aPyramidVisibilityInputPresenter setVisibilityEmptyValue
+]
