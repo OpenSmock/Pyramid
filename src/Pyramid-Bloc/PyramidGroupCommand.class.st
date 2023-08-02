@@ -17,7 +17,7 @@ PyramidGroupCommand >> canBeUsedFor: anObject [
 { #category : #'as yet unclassified' }
 PyramidGroupCommand >> commandInverse [
 
-	^ PyramidUngroupCommand new
+	^ PyramidGroupInverseCommand new
 ]
 
 { #category : #'as yet unclassified' }

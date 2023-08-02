@@ -1,5 +1,5 @@
 Class {
-	#name : #PyramidUngroupCommandTest,
+	#name : #PyramidGroupInverseCommandTest,
 	#superclass : #TestCase,
 	#traits : 'TPyramidCommandTest',
 	#classTraits : 'TPyramidCommandTest classTrait',
@@ -7,13 +7,13 @@ Class {
 }
 
 { #category : #accessing }
-PyramidUngroupCommandTest >> command [
+PyramidGroupInverseCommandTest >> command [
 
-	^ PyramidUngroupCommand new
+	^ PyramidGroupInverseCommand new
 ]
 
 { #category : #'as yet unclassified' }
-PyramidUngroupCommandTest >> targetsCanBeUsedFor [
+PyramidGroupInverseCommandTest >> targetsCanBeUsedFor [
 
 	| parent elements |
 	parent := BlElement new.
@@ -28,7 +28,7 @@ PyramidUngroupCommandTest >> targetsCanBeUsedFor [
 ]
 
 { #category : #'as yet unclassified' }
-PyramidUngroupCommandTest >> targetsCannotBeUsedFor [
+PyramidGroupInverseCommandTest >> targetsCannotBeUsedFor [
 
 	| parent elements |
 	parent := BlElement new.
@@ -51,14 +51,14 @@ PyramidUngroupCommandTest >> targetsCannotBeUsedFor [
 ]
 
 { #category : #tests }
-PyramidUngroupCommandTest >> testGetValueFor [
+PyramidGroupInverseCommandTest >> testGetValueFor [
 
 	self targetsCanBeUsedFor do: [ :each |
 		self assert: (self command getValueFor: each) equals: nil ]
 ]
 
 { #category : #tests }
-PyramidUngroupCommandTest >> testHistory [
+PyramidGroupInverseCommandTest >> testHistory [
 	"Do once.
 	undo
 	redo
@@ -121,7 +121,7 @@ PyramidUngroupCommandTest >> testHistory [
 ]
 
 { #category : #tests }
-PyramidUngroupCommandTest >> testSetValueForWith [
+PyramidGroupInverseCommandTest >> testSetValueForWith [
 
 	| e1 e2 e3 e4 selection roots parent |
 
