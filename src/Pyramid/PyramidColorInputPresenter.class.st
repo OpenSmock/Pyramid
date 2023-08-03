@@ -17,6 +17,12 @@ PyramidColorInputPresenter >> aMorph [
 ]
 
 { #category : #accessing }
+PyramidColorInputPresenter >> alphaSelected: aScale [
+
+	self whenValueChangedDo value: self value.
+]
+
+{ #category : #accessing }
 PyramidColorInputPresenter >> colorSelected: aColor [
 	"A color has been selected. Make the hue match."
 

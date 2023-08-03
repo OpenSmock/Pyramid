@@ -28,7 +28,7 @@ PyramidColorStopInputPresenter >> defaultLayout [
 { #category : #initialization }
 PyramidColorStopInputPresenter >> initializePresenters [
 
-	colorInput := PyramidColorInputSingleLinePresenter new.
+	colorInput := PyramidColorInputSingleLineWithPickupButtonPresenter new.
 	stopInput := PyramidNumberInputPresenter new
 ]
 

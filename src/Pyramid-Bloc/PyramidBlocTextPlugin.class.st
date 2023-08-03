@@ -61,7 +61,7 @@ PyramidBlocTextPlugin class >> textForeground [
 		            name: 'Text foreground';
 		            command: PyramidTextForegroundCommand new;
 		            pyramidInputPresenterClass:
-			            PyramidColorInputSingleLinePresenter;
+			            PyramidColorInputSingleLineWithPickupButtonPresenter;
 		            yourself.
 	property pyramidInputPresenterModel help:
 		'Change the color of the text'.
