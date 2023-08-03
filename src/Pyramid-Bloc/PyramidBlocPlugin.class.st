@@ -64,6 +64,31 @@ PyramidBlocPlugin class >> initialize [
 ]
 
 { #category : #accessing }
+PyramidBlocPlugin class >> margin [
+
+	| property |
+	property := PyramidProperty new
+		            name: 'Margin';
+		            command: PyramidMarginCommand new;
+		            pyramidInputPresenterClass:
+			            PyramidInsetsInputPresenter;
+		            yourself.
+	^ property
+]
+
+{ #category : #accessing }
+PyramidBlocPlugin class >> padding [
+
+	| property |
+	property := PyramidProperty new
+		            name: 'Padding';
+		            command: PyramidPaddingCommand new;
+		            pyramidInputPresenterClass: PyramidInsetsInputPresenter;
+		            yourself.
+	^ property
+]
+
+{ #category : #accessing }
 PyramidBlocPlugin class >> position [
 
 	| property |
@@ -106,7 +131,9 @@ PyramidBlocPlugin >> connectOn: aPyramidEditor [
 	aPyramidEditor propertiesManager addProperty: self class visibility.
 	aPyramidEditor propertiesManager addProperty: self class clipChildren.
 	aPyramidEditor propertiesManager addProperty: self class position.
-	aPyramidEditor propertiesManager addProperty: self class background
+	aPyramidEditor propertiesManager addProperty: self class background.
+	aPyramidEditor propertiesManager addProperty: self class padding.
+	aPyramidEditor propertiesManager addProperty: self class margin
 ]
 
 { #category : #accessing }

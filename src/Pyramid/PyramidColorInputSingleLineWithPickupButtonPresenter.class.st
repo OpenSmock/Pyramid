@@ -19,11 +19,11 @@ PyramidColorInputSingleLineWithPickupButtonPresenter >> button [
 { #category : #layout }
 PyramidColorInputSingleLineWithPickupButtonPresenter >> defaultLayout [
 
-	^ SpBoxLayout newHorizontal
+	^ SpBoxLayout newVertical add: (SpBoxLayout newHorizontal
 		  spacing: 2;
 		  add: self singleLineInput;
-		add: self button width: 24;
-		  yourself
+		  add: self button width: 24;
+		  yourself) height: 24
 ]
 
 { #category : #initialization }
