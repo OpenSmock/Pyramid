@@ -81,12 +81,12 @@ TPyramidInputPresenterTest >> testTrigger [
 
 	| input count current |
 	count := 0.
-	current := Object new.
 	input := self makeNewInputWithModel.
 	input whenValueChangedDo: [ :val |
 		count := count + 1.
 		current := val ].
 	self dummyValues do: [ :each |
+		current := Object new.
 		self putValue: each onInput: input.
 		self triggerValueChangedOf: input.
 		self assert: input value equals: current ].
@@ -108,5 +108,6 @@ TPyramidInputPresenterTest >> testValue [
 { #category : #'as yet unclassified' }
 TPyramidInputPresenterTest >> triggerValueChangedOf: anInput [
 
-	self shouldBeImplemented 
+	anInput inputArray contextKeyBindings keymaps do: [ :bind |
+		bind action value ]
 ]

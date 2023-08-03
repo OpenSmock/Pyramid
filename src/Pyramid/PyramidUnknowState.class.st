@@ -28,3 +28,9 @@ PyramidUnknowState >> asString [
 
 	^ '@ Unknow state'
 ]
+
+{ #category : #initialization }
+PyramidUnknowState >> setInsetsOn: aPyramidInsetsInputPresenter [
+
+	aPyramidInsetsInputPresenter inputArray value: self
+]
