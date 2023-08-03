@@ -15,6 +15,18 @@ PyramidInsetsInputPresenterTest >> dummyValues [
 		  BlInsets top: 1 left: 2 bottom: 3 right: 4}
 ]
 
+{ #category : #accessing }
+PyramidInsetsInputPresenterTest >> expectedEmptyValue [
+
+	^ PyramidUnknowState new
+]
+
+{ #category : #accessing }
+PyramidInsetsInputPresenterTest >> expectedMixedValues [
+
+	^ PyramidUnknowState new
+]
+
 { #category : #tests }
 PyramidInsetsInputPresenterTest >> makeNewInput [
 
@@ -24,6 +36,6 @@ PyramidInsetsInputPresenterTest >> makeNewInput [
 { #category : #'as yet unclassified' }
 PyramidInsetsInputPresenterTest >> triggerValueChangedOf: anInput [
 
-	anInput inputAll inputNumber contextKeyBindings keymaps do: [ :bind |
+	anInput inputArray inputArray contextKeyBindings keymaps do: [ :bind |
 		bind action value ]
 ]

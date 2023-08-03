@@ -3,10 +3,18 @@ Extension { #name : #BlInsets }
 { #category : #'*Pyramid-Bloc' }
 BlInsets >> setInsetsOn: aPyramidInsetsInputPresenter [
 
-	aPyramidInsetsInputPresenter inputAll value: self top.
-	aPyramidInsetsInputPresenter inputTop value: self top.
-	aPyramidInsetsInputPresenter inputRight value: self right.
-	aPyramidInsetsInputPresenter inputBottom value: self bottom.
-	aPyramidInsetsInputPresenter inputLeft value: self left.
-	self isUniform ifTrue: [  aPyramidInsetsInputPresenter setAllMode ] ifFalse: [ aPyramidInsetsInputPresenter setTopRightBottomLeftMode ]
+	self isUniform ifTrue: [
+		aPyramidInsetsInputPresenter inputArray value: { self top }.
+		^ self ].
+	((self top closeTo: self bottom) and: [
+		 self left closeTo: self right ]) ifTrue: [
+		aPyramidInsetsInputPresenter inputArray value: {
+				self top.
+				self right }.
+		^ self ].
+	aPyramidInsetsInputPresenter inputArray value: {
+			self top.
+			self right.
+			self bottom.
+			self left }
 ]

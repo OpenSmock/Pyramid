@@ -70,8 +70,7 @@ PyramidBlocPlugin class >> margin [
 	property := PyramidProperty new
 		            name: 'Margin';
 		            command: PyramidMarginCommand new;
-		            pyramidInputPresenterClass:
-			            PyramidInsetsInputPresenter;
+		            pyramidInputPresenterClass: PyramidInsetsInputPresenter;
 		            yourself.
 	^ property
 ]

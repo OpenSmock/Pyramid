@@ -1,124 +1,49 @@
 Class {
 	#name : #PyramidInsetsInputPresenter,
 	#superclass : #PyramidInputPresenter,
-	#classTraits : 'TPyramidInputPresenterTest classTrait',
 	#instVars : [
-		'whenValueChangedDo',
-		'buttonMode',
-		'inputAll',
-		'inputTop',
-		'inputRight',
-		'inputBottom',
-		'inputLeft',
-		'insetsMode'
+		'inputArray',
+		'whenValueChangedDo'
 	],
 	#category : #'Pyramid-Bloc-plugin-bloc'
 }
 
-{ #category : #accessing }
-PyramidInsetsInputPresenter >> buttonMode [
+{ #category : #layout }
+PyramidInsetsInputPresenter >> defaultLayout [
 
-	^ buttonMode
+^ SpBoxLayout newHorizontal add: self inputArray; yourself
 ]
 
 { #category : #initialization }
 PyramidInsetsInputPresenter >> initializePresenters [
 
-	whenValueChangedDo := [ :insets |  ].
-	buttonMode := SpButtonPresenter new
-		              action: [
-			              self insetsMode switchInsetsMode: self.
-			              self whenValueChangedDo value: self value ];
-		              yourself.
-	inputAll := PyramidNumberInputPresenter new.
-	inputTop := PyramidNumberInputPresenter new.
-	inputRight := PyramidNumberInputPresenter new.
-	inputBottom := PyramidNumberInputPresenter new.
-	inputLeft := PyramidNumberInputPresenter new.
-	inputTop whenChangedDo: [ :number |
-		inputAll value: number.
-		self whenValueChangedDo value: self value ].
-	inputRight whenChangedDo: [ :number |
-		inputAll value: number.
-		self whenValueChangedDo value: self value ].
-	inputBottom whenChangedDo: [ :number |
-		inputAll value: number.
-		self whenValueChangedDo value: self value ].
-	inputLeft whenChangedDo: [ :number |
-		inputAll value: number.
-		self whenValueChangedDo value: self value ].
-	inputAll whenValueChangedDo: [ :number |
-		self whenValueChangedDo value: self value ].
+	whenValueChangedDo := [ :insets | ].
+	inputArray := PyramidNumberArrayInputPresenter new
+		              whenValueChangedDo: [ :array |
+		              self whenValueChangedDo value:
+			              (self insetsFrom: array) ]
+]
 
-	self setUnknowModeWithState: PyramidUnknowState new
+{ #category : #layout }
+PyramidInsetsInputPresenter >> inputArray [
+
+	^ inputArray
 ]
 
 { #category : #'as yet unclassified' }
-PyramidInsetsInputPresenter >> inputAll [
+PyramidInsetsInputPresenter >> insetsFrom: anArray [
 
-	^ inputAll
-]
-
-{ #category : #'as yet unclassified' }
-PyramidInsetsInputPresenter >> inputBottom [
-
-	^ inputBottom
-]
-
-{ #category : #'as yet unclassified' }
-PyramidInsetsInputPresenter >> inputLeft [
-
-	^ inputLeft
-]
-
-{ #category : #'as yet unclassified' }
-PyramidInsetsInputPresenter >> inputRight [
-
-	^ inputRight
-]
-
-{ #category : #'as yet unclassified' }
-PyramidInsetsInputPresenter >> inputTop [
-^ inputTop
-]
-
-{ #category : #accessing }
-PyramidInsetsInputPresenter >> insetsMode [
-
-	^ insetsMode
-]
-
-{ #category : #accessing }
-PyramidInsetsInputPresenter >> insetsMode: aMode [
-
-	insetsMode := aMode
-]
-
-{ #category : #initialization }
-PyramidInsetsInputPresenter >> setAllMode [
-
-	self insetsMode: PyramidAllInsetsMode new.
-	self insetsMode setLayoutOf: self.
-]
-
-{ #category : #initialization }
-PyramidInsetsInputPresenter >> setTopRightBottomLeftMode [
-
-	self insetsMode: PyramidTopRightBottomLeftInsetsMode new.
-	self insetsMode setLayoutOf: self
-]
-
-{ #category : #initialization }
-PyramidInsetsInputPresenter >> setUnknowModeWithState: aState [
-
-	self insetsMode: (PyramidUnknowInsetsMode new state: aState; yourself).
-	self insetsMode setLayoutOf: self
+	anArray isCollection ifFalse: [ ^ anArray ].
+	anArray size = 1 ifTrue: [ ^ BlInsets all: anArray first ].
+	anArray size = 2 ifTrue: [ ^ BlInsets top: anArray first right: anArray last bottom: anArray first left: anArray last ].
+	anArray size = 4 ifTrue: [ ^ BlInsets top: anArray first right: anArray second bottom: anArray third left: anArray last ].
+	^ PyramidUnknowState new
 ]
 
 { #category : #'as yet unclassified' }
 PyramidInsetsInputPresenter >> value [
 
-	^ self insetsMode pyramidValueOf: self.
+	^ self insetsFrom: self inputArray value
 ]
 
 { #category : #'as yet unclassified' }
@@ -127,13 +52,13 @@ PyramidInsetsInputPresenter >> value: aBlInsets [
 	aBlInsets setInsetsOn: self
 ]
 
-{ #category : #accessing }
+{ #category : #initialization }
 PyramidInsetsInputPresenter >> whenValueChangedDo [
 
-	^ whenValueChangedDo
+	^	whenValueChangedDo
 ]
 
-{ #category : #accessing }
+{ #category : #initialization }
 PyramidInsetsInputPresenter >> whenValueChangedDo: aBlock [
 
 	whenValueChangedDo := aBlock

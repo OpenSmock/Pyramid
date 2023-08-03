@@ -32,5 +32,5 @@ PyramidUnknowState >> asString [
 { #category : #initialization }
 PyramidUnknowState >> setInsetsOn: aPyramidInsetsInputPresenter [
 
-	aPyramidInsetsInputPresenter setUnknowModeWithState: self
+	aPyramidInsetsInputPresenter inputArray value: self
 ]
