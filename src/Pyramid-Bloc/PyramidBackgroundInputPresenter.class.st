@@ -103,7 +103,7 @@ PyramidBackgroundInputPresenter >> initializeModelPaintSolid [
 
 	modelPaintSolid := PyramidBackgroundInputModel new
 		                   presenter:
-			                   (PyramidColorInputSingleLinePresenter new
+			                   (PyramidColorInputMultiLinesPresenter new
 				                    whenValueChangedDo: [ :x |
 					                    self whenValueChangedDo value:
 							                    x asBlBackground ];
