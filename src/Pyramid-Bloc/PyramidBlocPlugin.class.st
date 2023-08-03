@@ -57,6 +57,19 @@ PyramidBlocPlugin class >> elementId [
 	^ property
 ]
 
+{ #category : #accessing }
+PyramidBlocPlugin class >> geometry [
+
+	| property |
+	property := PyramidProperty new
+		            name: 'Geometry';
+		            command: PyramidGeometryCommand new;
+		            pyramidInputPresenterClass:
+			            PyramidGeometryInputPresenter;
+		            yourself.
+	^ property
+]
+
 { #category : #'class initialization' }
 PyramidBlocPlugin class >> initialize [
 
@@ -129,6 +142,7 @@ PyramidBlocPlugin >> connectOn: aPyramidEditor [
 	aPyramidEditor propertiesManager addProperty: self class elementId.
 	aPyramidEditor propertiesManager addProperty: self class visibility.
 	aPyramidEditor propertiesManager addProperty: self class clipChildren.
+	aPyramidEditor propertiesManager addProperty: self class geometry.
 	aPyramidEditor propertiesManager addProperty: self class position.
 	aPyramidEditor propertiesManager addProperty: self class background.
 	aPyramidEditor propertiesManager addProperty: self class padding.
