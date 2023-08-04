@@ -45,6 +45,19 @@ PyramidBlocPlugin class >> clipChildren [
 ]
 
 { #category : #accessing }
+PyramidBlocPlugin class >> cornerRadii [
+
+	| property |
+	property := PyramidProperty new
+		            name: 'Corner radius';
+		            command: PyramidRoundedRectangleCornerRadiiCommand new;
+		            pyramidInputPresenterClass:
+			            PyramidCornerRadiiInputPresenter;
+		            yourself.
+	^ property
+]
+
+{ #category : #accessing }
 PyramidBlocPlugin class >> elementId [
 
 	| property |
@@ -143,6 +156,7 @@ PyramidBlocPlugin >> connectOn: aPyramidEditor [
 	aPyramidEditor propertiesManager addProperty: self class visibility.
 	aPyramidEditor propertiesManager addProperty: self class clipChildren.
 	aPyramidEditor propertiesManager addProperty: self class geometry.
+	aPyramidEditor propertiesManager addProperty: self class cornerRadii.
 	aPyramidEditor propertiesManager addProperty: self class position.
 	aPyramidEditor propertiesManager addProperty: self class background.
 	aPyramidEditor propertiesManager addProperty: self class padding.

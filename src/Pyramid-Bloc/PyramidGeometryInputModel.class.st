@@ -8,7 +8,7 @@ Class {
 		'help',
 		'input'
 	],
-	#category : #'Pyramid-Bloc-plugin-bloc'
+	#category : #'Pyramid-Bloc-plugin-bloc-geometry'
 }
 
 { #category : #accessing }

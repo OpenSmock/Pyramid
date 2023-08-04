@@ -1,7 +1,7 @@
 Class {
 	#name : #PyramidGeometryCommand,
 	#superclass : #PyramidAbstractBlocCommand,
-	#category : #'Pyramid-Bloc-plugin-bloc'
+	#category : #'Pyramid-Bloc-plugin-bloc-geometry'
 }
 
 { #category : #'as yet unclassified' }

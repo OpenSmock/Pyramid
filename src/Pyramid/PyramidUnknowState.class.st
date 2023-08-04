@@ -30,6 +30,12 @@ PyramidUnknowState >> asString [
 ]
 
 { #category : #initialization }
+PyramidUnknowState >> setCornerRadiiOn: aPyramidCornerRadiiInputPresenter [
+
+	aPyramidCornerRadiiInputPresenter inputArray value: self
+]
+
+{ #category : #initialization }
 PyramidUnknowState >> setGeometryOn: aPyramidGeometryInputPresenter [
 
 	aPyramidGeometryInputPresenter setUnknowGeometry
