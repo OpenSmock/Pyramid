@@ -12,6 +12,7 @@ Class {
 
 { #category : #accessing }
 PyramidGeometryInputPresenter >> buttonsDict [
+
 	^ buttonsDict
 ]
 
