@@ -5,14 +5,22 @@ Class {
 }
 
 { #category : #'as yet unclassified' }
-PyramidSelectionWidgetBorderBuilder >> bottomChild [
+PyramidSelectionWidgetBorderBuilder >> borderElementWithMainColor: aMainColor andSecondaryColor: aSecondaryColor [
 
 	^ BlElement new
-		  background: self mainOtherColor;
+		clipChildren: false;
+		  background: aMainColor;
 		  border: (BlBorderBuilder new
 				   dashArray: self defaultDashArray;
 				   width: self defaultWidth;
-				   paint: self secondaryOtherColor) build;
+				   paint: aSecondaryColor) build;
+		  yourself
+]
+
+{ #category : #'as yet unclassified' }
+PyramidSelectionWidgetBorderBuilder >> bottomChild [
+
+	^ (self borderElementWithMainColor: self mainOtherColor  andSecondaryColor: self secondaryOtherColor)
 		  constraintsDo: [ :c |
 			  c vertical exact: self defaultWidth.
 			  c horizontal matchParent.
@@ -39,31 +47,38 @@ PyramidSelectionWidgetBorderBuilder >> build [
 { #category : #'as yet unclassified' }
 PyramidSelectionWidgetBorderBuilder >> defaultDashArray [
 
-	^ #( 10 )
+	^ #( 3 7 )
 ]
 
 { #category : #accessing }
 PyramidSelectionWidgetBorderBuilder >> defaultWidth [
 
-	^ 3
+	^ 2
+]
+
+{ #category : #'user interface' }
+PyramidSelectionWidgetBorderBuilder >> labelWithColor: aColor [.
+
+	^ 	BlTextElement new
+		             background: aColor;
+		             geometry: (BlRoundedRectangleGeometry cornerRadius: 8);
+		             padding: (BlInsets all: 2);
+		             text: '' asRopedText ;
+		             yourself
 ]
 
 { #category : #'as yet unclassified' }
 PyramidSelectionWidgetBorderBuilder >> leftChild [
 
 	| leftChild |
-	leftChild := BlElement new
-						 clipChildren: false;
-		             background: self mainLeftColor;
-		             border: (BlBorderBuilder new
-				              dashArray: self defaultDashArray;
-				              width: self defaultWidth;
-				              paint: self secondaryLeftColor) build;
+	leftChild := (self
+		   borderElementWithMainColor: self mainLeftColor
+		   andSecondaryColor: self secondaryLeftColor).
+	leftChild 
 		             constraintsDo: [ :c |
 			             c horizontal exact: self defaultWidth.
 			             c vertical matchParent.
-			             c frame horizontal alignLeft ];
-		             yourself.
+			             c frame horizontal alignLeft ].
 	leftChild addChild: (self leftLabelFor: leftChild).
 	^ leftChild
 ]
@@ -71,22 +86,17 @@ PyramidSelectionWidgetBorderBuilder >> leftChild [
 { #category : #'user interface' }
 PyramidSelectionWidgetBorderBuilder >> leftLabelFor: aBlElement [
 
-	| leftLabel |
-	leftLabel := BlTextElement new
-						 background: self mainLeftColor;
-		             geometry: (BlRoundedRectangleGeometry cornerRadius: 8);
-		             padding: (BlInsets all: 4);
-		             text: aBlElement height printString asRopedText;
-		             yourself.
+	| label |
+	label := self labelWithColor: self mainLeftColor.
+	label transformDo: [ :t | t rotateBy: -90 ].
 
 	aBlElement when: BlElementExtentChangedEvent do: [ :evt |
-		leftLabel text: (aBlElement height < 50
+		label text: (aBlElement height < 50
 				 ifTrue: [ '' asRopedText ]
 				 ifFalse: [ aBlElement height printString asRopedText ]).
-		leftLabel requestLayout.
-		leftLabel position:
-			leftLabel requestedWidth negated / 2 @ (aBlElement height - 20 / 2) ].
-	^ leftLabel
+		label requestLayout.
+		label position: -22 @ (aBlElement height - 20 / 2) ].
+	^ label
 ]
 
 { #category : #'as yet unclassified' }
@@ -110,12 +120,7 @@ PyramidSelectionWidgetBorderBuilder >> mainTopColor [
 { #category : #'as yet unclassified' }
 PyramidSelectionWidgetBorderBuilder >> rightChild [
 
-	^ BlElement new
-		  background: self mainOtherColor;
-		  border: (BlBorderBuilder new
-				   dashArray:self defaultDashArray;
-				   width: self defaultWidth;
-				   paint: self secondaryOtherColor) build;
+	^ (self borderElementWithMainColor: self mainOtherColor andSecondaryColor: self secondaryOtherColor)
 		  constraintsDo: [ :c |
 			  c horizontal exact: self defaultWidth.
 			  c vertical matchParent.
@@ -144,13 +149,10 @@ PyramidSelectionWidgetBorderBuilder >> secondaryTopColor [
 PyramidSelectionWidgetBorderBuilder >> topChild [
 
 	| topChild |
-	topChild := BlElement new
-		            clipChildren: false;
-		            background: self mainTopColor;
-		            border: (BlBorderBuilder new
-				             dashArray: self defaultDashArray;
-				             width: self defaultWidth;
-				             paint: self secondaryTopColor) build;
+	topChild := self
+		             borderElementWithMainColor: self mainTopColor
+		             andSecondaryColor: self secondaryTopColor.
+	topChild 
 		            constraintsDo: [ :c |
 			            c vertical exact: self defaultWidth.
 			            c horizontal matchParent.
@@ -162,20 +164,14 @@ PyramidSelectionWidgetBorderBuilder >> topChild [
 { #category : #'user interface' }
 PyramidSelectionWidgetBorderBuilder >> topLabelFor: aBlElement [
 
-	| leftLabel |
-	leftLabel := BlTextElement new
-		             background: self mainTopColor;
-		             geometry: (BlRoundedRectangleGeometry cornerRadius: 8);
-		             padding: (BlInsets all: 4);
-		             text: aBlElement width printString asRopedText;
-		             yourself.
+	| label |
+	label := self labelWithColor: self mainTopColor.
 
 	aBlElement when: BlElementExtentChangedEvent do: [ :evt |
-		leftLabel text: (aBlElement width < 50
+		label text: (aBlElement width < 50
 				 ifTrue: [ '' asRopedText ]
 				 ifFalse: [ aBlElement width printString asRopedText ]).
-		leftLabel requestLayout.
-		leftLabel position: aBlElement width - leftLabel width / 2
-			@ -10 ].
-	^ leftLabel
+		label requestLayout.
+		label position: aBlElement width - 20 / 2 @ -13 ].
+	^ label
 ]
