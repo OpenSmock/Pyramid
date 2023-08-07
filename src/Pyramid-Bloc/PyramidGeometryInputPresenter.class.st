@@ -5,16 +5,10 @@ Class {
 	#instVars : [
 		'whenValueChangedDo',
 		'geometry',
-		'buttonsDict'
+		'geometryDictionnary'
 	],
 	#category : #'Pyramid-Bloc-plugin-bloc-geometry'
 }
-
-{ #category : #accessing }
-PyramidGeometryInputPresenter >> buttonsDict [
-
-	^ buttonsDict
-]
 
 { #category : #layout }
 PyramidGeometryInputPresenter >> defaultLayout [
@@ -39,10 +33,16 @@ PyramidGeometryInputPresenter >> geometry: anObject [
 	geometry := anObject
 ]
 
+{ #category : #accessing }
+PyramidGeometryInputPresenter >> geometryDictionnary [
+
+	^ geometryDictionnary
+]
+
 { #category : #initialization }
 PyramidGeometryInputPresenter >> initializeGeometryButtons [
 
-	buttonsDict
+	geometryDictionnary
 		at: BlRectangleGeometry
 		put: (PyramidGeometryInputModel new
 				 input: self;
@@ -54,7 +54,7 @@ PyramidGeometryInputPresenter >> initializeGeometryButtons [
 						  yourself);
 				 yourself).
 
-	buttonsDict
+	geometryDictionnary
 		at: BlRectangleGeometry
 		put: (PyramidGeometryInputModel new
 				 input: self;
@@ -65,7 +65,8 @@ PyramidGeometryInputPresenter >> initializeGeometryButtons [
 						  geometry: BlRectangleGeometry new;
 						  yourself);
 				 yourself).
-	buttonsDict
+
+	geometryDictionnary
 		at: BlEllipseGeometry
 		put: (PyramidGeometryInputModel new
 				 input: self;
@@ -76,7 +77,8 @@ PyramidGeometryInputPresenter >> initializeGeometryButtons [
 						  geometry: BlEllipseGeometry new;
 						  yourself);
 				 yourself).
-	buttonsDict
+	
+	geometryDictionnary
 		at: BlRoundedRectangleGeometry
 		put: (PyramidGeometryInputModel new
 				 input: self;
@@ -87,7 +89,8 @@ PyramidGeometryInputPresenter >> initializeGeometryButtons [
 						  geometry: (BlRoundedRectangleGeometry cornerRadius: 5);
 						  yourself);
 				 yourself).
-	buttonsDict
+	
+	geometryDictionnary
 		at: BlPolygonGeometry
 		put: (PyramidGeometryInputModel new
 				 input: self;
@@ -114,7 +117,7 @@ PyramidGeometryInputPresenter >> initializeGeometryButtons [
 PyramidGeometryInputPresenter >> initializePresenters [
 
 	whenValueChangedDo := [ :geo |  ].
-	buttonsDict := OrderedDictionary new.
+	geometryDictionnary := OrderedDictionary new.
 	self initializeGeometryButtons.
 	self value: PyramidUnknowState new
 ]
