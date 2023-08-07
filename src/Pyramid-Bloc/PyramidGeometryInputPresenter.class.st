@@ -12,12 +12,13 @@ Class {
 { #category : #layout }
 PyramidGeometryInputPresenter >> defaultLayout [
 
-	|defaultLayout| 
+	| defaultLayout |
 	defaultLayout := SpBoxLayout newHorizontal
-		  spacing: 4;
-		  yourself.
-		self buttonsDict valuesDo: [ :each | defaultLayout add: each buttonPresenter width: 24  ].
-		^ defaultLayout
+		                 spacing: 4;
+		                 yourself.
+	self geometryDictionnary valuesDo: [ :each |
+		defaultLayout add: each buttonPresenter width: 24 ].
+	^ defaultLayout
 ]
 
 { #category : #accessing }
@@ -124,15 +125,15 @@ PyramidGeometryInputPresenter >> initializePresenters [
 { #category : #'as yet unclassified' }
 PyramidGeometryInputPresenter >> setNormalAndSelect: buttonModel [
 
-	self buttonsDict valuesDo: [ :each | each normal ].
+	self geometryDictionnary valuesDo: [ :each | each normal ].
 	buttonModel defaultGeometry: self geometry.
-	buttonModel selected.
+	buttonModel selected
 ]
 
 { #category : #initialization }
 PyramidGeometryInputPresenter >> setUnknow [
 
-	self buttonsDict valuesDo: [ :each | each error ].
+	self geometryDictionnary valuesDo: [ :each | each error ].
 ]
 
 { #category : #'as yet unclassified' }
@@ -145,7 +146,7 @@ PyramidGeometryInputPresenter >> value [
 PyramidGeometryInputPresenter >> value: aBlGeometry [
 
 	self geometry: aBlGeometry.
-	self buttonsDict
+	self geometryDictionnary
 		at: aBlGeometry class
 		ifPresent: [ :buttonModel | self setNormalAndSelect: buttonModel ]
 		ifAbsent: [ self setUnknow ]
