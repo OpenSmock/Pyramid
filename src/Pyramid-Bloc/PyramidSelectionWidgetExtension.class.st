@@ -118,39 +118,23 @@ PyramidSelectionWidgetExtension >> isDragging: anObject [
 { #category : #'as yet unclassified' }
 PyramidSelectionWidgetExtension >> makeMonoSelectionFor: aBlElement [
 
-	| monoSelection formElement |
-	aBlElement requestParentLayout.
-	aBlElement computeLayout.
+	| monoSelection eventElement |
+	eventElement := BlElement new constraintsDo: [ :c |
+		                c vertical matchParent.
+		                c horizontal matchParent ].
+	monoSelection := BlOverlayElement on: aBlElement.
+	monoSelection
+		border: (BlBorder paint: Color red width: 3);
+		clipChildren: false.
 
-	formElement := (aBlElement exportAsForm collectColors: [ :color |
-		                | l |
-		                l := color luminance.
-		                Color
-			                r: color red
-			                g: color green
-			                b: color blue
-			                alpha: (color alpha min: self alphaFactor) ])
-		               asElement.
+	monoSelection addChild: eventElement.
 
-	monoSelection := BlElement new
-		                 border: (BlBorderBuilder new
-				                  width: 1;
-				                  paint: Color black;
-				                  build);
-		                 size: aBlElement size + (self offset * 2) asPoint;
-		                 position: aBlElement position - self offset asPoint;
-		                 yourself.
-	monoSelection addChild: (formElement
-			 position: self offset asPoint;
-			 yourself).
-
-	formElement
+	eventElement
 		when: BlPrimaryMouseDownEvent
 		do: [ :evt | self centerDragStart: evt ].
-	formElement
-		when: BlMouseEvent
-		do: [ :evt | self centerDragEvent: evt ].
-	formElement
+	eventElement when: BlMouseEvent do: [ :evt |
+		self centerDragEvent: evt ].
+	eventElement
 		when: BlPrimaryMouseUpEvent
 		do: [ :evt | self centerDragEnd: evt ].
 
