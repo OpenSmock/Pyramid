@@ -3,10 +3,6 @@ Class {
 	#superclass : #Object,
 	#traits : 'TPyramidSpaceExtension + TPyramidEditorExtension + TPyramidKeyboardExtension',
 	#classTraits : 'TPyramidSpaceExtension classTrait + TPyramidEditorExtension classTrait + TPyramidKeyboardExtension classTrait',
-	#instVars : [
-		'isDragging',
-		'origin'
-	],
 	#category : #'Pyramid-Bloc-plugin-space-extensions'
 }
 

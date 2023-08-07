@@ -45,9 +45,7 @@ PyramidRemoveSelectionCommand >> mementoInverse: anObject [
 PyramidRemoveSelectionCommand >> saveStatesOf: aCollection with: aRoots [
 	"We ignore the state recovery for the redo, we will force the inverse of the undo state."
 
-	| visitor |
-	visitor := PyramidMementoInverser new.
-	^ self mementoInverse accept: visitor.
+	^ self mementoInverse accept: PyramidMementoInverser new.
 ]
 
 { #category : #'as yet unclassified' }

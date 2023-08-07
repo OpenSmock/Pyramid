@@ -45,6 +45,19 @@ PyramidBlocPlugin class >> clipChildren [
 ]
 
 { #category : #accessing }
+PyramidBlocPlugin class >> cornerRadii [
+
+	| property |
+	property := PyramidProperty new
+		            name: 'Corner radius';
+		            command: PyramidRoundedRectangleCornerRadiiCommand new;
+		            pyramidInputPresenterClass:
+			            PyramidCornerRadiiInputPresenter;
+		            yourself.
+	^ property
+]
+
+{ #category : #accessing }
 PyramidBlocPlugin class >> elementId [
 
 	| property |
@@ -54,6 +67,19 @@ PyramidBlocPlugin class >> elementId [
 		            pyramidInputPresenterClass: PyramidTextInputPresenter;
 		            yourself.
 	property pyramidInputPresenterModel help: 'Change the id.'.
+	^ property
+]
+
+{ #category : #accessing }
+PyramidBlocPlugin class >> geometry [
+
+	| property |
+	property := PyramidProperty new
+		            name: 'Geometry';
+		            command: PyramidGeometryCommand new;
+		            pyramidInputPresenterClass:
+			            PyramidGeometryInputPresenter;
+		            yourself.
 	^ property
 ]
 
@@ -129,6 +155,8 @@ PyramidBlocPlugin >> connectOn: aPyramidEditor [
 	aPyramidEditor propertiesManager addProperty: self class elementId.
 	aPyramidEditor propertiesManager addProperty: self class visibility.
 	aPyramidEditor propertiesManager addProperty: self class clipChildren.
+	aPyramidEditor propertiesManager addProperty: self class geometry.
+	aPyramidEditor propertiesManager addProperty: self class cornerRadii.
 	aPyramidEditor propertiesManager addProperty: self class position.
 	aPyramidEditor propertiesManager addProperty: self class background.
 	aPyramidEditor propertiesManager addProperty: self class padding.
@@ -196,7 +224,7 @@ PyramidBlocPlugin >> groupMenuBlockSingle [
 { #category : #initialization }
 PyramidBlocPlugin >> initialize [
 
-	groupCommand := PyramidGroupCommand new.
+	groupCommand := PyramidGroupCommand new
 ]
 
 { #category : #'as yet unclassified' }

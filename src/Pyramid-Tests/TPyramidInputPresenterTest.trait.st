@@ -108,6 +108,5 @@ TPyramidInputPresenterTest >> testValue [
 { #category : #'as yet unclassified' }
 TPyramidInputPresenterTest >> triggerValueChangedOf: anInput [
 
-	anInput inputArray contextKeyBindings keymaps do: [ :bind |
-		bind action value ]
+	self shouldBeImplemented
 ]
