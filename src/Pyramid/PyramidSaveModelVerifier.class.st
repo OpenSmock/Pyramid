@@ -64,32 +64,30 @@ PyramidSaveModelVerifier class >> packageIsValid [
 ]
 
 { #category : #constructor }
-PyramidSaveModelVerifier class >> projectNotNil [
+PyramidSaveModelVerifier class >> projectModelNotNil [
 
 	^ self new
 		  verifyBlock: [ :model | model projectModel isNotNil ];
-		  showBlock: [ :view | view showProjectNilError ];
+		  showBlock: [ :view | view showProjectModelNilError ];
 		  yourself
 ]
 
 { #category : #constructor }
 PyramidSaveModelVerifier class >> verifierNoError [
 
-
-	^ self modelNotNil addNext: (self projectNotNil
-	addNext: (self methodIsValid);
-	addNext: (self packageIsValid addNext: (self classIsValid addNext: (self classPackageIsEqual)))).
-
+	^ self modelNotNil addNext: (self projectModelNotNil addNext:
+		  (self methodIsValid addNext: (self packageIsValid addNext:
+				    (self classIsValid addNext: self classPackageIsEqual))))
 ]
 
 { #category : #constructor }
 PyramidSaveModelVerifier class >> verifierNoErrorForInputsView [
 
-	^ self modelNotNil addNext: (self projectNotNil
-			   addNext: self methodIsValid;
-				addNext: self classIsValid;
-			   addNext: (self packageIsValid addNext:
-						    (self classIsValid addNext: self classPackageIsEqual)))
+	^ self modelNotNil addNext: (self projectModelNotNil addNext:
+		  self methodIsValid;
+		  addNext: self classIsValid;
+		  addNext: (self packageIsValid addNext:
+					   (self classIsValid addNext: self classPackageIsEqual)))
 ]
 
 { #category : #initialization }
