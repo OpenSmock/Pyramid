@@ -13,7 +13,7 @@ Class {
 { #category : #accessing }
 PyramidProjectModel >> allElements [
 
-	^ PyramidTreeToFlat flattenChildrenOfCollection:
+	^ PyramidElementsManipulationHelper flattenChildrenOfCollection:
 		               self roots.
 ]
 

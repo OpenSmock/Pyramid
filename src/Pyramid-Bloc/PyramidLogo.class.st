@@ -9,7 +9,7 @@ PyramidLogo class >> logoMedium [
 	"This class has been generated using Pyramid.
 
 	By: YannLEGOFF
-	2023-07-31 13:44:18"
+	2023-08-07 13:52:07"
 
 	<pySTON>
 	^ '[
@@ -43,7 +43,13 @@ PyramidLogo class >> logoMedium [
 			#geometry : BlPolygonGeometry {
 				#extent : Point [ 50.0, 50.0 ],
 				#pathCache : BlPathCache {
-					#geometry : @12
+					#geometry : @12,
+					#strokedBounds : BlBounds {
+						#left : -0.5,
+						#top : -0.5,
+						#right : 30.5,
+						#bottom : 60.5
+					}
 				},
 				#vertices : [
 					Point [ 0.0, 34.0 ],
@@ -82,11 +88,7 @@ PyramidLogo class >> logoMedium [
 				#identifier : #C
 			}
 		},
-		#layout : BlBasicLayout { },
-		#eventDispatcher : BlElementEventDispatcher {
-			#owner : @2,
-			#handlers : [ ]
-		}
+		#layout : BlBasicLayout { }
 	},
 	BlElement {
 		#children : BlChildrenArray [ ],
@@ -111,7 +113,13 @@ PyramidLogo class >> logoMedium [
 			#geometry : BlPolygonGeometry {
 				#extent : Point [ 50.0, 50.0 ],
 				#pathCache : BlPathCache {
-					#geometry : @42
+					#geometry : @41,
+					#strokedBounds : BlBounds {
+						#left : 29.5,
+						#top : -0.5,
+						#right : 70.5,
+						#bottom : 60.5
+					}
 				},
 				#vertices : [
 					Point [ 70.0, 30.0 ],
@@ -121,14 +129,14 @@ PyramidLogo class >> logoMedium [
 			},
 			#border : BlBorder {
 				#paint : BlColorPaint {
-					#color : @21
+					#color : @22
 				},
 				#width : 1,
 				#style : BlStrokeStyle {
-					#lineCap : @23,
-					#lineJoin : @24,
+					#lineCap : @24,
+					#lineJoin : @25,
 					#miterLimit : 4.0,
-					#dashArray : @25,
+					#dashArray : @26,
 					#dashOffset : 0.0
 				},
 				#opacity : 1.0
@@ -138,18 +146,14 @@ PyramidLogo class >> logoMedium [
 					#color : Color [ #white ]
 				}
 			},
-			#outskirts : @29
+			#outskirts : @30
 		},
 		#userData : IdentityDictionary {
 			#elementId : BlElementNamedId {
 				#identifier : #D
 			}
 		},
-		#layout : @32,
-		#eventDispatcher : BlElementEventDispatcher {
-			#owner : @35,
-			#handlers : [ ]
-		}
+		#layout : @33
 	}
 ]'
 ]

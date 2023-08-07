@@ -26,6 +26,10 @@ PyramidSelectionWidgetExtension >> centerDragEnd: anEvent [
 	self isDragging: false.
 	self usePositionOffsetCommand: anEvent position - self dragOrigin.
 	self widgetElement transformDo: [ :t | t translateBy: 0 @ 0 ].
+	self widgetElement childrenDo: [ :child |
+		child
+			childNamed: #drag_ghost
+			ifFound: [ :ghost | ghost visibility: BlVisibility hidden ] ]
 ]
 
 { #category : #'as yet unclassified' }
@@ -45,7 +49,8 @@ PyramidSelectionWidgetExtension >> centerDragStart: anEvent [
 
 	self isDragging: true.
 	self dragOrigin: anEvent position.
-	anEvent consumed: true
+	anEvent consumed: true.
+	self widgetElement childrenDo: [ :child | child childNamed: #drag_ghost ifFound: [ :ghost | ghost visibility: BlVisibility visible ] ]
 ]
 
 { #category : #accessing }
@@ -118,50 +123,45 @@ PyramidSelectionWidgetExtension >> isDragging: anObject [
 { #category : #'as yet unclassified' }
 PyramidSelectionWidgetExtension >> makeMonoSelectionFor: aBlElement [
 
-	| monoSelection formElement |
-	aBlElement requestParentLayout.
-	aBlElement computeLayout.
+	| monoSelection eventElement dragGhostElement borderElement |
+	monoSelection := BlOverlayElement on: aBlElement.
+	monoSelection clipChildren: false.
 
-	formElement := (aBlElement exportAsForm collectColors: [ :color |
-		                | l |
-		                l := color luminance.
-		                Color
-			                r: color red
-			                g: color green
-			                b: color blue
-			                alpha: (color alpha min: self alphaFactor) ])
-		               asElement.
+	dragGhostElement := BlElement new
+		                    id: #drag_ghost;
+		                    visibility: BlVisibility hidden;
+		                    background:
+			                    (aBlElement exportAsForm dimmed: 0.5);
+		                    constraintsDo: [ :c |
+			                    c vertical matchParent.
+			                    c horizontal matchParent ];
+		                    yourself.
+	eventElement := BlElement new
+		                id: #drag_event;
+		                constraintsDo: [ :c |
+			                c vertical matchParent.
+			                c horizontal matchParent ];
+		                zIndex: 100;
+		                when: BlPrimaryMouseDownEvent
+		                do: [ :evt | self centerDragStart: evt ];
+		                when: BlMouseEvent
+		                do: [ :evt | self centerDragEvent: evt ];
+		                when: BlPrimaryMouseUpEvent
+		                do: [ :evt | self centerDragEnd: evt ];
+		                yourself.
+	borderElement := PyramidSelectionWidgetBorderBuilder new build.
 
-	monoSelection := BlElement new
-		                 border: (BlBorderBuilder new
-				                  width: 1;
-				                  paint: Color black;
-				                  build);
-		                 size: aBlElement size + (self offset * 2) asPoint;
-		                 position: aBlElement position - self offset asPoint;
-		                 yourself.
-	monoSelection addChild: (formElement
-			 position: self offset asPoint;
-			 yourself).
-
-	formElement
-		when: BlPrimaryMouseDownEvent
-		do: [ :evt | self centerDragStart: evt ].
-	formElement
-		when: BlMouseEvent
-		do: [ :evt | self centerDragEvent: evt ].
-	formElement
-		when: BlPrimaryMouseUpEvent
-		do: [ :evt | self centerDragEnd: evt ].
-
+	monoSelection addChild: dragGhostElement.
+	monoSelection addChild: borderElement.
+	monoSelection addChild: eventElement.
 	^ monoSelection
 ]
 
 { #category : #removing }
 PyramidSelectionWidgetExtension >> makeNewSelection [
 
-	self projectModel selection do: [ :each |
-		self widgetElement addChild: (self makeMonoSelectionFor: each) ]
+	self projectModel selection do: [ :each | self widgetElement addChild:
+		(self makeMonoSelectionFor: each) ]
 ]
 
 { #category : #'as yet unclassified' }
@@ -184,10 +184,17 @@ PyramidSelectionWidgetExtension >> projectModel: aProjectModel [
 ]
 
 { #category : #'as yet unclassified' }
+PyramidSelectionWidgetExtension >> pyramidElementsChanged [
+
+	self removeSelection.
+	self makeNewSelection
+]
+
+{ #category : #'as yet unclassified' }
 PyramidSelectionWidgetExtension >> pyramidSelectionChanged [
 
 	self removeSelection.
-	self makeNewSelection.
+	self makeNewSelection
 ]
 
 { #category : #removing }
@@ -201,7 +208,7 @@ PyramidSelectionWidgetExtension >> usePositionOffsetCommand: aPosition [
 
 	self commandExecutor
 		use: PyramidPositionOffsetCommand new
-		on: self projectModel selection asArray
+		on: (PyramidElementsManipulationHelper onlyParents: self projectModel selection asArray)
 		with: aPosition
 ]
 
