@@ -441,7 +441,7 @@ PyramidSimpleExamples class >> marble [
 	"This class has been generated using Pyramid.
 
 	By: YannLEGOFF
-	2023-08-03 15:51:07"
+	2023-08-07 16:01:14"
 
 	<pySTON>
 	^ '[
@@ -475,13 +475,7 @@ PyramidSimpleExamples class >> marble [
 					#geometry : BlEllipseGeometry {
 						#extent : Point [ 300.0, 300.0 ],
 						#pathCache : BlPathCache {
-							#geometry : @14,
-							#strokedBounds : BlBounds {
-								#left : 0.0,
-								#top : 0.0,
-								#right : 300.0,
-								#bottom : 300.0
-							}
+							#geometry : @14
 						}
 					},
 					#background : BlPaintBackground {
@@ -523,11 +517,7 @@ PyramidSimpleExamples class >> marble [
 						#identifier : #innerShadow
 					}
 				},
-				#layout : BlBasicLayout { },
-				#eventDispatcher : BlElementEventDispatcher {
-					#owner : @4,
-					#handlers : [ ]
-				}
+				#layout : BlBasicLayout { }
 			},
 			BlElement {
 				#children : BlChildrenArray [ ],
@@ -542,7 +532,7 @@ PyramidSimpleExamples class >> marble [
 							#size : 280.0
 						}
 					},
-					#position : Point [ 5, 5 ],
+					#position : Point [ 4, 4 ],
 					#margin : @11,
 					#padding : @11,
 					#minHeight : 0.0,
@@ -556,7 +546,7 @@ PyramidSimpleExamples class >> marble [
 					#geometry : BlEllipseGeometry {
 						#extent : Point [ 280.0, 280.0 ],
 						#pathCache : BlPathCache {
-							#geometry : @41,
+							#geometry : @38,
 							#strokedBounds : BlBounds {
 								#left : 0.0,
 								#top : 0.0,
@@ -586,11 +576,7 @@ PyramidSimpleExamples class >> marble [
 						#identifier : #lightSource
 					}
 				},
-				#layout : @29,
-				#eventDispatcher : BlElementEventDispatcher {
-					#owner : @32,
-					#handlers : [ ]
-				}
+				#layout : @28
 			}
 		],
 		#constraints : BlLayoutCommonConstraints {
@@ -611,7 +597,7 @@ PyramidSimpleExamples class >> marble [
 				#bottom : 0.0,
 				#right : 0.0
 			},
-			#padding : @61,
+			#padding : @56,
 			#minHeight : 0.0,
 			#minWidth : 0.0,
 			#maxHeight : @12,
@@ -623,7 +609,7 @@ PyramidSimpleExamples class >> marble [
 			#geometry : BlEllipseGeometry {
 				#extent : Point [ 300.0, 300.0 ],
 				#pathCache : BlPathCache {
-					#geometry : @63,
+					#geometry : @58,
 					#strokedBounds : BlBounds {
 						#left : 0.0,
 						#top : 0.0,
@@ -634,7 +620,12 @@ PyramidSimpleExamples class >> marble [
 			},
 			#background : BlPaintBackground {
 				#paint : BlColorPaint {
-					#color : Color [ #red ]
+					#color : Color {
+						#red : 0.9296187683284457,
+						#green : 0.40371456500488756,
+						#blue : 0.8396871945259042,
+						#alpha : 1.0
+					}
 				}
 			}
 		},
@@ -643,11 +634,7 @@ PyramidSimpleExamples class >> marble [
 				#identifier : #background
 			}
 		},
-		#layout : BlBasicLayout { },
-		#eventDispatcher : BlElementEventDispatcher {
-			#owner : @2,
-			#handlers : [ ]
-		}
+		#layout : BlBasicLayout { }
 	}
 ]'
 ]
@@ -859,4 +846,15 @@ PyramidSimpleExamples class >> marble2 [
 		}
 	}
 ]'
+]
+
+{ #category : #'pyramid-serialized-bloc' }
+PyramidSimpleExamples class >> test [
+	"This class has been generated using Pyramid.
+
+	By: YannLEGOFF
+	2023-08-07 16:31:46"
+
+	<pySTON>
+	^ '[ ]'
 ]

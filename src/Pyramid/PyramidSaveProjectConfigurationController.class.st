@@ -1,6 +1,8 @@
 Class {
 	#name : #PyramidSaveProjectConfigurationController,
 	#superclass : #Object,
+	#traits : 'TPyramidProjectModelObserver',
+	#classTraits : 'TPyramidProjectModelObserver classTrait',
 	#instVars : [
 		'view',
 		'model',
@@ -42,6 +44,13 @@ PyramidSaveProjectConfigurationController >> editorWindow: anObject [
 	editorWindow := anObject
 ]
 
+{ #category : #testing }
+PyramidSaveProjectConfigurationController >> isSaved [
+
+	self model isSaved: true.
+	self updateWindowTitle
+]
+
 { #category : #accessing }
 PyramidSaveProjectConfigurationController >> model [
 
@@ -53,7 +62,22 @@ PyramidSaveProjectConfigurationController >> model [
 PyramidSaveProjectConfigurationController >> model: aPyramidSaveModel [
 
 	model := aPyramidSaveModel.
-	self view model: aPyramidSaveModel
+	self view model: aPyramidSaveModel.
+	self updateView
+]
+
+{ #category : #'as yet unclassified' }
+PyramidSaveProjectConfigurationController >> pyramidElementsChanged [
+
+	self model isSaved: false.
+	self updateWindowTitle
+]
+
+{ #category : #'as yet unclassified' }
+PyramidSaveProjectConfigurationController >> pyramidRootsChanged [
+
+	self model isSaved: false.
+	self updateWindowTitle
 ]
 
 { #category : #'as yet unclassified' }
@@ -86,26 +110,6 @@ PyramidSaveProjectConfigurationController >> textUpdatedFromPackage: aString [
 ]
 
 { #category : #'as yet unclassified' }
-PyramidSaveProjectConfigurationController >> updateEditorWindow [
-
-	| title |
-	self editorWindow ifNil: [ ^ self ].
-	title := self model asTitleString , ' | Pyramid'.
-	self editorWindow title: title
-]
-
-{ #category : #'as yet unclassified' }
-PyramidSaveProjectConfigurationController >> updateEditorWindowWithErrors: aCollection [
-
-	| title |
-	self editorWindow ifNil: [ ^ self ].
-	 title :=  aCollection
-		ifNotEmpty: [self editorWindow class defaultTitle ]
-		ifEmpty: [ self model asTitleString , ' | Pyramid' ].
-	self editorWindow title: title
-]
-
-{ #category : #'as yet unclassified' }
 PyramidSaveProjectConfigurationController >> updateView [
 
 	| errors |
@@ -113,7 +117,25 @@ PyramidSaveProjectConfigurationController >> updateView [
 	self view hideLabels.
 	self view buttonBrowse enabled: errors isEmpty.
 	errors do: [ :each | each showOn: self view ].
-	self updateEditorWindowWithErrors: errors
+	self updateWindowTitleWithErrors: errors
+]
+
+{ #category : #testing }
+PyramidSaveProjectConfigurationController >> updateWindowTitle [
+	| errors |
+	errors := self verifier allErrors: self model.
+	self updateWindowTitleWithErrors: errors
+]
+
+{ #category : #'as yet unclassified' }
+PyramidSaveProjectConfigurationController >> updateWindowTitleWithErrors: aCollection [
+
+	| title |
+	self editorWindow ifNil: [ ^ self ].
+	title := aCollection
+		         ifNotEmpty: [ self editorWindow class defaultTitle ]
+		         ifEmpty: [ self model asTitleString ].
+	self editorWindow title: title
 ]
 
 { #category : #accessing }

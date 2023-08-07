@@ -249,10 +249,10 @@ PyramidSaveProjectConfigurationView >> showPackageIsNotValidError [
 ]
 
 { #category : #'as yet unclassified' }
-PyramidSaveProjectConfigurationView >> showProjectNilError [
+PyramidSaveProjectConfigurationView >> showProjectModelNilError [
 
 	self labelErrorPackage
-		displayColor: [Color red];
+		displayColor: [ Color red ];
 		label: 'No project loaded.'
 ]
 

@@ -6,6 +6,7 @@ Class {
 		'savingMethodName',
 		'savingPackageName',
 		'classSide',
+		'isSaved',
 		'projectModel'
 	],
 	#category : #'Pyramid-plugin-save'
@@ -13,18 +14,40 @@ Class {
 
 { #category : #converting }
 PyramidSaveModel >> asTitleString [
+
 	| string |
-	string := '[', self savingClassName ,'] '.
+	string := self savingClassName.
 	self isClassSide ifTrue: [ string := string , 'class ' ].
-	string := string , '>> ' , self savingMethodName.
+	string := string , '>> #' , self savingMethodName.
+	self isSaved ifFalse: [ string := string , ' *' ].
 	^ string
+]
+
+{ #category : #converting }
+PyramidSaveModel >> initialize [
+
+	isSaved := false.
+	classSide := true.
+	savingPackageName := ''.
+	savingClassName := ''.
+	savingMethodName := ''
 ]
 
 { #category : #testing }
 PyramidSaveModel >> isClassSide [
 
-	classSide ifNil: [ classSide := true ].
 	^ classSide
+]
+
+{ #category : #converting }
+PyramidSaveModel >> isSaved [
+	^ isSaved
+]
+
+{ #category : #converting }
+PyramidSaveModel >> isSaved: aBoolean [
+
+	isSaved := aBoolean
 ]
 
 { #category : #testing }
@@ -53,7 +76,6 @@ PyramidSaveModel >> projectModel: anObject [
 { #category : #accessing }
 PyramidSaveModel >> savingClassName [
 
-	savingClassName ifNil: [ savingClassName := '' ].
 	^ savingClassName
 ]
 
@@ -66,7 +88,6 @@ PyramidSaveModel >> savingClassName: anObject [
 { #category : #accessing }
 PyramidSaveModel >> savingMethodName [
 
-	savingMethodName ifNil: [ savingMethodName := '' ].
 	^ savingMethodName
 ]
 
@@ -79,7 +100,6 @@ PyramidSaveModel >> savingMethodName: anObject [
 { #category : #accessing }
 PyramidSaveModel >> savingPackageName [
 
-	savingPackageName ifNil: [ savingPackageName := '' ].
 	^ savingPackageName
 ]
 

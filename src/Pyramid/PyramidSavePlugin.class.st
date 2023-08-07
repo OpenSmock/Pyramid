@@ -31,8 +31,8 @@ PyramidSavePlugin class >> openOn: aCollectionOfBlElement saveModel: aSaveModel 
 		Error signal:
 			'Wrong installation of SavePlugin. Should only be one instance.' ].
 	savePlugin := savePlugin asArray first.
-	savePlugin openOn: aSaveModel.
 	editor projectModel roots addAll: aCollectionOfBlElement.
+	savePlugin openOn: aSaveModel.
 	editor window open
 ]
 
@@ -54,7 +54,9 @@ PyramidSavePlugin >> addPanelsOn: aPyramidSimpleWindow [
 { #category : #'as yet unclassified' }
 PyramidSavePlugin >> connectOn: aPyramidEditor [
 
-	self projectModel: aPyramidEditor projectModel
+	self projectModel: aPyramidEditor projectModel.
+	self saveModel projectModel: aPyramidEditor projectModel.
+	aPyramidEditor projectModel addObserver: self inputsController
 ]
 
 { #category : #initialization }
@@ -105,12 +107,18 @@ PyramidSavePlugin >> inputsView [
 
 { #category : #'instance creation' }
 PyramidSavePlugin >> openOn: aSaveModel [
-
-	self inputsView inputClass text: aSaveModel savingClassName.
+	"self inputsView inputClass text: aSaveModel savingClassName.
 	self inputsView inputMethod text: aSaveModel savingMethodName.
 	self inputsView inputPackage text: aSaveModel savingPackageName.
-	aSaveModel isClassSide ifTrue: [ self inputsView buttonClass click ] ifFalse: [ self inputsView buttonInstance click ]
-	
+	self inputsView model isSaved: aSaveModel isSaved."
+
+	aSaveModel projectModel: self projectModel.
+	self savingService savingModel: aSaveModel.
+	self inputsController model: aSaveModel.
+
+	aSaveModel isClassSide
+		ifTrue: [ self inputsView buttonClass click ]
+		ifFalse: [ self inputsView buttonInstance click ]
 ]
 
 { #category : #accessing }
@@ -123,18 +131,22 @@ PyramidSavePlugin >> projectModel [
 PyramidSavePlugin >> projectModel: aPyramidProjectModel [
 
 	projectModel := aPyramidProjectModel.
-	self saveModel projectModel: projectModel.
 	self inputsController updateView
 ]
 
 { #category : #actions }
-PyramidSavePlugin >> saveAction [ 
+PyramidSavePlugin >> saveAction [
 	"Action executed by save button"
 
-	[ self savingService save ] 
-	on: PyramidSaveError do: [
-		^ UIManager default alert: 'Cannot save the project, check project configuration before.' title: 'Error'.
-	]. 
+	[
+	self savingService save.
+	self inputsController isSaved ]
+		on: PyramidSaveError
+		do: [
+			^ UIManager default
+				  alert:
+				  'Cannot save the project, check project configuration before.'
+				  title: 'Error' ]
 ]
 
 { #category : #accessing }

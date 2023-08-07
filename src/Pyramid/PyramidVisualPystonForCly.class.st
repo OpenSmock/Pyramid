@@ -38,15 +38,20 @@ PyramidVisualPystonForCly >> activationPriority [
 { #category : #converting }
 PyramidVisualPystonForCly >> asSaveModel [
 
-	| class model  |
+	| class model |
 	model := PyramidSaveModel new.
 	class := method classBinding value.
-	class isMeta ifTrue: [ class := class instanceSide. model onClass] ifFalse: [ model onInstance ] .
-	
+	class isMeta
+		ifTrue: [
+			class := class instanceSide.
+			model onClass ]
+		ifFalse: [ model onInstance ].
+
 	^ model
 		  savingClassName: class name;
 		  savingMethodName: method selector;
 		  savingPackageName: class package name;
+			isSaved: true;
 		  yourself
 ]
 
