@@ -1,9 +1,6 @@
 Class {
 	#name : #PyramidLibraryViewForRoot,
 	#superclass : #PyramidLibraryView,
-	#instVars : [
-		'addRootButton'
-	],
 	#category : #'Pyramid-Bloc-plugin-library'
 }
 

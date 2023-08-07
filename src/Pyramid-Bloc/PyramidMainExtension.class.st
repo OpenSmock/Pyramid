@@ -4,8 +4,6 @@ Class {
 	#traits : 'TPyramidSpaceExtension + TPyramidEditorExtension + TPyramidProjectModelObserver + TPyramidEditorTransformationObserver',
 	#classTraits : 'TPyramidSpaceExtension classTrait + TPyramidEditorExtension classTrait + TPyramidProjectModelObserver classTrait + TPyramidEditorTransformationObserver classTrait',
 	#instVars : [
-		'isDragging',
-		'origin',
 		'containerElement',
 		'projectModel',
 		'borderElement',

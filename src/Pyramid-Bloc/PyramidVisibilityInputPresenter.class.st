@@ -3,9 +3,7 @@ Class {
 	#superclass : #PyramidInputPresenter,
 	#instVars : [
 		'buttonVisible',
-		'switchNotVisible',
 		'whenValueChangedDo',
-		'state',
 		'value',
 		'buttonNotVisible'
 	],

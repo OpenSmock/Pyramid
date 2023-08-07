@@ -9,7 +9,6 @@ Class {
 		'codePresenter',
 		'selectButton',
 		'examplesDropList',
-		'activeProjectRoots',
 		'projectModel'
 	],
 	#category : #'Pyramid-Bloc-plugin-hierarchy'

@@ -224,7 +224,7 @@ PyramidBlocPlugin >> groupMenuBlockSingle [
 { #category : #initialization }
 PyramidBlocPlugin >> initialize [
 
-	groupCommand := PyramidGroupCommand new.
+	groupCommand := PyramidGroupCommand new
 ]
 
 { #category : #'as yet unclassified' }

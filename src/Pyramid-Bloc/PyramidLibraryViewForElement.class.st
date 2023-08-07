@@ -1,9 +1,6 @@
 Class {
 	#name : #PyramidLibraryViewForElement,
 	#superclass : #PyramidLibraryView,
-	#instVars : [
-		'addChildButton'
-	],
 	#category : #'Pyramid-Bloc-plugin-library'
 }
 
