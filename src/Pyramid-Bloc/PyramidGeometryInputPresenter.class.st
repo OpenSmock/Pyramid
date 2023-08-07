@@ -1,7 +1,6 @@
 Class {
 	#name : #PyramidGeometryInputPresenter,
 	#superclass : #PyramidInputPresenter,
-	#classTraits : 'TPyramidInputPresenterTest classTrait',
 	#instVars : [
 		'whenValueChangedDo',
 		'geometry',
