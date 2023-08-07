@@ -67,7 +67,7 @@ PyramidSearchAndSelectPresenter >> codeIsForAll [
 	self projectModel ifNil: [ ^ self ].
 	self codePresenter interactionModel:
 		(SpCodeObjectInteractionModel on:
-			 (PyramidTreeToFlat flattenChildrenOfCollection:
+			 (PyramidElementsManipulationHelper flattenChildrenOfCollection:
 				  self projectModel roots))
 ]
 

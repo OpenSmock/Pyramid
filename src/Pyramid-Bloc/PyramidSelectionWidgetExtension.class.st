@@ -123,38 +123,37 @@ PyramidSelectionWidgetExtension >> isDragging: anObject [
 { #category : #'as yet unclassified' }
 PyramidSelectionWidgetExtension >> makeMonoSelectionFor: aBlElement [
 
-	| monoSelection eventElement dragGhost |
+	| monoSelection eventElement dragGhostElement borderElement |
 	monoSelection := BlOverlayElement on: aBlElement.
 	monoSelection clipChildren: false.
 
-	dragGhost := BlElement new
-	id: #drag_ghost;
-		             background: (aBlElement exportAsForm dimmed: 0.5);
-		             constraintsDo: [ :c |
-			             c vertical matchParent.
-			             c horizontal matchParent ];
-		             
-		             yourself.
+	dragGhostElement := BlElement new
+		                    id: #drag_ghost;
+		                    visibility: BlVisibility hidden;
+		                    background:
+			                    (aBlElement exportAsForm dimmed: 0.5);
+		                    constraintsDo: [ :c |
+			                    c vertical matchParent.
+			                    c horizontal matchParent ];
+		                    yourself.
 	eventElement := BlElement new
 		                id: #drag_event;
 		                constraintsDo: [ :c |
 			                c vertical matchParent.
 			                c horizontal matchParent ];
 		                zIndex: 100;
+		                when: BlPrimaryMouseDownEvent
+		                do: [ :evt | self centerDragStart: evt ];
+		                when: BlMouseEvent
+		                do: [ :evt | self centerDragEvent: evt ];
+		                when: BlPrimaryMouseUpEvent
+		                do: [ :evt | self centerDragEnd: evt ];
 		                yourself.
-	monoSelection addChild: dragGhost.
+	borderElement := PyramidSelectionWidgetBorderBuilder new build.
+
+	monoSelection addChild: dragGhostElement.
+	monoSelection addChild: borderElement.
 	monoSelection addChild: eventElement.
-
-	eventElement
-		when: BlPrimaryMouseDownEvent
-		do: [ :evt | self centerDragStart: evt ].
-	eventElement
-		when: BlMouseEvent
-		do: [ :evt | self centerDragEvent: evt ].
-	eventElement
-		when: BlPrimaryMouseUpEvent
-		do: [ :evt | self centerDragEnd: evt ].
-
 	^ monoSelection
 ]
 
@@ -209,7 +208,7 @@ PyramidSelectionWidgetExtension >> usePositionOffsetCommand: aPosition [
 
 	self commandExecutor
 		use: PyramidPositionOffsetCommand new
-		on: self projectModel selection asArray
+		on: (PyramidElementsManipulationHelper onlyParents: self projectModel selection asArray)
 		with: aPosition
 ]
 
