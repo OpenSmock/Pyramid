@@ -26,6 +26,10 @@ PyramidSelectionWidgetExtension >> centerDragEnd: anEvent [
 	self isDragging: false.
 	self usePositionOffsetCommand: anEvent position - self dragOrigin.
 	self widgetElement transformDo: [ :t | t translateBy: 0 @ 0 ].
+	self widgetElement childrenDo: [ :child |
+		child
+			childNamed: #drag_ghost
+			ifFound: [ :ghost | ghost visibility: BlVisibility hidden ] ]
 ]
 
 { #category : #'as yet unclassified' }
@@ -45,7 +49,8 @@ PyramidSelectionWidgetExtension >> centerDragStart: anEvent [
 
 	self isDragging: true.
 	self dragOrigin: anEvent position.
-	anEvent consumed: true
+	anEvent consumed: true.
+	self widgetElement childrenDo: [ :child | child childNamed: #drag_ghost ifFound: [ :ghost | ghost visibility: BlVisibility visible ] ]
 ]
 
 { #category : #accessing }
@@ -118,22 +123,34 @@ PyramidSelectionWidgetExtension >> isDragging: anObject [
 { #category : #'as yet unclassified' }
 PyramidSelectionWidgetExtension >> makeMonoSelectionFor: aBlElement [
 
-	| monoSelection eventElement |
-	eventElement := BlElement new constraintsDo: [ :c |
-		                c vertical matchParent.
-		                c horizontal matchParent ].
+	| monoSelection eventElement dragGhost |
 	monoSelection := BlOverlayElement on: aBlElement.
-	monoSelection
-		border: (BlBorder paint: Color red width: 3);
-		clipChildren: false.
+	monoSelection clipChildren: false.
 
+	dragGhost := BlElement new
+	id: #drag_ghost;
+		             background: (aBlElement exportAsForm dimmed: 0.5);
+		             constraintsDo: [ :c |
+			             c vertical matchParent.
+			             c horizontal matchParent ];
+		             
+		             yourself.
+	eventElement := BlElement new
+		                id: #drag_event;
+		                constraintsDo: [ :c |
+			                c vertical matchParent.
+			                c horizontal matchParent ];
+		                zIndex: 100;
+		                yourself.
+	monoSelection addChild: dragGhost.
 	monoSelection addChild: eventElement.
 
 	eventElement
 		when: BlPrimaryMouseDownEvent
 		do: [ :evt | self centerDragStart: evt ].
-	eventElement when: BlMouseEvent do: [ :evt |
-		self centerDragEvent: evt ].
+	eventElement
+		when: BlMouseEvent
+		do: [ :evt | self centerDragEvent: evt ].
 	eventElement
 		when: BlPrimaryMouseUpEvent
 		do: [ :evt | self centerDragEnd: evt ].
@@ -144,8 +161,8 @@ PyramidSelectionWidgetExtension >> makeMonoSelectionFor: aBlElement [
 { #category : #removing }
 PyramidSelectionWidgetExtension >> makeNewSelection [
 
-	self projectModel selection do: [ :each |
-		self widgetElement addChild: (self makeMonoSelectionFor: each) ]
+	self projectModel selection do: [ :each | self widgetElement addChild:
+		(self makeMonoSelectionFor: each) ]
 ]
 
 { #category : #'as yet unclassified' }
@@ -168,10 +185,17 @@ PyramidSelectionWidgetExtension >> projectModel: aProjectModel [
 ]
 
 { #category : #'as yet unclassified' }
+PyramidSelectionWidgetExtension >> pyramidElementsChanged [
+
+	self removeSelection.
+	self makeNewSelection
+]
+
+{ #category : #'as yet unclassified' }
 PyramidSelectionWidgetExtension >> pyramidSelectionChanged [
 
 	self removeSelection.
-	self makeNewSelection.
+	self makeNewSelection
 ]
 
 { #category : #removing }
