@@ -92,13 +92,15 @@ PyramidSaveProjectConfigurationController >> radioUpdatedOnClassSide: aBoolean [
 PyramidSaveProjectConfigurationController >> textUpdatedFromClass: aString [
 
 	self model savingClassName: aString.
+	self model isSaved: false.
 	self updateView
 ]
 
 { #category : #'as yet unclassified' }
 PyramidSaveProjectConfigurationController >> textUpdatedFromMethod: aString [
 
-		self model savingMethodName: aString.
+	self model savingMethodName: aString.
+	self model isSaved: false.
 	self updateView
 ]
 
@@ -106,6 +108,7 @@ PyramidSaveProjectConfigurationController >> textUpdatedFromMethod: aString [
 PyramidSaveProjectConfigurationController >> textUpdatedFromPackage: aString [
 
 	self model savingPackageName: aString.
+	self model isSaved: false.
 	self updateView
 ]
 

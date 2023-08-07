@@ -12,7 +12,8 @@ Class {
 		'labelErrorClass',
 		'labelErrorMethod',
 		'controller',
-		'model'
+		'model',
+		'shouldTriggerEvent'
 	],
 	#category : #'Pyramid-plugin-save'
 }
@@ -115,28 +116,33 @@ PyramidSaveProjectConfigurationView >> hideLabels [
 { #category : #initialization }
 PyramidSaveProjectConfigurationView >> initializePresenters [
 
+	shouldTriggerEvent := true.
 	inputPackage := self newTextInput
 		                placeholder: 'Enter a package name';
 		                whenTextChangedDo: [ :text |
-			                self controller textUpdatedFromPackage: text ];
+			                self shouldTriggerEvent ifTrue: [
+					                self controller textUpdatedFromPackage: text ] ];
 		                yourself.
 
 	inputClass := self newTextInput
 		              placeholder: 'Enter a class name';
 		              whenTextChangedDo: [ :text |
-			              self controller textUpdatedFromClass: text ];
+			self shouldTriggerEvent ifTrue: [
+			              self controller textUpdatedFromClass: text ] ];
 		              yourself.
 
 	inputMethod := self newTextInput
 		               placeholder: 'Enter a method name';
 		               whenTextChangedDo: [ :text |
-			               self controller textUpdatedFromMethod: text ];
+			self shouldTriggerEvent ifTrue: [
+			               self controller textUpdatedFromMethod: text ] ];
 		               yourself.
 
 	buttonClass := self newRadioButton
 		               label: 'save on class side';
 		               whenChangedDo: [ :aBoolean |
-			               self controller radioUpdatedOnClassSide: aBoolean ];
+			self shouldTriggerEvent ifTrue: [
+			               self controller radioUpdatedOnClassSide: aBoolean ] ];
 		               yourself.
 	buttonInstance := self newRadioButton
 		                  label: 'save on instance side';
@@ -147,7 +153,7 @@ PyramidSaveProjectConfigurationView >> initializePresenters [
 		                help: 'Browse project class';
 		                icon: (self iconNamed: #nautilus);
 		                action: [ self controller browseProjectClass ];
-							enabled: false;
+		                enabled: false;
 		                yourself.
 
 	labelErrorPackage := self newLabel.
@@ -205,7 +211,19 @@ PyramidSaveProjectConfigurationView >> model [
 PyramidSaveProjectConfigurationView >> model: aPySaveModel [
 
 	model := aPySaveModel.
-	self updateFromModel.
+	self updateFromModelWithoutEvents.
+]
+
+{ #category : #accessing }
+PyramidSaveProjectConfigurationView >> shouldTriggerEvent [
+
+	^ shouldTriggerEvent
+]
+
+{ #category : #accessing }
+PyramidSaveProjectConfigurationView >> shouldTriggerEvent: aBoolean [
+
+	shouldTriggerEvent := aBoolean
 ]
 
 { #category : #'as yet unclassified' }
@@ -257,12 +275,13 @@ PyramidSaveProjectConfigurationView >> showProjectModelNilError [
 ]
 
 { #category : #'as yet unclassified' }
-PyramidSaveProjectConfigurationView >> updateFromModel [
+PyramidSaveProjectConfigurationView >> updateFromModelWithoutEvents [
 
-	self inputPackage text: self model savingPackageName.
+	self shouldTriggerEvent: false.
+	[self inputPackage text: self model savingPackageName.
 	self inputClass text: self model savingClassName.
 	self inputMethod text: self model savingMethodName.
 	self model isClassSide
 		ifTrue: [ self buttonClass click ]
-		ifFalse: [ self buttonInstance click ]
+		ifFalse: [ self buttonInstance click ]] ensure: [self shouldTriggerEvent: true.  ]
 ]

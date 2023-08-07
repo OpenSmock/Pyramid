@@ -847,14 +847,3 @@ PyramidSimpleExamples class >> marble2 [
 	}
 ]'
 ]
-
-{ #category : #'pyramid-serialized-bloc' }
-PyramidSimpleExamples class >> test [
-	"This class has been generated using Pyramid.
-
-	By: YannLEGOFF
-	2023-08-07 16:31:46"
-
-	<pySTON>
-	^ '[ ]'
-]
