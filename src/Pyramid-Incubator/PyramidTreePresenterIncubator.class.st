@@ -1,5 +1,5 @@
 Class {
-	#name : #PyramidTreePresenter,
+	#name : #PyramidTreePresenterIncubator,
 	#superclass : #SpPresenter,
 	#traits : 'TPyramidProjectModelObserver',
 	#classTraits : 'TPyramidProjectModelObserver classTrait',
@@ -12,20 +12,20 @@ Class {
 }
 
 { #category : #accessing }
-PyramidTreePresenter >> columns [
+PyramidTreePresenterIncubator >> columns [
 
-	^ { PyramidTreeColumn nameAndType }
+	^ { PyramidTreeColumnIncubator nameAndType }
 ]
 
 { #category : #accessing }
-PyramidTreePresenter >> connectOn: aPyramidEditor [
+PyramidTreePresenterIncubator >> connectOn: aPyramidEditor [
 
 	self editor: aPyramidEditor.
 	aPyramidEditor projectModel addObserver: self.
 ]
 
 { #category : #api }
-PyramidTreePresenter >> contextMenu [
+PyramidTreePresenterIncubator >> contextMenu [
 
 	| menu |
 	menu := (self editor window services at: #selectionMenu) builder
@@ -34,26 +34,26 @@ PyramidTreePresenter >> contextMenu [
 ]
 
 { #category : #layout }
-PyramidTreePresenter >> defaultLayout [
+PyramidTreePresenterIncubator >> defaultLayout [
 
 	^ SpBoxLayout newVertical add: self treePresenter; yourself
 ]
 
 { #category : #accessing }
-PyramidTreePresenter >> editor [
+PyramidTreePresenterIncubator >> editor [
 
 	^ editor
 ]
 
 { #category : #accessing }
-PyramidTreePresenter >> editor: anObject [
+PyramidTreePresenterIncubator >> editor: anObject [
 
 	editor := anObject.
 	self updateRoots
 ]
 
 { #category : #initialization }
-PyramidTreePresenter >> initializePresenters [
+PyramidTreePresenterIncubator >> initializePresenters [
 
 	shouldUpdateSelection := true.
 
@@ -73,42 +73,42 @@ PyramidTreePresenter >> initializePresenters [
 ]
 
 { #category : #'as yet unclassified' }
-PyramidTreePresenter >> pyramidElementsChanged [
+PyramidTreePresenterIncubator >> pyramidElementsChanged [
 
 	self updateRoots
 ]
 
 { #category : #'as yet unclassified' }
-PyramidTreePresenter >> pyramidRootsChanged [
+PyramidTreePresenterIncubator >> pyramidRootsChanged [
 
 	self updateRoots
 ]
 
 { #category : #'as yet unclassified' }
-PyramidTreePresenter >> pyramidSelectionChanged [
+PyramidTreePresenterIncubator >> pyramidSelectionChanged [
 
 	self updateSelection
 ]
 
 { #category : #accessing }
-PyramidTreePresenter >> shouldUpdateSelection [
+PyramidTreePresenterIncubator >> shouldUpdateSelection [
 	^ shouldUpdateSelection
 ]
 
 { #category : #accessing }
-PyramidTreePresenter >> shouldUpdateSelection: aBoolean [
+PyramidTreePresenterIncubator >> shouldUpdateSelection: aBoolean [
 
 	shouldUpdateSelection := aBoolean
 ]
 
 { #category : #accessing }
-PyramidTreePresenter >> treePresenter [
+PyramidTreePresenterIncubator >> treePresenter [
 
 	^ treePresenter
 ]
 
 { #category : #'as yet unclassified' }
-PyramidTreePresenter >> treeSelectionChanged: aCollection [
+PyramidTreePresenterIncubator >> treeSelectionChanged: aCollection [
 
 	self editor ifNil: [ ^ self ].
 	self shouldUpdateSelection ifFalse: [ ^ self ].
@@ -118,7 +118,7 @@ PyramidTreePresenter >> treeSelectionChanged: aCollection [
 ]
 
 { #category : #accessing }
-PyramidTreePresenter >> updateRoots [
+PyramidTreePresenterIncubator >> updateRoots [
 
 	self shouldUpdateSelection: false.
 	self treePresenter roots: self editor projectModel roots asArray.
@@ -127,7 +127,7 @@ PyramidTreePresenter >> updateRoots [
 ]
 
 { #category : #'as yet unclassified' }
-PyramidTreePresenter >> updateSelection [
+PyramidTreePresenterIncubator >> updateSelection [
 
 	self editor projectModel ifNil: [ ^ self ].
 	self shouldUpdateSelection ifFalse: [ ^ self ].

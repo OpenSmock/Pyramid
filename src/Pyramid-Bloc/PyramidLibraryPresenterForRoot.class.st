@@ -1,17 +1,17 @@
 Class {
-	#name : #PyramidLibraryViewForRoot,
-	#superclass : #PyramidLibraryView,
-	#category : #'Pyramid-Bloc-plugin-library'
+	#name : #PyramidLibraryPresenterForRoot,
+	#superclass : #PyramidLibraryPresenter,
+	#category : #'Pyramid-Bloc-plugin-tree-library'
 }
 
 { #category : #'as yet unclassified' }
-PyramidLibraryViewForRoot >> buttonAction [
+PyramidLibraryPresenterForRoot >> buttonAction [
 
 	self editor propertiesManager commandExecutor use: PyramidAddToCollectionCommand new on: { 	self editor projectModel roots } with: self list selectedItem blockMaker value
 ]
 
 { #category : #private }
-PyramidLibraryViewForRoot >> buttonLabel [
+PyramidLibraryPresenterForRoot >> buttonLabel [
 
 	^ 'Add new root'
 ]

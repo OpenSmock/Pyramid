@@ -1,11 +1,11 @@
 Class {
-	#name : #PyramidTreeColumn,
+	#name : #PyramidTreeColumnIncubator,
 	#superclass : #Object,
 	#category : #'Pyramid-Incubator-plugin-hierarchy-selection-helper'
 }
 
 { #category : #'as yet unclassified' }
-PyramidTreeColumn class >> nameAndType [
+PyramidTreeColumnIncubator class >> nameAndType [
 
 	^ (SpCompositeTableColumn new
 		   title: 'Elements';

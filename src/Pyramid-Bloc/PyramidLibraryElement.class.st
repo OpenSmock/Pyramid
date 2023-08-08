@@ -6,7 +6,7 @@ Class {
 		'form',
 		'blockMaker'
 	],
-	#category : #'Pyramid-Bloc-plugin-library'
+	#category : #'Pyramid-Bloc-plugin-tree-library'
 }
 
 { #category : #converting }

@@ -1,5 +1,5 @@
 Class {
-	#name : #PyramidLibraryView,
+	#name : #PyramidLibraryPresenter,
 	#superclass : #SpPresenter,
 	#instVars : [
 		'list',
@@ -8,28 +8,44 @@ Class {
 		'addButton',
 		'idGenerator'
 	],
-	#category : #'Pyramid-Bloc-plugin-library'
+	#category : #'Pyramid-Bloc-plugin-tree-library'
 }
 
+{ #category : #accessing }
+PyramidLibraryPresenter class >> idGenerator [
+^ Generator on: [ :generator |
+		               | index |
+		               index := 1.
+		               [
+		               Character alphabet do: [ :each |
+			               | next suffix |
+			               next := each asUppercase asString.
+			               suffix := index = 1
+				                         ifTrue: [ '' ]
+				                         ifFalse: [ index asString ].
+			               generator yield: next , suffix ].
+		               index := index + 1 ] repeat ].
+]
+
 { #category : #initialization }
-PyramidLibraryView >> addButton [
+PyramidLibraryPresenter >> addButton [
 ^ addButton
 ]
 
 { #category : #'as yet unclassified' }
-PyramidLibraryView >> buttonAction [
+PyramidLibraryPresenter >> buttonAction [
 
 	^ self shouldBeImplemented
 ]
 
 { #category : #'as yet unclassified' }
-PyramidLibraryView >> buttonLabel [
+PyramidLibraryPresenter >> buttonLabel [
 
 	^ self shouldBeImplemented
 ]
 
 { #category : #'as yet unclassified' }
-PyramidLibraryView >> defaultItemsList [
+PyramidLibraryPresenter >> defaultItemsList [
 
 	^ {
 		  (PyramidLibraryElement new
@@ -50,7 +66,7 @@ PyramidLibraryView >> defaultItemsList [
 ]
 
 { #category : #initialization }
-PyramidLibraryView >> defaultLayout [
+PyramidLibraryPresenter >> defaultLayout [
 
 	^ SpBoxLayout newVertical
 		  spacing: 4;
@@ -80,36 +96,32 @@ PyramidLibraryView >> defaultLayout [
 ]
 
 { #category : #accessing }
-PyramidLibraryView >> editor [
+PyramidLibraryPresenter >> editor [
 	^ editor
 ]
 
 { #category : #accessing }
-PyramidLibraryView >> editor: aPyramidEditor [
+PyramidLibraryPresenter >> editor: aPyramidEditor [
 
 	editor := aPyramidEditor
 ]
 
 { #category : #accessing }
-PyramidLibraryView >> idGenerator [
+PyramidLibraryPresenter >> idGenerator [
 
 	^ idGenerator
 ]
 
-{ #category : #initialization }
-PyramidLibraryView >> initializePresenters [
+{ #category : #accessing }
+PyramidLibraryPresenter >> idGenerator: anObject [
 
-	idGenerator:= Generator on: [ :generator |
-		| index |
-		index := 1.
-		[ 	Character alphabet do: [ :each |
-				| next suffix |
-				next := each asUppercase asString.
-				suffix := index = 1
-					ifTrue: [ '' ]
-					ifFalse: [ index asString ].
-				generator yield: next, suffix ].
-			index := index + 1 ] repeat ].
+	idGenerator := anObject
+]
+
+{ #category : #initialization }
+PyramidLibraryPresenter >> initializePresenters [
+
+	idGenerator := self class idGenerator.
 
 	addButton := SpButtonPresenter new
 		             label: self buttonLabel;
@@ -128,18 +140,18 @@ PyramidLibraryView >> initializePresenters [
 ]
 
 { #category : #accessing }
-PyramidLibraryView >> list [
+PyramidLibraryPresenter >> list [
 
 	^ list
 ]
 
 { #category : #accessing }
-PyramidLibraryView >> preview [
+PyramidLibraryPresenter >> preview [
 	^ preview
 ]
 
 { #category : #'as yet unclassified' }
-PyramidLibraryView >> updatePreviewWith: aLibraryElement [
+PyramidLibraryPresenter >> updatePreviewWith: aLibraryElement [
 
 	self preview image: aLibraryElement form
 ]
