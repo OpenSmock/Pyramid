@@ -8,7 +8,7 @@ Class {
 		'shouldUpdateSelection',
 		'editor'
 	],
-	#category : #'Pyramid-Bloc-plugin-hierarchy'
+	#category : #'Pyramid-Incubator-plugin-hierarchy-selection-helper'
 }
 
 { #category : #accessing }

@@ -7,13 +7,27 @@ Class {
 		'view',
 		'editor'
 	],
-	#category : #'Pyramid-Bloc-plugin-hierarchy'
+	#category : #'Pyramid-Incubator-plugin-hierarchy-selection-helper'
 }
 
 { #category : #initialization }
-PyramidPluginHierarchy class >> initialize [
+PyramidPluginHierarchy class >> install [
 
+	<script>
 	PyramidPluginManager uniqueInstance addPlugin: self
+]
+
+{ #category : #testing }
+PyramidPluginHierarchy class >> isInstalled [
+
+	^ PyramidPluginManager uniqueInstance isPluginInstalled: self
+]
+
+{ #category : #initialization }
+PyramidPluginHierarchy class >> uninstall [
+
+	<script>
+	PyramidPluginManager uniqueInstance removePlugin: self
 ]
 
 { #category : #adding }

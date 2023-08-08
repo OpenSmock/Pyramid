@@ -1,7 +1,7 @@
 Class {
 	#name : #PyramidTreeColumn,
 	#superclass : #Object,
-	#category : #'Pyramid-Bloc-plugin-hierarchy'
+	#category : #'Pyramid-Incubator-plugin-hierarchy-selection-helper'
 }
 
 { #category : #'as yet unclassified' }
