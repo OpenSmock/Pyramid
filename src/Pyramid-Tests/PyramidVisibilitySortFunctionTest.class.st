@@ -23,9 +23,9 @@ PyramidVisibilitySortFunctionTest >> testSorting [
 	parent addChildren: data.
 	sorted := data sorted: PyramidVisibilitySortFunction new.
 	self assert: sorted equals: {
-			e4.
 			e3.
+			e4.
 			e5.
-			e2.
-			e1 }
+			e1.
+			e2 }
 ]
