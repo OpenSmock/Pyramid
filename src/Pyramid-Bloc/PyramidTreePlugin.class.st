@@ -12,10 +12,75 @@ Class {
 	#category : #'Pyramid-Bloc-plugin-tree-library'
 }
 
+{ #category : #'as yet unclassified' }
+PyramidTreePlugin class >> columnNameAndType [
+
+	^ SpCompositeTableColumn new
+		  title: 'Elements';
+		  addColumn: (SpImageTableColumn evaluated: [ :aClass |
+					   self iconNamed: aClass systemIconName ]);
+		  addColumn: (SpStringTableColumn new
+				   title: 'Class';
+				   evaluated: [ :aClass | aClass class name ];
+				   yourself);
+		  addColumn: (SpStringTableColumn new
+				   title: 'Identity';
+				   evaluated: [ :aClass | aClass identityHash printString ];
+				   displayColor: [ :aClass | Color gray ];
+				   yourself);
+		  addColumn: (SpStringTableColumn new
+				   title: 'Identifier';
+				   evaluated: [ :aClass |
+					   aClass id isNoId
+						   ifTrue: [ '' ]
+						   ifFalse: [ aClass id asSymbol ] ];
+				   displayColor: [ :aClass |
+					   aClass id isNoId
+						   ifTrue: [ Color green ]
+						   ifFalse: [ Smalltalk ui theme textColor ] ];
+				   yourself);
+		  yourself
+]
+
+{ #category : #'as yet unclassified' }
+PyramidTreePlugin class >> columnVisibility: aPyramidTreePlugin [
+
+	^ SpCompositeTableColumn new
+		  title: 'Visibility';
+		  width: 80;
+		  addColumn: (SpImageTableColumn evaluated: [ :aBlElement |
+					   aBlElement
+						   allParentsDetect: [ :parent | parent isVisible not ]
+						   ifFound: [ :parent | self iconNamed: #uncommentedClass ]
+						   ifNone: [ self iconNamed: #blank16 ] ]);
+		  addColumn: (SpImageTableColumn evaluated: [ :aBlElement |
+					   aBlElement visibility asIcon ]);
+		  addColumn: (SpLinkTableColumn new
+				   title: 'Visible';
+				   url: [ :aBlElement | '' ];
+				   action: [ :aBlElement |
+					   self
+						   setVisibility: aBlElement visibility nextVisibilityForTree
+						   of: aBlElement
+						   onEditor: aPyramidTreePlugin editor ];
+				   evaluated: [ :aBlElement | aBlElement visibility asString ];
+				   yourself);
+		  yourself
+]
+
 { #category : #'class initialization' }
 PyramidTreePlugin class >> initialize [
 
 	PyramidPluginManager uniqueInstance addPlugin: self
+]
+
+{ #category : #initialization }
+PyramidTreePlugin class >> setVisibility: aBlVisibility of: aBlElement onEditor: aPyramidEditor [
+
+	aPyramidEditor propertiesManager commandExecutor
+		use: PyramidVisibilityCommand new
+		on: { aBlElement }
+		with: aBlVisibility
 ]
 
 { #category : #adding }
@@ -61,8 +126,10 @@ PyramidTreePlugin >> initialize [
 
 	self initializeLibraryPresenters.
 	treePresenter := PyramidTreePresenter new
-		                 libraryPresenterForRoot: self libraryPresenterForRoot;
-		                 yourself
+		                 libraryPresenterForRoot:
+			                 self libraryPresenterForRoot;
+		                 yourself.
+	self initializeTreeColumns.
 ]
 
 { #category : #initialization }
@@ -78,6 +145,14 @@ PyramidTreePlugin >> initializeLibraryPresenters [
 		                           editor: self editor;
 		idGenerator: idGenerator;
 		                           yourself
+]
+
+{ #category : #initialization }
+PyramidTreePlugin >> initializeTreeColumns [
+
+	self treePresenter columns add: self class columnNameAndType.
+	self treePresenter columns add: (self class columnVisibility: self).
+	self treePresenter updateTree
 ]
 
 { #category : #'as yet unclassified' }

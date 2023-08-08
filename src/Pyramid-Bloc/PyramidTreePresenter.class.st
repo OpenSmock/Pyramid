@@ -16,36 +16,6 @@ Class {
 }
 
 { #category : #'as yet unclassified' }
-PyramidTreePresenter class >> columnNameAndType [
-
-	^ SpCompositeTableColumn new
-		  title: 'Elements';
-		  addColumn: (SpImageTableColumn evaluated: [ :aClass |
-					   self iconNamed: aClass systemIconName ]);
-		  addColumn: (SpStringTableColumn new
-				   title: 'Class';
-				   evaluated: [ :aClass | aClass class name ];
-				   yourself);
-		  addColumn: (SpStringTableColumn new
-				   title: 'Identity';
-				   evaluated: [ :aClass | aClass identityHash printString ];
-				   displayColor: [ :aClass | Color gray ];
-				   yourself);
-		  addColumn: (SpStringTableColumn new
-				   title: 'Identifier';
-				   evaluated: [ :aClass |
-					   aClass id isNoId
-						   ifTrue: [ '' ]
-						   ifFalse: [ aClass id asSymbol ] ];
-				   displayColor: [ :aClass |
-					   aClass id isNoId
-						   ifTrue: [ Color green ]
-						   ifFalse: [ Smalltalk ui theme textColor ] ];
-				   yourself);
-		  yourself
-]
-
-{ #category : #'as yet unclassified' }
 PyramidTreePresenter >> actionAddNewElement [
 (PyramidPopoverFactory
 				                  makeWithPresenter: self libraryPresenterForRoot
@@ -89,7 +59,7 @@ PyramidTreePresenter >> defaultLayout [
 	^ SpBoxLayout newVertical
 		  spacing: 4;
 		  add: self buttonAddToRoots expand: false;
-		  add: self treeWithColumns expand: true;
+		  add: self tree expand: true;
 		  yourself
 ]
 
@@ -103,13 +73,6 @@ PyramidTreePresenter >> editorMenuBuilder [
 PyramidTreePresenter >> editorMenuBuilder: anObject [
 
 	editorMenuBuilder := anObject
-]
-
-{ #category : #initialization }
-PyramidTreePresenter >> initializeColumns [
-	"Add to #columns collection all column of the tree. A column should be an instance of `SpTableColumn`."
-
-	self columns add: self class columnNameAndType
 ]
 
 { #category : #initialization }
@@ -127,7 +90,6 @@ PyramidTreePresenter >> initializePresenters [
 		        expandAll.
 
 	columns := OrderedCollection new.
-	self initializeColumns.
 
 	buttonAddToRoots := SpButtonPresenter new
 		                    label: 'Add new element';
@@ -224,14 +186,6 @@ PyramidTreePresenter >> tree [
 ]
 
 { #category : #'as yet unclassified' }
-PyramidTreePresenter >> treeWithColumns [
-	"return the tree with all columns in #columns added."
-
-	self columns do: [ :each | tree addColumn: each ].
-	^ tree
-]
-
-{ #category : #'as yet unclassified' }
 PyramidTreePresenter >> updateRoots [
 
 	self shouldUpdateSelection: false.
@@ -253,8 +207,7 @@ PyramidTreePresenter >> updateSelection [
 
 { #category : #'as yet unclassified' }
 PyramidTreePresenter >> updateTree [
-	"Update tree: 
-	- roots = projectModel roots
-	- selection = projectModel selection
-	- columns can change too"
+
+	self tree columns: {  }.
+	self columns do: [ :each | tree addColumn: each ]
 ]
