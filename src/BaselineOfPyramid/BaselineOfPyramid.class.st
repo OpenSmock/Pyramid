@@ -16,6 +16,7 @@ BaselineOfPyramid >> baseline: spec [
 			package: #'Pyramid-Bloc'
 			with: [ spec requires: #( #Pyramid #Bloc ) ];
 			package: #'Pyramid-Tests' with: [ spec requires: #( #Pyramid ) ];
+			package: #'Pyramid-Examples' with: [ spec requires: #( #Pyramid ) ];
 			package: #'Pyramid-IDE' with: [ spec requires: #( #Pyramid ) ] ]
 ]
 
