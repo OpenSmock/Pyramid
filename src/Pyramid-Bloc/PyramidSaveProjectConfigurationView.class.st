@@ -12,7 +12,7 @@ Class {
 		'labelErrorClass',
 		'labelErrorMethod',
 		'controller',
-		'model',
+		'saveModel',
 		'shouldTriggerEvent'
 	],
 	#category : #'Pyramid-Bloc-plugin-save'
@@ -201,17 +201,29 @@ PyramidSaveProjectConfigurationView >> labelErrorPackage [
 { #category : #accessing }
 PyramidSaveProjectConfigurationView >> model [
 
-	model ifNil: [
-		model := PyramidSaveModel new
-			         yourself ].
-	^ model
+	saveModel ifNil: [ saveModel := PyramidSaveModel new yourself ].
+	^ saveModel
 ]
 
 { #category : #accessing }
 PyramidSaveProjectConfigurationView >> model: aPySaveModel [
 
-	model := aPySaveModel.
-	self updateFromModelWithoutEvents.
+	saveModel := aPySaveModel.
+	self updateFromModelWithoutEvents
+]
+
+{ #category : #accessing }
+PyramidSaveProjectConfigurationView >> saveModel [
+
+	saveModel ifNil: [ saveModel := PyramidSaveModel new yourself ].
+	^ saveModel
+]
+
+{ #category : #accessing }
+PyramidSaveProjectConfigurationView >> saveModel: aPySaveModel [
+
+	saveModel := aPySaveModel.
+	self updateFromModelWithoutEvents
 ]
 
 { #category : #accessing }
