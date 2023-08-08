@@ -17,27 +17,55 @@ PyramidTreePlugin class >> columnNameAndType [
 
 	^ SpCompositeTableColumn new
 		  title: 'Elements';
-		  addColumn: (SpImageTableColumn evaluated: [ :aClass |
-					   self iconNamed: aClass systemIconName ]);
+		  addColumn:
+			  (SpImageTableColumn evaluated: [ :aBlElement | aBlElement asIcon ]);
 		  addColumn: (SpStringTableColumn new
 				   title: 'Class';
-				   evaluated: [ :aClass | aClass class name ];
+				   evaluated: [ :aBlElement | aBlElement class name ];
 				   yourself);
 		  addColumn: (SpStringTableColumn new
 				   title: 'Identity';
-				   evaluated: [ :aClass | aClass identityHash printString ];
-				   displayColor: [ :aClass | Color gray ];
+				   evaluated: [ :aBlElement | aBlElement identityHash printString ];
+				   displayColor: [ :aBlElement | Color gray ];
 				   yourself);
 		  addColumn: (SpStringTableColumn new
 				   title: 'Identifier';
-				   evaluated: [ :aClass |
-					   aClass id isNoId
+					beEditable;
+					onAcceptEdition: [ :aBlElement :newIdString | ];
+				   evaluated: [ :aBlElement |
+					   aBlElement id isNoId
 						   ifTrue: [ '' ]
-						   ifFalse: [ aClass id asSymbol ] ];
-				   displayColor: [ :aClass |
-					   aClass id isNoId
-						   ifTrue: [ Color green ]
-						   ifFalse: [ Smalltalk ui theme textColor ] ];
+						   ifFalse: [ aBlElement id asSymbol ] ];
+				   displayColor: [ :aBlElement | Smalltalk ui theme textColor ];
+				   yourself);
+		  yourself
+]
+
+{ #category : #'as yet unclassified' }
+PyramidTreePlugin class >> columnNameAndType: aPyramidTreePlugin [
+
+	^ SpCompositeTableColumn new
+		  title: 'Elements';
+		  addColumn:
+			  (SpImageTableColumn evaluated: [ :aBlElement | aBlElement asIcon ]);
+		  addColumn: (SpStringTableColumn new
+				   title: 'Class';
+				   evaluated: [ :aBlElement | aBlElement class name ];
+				   yourself);
+		  addColumn: (SpStringTableColumn new
+				   title: 'Identity';
+				   evaluated: [ :aBlElement | aBlElement identityHash printString ];
+				   displayColor: [ :aBlElement | Color gray ];
+				   yourself);
+		  addColumn: (SpStringTableColumn new
+				   title: 'Identifier';
+				   beEditable;
+				   onAcceptEdition: [ :aBlElement :newIdString | self setId: newIdString of: aBlElement onEditor: aPyramidTreePlugin editor ];
+				   evaluated: [ :aBlElement |
+					   aBlElement id isNoId
+						   ifTrue: [ '' ]
+						   ifFalse: [ aBlElement id asSymbol ] ];
+				   displayColor: [ :aBlElement | Smalltalk ui theme textColor ];
 				   yourself);
 		  yourself
 ]
@@ -72,6 +100,15 @@ PyramidTreePlugin class >> columnVisibility: aPyramidTreePlugin [
 PyramidTreePlugin class >> initialize [
 
 	PyramidPluginManager uniqueInstance addPlugin: self
+]
+
+{ #category : #initialization }
+PyramidTreePlugin class >> setId: aString of: aBlElement onEditor: aPyramidEditor [
+
+	aPyramidEditor propertiesManager commandExecutor
+		use: PyramidElementIdCommand new
+		on: { aBlElement }
+		with: aString
 ]
 
 { #category : #initialization }
@@ -150,7 +187,7 @@ PyramidTreePlugin >> initializeLibraryPresenters [
 { #category : #initialization }
 PyramidTreePlugin >> initializeTreeColumns [
 
-	self treePresenter columns add: self class columnNameAndType.
+	self treePresenter columns add: (self class columnNameAndType: self).
 	self treePresenter columns add: (self class columnVisibility: self).
 	self treePresenter updateTree
 ]

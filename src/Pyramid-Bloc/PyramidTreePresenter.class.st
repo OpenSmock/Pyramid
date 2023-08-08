@@ -146,16 +146,6 @@ PyramidTreePresenter >> pyramidSelectionChanged [
 ]
 
 { #category : #'as yet unclassified' }
-PyramidTreePresenter >> rootsHaveChanged [
-
-	
-	self tree roots size = self projectModel roots size ifFalse: [ ^ true ].
-	(self tree roots includesAll: self projectModel roots) ifFalse: [ ^ true ].
-	(self projectModel roots includesAll: self tree roots) ifFalse: [ ^ true ].
-	^ false
-]
-
-{ #category : #'as yet unclassified' }
 PyramidTreePresenter >> selectionHaveChanged [
 
 	self tree selectedItems size = self projectModel selection size ifFalse: [
@@ -189,7 +179,9 @@ PyramidTreePresenter >> tree [
 PyramidTreePresenter >> updateRoots [
 
 	self shouldUpdateSelection: false.
-	[self tree roots: self projectModel roots asArray]ensure: [ self shouldUpdateSelection: true ]
+	[
+	self tree roots: self projectModel roots asArray.
+	self tree expandAll ] ensure: [ self shouldUpdateSelection: true ]
 ]
 
 { #category : #'as yet unclassified' }
