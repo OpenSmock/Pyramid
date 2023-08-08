@@ -7,21 +7,24 @@ Class {
 { #category : #'as yet unclassified' }
 PyramidSendDownCommand >> setValueFor: anObject with: anArgument [
 
-	| rightChild nextElevation |
-	rightChild := anObject parent children findFirst: [ :each |
-		              each elevation elevation
-		              = anObject elevation elevation ].
+	| rightChild nextElevation parent |
+	parent := anObject parent.
+	rightChild := parent childAt:
+		              (parent children asOrderedCollection findFirst: [
+			               :each |
+			               each elevation elevation
+			               = anObject elevation elevation ]).
 	rightChild = anObject ifFalse: [
-		anObject parent removeChild: anObject.
-		anObject parent addChild: anObject before: rightChild.
+		parent removeChild: anObject.
+		parent addChild: anObject before: rightChild.
 		^ self ].
 	nextElevation := anObject elevation elevation.
-	anObject parent children reverseDo: [ :each |
+	parent children reverseDo: [ :each |
 		each elevation elevation < nextElevation ifTrue: [
 			nextElevation := each elevation elevation.
 			rightChild := each ] ].
 	rightChild ifNil: [ ^ self ].
 	anObject zIndex: nextElevation.
-	anObject parent removeChild: anObject.
-	anObject parent addChild: anObject after: rightChild
+	parent removeChild: anObject.
+	parent addChild: anObject before: rightChild
 ]

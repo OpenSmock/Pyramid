@@ -18,6 +18,7 @@ PyramidSendTopCommand >> setValueFor: anObject with: anArgument [
 			              findLast: [ :each |
 			              each elevation elevation = elevationMax ]).
 	leftChild = anObject ifTrue: [ ^ self ].
+	anObject zIndex: elevationMax.
 	parent removeChild: anObject.
 	parent addChild: anObject after: leftChild
 ]

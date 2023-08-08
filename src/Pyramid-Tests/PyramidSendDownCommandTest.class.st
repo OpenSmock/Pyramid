@@ -1,5 +1,5 @@
 Class {
-	#name : #PyramidSendTopCommandTest,
+	#name : #PyramidSendDownCommandTest,
 	#superclass : #TestCase,
 	#traits : 'TPyramidCommandTest',
 	#classTraits : 'TPyramidCommandTest classTrait',
@@ -7,13 +7,13 @@ Class {
 }
 
 { #category : #accessing }
-PyramidSendTopCommandTest >> command [
+PyramidSendDownCommandTest >> command [
 
-	^ PyramidSendTopCommand new
+	^ PyramidSendDownCommand new
 ]
 
 { #category : #'as yet unclassified' }
-PyramidSendTopCommandTest >> targetContainers [
+PyramidSendDownCommandTest >> targetContainers [
 
 	| parent1 a1 a2 a3 a4 b1 b2 b3 b4 parent2 |
 	parent1 := BlElement new
@@ -67,15 +67,15 @@ PyramidSendTopCommandTest >> targetContainers [
 			b4 }.
 
 	^ { (PyramidCommandTestContainer
-		   no: b1
-		   with: a1
+		   no: b3
+		   with: a3
 		   prop: (PyramidChangePositionWithSiblingsModel new
-				    childIndex: 4;
+				    childIndex: 0;
 				    zIndex: 2)) }
 ]
 
 { #category : #'as yet unclassified' }
-PyramidSendTopCommandTest >> targetsCannotBeUsedFor [
+PyramidSendDownCommandTest >> targetsCannotBeUsedFor [
 	"override if needed"
 
 	^ {
