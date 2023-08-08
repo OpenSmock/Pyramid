@@ -3,10 +3,10 @@ Class {
 	#superclass : #Object,
 	#instVars : [
 		'methodBuilder',
-		'savingModel',
+		'saveModel',
 		'verifier'
 	],
-	#category : #'Pyramid-plugin-save'
+	#category : #'Pyramid-Bloc-plugin-save'
 }
 
 { #category : #testing }
@@ -17,8 +17,7 @@ PyramidSavingService >> canSave [
 	- if savingClassName exist it should be in the savingPackageName
 	"
 
-	^ self verifier verify: self savingModel.
-	
+	^ self verifier verify: self saveModel
 ]
 
 { #category : #'as yet unclassified' }
@@ -45,7 +44,7 @@ PyramidSavingService >> save [
 	| class |
 	self canSave ifFalse: [ self errorCannotSave ].
 
-	class := self savingModel isClassSide
+	class := self saveModel isClassSide
 		         ifTrue: [ self savingClass classSide ]
 		         ifFalse: [ self savingClass ].
 
@@ -57,35 +56,35 @@ PyramidSavingService >> save [
 				classified: self methodBuilder classifier ]
 ]
 
+{ #category : #accessing }
+PyramidSavingService >> saveModel [
+
+	^ saveModel
+]
+
+{ #category : #accessing }
+PyramidSavingService >> saveModel: anObject [
+
+	saveModel := anObject
+]
+
 { #category : #tests }
 PyramidSavingService >> savingClass [
 
 	| class |
 	class := self class environment classNamed:
-		         self savingModel savingClassName.
+		         self saveModel savingClassName.
 	class ifNotNil: [ ^ class ].
 	^ self class classInstaller make: [ :aClassBuilder |
-		aClassBuilder
-			name: self savingModel savingClassName;
-			package: self savingModel savingPackageName ]
+		  aClassBuilder
+			  name: self saveModel savingClassName;
+			  package: self saveModel savingPackageName ]
 ]
 
 { #category : #tests }
 PyramidSavingService >> savingMethod [
 
-	^ self methodBuilder build: self savingModel
-]
-
-{ #category : #accessing }
-PyramidSavingService >> savingModel [
-
-	^ savingModel
-]
-
-{ #category : #accessing }
-PyramidSavingService >> savingModel: anObject [
-
-	savingModel := anObject
+	^ self methodBuilder build: self saveModel
 ]
 
 { #category : #accessing }

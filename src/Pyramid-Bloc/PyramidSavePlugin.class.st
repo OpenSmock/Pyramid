@@ -12,7 +12,7 @@ Class {
 		'saveButton',
 		'projectModel'
 	],
-	#category : #'Pyramid-plugin-save'
+	#category : #'Pyramid-Bloc-plugin-save'
 }
 
 { #category : #'class initialization' }
@@ -64,20 +64,21 @@ PyramidSavePlugin >> initialize [
 
 	inputsController := PyramidSaveProjectConfigurationController new.
 	inputsView := inputsController view.
-	saveModel := inputsController model.
+	saveModel := inputsController saveModel.
 
 	savingService := PyramidSavingService new
-		                 savingModel: saveModel;
+		                 saveModel: saveModel;
 		                 methodBuilder: PyramidSavingMethodBuilder ston;
 		                 yourself.
 
 	inputsButton := SpButtonPresenter new
 		                icon: (self iconNamed: #smallRemoteOpen);
 		                help: 'Project configuration';
-		                action: [( PyramidPopoverFactory
-		                 makeWithPresenter: inputsView
-		                 relativeTo: inputsButton
-		                 position: SpPopoverPosition right) popup. ];
+		                action: [
+			                (PyramidPopoverFactory
+				                 makeWithPresenter: inputsView
+				                 relativeTo: inputsButton
+				                 position: SpPopoverPosition right) popup ];
 		                yourself.
 
 	saveButton := SpButtonPresenter new
@@ -113,8 +114,8 @@ PyramidSavePlugin >> openOn: aSaveModel [
 	self inputsView model isSaved: aSaveModel isSaved."
 
 	aSaveModel projectModel: self projectModel.
-	self savingService savingModel: aSaveModel.
-	self inputsController model: aSaveModel.
+	self savingService saveModel: aSaveModel.
+	self inputsController saveModel: aSaveModel.
 
 	aSaveModel isClassSide
 		ifTrue: [ self inputsView buttonClass click ]

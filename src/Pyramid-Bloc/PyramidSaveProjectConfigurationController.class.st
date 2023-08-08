@@ -5,11 +5,11 @@ Class {
 	#classTraits : 'TPyramidProjectModelObserver classTrait',
 	#instVars : [
 		'view',
-		'model',
+		'saveModel',
 		'verifier',
 		'editorWindow'
 	],
-	#category : #'Pyramid-plugin-save'
+	#category : #'Pyramid-Bloc-plugin-save'
 }
 
 { #category : #tests }
@@ -17,19 +17,20 @@ PyramidSaveProjectConfigurationController >> browseProjectClass [
 
 	| class |
 	class := self class environment classNamed:
-		         self model savingClassName.
-	class ifNil: [ 
-		UIManager default inform: 'Class do not exist yet. It will be created the first time you saved it.'.
+		         self saveModel savingClassName.
+	class ifNil: [
+		UIManager default inform:
+			'Class do not exist yet. It will be created the first time you saved it.'.
 		^ self ].
-	self model isClassSide
+	self saveModel isClassSide
 		ifTrue: [
 			Smalltalk tools browser
 				openOnClass: class class
-				selector: self model savingMethodName ]
+				selector: self saveModel savingMethodName ]
 		ifFalse: [
 			Smalltalk tools browser
 				openOnClass: class
-				selector: self model savingMethodName ]
+				selector: self saveModel savingMethodName ]
 ]
 
 { #category : #accessing }
@@ -47,36 +48,21 @@ PyramidSaveProjectConfigurationController >> editorWindow: anObject [
 { #category : #testing }
 PyramidSaveProjectConfigurationController >> isSaved [
 
-	self model isSaved: true.
+	self saveModel isSaved: true.
 	self updateWindowTitle
-]
-
-{ #category : #accessing }
-PyramidSaveProjectConfigurationController >> model [
-
-	model ifNil: [ model := PyramidSaveModel new ].
-	^ model
-]
-
-{ #category : #accessing }
-PyramidSaveProjectConfigurationController >> model: aPyramidSaveModel [
-
-	model := aPyramidSaveModel.
-	self view model: aPyramidSaveModel.
-	self updateView
 ]
 
 { #category : #'as yet unclassified' }
 PyramidSaveProjectConfigurationController >> pyramidElementsChanged [
 
-	self model isSaved: false.
+	self saveModel isSaved: false.
 	self updateWindowTitle
 ]
 
 { #category : #'as yet unclassified' }
 PyramidSaveProjectConfigurationController >> pyramidRootsChanged [
 
-	self model isSaved: false.
+	self saveModel isSaved: false.
 	self updateWindowTitle
 ]
 
@@ -84,31 +70,47 @@ PyramidSaveProjectConfigurationController >> pyramidRootsChanged [
 PyramidSaveProjectConfigurationController >> radioUpdatedOnClassSide: aBoolean [
 
 	aBoolean
-		ifTrue: [ self model onClass ]
-		ifFalse: [ self model onInstance ]. self updateView
+		ifTrue: [ self saveModel onClass ]
+		ifFalse: [ self saveModel onInstance ].
+	self updateView
+]
+
+{ #category : #accessing }
+PyramidSaveProjectConfigurationController >> saveModel [
+
+	saveModel ifNil: [ saveModel := PyramidSaveModel new ].
+	^ saveModel
+]
+
+{ #category : #accessing }
+PyramidSaveProjectConfigurationController >> saveModel: aPyramidSaveModel [
+
+	saveModel := aPyramidSaveModel.
+	self view saveModel: aPyramidSaveModel.
+	self updateView
 ]
 
 { #category : #'as yet unclassified' }
 PyramidSaveProjectConfigurationController >> textUpdatedFromClass: aString [
 
-	self model savingClassName: aString.
-	self model isSaved: false.
+	self saveModel savingClassName: aString.
+	self saveModel isSaved: false.
 	self updateView
 ]
 
 { #category : #'as yet unclassified' }
 PyramidSaveProjectConfigurationController >> textUpdatedFromMethod: aString [
 
-	self model savingMethodName: aString.
-	self model isSaved: false.
+	self saveModel savingMethodName: aString.
+	self saveModel isSaved: false.
 	self updateView
 ]
 
 { #category : #'as yet unclassified' }
 PyramidSaveProjectConfigurationController >> textUpdatedFromPackage: aString [
 
-	self model savingPackageName: aString.
-	self model isSaved: false.
+	self saveModel savingPackageName: aString.
+	self saveModel isSaved: false.
 	self updateView
 ]
 
@@ -116,7 +118,7 @@ PyramidSaveProjectConfigurationController >> textUpdatedFromPackage: aString [
 PyramidSaveProjectConfigurationController >> updateView [
 
 	| errors |
-	errors := self verifier allErrors: self model.
+	errors := self verifier allErrors: self saveModel.
 	self view hideLabels.
 	self view buttonBrowse enabled: errors isEmpty.
 	errors do: [ :each | each showOn: self view ].
@@ -125,8 +127,9 @@ PyramidSaveProjectConfigurationController >> updateView [
 
 { #category : #testing }
 PyramidSaveProjectConfigurationController >> updateWindowTitle [
+
 	| errors |
-	errors := self verifier allErrors: self model.
+	errors := self verifier allErrors: self saveModel.
 	self updateWindowTitleWithErrors: errors
 ]
 
@@ -137,7 +140,7 @@ PyramidSaveProjectConfigurationController >> updateWindowTitleWithErrors: aColle
 	self editorWindow ifNil: [ ^ self ].
 	title := aCollection
 		         ifNotEmpty: [ self editorWindow class defaultTitle ]
-		         ifEmpty: [ self model asTitleString ].
+		         ifEmpty: [ self saveModel asTitleString ].
 	self editorWindow title: title
 ]
 
@@ -152,8 +155,11 @@ PyramidSaveProjectConfigurationController >> verifier [
 { #category : #accessing }
 PyramidSaveProjectConfigurationController >> view [
 
-	view ifNil: [ view := PyramidSaveProjectConfigurationView new.
-		view controller: self; model: self model ].
+	view ifNil: [
+		view := PyramidSaveProjectConfigurationView new.
+		view
+			controller: self;
+			saveModel: self saveModel ].
 	^ view
 ]
 
