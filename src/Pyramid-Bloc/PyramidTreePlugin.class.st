@@ -13,38 +13,10 @@ Class {
 }
 
 { #category : #'as yet unclassified' }
-PyramidTreePlugin class >> columnNameAndType [
-
-	^ SpCompositeTableColumn new
-		  title: 'Elements';
-		  addColumn:
-			  (SpImageTableColumn evaluated: [ :aBlElement | aBlElement asIcon ]);
-		  addColumn: (SpStringTableColumn new
-				   title: 'Class';
-				   evaluated: [ :aBlElement | aBlElement class name ];
-				   yourself);
-		  addColumn: (SpStringTableColumn new
-				   title: 'Identity';
-				   evaluated: [ :aBlElement | aBlElement identityHash printString ];
-				   displayColor: [ :aBlElement | Color gray ];
-				   yourself);
-		  addColumn: (SpStringTableColumn new
-				   title: 'Identifier';
-					beEditable;
-					onAcceptEdition: [ :aBlElement :newIdString | ];
-				   evaluated: [ :aBlElement |
-					   aBlElement id isNoId
-						   ifTrue: [ '' ]
-						   ifFalse: [ aBlElement id asSymbol ] ];
-				   displayColor: [ :aBlElement | Smalltalk ui theme textColor ];
-				   yourself);
-		  yourself
-]
-
-{ #category : #'as yet unclassified' }
 PyramidTreePlugin class >> columnNameAndType: aPyramidTreePlugin [
 
 	^ SpCompositeTableColumn new
+	     sortFunction: PyramidElevationSortFunction new;
 		  title: 'Elements';
 		  addColumn:
 			  (SpImageTableColumn evaluated: [ :aBlElement | aBlElement asIcon ]);
@@ -60,7 +32,11 @@ PyramidTreePlugin class >> columnNameAndType: aPyramidTreePlugin [
 		  addColumn: (SpStringTableColumn new
 				   title: 'Identifier';
 				   beEditable;
-				   onAcceptEdition: [ :aBlElement :newIdString | self setId: newIdString of: aBlElement onEditor: aPyramidTreePlugin editor ];
+				   onAcceptEdition: [ :aBlElement :newIdString |
+					   self
+						   setId: newIdString
+						   of: aBlElement
+						   onEditor: aPyramidTreePlugin editor ];
 				   evaluated: [ :aBlElement |
 					   aBlElement id isNoId
 						   ifTrue: [ '' ]
@@ -75,6 +51,7 @@ PyramidTreePlugin class >> columnVisibility: aPyramidTreePlugin [
 
 	^ SpCompositeTableColumn new
 		  title: 'Visibility';
+		sortFunction: PyramidVisibilitySortFunction new;
 		  width: 80;
 		  addColumn: (SpImageTableColumn evaluated: [ :aBlElement |
 					   aBlElement
@@ -211,7 +188,8 @@ PyramidTreePlugin >> menuAddAndDeleteOn: aBuilder [
 		addGroupEmptySelection: [ :group :empty |
 			group addItem: [ :anItem |
 				anItem
-					name: 'Add new root';
+					name: 'Add new element';
+					help: 'Add a new element on the roots of the design.';
 					icon: (self iconNamed: #add);
 					action: [
 						(PyramidPopoverFactory
@@ -225,6 +203,7 @@ PyramidTreePlugin >> menuAddAndDeleteOn: aBuilder [
 			group addItem: [ :anItem |
 				anItem
 					name: 'Add new element';
+					help: 'Add a new element as a child of the selected element.';
 					icon: (self iconNamed: #add);
 					action: [
 						(PyramidPopoverFactory
@@ -234,6 +213,8 @@ PyramidTreePlugin >> menuAddAndDeleteOn: aBuilder [
 			group addItem: [ :anItem |
 				anItem
 					name: 'Remove selection';
+					help:
+						'Delete the selected element and its children from the design.';
 					icon: (self iconNamed: #delete);
 					action: [ self removeSelection ] ] ]
 		order: 10.
@@ -243,6 +224,8 @@ PyramidTreePlugin >> menuAddAndDeleteOn: aBuilder [
 			group addItem: [ :anItem |
 				anItem
 					name: 'Remove selection';
+					help:
+						'Delete all selected elements and their children from the design.';
 					icon: (self iconNamed: #delete);
 					action: [ self removeSelection ] ] ]
 		order: 10

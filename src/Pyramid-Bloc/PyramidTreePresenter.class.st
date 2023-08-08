@@ -95,7 +95,9 @@ PyramidTreePresenter >> initializePresenters [
 		                    label: 'Add new element';
 		                    icon: (self iconNamed: #add);
 		                    action: [ self actionAddNewElement ];
-		                    yourself
+		                    help:
+			                    'Add a new element on the roots of the design.';
+				                    yourself
 ]
 
 { #category : #accessing }
