@@ -4,84 +4,141 @@ Class {
 	#traits : 'TPyramidProjectModelObserver',
 	#classTraits : 'TPyramidProjectModelObserver classTrait',
 	#instVars : [
-		'treePresenter',
-		'shouldUpdateSelection',
-		'editor'
+		'buttonAddToRoots',
+		'tree',
+		'columns',
+		'libraryPresenterForRoot',
+		'projectModel',
+		'editorMenuBuilder',
+		'shouldUpdateSelection'
 	],
-	#category : #'Pyramid-Bloc-plugin-hierarchy'
+	#category : #'Pyramid-Bloc-plugin-tree-library'
 }
+
+{ #category : #'as yet unclassified' }
+PyramidTreePresenter >> actionAddNewElement [
+(PyramidPopoverFactory
+				                  makeWithPresenter: self libraryPresenterForRoot
+				                  relativeTo: self buttonAddToRoots
+				                  position: SpPopoverPosition right) popup
+]
+
+{ #category : #'as yet unclassified' }
+PyramidTreePresenter >> actionEditorMenu [
+
+	^ self editorMenuBuilder menuFor: self projectModel selection.
+]
+
+{ #category : #'as yet unclassified' }
+PyramidTreePresenter >> actionSelectionChanged: aCollection [
+
+	self projectModel ifNil: [ ^ self ].
+	self shouldUpdateSelection ifFalse: [ ^ self ].
+	self shouldUpdateSelection: false.
+	[
+	self projectModel selection replaceAll:
+		aCollection selectedItems ] ensure: [
+		self shouldUpdateSelection: true ]
+]
+
+{ #category : #accessing }
+PyramidTreePresenter >> buttonAddToRoots [
+
+	^ buttonAddToRoots
+]
 
 { #category : #accessing }
 PyramidTreePresenter >> columns [
 
-	^ { PyramidTreeColumn nameAndType }
-]
-
-{ #category : #accessing }
-PyramidTreePresenter >> connectOn: aPyramidEditor [
-
-	self editor: aPyramidEditor.
-	aPyramidEditor projectModel addObserver: self.
-]
-
-{ #category : #api }
-PyramidTreePresenter >> contextMenu [
-
-	| menu |
-	menu := (self editor window services at: #selectionMenu) builder
-		        menuFor: self editor projectModel selection.
-	^ menu
+	^ columns
 ]
 
 { #category : #layout }
 PyramidTreePresenter >> defaultLayout [
 
-	^ SpBoxLayout newVertical add: self treePresenter; yourself
+	^ SpBoxLayout newVertical
+		  spacing: 4;
+		  add: self buttonAddToRoots expand: false;
+		  add: self tree expand: true;
+		  yourself
 ]
 
 { #category : #accessing }
-PyramidTreePresenter >> editor [
+PyramidTreePresenter >> editorMenuBuilder [
 
-	^ editor
+	^ editorMenuBuilder
 ]
 
 { #category : #accessing }
-PyramidTreePresenter >> editor: anObject [
+PyramidTreePresenter >> editorMenuBuilder: anObject [
 
-	editor := anObject.
-	self updateRoots
+	editorMenuBuilder := anObject
 ]
 
 { #category : #initialization }
 PyramidTreePresenter >> initializePresenters [
 
 	shouldUpdateSelection := true.
+	tree := SpTreeTablePresenter new
+		        beMultipleSelection;
+		        beResizable;
+		        roots: {  };
+		        children: [ :each | each children ];
+		        contextMenu: [ self actionEditorMenu ];
+		        whenSelectionChangedDo: [ :selection |
+			        self actionSelectionChanged: selection ];
+		        expandAll.
 
-	treePresenter := SpTreeTablePresenter new.
-	treePresenter whenSelectionChangedDo: [ :newSelection |
-		self treeSelectionChanged: newSelection ].
+	columns := OrderedCollection new.
 
-	treePresenter
-		beMultipleSelection;
-		beResizable;
-		roots: {  };
-		children: [ :each | each children ];
-		contextMenu: [ self contextMenu ];
-		expandAll.
+	buttonAddToRoots := SpButtonPresenter new
+		                    label: 'Add new element';
+		                    icon: (self iconNamed: #add);
+		                    action: [ self actionAddNewElement ];
+		                    help:
+			                    'Add a new element on the roots of the design.';
+				                    yourself
+]
 
-	self columns do: [ :each | treePresenter addColumn: each ]
+{ #category : #accessing }
+PyramidTreePresenter >> libraryPresenterForRoot [
+
+	^ libraryPresenterForRoot
+]
+
+{ #category : #accessing }
+PyramidTreePresenter >> libraryPresenterForRoot: anObject [
+
+	libraryPresenterForRoot := anObject
+]
+
+{ #category : #accessing }
+PyramidTreePresenter >> projectModel [
+
+	^ projectModel
+]
+
+{ #category : #accessing }
+PyramidTreePresenter >> projectModel: anObject [
+
+	projectModel ifNotNil: [ projectModel removeObserver: self ].
+	projectModel := anObject.
+	projectModel addObserver: self 
+	
 ]
 
 { #category : #'as yet unclassified' }
 PyramidTreePresenter >> pyramidElementsChanged [
 
-	self updateRoots
+	self updateRoots.
+	self selectionHaveChanged ifTrue: [ self updateSelection ].
 ]
 
 { #category : #'as yet unclassified' }
 PyramidTreePresenter >> pyramidRootsChanged [
 
-	self updateRoots
+	self updateRoots .
+	self updateSelection
 ]
 
 { #category : #'as yet unclassified' }
@@ -90,51 +147,61 @@ PyramidTreePresenter >> pyramidSelectionChanged [
 	self updateSelection
 ]
 
+{ #category : #'as yet unclassified' }
+PyramidTreePresenter >> selectionHaveChanged [
+
+	self tree selectedItems size = self projectModel selection size ifFalse: [
+		^ true ].
+	(self tree selectedItems includesAll: self projectModel selection) ifFalse: [
+		^ true ].
+	(self projectModel selection includesAll: self tree selectedItems) ifFalse: [
+		^ true ].
+	^ false
+]
+
 { #category : #accessing }
 PyramidTreePresenter >> shouldUpdateSelection [
+
 	^ shouldUpdateSelection
 ]
 
 { #category : #accessing }
-PyramidTreePresenter >> shouldUpdateSelection: aBoolean [
+PyramidTreePresenter >> shouldUpdateSelection: anObject [
 
-	shouldUpdateSelection := aBoolean
+	shouldUpdateSelection := anObject
 ]
 
 { #category : #accessing }
-PyramidTreePresenter >> treePresenter [
+PyramidTreePresenter >> tree [
 
-	^ treePresenter
+	^ tree
 ]
 
 { #category : #'as yet unclassified' }
-PyramidTreePresenter >> treeSelectionChanged: aCollection [
-
-	self editor ifNil: [ ^ self ].
-	self shouldUpdateSelection ifFalse: [ ^ self ].
-	self shouldUpdateSelection: false.
-	self editor projectModel selection replaceAll: aCollection selectedItems.
-	self shouldUpdateSelection: true
-]
-
-{ #category : #accessing }
 PyramidTreePresenter >> updateRoots [
 
 	self shouldUpdateSelection: false.
-	self treePresenter roots: self editor projectModel roots asArray.
-	self shouldUpdateSelection: true.
-	self updateSelection
+	[
+	self tree roots: self projectModel roots asArray.
+	self tree expandAll ] ensure: [ self shouldUpdateSelection: true ]
 ]
 
 { #category : #'as yet unclassified' }
 PyramidTreePresenter >> updateSelection [
 
-	self editor projectModel ifNil: [ ^ self ].
+	self projectModel ifNil: [ ^ self ].
 	self shouldUpdateSelection ifFalse: [ ^ self ].
 	self shouldUpdateSelection: false.
-	self editor projectModel selection
-		ifEmpty: [ self treePresenter unselectAll ]
-		ifNotEmpty: [
-		self treePresenter selectItems: self editor projectModel selection ].
-	self shouldUpdateSelection: true
+	[
+	self tree unselectAll.
+	self projectModel selection
+		ifNotEmpty: [ self tree selectItems: self projectModel selection ] ]
+		ensure: [ self shouldUpdateSelection: true ]
+]
+
+{ #category : #'as yet unclassified' }
+PyramidTreePresenter >> updateTree [
+
+	self tree columns: {  }.
+	self columns do: [ :each | tree addColumn: each ]
 ]

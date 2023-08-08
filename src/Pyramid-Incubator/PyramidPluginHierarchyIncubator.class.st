@@ -1,5 +1,5 @@
 Class {
-	#name : #PyramidPluginHierarchy,
+	#name : #PyramidPluginHierarchyIncubator,
 	#superclass : #Object,
 	#traits : 'TPyramidPlugin',
 	#classTraits : 'TPyramidPlugin classTrait',
@@ -7,17 +7,31 @@ Class {
 		'view',
 		'editor'
 	],
-	#category : #'Pyramid-Bloc-plugin-hierarchy'
+	#category : #'Pyramid-Incubator-plugin-hierarchy-selection-helper'
 }
 
 { #category : #initialization }
-PyramidPluginHierarchy class >> initialize [
+PyramidPluginHierarchyIncubator class >> install [
 
+	<script>
 	PyramidPluginManager uniqueInstance addPlugin: self
 ]
 
+{ #category : #testing }
+PyramidPluginHierarchyIncubator class >> isInstalled [
+
+	^ PyramidPluginManager uniqueInstance isPluginInstalled: self
+]
+
+{ #category : #initialization }
+PyramidPluginHierarchyIncubator class >> uninstall [
+
+	<script>
+	PyramidPluginManager uniqueInstance removePlugin: self
+]
+
 { #category : #adding }
-PyramidPluginHierarchy >> addPanelsOn: aPyramidSimpleWindow [
+PyramidPluginHierarchyIncubator >> addPanelsOn: aPyramidSimpleWindow [
 
 	aPyramidSimpleWindow at: #tabLeft addItem: [ :builder |
 		builder
@@ -31,32 +45,32 @@ PyramidPluginHierarchy >> addPanelsOn: aPyramidSimpleWindow [
 ]
 
 { #category : #'as yet unclassified' }
-PyramidPluginHierarchy >> connectOn: aPyramidEditor [
+PyramidPluginHierarchyIncubator >> connectOn: aPyramidEditor [
 
 	self editor: aPyramidEditor.
 	self view connectOn: aPyramidEditor
 ]
 
 { #category : #accessing }
-PyramidPluginHierarchy >> editor [
+PyramidPluginHierarchyIncubator >> editor [
 
 	^ editor
 ]
 
 { #category : #accessing }
-PyramidPluginHierarchy >> editor: anObject [
+PyramidPluginHierarchyIncubator >> editor: anObject [
 
 	editor := anObject
 ]
 
 { #category : #initialization }
-PyramidPluginHierarchy >> initialize [
+PyramidPluginHierarchyIncubator >> initialize [
 
-	view := PyramidHierarchyPresenter new
+	view := PyramidHierarchyPresenterIncubator new
 ]
 
 { #category : #'as yet unclassified' }
-PyramidPluginHierarchy >> menuAddAndDeleteOn: aBuilder [
+PyramidPluginHierarchyIncubator >> menuAddAndDeleteOn: aBuilder [
 
 	aBuilder
 		addGroupEmptySelection: [ :group :empty |
@@ -66,7 +80,7 @@ PyramidPluginHierarchy >> menuAddAndDeleteOn: aBuilder [
 					icon: (self iconNamed: #add);
 					action: [
 						(PyramidPopoverFactory
-							 makeWithPresenter: (PyramidLibraryViewForRoot new
+							 makeWithPresenter: (PyramidLibraryPresenterForRoot new
 									  editor: self editor;
 									  yourself)
 							 relativeTo: self view
@@ -81,7 +95,7 @@ PyramidPluginHierarchy >> menuAddAndDeleteOn: aBuilder [
 					icon: (self iconNamed: #add);
 					action: [
 						(PyramidPopoverFactory
-							 makeWithPresenter: (PyramidLibraryViewForElement new
+							 makeWithPresenter: (PyramidLibraryPresenterForElement new
 									  editor: self editor;
 									  yourself)
 							 relativeTo: self view
@@ -104,7 +118,7 @@ PyramidPluginHierarchy >> menuAddAndDeleteOn: aBuilder [
 ]
 
 { #category : #removing }
-PyramidPluginHierarchy >> removeSelection [
+PyramidPluginHierarchyIncubator >> removeSelection [
 
 	self editor propertiesManager commandExecutor
 		use: PyramidRemoveSelectionCommand new
@@ -113,7 +127,7 @@ PyramidPluginHierarchy >> removeSelection [
 ]
 
 { #category : #initialization }
-PyramidPluginHierarchy >> view [
+PyramidPluginHierarchyIncubator >> view [
 
 	^ view
 ]

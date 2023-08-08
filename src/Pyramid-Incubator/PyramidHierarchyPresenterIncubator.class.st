@@ -1,5 +1,5 @@
 Class {
-	#name : #PyramidHierarchyPresenter,
+	#name : #PyramidHierarchyPresenterIncubator,
 	#superclass : #SpPresenter,
 	#instVars : [
 		'tree',
@@ -7,16 +7,16 @@ Class {
 		'buttonAddRoot',
 		'libraryView'
 	],
-	#category : #'Pyramid-Bloc-plugin-hierarchy'
+	#category : #'Pyramid-Incubator-plugin-hierarchy-selection-helper'
 }
 
 { #category : #accessing }
-PyramidHierarchyPresenter >> buttonAddRoot [
+PyramidHierarchyPresenterIncubator >> buttonAddRoot [
 ^ buttonAddRoot
 ]
 
 { #category : #accessing }
-PyramidHierarchyPresenter >> connectOn: aPyramidEditor [
+PyramidHierarchyPresenterIncubator >> connectOn: aPyramidEditor [
 
 	self search projectModel: aPyramidEditor projectModel.
 	self tree connectOn: aPyramidEditor.
@@ -24,7 +24,7 @@ PyramidHierarchyPresenter >> connectOn: aPyramidEditor [
 ]
 
 { #category : #initialization }
-PyramidHierarchyPresenter >> defaultLayout [
+PyramidHierarchyPresenterIncubator >> defaultLayout [
 
 	^ SpPanedLayout newVertical
 		  positionOfSlider: 2/3;
@@ -38,11 +38,11 @@ PyramidHierarchyPresenter >> defaultLayout [
 ]
 
 { #category : #initialization }
-PyramidHierarchyPresenter >> initializePresenters [
+PyramidHierarchyPresenterIncubator >> initializePresenters [
 
-	tree := PyramidTreePresenter new.
+	tree := PyramidTreePresenterIncubator new.
 	search := PyramidSearchAndSelectPresenter new.
-	libraryView := PyramidLibraryViewForRoot new.
+	libraryView := PyramidLibraryPresenterForRoot new.
 	buttonAddRoot := SpButtonPresenter new
 		                 label: 'Add root';
 		                 icon: (self iconNamed: #add);
@@ -55,23 +55,23 @@ PyramidHierarchyPresenter >> initializePresenters [
 ]
 
 { #category : #accessing }
-PyramidHierarchyPresenter >> libraryView [
+PyramidHierarchyPresenterIncubator >> libraryView [
 ^ libraryView
 ]
 
 { #category : #accessing }
-PyramidHierarchyPresenter >> projectModel: aPyramidProject [
+PyramidHierarchyPresenterIncubator >> projectModel: aPyramidProject [
 
 	self search projectModel: aPyramidProject
 ]
 
 { #category : #accessing }
-PyramidHierarchyPresenter >> search [
+PyramidHierarchyPresenterIncubator >> search [
 
 	^ search
 ]
 
 { #category : #initialization }
-PyramidHierarchyPresenter >> tree [
+PyramidHierarchyPresenterIncubator >> tree [
 ^ tree
 ]

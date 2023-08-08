@@ -1,11 +1,11 @@
 Class {
-	#name : #PyramidLibraryViewForElement,
-	#superclass : #PyramidLibraryView,
-	#category : #'Pyramid-Bloc-plugin-library'
+	#name : #PyramidLibraryPresenterForElement,
+	#superclass : #PyramidLibraryPresenter,
+	#category : #'Pyramid-Bloc-plugin-tree-library'
 }
 
 { #category : #'as yet unclassified' }
-PyramidLibraryViewForElement >> buttonAction [
+PyramidLibraryPresenterForElement >> buttonAction [
 
 	self editor propertiesManager commandExecutor
 		use: PyramidAddChildCommand new
@@ -14,7 +14,7 @@ PyramidLibraryViewForElement >> buttonAction [
 ]
 
 { #category : #private }
-PyramidLibraryViewForElement >> buttonLabel [
+PyramidLibraryPresenterForElement >> buttonLabel [
 
 	^ 'Add new child'
 ]
