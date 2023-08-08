@@ -6,7 +6,7 @@ Class {
 		'savingModel',
 		'verifier'
 	],
-	#category : #'Pyramid-plugin-save'
+	#category : #'Pyramid-Bloc-plugin-save'
 }
 
 { #category : #testing }

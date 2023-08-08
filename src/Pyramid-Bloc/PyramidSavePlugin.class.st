@@ -12,7 +12,7 @@ Class {
 		'saveButton',
 		'projectModel'
 	],
-	#category : #'Pyramid-plugin-save'
+	#category : #'Pyramid-Bloc-plugin-save'
 }
 
 { #category : #'class initialization' }

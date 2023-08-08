@@ -15,7 +15,7 @@ Class {
 		'model',
 		'shouldTriggerEvent'
 	],
-	#category : #'Pyramid-plugin-save'
+	#category : #'Pyramid-Bloc-plugin-save'
 }
 
 { #category : #layout }

@@ -9,7 +9,7 @@ Class {
 		'isSaved',
 		'projectModel'
 	],
-	#category : #'Pyramid-plugin-save'
+	#category : #'Pyramid-Bloc-plugin-save'
 }
 
 { #category : #converting }

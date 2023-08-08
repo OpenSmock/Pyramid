@@ -6,7 +6,7 @@ Class {
 		'showBlock',
 		'verifyBlock'
 	],
-	#category : #'Pyramid-plugin-save'
+	#category : #'Pyramid-Bloc-plugin-save'
 }
 
 { #category : #constructor }

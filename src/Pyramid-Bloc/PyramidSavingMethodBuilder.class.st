@@ -7,7 +7,7 @@ Class {
 		'pragma',
 		'serializeBlock'
 	],
-	#category : #'Pyramid-plugin-save'
+	#category : #'Pyramid-Bloc-plugin-save'
 }
 
 { #category : #'as yet unclassified' }

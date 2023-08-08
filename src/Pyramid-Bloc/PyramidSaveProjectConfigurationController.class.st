@@ -9,7 +9,7 @@ Class {
 		'verifier',
 		'editorWindow'
 	],
-	#category : #'Pyramid-plugin-save'
+	#category : #'Pyramid-Bloc-plugin-save'
 }
 
 { #category : #tests }

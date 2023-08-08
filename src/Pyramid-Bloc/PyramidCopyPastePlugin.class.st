@@ -3,7 +3,7 @@ Class {
 	#superclass : #Object,
 	#traits : 'TPyramidPlugin',
 	#classTraits : 'TPyramidPlugin classTrait',
-	#category : #'Pyramid-plugin-copy-paste'
+	#category : #'Pyramid-Bloc-plugin-copy-paste'
 }
 
 { #category : #'class initialization' }

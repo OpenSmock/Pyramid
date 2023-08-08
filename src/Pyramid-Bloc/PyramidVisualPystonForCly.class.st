@@ -5,7 +5,7 @@ Class {
 		'method',
 		'imageMorph'
 	],
-	#category : #'Pyramid-plugin-save'
+	#category : #'Pyramid-Bloc-plugin-save'
 }
 
 { #category : #activation }
