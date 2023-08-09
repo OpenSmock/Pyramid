@@ -95,5 +95,9 @@ PyramidSavingMethodBuilder >> serializeBlock: anObject [
 { #category : #'as yet unclassified' }
 PyramidSavingMethodBuilder >> serializedString: aSaveModel [
 
-	^ self serializeBlock value: aSaveModel projectModel roots asArray
+	| roots |
+	roots := aSaveModel projectModel roots asArray sorted:
+		         PyramidElevationSortFunction new.
+	self flag: #FIX. "The roots must be sorted before saving or else the order on the roots will not be kept"
+	^ self serializeBlock value: roots
 ]

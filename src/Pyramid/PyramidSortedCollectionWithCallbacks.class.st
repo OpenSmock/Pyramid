@@ -16,8 +16,13 @@ PyramidSortedCollectionWithCallbacks >> collection: aCollection [
 { #category : #signalling }
 PyramidSortedCollectionWithCallbacks >> signalChanged [
 
-	self collection: (self collection sorted: self sortFunction).
+	self sortCollection.
 	self subscriptions do: [ :callback | callback value ]
+]
+
+{ #category : #signalling }
+PyramidSortedCollectionWithCallbacks >> sortCollection [.
+	self collection: (self collection sorted: self sortFunction).
 ]
 
 { #category : #accessing }

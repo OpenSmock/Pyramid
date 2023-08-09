@@ -251,31 +251,32 @@ PyramidBlocPlugin >> menuChangeOrderOn: aBuilder [
 			group
 				addItem: [ :item |
 					item
-						icon: (self iconNamed: #collection);
-						name: 'Send top';
+						icon: (self iconNamed: #top);
+						name: 'Put in front';
 						enabled: true;
 						action: [ self send: PyramidSendTopCommand new on: { single } ];
 						yourself ];
 				addItem: [ :item |
 					item
-						icon: (self iconNamed: #collection);
+						icon: (self iconNamed: #up);
 						name: 'Send up';
 						enabled: true;
 						action: [ self send: PyramidSendUpCommand new on: { single } ];
 						yourself ];
 				addItem: [ :item |
 					item
-						icon: (self iconNamed: #collection);
+						icon: (self iconNamed: #down);
 						name: 'Send down';
 						enabled: true;
 						action: [ self send: PyramidSendDownCommand new on: { single } ];
 						yourself ];
 				addItem: [ :item |
 					item
-						icon: (self iconNamed: #collection);
-						name: 'Send bottom';
+						icon: (self iconNamed: #bottom);
+						name: 'Put in back';
 						enabled: true;
-						action: [ self send: PyramidSendBottomCommand new on: { single } ];
+						action: [
+							self send: PyramidSendBottomCommand new on: { single } ];
 						yourself ] ]
 		order: 20
 ]
