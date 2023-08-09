@@ -18,9 +18,21 @@ PyramidUnknowState >> asBlBackground [
 ]
 
 { #category : #converting }
+PyramidUnknowState >> asBooleanForPyramid [
+
+	^ self
+]
+
+{ #category : #converting }
 PyramidUnknowState >> asColor [
 
 	^ Color transparent
+]
+
+{ #category : #converting }
+PyramidUnknowState >> asOrientationForPyramid [
+
+	^ self
 ]
 
 { #category : #converting }

@@ -8,7 +8,7 @@ Class {
 PyramidBasicExactVerticalConstraintsBlocCommand >> canBeUsedFor: anObject [
 
 	^ (super canBeUsedFor: anObject) and: [
-			  anObject constraints horizontal resizer isExact ] 
+		  anObject constraints vertical resizer isExact ]
 ]
 
 { #category : #'as yet unclassified' }

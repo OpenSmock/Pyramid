@@ -7,12 +7,14 @@ Class {
 { #category : #'as yet unclassified' }
 PyramidProportionnalVerticalConstraintsCommand >> getValueFor: anObject [
 
-	^ anObject constraints horizontal top
-	  @ anObject constraints horizontal bottom
+	^ anObject constraints proportional vertical top
+	  @ anObject constraints proportional vertical bottom
 ]
 
 { #category : #'as yet unclassified' }
 PyramidProportionnalVerticalConstraintsCommand >> setValueFor: anObject with: anArgument [
 
-	anObject constraintsDo: [ :c | c vertical top: anArgument x. c vertical bottom: anArgument y ]
+	anObject constraintsDo: [ :c |
+		c proportional vertical top: anArgument x.
+		c proportional vertical bottom: anArgument y ]
 ]

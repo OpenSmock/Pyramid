@@ -11,6 +11,22 @@ PyramidBasicHorizontalConstraintsBlocCommand >> getValueFor: anObject [
 ]
 
 { #category : #'as yet unclassified' }
+PyramidBasicHorizontalConstraintsBlocCommand >> saveStatesOf: aCollection withCommand: aCommand withArguments: anArguments [
+
+	| mementos |
+	mementos := aCollection collect: [ :each |
+		            PyramidCommandMemento new
+			            command: aCommand;
+			            target: each;
+			            arguments: (self getValueFor: each) asPyramidConstraintsArgument;
+			            yourself ].
+	mementos size = 1 ifTrue: [ ^ mementos first ].
+	^ PyramidCompositeMemento new
+		  mementos: mementos;
+		  yourself
+]
+
+{ #category : #'as yet unclassified' }
 PyramidBasicHorizontalConstraintsBlocCommand >> setValueFor: anObject with: anArgument [
 
 	anArgument isSymbol

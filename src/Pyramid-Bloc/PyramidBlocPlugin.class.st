@@ -102,6 +102,40 @@ PyramidBlocPlugin class >> constraintsBasicVExact [
 ]
 
 { #category : #accessing }
+PyramidBlocPlugin class >> constraintsPropH [
+
+	| property |
+	property := PyramidProperty new
+		            name: 'Constraints - horizontal';
+		            command:
+			            PyramidProportionnalHorizontalConstraintsCommand new;
+		            pyramidInputPresenterClass: PyramidPointInputPresenter;
+		            yourself.
+	property pyramidInputPresenterModel
+		help: 'Define the proportion of the horizontal component.';
+		labelX: 'Left';
+		labelY: 'Right'.
+	^ property
+]
+
+{ #category : #accessing }
+PyramidBlocPlugin class >> constraintsPropV [
+
+	| property |
+	property := PyramidProperty new
+		            name: 'Constraints - vertical';
+		            command:
+			            PyramidProportionnalVerticalConstraintsCommand new;
+		            pyramidInputPresenterClass: PyramidPointInputPresenter;
+		            yourself.
+	property pyramidInputPresenterModel
+		help: 'Define the proportion of the vertical component.';
+		labelX: 'Top';
+		labelY: 'Bottom'.
+	^ property
+]
+
+{ #category : #accessing }
 PyramidBlocPlugin class >> cornerRadii [
 
 	| property |
@@ -124,6 +158,24 @@ PyramidBlocPlugin class >> elementId [
 		            pyramidInputPresenterClass: PyramidTextInputPresenter;
 		            yourself.
 	property pyramidInputPresenterModel help: 'Change the id.'.
+	^ property
+]
+
+{ #category : #accessing }
+PyramidBlocPlugin class >> flowLayoutOrientation [
+
+	| property |
+	property := PyramidProperty new
+		            name: 'Orientation';
+		            command: PyramidFlowLayoutChangeOrientationCommand new;
+		            pyramidInputPresenterClass:
+			            PyramidFlowLayoutOrientationPresenter;
+		            yourself.
+	property pyramidInputPresenterModel help:
+		'Change the orientation of the flow layout.'.
+	property pyramidInputPresenterModel onLabel: 'Vertical'.
+	property pyramidInputPresenterModel offLabel: 'Horizontal'.
+	property pyramidInputPresenterModel uncertainLabel: 'Uncertain'.
 	^ property
 ]
 
@@ -244,12 +296,22 @@ PyramidBlocPlugin >> connectOn: aPyramidEditor [
 	aPyramidEditor propertiesManager addProperty: self class clipChildren.
 	aPyramidEditor propertiesManager addProperty: self class geometry.
 	aPyramidEditor propertiesManager addProperty: self class cornerRadii.
-	aPyramidEditor propertiesManager addProperty: self class layout.
 	aPyramidEditor propertiesManager addProperty: self class position.
+	
+	aPyramidEditor propertiesManager addProperty: self class layout.
+	aPyramidEditor propertiesManager addProperty: self class flowLayoutOrientation.
+
+	"Constraints - horizontal"
+	aPyramidEditor propertiesManager addProperty:
+		self class constraintsPropH.
 	aPyramidEditor propertiesManager addProperty:
 		self class constraintsBasicH.
 	aPyramidEditor propertiesManager addProperty:
 		self class constraintsBasicHExact.
+
+	"Constraints - vertical"
+	aPyramidEditor propertiesManager addProperty:
+		self class constraintsPropV.
 	aPyramidEditor propertiesManager addProperty:
 		self class constraintsBasicV.
 	aPyramidEditor propertiesManager addProperty:
