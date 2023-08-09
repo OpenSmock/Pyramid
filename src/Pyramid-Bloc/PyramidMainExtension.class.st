@@ -153,7 +153,9 @@ PyramidMainExtension >> projectModel: aProjectModel [
 PyramidMainExtension >> pyramidRootsChanged [
 
 	self containerElement removeChildren.
-	self projectModel roots do: [ :each | each parent ifNotNil: [ :p | p removeChild: each  ]. self containerElement addChild: each ]. 
+	(self projectModel roots asArray sorted: PyramidElevationSortFunction new) do: [ :each |
+		each parent ifNotNil: [ :p | p removeChild: each ].
+		self containerElement addChild: each ]
 ]
 
 { #category : #accessing }

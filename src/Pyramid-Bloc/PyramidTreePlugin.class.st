@@ -16,7 +16,7 @@ Class {
 PyramidTreePlugin class >> columnNameAndType: aPyramidTreePlugin [
 
 	^ SpCompositeTableColumn new
-		  sortFunction: PyramidElementIdSortFunction new;
+		 " sortFunction: PyramidElementIdSortFunction new;"
 		  title: 'Elements';
 		  addColumn:
 			  (SpImageTableColumn evaluated: [ :aBlElement | aBlElement asIcon ]);
@@ -51,7 +51,7 @@ PyramidTreePlugin class >> columnVisibility: aPyramidTreePlugin [
 
 	^ SpCompositeTableColumn new
 		  title: 'Visibility';
-		sortFunction: PyramidVisibilitySortFunction new;
+		  "sortFunction: PyramidVisibilitySortFunction new;"
 		  width: 80;
 		  addColumn: (SpImageTableColumn evaluated: [ :aBlElement |
 					   aBlElement
@@ -78,8 +78,9 @@ PyramidTreePlugin class >> columnZIndex: aPyramidTreePlugin [
 
 	^ SpStringTableColumn new
 		  title: 'z';
-		  sortFunction: PyramidElevationSortFunction new;
-		evaluated: [ :aBlElement | aBlElement elevation elevation printString ];
+		  "sortFunction: PyramidElevationSortFunction new;"
+		  evaluated: [ :aBlElement |
+			  aBlElement elevation elevation printString ];
 		  width: 20;
 		  yourself
 ]

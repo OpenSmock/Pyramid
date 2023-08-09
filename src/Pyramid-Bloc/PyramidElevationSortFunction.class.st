@@ -14,11 +14,12 @@ else
 "
 
 	| res |
-	res := aSecondObject elevation elevation - aFirstObject elevation elevation.
+	res := aSecondObject elevation elevation
+	       - aFirstObject elevation elevation.
 	(res = 0 and: [
 		 aFirstObject parent = aSecondObject parent and: [
 			 aFirstObject parent isNotNil ] ]) ifTrue: [
-		^ (aFirstObject parent childIndexOf: aSecondObject) - (aFirstObject parent childIndexOf: aFirstObject)
+		^ (aFirstObject parent childIndexOf: aFirstObject) - (aFirstObject parent childIndexOf: aSecondObject)
 		   ].
 	^ res
 ]

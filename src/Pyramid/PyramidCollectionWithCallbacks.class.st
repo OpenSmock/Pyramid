@@ -96,7 +96,8 @@ PyramidCollectionWithCallbacks >> removeAll: oldObjects [
 PyramidCollectionWithCallbacks >> replaceAll: newObjects [
 
 	| result |
-	(self collection isEmpty and: newObjects isEmpty) ifTrue: [ ^ newObjects ].
+	(self collection isEmpty and: newObjects isEmpty) ifTrue: [
+		^ newObjects ].
 	self collection removeAll.
 	result := self collection addAll: newObjects.
 	self signalChanged.

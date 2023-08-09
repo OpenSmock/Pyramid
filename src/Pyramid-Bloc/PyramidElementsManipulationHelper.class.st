@@ -8,7 +8,8 @@ Class {
 PyramidElementsManipulationHelper class >> accumulateChildrenOf: aBlElement in: aCollection [
 
 	aCollection add: aBlElement.
-	aBlElement childrenDo: [ :each |
+	(aBlElement children asArray sorted: PyramidElevationSortFunction new)
+	do: [ :each |
 		self accumulateChildrenOf: each in: aCollection ]
 ]
 
@@ -37,7 +38,7 @@ PyramidElementsManipulationHelper class >> accumulateParentsOf: aCollectionOfBlE
 
 { #category : #'as yet unclassified' }
 PyramidElementsManipulationHelper class >> flattenChildrenOfCollection: aCollection [
-"Consider:
+	"Consider:
 A1->A2-A3.
 B1->B2->B3.
 
@@ -50,7 +51,8 @@ returns
 
 	| ret |
 	ret := OrderedCollection new.
-	aCollection do: [ :each | self accumulateChildrenOf: each in: ret ].
+	(aCollection asArray sorted: PyramidElevationSortFunction new) do: [ :each |
+		self accumulateChildrenOf: each in: ret ].
 	^ ret
 ]
 

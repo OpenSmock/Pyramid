@@ -67,10 +67,10 @@ PyramidSendUpCommandTest >> targetContainers [
 			b4 }.
 
 	^ { (PyramidCommandTestContainer
-		   no: b1
+		   no: b2
 		   with: a1
 		   prop: (PyramidChangePositionWithSiblingsModel new
-				    childIndex: 0;
+				    childIndex: 3;
 				    zIndex: 2)) }
 ]
 
