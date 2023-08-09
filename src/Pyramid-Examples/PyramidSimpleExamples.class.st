@@ -835,3 +835,523 @@ PyramidSimpleExamples class >> marble2 [
 	}
 ]'
 ]
+
+{ #category : #'pyramid-serialized-bloc' }
+PyramidSimpleExamples class >> simpleFlowLayout [
+	"This class has been generated using Pyramid.
+
+	By: YannLEGOFF
+	2023-08-09 13:29:22"
+
+	<pySTON>
+	^ '[
+	BlElement {
+		#children : BlChildrenArray [
+			BlElement {
+				#children : BlChildrenArray [ ],
+				#constraints : BlLayoutCommonConstraints {
+					#vertical : BlLayoutCommonConstraintsAxis {
+						#resizer : BlLayoutExactResizer {
+							#size : 100.0
+						}
+					},
+					#horizontal : BlLayoutCommonConstraintsAxis {
+						#resizer : @8
+					},
+					#constraints : {
+						Class [ #BlFlowLayout ] : BlFlowLayoutConstraints {
+							#vertical : BlFlowLayoutConstraintsVertical {
+								#alignment : BlTopAlignment { }
+							},
+							#horizontal : BlFlowLayoutConstraintsHorizontal {
+								#alignment : BlHorizontalStartAlignment { }
+							},
+							#newLine : false,
+							#weight : 0,
+							#display : BlFlowLayoutInline { }
+						}
+					},
+					#position : Point [ 0.0, 0.0 ],
+					#margin : BlInsets {
+						#top : 5.0,
+						#left : 5.0,
+						#bottom : 5.0,
+						#right : 5.0
+					},
+					#padding : BlInsets {
+						#top : 0.0,
+						#left : 0.0,
+						#bottom : 0.0,
+						#right : 0.0
+					},
+					#minHeight : 0.0,
+					#minWidth : 0.0,
+					#maxHeight : Float [ #infinity ],
+					#maxWidth : @21,
+					#ignoredByLayout : false,
+					#previouslyAccessedConstraints : @12,
+					#previouslyAccessedConstraintsType : @11,
+					#accountTransformation : false
+				},
+				#visuals : BlCustomVisuals {
+					#background : BlPaintBackground {
+						#paint : BlColorPaint {
+							#color : Color {
+								#red : 0.6764418377321603,
+								#green : 0.7908113391984359,
+								#blue : 0.9726295210166178,
+								#alpha : 1.0
+							}
+						}
+					}
+				},
+				#userData : IdentityDictionary {
+					#elementId : BlElementNamedId {
+						#identifier : #B
+					}
+				},
+				#layout : BlBasicLayout { }
+			},
+			BlElement {
+				#children : BlChildrenArray [ ],
+				#constraints : BlLayoutCommonConstraints {
+					#vertical : BlLayoutCommonConstraintsAxis {
+						#resizer : @8
+					},
+					#horizontal : BlLayoutCommonConstraintsAxis {
+						#resizer : @8
+					},
+					#constraints : {
+						@11 : BlFlowLayoutConstraints {
+							#vertical : BlFlowLayoutConstraintsVertical {
+								#alignment : @14
+							},
+							#horizontal : BlFlowLayoutConstraintsHorizontal {
+								#alignment : @16
+							},
+							#newLine : false,
+							#weight : 0,
+							#display : @17
+						}
+					},
+					#position : Point [ 0.0, 0.0 ],
+					#margin : @19,
+					#padding : @20,
+					#minHeight : 0.0,
+					#minWidth : 0.0,
+					#maxHeight : @21,
+					#maxWidth : @21,
+					#ignoredByLayout : false,
+					#previouslyAccessedConstraints : @35,
+					#previouslyAccessedConstraintsType : @11,
+					#accountTransformation : false
+				},
+				#visuals : BlCustomVisuals {
+					#background : BlPaintBackground {
+						#paint : BlColorPaint {
+							#color : Color {
+								#red : 0.2482893450635386,
+								#green : 0.6451612903225806,
+								#blue : 0.6148582600195504,
+								#alpha : 1.0
+							}
+						}
+					}
+				},
+				#userData : IdentityDictionary {
+					#elementId : BlElementNamedId {
+						#identifier : #C
+					}
+				},
+				#layout : @28
+			},
+			BlElement {
+				#children : BlChildrenArray [ ],
+				#constraints : BlLayoutCommonConstraints {
+					#vertical : BlLayoutCommonConstraintsAxis {
+						#resizer : @8
+					},
+					#horizontal : BlLayoutCommonConstraintsAxis {
+						#resizer : @8
+					},
+					#constraints : {
+						@11 : BlFlowLayoutConstraints {
+							#vertical : BlFlowLayoutConstraintsVertical {
+								#alignment : @14
+							},
+							#horizontal : BlFlowLayoutConstraintsHorizontal {
+								#alignment : @16
+							},
+							#newLine : false,
+							#weight : 0,
+							#display : @17
+						}
+					},
+					#position : Point [ 0.0, 0.0 ],
+					#margin : @19,
+					#padding : @20,
+					#minHeight : 0.0,
+					#minWidth : 0.0,
+					#maxHeight : @21,
+					#maxWidth : @21,
+					#ignoredByLayout : false,
+					#previouslyAccessedConstraints : @51,
+					#previouslyAccessedConstraintsType : @11,
+					#accountTransformation : false
+				},
+				#visuals : BlCustomVisuals {
+					#background : BlPaintBackground {
+						#paint : BlColorPaint {
+							#color : Color {
+								#red : 0.8983382209188661,
+								#green : 0.3128054740957967,
+								#blue : 0.5053763440860215,
+								#alpha : 1.0
+							}
+						}
+					}
+				},
+				#userData : IdentityDictionary {
+					#elementId : BlElementNamedId {
+						#identifier : #D
+					}
+				},
+				#layout : @28
+			},
+			BlElement {
+				#children : BlChildrenArray [ ],
+				#constraints : BlLayoutCommonConstraints {
+					#vertical : BlLayoutCommonConstraintsAxis {
+						#resizer : @8
+					},
+					#horizontal : BlLayoutCommonConstraintsAxis {
+						#resizer : @8
+					},
+					#constraints : {
+						@11 : BlFlowLayoutConstraints {
+							#vertical : BlFlowLayoutConstraintsVertical {
+								#alignment : @14
+							},
+							#horizontal : BlFlowLayoutConstraintsHorizontal {
+								#alignment : @16
+							},
+							#newLine : false,
+							#weight : 0,
+							#display : @17
+						}
+					},
+					#position : Point [ 0.0, 0.0 ],
+					#margin : @19,
+					#padding : @20,
+					#minHeight : 0.0,
+					#minWidth : 0.0,
+					#maxHeight : @21,
+					#maxWidth : @21,
+					#ignoredByLayout : false,
+					#previouslyAccessedConstraints : @67,
+					#previouslyAccessedConstraintsType : @11,
+					#accountTransformation : false
+				},
+				#visuals : BlCustomVisuals {
+					#background : BlPaintBackground {
+						#paint : BlColorPaint {
+							#color : Color {
+								#red : 0.15640273704789834,
+								#green : 0.20625610948191594,
+								#blue : 0.7223851417399805,
+								#alpha : 1.0
+							}
+						}
+					}
+				},
+				#userData : IdentityDictionary {
+					#elementId : BlElementNamedId {
+						#identifier : #E
+					}
+				},
+				#layout : @28
+			},
+			BlElement {
+				#children : BlChildrenArray [ ],
+				#constraints : BlLayoutCommonConstraints {
+					#vertical : BlLayoutCommonConstraintsAxis {
+						#resizer : @8
+					},
+					#horizontal : BlLayoutCommonConstraintsAxis {
+						#resizer : @8
+					},
+					#constraints : {
+						@11 : BlFlowLayoutConstraints {
+							#vertical : BlFlowLayoutConstraintsVertical {
+								#alignment : @14
+							},
+							#horizontal : BlFlowLayoutConstraintsHorizontal {
+								#alignment : @16
+							},
+							#newLine : false,
+							#weight : 0,
+							#display : @17
+						}
+					},
+					#position : Point [ 0.0, 0.0 ],
+					#margin : @19,
+					#padding : @20,
+					#minHeight : 0.0,
+					#minWidth : 0.0,
+					#maxHeight : @21,
+					#maxWidth : @21,
+					#ignoredByLayout : false,
+					#previouslyAccessedConstraints : @83,
+					#previouslyAccessedConstraintsType : @11,
+					#accountTransformation : false
+				},
+				#visuals : BlCustomVisuals {
+					#background : BlPaintBackground {
+						#paint : BlColorPaint {
+							#color : Color {
+								#red : 0.8778103616813294,
+								#green : 0.83088954056696,
+								#blue : 0.4868035190615836,
+								#alpha : 1.0
+							}
+						}
+					}
+				},
+				#userData : IdentityDictionary {
+					#elementId : BlElementNamedId {
+						#identifier : #F
+					}
+				},
+				#layout : @28
+			},
+			BlElement {
+				#children : BlChildrenArray [ ],
+				#constraints : BlLayoutCommonConstraints {
+					#vertical : BlLayoutCommonConstraintsAxis {
+						#resizer : @8
+					},
+					#horizontal : BlLayoutCommonConstraintsAxis {
+						#resizer : @8
+					},
+					#constraints : {
+						@11 : BlFlowLayoutConstraints {
+							#vertical : BlFlowLayoutConstraintsVertical {
+								#alignment : @14
+							},
+							#horizontal : BlFlowLayoutConstraintsHorizontal {
+								#alignment : @16
+							},
+							#newLine : false,
+							#weight : 0,
+							#display : @17
+						}
+					},
+					#position : Point [ 0.0, 0.0 ],
+					#margin : @19,
+					#padding : @20,
+					#minHeight : 0.0,
+					#minWidth : 0.0,
+					#maxHeight : @21,
+					#maxWidth : @21,
+					#ignoredByLayout : false,
+					#previouslyAccessedConstraints : @99,
+					#previouslyAccessedConstraintsType : @11,
+					#accountTransformation : false
+				},
+				#visuals : BlCustomVisuals {
+					#background : BlPaintBackground {
+						#paint : BlColorPaint {
+							#color : Color {
+								#red : 0.16911045943304007,
+								#green : 0.5141739980449658,
+								#blue : 0.7429130009775171,
+								#alpha : 1.0
+							}
+						}
+					}
+				},
+				#userData : IdentityDictionary {
+					#elementId : BlElementNamedId {
+						#identifier : #G
+					}
+				},
+				#layout : @28
+			}
+		],
+		#constraints : BlLayoutCommonConstraints {
+			#vertical : BlLayoutCommonConstraintsAxis {
+				#resizer : BlLayoutFitContentResizer { }
+			},
+			#horizontal : BlLayoutCommonConstraintsAxis {
+				#resizer : @111
+			},
+			#position : Point [ 0, 0 ],
+			#margin : BlInsets {
+				#top : 0.0,
+				#left : 0.0,
+				#bottom : 0.0,
+				#right : 0.0
+			},
+			#padding : @114,
+			#minHeight : 0.0,
+			#minWidth : 0.0,
+			#maxHeight : @21,
+			#maxWidth : @21,
+			#ignoredByLayout : false,
+			#accountTransformation : false
+		},
+		#visuals : BlCustomVisuals {
+			#background : BlTransparentBackground {
+				
+			},
+			#clipChildren : false
+		},
+		#userData : IdentityDictionary {
+			#elementId : BlElementNamedId {
+				#identifier : #A
+			}
+		},
+		#layout : BlFlowLayout {
+			#measurer : BlFlowLayoutMeasurer {
+				#layout : @119,
+				#children : OrderedCollection [
+					BlFlowLayoutInlineChild {
+						#width : 100.0,
+						#height : 100.0,
+						#margin : @19,
+						#weight : 0,
+						#newLine : false,
+						#startLength : 0,
+						#startBreadth : 0,
+						#element : @4,
+						#alignment : BlCompositeAlignment {
+							#vertical : @14,
+							#horizontal : @16,
+							#direction : BlLayoutLeftToRight { }
+						},
+						#measurer : @120,
+						#display : @17
+					},
+					BlFlowLayoutInlineChild {
+						#width : 100.0,
+						#height : 100.0,
+						#margin : @19,
+						#weight : 0,
+						#newLine : false,
+						#startLength : 110.0,
+						#startBreadth : 0.0,
+						#element : @29,
+						#alignment : BlCompositeAlignment {
+							#vertical : @14,
+							#horizontal : @16,
+							#direction : @124
+						},
+						#measurer : @120,
+						#display : @17
+					},
+					BlFlowLayoutInlineChild {
+						#width : 100.0,
+						#height : 100.0,
+						#margin : @19,
+						#weight : 0,
+						#newLine : false,
+						#startLength : 220.0,
+						#startBreadth : 0.0,
+						#element : @45,
+						#alignment : BlCompositeAlignment {
+							#vertical : @14,
+							#horizontal : @16,
+							#direction : @124
+						},
+						#measurer : @120,
+						#display : @17
+					},
+					BlFlowLayoutInlineChild {
+						#width : 100.0,
+						#height : 100.0,
+						#margin : @19,
+						#weight : 0,
+						#newLine : false,
+						#startLength : 330.0,
+						#startBreadth : 0.0,
+						#element : @61,
+						#alignment : BlCompositeAlignment {
+							#vertical : @14,
+							#horizontal : @16,
+							#direction : @124
+						},
+						#measurer : @120,
+						#display : @17
+					},
+					BlFlowLayoutInlineChild {
+						#width : 100.0,
+						#height : 100.0,
+						#margin : @19,
+						#weight : 0,
+						#newLine : false,
+						#startLength : 440.0,
+						#startBreadth : 0.0,
+						#element : @77,
+						#alignment : BlCompositeAlignment {
+							#vertical : @14,
+							#horizontal : @16,
+							#direction : @124
+						},
+						#measurer : @120,
+						#display : @17
+					},
+					BlFlowLayoutInlineChild {
+						#width : 100.0,
+						#height : 100.0,
+						#margin : @19,
+						#weight : 0,
+						#newLine : false,
+						#startLength : 550.0,
+						#startBreadth : 0.0,
+						#element : @93,
+						#alignment : BlCompositeAlignment {
+							#vertical : @14,
+							#horizontal : @16,
+							#direction : @124
+						},
+						#measurer : @120,
+						#display : @17
+					}
+				],
+				#lines : OrderedCollection [
+					BlFlowLayoutLine {
+						#children : OrderedCollection [
+							@122,
+							@125,
+							@127,
+							@129,
+							@131,
+							@133
+						],
+						#startLength : 0,
+						#startBreadth : 0,
+						#length : 660.0,
+						#breadth : 110.0,
+						#measurer : @120
+					}
+				],
+				#orientation : BlFlowLayoutHorizontal { },
+				#maxWidth : 0.0,
+				#maxHeight : 0.0,
+				#widthMode : BlMeasurementSpec {
+					#size : 0.0,
+					#mode : BlMeasurementUnspecifiedMode { }
+				},
+				#heightMode : BlMeasurementSpec {
+					#size : 0.0,
+					#mode : @140
+				},
+				#checkCanFit : false
+			},
+			#orientation : BlLayoutHorizontal { },
+			#horizontalAlignment : @16,
+			#verticalAlignment : @14
+		}
+	}
+]'
+]

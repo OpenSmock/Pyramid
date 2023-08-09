@@ -113,5 +113,5 @@ TPyramidCommandTest >> testSetValueForWith [
 
 	self targetsWithoutValuesAndValues do: [ :each |
 		self command setValueFor: each key with: each value.
-		self assert: (self command getValueFor: each key) equals: each value ].
+		self assert: (self command getValueFor: each key) equals: each value ]
 ]

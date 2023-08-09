@@ -612,8 +612,8 @@ PyramidSwitchInputPresenter >> state: anObject [
 { #category : #'as yet unclassified' }
 PyramidSwitchInputPresenter >> switchState [
 
-	self value: self value not.
-	self whenValueChangedDo value: self state
+	self value: self state not.
+	self whenValueChangedDo value: self value
 ]
 
 { #category : #'as yet unclassified' }

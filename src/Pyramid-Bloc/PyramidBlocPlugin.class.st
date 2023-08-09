@@ -45,6 +45,97 @@ PyramidBlocPlugin class >> clipChildren [
 ]
 
 { #category : #accessing }
+PyramidBlocPlugin class >> constraintsBasicH [
+
+	| property |
+	property := PyramidProperty new
+		            name: 'Constraints - horizontal';
+		            command:
+			            PyramidBasicHorizontalConstraintsBlocCommand new;
+		            pyramidInputPresenterClass:
+			            PyramidBasicConstraintsInputPresenter;
+		            yourself.
+	^ property
+]
+
+{ #category : #accessing }
+PyramidBlocPlugin class >> constraintsBasicHExact [
+
+	| property |
+	property := PyramidProperty new
+		            name: 'Constraints - width';
+		            command:
+			            PyramidBasicExactHorizontalConstraintsBlocCommand new;
+		            pyramidInputPresenterClass: PyramidNumberInputPresenter;
+		            yourself.
+	property pyramidInputPresenterModel help:
+		'Change the width of the object'.
+	^ property
+]
+
+{ #category : #accessing }
+PyramidBlocPlugin class >> constraintsBasicV [
+
+	| property |
+	property := PyramidProperty new
+		            name: 'Constraints - vertical';
+		            command:
+			            PyramidBasicVerticalConstraintsBlocCommand new;
+		            pyramidInputPresenterClass:
+			            PyramidBasicConstraintsInputPresenter;
+		            yourself.
+	^ property
+]
+
+{ #category : #accessing }
+PyramidBlocPlugin class >> constraintsBasicVExact [
+
+	| property |
+	property := PyramidProperty new
+		            name: 'Constraints - height';
+		            command: PyramidBasicExactVerticalConstraintsBlocCommand new;
+		            pyramidInputPresenterClass: PyramidNumberInputPresenter;
+		            yourself.
+	property pyramidInputPresenterModel help:
+		'Change the height of the object'.
+	^ property
+]
+
+{ #category : #accessing }
+PyramidBlocPlugin class >> constraintsPropH [
+
+	| property |
+	property := PyramidProperty new
+		            name: 'Constraints - horizontal';
+		            command:
+			            PyramidProportionnalHorizontalConstraintsCommand new;
+		            pyramidInputPresenterClass: PyramidPointInputPresenter;
+		            yourself.
+	property pyramidInputPresenterModel
+		help: 'Define the proportion of the horizontal component.';
+		labelX: 'Left';
+		labelY: 'Right'.
+	^ property
+]
+
+{ #category : #accessing }
+PyramidBlocPlugin class >> constraintsPropV [
+
+	| property |
+	property := PyramidProperty new
+		            name: 'Constraints - vertical';
+		            command:
+			            PyramidProportionnalVerticalConstraintsCommand new;
+		            pyramidInputPresenterClass: PyramidPointInputPresenter;
+		            yourself.
+	property pyramidInputPresenterModel
+		help: 'Define the proportion of the vertical component.';
+		labelX: 'Top';
+		labelY: 'Bottom'.
+	^ property
+]
+
+{ #category : #accessing }
 PyramidBlocPlugin class >> cornerRadii [
 
 	| property |
@@ -71,6 +162,24 @@ PyramidBlocPlugin class >> elementId [
 ]
 
 { #category : #accessing }
+PyramidBlocPlugin class >> flowLayoutOrientation [
+
+	| property |
+	property := PyramidProperty new
+		            name: 'Orientation';
+		            command: PyramidFlowLayoutChangeOrientationCommand new;
+		            pyramidInputPresenterClass:
+			            PyramidFlowLayoutOrientationPresenter;
+		            yourself.
+	property pyramidInputPresenterModel help:
+		'Change the orientation of the flow layout.'.
+	property pyramidInputPresenterModel onLabel: 'Vertical'.
+	property pyramidInputPresenterModel offLabel: 'Horizontal'.
+	property pyramidInputPresenterModel uncertainLabel: 'Uncertain'.
+	^ property
+]
+
+{ #category : #accessing }
 PyramidBlocPlugin class >> geometry [
 
 	| property |
@@ -87,6 +196,20 @@ PyramidBlocPlugin class >> geometry [
 PyramidBlocPlugin class >> initialize [
 
 	PyramidPluginManager uniqueInstance addPlugin: self
+]
+
+{ #category : #accessing }
+PyramidBlocPlugin class >> layout [
+
+	| property |
+	property := PyramidProperty new
+		            name: 'Layout';
+		            command:
+			            PyramidLayoutBlocCommand new;
+		            pyramidInputPresenterClass:
+			            PyramidLayoutInputPresenter;
+		            yourself.
+	^ property
 ]
 
 { #category : #accessing }
@@ -174,6 +297,25 @@ PyramidBlocPlugin >> connectOn: aPyramidEditor [
 	aPyramidEditor propertiesManager addProperty: self class geometry.
 	aPyramidEditor propertiesManager addProperty: self class cornerRadii.
 	aPyramidEditor propertiesManager addProperty: self class position.
+	
+	aPyramidEditor propertiesManager addProperty: self class layout.
+	aPyramidEditor propertiesManager addProperty: self class flowLayoutOrientation.
+
+	"Constraints - horizontal"
+	aPyramidEditor propertiesManager addProperty:
+		self class constraintsPropH.
+	aPyramidEditor propertiesManager addProperty:
+		self class constraintsBasicH.
+	aPyramidEditor propertiesManager addProperty:
+		self class constraintsBasicHExact.
+
+	"Constraints - vertical"
+	aPyramidEditor propertiesManager addProperty:
+		self class constraintsPropV.
+	aPyramidEditor propertiesManager addProperty:
+		self class constraintsBasicV.
+	aPyramidEditor propertiesManager addProperty:
+		self class constraintsBasicVExact.
 	aPyramidEditor propertiesManager addProperty: self class background.
 	aPyramidEditor propertiesManager addProperty: self class padding.
 	aPyramidEditor propertiesManager addProperty: self class margin
