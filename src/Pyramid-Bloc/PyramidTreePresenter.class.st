@@ -182,8 +182,7 @@ PyramidTreePresenter >> updateRoots [
 
 	self shouldUpdateSelection: false.
 	[
-	self tree roots: self projectModel roots asArray.
-	self tree expandAll ] ensure: [ self shouldUpdateSelection: true ]
+	self tree roots: self projectModel roots asArray ] ensure: [ self shouldUpdateSelection: true ]
 ]
 
 { #category : #'as yet unclassified' }
