@@ -201,6 +201,15 @@ PyramidBackgroundInputPresenter >> selectEmptyValue [
 	self notebook selectPage: self modelEmptyValue page
 ]
 
+{ #category : #'as yet unclassified' }
+PyramidBackgroundInputPresenter >> selectImage [
+
+	self notebook selectPage: self modelImage page.
+	[ self notebook removePage: self modelMixedValues page ]
+		on: NotFound
+		do: [ "nothing" ]
+]
+
 { #category : #accessing }
 PyramidBackgroundInputPresenter >> selectMixedValues [
 
