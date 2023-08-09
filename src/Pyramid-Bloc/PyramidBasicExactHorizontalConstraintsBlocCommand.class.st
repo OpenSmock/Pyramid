@@ -1,6 +1,6 @@
 Class {
 	#name : #PyramidBasicExactHorizontalConstraintsBlocCommand,
-	#superclass : #PyramidBasicHorizontalConstraintsBlocCommand,
+	#superclass : #PyramidBasicConstraintsCommand,
 	#category : #'Pyramid-Bloc-plugin-bloc-layout'
 }
 
@@ -8,8 +8,7 @@ Class {
 PyramidBasicExactHorizontalConstraintsBlocCommand >> canBeUsedFor: anObject [
 
 	^ (super canBeUsedFor: anObject) and: [
-		  anObject hasParent and: [
-			  anObject constraints horizontal resizer isExact ] ]
+			  anObject constraints horizontal resizer isExact ]
 ]
 
 { #category : #'as yet unclassified' }

@@ -155,7 +155,7 @@ PyramidBlocPlugin class >> layout [
 		            command:
 			            PyramidLayoutBlocCommand new;
 		            pyramidInputPresenterClass:
-			            PyramidLayoutInputPresenter new;
+			            PyramidLayoutInputPresenter;
 		            yourself.
 	^ property
 ]
