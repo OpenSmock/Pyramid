@@ -12,18 +12,6 @@ PyramidVisibilityInputPresenterTest >> dummyValues [
 	^ { BlVisibility gone . BlVisibility hidden . BlVisibility visible }
 ]
 
-{ #category : #accessing }
-PyramidVisibilityInputPresenterTest >> expectedEmptyValue [
-
-	^ PyramidEmptyValue new
-]
-
-{ #category : #accessing }
-PyramidVisibilityInputPresenterTest >> expectedMixedValues [
-
-	^ PyramidMixedValues new
-]
-
 { #category : #tests }
 PyramidVisibilityInputPresenterTest >> makeNewInput [
 

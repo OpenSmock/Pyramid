@@ -24,9 +24,21 @@ PyramidUnknowState >> asColor [
 ]
 
 { #category : #converting }
+PyramidUnknowState >> asPyramidConstraintsArgument [
+
+	^ self
+]
+
+{ #category : #converting }
 PyramidUnknowState >> asString [
 
 	^ '@ Unknow state'
+]
+
+{ #category : #initialization }
+PyramidUnknowState >> setConstraintsOn: aPyramidBasicConstraintsInputPresenter [
+
+	aPyramidBasicConstraintsInputPresenter setUnknowValue
 ]
 
 { #category : #initialization }
@@ -39,4 +51,10 @@ PyramidUnknowState >> setCornerRadiiOn: aPyramidCornerRadiiInputPresenter [
 PyramidUnknowState >> setInsetsOn: aPyramidInsetsInputPresenter [
 
 	aPyramidInsetsInputPresenter inputArray value: self
+]
+
+{ #category : #initialization }
+PyramidUnknowState >> setLayoutOn: aPyramidLayoutInputPresenter [
+
+	aPyramidLayoutInputPresenter setUnknowValue
 ]
