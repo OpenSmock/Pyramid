@@ -22,5 +22,5 @@ BlImageBackground >> asString [
 { #category : #'*Pyramid-Bloc' }
 BlImageBackground >> selectOnBackgroundInput: aPyramidBackgroundInputPresenter [
 
-	self shouldBeImplemented
+	aPyramidBackgroundInputPresenter selectImage
 ]
