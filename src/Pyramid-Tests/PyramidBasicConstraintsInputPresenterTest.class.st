@@ -22,6 +22,18 @@ PyramidBasicConstraintsInputPresenterTest >> makeNewInput [
 	^ PyramidBasicConstraintsInputPresenter new
 ]
 
+{ #category : #tests }
+PyramidBasicConstraintsInputPresenterTest >> testValue [
+
+	| input hasTrigger |
+	hasTrigger := false.
+	input := self makeNewInputWithModel.
+	input whenValueChangedDo: [ :val | hasTrigger := true ].
+	self dummyValues do: [ :each |
+		self putValue: each onInput: input.
+		self assert: (self equalityTestFor: each asPyramidConstraintsArgument and: input value) ]
+]
+
 { #category : #'as yet unclassified' }
 PyramidBasicConstraintsInputPresenterTest >> triggerValueChangedOf: anInput [
 
