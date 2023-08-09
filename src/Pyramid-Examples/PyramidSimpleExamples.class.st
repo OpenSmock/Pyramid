@@ -441,7 +441,7 @@ PyramidSimpleExamples class >> marble [
 	"This class has been generated using Pyramid.
 
 	By: YannLEGOFF
-	2023-08-07 16:01:14"
+	2023-08-09 10:46:08"
 
 	<pySTON>
 	^ '[
@@ -532,7 +532,7 @@ PyramidSimpleExamples class >> marble [
 							#size : 280.0
 						}
 					},
-					#position : Point [ 4, 4 ],
+					#position : Point [ 4.0, 4.0 ],
 					#margin : @11,
 					#padding : @11,
 					#minHeight : 0.0,
@@ -546,13 +546,7 @@ PyramidSimpleExamples class >> marble [
 					#geometry : BlEllipseGeometry {
 						#extent : Point [ 280.0, 280.0 ],
 						#pathCache : BlPathCache {
-							#geometry : @38,
-							#strokedBounds : BlBounds {
-								#left : 0.0,
-								#top : 0.0,
-								#right : 280.0,
-								#bottom : 280.0
-							}
+							#geometry : @38
 						}
 					},
 					#background : BlPaintBackground {
@@ -597,7 +591,7 @@ PyramidSimpleExamples class >> marble [
 				#bottom : 0.0,
 				#right : 0.0
 			},
-			#padding : @56,
+			#padding : @55,
 			#minHeight : 0.0,
 			#minWidth : 0.0,
 			#maxHeight : @12,
@@ -609,13 +603,7 @@ PyramidSimpleExamples class >> marble [
 			#geometry : BlEllipseGeometry {
 				#extent : Point [ 300.0, 300.0 ],
 				#pathCache : BlPathCache {
-					#geometry : @58,
-					#strokedBounds : BlBounds {
-						#left : 0.0,
-						#top : 0.0,
-						#right : 300.0,
-						#bottom : 300.0
-					}
+					#geometry : @57
 				}
 			},
 			#background : BlPaintBackground {

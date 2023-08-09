@@ -16,7 +16,7 @@ Class {
 PyramidTreePlugin class >> columnNameAndType: aPyramidTreePlugin [
 
 	^ SpCompositeTableColumn new
-	     sortFunction: PyramidElevationSortFunction new;
+		 " sortFunction: PyramidElementIdSortFunction new;"
 		  title: 'Elements';
 		  addColumn:
 			  (SpImageTableColumn evaluated: [ :aBlElement | aBlElement asIcon ]);
@@ -51,7 +51,7 @@ PyramidTreePlugin class >> columnVisibility: aPyramidTreePlugin [
 
 	^ SpCompositeTableColumn new
 		  title: 'Visibility';
-		sortFunction: PyramidVisibilitySortFunction new;
+		  "sortFunction: PyramidVisibilitySortFunction new;"
 		  width: 80;
 		  addColumn: (SpImageTableColumn evaluated: [ :aBlElement |
 					   aBlElement
@@ -70,6 +70,18 @@ PyramidTreePlugin class >> columnVisibility: aPyramidTreePlugin [
 						   onEditor: aPyramidTreePlugin editor ];
 				   evaluated: [ :aBlElement | aBlElement visibility asString ];
 				   yourself);
+		  yourself
+]
+
+{ #category : #'as yet unclassified' }
+PyramidTreePlugin class >> columnZIndex: aPyramidTreePlugin [
+
+	^ SpStringTableColumn new
+		  title: 'z';
+		  "sortFunction: PyramidElevationSortFunction new;"
+		  evaluated: [ :aBlElement |
+			  aBlElement elevation elevation printString ];
+		  width: 20;
 		  yourself
 ]
 
@@ -165,6 +177,7 @@ PyramidTreePlugin >> initializeLibraryPresenters [
 PyramidTreePlugin >> initializeTreeColumns [
 
 	self treePresenter columns add: (self class columnNameAndType: self).
+	self treePresenter columns add: (self class columnZIndex: self).
 	self treePresenter columns add: (self class columnVisibility: self).
 	self treePresenter updateTree
 ]

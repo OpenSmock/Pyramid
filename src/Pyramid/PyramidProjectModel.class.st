@@ -18,13 +18,15 @@ PyramidProjectModel >> allElements [
 ]
 
 { #category : #accessing }
-PyramidProjectModel >> initialize [ 
+PyramidProjectModel >> initialize [
 
 	selection := PyramidCollectionWithCallbacks new.
-	roots := PyramidCollectionWithCallbacks new.
-	
-	selection subscribe: self withCallback: [ self informSelectionChanged ].
-	roots subscribe: self withCallback: [ self informRootsChanged ].
+	roots := PyramidSortedCollectionWithCallbacks new sortFunction: PyramidElevationSortFunction new; yourself.
+
+	selection
+		subscribe: self
+		withCallback: [ self informSelectionChanged ].
+	roots subscribe: self withCallback: [ self informRootsChanged ]
 ]
 
 { #category : #removing }

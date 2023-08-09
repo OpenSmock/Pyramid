@@ -139,13 +139,28 @@ PyramidBlocPlugin class >> visibility [
 	^ property
 ]
 
+{ #category : #accessing }
+PyramidBlocPlugin class >> zIndex [
+
+	| property |
+	property := PyramidProperty new
+		            name: 'Elevation';
+		            command: PyramidZIndexCommand new;
+		            pyramidInputPresenterClass: PyramidNumberInputPresenter;
+		            yourself.
+	property pyramidInputPresenterModel help: 'Change the elevation (#zIndex:). Bloc will used the elevation to determine wich of two sibling must be draw on top. The higher zIndex will be drawn on top of the lesser one.'.
+	^ property
+]
+
 { #category : #adding }
 PyramidBlocPlugin >> addPanelsOn: aPyramidSimpleWindow [
 
-
-	aPyramidSimpleWindow at: #selectionMenu addItem: [ :builder |
-		self menuGroupOn: builder ]
-	
+	aPyramidSimpleWindow
+		at: #selectionMenu
+		addItem: [ :builder | self menuGroupOn: builder ].
+	aPyramidSimpleWindow
+		at: #selectionMenu
+		addItem: [ :builder | self menuChangeOrderOn: builder ]
 ]
 
 { #category : #'as yet unclassified' }
@@ -154,6 +169,7 @@ PyramidBlocPlugin >> connectOn: aPyramidEditor [
 	self editor: aPyramidEditor.
 	aPyramidEditor propertiesManager addProperty: self class elementId.
 	aPyramidEditor propertiesManager addProperty: self class visibility.
+	aPyramidEditor propertiesManager addProperty: self class zIndex.
 	aPyramidEditor propertiesManager addProperty: self class clipChildren.
 	aPyramidEditor propertiesManager addProperty: self class geometry.
 	aPyramidEditor propertiesManager addProperty: self class cornerRadii.
@@ -228,8 +244,56 @@ PyramidBlocPlugin >> initialize [
 ]
 
 { #category : #'as yet unclassified' }
+PyramidBlocPlugin >> menuChangeOrderOn: aBuilder [
+
+	aBuilder
+		addGroupSingleSelection: [ :group :single |
+			group
+				addItem: [ :item |
+					item
+						icon: (self iconNamed: #top);
+						name: 'Put in front';
+						enabled: true;
+						action: [ self send: PyramidSendTopCommand new on: { single } ];
+						yourself ];
+				addItem: [ :item |
+					item
+						icon: (self iconNamed: #up);
+						name: 'Send up';
+						enabled: true;
+						action: [ self send: PyramidSendUpCommand new on: { single } ];
+						yourself ];
+				addItem: [ :item |
+					item
+						icon: (self iconNamed: #down);
+						name: 'Send down';
+						enabled: true;
+						action: [ self send: PyramidSendDownCommand new on: { single } ];
+						yourself ];
+				addItem: [ :item |
+					item
+						icon: (self iconNamed: #bottom);
+						name: 'Put in back';
+						enabled: true;
+						action: [
+							self send: PyramidSendBottomCommand new on: { single } ];
+						yourself ] ]
+		order: 20
+]
+
+{ #category : #'as yet unclassified' }
 PyramidBlocPlugin >> menuGroupOn: aBuilder [
 
 	aBuilder addGroupSingleSelection: self groupMenuBlockSingle order: 20.
 	aBuilder addGroupMultiSelection: self groupMenuBlockMulti order: 20
+]
+
+{ #category : #'as yet unclassified' }
+PyramidBlocPlugin >> send: aCommand on: aCollection [
+
+	self editor ifNil: [ ^ self ].
+	self editor propertiesManager commandExecutor
+		use: aCommand
+		on: aCollection
+		with: nil
 ]

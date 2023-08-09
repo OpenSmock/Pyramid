@@ -8,12 +8,11 @@ Class {
 PyramidVisibilitySortFunction >> collate: aFirstObject with: aSecondObject [
 	"visible > hidden > gone"
 
-	aFirstObject visibility = aSecondObject visibility ifTrue: [ ^ PyramidElevationSortFunction new
-		  collate: aFirstObject
-		  with: aSecondObject ].
+	"same"
+
+	aFirstObject visibility = aSecondObject visibility ifTrue: [ ^ 0 ].
 
 	"visible"
-
 	(aFirstObject visibility isVisible and: [
 		 aSecondObject visibility isVisible not ]) ifTrue: [ ^ -1 ].
 	(aSecondObject visibility isVisible and: [
@@ -26,7 +25,5 @@ PyramidVisibilitySortFunction >> collate: aFirstObject with: aSecondObject [
 		 aFirstObject visibility isGone ]) ifTrue: [ ^ 1 ].
 
 	"default"
-	^ PyramidElevationSortFunction new
-		  collate: aFirstObject
-		  with: aSecondObject
+	^ 0
 ]
