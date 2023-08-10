@@ -12,18 +12,18 @@ Class {
 }
 
 { #category : #accessing }
-PyramidPointInputPresenter class >> modelClass [
+PyramidPointInputPresenter class >> stringsClass [
 
 	^ PyramidPointInputStrings
 ]
 
 { #category : #'as yet unclassified' }
-PyramidPointInputPresenter >> applyModel [
+PyramidPointInputPresenter >> applyStrings [
 
-	self inputX inputNumber help: self model help.
-	self inputY inputNumber help: self model help.
-	self labelX label: self model labelX.
-	self labelY label: self model labelY.
+	self inputX inputNumber help: self strings help.
+	self inputY inputNumber help: self strings help.
+	self labelX label: self strings labelX.
+	self labelY label: self strings labelY
 ]
 
 { #category : #layout }

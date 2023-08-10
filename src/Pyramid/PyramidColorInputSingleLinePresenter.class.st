@@ -17,6 +17,13 @@ PyramidColorInputSingleLinePresenter >> alphaInput [
 ]
 
 { #category : #'as yet unclassified' }
+PyramidColorInputSingleLinePresenter >> applyStrings [
+
+	self alphaInput strings: self strings.
+	self hexInput strings: self strings
+]
+
+{ #category : #'as yet unclassified' }
 PyramidColorInputSingleLinePresenter >> cleanHexValue: aString [
 
 	| cleanString |

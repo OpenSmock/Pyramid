@@ -8,6 +8,12 @@ Class {
 	#category : #'Pyramid-Bloc-plugin-bloc'
 }
 
+{ #category : #'as yet unclassified' }
+PyramidInsetsInputPresenter >> applyStrings [
+
+	self inputArray strings: self strings.
+]
+
 { #category : #layout }
 PyramidInsetsInputPresenter >> defaultLayout [
 

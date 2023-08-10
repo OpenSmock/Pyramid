@@ -9,6 +9,12 @@ Class {
 }
 
 { #category : #'as yet unclassified' }
+PyramidCornerRadiiInputPresenter >> applyStrings [
+
+	self inputArray strings: self strings
+]
+
+{ #category : #'as yet unclassified' }
 PyramidCornerRadiiInputPresenter >> cornerRadiiFrom: anArray [
 
 	anArray isCollection ifFalse: [ ^ anArray ].

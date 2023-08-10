@@ -38,10 +38,9 @@ TPyramidInputPresenterTest >> makeNewInput [
 { #category : #'as yet unclassified' }
 TPyramidInputPresenterTest >> makeNewInputWithModel [
 
-	|input|
+	| input |
 	input := self makeNewInput.
-	input model: input class modelClass new.
-	input applyModel.
+	input strings: input class stringsClass new.
 	^ input
 ]
 

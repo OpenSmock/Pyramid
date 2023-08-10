@@ -46,6 +46,8 @@ PyramidLayoutInputPresenter >> initializePresenters [
 	whenValueChangedDo := [ :visibility |  ].
 	buttonBasic := SpButtonPresenter new
 		               label: 'No layout';
+		               help:
+			               'Remove the layout. The children will be place according to their position.';
 		               action: [
 			               self value: BlBasicLayout new.
 			               self whenValueChangedDo value: self value ];
@@ -53,6 +55,8 @@ PyramidLayoutInputPresenter >> initializePresenters [
 		               yourself.
 	buttonFlow := SpButtonPresenter new
 		              label: 'Flow';
+		              help:
+			              'Set the layout as Flow. The children will be place according to their order. The flow layout will display all children in line and will wrap arround if it does not have enought place.';
 		              action: [
 			              self value: BlFlowLayout horizontal.
 			              self whenValueChangedDo value: self value ];
@@ -60,9 +64,10 @@ PyramidLayoutInputPresenter >> initializePresenters [
 		              yourself.
 	buttonProportionnal := SpButtonPresenter new
 		                       label: 'ST layout';
+		help:
+			              'Set the layout as Proportional. The children will be place according to their relative top/bottom and left/right proportion.';
 		                       action: [
-			                       self value:
-					                       BlProportionalLayout new.
+			                       self value: BlProportionalLayout new.
 			                       self whenValueChangedDo value: self value ];
 		                       enabled: false;
 		                       yourself
