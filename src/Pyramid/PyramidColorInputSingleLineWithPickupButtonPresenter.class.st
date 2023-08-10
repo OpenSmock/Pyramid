@@ -10,6 +10,12 @@ Class {
 	#category : #'Pyramid-specs-custom'
 }
 
+{ #category : #'as yet unclassified' }
+PyramidColorInputSingleLineWithPickupButtonPresenter >> applytStrings [
+
+	self singleLineInput strings: self strings.
+]
+
 { #category : #accessing }
 PyramidColorInputSingleLineWithPickupButtonPresenter >> button [
 
@@ -33,6 +39,7 @@ PyramidColorInputSingleLineWithPickupButtonPresenter >> initializePresenters [
 	multiLinesInput := PyramidColorInputMultiLinesPresenter new.
 	singleLineInput := PyramidColorInputSingleLinePresenter new.
 	button := SpButtonPresenter new
+					 help: 'Select a color';
 		          action: [ self openMultiLinesModal ];
 		          icon: (self iconNamed: #haloRecolor);
 		          yourself.
@@ -53,14 +60,16 @@ PyramidColorInputSingleLineWithPickupButtonPresenter >> multiLinesInput [
 { #category : #initialization }
 PyramidColorInputSingleLineWithPickupButtonPresenter >> openMultiLinesModal [
 
-	| dialog color |
-	dialog := multiLinesInput openModal.
-	dialog title: 'Pickup a Color'.
-	dialog isOk ifTrue: [ 
-		color :=  self multiLinesInput value.
-		self singleLineInput value: color. self whenValueChangedDo value:color. ] ifFalse: [
-		self multiLinesInput value: self singleLineInput value.
-		 ]
+	| dialog color window |
+	window := self multiLinesInput asModalWindow.
+	window title: 'Pickup a Color'.
+	dialog := window open.
+	dialog isOk
+		ifTrue: [
+			color := self multiLinesInput value.
+			self singleLineInput value: color.
+			self whenValueChangedDo value: color ]
+		ifFalse: [ self multiLinesInput value: self singleLineInput value ]
 ]
 
 { #category : #accessing }

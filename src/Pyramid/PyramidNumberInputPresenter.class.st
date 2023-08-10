@@ -12,9 +12,9 @@ Class {
 }
 
 { #category : #'as yet unclassified' }
-PyramidNumberInputPresenter >> applyModel [
+PyramidNumberInputPresenter >> applyStrings [
 
-	self inputNumber help: self model help
+	self inputNumber help: self strings help
 ]
 
 { #category : #layout }

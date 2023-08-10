@@ -20,9 +20,9 @@ PyramidBlocPlugin class >> background [
 		            pyramidInputPresenterClass:
 			            PyramidBackgroundInputWithModalPresenter;
 		            yourself.
-	property pyramidInputPresenterModel help:
-		'Change the background of the element with a color, a gradient, an image'.
-		property pyramidInputPresenterModel windowTitle: 'Change background'.
+	property pyramidInputPresenterStrings help:
+		'Change the background of the element with a color, a gradient, an image.'.
+	property pyramidInputPresenterStrings windowTitle: 'Change background'.
 	^ property
 ]
 
@@ -35,12 +35,11 @@ PyramidBlocPlugin class >> clipChildren [
 		            command: PyramidClipChildrenCommand new;
 		            pyramidInputPresenterClass: PyramidSwitchInputPresenter;
 		            yourself.
-	property pyramidInputPresenterModel help: 'If clipChildren is true, the children will not display outside the geometry of the parent element. If clipChildren is false, the children will display outside the geometry of the parent element.'.
-	property pyramidInputPresenterModel onLabel: 'True'.
-	property pyramidInputPresenterModel offLabel:
-		'False'.
-	property pyramidInputPresenterModel uncertainLabel:
-		'Uncertain'.
+	property pyramidInputPresenterStrings help:
+		'If clipChildren is true, the children will not display outside the geometry of the parent element. If clipChildren is false, the children will display outside the geometry of the parent element.'.
+	property pyramidInputPresenterStrings onLabel: 'True'.
+	property pyramidInputPresenterStrings offLabel: 'False'.
+	property pyramidInputPresenterStrings uncertainLabel: 'Uncertain'.
 	^ property
 ]
 
@@ -68,7 +67,7 @@ PyramidBlocPlugin class >> constraintsBasicHExact [
 			            PyramidBasicExactHorizontalConstraintsBlocCommand new;
 		            pyramidInputPresenterClass: PyramidNumberInputPresenter;
 		            yourself.
-	property pyramidInputPresenterModel help:
+	property pyramidInputPresenterStrings help:
 		'Change the width of the object'.
 	^ property
 ]
@@ -93,10 +92,11 @@ PyramidBlocPlugin class >> constraintsBasicVExact [
 	| property |
 	property := PyramidProperty new
 		            name: 'Constraints - height';
-		            command: PyramidBasicExactVerticalConstraintsBlocCommand new;
+		            command:
+			            PyramidBasicExactVerticalConstraintsBlocCommand new;
 		            pyramidInputPresenterClass: PyramidNumberInputPresenter;
 		            yourself.
-	property pyramidInputPresenterModel help:
+	property pyramidInputPresenterStrings help:
 		'Change the height of the object'.
 	^ property
 ]
@@ -111,7 +111,7 @@ PyramidBlocPlugin class >> constraintsPropH [
 			            PyramidProportionnalHorizontalConstraintsCommand new;
 		            pyramidInputPresenterClass: PyramidPointInputPresenter;
 		            yourself.
-	property pyramidInputPresenterModel
+	property pyramidInputPresenterStrings
 		help: 'Define the proportion of the horizontal component.';
 		labelX: 'Left';
 		labelY: 'Right'.
@@ -128,7 +128,7 @@ PyramidBlocPlugin class >> constraintsPropV [
 			            PyramidProportionnalVerticalConstraintsCommand new;
 		            pyramidInputPresenterClass: PyramidPointInputPresenter;
 		            yourself.
-	property pyramidInputPresenterModel
+	property pyramidInputPresenterStrings
 		help: 'Define the proportion of the vertical component.';
 		labelX: 'Top';
 		labelY: 'Bottom'.
@@ -145,6 +145,11 @@ PyramidBlocPlugin class >> cornerRadii [
 		            pyramidInputPresenterClass:
 			            PyramidCornerRadiiInputPresenter;
 		            yourself.
+	property pyramidInputPresenterStrings help:
+		'Change the corner radius of the geometry. For example:
+	- "10" to set a radius of 10 px on each corner.
+	- "10 20" to set a radius of 10 px on the top-left and bottom-right corner and 20 px on the top-right and bottom-left corner.
+	- "10 20 30 40" to set a radius of 10 px on top-left, 20 px on top-right, 30 px on bottom-right and 40 px on bottom-left.'.
 	^ property
 ]
 
@@ -157,7 +162,7 @@ PyramidBlocPlugin class >> elementId [
 		            command: PyramidElementIdCommand new;
 		            pyramidInputPresenterClass: PyramidTextInputPresenter;
 		            yourself.
-	property pyramidInputPresenterModel help: 'Change the id.'.
+	property pyramidInputPresenterStrings help: 'Change the id.'.
 	^ property
 ]
 
@@ -171,11 +176,11 @@ PyramidBlocPlugin class >> flowLayoutOrientation [
 		            pyramidInputPresenterClass:
 			            PyramidFlowLayoutOrientationPresenter;
 		            yourself.
-	property pyramidInputPresenterModel help:
+	property pyramidInputPresenterStrings help:
 		'Change the orientation of the flow layout.'.
-	property pyramidInputPresenterModel onLabel: 'Vertical'.
-	property pyramidInputPresenterModel offLabel: 'Horizontal'.
-	property pyramidInputPresenterModel uncertainLabel: 'Uncertain'.
+	property pyramidInputPresenterStrings onLabel: 'Vertical'.
+	property pyramidInputPresenterStrings offLabel: 'Horizontal'.
+	property pyramidInputPresenterStrings uncertainLabel: 'Uncertain'.
 	^ property
 ]
 
@@ -221,6 +226,10 @@ PyramidBlocPlugin class >> margin [
 		            command: PyramidMarginCommand new;
 		            pyramidInputPresenterClass: PyramidInsetsInputPresenter;
 		            yourself.
+	property pyramidInputPresenterStrings help: 		'Change the margin. The margin will affect the space between the border and the elements outside. For example:
+	- "10" to set a margin of 10 px on each size.
+	- "10 20" to set a margin of 10 px on the top and bottom and 20 px on the right and left.
+	- "10 20 30 40" to set a margin of 10 px on top, 20 px on left, 30 px on bottom and 40 px on right.'..
 	^ property
 ]
 
@@ -233,6 +242,11 @@ PyramidBlocPlugin class >> padding [
 		            command: PyramidPaddingCommand new;
 		            pyramidInputPresenterClass: PyramidInsetsInputPresenter;
 		            yourself.
+	property pyramidInputPresenterStrings help:
+		'Change the padding. The padding will affect the space between the border and the elements inside. For example:
+	- "10" to set a padding of 10 px on each size.
+	- "10 20" to set a padding of 10 px on the top and bottom and 20 px on the right and left.
+	- "10 20 30 40" to set a padding of 10 px on top, 20 px on left, 30 px on bottom and 40 px on right.'.
 	^ property
 ]
 
@@ -245,7 +259,7 @@ PyramidBlocPlugin class >> position [
 		            command: PyramidPositionCommand new;
 		            pyramidInputPresenterClass: PyramidPointInputPresenter;
 		            yourself.
-	property pyramidInputPresenterModel help:
+	property pyramidInputPresenterStrings help:
 		'Set the position x and y of the element inside his parent.'.
 	^ property
 ]
@@ -271,7 +285,8 @@ PyramidBlocPlugin class >> zIndex [
 		            command: PyramidZIndexCommand new;
 		            pyramidInputPresenterClass: PyramidNumberInputPresenter;
 		            yourself.
-	property pyramidInputPresenterModel help: 'Change the elevation (#zIndex:). Bloc will used the elevation to determine wich of two sibling must be draw on top. The higher zIndex will be drawn on top of the lesser one.'.
+	property pyramidInputPresenterStrings help:
+		'Change the elevation (#zIndex:). Bloc will used the elevation to determine wich of two sibling must be draw on top. The higher zIndex will be drawn on top of the lesser one.'.
 	^ property
 ]
 

@@ -17,9 +17,15 @@ PyramidInputWithModalPresenter class >> isAbstract [
 ]
 
 { #category : #accessing }
-PyramidInputWithModalPresenter class >> modelClass [
+PyramidInputWithModalPresenter class >> stringsClass [
 
 	^ PyramidModalInputStrings
+]
+
+{ #category : #'as yet unclassified' }
+PyramidInputWithModalPresenter >> applyStrings [
+
+	self button help: self strings help
 ]
 
 { #category : #accessing }
@@ -45,9 +51,10 @@ PyramidInputWithModalPresenter >> initializePresenters [
 	button
 		icon: (self iconNamed: #smallCogInitialState);
 		action: [
-			| dialog |
-			dialog := self presenterModal openModal.
-			dialog title: self model windowTitle.
+			| dialog window |
+			window := self presenterModal asModalWindow.
+			window title: self strings windowTitle.
+			dialog := window open.
 			dialog isOk ifTrue: [
 					self whenValueChangedDo value: self presenterModal value ] ]
 ]

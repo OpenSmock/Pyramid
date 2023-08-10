@@ -5,13 +5,13 @@ Class {
 		'submitBlock',
 		'inputArray'
 	],
-	#category : #'Pyramid-Bloc-plugin-bloc'
+	#category : #'Pyramid-specs-custom'
 }
 
 { #category : #'as yet unclassified' }
-PyramidNumberArrayInputPresenter >> applyModel [
+PyramidNumberArrayInputPresenter >> applyStrings [
 
-	self inputArray help: self model help
+	self inputArray help: self strings help
 ]
 
 { #category : #'as yet unclassified' }

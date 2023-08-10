@@ -30,6 +30,12 @@ PyramidUnknowState >> asColor [
 ]
 
 { #category : #converting }
+PyramidUnknowState >> asIcon [
+
+	^ self iconNamed: #comments
+]
+
+{ #category : #converting }
 PyramidUnknowState >> asOrientationForPyramid [
 
 	^ self

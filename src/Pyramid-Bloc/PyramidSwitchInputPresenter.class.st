@@ -554,16 +554,16 @@ PyramidSwitchInputPresenter class >> formToggleUncertain [
 ]
 
 { #category : #accessing }
-PyramidSwitchInputPresenter class >> modelClass [
+PyramidSwitchInputPresenter class >> stringsClass [
 
 	^ PyramidSwitchInputStrings
 ]
 
 { #category : #'as yet unclassified' }
-PyramidSwitchInputPresenter >> applyModel [
+PyramidSwitchInputPresenter >> applyStrings [
 
-	self button help: self model help.
-	self button label: self model offLabel
+	self button help: self strings help.
+	self button label: self strings offLabel
 ]
 
 { #category : #accessing }
@@ -631,13 +631,13 @@ PyramidSwitchInputPresenter >> value: aBoolean [
 		self button action: [ self switchState ].
 		aBoolean
 			ifTrue: [ self button icon: self class formToggleOn.
-				self button label: self model onLabel ]
+				self button label: self strings onLabel ]
 			ifFalse: [ self button icon: self class formToggleOff.
-				self button label: self model offLabel ].
+				self button label: self strings offLabel ].
 		^ self ].
 	self state: PyramidUnknowState new.
 	self button icon: self class formToggleUncertain.
-	self button label: self model uncertainLabel.
+	self button label: self strings uncertainLabel.
 	self button action: [  ]
 ]
 

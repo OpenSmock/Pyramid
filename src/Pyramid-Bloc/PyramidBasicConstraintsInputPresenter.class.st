@@ -46,6 +46,7 @@ PyramidBasicConstraintsInputPresenter >> initializePresenters [
 	whenValueChangedDo := [ :visibility |  ].
 	buttonExact := SpButtonPresenter new
 		               label: 'Exact';
+							help: 'Set the constraints to an exact value in px.';
 		               action: [
 			               self value:
 					               (BlLayoutCommonConstraintsAxis new exact: 50).
@@ -53,21 +54,24 @@ PyramidBasicConstraintsInputPresenter >> initializePresenters [
 		               enabled: false;
 		               yourself.
 	buttonMatchParent := SpButtonPresenter new
-		               label: 'Match Parent';
-		               action: [
-			               self value:
-					               (BlLayoutCommonConstraintsAxis new matchParent).
-			               self whenValueChangedDo value: self value ];
-		               enabled: false;
-		               yourself.
-		buttonFitContent := SpButtonPresenter new
-		               label: 'Fit Content';
-		               action: [
-			               self value:
-					               (BlLayoutCommonConstraintsAxis new fitContent).
-			               self whenValueChangedDo value: self value ];
-		               enabled: false;
-		               yourself
+		                     label: 'Match Parent';
+		help: 'Set the constraints to match the parent size.';
+		                     action: [
+			                     self value:
+					                     BlLayoutCommonConstraintsAxis new
+						                     matchParent.
+			                     self whenValueChangedDo value: self value ];
+		                     enabled: false;
+		                     yourself.
+	buttonFitContent := SpButtonPresenter new
+		                    label: 'Fit Content';
+		help: 'Set the constraints to match the children size.';
+		                    action: [
+			                    self value:
+					                    BlLayoutCommonConstraintsAxis new fitContent.
+			                    self whenValueChangedDo value: self value ];
+		                    enabled: false;
+		                    yourself
 ]
 
 { #category : #initialization }
