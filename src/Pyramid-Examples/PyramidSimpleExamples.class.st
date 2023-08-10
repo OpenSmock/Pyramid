@@ -837,6 +837,285 @@ PyramidSimpleExamples class >> marble2 [
 ]
 
 { #category : #'pyramid-serialized-bloc' }
+PyramidSimpleExamples class >> marbleWithShadow [
+	"This class has been generated using Pyramid.
+
+	By: YannLEGOFF
+	2023-08-10 10:33:03"
+
+	<pySTON>
+	^ '[
+	BlElement {
+		#children : BlChildrenArray [
+			BlElement {
+				#children : BlChildrenArray [
+					BlElement {
+						#children : BlChildrenArray [ ],
+						#constraints : BlLayoutCommonConstraints {
+							#vertical : BlLayoutCommonConstraintsAxis {
+								#resizer : BlLayoutMatchParentResizer { }
+							},
+							#horizontal : BlLayoutCommonConstraintsAxis {
+								#resizer : @10
+							},
+							#position : Point [ 0.0, 0.0 ],
+							#margin : BlInsets {
+								#top : 0.0,
+								#left : 0.0,
+								#bottom : 0.0,
+								#right : 0.0
+							},
+							#padding : @13,
+							#minHeight : 0.0,
+							#minWidth : 0.0,
+							#maxHeight : Float [ #infinity ],
+							#maxWidth : @14,
+							#ignoredByLayout : false,
+							#accountTransformation : false
+						},
+						#visuals : BlCustomVisuals {
+							#geometry : BlEllipseGeometry {
+								#extent : Point [ 100.0, 100.0 ],
+								#pathCache : BlPathCache {
+									#geometry : @16,
+									#strokedBounds : BlBounds {
+										#left : 0.0,
+										#top : 0.0,
+										#right : 100.0,
+										#bottom : 100.0
+									}
+								}
+							},
+							#background : BlPaintBackground {
+								#paint : BlRadialGradientPaint {
+									#stops : [
+										0 : Color {
+											#red : 0.0,
+											#green : 0.0,
+											#blue : 0.0,
+											#alpha : 0.0
+										},
+										1 : Color {
+											#red : 0.0,
+											#green : 0.0,
+											#blue : 0.0,
+											#alpha : 0.6
+										}
+									],
+									#center : Point [ 50, 50 ],
+									#radius : 50
+								}
+							}
+						},
+						#userData : IdentityDictionary {
+							#elementId : BlElementNamedId {
+								#identifier : #innerShadow
+							}
+						},
+						#layout : BlBasicLayout { }
+					},
+					BlElement {
+						#children : BlChildrenArray [ ],
+						#constraints : BlLayoutCommonConstraints {
+							#vertical : BlLayoutCommonConstraintsAxis {
+								#resizer : BlLayoutExactResizer {
+									#size : 100.0
+								}
+							},
+							#horizontal : BlLayoutCommonConstraintsAxis {
+								#resizer : @33
+							},
+							#position : Point [ 0, 0 ],
+							#margin : @13,
+							#padding : @13,
+							#minHeight : 0.0,
+							#minWidth : 0.0,
+							#maxHeight : @14,
+							#maxWidth : @14,
+							#ignoredByLayout : false,
+							#accountTransformation : false
+						},
+						#visuals : BlCustomVisuals {
+							#geometry : BlEllipseGeometry {
+								#extent : Point [ 100.0, 100.0 ],
+								#pathCache : BlPathCache {
+									#geometry : @37,
+									#strokedBounds : BlBounds {
+										#left : 0.0,
+										#top : 0.0,
+										#right : 100.0,
+										#bottom : 100.0
+									}
+								}
+							},
+							#background : BlPaintBackground {
+								#paint : BlRadialGradientPaint {
+									#stops : [
+										0 : Color {
+											#red : 1.0,
+											#green : 1.0,
+											#blue : 1.0,
+											#alpha : 0.4980392156862745
+										},
+										1 : Color {
+											#red : 1.0,
+											#green : 1.0,
+											#blue : 1.0,
+											#alpha : 0.0
+										}
+									],
+									#center : Point [ 0, 0 ],
+									#radius : 100
+								}
+							}
+						},
+						#userData : IdentityDictionary {
+							#elementId : BlElementNamedId {
+								#identifier : #light
+							}
+						},
+						#layout : @28
+					}
+				],
+				#constraints : BlLayoutCommonConstraints {
+					#vertical : BlLayoutCommonConstraintsAxis {
+						#resizer : @33
+					},
+					#horizontal : BlLayoutCommonConstraintsAxis {
+						#resizer : @33
+					},
+					#position : Point [ 0.0, 0.0 ],
+					#margin : @13,
+					#padding : @13,
+					#minHeight : 0.0,
+					#minWidth : 0.0,
+					#maxHeight : @14,
+					#maxWidth : @14,
+					#ignoredByLayout : false,
+					#accountTransformation : false
+				},
+				#visuals : BlCustomVisuals {
+					#geometry : BlEllipseGeometry {
+						#extent : Point [ 100.0, 100.0 ],
+						#pathCache : BlPathCache {
+							#geometry : @54,
+							#strokedBounds : BlBounds {
+								#left : 0.0,
+								#top : 0.0,
+								#right : 100.0,
+								#bottom : 100.0
+							}
+						}
+					},
+					#background : BlPaintBackground {
+						#paint : BlColorPaint {
+							#color : Color {
+								#red : 0.9491691104594331,
+								#green : 0.35288367546432065,
+								#blue : 0.2785923753665689,
+								#alpha : 1.0
+							}
+						}
+					}
+				},
+				#userData : IdentityDictionary {
+					#elementId : BlElementNamedId {
+						#identifier : #marble
+					}
+				},
+				#layout : @28
+			},
+			BlElement {
+				#children : BlChildrenArray [ ],
+				#constraints : BlLayoutCommonConstraints {
+					#vertical : BlLayoutCommonConstraintsAxis {
+						#resizer : BlLayoutExactResizer {
+							#size : 50.0
+						}
+					},
+					#horizontal : BlLayoutCommonConstraintsAxis {
+						#resizer : @33
+					},
+					#position : Point [ 0, 110 ],
+					#margin : @13,
+					#padding : @13,
+					#minHeight : 0.0,
+					#minWidth : 0.0,
+					#maxHeight : @14,
+					#maxWidth : @14,
+					#ignoredByLayout : false,
+					#accountTransformation : false
+				},
+				#visuals : BlCustomVisuals {
+					#geometry : BlEllipseGeometry {
+						#extent : Point [ 100.0, 50.0 ],
+						#pathCache : BlPathCache {
+							#geometry : @71
+						}
+					},
+					#background : BlPaintBackground {
+						#paint : BlLinearGradientPaint {
+							#stops : [
+								0 : Color {
+									#red : 0.0,
+									#green : 0.0,
+									#blue : 0.0,
+									#alpha : 0.6980392156862745
+								},
+								1 : Color {
+									#red : 0.0,
+									#green : 0.0,
+									#blue : 0.0,
+									#alpha : 0.0
+								}
+							],
+							#start : Point [ 0, 0 ],
+							#end : Point [ 0.0, 50.0 ]
+						}
+					}
+				},
+				#userData : IdentityDictionary {
+					#elementId : BlElementNamedId {
+						#identifier : #shadow
+					}
+				},
+				#layout : @28
+			}
+		],
+		#constraints : BlLayoutCommonConstraints {
+			#vertical : BlLayoutCommonConstraintsAxis {
+				#resizer : @67
+			},
+			#horizontal : BlLayoutCommonConstraintsAxis {
+				#resizer : @67
+			},
+			#position : Point [ 0.0, 0.0 ],
+			#margin : @13,
+			#padding : @13,
+			#minHeight : 0.0,
+			#minWidth : 0.0,
+			#maxHeight : @14,
+			#maxWidth : @14,
+			#ignoredByLayout : false,
+			#accountTransformation : false
+		},
+		#visuals : BlCustomVisuals {
+			#background : BlTransparentBackground {
+				
+			},
+			#clipChildren : false
+		},
+		#userData : IdentityDictionary {
+			#elementId : BlElementNamedId {
+				#identifier : #container
+			}
+		},
+		#layout : @28
+	}
+]'
+]
+
+{ #category : #'pyramid-serialized-bloc' }
 PyramidSimpleExamples class >> simpleFlowLayout [
 	"This class has been generated using Pyramid.
 
