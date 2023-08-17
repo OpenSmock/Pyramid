@@ -1,51 +1,24 @@
 Class {
 	#name : #PyramidProperty,
 	#superclass : #Object,
-	#traits : 'TPyramidProperty',
-	#classTraits : 'TPyramidProperty classTrait',
 	#instVars : [
 		'command',
-		'pipeline',
-		'targetModel',
-		'inputBuilder',
-		'inputsModel',
-		'order'
+		'commandExecutor',
+		'pyramidInputPresenterClass',
+		'presenterBuilder',
+		'name',
+		'pyramidInputPresenterStrings'
 	],
-	#category : #'Pyramid-properties'
+	#category : #'Pyramid-property'
 }
 
-{ #category : #accessing }
-PyramidProperty class >> fromCommand: aPyramidCommand inputBuilder: aPyramidPropertyInputModelBuilderFactory order: aNumber [
+{ #category : #'as yet unclassified' }
+PyramidProperty >> buildPresenterFromCluster: aCluster [
 
-	| property |
-	property := self new
-		            command: aPyramidCommand;
-						order: aNumber;
-		            yourself.
-	aPyramidPropertyInputModelBuilderFactory installBuilderOn: property.
-	^ property
-]
-
-{ #category : #sorting }
-PyramidProperty class >> sortBlElements: a and: b [
-
-	(a parent
-	=  b parent and: [ a parent isNotNil ]) ifTrue: [
-		^ (a parent childIndexOf: a)
-		  <= (a parent childIndexOf:
-				   b) ].
-	a allParentsDo: [ :p |
-		p == b ifTrue: [ ^ false ] ].
-	b allParentsDo: [ :p |
-		p == a ifTrue: [ ^ true ] ].
-	^ a hash
-	  <= b hash
-]
-
-{ #category : #comparing }
-PyramidProperty >> <= aPyramidProperty [
-
-	^ self order <= aPyramidProperty order
+	^ self presenterBuilder
+		  cluster: aCluster;
+		  property: self;
+		  build
 ]
 
 { #category : #accessing }
@@ -60,103 +33,70 @@ PyramidProperty >> command: anObject [
 	command := anObject
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
+PyramidProperty >> commandExecutor [
+
+	^ commandExecutor
+]
+
+{ #category : #accessing }
+PyramidProperty >> commandExecutor: anObject [
+
+	commandExecutor := anObject
+]
+
+{ #category : #initialization }
 PyramidProperty >> initialize [
 
-	targetModel := PyramidPropertyTargetModel new
+	presenterBuilder := PyramidPopingPresenterBuilder new.
+	name := 'Default property name'
 ]
 
 { #category : #accessing }
-PyramidProperty >> inputBuilder [ 
+PyramidProperty >> name [
 
-	^ inputBuilder
+	^ name
 ]
 
 { #category : #accessing }
-PyramidProperty >> inputBuilder: anObject [
+PyramidProperty >> name: anObject [
 
-	inputBuilder := anObject
-]
-
-{ #category : #'as yet unclassified' }
-PyramidProperty >> inputsModel [
-	^ inputsModel
-]
-
-{ #category : #'as yet unclassified' }
-PyramidProperty >> makeNewInputsFor: aCollection [
-
-	self updateTargetModelFrom: aCollection.
-	inputsModel := self inputBuilder build.
-	self informInputsUpdated.
+	name := anObject
 ]
 
 { #category : #accessing }
-PyramidProperty >> order [
+PyramidProperty >> presenterBuilder [
 
-	order ifNil: [ order := 100 ].
-	^ order
+	^ presenterBuilder
 ]
 
 { #category : #accessing }
-PyramidProperty >> order: aNumber [
+PyramidProperty >> presenterBuilder: anObject [
 
-	order := aNumber
-]
-
-{ #category : #'as yet unclassified' }
-PyramidProperty >> pipeline [
-
-	^ pipeline.
+	presenterBuilder := anObject
 ]
 
 { #category : #accessing }
-PyramidProperty >> pipeline: anObject [
+PyramidProperty >> pyramidInputPresenterClass [
 
-	pipeline := anObject.
-]
-
-{ #category : #'as yet unclassified' }
-PyramidProperty >> stateOf: anObject [
-
-	^ (self command getStateFrom: anObject)
-		  source: (OrderedCollection new add: anObject; yourself);
-		  yourself
-]
-
-{ #category : #'as yet unclassified' }
-PyramidProperty >> submit: anArguments on: aCollection [
-	"
-	Verify the submission does something.
-	Use command.
-	Update inputs model.
-	"
-
-	| previousTargets |
-	previousTargets := self targetModel targetsAt: anArguments.
-	(aCollection allSatisfy: [ :target |
-		 previousTargets anySatisfy: [ :each | each == target ] ]) ifTrue: [
-		^ self ].
-
-	self command state arguments: anArguments.
-	self pipeline
-		useCommand: self command
-		on: (PyramidPipelineTarget new collection: aCollection).
-	self makeNewInputsFor: self targetModel targets asArray
+	^ pyramidInputPresenterClass
 ]
 
 { #category : #accessing }
-PyramidProperty >> targetModel [
-^ targetModel
+PyramidProperty >> pyramidInputPresenterClass: anObject [
+
+	pyramidInputPresenterClass := anObject.
+	self pyramidInputPresenterStrings: anObject stringsClass new
 ]
 
-{ #category : #'as yet unclassified' }
-PyramidProperty >> updateTargetModelFrom: aCollection [
+{ #category : #accessing }
+PyramidProperty >> pyramidInputPresenterStrings [
 
-	self targetModel reset.
+	^ pyramidInputPresenterStrings
+]
 
-	aCollection
-		select: [ :each | self command isExecutableBy: each ]
-		thenDo: [ :each |
-			self targetModel at: (self stateOf: each) arguments put: each ]
+{ #category : #accessing }
+PyramidProperty >> pyramidInputPresenterStrings: anObject [
+
+	pyramidInputPresenterStrings := anObject
 ]

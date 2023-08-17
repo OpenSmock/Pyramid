@@ -6,7 +6,7 @@ Class {
 		'savingService',
 		'savingClass'
 	],
-	#category : #'Pyramid-Tests-Cases'
+	#category : #'Pyramid-Tests-cases-plugin-save'
 }
 
 { #category : #running }
@@ -64,10 +64,10 @@ PyramidSavingServiceTest >> testCanSave [
 	self deny: self savingService canSave.
 
 	model := PyramidSaveModel new.
-	self savingService savingModel: model.
+	self savingService saveModel: model.
 	self deny: self savingService canSave.
 
-	model project: PyramidProjectModel new.
+	model projectModel: PyramidProjectModel new.
 	self deny: self savingService canSave.
 
 	model savingClassName: 'errorPyramidSavingClass'.
@@ -133,10 +133,10 @@ PyramidSavingServiceTest >> testSave [
 
 	| model |
 	model := PyramidSaveModel new.
-	model project: PyramidProjectModel new.
+	model projectModel: PyramidProjectModel new.
 	model savingClassName: self savingClass name.
 	model savingPackageName: self savingClass package name.
-	self savingService savingModel: model.
+	self savingService saveModel: model.
 
 	self deny: (self savingClass classSide canUnderstand: #classMethod).
 	self deny:
@@ -171,9 +171,9 @@ PyramidSavingServiceTest >> testSavingClass [
 
 	| model |
 	model := PyramidSaveModel new.
-	self savingService savingModel: model.
+	self savingService saveModel: model.
 
-	model project: PyramidProjectModel new.
+	model projectModel: PyramidProjectModel new.
 	model savingClassName: self savingClass name.
 	model savingMethodName: 'aPyramidSavingMethod'.
 	model savingPackageName: self savingClass package name.
@@ -200,9 +200,9 @@ PyramidSavingServiceTest >> testSavingMethod [
 
 	| model |
 	model := PyramidSaveModel new.
-	self savingService savingModel: model.
+	self savingService saveModel: model.
 
-	model project: PyramidProjectModel new.
+	model projectModel: PyramidProjectModel new.
 	model savingClassName: self savingClass name.
 	model savingMethodName: 'aPyramidSavingMethod'.
 	model savingPackageName: self savingClass package name.

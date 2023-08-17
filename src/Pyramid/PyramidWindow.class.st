@@ -3,7 +3,10 @@ Class {
 	#superclass : #Object,
 	#instVars : [
 		'presenter',
-		'services'
+		'services',
+		'title',
+		'spec',
+		'whenClosedDo'
 	],
 	#category : #'Pyramid-views'
 }
@@ -20,6 +23,12 @@ Copyright (c) 2022-2023 OpenSmock
 https://github.com/OpenSmock/Pyramid'
 ]
 
+{ #category : #'window - properties' }
+PyramidWindow class >> defaultTitle [
+
+	^ 'New project | Pyramid'
+]
+
 { #category : #accessing }
 PyramidWindow >> at: aSymbol addItem: aBlock [
 
@@ -29,12 +38,15 @@ PyramidWindow >> at: aSymbol addItem: aBlock [
 { #category : #'api - showing' }
 PyramidWindow >> close [
 
-	self isOpen ifFalse:[ ^ self ].
-	self presenter owner close
+	self isOpen ifFalse: [ ^ self ].
+	self presenter owner close.
 ]
 
 { #category : #initialization }
 PyramidWindow >> initialize [
+
+	title := self class defaultTitle.
+	whenClosedDo := [  ].
 
 	PyramidPanelModel toolbarHorizontal installOn: self at: #topLeft.
 	PyramidPanelModel toolbarHorizontal installOn: self at: #topCenter.
@@ -42,9 +54,7 @@ PyramidWindow >> initialize [
 	PyramidPanelModel presenter installOn: self at: #space.
 	PyramidPanelModel tab installOn: self at: #tabLeft.
 	PyramidPanelModel tab installOn: self at: #tabRight.
-	PyramidPanelModel menu
-		installOn: self
-		at: #selectionMenu.
+	PyramidPanelModel menu installOn: self at: #selectionMenu
 ]
 
 { #category : #initialization }
@@ -76,10 +86,11 @@ PyramidWindow >> layout [
 { #category : #'api - showing' }
 PyramidWindow >> open [
 
-	| spec |
 	spec := self presenter asWindow open.
 	spec maximize.
+	spec title: self title.
 	spec aboutText: self class aboutText.
+	spec whenClosedDo: [ self whenClosedDo value ].
 	^ spec
 ]
 
@@ -105,4 +116,29 @@ PyramidWindow >> services [
 
 	services ifNil: [ services := Dictionary new ].
 	^ services
+]
+
+{ #category : #'api - showing' }
+PyramidWindow >> title [
+
+	^ title
+]
+
+{ #category : #'api - showing' }
+PyramidWindow >> title: aString [
+
+	title := aString.
+	self isOpen ifTrue: [ self presenter owner title: aString ]
+]
+
+{ #category : #accessing }
+PyramidWindow >> whenClosedDo [
+
+	^ whenClosedDo
+]
+
+{ #category : #accessing }
+PyramidWindow >> whenClosedDo: aBlock [
+
+	whenClosedDo:= aBlock
 ]

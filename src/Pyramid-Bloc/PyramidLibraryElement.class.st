@@ -6,7 +6,7 @@ Class {
 		'form',
 		'blockMaker'
 	],
-	#category : #'Pyramid-Bloc-plugin-library'
+	#category : #'Pyramid-Bloc-plugin-tree-library'
 }
 
 { #category : #converting }
@@ -25,7 +25,7 @@ PyramidLibraryElement >> blockMaker [
 PyramidLibraryElement >> blockMaker: anObject [
 
 	blockMaker := anObject.
-	form := blockMaker value aeAsForm
+	form := blockMaker value exportAsForm
 ]
 
 { #category : #accessing }

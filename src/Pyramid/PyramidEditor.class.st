@@ -3,35 +3,20 @@ Class {
 	#superclass : #Object,
 	#instVars : [
 		'plugins',
-		'activeProject',
-		'commandPipeline',
+		'projectModel',
 		'window',
-		'properties'
+		'propertiesManager'
 	],
 	#category : #'Pyramid-core'
 }
 
-{ #category : #accessing }
-PyramidEditor >> activeProject [
-
-	^ activeProject
-]
-
-{ #category : #accessing }
-PyramidEditor >> commandPipeline [
-
-	^ commandPipeline
-]
-
 { #category : #initialization }
 PyramidEditor >> initialize [
 
-	activeProject := PyramidProjectModel new.
-	commandPipeline := PyramidPipeline new.
-	properties := PyramidPropertiesView new
-		              pipeline: commandPipeline;
-		              activeProject: activeProject;
-		              yourself.
+	projectModel := PyramidProjectModel new.
+	propertiesManager := PyramidPropertiesManagerForSelection new
+		                     projectModel: projectModel;
+		                     yourself.
 	plugins := {  }
 ]
 
@@ -48,9 +33,15 @@ PyramidEditor >> plugins: aCollection [
 ]
 
 { #category : #accessing }
-PyramidEditor >> properties [
+PyramidEditor >> projectModel [
 
-	^ properties
+	^ projectModel
+]
+
+{ #category : #accessing }
+PyramidEditor >> propertiesManager [
+
+	^ propertiesManager
 ]
 
 { #category : #accessing }
@@ -71,8 +62,8 @@ PyramidEditor >> window: anObject [
 	window := anObject.
 	window at: #tabRight addItem: [ :builder |
 		builder
-			makeTab: self properties
+			makeTab: self propertiesManager presenter
 			label: 'Properties'
-			icon: (self iconNamed: #edit)
+			icon: (self iconNamed: #box)
 			order: 1 ]
 ]

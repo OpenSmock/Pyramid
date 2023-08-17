@@ -1,537 +1,197 @@
 Class {
 	#name : #PyramidHistoryTest,
 	#superclass : #TestCase,
-	#instVars : [
-		'command',
-		'targets',
-		'dummys',
-		'history',
-		'pipeline'
-	],
-	#category : #'Pyramid-Tests-Cases'
+	#category : #'Pyramid-Tests-cases-history'
 }
-
-{ #category : #'as yet unclassified' }
-PyramidHistoryTest >> commandToChangeState [
-
-	^ PyramidCommand
-		  set: [ :state :target | target set: state arguments ]
-		  get: [ :state :obj |
-			  state source: obj.
-			  state arguments: obj get ]
-		  isExecutableBlock: [ :obj :state | true ]
-]
-
-{ #category : #running }
-PyramidHistoryTest >> setUp [
-
-	super setUp.
-
-	"Put here a common initialization logic for tests"
-	command := self commandToChangeState.
-	targets := PyramidPipelineTarget new.
-	dummys := { PyramidHistoryTestDummy new . PyramidHistoryTestDummy new . PyramidHistoryTestDummy new }.
-	history := PyramidHistory new.
-	pipeline := PyramidPipeline new.
-	history installHistoryOn: pipeline
-]
 
 { #category : #tests }
 PyramidHistoryTest >> testCanRedo [
-	"Test:
-	
-	Verify can not redo.
-	Change one state.
-	Verify can not redo.
-	Undo.
-	Verify can redo.
-	Redo.
-	Verify can not redo.
-	Change one state.
-	Change one state.
-	Verify can not redo.
-	Undo.
-	Verify can redo.
-	Change one state.
-	Verify can not redo.
-	"
 
-	self deny: history canRedo.
-	self useCommandWith: 1.
-	self deny: history canRedo.
+	| commandExec dummyCommand dummyTarget dummyArguments |
+	commandExec := PyramidHistoryCommandExecutor new
+							history: PyramidHistory new;
+		               wrappee: PyramidMainCommandExecutor new;
+		               yourself.
+	self deny: commandExec history canRedo.
 
-	"one undo"
-	history undo.
-	self assert: history canRedo.
-	history redo.
-	self deny: history canRedo.
+	dummyCommand := PyramidIncreaseMockCommand new.
+	dummyTarget := { PyramidMockObjectForTest new }.
+	dummyArguments := nil.
 
-	"no undo"
-	self useCommandWith: 2.
-	self useCommandWith: 3.
-	self deny: history canRedo.
+	commandExec use: dummyCommand on: dummyTarget with: dummyArguments.
 
-	"one undo"
-	history undo.
-	self assert: history canRedo.
-	"no undo"
-	self useCommandWith: 4.
-	self deny: history canRedo
+	self deny: commandExec history canRedo.
+	commandExec history undo.
+	self assert: commandExec history canRedo.
+	commandExec history redo.
+	self deny: commandExec history canRedo
 ]
 
 { #category : #tests }
 PyramidHistoryTest >> testCanUndo [
 
-	"Test:
-	
-	Verify can not undo.
-	Change one state.
-	Verify can undo.
-	Undo.
-	Verify can not undo."
-	self assert: (dummys allSatisfy: [ :each | each get = 0 ]).
-	self deny: history canUndo.
-	self useCommandWith: 1.
-	self assert: history canUndo.
-	history undo.
-	self deny: history canUndo
+	| commandExec dummyCommand dummyTarget dummyArguments |
+	commandExec := PyramidHistoryCommandExecutor new
+	history: PyramidHistory new;
+		               wrappee: PyramidMainCommandExecutor new;
+		               yourself.
+	self deny: commandExec history canUndo.
+
+	dummyCommand := PyramidIncreaseMockCommand new.
+	dummyTarget := { PyramidMockObjectForTest new }.
+	dummyArguments := nil.
+
+	commandExec use: dummyCommand on: dummyTarget with: dummyArguments.
+
+	self assert: commandExec history canUndo.
+	commandExec history undo.
+	self deny: commandExec history canUndo
 ]
 
 { #category : #tests }
-PyramidHistoryTest >> testMultiDummysWithVariableTargets [
-	"Test:
-	
-	Create 5 dummys { a, b, c, d, e }.
-	Change state of { a, b, c, d } to <1>
-	Change state of { a, b, c } to <2>
-	Change state of { a, b } to <3>
-	Change state of { a } to <4>
-	Verify all states: { a=4, b=3, c=2, d=1, e=0 }
-	Undo
-	Verify all states: { a=3, b=3, c=2, d=1, e=0 }
-	Redo
-	Verify all states: { a=4, b=3, c=2, d=1, e=0 }
-	...
+PyramidHistoryTest >> testCollectionHistory [
+	"
+	<collection>
+
+	collection add: 1 to 100
+	collection remove: 91 to 100
+	undo 10 times (collection: 1 to 100)
+	collection add: 101 to 200 (collection: 1 to 200)
+	undo 200 times (collection empty)
+	redo 200 times (collection: 1 to 200)
 	"
 
-	| a b c d e |
-	a := PyramidHistoryTestDummy new.
-	b := PyramidHistoryTestDummy new.
-	c := PyramidHistoryTestDummy new.
-	d := PyramidHistoryTestDummy new.
-	e := PyramidHistoryTestDummy new.
-	self assert: a get equals: 0.
-	self assert: b get equals: 0.
-	self assert: c get equals: 0.
-	self assert: d get equals: 0.
-	self assert: e get equals: 0.
+	| commandExec dummyCommand dummyTarget collection |
+	collection := Bag new.
+	commandExec := PyramidHistoryCommandExecutor new
+	history: PyramidHistory new;
+		               wrappee: PyramidMainCommandExecutor new;
+		               yourself.
+	dummyCommand := PyramidAddToCollectionCommand new.
+	dummyTarget := { collection }.
 
-	self useCommandWith: 1 onTarget: {
-			a.
-			b.
-			c.
-			d }.
-	self assert: a get equals: 1.
-	self assert: b get equals: 1.
-	self assert: c get equals: 1.
-	self assert: d get equals: 1.
-	self assert: e get equals: 0.
+	self assert: collection isEmpty.
 
-	self useCommandWith: 2 onTarget: {
-			a.
-			b.
-			c }.
-	self assert: a get equals: 2.
-	self assert: b get equals: 2.
-	self assert: c get equals: 2.
-	self assert: d get equals: 1.
-	self assert: e get equals: 0.
+	1 to: 100 do: [ :i |
+		commandExec
+			use: PyramidAddToCollectionCommand new
+			on: dummyTarget
+			with: i ].
+	self assert: collection size equals: 100.
+	1 to: 100 do: [ :i | self assert: (collection includes: i) ].
 
-	self useCommandWith: 3 onTarget: {
-			a.
-			b }.
-	self assert: a get equals: 3.
-	self assert: b get equals: 3.
-	self assert: c get equals: 2.
-	self assert: d get equals: 1.
-	self assert: e get equals: 0.
+	91 to: 100 do: [ :i |
+		commandExec
+			use: PyramidRemoveFromCollectionCommand new
+			on: dummyTarget
+			with: i ].
+	self assert: collection size equals: 90.
+	1 to: 90 do: [ :i | self assert: (collection includes: i) ].
 
-	self useCommandWith: 4 onTarget: { a }.
-	self assert: a get equals: 4.
-	self assert: b get equals: 3.
-	self assert: c get equals: 2.
-	self assert: d get equals: 1.
-	self assert: e get equals: 0.
+	1 to: 10 do: [ :i | commandExec history undo ].
+	self assert: collection size equals: 100.
+	1 to: 100 do: [ :i | self assert: (collection includes: i) ].
 
-	"One undo"
+	101 to: 200 do: [ :i |
+		commandExec
+			use: PyramidAddToCollectionCommand new
+			on: dummyTarget
+			with: i ].
+	self assert: collection size equals: 200.
+	1 to: 200 do: [ :i | self assert: (collection includes: i) ].
 
-	history undo.
-	self assert: a get equals: 3.
-	self assert: b get equals: 3.
-	self assert: c get equals: 2.
-	self assert: d get equals: 1.
-	self assert: e get equals: 0.
-
-	history redo.
-	self assert: a get equals: 4.
-	self assert: b get equals: 3.
-	self assert: c get equals: 2.
-	self assert: d get equals: 1.
-	self assert: e get equals: 0.
-
-	"Two undos"
-
-	history undo.
-	history undo.
-	self assert: a get equals: 2.
-	self assert: b get equals: 2.
-	self assert: c get equals: 2.
-	self assert: d get equals: 1.
-	self assert: e get equals: 0.
-
-	history redo.
-	history redo.
-	self assert: a get equals: 4.
-	self assert: b get equals: 3.
-	self assert: c get equals: 2.
-	self assert: d get equals: 1.
-	self assert: e get equals: 0.
-
-	"Three undos"
-
-	history undo.
-	history undo.
-	history undo.
-	self assert: a get equals: 1.
-	self assert: b get equals: 1.
-	self assert: c get equals: 1.
-	self assert: d get equals: 1.
-	self assert: e get equals: 0.
-
-	history redo.
-	history redo.
-	history redo.
-	self assert: a get equals: 4.
-	self assert: b get equals: 3.
-	self assert: c get equals: 2.
-	self assert: d get equals: 1.
-	self assert: e get equals: 0.
-
-	"Four undos"
-
-	history undo.
-	history undo.
-	history undo.
-	history undo.
-	self assert: a get equals: 0.
-	self assert: b get equals: 0.
-	self assert: c get equals: 0.
-	self assert: d get equals: 0.
-	self assert: e get equals: 0.
-
-	history redo.
-	history redo.
-	history redo.
-	history redo.
-	self assert: a get equals: 4.
-	self assert: b get equals: 3.
-	self assert: c get equals: 2.
-	self assert: d get equals: 1.
-	self assert: e get equals: 0
-]
-
-{ #category : #tests }
-PyramidHistoryTest >> testMultiDummysWithVariableTargetsWithMementosSizeComparaison [
-	"Test:
-	
-	Create 5 dummys { a, b, c, d, e }.
-	Change state of { a, b, c, d } to <1>
-	Change state of { a, b, c } to <2>
-	Change state of { a, b } to <3>
-	Change state of { a } to <4>
-	Verify all states: { a=4, b=3, c=2, d=1, e=0 }
-	Undo
-	Verify all states: { a=3, b=3, c=2, d=1, e=0 }
-	Redo
-	Verify all states: { a=4, b=3, c=2, d=1, e=0 }
-	...
-	"
-
-	| a b c d e |
-	a := PyramidHistoryTestDummy new.
-	b := PyramidHistoryTestDummy new.
-	c := PyramidHistoryTestDummy new.
-	d := PyramidHistoryTestDummy new.
-	e := PyramidHistoryTestDummy new.
-	self assert: history undoCollection isEmpty.
-	self assert: history redoCollection isEmpty.
-
-	self useCommandWith: 1 onTarget: {
-			a.
-			b.
-			c.
-			d }.
-	self assert: history undoCollection size equals: 1.
-	self assert: (history undoCollection at: 1) undoMemento size equals: 4.
-	self assert: history redoCollection isEmpty.
-	self useCommandWith: 2 onTarget: {
-			a.
-			b.
-			c }.
-	self assert: history undoCollection size equals: 2.
-	self assert: (history undoCollection at: 1) undoMemento size equals: 3.
-	self assert: (history undoCollection at: 2) undoMemento size equals: 4.
-	self assert: history redoCollection isEmpty.
-
-	self useCommandWith: 3 onTarget: {
-			a.
-			b }.
-	self assert: history undoCollection size equals: 3.
-	self assert: (history undoCollection at: 1) undoMemento size equals: 2.
-	self assert: (history undoCollection at: 2) undoMemento size equals: 3.
-	self assert: (history undoCollection at: 3) undoMemento size equals: 4.
-	self assert: history redoCollection isEmpty.
-
-	self useCommandWith: 4 onTarget: { a }.
-	self assert: history undoCollection size equals: 4.
-	self assert: (history undoCollection at: 1) undoMemento size equals: 1.
-	self assert: (history undoCollection at: 2) undoMemento size equals: 2.
-	self assert: (history undoCollection at: 3) undoMemento size equals: 3.
-	self assert: (history undoCollection at: 4) undoMemento size equals: 4.
-	self assert: history redoCollection isEmpty.
-
-	"One undo"
-
-	history undo.
-	self assert: history undoCollection size equals: 3.
-	self assert: (history undoCollection at: 1) undoMemento size equals: 2.
-	self assert: (history undoCollection at: 2) undoMemento size equals: 3.
-	self assert: (history undoCollection at: 3) undoMemento size equals: 4.
-	self assert: history redoCollection size equals: 1.
-	self assert: (history redoCollection at: 1) redoMemento size equals: 1.
-
-	history redo.
-	self assert: history undoCollection size equals: 4.
-	self assert: (history undoCollection at: 1) undoMemento size equals: 1.
-	self assert: (history undoCollection at: 2) undoMemento size equals: 2.
-	self assert: (history undoCollection at: 3) undoMemento size equals: 3.
-	self assert: (history undoCollection at: 4) undoMemento size equals: 4.
-	self assert: history redoCollection isEmpty.
-
-	"Two undos"
-
-	history undo.
-	history undo.
-	self assert: history undoCollection size equals: 2.
-	self assert: (history undoCollection at: 1) undoMemento size equals: 3.
-	self assert: (history undoCollection at: 2) undoMemento size equals: 4.
-	self assert: history redoCollection size equals: 2.
-	self assert: (history redoCollection at: 1) redoMemento size equals: 2.
-	self assert: (history redoCollection at: 2) redoMemento size equals: 1.
-
-	history redo.
-	history redo.
-	self assert: history undoCollection size equals: 4.
-	self assert: (history undoCollection at: 1) undoMemento size equals: 1.
-	self assert: (history undoCollection at: 2) undoMemento size equals: 2.
-	self assert: (history undoCollection at: 3) undoMemento size equals: 3.
-	self assert: (history undoCollection at: 4) undoMemento size equals: 4.
-	self assert: history redoCollection isEmpty.
-
-	"Three undos"
-
-	history undo.
-	history undo.
-	history undo.
-	self assert: history undoCollection size equals: 1.
-	self assert: (history undoCollection at: 1) undoMemento size equals: 4.
-	self assert: history redoCollection size equals: 3.
-	self assert: (history redoCollection at: 1) redoMemento size equals: 3.
-	self assert: (history redoCollection at: 2) redoMemento size equals: 2.
-	self assert: (history redoCollection at: 3) redoMemento size equals: 1.
-
-	history redo.
-	history redo.
-	history redo.
-	self assert: history undoCollection size equals: 4.
-	self assert: (history undoCollection at: 1) undoMemento size equals: 1.
-	self assert: (history undoCollection at: 2) undoMemento size equals: 2.
-	self assert: (history undoCollection at: 3) undoMemento size equals: 3.
-	self assert: (history undoCollection at: 4) undoMemento size equals: 4.
-	self assert: history redoCollection isEmpty.
-
-	"Four undos"
-
-	history undo.
-	history undo.
-	history undo.
-	history undo.
-	self assert: history undoCollection isEmpty.
-	self assert: history redoCollection size equals: 4.
-	self assert: (history redoCollection at: 1) redoMemento size equals: 4.
-	self assert: (history redoCollection at: 2) redoMemento size equals: 3.
-	self assert: (history redoCollection at: 3) redoMemento size equals: 2.
-	self assert: (history redoCollection at: 4) redoMemento size equals: 1.
-
-	history redo.
-	history redo.
-	history redo.
-	history redo.
-	self assert: history undoCollection size equals: 4.
-	self assert: (history undoCollection at: 1) undoMemento size equals: 1.
-	self assert: (history undoCollection at: 2) undoMemento size equals: 2.
-	self assert: (history undoCollection at: 3) undoMemento size equals: 3.
-	self assert: (history undoCollection at: 4) undoMemento size equals: 4.
-	self assert: history redoCollection isEmpty
+	1 to: 200 do: [ :i | commandExec history undo ].
+	self assert: collection isEmpty.
+	1 to: 200 do: [ :i | commandExec history redo ].
+	self assert: collection size equals: 200.
+	1 to: 200 do: [ :i | self assert: (collection includes: i) ]
 ]
 
 { #category : #tests }
 PyramidHistoryTest >> testRedo [
-	"Test:
-	
-	Create a command that change the state of an object.
-	Create a collection of object.
-	Change 3 times the sate of the object.
-	Undo then verify state 3 times.
-	Then redo and verify 3 times.
-	Redo one more time and verify nothing change.
-	Undo then verify state 3 times.
-	Change state
-	Redo one more time and verify nothing change."
 
-	self assert: (dummys allSatisfy: [ :each | each get = 0 ]).
-	self useCommandWith: 1.
-	self useCommandWith: 2.
-	self useCommandWith: 3.
-	self deny: history canRedo.
-	self assert: (dummys allSatisfy: [ :each | each get = 3 ]).
-	history undo.
-	self assert: history canRedo.
-	self assert: (dummys allSatisfy: [ :each | each get = 2 ]).
-	history undo.
-	self assert: (dummys allSatisfy: [ :each | each get = 1 ]).
-	history undo.
-	self assert: (dummys allSatisfy: [ :each | each get = 0 ]).
-	history redo.
-	self assert: (dummys allSatisfy: [ :each | each get = 1 ]).
-	history redo.
-	self assert: (dummys allSatisfy: [ :each | each get = 2 ]).
-	history redo.
-	self assert: (dummys allSatisfy: [ :each | each get = 3 ]).
-	self deny: history canRedo.
-	history redo.
-	self assert: (dummys allSatisfy: [ :each | each get = 3 ]).
-	history undo.
-	history undo.
-	self assert: (dummys allSatisfy: [ :each | each get = 1 ]).
-	self useCommandWith: 4.
-	self assert: (dummys allSatisfy: [ :each | each get = 4 ]).
-	self deny: history canRedo.
-	history redo.
-	self assert: (dummys allSatisfy: [ :each | each get = 4 ])
-]
+	| commandExec dummyTarget |
+	commandExec := PyramidHistoryCommandExecutor new
+	history: PyramidHistory new;
+		               wrappee: PyramidMainCommandExecutor new;
+		               yourself.
+	dummyTarget := { PyramidMockObjectForTest new }.
+	self assert: dummyTarget first count equals: 0.
 
-{ #category : #tests }
-PyramidHistoryTest >> testRedoCollection [
-	"Test:
-	
-	Verify redoCollection has 0 memento in it.
-	Create a command that change the state of an object.
-	Create a collection of object.
-	Change 3 times the sate of the object.
-	Undo 3 times
-	Verify redoCollection has 3 mementos in it.
-	Redo 3 times
-	Verify redoCollection has 0 memento in it.
-	"
-	self assert: history redoCollection size equals: 0.
-	self useCommandWith: 1.
-	self useCommandWith: 2.
-	self useCommandWith: 3.
-	self assert: history redoCollection size equals: 0.
-	history undo.
-	history undo.
-	history undo.
-	self assert: history redoCollection size equals: 3.
-	history redo.
-	history redo.
-	history redo.
-	self assert: history redoCollection size equals: 0
-	
+	commandExec
+		use: PyramidSimpleMockCommand new
+		on: dummyTarget
+		with: 10.
+	self assert: dummyTarget first count equals: 10.
+	commandExec
+		use: PyramidSimpleMockCommand new
+		on: dummyTarget
+		with: 20.
+	self assert: dummyTarget first count equals: 20.
+	commandExec
+		use: PyramidIncreaseMockCommand new
+		on: dummyTarget
+		with: nil.
+	self assert: dummyTarget first count equals: 21.
+
+	commandExec history undo.
+	self assert: dummyTarget first count equals: 20.
+	commandExec history undo.
+	self assert: dummyTarget first count equals: 10.
+	commandExec history undo.
+	self assert: dummyTarget first count equals: 0.
+
+	commandExec history redo.
+	self assert: dummyTarget first count equals: 10.
+	commandExec history redo.
+	self assert: dummyTarget first count equals: 20.
+	commandExec history redo.
+	self assert: dummyTarget first count equals: 21.
+
+	commandExec history undo.
+	self assert: dummyTarget first count equals: 20.
+	commandExec history undo.
+	self assert: dummyTarget first count equals: 10.
+	commandExec
+		use: PyramidIncreaseMockCommand new
+		on: dummyTarget
+		with: nil.
+	self assert: dummyTarget first count equals: 11.
+	self deny: commandExec history canRedo.
+	commandExec history undo.
+	self assert: dummyTarget first count equals: 10.
+	commandExec history undo.
+	self assert: dummyTarget first count equals: 0.
+	commandExec history redo.
+	self assert: dummyTarget first count equals: 10.
+	commandExec history redo.
+	self assert: dummyTarget first count equals: 11
 ]
 
 { #category : #tests }
 PyramidHistoryTest >> testUndo [
-	"Test:
-	
-	Create a command that change the state of an object.
-	Create a collection of object.
-	Change 3 times the sate of the object.
-	Undo then verify state 3 times.
-	Undo one more time.
-	Verify nothing change"
 
-	self assert: (dummys allSatisfy: [ :each | each get = 0 ]).
-	self deny: history canUndo.
-	self useCommandWith: 1.
-	self assert: history canUndo.
-	self useCommandWith: 2.
-	self useCommandWith: 3.
-	self assert: (dummys allSatisfy: [ :each | each get = 3 ]).
-	history undo.
-	self assert: (dummys allSatisfy: [ :each | each get = 2 ]).
-	history undo.
-	self assert: (dummys allSatisfy: [ :each | each get = 1 ]).
-	self assert: history canUndo.
-	history undo.
-	self assert: (dummys allSatisfy: [ :each | each get = 0 ]).
-	self deny: history canUndo.
-	history undo.
-	self assert: (dummys allSatisfy: [ :each | each get = 0 ])
-]
+	| commandExec dummyCommand dummyTarget dummyArguments |
+	commandExec := PyramidHistoryCommandExecutor new
+	history: PyramidHistory new;
+		               wrappee: PyramidMainCommandExecutor new;
+		               yourself.
+	dummyCommand := PyramidIncreaseMockCommand new.
+	dummyTarget := { PyramidMockObjectForTest new }.
+	dummyArguments := nil.
+	self assert: dummyTarget first count equals: 0.
 
-{ #category : #tests }
-PyramidHistoryTest >> testUndoCollection [
-	"Test:
-	
-	Verify undoCollection has 0 memento in it.
-	Create a command that change the state of an object.
-	Create a collection of object.
-	Change 3 times the sate of the object.
-	Verify undoCollection has 3 mementos in it.
-	Undo 3 times
-	Verify undoCollection has 0 memento in it.
-	Redo 3 times
-	Verify undoCollection has 3 mementos in it.
-	"
+	commandExec use: dummyCommand on: dummyTarget with: dummyArguments.
+	self assert: dummyTarget first count equals: 1.
+	commandExec use: dummyCommand on: dummyTarget with: dummyArguments.
+	self assert: dummyTarget first count equals: 2.
+	commandExec use: dummyCommand on: dummyTarget with: dummyArguments.
+	self assert: dummyTarget first count equals: 3.
 
-	self assert: history undoCollection size equals: 0.
-	self useCommandWith: 1.
-	self assert: history undoCollection size equals: 1.
-	self useCommandWith: 2.
-	self assert: history undoCollection size equals: 2.
-	self useCommandWith: 3.
-	self assert: history undoCollection size equals: 3.
-	history undo.
-	history undo.
-	history undo.
-	self assert: history undoCollection size equals: 0.
-	history redo.
-	history redo.
-	history redo.
-	self assert: history undoCollection size equals: 3
-]
-
-{ #category : #'as yet unclassified' }
-PyramidHistoryTest >> useCommandWith: anArgument [
-
-	self useCommandWith: anArgument onTarget: dummys
-]
-
-{ #category : #'as yet unclassified' }
-PyramidHistoryTest >> useCommandWith: anArgument onTarget: aCollection [
-
-	command state arguments: anArgument.
-	targets collection: aCollection.
-	pipeline useCommand: command on: targets
+	commandExec history undo.
+	self assert: dummyTarget first count equals: 2.
+	commandExec history undo.
+	self assert: dummyTarget first count equals: 1.
+	commandExec history undo.
+	self assert: dummyTarget first count equals: 0
 ]

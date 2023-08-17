@@ -1,13 +1,19 @@
 Extension { #name : #BlTransparentBackground }
 
 { #category : #'*Pyramid-Bloc' }
-BlTransparentBackground >> pyramidBackgroundStrategy [
+BlTransparentBackground >> asForm [
 
-	^ PyramidBackgroundPropertyInputTransparent new
+	^ self iconNamed: #smallSelect
 ]
 
 { #category : #'*Pyramid-Bloc' }
-BlTransparentBackground >> pyramidSelectMenuOnModal: aModal [
+BlTransparentBackground >> asString [
 
-	aModal buttonTransparent click.
+	^ 'Transparent'
+]
+
+{ #category : #'*Pyramid-Bloc' }
+BlTransparentBackground >> selectOnBackgroundInput: aPyramidBackgroundInputPresenter [
+
+	aPyramidBackgroundInputPresenter selectTransparent.
 ]

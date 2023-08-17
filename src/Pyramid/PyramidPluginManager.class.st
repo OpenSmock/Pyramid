@@ -50,6 +50,12 @@ PyramidPluginManager >> initialize [
 	pluginClasses := Set new
 ]
 
+{ #category : #adding }
+PyramidPluginManager >> isPluginInstalled: aPluginClass [
+
+	^ self pluginClasses includes: aPluginClass
+]
+
 { #category : #'as yet unclassified' }
 PyramidPluginManager >> makeEditor [
 
