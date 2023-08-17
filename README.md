@@ -43,8 +43,12 @@ Metacello new
 
 ## <img src="/resources/puce.svg" width="75" height="75" align="bottom"> Dependencies
 
-- [Bloc-Serialization](https://github.com/OpenSmock/Bloc-Serialization)
+![image](https://github.com/OpenSmock/Pyramid/assets/34318678/099f25fc-74bd-477f-bef0-2ad7d47db10d)
+
 - [Bloc](https://github.com/pharo-graphics/Bloc)
+- [Alexandrie](https://github.com/pharo-graphics/Alexandrie)
+- [Bloc-Serialization](https://github.com/OpenSmock/Bloc-Serialization)
+- [Ston](https://github.com/svenvc/ston)
 
 ## <img src="/resources/puce.svg" width="75" height="75" align="bottom"> License
 
