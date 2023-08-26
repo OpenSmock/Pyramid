@@ -124,7 +124,7 @@ PyramidSelectionWidgetExtension >> isDragging: anObject [
 PyramidSelectionWidgetExtension >> makeMonoSelectionFor: aBlElement [
 
 	| monoSelection eventElement dragGhostElement borderElement |
-	monoSelection := BlOverlayElement on: aBlElement.
+	monoSelection := (BlOverlayElement on: aBlElement) id: #overlay.
 	monoSelection clipChildren: false.
 
 	dragGhostElement := BlElement new
@@ -197,9 +197,21 @@ PyramidSelectionWidgetExtension >> pyramidSelectionChanged [
 	self makeNewSelection
 ]
 
+{ #category : #'as yet unclassified' }
+PyramidSelectionWidgetExtension >> removeMonoSelection: aBlElementSelectionDecoration [
+
+	"get the BlOverlayElement"
+	| monoSelection |
+	monoSelection := aBlElementSelectionDecoration childNamed: #overlay.
+	monoSelection detach.
+]
+
 { #category : #removing }
 PyramidSelectionWidgetExtension >> removeSelection [
 
+	(self widgetElement childrenCount > 0) ifFalse:[ ^ self ].
+
+	self removeMonoSelection: self widgetElement.
 	self widgetElement removeChildren.
 ]
 
