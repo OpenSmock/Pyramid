@@ -9,7 +9,7 @@ Pyramid is a User-Interface (UI) editor.
 
 Pyramid is a WYSIWYG application (What You See Is What You Get) in other terms it allows you to visually design the expected outcome.
 
-Pyramid help you to produce final UI using Bloc library (and also Toplo).
+Pyramid helps you to produce final UI using Bloc library (and also Toplo).
 
 ## <img src="/resources/puce.svg" width="75" height="75" align="bottom"> How to start
 
@@ -43,8 +43,11 @@ Metacello new
 
 ## <img src="/resources/puce.svg" width="75" height="75" align="bottom"> Dependencies
 
-- [Bloc-Serialization](https://github.com/OpenSmock/Bloc-Serialization)
+![image](https://github.com/OpenSmock/Pyramid/assets/34318678/099f25fc-74bd-477f-bef0-2ad7d47db10d)
+
 - [Bloc](https://github.com/pharo-graphics/Bloc)
+- [Alexandrie](https://github.com/pharo-graphics/Alexandrie)
+- [Bloc-Serialization](https://github.com/OpenSmock/Bloc-Serialization)
 
 ## <img src="/resources/puce.svg" width="75" height="75" align="bottom"> License
 
