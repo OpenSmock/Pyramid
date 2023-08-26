@@ -11,6 +11,8 @@ Pyramid is a WYSIWYG application (What You See Is What You Get) in other terms i
 
 Pyramid helps you to produce final UI using Bloc library (and also Toplo).
 
+You can add plugins into Pyramid to extents the editor capacities or create [your own plugin](https://github.com/OpenSmock/Pyramid/wiki/Ajouter-un-nouveau-plugin-a-Pyramid) with your specifics functions !
+
 ## <img src="/resources/puce.svg" width="75" height="75" align="bottom"> How to get Pyramid
 
 You can load the last stable version of Pyramid or the development version. The Development version can provide the new incoming functionalities but can be unstable.
@@ -83,6 +85,11 @@ space editWithPyramid.
 ```
 
 You can edit in Pyramid an opened BlSpace with `F12` keyboard shortcut, for that open a BlElement with `openInNewSpaceWithPyramidShortcut`.
+
+## Plugins
+
+![image](https://user-images.githubusercontent.com/49183340/263474758-37833c2b-f7ad-4b46-ab58-cb3d92c28413.png)
+- [FigmaToWorld](https://github.com/OpenSmock/Pyramid-Plugins-FigmaToWorld) plugin provide capacities to import projects designed with [Figma](https://www.figma.com)
 
 ## <img src="/resources/puce.svg" width="75" height="75" align="bottom"> Dependencies
 
