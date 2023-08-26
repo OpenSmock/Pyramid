@@ -83,7 +83,7 @@ PyramidSelectionWidgetExtension >> editor: aPyramidEditor [
 	self commandExecutor: aPyramidEditor propertiesManager commandExecutor
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #events }
 PyramidSelectionWidgetExtension >> informTransformationChanged [
 
 	self widgetElement position: self currentTransformTranslation  
@@ -157,7 +157,7 @@ PyramidSelectionWidgetExtension >> makeMonoSelectionFor: aBlElement [
 	^ monoSelection
 ]
 
-{ #category : #removing }
+{ #category : #selection }
 PyramidSelectionWidgetExtension >> makeNewSelection [
 
 	| nb |
@@ -189,14 +189,14 @@ PyramidSelectionWidgetExtension >> projectModel: aProjectModel [
 	self makeNewSelection.
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #events }
 PyramidSelectionWidgetExtension >> pyramidElementsChanged [
 
 	self removeSelection.
 	self makeNewSelection
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #events }
 PyramidSelectionWidgetExtension >> pyramidSelectionChanged [
 
 	self removeSelection.
@@ -216,7 +216,7 @@ PyramidSelectionWidgetExtension >> removeMonoSelections: aBlElementSelectionDeco
 	
 ]
 
-{ #category : #removing }
+{ #category : #selection }
 PyramidSelectionWidgetExtension >> removeSelection [
 
 	(self widgetElement childrenCount > 0) ifFalse:[ ^ self ].
@@ -234,7 +234,7 @@ PyramidSelectionWidgetExtension >> usePositionOffsetCommand: aPosition [
 		with: aPosition
 ]
 
-{ #category : #removing }
+{ #category : #accessing }
 PyramidSelectionWidgetExtension >> widgetElement [
 
 	^ widgetElement
