@@ -73,6 +73,17 @@ Use the `Pyramid preview` tab to test an existing project.
 
 https://github.com/OpenSmock/Pyramid/assets/49183340/12a916e5-06d1-426f-954c-2e4e911475e1
 
+### Tips
+
+To edit a `BlElement` instance or a `BlSpace` instance into Pyramid :
+
+```st
+element editWithPyramid.
+space editWithPyramid.
+```
+
+You can edit in Pyramid an opened BlSpace with `F12` keyboard shortcut, for that open a BlElement with `openInNewSpaceWithPyramidShortcut`.
+
 ## <img src="/resources/puce.svg" width="75" height="75" align="bottom"> Dependencies
 
 ![image](https://github.com/OpenSmock/Pyramid/assets/34318678/099f25fc-74bd-477f-bef0-2ad7d47db10d)
