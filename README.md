@@ -48,7 +48,6 @@ Metacello new
 - [Bloc](https://github.com/pharo-graphics/Bloc)
 - [Alexandrie](https://github.com/pharo-graphics/Alexandrie)
 - [Bloc-Serialization](https://github.com/OpenSmock/Bloc-Serialization)
-- [Ston](https://github.com/svenvc/ston)
 
 ## <img src="/resources/puce.svg" width="75" height="75" align="bottom"> License
 
