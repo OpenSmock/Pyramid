@@ -137,17 +137,31 @@ PyramidSavePlugin >> projectModel: aPyramidProjectModel [
 
 { #category : #actions }
 PyramidSavePlugin >> saveAction [
-	"Action executed by save button"
+	"Action executed by a save button from UI, this method catch exceptions when needed to doesn't expose directly a debugger but an info window"
 
 	[
 	self savingService save.
-	self inputsController isSaved ]
-		on: PyramidSaveError
-		do: [
+	self inputsController isSaved. 
+	]
+	on: Error
+	do: [ :e |
+		
+		"Pyramid level error"
+		(e isKindOf: PyramidSaveError) ifTrue:[		
 			^ UIManager default
-				  alert:
-				  'Cannot save the project, check project configuration before.'
-				  title: 'Error' ]
+				 	alert: 'Cannot save the project, open project configuration to setup a valid saving location.'
+			 	 	title: 'Project configuration problem'
+		].
+		
+		"Serializer level error"
+		(e isKindOf: BlocSerializationError) ifTrue:[		
+			(UIManager default
+				confirm: 'Error when saving the project: ', e messageText asString, '
+				Debug this error ?'
+			 	label: 'Error')
+			ifTrue:[e debug] ifFalse:[^ self].
+		].
+	]
 ]
 
 { #category : #accessing }

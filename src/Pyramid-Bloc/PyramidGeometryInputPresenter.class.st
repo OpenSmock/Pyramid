@@ -4,7 +4,7 @@ Class {
 	#instVars : [
 		'whenValueChangedDo',
 		'geometry',
-		'geometryDictionnary'
+		'geometryDictionary'
 	],
 	#category : #'Pyramid-Bloc-plugin-bloc-geometry'
 }
@@ -16,33 +16,36 @@ PyramidGeometryInputPresenter >> defaultLayout [
 	defaultLayout := SpBoxLayout newHorizontal
 		                 spacing: 4;
 		                 yourself.
-	self geometryDictionnary valuesDo: [ :each |
+		
+	self geometryDictionary valuesDo: [ :each |
 		defaultLayout add: each buttonPresenter width: 24 ].
+	
 	^ defaultLayout
 ]
 
 { #category : #accessing }
 PyramidGeometryInputPresenter >> geometry [
+	"Return a BlElementGeometry"
 
-	^ geometry.
+	^ geometry
 ]
 
 { #category : #accessing }
-PyramidGeometryInputPresenter >> geometry: anObject [
+PyramidGeometryInputPresenter >> geometry: aBlElementGeometry [
 
-	geometry := anObject
+	geometry := aBlElementGeometry
 ]
 
 { #category : #accessing }
-PyramidGeometryInputPresenter >> geometryDictionnary [
+PyramidGeometryInputPresenter >> geometryDictionary [
 
-	^ geometryDictionnary
+	^ geometryDictionary
 ]
 
 { #category : #initialization }
 PyramidGeometryInputPresenter >> initializeGeometryButtons [
 
-	geometryDictionnary
+	geometryDictionary
 		at: BlRectangleGeometry
 		put: (PyramidGeometryInputModel new
 				 input: self;
@@ -54,19 +57,7 @@ PyramidGeometryInputPresenter >> initializeGeometryButtons [
 						  yourself);
 				 yourself).
 
-	geometryDictionnary
-		at: BlRectangleGeometry
-		put: (PyramidGeometryInputModel new
-				 input: self;
-				 help: 'Change the geometry to a rectangle.';
-				 defaultGeometry: BlRectangleGeometry new;
-				 blocIcon: (BlElement new
-						  size: 16 asPoint;
-						  geometry: BlRectangleGeometry new;
-						  yourself);
-				 yourself).
-
-	geometryDictionnary
+	geometryDictionary
 		at: BlEllipseGeometry
 		put: (PyramidGeometryInputModel new
 				 input: self;
@@ -78,7 +69,7 @@ PyramidGeometryInputPresenter >> initializeGeometryButtons [
 						  yourself);
 				 yourself).
 	
-	geometryDictionnary
+	geometryDictionary
 		at: BlRoundedRectangleGeometry
 		put: (PyramidGeometryInputModel new
 				 input: self;
@@ -90,7 +81,7 @@ PyramidGeometryInputPresenter >> initializeGeometryButtons [
 						  yourself);
 				 yourself).
 	
-	geometryDictionnary
+	geometryDictionary
 		at: BlPolygonGeometry
 		put: (PyramidGeometryInputModel new
 				 input: self;
@@ -117,7 +108,7 @@ PyramidGeometryInputPresenter >> initializeGeometryButtons [
 PyramidGeometryInputPresenter >> initializePresenters [
 
 	whenValueChangedDo := [ :geo |  ].
-	geometryDictionnary := OrderedDictionary new.
+	geometryDictionary := OrderedDictionary new.
 	self initializeGeometryButtons.
 	self value: PyramidUnknowState new
 ]
@@ -125,7 +116,7 @@ PyramidGeometryInputPresenter >> initializePresenters [
 { #category : #'as yet unclassified' }
 PyramidGeometryInputPresenter >> setNormalAndSelect: buttonModel [
 
-	self geometryDictionnary valuesDo: [ :each | each normal ].
+	self geometryDictionary valuesDo: [ :each | each normal ].
 	buttonModel defaultGeometry: self geometry.
 	buttonModel selected
 ]
@@ -133,7 +124,7 @@ PyramidGeometryInputPresenter >> setNormalAndSelect: buttonModel [
 { #category : #initialization }
 PyramidGeometryInputPresenter >> setUnknow [
 
-	self geometryDictionnary valuesDo: [ :each | each error ].
+	self geometryDictionary valuesDo: [ :each | each error ].
 ]
 
 { #category : #'as yet unclassified' }
@@ -146,7 +137,7 @@ PyramidGeometryInputPresenter >> value [
 PyramidGeometryInputPresenter >> value: aBlGeometry [
 
 	self geometry: aBlGeometry.
-	self geometryDictionnary
+	self geometryDictionary
 		at: aBlGeometry class
 		ifPresent: [ :buttonModel | self setNormalAndSelect: buttonModel ]
 		ifAbsent: [ self setUnknow ]

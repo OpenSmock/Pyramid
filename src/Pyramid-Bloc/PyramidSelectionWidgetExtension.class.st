@@ -83,7 +83,7 @@ PyramidSelectionWidgetExtension >> editor: aPyramidEditor [
 	self commandExecutor: aPyramidEditor propertiesManager commandExecutor
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #events }
 PyramidSelectionWidgetExtension >> informTransformationChanged [
 
 	self widgetElement position: self currentTransformTranslation  
@@ -120,11 +120,11 @@ PyramidSelectionWidgetExtension >> isDragging: anObject [
 	isDragging := anObject
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #'selection element' }
 PyramidSelectionWidgetExtension >> makeMonoSelectionFor: aBlElement [
 
 	| monoSelection eventElement dragGhostElement borderElement |
-	monoSelection := BlOverlayElement on: aBlElement.
+	monoSelection := (BlOverlayElement on: aBlElement).
 	monoSelection clipChildren: false.
 
 	dragGhostElement := BlElement new
@@ -157,11 +157,17 @@ PyramidSelectionWidgetExtension >> makeMonoSelectionFor: aBlElement [
 	^ monoSelection
 ]
 
-{ #category : #removing }
+{ #category : #selection }
 PyramidSelectionWidgetExtension >> makeNewSelection [
 
-	self projectModel selection do: [ :each | self widgetElement addChild:
-		(self makeMonoSelectionFor: each) ]
+	| nb |
+	nb := 0.
+	self projectModel selection do: [ :each | | overlayElement |
+		nb := nb + 1.
+		overlayElement := self makeMonoSelectionFor: each.
+		overlayElement id: ('overlay', nb asString) asSymbol.
+		self widgetElement addChild: overlayElement. 
+	]
 ]
 
 { #category : #'as yet unclassified' }
@@ -183,23 +189,39 @@ PyramidSelectionWidgetExtension >> projectModel: aProjectModel [
 	self makeNewSelection.
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #events }
 PyramidSelectionWidgetExtension >> pyramidElementsChanged [
 
 	self removeSelection.
 	self makeNewSelection
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #events }
 PyramidSelectionWidgetExtension >> pyramidSelectionChanged [
 
 	self removeSelection.
 	self makeNewSelection
 ]
 
-{ #category : #removing }
+{ #category : #'selection element' }
+PyramidSelectionWidgetExtension >> removeMonoSelections: aBlElementSelectionDecoration [
+
+	"get all BlOverlayElement"
+	aBlElementSelectionDecoration childrenDo:[ :c |
+		('#overlay*' match: (c id asString)) ifTrue:[
+			c detach.
+		].
+	].
+	
+	
+]
+
+{ #category : #selection }
 PyramidSelectionWidgetExtension >> removeSelection [
 
+	(self widgetElement childrenCount > 0) ifFalse:[ ^ self ].
+
+	self removeMonoSelections: self widgetElement.
 	self widgetElement removeChildren.
 ]
 
@@ -212,7 +234,7 @@ PyramidSelectionWidgetExtension >> usePositionOffsetCommand: aPosition [
 		with: aPosition
 ]
 
-{ #category : #removing }
+{ #category : #accessing }
 PyramidSelectionWidgetExtension >> widgetElement [
 
 	^ widgetElement

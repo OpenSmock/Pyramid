@@ -43,13 +43,13 @@ PyramidSpaceBuilder class >> defaultEditorExtensions [
 	<script: 'defaultEditorExtensions := nil'>
 	defaultEditorExtensions ifNil: [
 		defaultEditorExtensions := {
-			                       			                           PyramidPositionExtension.
+			                           PyramidPositionExtension.
 			                           PyramidMouseTransformExtension.
 			                           PyramidWheelTransformExtension.
 			                           PyramidSelectionMakerExtension.
 			                           PyramidSelectionWidgetExtension.
 			                           PyramidMenuExtension.
-			PyramidMainExtension } ].
+			                           PyramidMainExtension } ].
 	^ defaultEditorExtensions
 ]
 
