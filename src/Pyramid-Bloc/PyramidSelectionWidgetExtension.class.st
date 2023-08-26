@@ -120,11 +120,11 @@ PyramidSelectionWidgetExtension >> isDragging: anObject [
 	isDragging := anObject
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #'selection element' }
 PyramidSelectionWidgetExtension >> makeMonoSelectionFor: aBlElement [
 
 	| monoSelection eventElement dragGhostElement borderElement |
-	monoSelection := (BlOverlayElement on: aBlElement) id: #overlay.
+	monoSelection := (BlOverlayElement on: aBlElement).
 	monoSelection clipChildren: false.
 
 	dragGhostElement := BlElement new
@@ -160,8 +160,14 @@ PyramidSelectionWidgetExtension >> makeMonoSelectionFor: aBlElement [
 { #category : #removing }
 PyramidSelectionWidgetExtension >> makeNewSelection [
 
-	self projectModel selection do: [ :each | self widgetElement addChild:
-		(self makeMonoSelectionFor: each) ]
+	| nb |
+	nb := 0.
+	self projectModel selection do: [ :each | | overlayElement |
+		nb := nb + 1.
+		overlayElement := self makeMonoSelectionFor: each.
+		overlayElement id: ('overlay', nb asString) asSymbol.
+		self widgetElement addChild: overlayElement. 
+	]
 ]
 
 { #category : #'as yet unclassified' }
@@ -197,13 +203,17 @@ PyramidSelectionWidgetExtension >> pyramidSelectionChanged [
 	self makeNewSelection
 ]
 
-{ #category : #'as yet unclassified' }
-PyramidSelectionWidgetExtension >> removeMonoSelection: aBlElementSelectionDecoration [
+{ #category : #'selection element' }
+PyramidSelectionWidgetExtension >> removeMonoSelections: aBlElementSelectionDecoration [
 
-	"get the BlOverlayElement"
-	| monoSelection |
-	monoSelection := aBlElementSelectionDecoration childNamed: #overlay.
-	monoSelection detach.
+	"get all BlOverlayElement"
+	aBlElementSelectionDecoration childrenDo:[ :c |
+		('#overlay*' match: (c id asString)) ifTrue:[
+			c detach.
+		].
+	].
+	
+	
 ]
 
 { #category : #removing }
@@ -211,7 +221,7 @@ PyramidSelectionWidgetExtension >> removeSelection [
 
 	(self widgetElement childrenCount > 0) ifFalse:[ ^ self ].
 
-	self removeMonoSelection: self widgetElement.
+	self removeMonoSelections: self widgetElement.
 	self widgetElement removeChildren.
 ]
 
