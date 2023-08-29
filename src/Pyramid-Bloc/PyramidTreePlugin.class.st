@@ -38,7 +38,7 @@ PyramidTreePlugin class >> columnNameAndType: aPyramidTreePlugin [
 						   of: aBlElement
 						   onEditor: aPyramidTreePlugin editor ];
 				   evaluated: [ :aBlElement |
-					   aBlElement id isNoId
+					   aBlElement elementId isNoId
 						   ifTrue: [ '' ]
 						   ifFalse: [ aBlElement id asSymbol ] ];
 				   displayColor: [ :aBlElement | Smalltalk ui theme textColor ];
