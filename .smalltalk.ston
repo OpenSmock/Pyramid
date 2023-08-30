@@ -4,8 +4,9 @@ SmalltalkCISpec {
       #baseline : 'Pyramid',
       #directory : 'src',
       #platforms : [ #pharo ],
-      #passwordEnvVar : 'GITHUB_TOKEN',
+      #passwordEnvVar : 'GITHUB_TOKEN'
+  ],
+  #testing: {
       #defaultTimeout : 30
     }
-  ]
 }
