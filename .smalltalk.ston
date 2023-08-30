@@ -5,8 +5,9 @@ SmalltalkCISpec {
       #directory : 'src',
       #platforms : [ #pharo ],
       #passwordEnvVar : 'GITHUB_TOKEN'
+    }
   ],
   #testing: {
-      #defaultTimeout : 30
-    }
+    #defaultTimeout : 30
+  }
 }
