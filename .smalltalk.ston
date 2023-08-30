@@ -3,7 +3,9 @@ SmalltalkCISpec {
     SCIMetacelloLoadSpec {
       #baseline : 'Pyramid',
       #directory : 'src',
-      #platforms : [ #pharo ]
+      #platforms : [ #pharo ],
+      #passwordEnvVar : 'GITHUB_TOKEN',
+      #defaultTimeout : 30
     }
   ]
 }
