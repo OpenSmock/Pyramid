@@ -12,7 +12,7 @@ Pyramid is a WYSIWYG application (What You See Is What You Get) in other terms i
 
 Pyramid helps you to produce final UI using Bloc library (and also Toplo).
 
-You can add plugins into Pyramid to extents the editor capacities or create [your own plugin](https://github.com/OpenSmock/Pyramid/wiki/Ajouter-un-nouveau-plugin-a-Pyramid) with your specifics functions !
+You can add plugins into Pyramid to extents the editor capacities or create [your own plugin](https://github.com/OpenSmock/Pyramid/wiki/Add-a-new-plugin-to-Pyramid) with your specifics functions !
 
 ## <img src="/resources/puce.svg" width="75" height="75" align="bottom"> How to get Pyramid
 

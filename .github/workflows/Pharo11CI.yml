@@ -1,5 +1,8 @@
 name: 'Pharo 11 CI'
 
+env: 
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
 on:
   push:
     branches:
@@ -25,6 +28,4 @@ jobs:
       - name: Load in New Image and Run Tests
         run: smalltalkci -s ${{ matrix.smalltalk }} ${{ matrix.ston }}
         shell: bash
-        timeout-minutes: 10
-        env: 
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        timeout-minutes: 15
