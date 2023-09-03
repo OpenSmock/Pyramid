@@ -76,7 +76,7 @@ PyramidRemoveSelectionCommandTest >> arraysToTest [
 { #category : #accessing }
 PyramidRemoveSelectionCommandTest >> command [
 
-	^ PyramidRemoveSelectionCommand new
+	^ PyramidRemoveSelectedElementsCommand new
 ]
 
 { #category : #'as yet unclassified' }
