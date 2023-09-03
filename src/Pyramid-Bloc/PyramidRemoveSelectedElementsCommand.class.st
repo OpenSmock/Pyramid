@@ -1,5 +1,5 @@
 Class {
-	#name : #PyramidRemoveSelectionCommand,
+	#name : #PyramidRemoveSelectedElementsCommand,
 	#superclass : #PyramidAbstractBlocCommand,
 	#instVars : [
 		'mementoInverse'
@@ -8,13 +8,13 @@ Class {
 }
 
 { #category : #'as yet unclassified' }
-PyramidRemoveSelectionCommand >> getValueFor: anElementOfSelection [
+PyramidRemoveSelectedElementsCommand >> getValueFor: anElementOfSelection [
 
 	^ nil
 ]
 
 { #category : #'as yet unclassified' }
-PyramidRemoveSelectionCommand >> mementoFor: anElement withArguments: anArgument [
+PyramidRemoveSelectedElementsCommand >> mementoFor: anElement withArguments: anArgument [
 
 	(anArgument includes: anElement) ifTrue: [
 		^ PyramidCommandMemento new
@@ -30,26 +30,26 @@ PyramidRemoveSelectionCommand >> mementoFor: anElement withArguments: anArgument
 ]
 
 { #category : #accessing }
-PyramidRemoveSelectionCommand >> mementoInverse [
+PyramidRemoveSelectedElementsCommand >> mementoInverse [
 
 	^ mementoInverse
 ]
 
 { #category : #accessing }
-PyramidRemoveSelectionCommand >> mementoInverse: anObject [
+PyramidRemoveSelectedElementsCommand >> mementoInverse: anObject [
 
 	mementoInverse := anObject
 ]
 
 { #category : #'as yet unclassified' }
-PyramidRemoveSelectionCommand >> saveStatesOf: aCollection with: aRoots [
+PyramidRemoveSelectedElementsCommand >> saveStatesOf: aCollection with: aRoots [
 	"We ignore the state recovery for the redo, we will force the inverse of the undo state."
 
 	^ self mementoInverse accept: PyramidMementoInverser new.
 ]
 
 { #category : #'as yet unclassified' }
-PyramidRemoveSelectionCommand >> saveStatesWithCommandInverseOf: aCollection with: aRoots [
+PyramidRemoveSelectedElementsCommand >> saveStatesWithCommandInverseOf: aCollection with: aRoots [
 
 	| mementos finalMemento |
 	mementos := aCollection asArray collect: [ :anElement |
@@ -65,10 +65,16 @@ PyramidRemoveSelectionCommand >> saveStatesWithCommandInverseOf: aCollection wit
 ]
 
 { #category : #'as yet unclassified' }
-PyramidRemoveSelectionCommand >> setValueFor: anElementOfSelection with: aRoot [
+PyramidRemoveSelectedElementsCommand >> setValueFor: aBlElementToRemove with: aRoot [
+	"Remove the element from its parent"
 
-	(aRoot includes: anElementOfSelection) ifTrue: [
-		aRoot remove: anElementOfSelection.
-		^ self ].
-	anElementOfSelection parent removeChild: anElementOfSelection
+	"When the parent is the root"
+	(aRoot includes: aBlElementToRemove) ifTrue: [
+		aRoot remove: aBlElementToRemove.
+		^ self 
+	].
+
+	"When the parent is not the root"
+	aBlElementToRemove hasParent ifFalse:[ ^ self ].
+	aBlElementToRemove parent removeChild: aBlElementToRemove
 ]

@@ -201,7 +201,7 @@ PyramidTreePlugin >> menuAddAndDeleteOn: aBuilder [
 		addGroupEmptySelection: [ :group :empty |
 			group addItem: [ :anItem |
 				anItem
-					name: 'Add new element';
+					name: 'Add element...';
 					help: 'Add a new element on the roots of the design.';
 					icon: (self iconNamed: #add);
 					action: [
@@ -215,7 +215,7 @@ PyramidTreePlugin >> menuAddAndDeleteOn: aBuilder [
 		addGroupSingleSelection: [ :group :single |
 			group addItem: [ :anItem |
 				anItem
-					name: 'Add new element';
+					name: 'Add child element...';
 					help: 'Add a new element as a child of the selected element.';
 					icon: (self iconNamed: #add);
 					action: [
@@ -225,11 +225,11 @@ PyramidTreePlugin >> menuAddAndDeleteOn: aBuilder [
 							 position: SpPopoverPosition right) popup ] ].
 			group addItem: [ :anItem |
 				anItem
-					name: 'Remove selection';
+					name: 'Remove element';
 					help:
-						'Delete the selected element and its children from the design.';
+						'Delete the selected element and its content';
 					icon: (self iconNamed: #delete);
-					action: [ self removeSelection ] ] ]
+					action: [ self removeSelectedElements ] ] ]
 		order: 10.
 
 	aBuilder
@@ -238,19 +238,22 @@ PyramidTreePlugin >> menuAddAndDeleteOn: aBuilder [
 				anItem
 					name: 'Remove selection';
 					help:
-						'Delete all selected elements and their children from the design.';
+						'Delete all selected elements and their contents';
 					icon: (self iconNamed: #delete);
-					action: [ self removeSelection ] ] ]
+					action: [ self removeSelectedElements ] ] ]
 		order: 10
 ]
 
 { #category : #removing }
-PyramidTreePlugin >> removeSelection [
+PyramidTreePlugin >> removeSelectedElements [
 
 	self editor propertiesManager commandExecutor
-		use: PyramidRemoveSelectionCommand new
+		use: PyramidRemoveSelectedElementsCommand new
 		on: self editor projectModel selection
-		with: self editor projectModel roots
+		with: self editor projectModel roots.
+		
+	"Update the selection after remove"
+	self editor projectModel updateSelection.
 ]
 
 { #category : #accessing }

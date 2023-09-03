@@ -28,7 +28,7 @@ PyramidSelectionWidgetExtension >> centerDragEnd: anEvent [
 	self widgetElement transformDo: [ :t | t translateBy: 0 @ 0 ].
 	self widgetElement childrenDo: [ :child |
 		child
-			childNamed: #drag_ghost
+			childWithId: #drag_ghost
 			ifFound: [ :ghost | ghost visibility: BlVisibility hidden ] ]
 ]
 
@@ -50,7 +50,10 @@ PyramidSelectionWidgetExtension >> centerDragStart: anEvent [
 	self isDragging: true.
 	self dragOrigin: anEvent position.
 	anEvent consumed: true.
-	self widgetElement childrenDo: [ :child | child childNamed: #drag_ghost ifFound: [ :ghost | ghost visibility: BlVisibility visible ] ]
+	self widgetElement childrenDo: [ :child |
+		child
+			childWithId: #drag_ghost
+			ifFound: [ :ghost | ghost visibility: BlVisibility visible ] ]
 ]
 
 { #category : #accessing }
@@ -190,17 +193,9 @@ PyramidSelectionWidgetExtension >> projectModel: aProjectModel [
 ]
 
 { #category : #events }
-PyramidSelectionWidgetExtension >> pyramidElementsChanged [
-
-	self removeSelection.
-	self makeNewSelection
-]
-
-{ #category : #events }
 PyramidSelectionWidgetExtension >> pyramidSelectionChanged [
 
-	self removeSelection.
-	self makeNewSelection
+	self updateSelection
 ]
 
 { #category : #'selection element' }
@@ -223,6 +218,13 @@ PyramidSelectionWidgetExtension >> removeSelection [
 
 	self removeMonoSelections: self widgetElement.
 	self widgetElement removeChildren.
+]
+
+{ #category : #selection }
+PyramidSelectionWidgetExtension >> updateSelection [
+
+	self removeSelection.
+	self makeNewSelection
 ]
 
 { #category : #'as yet unclassified' }

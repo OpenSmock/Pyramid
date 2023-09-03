@@ -74,12 +74,15 @@ PyramidSelectionView >> pyramidSelectionChanged [
 { #category : #'as yet unclassified' }
 PyramidSelectionView >> updateSelection [
 
-	self list items: self currentSelection.
-	self currentSelection ifEmpty: [
+	| currentSelection |
+	currentSelection := self currentSelection.
+	
+	self list items: currentSelection.
+	currentSelection ifEmpty: [
 		self connectPlaygroundTo: nil.
 		^ self ].
-	self currentSelection size = 1 ifTrue: [
-		self connectPlaygroundTo: self currentSelection first.
+	currentSelection size = 1 ifTrue: [
+		self connectPlaygroundTo: currentSelection first.
 		^ self ].
-	self connectPlaygroundTo: self currentSelection
+	self connectPlaygroundTo: currentSelection
 ]

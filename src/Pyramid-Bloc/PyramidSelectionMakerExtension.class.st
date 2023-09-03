@@ -35,7 +35,7 @@ PyramidSelectionMakerExtension >> computeExclusifSelection: aCollection [
 PyramidSelectionMakerExtension >> computeNormalSelection: aCollection [
 
 	self projectModel ifNil: [ ^ self ].
-	self projectModel selection replaceAll: aCollection
+	self projectModel setSelection: aCollection
 ]
 
 { #category : #'as yet unclassified' }

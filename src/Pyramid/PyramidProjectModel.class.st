@@ -23,19 +23,8 @@ PyramidProjectModel >> initialize [
 	selection := PyramidCollectionWithCallbacks new.
 	roots := PyramidSortedCollectionWithCallbacks new sortFunction: PyramidElevationSortFunction new; yourself.
 
-	selection
-		subscribe: self
-		withCallback: [ self informSelectionChanged ].
+	selection subscribe: self withCallback: [ self informSelectionChanged ].
 	roots subscribe: self withCallback: [ self informRootsChanged ]
-]
-
-{ #category : #removing }
-PyramidProjectModel >> removeSelection [
-
-	(self selection asArray difference: self roots asArray) do: [ :each |
-		each parent ifNotNil: [ :p | p removeChild: each ] ].
-	self roots removeAllFoundIn: self selection asArray.
-	self selection removeAll
 ]
 
 { #category : #accessing }
@@ -43,8 +32,28 @@ PyramidProjectModel >> roots [
 ^ roots
 ]
 
-{ #category : #accessing }
+{ #category : #selection }
 PyramidProjectModel >> selection [
 
 	^ selection
+]
+
+{ #category : #selection }
+PyramidProjectModel >> setSelection: aBlElementCollection [
+	"Replace current selection by another one"
+	
+	self selection replaceAll: aBlElementCollection
+]
+
+{ #category : #selection }
+PyramidProjectModel >> updateSelection [
+	"Update the selection list regarding existing elements"
+	
+	| toBeRemovedFromSelectionElements |
+	"Select not attached to scene or without parents elements (this is the status after a deletion)"
+	toBeRemovedFromSelectionElements := self selection collection select:[ :e | e hasParent not or:[ e isAttachedToSceneGraph ] ].
+	
+	self selection removeAll: toBeRemovedFromSelectionElements.
+	
+	
 ]
