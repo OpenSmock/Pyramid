@@ -38,6 +38,20 @@ Metacello new
 	load
 ```
 
+### Add in your baseline
+
+#### Stable version
+
+```st
+spec baseline: 'Pyramid' with: [ spec repository: 'github://OpenSmock/Pyramid:main/src' ].
+```
+ 
+#### Latest development version
+
+```st
+spec baseline: 'Pyramid' with: [ spec repository: 'github://OpenSmock/Pyramid:dev/src' ].
+```
+
 ## <img src="/resources/puce.svg" width="75" height="75" align="bottom"> How to use Pyramid
 
 ### Create a new project
