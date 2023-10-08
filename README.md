@@ -16,11 +16,13 @@ You can add plugins into Pyramid to extents the editor capacities or create [you
 
 ## <img src="/resources/puce.svg" width="75" height="75" align="bottom"> How to get Pyramid
 
-You can load the last stable version of Pyramid or the development version. The Development version can provide the new incoming functionalities but can be unstable.
+You can load a stable release version of Pyramid or the latest development version. 
+
+The latest development version can provide the new incoming functionalities but can be unstable.
 
 To install a version of Pyramid, use one of the following scripts inside a playground.
 
-### Stable version
+### Latest development version
 
 ```st
 Metacello new
@@ -29,27 +31,19 @@ Metacello new
 	load
 ```
 
-### Latest development version
+### Stable release version
 
 ```st
 Metacello new
 	baseline: 'Pyramid';
-	repository: 'github://OpenSmock/Pyramid:dev/src';
+	repository: 'github://OpenSmock/Pyramid:alpha3';
 	load
 ```
 
 ### Add in your baseline
 
-#### Stable version
-
 ```st
 spec baseline: 'Pyramid' with: [ spec repository: 'github://OpenSmock/Pyramid:main/src' ].
-```
- 
-#### Latest development version
-
-```st
-spec baseline: 'Pyramid' with: [ spec repository: 'github://OpenSmock/Pyramid:dev/src' ].
 ```
 
 ## <img src="/resources/puce.svg" width="75" height="75" align="bottom"> How to use Pyramid
