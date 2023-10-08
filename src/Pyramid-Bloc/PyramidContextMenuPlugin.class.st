@@ -45,8 +45,8 @@ PyramidContextMenuPlugin >> editor: anObject [
 { #category : #'as yet unclassified' }
 PyramidContextMenuPlugin >> getNameForSingle: aBlElement [
 
-	aBlElement id asSymbol ifNil: [ ^ '@\no name\ ', aBlElement hash printString ].
-^ aBlElement id asSymbol , ' ' , aBlElement hash printString
+	aBlElement id ifNil: [ ^ '@\no name\ ', aBlElement hash printString ].
+	^ aBlElement id  , ' ' , aBlElement hash printString
 ]
 
 { #category : #'as yet unclassified' }

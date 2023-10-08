@@ -1,5 +1,6 @@
 [![License](https://img.shields.io/github/license/openSmock/Pyramid.svg)](./LICENSE)
 [![Pharo 11 CI](https://github.com/OpenSmock/Pyramid/actions/workflows/Pharo11CI.yml/badge.svg)](https://github.com/OpenSmock/Pyramid/actions/workflows/Pharo11CI.yml)
+[![Pharo 12 CI](https://github.com/OpenSmock/Pyramid/actions/workflows/Pharo12CI.yml/badge.svg)](https://github.com/OpenSmock/Pyramid/actions/workflows/Pharo12CI.yml)
 
 # Pyramid
 
@@ -11,7 +12,7 @@ Pyramid is a WYSIWYG application (What You See Is What You Get) in other terms i
 
 Pyramid helps you to produce final UI using Bloc library (and also Toplo).
 
-You can add plugins into Pyramid to extents the editor capacities or create [your own plugin](https://github.com/OpenSmock/Pyramid/wiki/Ajouter-un-nouveau-plugin-a-Pyramid) with your specifics functions !
+You can add plugins into Pyramid to extents the editor capacities or create [your own plugin](https://github.com/OpenSmock/Pyramid/wiki/Add-a-new-plugin-to-Pyramid) with your specifics functions !
 
 ## <img src="/resources/puce.svg" width="75" height="75" align="bottom"> How to get Pyramid
 
@@ -35,6 +36,20 @@ Metacello new
 	baseline: 'Pyramid';
 	repository: 'github://OpenSmock/Pyramid:dev/src';
 	load
+```
+
+### Add in your baseline
+
+#### Stable version
+
+```st
+spec baseline: 'Pyramid' with: [ spec repository: 'github://OpenSmock/Pyramid:main/src' ].
+```
+ 
+#### Latest development version
+
+```st
+spec baseline: 'Pyramid' with: [ spec repository: 'github://OpenSmock/Pyramid:dev/src' ].
 ```
 
 ## <img src="/resources/puce.svg" width="75" height="75" align="bottom"> How to use Pyramid

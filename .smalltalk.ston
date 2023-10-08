@@ -1,4 +1,7 @@
 SmalltalkCISpec {
+
+  #preLoading: '.github/ci/preLoading.st',
+
   #loading : [
     SCIMetacelloLoadSpec {
       #baseline : 'Pyramid',
@@ -6,4 +9,5 @@ SmalltalkCISpec {
       #platforms : [ #pharo ]
     }
   ]
+
 }

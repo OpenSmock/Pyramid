@@ -35,10 +35,7 @@ PyramidTreePresenter >> actionSelectionChanged: aCollection [
 	self projectModel ifNil: [ ^ self ].
 	self shouldUpdateSelection ifFalse: [ ^ self ].
 	self shouldUpdateSelection: false.
-	[
-	self projectModel selection replaceAll:
-		aCollection selectedItems ] ensure: [
-		self shouldUpdateSelection: true ]
+	[self projectModel setSelection: aCollection selectedItems ] ensure: [ self shouldUpdateSelection: true ]
 ]
 
 { #category : #accessing }
@@ -194,7 +191,7 @@ PyramidTreePresenter >> updateSelection [
 	[
 	self tree unselectAll.
 	self projectModel selection
-		ifNotEmpty: [ self tree selectItems: self projectModel selection ] ]
+		ifNotEmpty: [ :e | self tree selectItems: e ] ]
 		ensure: [ self shouldUpdateSelection: true ]
 ]
 

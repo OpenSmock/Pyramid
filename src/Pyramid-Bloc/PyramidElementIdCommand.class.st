@@ -7,7 +7,7 @@ Class {
 { #category : #'as yet unclassified' }
 PyramidElementIdCommand >> getValueFor: aBlElement [
 
-	^ aBlElement elementId asSymbol
+	^ aBlElement id
 ]
 
 { #category : #'as yet unclassified' }
