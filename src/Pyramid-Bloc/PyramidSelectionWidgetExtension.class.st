@@ -1,6 +1,6 @@
 Class {
-	#name : #PyramidSelectionWidgetExtension,
-	#superclass : #Object,
+	#name : 'PyramidSelectionWidgetExtension',
+	#superclass : 'Object',
 	#traits : 'TPyramidSpaceExtension + TPyramidEditorExtension + TPyramidProjectModelObserver + TPyramidEditorTransformationObserver',
 	#classTraits : 'TPyramidSpaceExtension classTrait + TPyramidEditorExtension classTrait + TPyramidProjectModelObserver classTrait + TPyramidEditorTransformationObserver classTrait',
 	#instVars : [
@@ -10,16 +10,18 @@ Class {
 		'isDragging',
 		'dragOrigin'
 	],
-	#category : #'Pyramid-Bloc-plugin-space-extensions'
+	#category : 'Pyramid-Bloc-plugin-space-extensions',
+	#package : 'Pyramid-Bloc',
+	#tag : 'plugin-space-extensions'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PyramidSelectionWidgetExtension >> alphaFactor [
 
 	^ 0.5
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PyramidSelectionWidgetExtension >> centerDragEnd: anEvent [
 
 	anEvent consumed: true.
@@ -32,7 +34,7 @@ PyramidSelectionWidgetExtension >> centerDragEnd: anEvent [
 			ifFound: [ :ghost | ghost visibility: BlVisibility hidden ] ]
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PyramidSelectionWidgetExtension >> centerDragEvent: anEvent [
 
 	self isDragging ifFalse: [ ^ self ].
@@ -44,7 +46,7 @@ PyramidSelectionWidgetExtension >> centerDragEvent: anEvent [
 	anEvent consumed: true
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PyramidSelectionWidgetExtension >> centerDragStart: anEvent [
 
 	self isDragging: true.
@@ -56,43 +58,43 @@ PyramidSelectionWidgetExtension >> centerDragStart: anEvent [
 			ifFound: [ :ghost | ghost visibility: BlVisibility visible ] ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidSelectionWidgetExtension >> commandExecutor [
 
 	^ commandExecutor
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidSelectionWidgetExtension >> commandExecutor: anObject [
 
 	commandExecutor := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidSelectionWidgetExtension >> dragOrigin [
 
 	^ dragOrigin
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidSelectionWidgetExtension >> dragOrigin: anObject [
 
 	dragOrigin := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidSelectionWidgetExtension >> editor: aPyramidEditor [
 
 	self commandExecutor: aPyramidEditor propertiesManager commandExecutor
 ]
 
-{ #category : #events }
+{ #category : 'events' }
 PyramidSelectionWidgetExtension >> informTransformationChanged [
 
 	self widgetElement position: self currentTransformTranslation  
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 PyramidSelectionWidgetExtension >> initialize [
 
 	widgetElement := BlElement new
@@ -103,7 +105,7 @@ PyramidSelectionWidgetExtension >> initialize [
 	isDragging := false
 ]
 
-{ #category : #displaying }
+{ #category : 'displaying' }
 PyramidSelectionWidgetExtension >> installOn: aBuilder [
 
 	self builder: aBuilder.
@@ -111,19 +113,19 @@ PyramidSelectionWidgetExtension >> installOn: aBuilder [
 	self elementAtWidgets addChild: self widgetElement
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidSelectionWidgetExtension >> isDragging [
 
 	^ isDragging
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidSelectionWidgetExtension >> isDragging: anObject [
 
 	isDragging := anObject
 ]
 
-{ #category : #'selection element' }
+{ #category : 'selection element' }
 PyramidSelectionWidgetExtension >> makeMonoSelectionFor: aBlElement [
 
 	| monoSelection eventElement dragGhostElement borderElement |
@@ -160,7 +162,7 @@ PyramidSelectionWidgetExtension >> makeMonoSelectionFor: aBlElement [
 	^ monoSelection
 ]
 
-{ #category : #selection }
+{ #category : 'selection' }
 PyramidSelectionWidgetExtension >> makeNewSelection [
 
 	| nb |
@@ -173,18 +175,18 @@ PyramidSelectionWidgetExtension >> makeNewSelection [
 	]
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PyramidSelectionWidgetExtension >> offset [
 	^ 10
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidSelectionWidgetExtension >> projectModel [
 
 	^ projectModel
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidSelectionWidgetExtension >> projectModel: aProjectModel [
 
 	projectModel := aProjectModel.
@@ -192,13 +194,13 @@ PyramidSelectionWidgetExtension >> projectModel: aProjectModel [
 	self makeNewSelection.
 ]
 
-{ #category : #events }
+{ #category : 'events' }
 PyramidSelectionWidgetExtension >> pyramidSelectionChanged [
 
 	self updateSelection
 ]
 
-{ #category : #'selection element' }
+{ #category : 'selection element' }
 PyramidSelectionWidgetExtension >> removeMonoSelections: aBlElementSelectionDecoration [
 
 	"get all BlOverlayElement"
@@ -211,7 +213,7 @@ PyramidSelectionWidgetExtension >> removeMonoSelections: aBlElementSelectionDeco
 	
 ]
 
-{ #category : #selection }
+{ #category : 'selection' }
 PyramidSelectionWidgetExtension >> removeSelection [
 
 	(self widgetElement childrenCount > 0) ifFalse:[ ^ self ].
@@ -220,14 +222,14 @@ PyramidSelectionWidgetExtension >> removeSelection [
 	self widgetElement removeChildren.
 ]
 
-{ #category : #selection }
+{ #category : 'selection' }
 PyramidSelectionWidgetExtension >> updateSelection [
 
 	self removeSelection.
 	self makeNewSelection
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PyramidSelectionWidgetExtension >> usePositionOffsetCommand: aPosition [
 
 	self commandExecutor
@@ -236,7 +238,7 @@ PyramidSelectionWidgetExtension >> usePositionOffsetCommand: aPosition [
 		with: aPosition
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidSelectionWidgetExtension >> widgetElement [
 
 	^ widgetElement

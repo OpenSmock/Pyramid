@@ -1,18 +1,20 @@
 Class {
-	#name : #PyramidChangeTextCommandTest,
-	#superclass : #TestCase,
+	#name : 'PyramidChangeTextCommandTest',
+	#superclass : 'TestCase',
 	#traits : 'TPyramidCommandTest',
 	#classTraits : 'TPyramidCommandTest classTrait',
-	#category : #'Pyramid-Tests-cases-plugin-bloc-text'
+	#category : 'Pyramid-Tests-cases-plugin-bloc-text',
+	#package : 'Pyramid-Tests',
+	#tag : 'cases-plugin-bloc-text'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidChangeTextCommandTest >> command [
 
 	^ PyramidChangeTextCommand new
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PyramidChangeTextCommandTest >> targetContainers [
 
 	^ {
@@ -38,7 +40,7 @@ PyramidChangeTextCommandTest >> targetContainers [
 			   prop: 'test3') }
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PyramidChangeTextCommandTest >> testSetValueForWith [
 
 	| attributes |

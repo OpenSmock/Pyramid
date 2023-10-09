@@ -1,10 +1,12 @@
 Class {
-	#name : #PyramidSendTopCommand,
-	#superclass : #PyramidAbstractChangePositionWithSiblingsCommand,
-	#category : #'Pyramid-Bloc-plugin-bloc-siblings'
+	#name : 'PyramidSendTopCommand',
+	#superclass : 'PyramidAbstractChangePositionWithSiblingsCommand',
+	#category : 'Pyramid-Bloc-plugin-bloc-siblings',
+	#package : 'Pyramid-Bloc',
+	#tag : 'plugin-bloc-siblings'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PyramidSendTopCommand >> setValueFor: anObject with: anArgument [
 
 	| elevationMax leftChild parent |

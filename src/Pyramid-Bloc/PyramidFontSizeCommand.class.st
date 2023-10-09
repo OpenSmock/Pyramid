@@ -1,10 +1,12 @@
 Class {
-	#name : #PyramidFontSizeCommand,
-	#superclass : #PyramidBlocTextCommand,
-	#category : #'Pyramid-Bloc-plugin-bloc-text'
+	#name : 'PyramidFontSizeCommand',
+	#superclass : 'PyramidBlocTextCommand',
+	#category : 'Pyramid-Bloc-plugin-bloc-text',
+	#package : 'Pyramid-Bloc',
+	#tag : 'plugin-bloc-text'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PyramidFontSizeCommand >> getValueFor: aBlTextElement [
 
 	aBlTextElement text attributesFinder
@@ -14,7 +16,7 @@ PyramidFontSizeCommand >> getValueFor: aBlTextElement [
 			^ 10
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PyramidFontSizeCommand >> setValueFor: aBlTextElement with: aNumber [
 
 	aBlTextElement text attribute:

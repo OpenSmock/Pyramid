@@ -1,22 +1,24 @@
 Class {
-	#name : #PyramidAbstractGroupCommand,
-	#superclass : #PyramidCommand,
-	#category : #'Pyramid-Bloc-plugin-bloc'
+	#name : 'PyramidAbstractGroupCommand',
+	#superclass : 'PyramidCommand',
+	#category : 'Pyramid-Bloc-plugin-bloc',
+	#package : 'Pyramid-Bloc',
+	#tag : 'plugin-bloc'
 }
 
-{ #category : #testing }
+{ #category : 'testing' }
 PyramidAbstractGroupCommand class >> isAbstract [
 
 	^ self == PyramidAbstractGroupCommand
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PyramidAbstractGroupCommand >> getValueFor: aBlElement [
 
 	^ nil
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PyramidAbstractGroupCommand >> saveStatesOf: aCollection withCommand: aCommand withArguments: anArguments [
 
 	| mementos |

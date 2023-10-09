@@ -1,10 +1,12 @@
 Class {
-	#name : #PyramidElementIdSortFunctionTest,
-	#superclass : #TestCase,
-	#category : #'Pyramid-Tests-cases-bloc-utils'
+	#name : 'PyramidElementIdSortFunctionTest',
+	#superclass : 'TestCase',
+	#category : 'Pyramid-Tests-cases-bloc-utils',
+	#package : 'Pyramid-Tests',
+	#tag : 'cases-bloc-utils'
 }
 
-{ #category : #tests }
+{ #category : 'tests' }
 PyramidElementIdSortFunctionTest >> testSorting [
 
 	| data sorted parent e1 e2 e3 e4 e5 |

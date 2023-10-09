@@ -1,14 +1,16 @@
 Class {
-	#name : #PyramidChangePositionWithSiblingsModel,
-	#superclass : #Object,
+	#name : 'PyramidChangePositionWithSiblingsModel',
+	#superclass : 'Object',
 	#instVars : [
 		'zIndex',
 		'childIndex'
 	],
-	#category : #'Pyramid-Bloc-plugin-bloc-siblings'
+	#category : 'Pyramid-Bloc-plugin-bloc-siblings',
+	#package : 'Pyramid-Bloc',
+	#tag : 'plugin-bloc-siblings'
 }
 
-{ #category : #comparing }
+{ #category : 'comparing' }
 PyramidChangePositionWithSiblingsModel >> =	anObject [
 	
 	anObject == self ifTrue: [ ^true ].
@@ -16,25 +18,25 @@ PyramidChangePositionWithSiblingsModel >> =	anObject [
 	^ (self childIndex = anObject childIndex) and: [ self zIndex = anObject zIndex ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidChangePositionWithSiblingsModel >> childIndex [
 
 	^ childIndex
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidChangePositionWithSiblingsModel >> childIndex: anObject [
 
 	childIndex := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidChangePositionWithSiblingsModel >> zIndex [
 
 	^ zIndex
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidChangePositionWithSiblingsModel >> zIndex: anObject [
 
 	zIndex := anObject

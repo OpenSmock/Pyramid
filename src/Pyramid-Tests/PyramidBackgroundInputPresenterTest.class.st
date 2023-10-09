@@ -1,12 +1,14 @@
 Class {
-	#name : #PyramidBackgroundInputPresenterTest,
-	#superclass : #TestCase,
+	#name : 'PyramidBackgroundInputPresenterTest',
+	#superclass : 'TestCase',
 	#traits : 'TPyramidInputPresenterTest',
 	#classTraits : 'TPyramidInputPresenterTest classTrait',
-	#category : #'Pyramid-Tests-cases-specs-custom'
+	#category : 'Pyramid-Tests-cases-specs-custom',
+	#package : 'Pyramid-Tests',
+	#tag : 'cases-specs-custom'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidBackgroundInputPresenterTest >> dummyValues [
 
 	^ {
@@ -26,13 +28,13 @@ PyramidBackgroundInputPresenterTest >> dummyValues [
 						    (1 -> Color red) }))}
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PyramidBackgroundInputPresenterTest >> makeNewInput [
 
 	^ PyramidBackgroundInputPresenter new
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PyramidBackgroundInputPresenterTest >> triggerValueChangedOf: anInput [
 
 	anInput bypassTrigger

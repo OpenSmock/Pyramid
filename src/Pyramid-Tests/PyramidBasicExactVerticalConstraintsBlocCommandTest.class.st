@@ -1,18 +1,20 @@
 Class {
-	#name : #PyramidBasicExactVerticalConstraintsBlocCommandTest,
-	#superclass : #TestCase,
+	#name : 'PyramidBasicExactVerticalConstraintsBlocCommandTest',
+	#superclass : 'TestCase',
 	#traits : 'TPyramidCommandTest',
 	#classTraits : 'TPyramidCommandTest classTrait',
-	#category : #'Pyramid-Tests-cases-plugin-bloc-layout'
+	#category : 'Pyramid-Tests-cases-plugin-bloc-layout',
+	#package : 'Pyramid-Tests',
+	#tag : 'cases-plugin-bloc-layout'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidBasicExactVerticalConstraintsBlocCommandTest >> command [
 
 	^ PyramidBasicExactVerticalConstraintsBlocCommand new
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PyramidBasicExactVerticalConstraintsBlocCommandTest >> targetContainers [
 
 	| p1 a1 b1 p2 a2 b2 |
@@ -44,7 +46,7 @@ PyramidBasicExactVerticalConstraintsBlocCommandTest >> targetContainers [
 		  (PyramidCommandTestContainer no: a2 with: b2 prop: 100) }
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PyramidBasicExactVerticalConstraintsBlocCommandTest >> targetsCannotBeUsedFor [
 	"override if needed"
 

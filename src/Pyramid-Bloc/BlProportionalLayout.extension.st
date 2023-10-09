@@ -1,6 +1,6 @@
-Extension { #name : #BlProportionalLayout }
+Extension { #name : 'BlProportionalLayout' }
 
-{ #category : #'*Pyramid-Bloc' }
+{ #category : '*Pyramid-Bloc' }
 BlProportionalLayout >> setLayoutOn: aPyramidLayoutInputPresenter [
 
 	aPyramidLayoutInputPresenter setProportionnal

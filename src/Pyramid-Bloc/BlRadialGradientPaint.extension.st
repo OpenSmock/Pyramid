@@ -1,13 +1,13 @@
-Extension { #name : #BlRadialGradientPaint }
+Extension { #name : 'BlRadialGradientPaint' }
 
-{ #category : #'*Pyramid-Bloc' }
+{ #category : '*Pyramid-Bloc' }
 BlRadialGradientPaint >> = aBlPaint [
 
 	super = aBlPaint ifFalse: [ ^ false ].
 	^ self center = aBlPaint center and: [ self radius = aBlPaint radius ]
 ]
 
-{ #category : #'*Pyramid-Bloc' }
+{ #category : '*Pyramid-Bloc' }
 BlRadialGradientPaint >> selectOnGradientPaintInput: aPyramidGradientPaintInputPresenter [
 
 	super selectOnGradientPaintInput: aPyramidGradientPaintInputPresenter.

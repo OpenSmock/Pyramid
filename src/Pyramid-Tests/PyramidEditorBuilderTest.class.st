@@ -1,10 +1,12 @@
 Class {
-	#name : #PyramidEditorBuilderTest,
-	#superclass : #TestCase,
-	#category : #'Pyramid-Tests-cases-core'
+	#name : 'PyramidEditorBuilderTest',
+	#superclass : 'TestCase',
+	#category : 'Pyramid-Tests-cases-core',
+	#package : 'Pyramid-Tests',
+	#tag : 'cases-core'
 }
 
-{ #category : #tests }
+{ #category : 'tests' }
 PyramidEditorBuilderTest >> testBuild [
 
 	| editor plugin1 plugin2 |

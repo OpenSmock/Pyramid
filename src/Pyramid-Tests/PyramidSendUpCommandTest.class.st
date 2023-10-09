@@ -1,18 +1,20 @@
 Class {
-	#name : #PyramidSendUpCommandTest,
-	#superclass : #TestCase,
+	#name : 'PyramidSendUpCommandTest',
+	#superclass : 'TestCase',
 	#traits : 'TPyramidCommandTest',
 	#classTraits : 'TPyramidCommandTest classTrait',
-	#category : #'Pyramid-Tests-cases-plugin-bloc-siblings'
+	#category : 'Pyramid-Tests-cases-plugin-bloc-siblings',
+	#package : 'Pyramid-Tests',
+	#tag : 'cases-plugin-bloc-siblings'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidSendUpCommandTest >> command [
 
 	^ PyramidSendUpCommand new
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PyramidSendUpCommandTest >> targetContainers [
 
 	| parent1 a1 a2 a3 a4 b1 b2 b3 b4 parent2 |
@@ -74,7 +76,7 @@ PyramidSendUpCommandTest >> targetContainers [
 				    zIndex: 2)) }
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PyramidSendUpCommandTest >> targetsCannotBeUsedFor [
 	"override if needed"
 

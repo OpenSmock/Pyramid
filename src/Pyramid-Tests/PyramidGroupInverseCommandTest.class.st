@@ -1,18 +1,20 @@
 Class {
-	#name : #PyramidGroupInverseCommandTest,
-	#superclass : #TestCase,
+	#name : 'PyramidGroupInverseCommandTest',
+	#superclass : 'TestCase',
 	#traits : 'TPyramidCommandTest',
 	#classTraits : 'TPyramidCommandTest classTrait',
-	#category : #'Pyramid-Tests-cases-plugin-bloc'
+	#category : 'Pyramid-Tests-cases-plugin-bloc',
+	#package : 'Pyramid-Tests',
+	#tag : 'cases-plugin-bloc'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidGroupInverseCommandTest >> command [
 
 	^ PyramidGroupInverseCommand new
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PyramidGroupInverseCommandTest >> targetsCanBeUsedFor [
 
 	| parent elements |
@@ -27,7 +29,7 @@ PyramidGroupInverseCommandTest >> targetsCanBeUsedFor [
 		  elements }
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PyramidGroupInverseCommandTest >> targetsCannotBeUsedFor [
 
 	| parent elements |
@@ -50,14 +52,14 @@ PyramidGroupInverseCommandTest >> targetsCannotBeUsedFor [
 			   yourself) }
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PyramidGroupInverseCommandTest >> testGetValueFor [
 
 	self targetsCanBeUsedFor do: [ :each |
 		self assert: (self command getValueFor: each) equals: nil ]
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PyramidGroupInverseCommandTest >> testHistory [
 	"Do once.
 	undo
@@ -120,7 +122,7 @@ PyramidGroupInverseCommandTest >> testHistory [
 	self deny: (selection anySatisfy: [ :each | each parent = e1 ]).
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PyramidGroupInverseCommandTest >> testSetValueForWith [
 
 	| e1 e2 e3 e4 selection roots parent |
@@ -167,5 +169,29 @@ PyramidGroupInverseCommandTest >> testSetValueForWith [
 	self deny: parent equals: e1.
 	selection do: [ :each | self assert: each parent equals: parent ].
 	self deny: (roots includes: e1).
-	self assert: (roots includesAll: selection)
+	self assert: (roots includesAll: selection).
+	
+"parent is nil. elements are not roots. element are not 0@0"
+	e1 := BlElement new position: (40@40); yourself.
+	e2 := BlElement new position: (60@60); yourself.
+	e3 := BlElement new position: (70@70); yourself.
+	e4 := BlElement new position: (100@100); yourself.
+
+
+	selection := {
+		             e2.
+		             e3.
+		             e4 }.
+	e1 addChildren: selection.
+	roots := OrderedCollection new.
+
+	selection do: [ :each | self assert: each parent equals: e1 ].
+	self command setValueFor: selection with: roots.
+	parent := selection first parent.
+	self deny: parent equals: e1.
+	selection do: [ :each | self assert: each parent equals: parent ].
+
+	self assert: e2 constraints position equals: 100 @ 100.
+	self assert: e3 constraints position equals: 110 @ 110.
+	self assert: e4 constraints position equals: 140 @ 140.
 ]

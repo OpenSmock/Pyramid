@@ -1,18 +1,20 @@
 Class {
-	#name : #PyramidPositionOffsetCommandTest,
-	#superclass : #TestCase,
+	#name : 'PyramidPositionOffsetCommandTest',
+	#superclass : 'TestCase',
 	#traits : 'TPyramidCommandTest',
 	#classTraits : 'TPyramidCommandTest classTrait',
-	#category : #'Pyramid-Tests-cases-plugin-bloc'
+	#category : 'Pyramid-Tests-cases-plugin-bloc',
+	#package : 'Pyramid-Tests',
+	#tag : 'cases-plugin-bloc'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidPositionOffsetCommandTest >> command [
 
 	^ PyramidPositionOffsetCommand new
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PyramidPositionOffsetCommandTest >> targetContainers [
 
 	^ {
@@ -32,14 +34,14 @@ PyramidPositionOffsetCommandTest >> targetContainers [
 			   prop: 50 @ 50) }
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidPositionOffsetCommandTest >> targetsWithValuesAndValues [
 
 	^ self targetContainers collect: [ :each |
 		  each targetWithProp -> each targetWithProp constraints position ]
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PyramidPositionOffsetCommandTest >> testHistory [
 	"Do once.
 	undo
@@ -93,7 +95,7 @@ PyramidPositionOffsetCommandTest >> testHistory [
 			self assert: (self command getValueFor: target) equals: initialValue ] ]
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PyramidPositionOffsetCommandTest >> testSetValueForWith [
 
 	self targetsWithoutValuesAndValues do: [ :each |

@@ -1,18 +1,20 @@
 Class {
-	#name : #PyramidSendAtIndexCommandTest,
-	#superclass : #TestCase,
+	#name : 'PyramidSendAtIndexCommandTest',
+	#superclass : 'TestCase',
 	#traits : 'TPyramidCommandTest',
 	#classTraits : 'TPyramidCommandTest classTrait',
-	#category : #'Pyramid-Tests-cases-plugin-bloc-siblings'
+	#category : 'Pyramid-Tests-cases-plugin-bloc-siblings',
+	#package : 'Pyramid-Tests',
+	#tag : 'cases-plugin-bloc-siblings'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidSendAtIndexCommandTest >> command [
 
 	^ PyramidSendAtIndexCommand new
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PyramidSendAtIndexCommandTest >> targetContainers [
 
 	| parent1 a1 a2 a3 a4 b1 b2 b3 b4 parent2 |
@@ -93,7 +95,7 @@ PyramidSendAtIndexCommandTest >> targetContainers [
 					    zIndex: 4)) }
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PyramidSendAtIndexCommandTest >> targetsCannotBeUsedFor [
 	"override if needed"
 

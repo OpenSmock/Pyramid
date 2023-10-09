@@ -1,6 +1,6 @@
 Class {
-	#name : #PyramidSaveModel,
-	#superclass : #Object,
+	#name : 'PyramidSaveModel',
+	#superclass : 'Object',
 	#instVars : [
 		'savingClassName',
 		'savingMethodName',
@@ -9,10 +9,12 @@ Class {
 		'isSaved',
 		'projectModel'
 	],
-	#category : #'Pyramid-Bloc-plugin-save'
+	#category : 'Pyramid-Bloc-plugin-save',
+	#package : 'Pyramid-Bloc',
+	#tag : 'plugin-save'
 }
 
-{ #category : #converting }
+{ #category : 'converting' }
 PyramidSaveModel >> asTitleString [
 
 	| string |
@@ -23,7 +25,7 @@ PyramidSaveModel >> asTitleString [
 	^ string
 ]
 
-{ #category : #converting }
+{ #category : 'converting' }
 PyramidSaveModel >> initialize [
 
 	isSaved := false.
@@ -33,77 +35,77 @@ PyramidSaveModel >> initialize [
 	savingMethodName := ''
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 PyramidSaveModel >> isClassSide [
 
 	^ classSide
 ]
 
-{ #category : #converting }
+{ #category : 'converting' }
 PyramidSaveModel >> isSaved [
 	^ isSaved
 ]
 
-{ #category : #converting }
+{ #category : 'converting' }
 PyramidSaveModel >> isSaved: aBoolean [
 
 	isSaved := aBoolean
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 PyramidSaveModel >> onClass [
 	classSide := true
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 PyramidSaveModel >> onInstance [
 
 	classSide := false
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidSaveModel >> projectModel [
 
 	^ projectModel
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidSaveModel >> projectModel: anObject [
 
 	projectModel := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidSaveModel >> savingClassName [
 
 	^ savingClassName
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidSaveModel >> savingClassName: anObject [
 
 	savingClassName := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidSaveModel >> savingMethodName [
 
 	^ savingMethodName
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidSaveModel >> savingMethodName: anObject [
 
 	savingMethodName := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidSaveModel >> savingPackageName [
 
 	^ savingPackageName
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidSaveModel >> savingPackageName: anObject [
 
 	savingPackageName := anObject

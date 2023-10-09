@@ -1,10 +1,12 @@
 Class {
-	#name : #PyramidPropertiesManagerTest,
-	#superclass : #TestCase,
-	#category : #'Pyramid-Tests-cases-property'
+	#name : 'PyramidPropertiesManagerTest',
+	#superclass : 'TestCase',
+	#category : 'Pyramid-Tests-cases-property',
+	#package : 'Pyramid-Tests',
+	#tag : 'cases-property'
 }
 
-{ #category : #tests }
+{ #category : 'tests' }
 PyramidPropertiesManagerTest >> testAddProperty [
 
 
@@ -34,7 +36,7 @@ PyramidPropertiesManagerTest >> testAddProperty [
 	self assert: (manager properties includes: prop3).
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PyramidPropertiesManagerTest >> testBuildPresenterFromCollection [
 
 	| manager fakeStrategy prop1 prop2 prop3 targets |
@@ -64,7 +66,7 @@ PyramidMockObjectForTest new count: 4; yourself }.
 	self assert: (fakeStrategy properties includes: prop3).
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PyramidPropertiesManagerTest >> testCommandExecutor [
 
 	| manager prop1 prop2 prop3 fake1 fake2 |

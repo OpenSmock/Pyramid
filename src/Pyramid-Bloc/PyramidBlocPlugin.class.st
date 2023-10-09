@@ -1,16 +1,18 @@
 Class {
-	#name : #PyramidBlocPlugin,
-	#superclass : #Object,
+	#name : 'PyramidBlocPlugin',
+	#superclass : 'Object',
 	#traits : 'TPyramidPlugin',
 	#classTraits : 'TPyramidPlugin classTrait',
 	#instVars : [
 		'editor',
 		'groupCommand'
 	],
-	#category : #'Pyramid-Bloc-plugin-bloc'
+	#category : 'Pyramid-Bloc-plugin-bloc',
+	#package : 'Pyramid-Bloc',
+	#tag : 'plugin-bloc'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidBlocPlugin class >> background [
 
 	| property |
@@ -26,7 +28,7 @@ PyramidBlocPlugin class >> background [
 	^ property
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidBlocPlugin class >> clipChildren [
 
 	| property |
@@ -43,7 +45,7 @@ PyramidBlocPlugin class >> clipChildren [
 	^ property
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidBlocPlugin class >> constraintsBasicH [
 
 	| property |
@@ -57,7 +59,7 @@ PyramidBlocPlugin class >> constraintsBasicH [
 	^ property
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidBlocPlugin class >> constraintsBasicHExact [
 
 	| property |
@@ -72,7 +74,7 @@ PyramidBlocPlugin class >> constraintsBasicHExact [
 	^ property
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidBlocPlugin class >> constraintsBasicV [
 
 	| property |
@@ -86,7 +88,7 @@ PyramidBlocPlugin class >> constraintsBasicV [
 	^ property
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidBlocPlugin class >> constraintsBasicVExact [
 
 	| property |
@@ -101,7 +103,7 @@ PyramidBlocPlugin class >> constraintsBasicVExact [
 	^ property
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidBlocPlugin class >> constraintsPropH [
 
 	| property |
@@ -118,7 +120,7 @@ PyramidBlocPlugin class >> constraintsPropH [
 	^ property
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidBlocPlugin class >> constraintsPropV [
 
 	| property |
@@ -135,7 +137,7 @@ PyramidBlocPlugin class >> constraintsPropV [
 	^ property
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidBlocPlugin class >> cornerRadii [
 
 	| property |
@@ -153,7 +155,7 @@ PyramidBlocPlugin class >> cornerRadii [
 	^ property
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidBlocPlugin class >> elementId [
 
 	| property |
@@ -166,7 +168,7 @@ PyramidBlocPlugin class >> elementId [
 	^ property
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidBlocPlugin class >> flowLayoutOrientation [
 
 	| property |
@@ -184,7 +186,7 @@ PyramidBlocPlugin class >> flowLayoutOrientation [
 	^ property
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidBlocPlugin class >> geometry [
 
 	| property |
@@ -197,13 +199,13 @@ PyramidBlocPlugin class >> geometry [
 	^ property
 ]
 
-{ #category : #'class initialization' }
+{ #category : 'class initialization' }
 PyramidBlocPlugin class >> initialize [
 
 	PyramidPluginManager uniqueInstance addPlugin: self
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidBlocPlugin class >> layout [
 
 	| property |
@@ -217,7 +219,7 @@ PyramidBlocPlugin class >> layout [
 	^ property
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidBlocPlugin class >> margin [
 
 	| property |
@@ -233,7 +235,7 @@ PyramidBlocPlugin class >> margin [
 	^ property
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidBlocPlugin class >> padding [
 
 	| property |
@@ -250,7 +252,7 @@ PyramidBlocPlugin class >> padding [
 	^ property
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidBlocPlugin class >> position [
 
 	| property |
@@ -264,7 +266,7 @@ PyramidBlocPlugin class >> position [
 	^ property
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidBlocPlugin class >> visibility [
 
 	| property |
@@ -276,7 +278,7 @@ PyramidBlocPlugin class >> visibility [
 	^ property
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidBlocPlugin class >> zIndex [
 
 	| property |
@@ -290,7 +292,7 @@ PyramidBlocPlugin class >> zIndex [
 	^ property
 ]
 
-{ #category : #adding }
+{ #category : 'adding' }
 PyramidBlocPlugin >> addPanelsOn: aPyramidSimpleWindow [
 
 	aPyramidSimpleWindow
@@ -301,7 +303,7 @@ PyramidBlocPlugin >> addPanelsOn: aPyramidSimpleWindow [
 		addItem: [ :builder | self menuChangeOrderOn: builder ]
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PyramidBlocPlugin >> connectOn: aPyramidEditor [
 
 	self editor: aPyramidEditor.
@@ -336,19 +338,19 @@ PyramidBlocPlugin >> connectOn: aPyramidEditor [
 	aPyramidEditor propertiesManager addProperty: self class margin
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidBlocPlugin >> editor [
 
 	^ editor
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidBlocPlugin >> editor: anObject [
 
 	editor := anObject
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PyramidBlocPlugin >> groupCollection: aCollection [
 
 	self editor ifNil: [ ^ self ].
@@ -358,13 +360,13 @@ PyramidBlocPlugin >> groupCollection: aCollection [
 		with: self editor projectModel roots
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidBlocPlugin >> groupCommand [
 
 	^ groupCommand
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PyramidBlocPlugin >> groupMenuBlock: group for: aCollection [
 
 	group addItem: [ :item |
@@ -376,7 +378,7 @@ PyramidBlocPlugin >> groupMenuBlock: group for: aCollection [
 			yourself ]
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PyramidBlocPlugin >> groupMenuBlockMulti [
 
 	^ [ :group :multi | | copy |
@@ -385,7 +387,7 @@ PyramidBlocPlugin >> groupMenuBlockMulti [
 		  self groupMenuBlock: group for: copy ] ]
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PyramidBlocPlugin >> groupMenuBlockSingle [
 
 	^ [ :group :single | | copy |
@@ -394,13 +396,13 @@ PyramidBlocPlugin >> groupMenuBlockSingle [
 		  self groupMenuBlock: group for: copy ] ]
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 PyramidBlocPlugin >> initialize [
 
 	groupCommand := PyramidGroupCommand new
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PyramidBlocPlugin >> menuChangeOrderOn: aBuilder [
 
 	aBuilder
@@ -438,14 +440,14 @@ PyramidBlocPlugin >> menuChangeOrderOn: aBuilder [
 		order: 20
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PyramidBlocPlugin >> menuGroupOn: aBuilder [
 
 	aBuilder addGroupSingleSelection: self groupMenuBlockSingle order: 20.
 	aBuilder addGroupMultiSelection: self groupMenuBlockMulti order: 20
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PyramidBlocPlugin >> send: aCommand on: aCollection [
 
 	self editor ifNil: [ ^ self ].

@@ -1,12 +1,14 @@
 Class {
-	#name : #PyramidStopsInputPresenterTest,
-	#superclass : #TestCase,
+	#name : 'PyramidStopsInputPresenterTest',
+	#superclass : 'TestCase',
 	#traits : 'TPyramidInputPresenterTest',
 	#classTraits : 'TPyramidInputPresenterTest classTrait',
-	#category : #'Pyramid-Tests-cases-specs-custom'
+	#category : 'Pyramid-Tests-cases-specs-custom',
+	#package : 'Pyramid-Tests',
+	#tag : 'cases-specs-custom'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidStopsInputPresenterTest >> dummyValues [
 
 	^ { {
@@ -22,25 +24,25 @@ PyramidStopsInputPresenterTest >> dummyValues [
 		  (1 -> Color red) } }
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidStopsInputPresenterTest >> expectedEmptyValue [
 
 	^ {  }
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidStopsInputPresenterTest >> expectedMixedValues [
 
 	^ {  }
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PyramidStopsInputPresenterTest >> makeNewInput [
 
 	^ PyramidStopsInputPresenter new
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PyramidStopsInputPresenterTest >> triggerValueChangedOf: anInput [
 
 	anInput bypassTrigger

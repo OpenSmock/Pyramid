@@ -1,18 +1,20 @@
 Class {
-	#name : #PyramidCopyPastePlugin,
-	#superclass : #Object,
+	#name : 'PyramidCopyPastePlugin',
+	#superclass : 'Object',
 	#traits : 'TPyramidPlugin',
 	#classTraits : 'TPyramidPlugin classTrait',
-	#category : #'Pyramid-Bloc-plugin-copy-paste'
+	#category : 'Pyramid-Bloc-plugin-copy-paste',
+	#package : 'Pyramid-Bloc',
+	#tag : 'plugin-copy-paste'
 }
 
-{ #category : #'class initialization' }
+{ #category : 'class initialization' }
 PyramidCopyPastePlugin class >> initialize [
 
 	PyramidPluginManager uniqueInstance addPlugin: self
 ]
 
-{ #category : #adding }
+{ #category : 'adding' }
 PyramidCopyPastePlugin >> addPanelsOn: aPyramidSimpleWindow [
 
 	aPyramidSimpleWindow
@@ -20,13 +22,13 @@ PyramidCopyPastePlugin >> addPanelsOn: aPyramidSimpleWindow [
 		addItem: [ :builder | self copyAsStonMenu: builder ]
 ]
 
-{ #category : #copying }
+{ #category : 'copying' }
 PyramidCopyPastePlugin >> copyAsStonInClipboard: aCollection [
 
 	Clipboard clipboardText: (BlSerializer serialize: aCollection)
 ]
 
-{ #category : #copying }
+{ #category : 'copying' }
 PyramidCopyPastePlugin >> copyAsStonMenu: aBuilder [
 
 	aBuilder
