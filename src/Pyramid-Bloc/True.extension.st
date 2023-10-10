@@ -1,6 +1,6 @@
-Extension { #name : 'True' }
+Extension { #name : #True }
 
-{ #category : '*Pyramid-Bloc' }
+{ #category : #'*Pyramid-Bloc' }
 True >> asOrientationForPyramid [
 
 	^ BlLayoutOrientation vertical

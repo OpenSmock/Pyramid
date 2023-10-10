@@ -1,12 +1,12 @@
-Extension { #name : 'BlCompositeBackground' }
+Extension { #name : #BlCompositeBackground }
 
-{ #category : '*Pyramid-Bloc' }
+{ #category : #'*Pyramid-Bloc' }
 BlCompositeBackground >> asForm [
 
 	^ self iconNamed: #jigsawIcon
 ]
 
-{ #category : '*Pyramid-Bloc' }
+{ #category : #'*Pyramid-Bloc' }
 BlCompositeBackground >> asString [
 
 	^ 'Composite'

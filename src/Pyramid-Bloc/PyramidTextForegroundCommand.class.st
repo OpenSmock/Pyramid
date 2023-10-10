@@ -1,12 +1,10 @@
 Class {
-	#name : 'PyramidTextForegroundCommand',
-	#superclass : 'PyramidBlocTextCommand',
-	#category : 'Pyramid-Bloc-plugin-bloc-text',
-	#package : 'Pyramid-Bloc',
-	#tag : 'plugin-bloc-text'
+	#name : #PyramidTextForegroundCommand,
+	#superclass : #PyramidBlocTextCommand,
+	#category : 'Pyramid-Bloc-plugin-bloc-text'
 }
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidTextForegroundCommand >> getValueFor: aBlTextElement [
 
 	aBlTextElement text attributesFinder
@@ -16,7 +14,7 @@ PyramidTextForegroundCommand >> getValueFor: aBlTextElement [
 	^ Color black
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidTextForegroundCommand >> setValueFor: aBlTextElement with: aColor [
 
 	aBlTextElement text attribute:

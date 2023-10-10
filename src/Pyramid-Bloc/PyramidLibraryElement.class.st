@@ -1,54 +1,52 @@
 Class {
-	#name : 'PyramidLibraryElement',
-	#superclass : 'Object',
+	#name : #PyramidLibraryElement,
+	#superclass : #Object,
 	#instVars : [
 		'title',
 		'form',
 		'blockMaker'
 	],
-	#category : 'Pyramid-Bloc-plugin-tree-library',
-	#package : 'Pyramid-Bloc',
-	#tag : 'plugin-tree-library'
+	#category : 'Pyramid-Bloc-plugin-tree-library'
 }
 
-{ #category : 'converting' }
+{ #category : #converting }
 PyramidLibraryElement >> asElement [
 
 	^ self blockMaker value
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidLibraryElement >> blockMaker [
 
 	^ blockMaker
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidLibraryElement >> blockMaker: anObject [
 
 	blockMaker := anObject.
 	form := blockMaker value exportAsForm
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidLibraryElement >> form [
 
 	^ form
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidLibraryElement >> form: anObject [
 
 	form := anObject
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidLibraryElement >> title [
 
 	^ title
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidLibraryElement >> title: anObject [
 
 	title := anObject

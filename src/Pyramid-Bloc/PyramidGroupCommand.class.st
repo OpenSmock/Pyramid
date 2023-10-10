@@ -1,12 +1,10 @@
 Class {
-	#name : 'PyramidGroupCommand',
-	#superclass : 'PyramidAbstractGroupCommand',
-	#category : 'Pyramid-Bloc-plugin-bloc',
-	#package : 'Pyramid-Bloc',
-	#tag : 'plugin-bloc'
+	#name : #PyramidGroupCommand,
+	#superclass : #PyramidAbstractGroupCommand,
+	#category : 'Pyramid-Bloc-plugin-bloc'
 }
 
-{ #category : 'testing' }
+{ #category : #testing }
 PyramidGroupCommand >> canBeUsedFor: anObject [
 
 	^ anObject isCollection and: [
@@ -16,26 +14,26 @@ PyramidGroupCommand >> canBeUsedFor: anObject [
 			  anObject allSatisfy: [ :each | each parent = parent ] ] ]
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidGroupCommand >> cleanUpRoots: roots forGroup: groupElement [
 	(roots includesAny: groupElement children) ifFalse: [ ^ self ].
 	roots removeAll: groupElement children.
 	roots add: groupElement
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidGroupCommand >> commandInverse [
 
 	^ PyramidGroupInverseCommand new
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidGroupCommand >> makeGroupElement [
 
 	^ BlElement new id: #group; clipChildren: false; yourself
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidGroupCommand >> makeGroupElementFor: aCollection [
 
 	| parent groupElement |
@@ -49,7 +47,7 @@ PyramidGroupCommand >> makeGroupElementFor: aCollection [
 	^ groupElement.
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidGroupCommand >> positionGroupElement: groupElement [
 
 	| currentTop currentLeft |
@@ -67,7 +65,7 @@ PyramidGroupCommand >> positionGroupElement: groupElement [
 			child constraints position - (currentLeft @ currentTop) ]
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidGroupCommand >> saveStatesOf: aCollection with: arguments [
 
 	| mementos |
@@ -83,7 +81,7 @@ PyramidGroupCommand >> saveStatesOf: aCollection with: arguments [
 		  yourself
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidGroupCommand >> saveStatesWithCommandInverseOf: aCollection with: arguments [
 
 	| mementos |
@@ -99,7 +97,7 @@ PyramidGroupCommand >> saveStatesWithCommandInverseOf: aCollection with: argumen
 		  yourself
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidGroupCommand >> setValueFor: aCollection with: roots [
 
 	| groupElement |

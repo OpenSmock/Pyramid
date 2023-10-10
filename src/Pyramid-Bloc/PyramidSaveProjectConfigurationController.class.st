@@ -1,6 +1,6 @@
 Class {
-	#name : 'PyramidSaveProjectConfigurationController',
-	#superclass : 'Object',
+	#name : #PyramidSaveProjectConfigurationController,
+	#superclass : #Object,
 	#traits : 'TPyramidProjectModelObserver',
 	#classTraits : 'TPyramidProjectModelObserver classTrait',
 	#instVars : [
@@ -9,12 +9,10 @@ Class {
 		'verifier',
 		'editorWindow'
 	],
-	#category : 'Pyramid-Bloc-plugin-save',
-	#package : 'Pyramid-Bloc',
-	#tag : 'plugin-save'
+	#category : 'Pyramid-Bloc-plugin-save'
 }
 
-{ #category : 'tests' }
+{ #category : #tests }
 PyramidSaveProjectConfigurationController >> browseProjectClass [
 
 	| class |
@@ -35,40 +33,40 @@ PyramidSaveProjectConfigurationController >> browseProjectClass [
 				selector: self saveModel savingMethodName ]
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidSaveProjectConfigurationController >> editorWindow [
 
 	^ editorWindow
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidSaveProjectConfigurationController >> editorWindow: anObject [
 
 	editorWindow := anObject
 ]
 
-{ #category : 'testing' }
+{ #category : #testing }
 PyramidSaveProjectConfigurationController >> isSaved [
 
 	self saveModel isSaved: true.
 	self updateWindowTitle
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidSaveProjectConfigurationController >> pyramidElementsChanged [
 
 	self saveModel isSaved: false.
 	self updateWindowTitle
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidSaveProjectConfigurationController >> pyramidRootsChanged [
 
 	self saveModel isSaved: false.
 	self updateWindowTitle
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidSaveProjectConfigurationController >> radioUpdatedOnClassSide: aBoolean [
 
 	aBoolean
@@ -77,14 +75,14 @@ PyramidSaveProjectConfigurationController >> radioUpdatedOnClassSide: aBoolean [
 	self updateView
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidSaveProjectConfigurationController >> saveModel [
 
 	saveModel ifNil: [ saveModel := PyramidSaveModel new ].
 	^ saveModel
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidSaveProjectConfigurationController >> saveModel: aPyramidSaveModel [
 
 	saveModel := aPyramidSaveModel.
@@ -92,7 +90,7 @@ PyramidSaveProjectConfigurationController >> saveModel: aPyramidSaveModel [
 	self updateView
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidSaveProjectConfigurationController >> textUpdatedFromClass: aString [
 
 	self saveModel savingClassName: aString.
@@ -100,7 +98,7 @@ PyramidSaveProjectConfigurationController >> textUpdatedFromClass: aString [
 	self updateView
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidSaveProjectConfigurationController >> textUpdatedFromMethod: aString [
 
 	self saveModel savingMethodName: aString.
@@ -108,7 +106,7 @@ PyramidSaveProjectConfigurationController >> textUpdatedFromMethod: aString [
 	self updateView
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidSaveProjectConfigurationController >> textUpdatedFromPackage: aString [
 
 	self saveModel savingPackageName: aString.
@@ -116,7 +114,7 @@ PyramidSaveProjectConfigurationController >> textUpdatedFromPackage: aString [
 	self updateView
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidSaveProjectConfigurationController >> updateView [
 
 	| errors |
@@ -127,7 +125,7 @@ PyramidSaveProjectConfigurationController >> updateView [
 	self updateWindowTitleWithErrors: errors
 ]
 
-{ #category : 'testing' }
+{ #category : #testing }
 PyramidSaveProjectConfigurationController >> updateWindowTitle [
 
 	| errors |
@@ -135,7 +133,7 @@ PyramidSaveProjectConfigurationController >> updateWindowTitle [
 	self updateWindowTitleWithErrors: errors
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidSaveProjectConfigurationController >> updateWindowTitleWithErrors: aCollection [
 
 	| title |
@@ -146,7 +144,7 @@ PyramidSaveProjectConfigurationController >> updateWindowTitleWithErrors: aColle
 	self editorWindow title: title
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidSaveProjectConfigurationController >> verifier [
 
 	verifier ifNil: [
@@ -154,7 +152,7 @@ PyramidSaveProjectConfigurationController >> verifier [
 	^ verifier
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidSaveProjectConfigurationController >> view [
 
 	view ifNil: [
@@ -165,7 +163,7 @@ PyramidSaveProjectConfigurationController >> view [
 	^ view
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidSaveProjectConfigurationController >> view: anObject [
 
 	view := anObject

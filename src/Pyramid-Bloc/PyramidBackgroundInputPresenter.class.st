@@ -1,6 +1,6 @@
 Class {
-	#name : 'PyramidBackgroundInputPresenter',
-	#superclass : 'PyramidInputPresenter',
+	#name : #PyramidBackgroundInputPresenter,
+	#superclass : #PyramidInputPresenter,
 	#instVars : [
 		'notebook',
 		'whenValueChangedDo',
@@ -11,19 +11,17 @@ Class {
 		'modelMixedValues',
 		'modelEmptyValue'
 	],
-	#category : 'Pyramid-Bloc-plugin-bloc',
-	#package : 'Pyramid-Bloc',
-	#tag : 'plugin-bloc'
+	#category : 'Pyramid-Bloc-plugin-bloc'
 }
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidBackgroundInputPresenter >> bypassTrigger [
 
 	self flag: #TO_REMOVE. "I added it to make the test pass but it should be removed."
 	self whenValueChangedDo value: self value.
 ]
 
-{ #category : 'layout' }
+{ #category : #layout }
 PyramidBackgroundInputPresenter >> defaultLayout [
 
 	^ SpBoxLayout newVertical
@@ -32,7 +30,7 @@ PyramidBackgroundInputPresenter >> defaultLayout [
 		  yourself
 ]
 
-{ #category : 'initialization' }
+{ #category : #initialization }
 PyramidBackgroundInputPresenter >> initializeModelEmptyValue [
 
 	modelEmptyValue := PyramidBackgroundInputModel new
@@ -47,7 +45,7 @@ PyramidBackgroundInputPresenter >> initializeModelEmptyValue [
 		                   yourself
 ]
 
-{ #category : 'initialization' }
+{ #category : #initialization }
 PyramidBackgroundInputPresenter >> initializeModelImage [
 
 	modelImage := PyramidBackgroundInputModel new
@@ -65,7 +63,7 @@ PyramidBackgroundInputPresenter >> initializeModelImage [
 	notebook addPage: modelImage page
 ]
 
-{ #category : 'initialization' }
+{ #category : #initialization }
 PyramidBackgroundInputPresenter >> initializeModelMixedValues [
 
 	modelMixedValues := PyramidBackgroundInputModel new
@@ -80,7 +78,7 @@ PyramidBackgroundInputPresenter >> initializeModelMixedValues [
 		                    yourself
 ]
 
-{ #category : 'initialization' }
+{ #category : #initialization }
 PyramidBackgroundInputPresenter >> initializeModelPaintGradient [
 
 	modelPaintGradient := PyramidBackgroundInputModel new
@@ -100,7 +98,7 @@ PyramidBackgroundInputPresenter >> initializeModelPaintGradient [
 	notebook addPage: modelPaintGradient page
 ]
 
-{ #category : 'initialization' }
+{ #category : #initialization }
 PyramidBackgroundInputPresenter >> initializeModelPaintSolid [
 
 	modelPaintSolid := PyramidBackgroundInputModel new
@@ -119,7 +117,7 @@ PyramidBackgroundInputPresenter >> initializeModelPaintSolid [
 	notebook addPage: modelPaintSolid page
 ]
 
-{ #category : 'initialization' }
+{ #category : #initialization }
 PyramidBackgroundInputPresenter >> initializeModelTransparent [
 
 	modelTransparent := PyramidBackgroundInputModel new
@@ -139,7 +137,7 @@ PyramidBackgroundInputPresenter >> initializeModelTransparent [
 	notebook addPage: modelTransparent page
 ]
 
-{ #category : 'initialization' }
+{ #category : #initialization }
 PyramidBackgroundInputPresenter >> initializePresenters [
 
 	whenValueChangedDo := [ :back |  ].
@@ -155,55 +153,55 @@ PyramidBackgroundInputPresenter >> initializePresenters [
 		self whenValueChangedDo value: self value ]
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidBackgroundInputPresenter >> modelEmptyValue [
 
 	^ modelEmptyValue
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidBackgroundInputPresenter >> modelImage [
 
 	^ modelImage
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidBackgroundInputPresenter >> modelMixedValues [
 ^ modelMixedValues
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidBackgroundInputPresenter >> modelPaintGradient [
 
 	^ modelPaintGradient
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidBackgroundInputPresenter >> modelPaintSolid [
 
 	^ modelPaintSolid
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidBackgroundInputPresenter >> modelTransparent [
 
 	^ modelTransparent
 ]
 
-{ #category : 'layout' }
+{ #category : #layout }
 PyramidBackgroundInputPresenter >> notebook [
 
 	^ notebook
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidBackgroundInputPresenter >> selectEmptyValue [
 
 	self notebook addPage: self modelEmptyValue page.
 	self notebook selectPage: self modelEmptyValue page
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidBackgroundInputPresenter >> selectImage [
 
 	self notebook selectPage: self modelImage page.
@@ -212,14 +210,14 @@ PyramidBackgroundInputPresenter >> selectImage [
 		do: [ "nothing" ]
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidBackgroundInputPresenter >> selectMixedValues [
 
 	self notebook addPage: self modelMixedValues page.
 	self notebook selectPage: self modelMixedValues page
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidBackgroundInputPresenter >> selectPaintGradientWith: aBlColorPaint [
 
 	self notebook selectPage: self modelPaintGradient page.
@@ -229,7 +227,7 @@ PyramidBackgroundInputPresenter >> selectPaintGradientWith: aBlColorPaint [
 		do: [ "nothing" ]
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidBackgroundInputPresenter >> selectPaintSolidWith: aBlColorPaint [
 
 	self notebook selectPage: self modelPaintSolid page.
@@ -238,7 +236,7 @@ PyramidBackgroundInputPresenter >> selectPaintSolidWith: aBlColorPaint [
 	[self notebook removePage: self modelMixedValues page] on: NotFound do: [ "nothing" ]
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidBackgroundInputPresenter >> selectTransparent [
 
 	self notebook selectPage: self modelTransparent page.
@@ -247,13 +245,13 @@ PyramidBackgroundInputPresenter >> selectTransparent [
 		do: [ "nothing" ]
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidBackgroundInputPresenter >> value [
 
 	^ self notebook selectedPage presenterProvider value value asBlBackground
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidBackgroundInputPresenter >> value: aBackground [
 	| temp |
 	temp := self whenValueChangedDo.
@@ -262,13 +260,13 @@ PyramidBackgroundInputPresenter >> value: aBackground [
 	self whenValueChangedDo: temp.
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidBackgroundInputPresenter >> whenValueChangedDo [
 
 	^ whenValueChangedDo
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidBackgroundInputPresenter >> whenValueChangedDo: anObject [
 
 	whenValueChangedDo := anObject

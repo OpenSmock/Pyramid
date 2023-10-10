@@ -1,14 +1,12 @@
 Class {
-	#name : 'PyramidWheelTransformExtension',
-	#superclass : 'Object',
+	#name : #PyramidWheelTransformExtension,
+	#superclass : #Object,
 	#traits : 'TPyramidSpaceExtension + TPyramidEditorExtension + TPyramidKeyboardExtension',
 	#classTraits : 'TPyramidSpaceExtension classTrait + TPyramidEditorExtension classTrait + TPyramidKeyboardExtension classTrait',
-	#category : 'Pyramid-Bloc-plugin-space-extensions',
-	#package : 'Pyramid-Bloc',
-	#tag : 'plugin-space-extensions'
+	#category : 'Pyramid-Bloc-plugin-space-extensions'
 }
 
-{ #category : 'displaying' }
+{ #category : #displaying }
 PyramidWheelTransformExtension >> installOn: aBuilder [
 
 	self builder: aBuilder.
@@ -26,7 +24,7 @@ PyramidWheelTransformExtension >> installOn: aBuilder [
 			self builder signalTransformationChanged ] ]
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidWheelTransformExtension >> wheelSpeed [
 
 	^ 10

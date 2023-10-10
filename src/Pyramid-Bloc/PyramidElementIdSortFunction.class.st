@@ -1,12 +1,10 @@
 Class {
-	#name : 'PyramidElementIdSortFunction',
-	#superclass : 'SortFunction',
-	#category : 'Pyramid-Bloc-utils',
-	#package : 'Pyramid-Bloc',
-	#tag : 'utils'
+	#name : #PyramidElementIdSortFunction,
+	#superclass : #SortFunction,
+	#category : 'Pyramid-Bloc-utils'
 }
 
-{ #category : 'evaluating' }
+{ #category : #evaluating }
 PyramidElementIdSortFunction >> collate: anObject1 with: anObject2 [
 	"visible > hidden > gone"
 

@@ -1,23 +1,21 @@
 Class {
-	#name : 'PyramidStopsInputPresenter',
-	#superclass : 'PyramidInputPresenter',
+	#name : #PyramidStopsInputPresenter,
+	#superclass : #PyramidInputPresenter,
 	#instVars : [
 		'whenValueChangedDo',
 		'inputs'
 	],
-	#category : 'Pyramid-Bloc-plugin-bloc',
-	#package : 'Pyramid-Bloc',
-	#tag : 'plugin-bloc'
+	#category : 'Pyramid-Bloc-plugin-bloc'
 }
 
-{ #category : 'removing' }
+{ #category : #removing }
 PyramidStopsInputPresenter >> addStopInput: input andPresenter: presenter [
 
 	self inputs add: input -> presenter.
 	self updateInputsOrder
 ]
 
-{ #category : 'adding' }
+{ #category : #adding }
 PyramidStopsInputPresenter >> addStopInputAfter: anInput [
 
 	| index |
@@ -26,7 +24,7 @@ PyramidStopsInputPresenter >> addStopInputAfter: anInput [
 	self insertNewStopInputBetweenIndex: index and: index + 1
 ]
 
-{ #category : 'adding' }
+{ #category : #adding }
 PyramidStopsInputPresenter >> addStopInputBefore: anInput [
 
 	| index |
@@ -35,14 +33,14 @@ PyramidStopsInputPresenter >> addStopInputBefore: anInput [
 	self insertNewStopInputBetweenIndex: index - 1 and: index
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidStopsInputPresenter >> bypassTrigger [
 
 	self flag: #TO_REMOVE. "I added it to make the test pass but it should be removed."
 	self whenValueChangedDo value: self value
 ]
 
-{ #category : 'layout' }
+{ #category : #layout }
 PyramidStopsInputPresenter >> defaultLayout [
 
 	| defaultLayout |
@@ -56,7 +54,7 @@ PyramidStopsInputPresenter >> defaultLayout [
 		  yourself
 ]
 
-{ #category : 'initialization' }
+{ #category : #initialization }
 PyramidStopsInputPresenter >> initializePresenters [
 
 	whenValueChangedDo := [ :arr |  ].
@@ -65,19 +63,19 @@ PyramidStopsInputPresenter >> initializePresenters [
 	self makeNewStopInput: 1 -> Color white
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidStopsInputPresenter >> inputs [
 
 	^ inputs
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidStopsInputPresenter >> inputs: anObject [
 
 	inputs := anObject
 ]
 
-{ #category : 'adding' }
+{ #category : #adding }
 PyramidStopsInputPresenter >> insertNewStopInputBetweenIndex: beforeIndex and: afterIndex [
 	"
 inputs (size = 1)
@@ -128,7 +126,7 @@ inputs: [first .. last]
 				(beforeInput value value mixed: 0.5 with: afterInput value value) ]
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidStopsInputPresenter >> layoutForStopInput: input remove: buttonRemove addBefore: buttonAddBefore addAfter: buttonAddAfter [
 
 	^ SpBoxLayout newHorizontal spacing: 4; add: buttonRemove width: 24; add: input; 
@@ -136,7 +134,7 @@ PyramidStopsInputPresenter >> layoutForStopInput: input remove: buttonRemove add
 	 add: buttonAddAfter width: 24; yourself
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidStopsInputPresenter >> makeNewStopInput: anAssociation [
 
 	| input buttonRemove buttonAddBefore buttonAddAfter presenter |
@@ -173,7 +171,7 @@ PyramidStopsInputPresenter >> makeNewStopInput: anAssociation [
 	self addStopInput: input andPresenter: presenter
 ]
 
-{ #category : 'removing' }
+{ #category : #removing }
 PyramidStopsInputPresenter >> removeStopInput: input andPresenter: presenter [
 
 	self inputs size = 1 ifTrue: [ ^ self ].
@@ -181,13 +179,13 @@ PyramidStopsInputPresenter >> removeStopInput: input andPresenter: presenter [
 	self layout: self defaultLayout
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidStopsInputPresenter >> stopValue: aNumber for: anInput [
 
 	anInput value: aNumber -> anInput value value
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidStopsInputPresenter >> updateInputsOrder [
 
 	self inputs:
@@ -195,13 +193,13 @@ PyramidStopsInputPresenter >> updateInputsOrder [
 		self layout: self defaultLayout.
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidStopsInputPresenter >> value [
 
 	^ (self inputs collect: [ :asso | asso key value ]) asArray
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidStopsInputPresenter >> value: aCollection [
 
 	self inputs removeAll.
@@ -209,13 +207,13 @@ PyramidStopsInputPresenter >> value: aCollection [
 	aCollection do: [ :each | self makeNewStopInput: each ]
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidStopsInputPresenter >> whenValueChangedDo [
 
 	^ whenValueChangedDo
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidStopsInputPresenter >> whenValueChangedDo: anObject [
 
 	whenValueChangedDo := anObject

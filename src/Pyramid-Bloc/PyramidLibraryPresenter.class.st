@@ -1,6 +1,6 @@
 Class {
-	#name : 'PyramidLibraryPresenter',
-	#superclass : 'SpPresenter',
+	#name : #PyramidLibraryPresenter,
+	#superclass : #SpPresenter,
 	#instVars : [
 		'list',
 		'preview',
@@ -8,12 +8,10 @@ Class {
 		'addButton',
 		'idGenerator'
 	],
-	#category : 'Pyramid-Bloc-plugin-tree-library',
-	#package : 'Pyramid-Bloc',
-	#tag : 'plugin-tree-library'
+	#category : 'Pyramid-Bloc-plugin-tree-library'
 }
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidLibraryPresenter class >> idGenerator [
 ^ Generator on: [ :generator |
 		               | index |
@@ -29,24 +27,24 @@ PyramidLibraryPresenter class >> idGenerator [
 		               index := index + 1 ] repeat ].
 ]
 
-{ #category : 'initialization' }
+{ #category : #initialization }
 PyramidLibraryPresenter >> addButton [
 ^ addButton
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidLibraryPresenter >> buttonAction [
 
 	^ self shouldBeImplemented
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidLibraryPresenter >> buttonLabel [
 
 	^ self shouldBeImplemented
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidLibraryPresenter >> defaultItemsList [
 
 	^ {
@@ -67,7 +65,7 @@ PyramidLibraryPresenter >> defaultItemsList [
 			   yourself) }
 ]
 
-{ #category : 'initialization' }
+{ #category : #initialization }
 PyramidLibraryPresenter >> defaultLayout [
 
 	^ SpBoxLayout newVertical
@@ -97,30 +95,30 @@ PyramidLibraryPresenter >> defaultLayout [
 				   yourself)
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidLibraryPresenter >> editor [
 	^ editor
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidLibraryPresenter >> editor: aPyramidEditor [
 
 	editor := aPyramidEditor
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidLibraryPresenter >> idGenerator [
 
 	^ idGenerator
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidLibraryPresenter >> idGenerator: anObject [
 
 	idGenerator := anObject
 ]
 
-{ #category : 'initialization' }
+{ #category : #initialization }
 PyramidLibraryPresenter >> initializePresenters [
 
 	idGenerator := self class idGenerator.
@@ -141,18 +139,18 @@ PyramidLibraryPresenter >> initializePresenters [
 		        yourself
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidLibraryPresenter >> list [
 
 	^ list
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidLibraryPresenter >> preview [
 	^ preview
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidLibraryPresenter >> updatePreviewWith: aLibraryElement [
 
 	self preview image: aLibraryElement form

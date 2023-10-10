@@ -1,12 +1,10 @@
 Class {
-	#name : 'PyramidLibraryPresenterForElement',
-	#superclass : 'PyramidLibraryPresenter',
-	#category : 'Pyramid-Bloc-plugin-tree-library',
-	#package : 'Pyramid-Bloc',
-	#tag : 'plugin-tree-library'
+	#name : #PyramidLibraryPresenterForElement,
+	#superclass : #PyramidLibraryPresenter,
+	#category : 'Pyramid-Bloc-plugin-tree-library'
 }
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidLibraryPresenterForElement >> buttonAction [
 
 	self editor propertiesManager commandExecutor
@@ -15,7 +13,7 @@ PyramidLibraryPresenterForElement >> buttonAction [
 		with: self list selectedItem blockMaker value
 ]
 
-{ #category : 'private' }
+{ #category : #private }
 PyramidLibraryPresenterForElement >> buttonLabel [
 
 	^ 'Add new child'

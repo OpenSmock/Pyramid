@@ -1,6 +1,6 @@
-Extension { #name : 'BlFlowLayout' }
+Extension { #name : #BlFlowLayout }
 
-{ #category : '*Pyramid-Bloc' }
+{ #category : #'*Pyramid-Bloc' }
 BlFlowLayout >> = anObject [
 
 	self == anObject ifTrue: [ ^ true ].
@@ -11,7 +11,7 @@ BlFlowLayout >> = anObject [
 	^ true
 ]
 
-{ #category : '*Pyramid-Bloc' }
+{ #category : #'*Pyramid-Bloc' }
 BlFlowLayout >> setLayoutOn: aPyramidLayoutInputPresenter [
 
 	aPyramidLayoutInputPresenter setFlow

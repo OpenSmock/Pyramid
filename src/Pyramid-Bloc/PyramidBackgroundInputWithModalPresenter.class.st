@@ -1,12 +1,10 @@
 Class {
-	#name : 'PyramidBackgroundInputWithModalPresenter',
-	#superclass : 'PyramidInputWithModalPresenter',
-	#category : 'Pyramid-Bloc-plugin-bloc',
-	#package : 'Pyramid-Bloc',
-	#tag : 'plugin-bloc'
+	#name : #PyramidBackgroundInputWithModalPresenter,
+	#superclass : #PyramidInputWithModalPresenter,
+	#category : 'Pyramid-Bloc-plugin-bloc'
 }
 
-{ #category : 'initialization' }
+{ #category : #initialization }
 PyramidBackgroundInputWithModalPresenter >> initializePresenters [
 
 	super initializePresenters.

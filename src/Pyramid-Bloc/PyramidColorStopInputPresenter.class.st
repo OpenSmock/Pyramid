@@ -1,22 +1,20 @@
 Class {
-	#name : 'PyramidColorStopInputPresenter',
-	#superclass : 'PyramidInputPresenter',
+	#name : #PyramidColorStopInputPresenter,
+	#superclass : #PyramidInputPresenter,
 	#instVars : [
 		'colorInput',
 		'stopInput'
 	],
-	#category : 'Pyramid-Bloc-plugin-bloc',
-	#package : 'Pyramid-Bloc',
-	#tag : 'plugin-bloc'
+	#category : 'Pyramid-Bloc-plugin-bloc'
 }
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidColorStopInputPresenter >> colorInput [
 
 	^ colorInput
 ]
 
-{ #category : 'layout' }
+{ #category : #layout }
 PyramidColorStopInputPresenter >> defaultLayout [
 
 	^ SpBoxLayout newHorizontal
@@ -27,20 +25,20 @@ PyramidColorStopInputPresenter >> defaultLayout [
 		  yourself
 ]
 
-{ #category : 'initialization' }
+{ #category : #initialization }
 PyramidColorStopInputPresenter >> initializePresenters [
 
 	colorInput := PyramidColorInputSingleLineWithPickupButtonPresenter new.
 	stopInput := PyramidNumberInputPresenter new
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidColorStopInputPresenter >> stopInput [
 
 	^ stopInput
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidColorStopInputPresenter >> value [
 
 	| color |
@@ -50,7 +48,7 @@ PyramidColorStopInputPresenter >> value [
 	^ self stopInput value -> self colorInput value
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidColorStopInputPresenter >> value: anAssociation [
 
 	anAssociation isAssociation ifFalse: [
@@ -59,7 +57,7 @@ PyramidColorStopInputPresenter >> value: anAssociation [
 	self colorInput value: anAssociation value
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidColorStopInputPresenter >> whenValueChangedDo: aBlock [
 
 	self colorInput whenValueChangedDo: [ :e | aBlock value: self value ].

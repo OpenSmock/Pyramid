@@ -1,12 +1,10 @@
 Class {
-	#name : 'PyramidBasicConstraintsCommand',
-	#superclass : 'PyramidAbstractBlocCommand',
-	#category : 'Pyramid-Bloc-plugin-bloc-layout',
-	#package : 'Pyramid-Bloc',
-	#tag : 'plugin-bloc-layout'
+	#name : #PyramidBasicConstraintsCommand,
+	#superclass : #PyramidAbstractBlocCommand,
+	#category : 'Pyramid-Bloc-plugin-bloc-layout'
 }
 
-{ #category : 'testing' }
+{ #category : #testing }
 PyramidBasicConstraintsCommand >> canBeUsedFor: anObject [
 
 	^ (super canBeUsedFor: anObject) and: [
@@ -14,7 +12,7 @@ PyramidBasicConstraintsCommand >> canBeUsedFor: anObject [
 			  self targetsLayoutClass includes: anObject parent layout class ] ]
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidBasicConstraintsCommand >> targetsLayoutClass [
 
 	^ {

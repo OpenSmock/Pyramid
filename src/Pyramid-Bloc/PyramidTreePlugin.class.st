@@ -1,6 +1,6 @@
 Class {
-	#name : 'PyramidTreePlugin',
-	#superclass : 'Object',
+	#name : #PyramidTreePlugin,
+	#superclass : #Object,
 	#traits : 'TPyramidPlugin',
 	#classTraits : 'TPyramidPlugin classTrait',
 	#instVars : [
@@ -9,12 +9,10 @@ Class {
 		'libraryPresenterForElement',
 		'libraryPresenterForRoot'
 	],
-	#category : 'Pyramid-Bloc-plugin-tree-library',
-	#package : 'Pyramid-Bloc',
-	#tag : 'plugin-tree-library'
+	#category : 'Pyramid-Bloc-plugin-tree-library'
 }
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidTreePlugin class >> columnNameAndType: aPyramidTreePlugin [
 
 	^ SpCompositeTableColumn new
@@ -48,7 +46,7 @@ PyramidTreePlugin class >> columnNameAndType: aPyramidTreePlugin [
 		  yourself
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidTreePlugin class >> columnVisibility: aPyramidTreePlugin [
 
 	^ SpCompositeTableColumn new
@@ -75,7 +73,7 @@ PyramidTreePlugin class >> columnVisibility: aPyramidTreePlugin [
 		  yourself
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidTreePlugin class >> columnZIndex: aPyramidTreePlugin [
 
 	^ SpStringTableColumn new
@@ -87,13 +85,13 @@ PyramidTreePlugin class >> columnZIndex: aPyramidTreePlugin [
 		  yourself
 ]
 
-{ #category : 'class initialization' }
+{ #category : #'class initialization' }
 PyramidTreePlugin class >> initialize [
 
 	PyramidPluginManager uniqueInstance addPlugin: self
 ]
 
-{ #category : 'initialization' }
+{ #category : #initialization }
 PyramidTreePlugin class >> setId: aString of: aBlElement onEditor: aPyramidEditor [
 
 	aPyramidEditor propertiesManager commandExecutor
@@ -102,7 +100,7 @@ PyramidTreePlugin class >> setId: aString of: aBlElement onEditor: aPyramidEdito
 		with: aString
 ]
 
-{ #category : 'initialization' }
+{ #category : #initialization }
 PyramidTreePlugin class >> setVisibility: aBlVisibility of: aBlElement onEditor: aPyramidEditor [
 
 	aPyramidEditor propertiesManager commandExecutor
@@ -111,7 +109,7 @@ PyramidTreePlugin class >> setVisibility: aBlVisibility of: aBlElement onEditor:
 		with: aBlVisibility
 ]
 
-{ #category : 'adding' }
+{ #category : #adding }
 PyramidTreePlugin >> addPanelsOn: aPyramidSimpleWindow [
 
 	aPyramidSimpleWindow at: #tabLeft addItem: [ :builder |
@@ -126,7 +124,7 @@ PyramidTreePlugin >> addPanelsOn: aPyramidSimpleWindow [
 		addItem: [ :builder | self menuAddAndDeleteOn: builder ]
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidTreePlugin >> connectOn: aPyramidEditor [
 
 	self editor: aPyramidEditor.
@@ -135,13 +133,13 @@ PyramidTreePlugin >> connectOn: aPyramidEditor [
 		(self editor window services at: #selectionMenu) builder
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidTreePlugin >> editor [
 
 	^ editor
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidTreePlugin >> editor: anObject [
 
 	editor := anObject.
@@ -149,7 +147,7 @@ PyramidTreePlugin >> editor: anObject [
 	self libraryPresenterForRoot editor: anObject.
 ]
 
-{ #category : 'initialization' }
+{ #category : #initialization }
 PyramidTreePlugin >> initialize [
 
 	self initializeLibraryPresenters.
@@ -160,7 +158,7 @@ PyramidTreePlugin >> initialize [
 	self initializeTreeColumns.
 ]
 
-{ #category : 'initialization' }
+{ #category : #initialization }
 PyramidTreePlugin >> initializeLibraryPresenters [
 
 	| idGenerator |
@@ -175,7 +173,7 @@ PyramidTreePlugin >> initializeLibraryPresenters [
 		                           yourself
 ]
 
-{ #category : 'initialization' }
+{ #category : #initialization }
 PyramidTreePlugin >> initializeTreeColumns [
 
 	self treePresenter columns add: (self class columnNameAndType: self).
@@ -184,19 +182,19 @@ PyramidTreePlugin >> initializeTreeColumns [
 	self treePresenter updateTree
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidTreePlugin >> libraryPresenterForElement [
 
 	^ libraryPresenterForElement
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidTreePlugin >> libraryPresenterForRoot [
 
 	^ libraryPresenterForRoot
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidTreePlugin >> menuAddAndDeleteOn: aBuilder [
 
 	aBuilder
@@ -246,7 +244,7 @@ PyramidTreePlugin >> menuAddAndDeleteOn: aBuilder [
 		order: 10
 ]
 
-{ #category : 'removing' }
+{ #category : #removing }
 PyramidTreePlugin >> removeSelectedElements [
 
 	self editor propertiesManager commandExecutor
@@ -258,7 +256,7 @@ PyramidTreePlugin >> removeSelectedElements [
 	self editor projectModel updateSelection.
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidTreePlugin >> treePresenter [
 
 	^ treePresenter

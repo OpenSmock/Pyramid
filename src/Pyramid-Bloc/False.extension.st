@@ -1,6 +1,6 @@
-Extension { #name : 'False' }
+Extension { #name : #False }
 
-{ #category : '*Pyramid-Bloc' }
+{ #category : #'*Pyramid-Bloc' }
 False >> asOrientationForPyramid [
 
 	^ BlLayoutOrientation horizontal

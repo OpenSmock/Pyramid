@@ -1,13 +1,13 @@
-Extension { #name : 'BlLinearGradientPaint' }
+Extension { #name : #BlLinearGradientPaint }
 
-{ #category : '*Pyramid-Bloc' }
+{ #category : #'*Pyramid-Bloc' }
 BlLinearGradientPaint >> = aBlPaint [
 
 	super = aBlPaint ifFalse: [ ^ false ].
 	^ self end = aBlPaint end and: [ self start = aBlPaint start ]
 ]
 
-{ #category : '*Pyramid-Bloc' }
+{ #category : #'*Pyramid-Bloc' }
 BlLinearGradientPaint >> selectOnGradientPaintInput: aPyramidGradientPaintInputPresenter [
 
 	super selectOnGradientPaintInput: aPyramidGradientPaintInputPresenter.

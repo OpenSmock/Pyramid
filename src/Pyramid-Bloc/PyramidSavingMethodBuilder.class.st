@@ -1,18 +1,16 @@
 Class {
-	#name : 'PyramidSavingMethodBuilder',
-	#superclass : 'Object',
+	#name : #PyramidSavingMethodBuilder,
+	#superclass : #Object,
 	#instVars : [
 		'classifier',
 		'comment',
 		'pragma',
 		'serializeBlock'
 	],
-	#category : 'Pyramid-Bloc-plugin-save',
-	#package : 'Pyramid-Bloc',
-	#tag : 'plugin-save'
+	#category : 'Pyramid-Bloc-plugin-save'
 }
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidSavingMethodBuilder class >> ston [
 
 	^ self new
@@ -28,7 +26,7 @@ PyramidSavingMethodBuilder class >> ston [
 		  yourself
 ]
 
-{ #category : 'instance creation' }
+{ #category : #'instance creation' }
 PyramidSavingMethodBuilder >> build: aSaveModel [
 
 	| result |
@@ -46,55 +44,55 @@ PyramidSavingMethodBuilder >> build: aSaveModel [
 	^ result
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidSavingMethodBuilder >> classifier [
 
 	^ classifier
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidSavingMethodBuilder >> classifier: anObject [
 
 	classifier := anObject
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidSavingMethodBuilder >> comment [
 
 	^ comment
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidSavingMethodBuilder >> comment: anObject [
 
 	comment := anObject
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidSavingMethodBuilder >> pragma [
 
 	^ pragma
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidSavingMethodBuilder >> pragma: anObject [
 
 	pragma := anObject
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidSavingMethodBuilder >> serializeBlock [
 
 	^ serializeBlock
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidSavingMethodBuilder >> serializeBlock: anObject [
 
 	serializeBlock := anObject
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidSavingMethodBuilder >> serializedString: aSaveModel [
 
 	| roots |

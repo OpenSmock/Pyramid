@@ -1,23 +1,21 @@
 Class {
-	#name : 'PyramidPositionExtension',
-	#superclass : 'Object',
+	#name : #PyramidPositionExtension,
+	#superclass : #Object,
 	#traits : 'TPyramidSpaceExtension + TPyramidEditorExtension',
 	#classTraits : 'TPyramidSpaceExtension classTrait + TPyramidEditorExtension classTrait',
 	#instVars : [
 		'display'
 	],
-	#category : 'Pyramid-Bloc-plugin-space-extensions',
-	#package : 'Pyramid-Bloc',
-	#tag : 'plugin-space-extensions'
+	#category : 'Pyramid-Bloc-plugin-space-extensions'
 }
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidPositionExtension >> display [
 
 	^ display.
 ]
 
-{ #category : 'initialization' }
+{ #category : #initialization }
 PyramidPositionExtension >> initialize [
 
 	display := (0 @ 0) asRopedText asElement.
@@ -27,7 +25,7 @@ PyramidPositionExtension >> initialize [
 		padding: (BlInsets all: 3).
 ]
 
-{ #category : 'displaying' }
+{ #category : #displaying }
 PyramidPositionExtension >> installOn: aBuilder [
 
 	self builder: aBuilder.

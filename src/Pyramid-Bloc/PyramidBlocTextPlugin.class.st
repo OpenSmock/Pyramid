@@ -1,14 +1,12 @@
 Class {
-	#name : 'PyramidBlocTextPlugin',
-	#superclass : 'Object',
+	#name : #PyramidBlocTextPlugin,
+	#superclass : #Object,
 	#traits : 'TPyramidPlugin',
 	#classTraits : 'TPyramidPlugin classTrait',
-	#category : 'Pyramid-Bloc-plugin-bloc-text',
-	#package : 'Pyramid-Bloc',
-	#tag : 'plugin-bloc-text'
+	#category : 'Pyramid-Bloc-plugin-bloc-text'
 }
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidBlocTextPlugin class >> changeText [
 
 	| property |
@@ -22,7 +20,7 @@ PyramidBlocTextPlugin class >> changeText [
 	^ property
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidBlocTextPlugin class >> fontSize [
 
 	| property |
@@ -35,7 +33,7 @@ PyramidBlocTextPlugin class >> fontSize [
 	^ property
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidBlocTextPlugin class >> fontWeight [
 
 	| property |
@@ -48,13 +46,13 @@ PyramidBlocTextPlugin class >> fontWeight [
 	^ property
 ]
 
-{ #category : 'class initialization' }
+{ #category : #'class initialization' }
 PyramidBlocTextPlugin class >> initialize [
 
 	PyramidPluginManager uniqueInstance addPlugin: self
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidBlocTextPlugin class >> textForeground [
 
 	| property |
@@ -69,7 +67,7 @@ PyramidBlocTextPlugin class >> textForeground [
 	^ property
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidBlocTextPlugin >> connectOn: aPyramidEditor [
 
 	aPyramidEditor propertiesManager addProperty: self class changeText.

@@ -1,12 +1,10 @@
 Class {
-	#name : 'PyramidSendDownCommand',
-	#superclass : 'PyramidAbstractChangePositionWithSiblingsCommand',
-	#category : 'Pyramid-Bloc-plugin-bloc-siblings',
-	#package : 'Pyramid-Bloc',
-	#tag : 'plugin-bloc-siblings'
+	#name : #PyramidSendDownCommand,
+	#superclass : #PyramidAbstractChangePositionWithSiblingsCommand,
+	#category : 'Pyramid-Bloc-plugin-bloc-siblings'
 }
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidSendDownCommand >> setValueFor: anObject with: anArgument [
 	"Check in all elements before anObject if one as the same elevation,
 if true then put anObject before.

@@ -1,12 +1,10 @@
 Class {
-	#name : 'PyramidVisibilitySortFunction',
-	#superclass : 'SortFunction',
-	#category : 'Pyramid-Bloc-utils',
-	#package : 'Pyramid-Bloc',
-	#tag : 'utils'
+	#name : #PyramidVisibilitySortFunction,
+	#superclass : #SortFunction,
+	#category : 'Pyramid-Bloc-utils'
 }
 
-{ #category : 'evaluating' }
+{ #category : #evaluating }
 PyramidVisibilitySortFunction >> collate: aFirstObject with: aSecondObject [
 	"visible > hidden > gone"
 

@@ -1,1 +1,1 @@
-Package { #name : 'Pyramid-Bloc' }
+Package { #name : #'Pyramid-Bloc' }
