@@ -1,12 +1,14 @@
 Class {
-	#name : #PyramidGeometryInputPresenterTest,
-	#superclass : #TestCase,
+	#name : 'PyramidGeometryInputPresenterTest',
+	#superclass : 'TestCase',
 	#traits : 'TPyramidInputPresenterTest',
 	#classTraits : 'TPyramidInputPresenterTest classTrait',
-	#category : #'Pyramid-Tests-cases-plugin-bloc-geometry'
+	#category : 'Pyramid-Tests-cases-plugin-bloc-geometry',
+	#package : 'Pyramid-Tests',
+	#tag : 'cases-plugin-bloc-geometry'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidGeometryInputPresenterTest >> dummyValues [
 
 	^ {
@@ -19,13 +21,13 @@ PyramidGeometryInputPresenterTest >> dummyValues [
 				   (0 @ 100) }) }
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PyramidGeometryInputPresenterTest >> makeNewInput [
 
 	^ PyramidGeometryInputPresenter new
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PyramidGeometryInputPresenterTest >> triggerValueChangedOf: anInput [
 
 	anInput whenValueChangedDo value: anInput value

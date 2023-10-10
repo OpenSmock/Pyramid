@@ -1,22 +1,24 @@
 Class {
-	#name : #PyramidExternalRessourceProxyTest,
-	#superclass : #TestCase,
-	#category : #'Pyramid-Tests-cases-external-ressources'
+	#name : 'PyramidExternalRessourceProxyTest',
+	#superclass : 'TestCase',
+	#category : 'Pyramid-Tests-cases-external-ressources',
+	#package : 'Pyramid-Tests',
+	#tag : 'cases-external-ressources'
 }
 
-{ #category : #'tests - other' }
+{ #category : 'tests - other' }
 PyramidExternalRessourceProxyTest class >> dummyExample [
 
 	^ PyramidExternalRessourceDummyForTest new
 ]
 
-{ #category : #'tests - other' }
+{ #category : 'tests - other' }
 PyramidExternalRessourceProxyTest class >> stonAsObject [
 
 	^ STON fromString: 'PyramidExternalRessourceDummyForTest{#dummyValue:0}'
 ]
 
-{ #category : #'tests - other' }
+{ #category : 'tests - other' }
 PyramidExternalRessourceProxyTest class >> stonOnStonAsObject [
 
 	^ STON fromString: '[
@@ -37,7 +39,7 @@ PyramidExternalRessourceProxyTest class >> stonOnStonAsObject [
 ]'.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PyramidExternalRessourceProxyTest >> testFromSource [
 
 	| externalRessourceProxy |
@@ -53,7 +55,7 @@ PyramidExternalRessourceProxyTest >> testFromSource [
 	self assert: externalRessourceProxy dummyValue equals: 3
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PyramidExternalRessourceProxyTest >> testStonOnSton [
 
 	| dummys newDummys |

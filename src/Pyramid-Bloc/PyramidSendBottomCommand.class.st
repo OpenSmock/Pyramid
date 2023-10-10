@@ -1,10 +1,12 @@
 Class {
-	#name : #PyramidSendBottomCommand,
-	#superclass : #PyramidAbstractChangePositionWithSiblingsCommand,
-	#category : #'Pyramid-Bloc-plugin-bloc-siblings'
+	#name : 'PyramidSendBottomCommand',
+	#superclass : 'PyramidAbstractChangePositionWithSiblingsCommand',
+	#category : 'Pyramid-Bloc-plugin-bloc-siblings',
+	#package : 'Pyramid-Bloc',
+	#tag : 'plugin-bloc-siblings'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PyramidSendBottomCommand >> setValueFor: anObject with: anArgument [
 
 	| elevationMin rightChild parent |

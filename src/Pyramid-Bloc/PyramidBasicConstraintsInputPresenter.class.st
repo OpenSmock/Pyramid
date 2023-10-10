@@ -1,6 +1,6 @@
 Class {
-	#name : #PyramidBasicConstraintsInputPresenter,
-	#superclass : #PyramidInputPresenter,
+	#name : 'PyramidBasicConstraintsInputPresenter',
+	#superclass : 'PyramidInputPresenter',
 	#instVars : [
 		'buttonExact',
 		'buttonMatchParent',
@@ -8,28 +8,30 @@ Class {
 		'whenValueChangedDo',
 		'value'
 	],
-	#category : #'Pyramid-Bloc-plugin-bloc-layout'
+	#category : 'Pyramid-Bloc-plugin-bloc-layout',
+	#package : 'Pyramid-Bloc',
+	#tag : 'plugin-bloc-layout'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidBasicConstraintsInputPresenter >> buttonExact [
 
 	^ buttonExact
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidBasicConstraintsInputPresenter >> buttonFitContent [
 
 	^ buttonFitContent
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidBasicConstraintsInputPresenter >> buttonMatchParent [
 
 	^ buttonMatchParent
 ]
 
-{ #category : #layout }
+{ #category : 'layout' }
 PyramidBasicConstraintsInputPresenter >> defaultLayout [
 
 	^ SpBoxLayout newHorizontal
@@ -40,7 +42,7 @@ add: self buttonFitContent;
 		  yourself
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 PyramidBasicConstraintsInputPresenter >> initializePresenters [
 
 	whenValueChangedDo := [ :visibility |  ].
@@ -74,7 +76,7 @@ PyramidBasicConstraintsInputPresenter >> initializePresenters [
 		                    yourself
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 PyramidBasicConstraintsInputPresenter >> setExact [
 
 	self buttonExact
@@ -88,7 +90,7 @@ PyramidBasicConstraintsInputPresenter >> setExact [
 		icon: (self iconNamed: #checkboxUnselected)
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 PyramidBasicConstraintsInputPresenter >> setFitContent [
 
 	self buttonExact
@@ -102,7 +104,7 @@ PyramidBasicConstraintsInputPresenter >> setFitContent [
 		icon: (self iconNamed: #checkboxUnselected)
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 PyramidBasicConstraintsInputPresenter >> setMatchParent [
 
 	self buttonExact enabled: true; icon: (self iconNamed: #checkboxUnselected).
@@ -110,7 +112,7 @@ PyramidBasicConstraintsInputPresenter >> setMatchParent [
 	self buttonMatchParent enabled: true; icon: (self iconNamed: #checkboxSelected).
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 PyramidBasicConstraintsInputPresenter >> setUnknowValue [
 
 	self buttonExact enabled: false; icon: (self iconNamed: #checkboxUnselected).
@@ -118,26 +120,26 @@ PyramidBasicConstraintsInputPresenter >> setUnknowValue [
 	self buttonMatchParent enabled: false; icon: (self iconNamed: #checkboxUnselected).
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PyramidBasicConstraintsInputPresenter >> value [
 
 	^ value asPyramidConstraintsArgument
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PyramidBasicConstraintsInputPresenter >> value: aCommonConstraints [
 
 	value := aCommonConstraints.
 	aCommonConstraints setConstraintsOn: self
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidBasicConstraintsInputPresenter >> whenValueChangedDo [
 
 	^ whenValueChangedDo
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidBasicConstraintsInputPresenter >> whenValueChangedDo: anObject [
 
 	whenValueChangedDo := anObject

@@ -1,10 +1,12 @@
 Class {
-	#name : #PyramidDynamicLayoutStrategyTest,
-	#superclass : #TestCase,
-	#category : #'Pyramid-Tests-cases-plugin-dynamic-layout'
+	#name : 'PyramidDynamicLayoutStrategyTest',
+	#superclass : 'TestCase',
+	#category : 'Pyramid-Tests-cases-plugin-dynamic-layout',
+	#package : 'Pyramid-Tests',
+	#tag : 'cases-plugin-dynamic-layout'
 }
 
-{ #category : #tests }
+{ #category : 'tests' }
 PyramidDynamicLayoutStrategyTest >> testLayoutFor [
 
 	self
@@ -21,7 +23,7 @@ PyramidDynamicLayoutStrategyTest >> testLayoutFor [
 		withExpectedNoteBooks: 1
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PyramidDynamicLayoutStrategyTest >> testLayoutForStrategy: aLayoutStrategy withExpectedNoteBooks: aNumber [
 
 	| presenters |

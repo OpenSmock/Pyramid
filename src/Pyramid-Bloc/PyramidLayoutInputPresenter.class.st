@@ -1,6 +1,6 @@
 Class {
-	#name : #PyramidLayoutInputPresenter,
-	#superclass : #PyramidInputPresenter,
+	#name : 'PyramidLayoutInputPresenter',
+	#superclass : 'PyramidInputPresenter',
 	#instVars : [
 		'buttonBasic',
 		'buttonFlow',
@@ -8,28 +8,30 @@ Class {
 		'whenValueChangedDo',
 		'value'
 	],
-	#category : #'Pyramid-Bloc-plugin-bloc-layout'
+	#category : 'Pyramid-Bloc-plugin-bloc-layout',
+	#package : 'Pyramid-Bloc',
+	#tag : 'plugin-bloc-layout'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidLayoutInputPresenter >> buttonBasic [
 
 	^ buttonBasic
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidLayoutInputPresenter >> buttonFlow [
 
 	^ buttonFlow
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidLayoutInputPresenter >> buttonProportionnal [
 
 	^ buttonProportionnal
 ]
 
-{ #category : #layout }
+{ #category : 'layout' }
 PyramidLayoutInputPresenter >> defaultLayout [
 
 	^ SpBoxLayout newHorizontal
@@ -40,7 +42,7 @@ PyramidLayoutInputPresenter >> defaultLayout [
 		  yourself
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 PyramidLayoutInputPresenter >> initializePresenters [
 
 	whenValueChangedDo := [ :visibility |  ].
@@ -73,7 +75,7 @@ PyramidLayoutInputPresenter >> initializePresenters [
 		                       yourself
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 PyramidLayoutInputPresenter >> setBasic [
 
 	self buttonBasic
@@ -87,7 +89,7 @@ PyramidLayoutInputPresenter >> setBasic [
 		icon: (self iconNamed: #checkboxUnselected)
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 PyramidLayoutInputPresenter >> setFlow [
 
 	self buttonBasic
@@ -101,7 +103,7 @@ PyramidLayoutInputPresenter >> setFlow [
 		icon: (self iconNamed: #checkboxUnselected)
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 PyramidLayoutInputPresenter >> setProportionnal [
 
 	self buttonBasic
@@ -115,7 +117,7 @@ PyramidLayoutInputPresenter >> setProportionnal [
 		icon: (self iconNamed: #checkboxSelected)
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 PyramidLayoutInputPresenter >> setUnknowValue [
 
 	self buttonBasic
@@ -129,26 +131,26 @@ PyramidLayoutInputPresenter >> setUnknowValue [
 		icon: (self iconNamed: #checkboxUnselected)
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PyramidLayoutInputPresenter >> value [
 
 	^ value
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PyramidLayoutInputPresenter >> value: anObject [
 
 	value := anObject.
 	anObject setLayoutOn: self
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidLayoutInputPresenter >> whenValueChangedDo [
 
 	^ whenValueChangedDo
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidLayoutInputPresenter >> whenValueChangedDo: anObject [
 
 	whenValueChangedDo := anObject

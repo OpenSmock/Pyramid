@@ -1,12 +1,14 @@
 Class {
-	#name : #PyramidColorInputSingleLineWithPickupButtonPresenterTest,
-	#superclass : #TestCase,
+	#name : 'PyramidColorInputSingleLineWithPickupButtonPresenterTest',
+	#superclass : 'TestCase',
 	#traits : 'TPyramidInputPresenterTest',
 	#classTraits : 'TPyramidInputPresenterTest classTrait',
-	#category : #'Pyramid-Tests-cases-specs-custom'
+	#category : 'Pyramid-Tests-cases-specs-custom',
+	#package : 'Pyramid-Tests',
+	#tag : 'cases-specs-custom'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidColorInputSingleLineWithPickupButtonPresenterTest >> dummyValues [
 
 	^ {
@@ -16,25 +18,25 @@ PyramidColorInputSingleLineWithPickupButtonPresenterTest >> dummyValues [
 		 Color red translucent }
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidColorInputSingleLineWithPickupButtonPresenterTest >> expectedEmptyValue [
 
 	^ Color black alpha: 0
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidColorInputSingleLineWithPickupButtonPresenterTest >> expectedMixedValues [
 
 	^ Color black alpha: 0
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PyramidColorInputSingleLineWithPickupButtonPresenterTest >> makeNewInput [
 
 	^ PyramidColorInputSingleLineWithPickupButtonPresenter new
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PyramidColorInputSingleLineWithPickupButtonPresenterTest >> triggerValueChangedOf: anInput [
 
 	anInput singleLineInput hexInput textInput contextKeyBindings keymaps do: [ :bind |

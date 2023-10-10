@@ -1,10 +1,12 @@
 Class {
-	#name : #PyramidLogo,
-	#superclass : #Object,
-	#category : #'Pyramid-Bloc-utils'
+	#name : 'PyramidLogo',
+	#superclass : 'Object',
+	#category : 'Pyramid-Bloc-utils',
+	#package : 'Pyramid-Bloc',
+	#tag : 'utils'
 }
 
-{ #category : #'pyramid-serialized-bloc' }
+{ #category : 'pyramid-serialized-bloc' }
 PyramidLogo class >> logoMedium [
 	"This class has been generated using Pyramid.
 
@@ -158,7 +160,7 @@ PyramidLogo class >> logoMedium [
 ]'
 ]
 
-{ #category : #'pyramid-serialized-bloc' }
+{ #category : 'pyramid-serialized-bloc' }
 PyramidLogo class >> logoOpenInPyramid [
 	"This class has been generated using Pyramid.
 

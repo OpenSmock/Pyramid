@@ -1,10 +1,12 @@
 Class {
-	#name : #PyramidGroupInverseCommand,
-	#superclass : #PyramidAbstractGroupCommand,
-	#category : #'Pyramid-Bloc-plugin-bloc'
+	#name : 'PyramidGroupInverseCommand',
+	#superclass : 'PyramidAbstractGroupCommand',
+	#category : 'Pyramid-Bloc-plugin-bloc',
+	#package : 'Pyramid-Bloc',
+	#tag : 'plugin-bloc'
 }
 
-{ #category : #testing }
+{ #category : 'testing' }
 PyramidGroupInverseCommand >> canBeUsedFor: anObject [
 
 	^ anObject isCollection and: [
@@ -15,13 +17,13 @@ PyramidGroupInverseCommand >> canBeUsedFor: anObject [
 			  anObject allSatisfy: [ :each | each parent = parent ] ] ] ]
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PyramidGroupInverseCommand >> commandInverse [
 
 	^ PyramidGroupCommand new
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PyramidGroupInverseCommand >> setValueFor: aCollection with: roots [
 
 	| elements groupElement |

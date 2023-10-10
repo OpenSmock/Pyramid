@@ -1,19 +1,21 @@
 Class {
-	#name : #PyramidRemoveSelectedElementsCommand,
-	#superclass : #PyramidAbstractBlocCommand,
+	#name : 'PyramidRemoveSelectedElementsCommand',
+	#superclass : 'PyramidAbstractBlocCommand',
 	#instVars : [
 		'mementoInverse'
 	],
-	#category : #'Pyramid-Bloc-plugin-bloc'
+	#category : 'Pyramid-Bloc-plugin-bloc',
+	#package : 'Pyramid-Bloc',
+	#tag : 'plugin-bloc'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PyramidRemoveSelectedElementsCommand >> getValueFor: anElementOfSelection [
 
 	^ nil
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PyramidRemoveSelectedElementsCommand >> mementoFor: anElement withArguments: anArgument [
 
 	(anArgument includes: anElement) ifTrue: [
@@ -29,26 +31,26 @@ PyramidRemoveSelectedElementsCommand >> mementoFor: anElement withArguments: anA
 		  yourself
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidRemoveSelectedElementsCommand >> mementoInverse [
 
 	^ mementoInverse
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidRemoveSelectedElementsCommand >> mementoInverse: anObject [
 
 	mementoInverse := anObject
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PyramidRemoveSelectedElementsCommand >> saveStatesOf: aCollection with: aRoots [
 	"We ignore the state recovery for the redo, we will force the inverse of the undo state."
 
 	^ self mementoInverse accept: PyramidMementoInverser new.
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PyramidRemoveSelectedElementsCommand >> saveStatesWithCommandInverseOf: aCollection with: aRoots [
 
 	| mementos finalMemento |
@@ -64,7 +66,7 @@ PyramidRemoveSelectedElementsCommand >> saveStatesWithCommandInverseOf: aCollect
 	^ finalMemento
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PyramidRemoveSelectedElementsCommand >> setValueFor: aBlElementToRemove with: aRoot [
 	"Remove the element from its parent"
 

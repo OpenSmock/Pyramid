@@ -1,16 +1,18 @@
 Class {
-	#name : #PyramidChangeTextCommand,
-	#superclass : #PyramidBlocTextCommand,
-	#category : #'Pyramid-Bloc-plugin-bloc-text'
+	#name : 'PyramidChangeTextCommand',
+	#superclass : 'PyramidBlocTextCommand',
+	#category : 'Pyramid-Bloc-plugin-bloc-text',
+	#package : 'Pyramid-Bloc',
+	#tag : 'plugin-bloc-text'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PyramidChangeTextCommand >> getValueFor: aBlTextElement [
 
 	^ aBlTextElement text asString
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PyramidChangeTextCommand >> setValueFor: aBlTextElement with: aString [
 
 	| attributes rope |

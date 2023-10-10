@@ -1,18 +1,20 @@
 Class {
-	#name : #PyramidFlowLayoutChangeOrientationCommandTest,
-	#superclass : #TestCase,
+	#name : 'PyramidFlowLayoutChangeOrientationCommandTest',
+	#superclass : 'TestCase',
 	#traits : 'TPyramidCommandTest',
 	#classTraits : 'TPyramidCommandTest classTrait',
-	#category : #'Pyramid-Tests-cases-plugin-bloc-layout'
+	#category : 'Pyramid-Tests-cases-plugin-bloc-layout',
+	#package : 'Pyramid-Tests',
+	#tag : 'cases-plugin-bloc-layout'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidFlowLayoutChangeOrientationCommandTest >> command [
 
 	^ PyramidFlowLayoutChangeOrientationCommand new
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PyramidFlowLayoutChangeOrientationCommandTest >> targetContainers [
 
 	^ { (PyramidCommandTestContainer
@@ -49,7 +51,7 @@ PyramidFlowLayoutChangeOrientationCommandTest >> targetContainers [
 		   prop: BlLayoutOrientation horizontal) }
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PyramidFlowLayoutChangeOrientationCommandTest >> targetsCannotBeUsedFor [
 	"override if needed"
 

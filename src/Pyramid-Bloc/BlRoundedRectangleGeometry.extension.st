@@ -1,6 +1,6 @@
-Extension { #name : #BlRoundedRectangleGeometry }
+Extension { #name : 'BlRoundedRectangleGeometry' }
 
-{ #category : #'*Pyramid-Bloc' }
+{ #category : '*Pyramid-Bloc' }
 BlRoundedRectangleGeometry >> = anObject [
 
 	self == anObject ifTrue: [ ^ true ].

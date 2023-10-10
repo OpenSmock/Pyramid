@@ -1,6 +1,6 @@
 Class {
-	#name : #PyramidGradientPaintInputPresenter,
-	#superclass : #PyramidInputPresenter,
+	#name : 'PyramidGradientPaintInputPresenter',
+	#superclass : 'PyramidInputPresenter',
 	#instVars : [
 		'stopsInput',
 		'radialButton',
@@ -11,16 +11,18 @@ Class {
 		'centerInput',
 		'endInput'
 	],
-	#category : #'Pyramid-Bloc-plugin-bloc'
+	#category : 'Pyramid-Bloc-plugin-bloc',
+	#package : 'Pyramid-Bloc',
+	#tag : 'plugin-bloc'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidGradientPaintInputPresenter >> centerInput [
 
 	^ centerInput
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 PyramidGradientPaintInputPresenter >> defaultLayout [
 
 	| labelSize |
@@ -73,13 +75,13 @@ PyramidGradientPaintInputPresenter >> defaultLayout [
 		  "height: 250"yourself
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidGradientPaintInputPresenter >> endInput [
 
 	^ endInput
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 PyramidGradientPaintInputPresenter >> initializePresenters [
 
 	whenValueChangedDo := [ :paint |  ].
@@ -102,36 +104,36 @@ PyramidGradientPaintInputPresenter >> initializePresenters [
 	linearButton associatedRadioButtons: { radialButton }
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidGradientPaintInputPresenter >> linearButton [
 
 	^ linearButton
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidGradientPaintInputPresenter >> radialButton [
 
 	^ radialButton
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidGradientPaintInputPresenter >> radiusInput [
 ^ radiusInput
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidGradientPaintInputPresenter >> startInput [ 
 
 ^ startInput. 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidGradientPaintInputPresenter >> stopsInput [
 
 	^ stopsInput
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 PyramidGradientPaintInputPresenter >> value [
 
 	self linearButton state ifTrue: [
@@ -147,7 +149,7 @@ PyramidGradientPaintInputPresenter >> value [
 		  yourself
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 PyramidGradientPaintInputPresenter >> value: aBlGradientPaint [
 
 	| temp |
@@ -157,13 +159,13 @@ PyramidGradientPaintInputPresenter >> value: aBlGradientPaint [
 	self whenValueChangedDo: temp
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidGradientPaintInputPresenter >> whenValueChangedDo [
 
 	^ whenValueChangedDo
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidGradientPaintInputPresenter >> whenValueChangedDo: anObject [
 
 	whenValueChangedDo := anObject

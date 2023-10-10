@@ -1,18 +1,20 @@
 Class {
-	#name : #PyramidGroupInverseCommandTest,
-	#superclass : #TestCase,
+	#name : 'PyramidGroupInverseCommandTest',
+	#superclass : 'TestCase',
 	#traits : 'TPyramidCommandTest',
 	#classTraits : 'TPyramidCommandTest classTrait',
-	#category : #'Pyramid-Tests-cases-plugin-bloc'
+	#category : 'Pyramid-Tests-cases-plugin-bloc',
+	#package : 'Pyramid-Tests',
+	#tag : 'cases-plugin-bloc'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidGroupInverseCommandTest >> command [
 
 	^ PyramidGroupInverseCommand new
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PyramidGroupInverseCommandTest >> targetsCanBeUsedFor [
 
 	| parent elements |
@@ -27,7 +29,7 @@ PyramidGroupInverseCommandTest >> targetsCanBeUsedFor [
 		  elements }
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PyramidGroupInverseCommandTest >> targetsCannotBeUsedFor [
 
 	| parent elements |
@@ -50,14 +52,14 @@ PyramidGroupInverseCommandTest >> targetsCannotBeUsedFor [
 			   yourself) }
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PyramidGroupInverseCommandTest >> testGetValueFor [
 
 	self targetsCanBeUsedFor do: [ :each |
 		self assert: (self command getValueFor: each) equals: nil ]
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PyramidGroupInverseCommandTest >> testHistory [
 	"Do once.
 	undo
@@ -120,7 +122,7 @@ PyramidGroupInverseCommandTest >> testHistory [
 	self deny: (selection anySatisfy: [ :each | each parent = e1 ]).
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PyramidGroupInverseCommandTest >> testSetValueForWith [
 
 	| e1 e2 e3 e4 selection roots parent |

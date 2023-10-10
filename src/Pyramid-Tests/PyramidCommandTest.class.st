@@ -1,10 +1,12 @@
 Class {
-	#name : #PyramidCommandTest,
-	#superclass : #TestCase,
-	#category : #'Pyramid-Tests-cases-command'
+	#name : 'PyramidCommandTest',
+	#superclass : 'TestCase',
+	#category : 'Pyramid-Tests-cases-command',
+	#package : 'Pyramid-Tests',
+	#tag : 'cases-command'
 }
 
-{ #category : #tests }
+{ #category : 'tests' }
 PyramidCommandTest >> testClusterOf [
 
 	| mocks cluster |
@@ -97,7 +99,7 @@ PyramidCommandTest >> testClusterOf [
 
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PyramidCommandTest >> testSaveStatesOfWith [
 
 	| mocks mementos |
@@ -174,7 +176,7 @@ PyramidCommandTest >> testSaveStatesOfWith [
 	self assert: mementos mementos second arguments equals: nil
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PyramidCommandTest >> testSaveStatesWithCommandInverseOfWith [
 
 	| mocks mementos |
@@ -257,7 +259,7 @@ PyramidCommandTest >> testSaveStatesWithCommandInverseOfWith [
 	self assert: mementos mementos second arguments equals: nil
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PyramidCommandTest >> testUseOnWith [
 
 	| mocks |

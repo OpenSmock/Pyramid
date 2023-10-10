@@ -1,12 +1,14 @@
 Class {
-	#name : #PyramidLayoutInputPresenterTest,
-	#superclass : #TestCase,
+	#name : 'PyramidLayoutInputPresenterTest',
+	#superclass : 'TestCase',
 	#traits : 'TPyramidInputPresenterTest',
 	#classTraits : 'TPyramidInputPresenterTest classTrait',
-	#category : #'Pyramid-Tests-cases-specs-custom'
+	#category : 'Pyramid-Tests-cases-specs-custom',
+	#package : 'Pyramid-Tests',
+	#tag : 'cases-specs-custom'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidLayoutInputPresenterTest >> dummyValues [
 
 	^ {
@@ -17,13 +19,13 @@ PyramidLayoutInputPresenterTest >> dummyValues [
 		 }
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PyramidLayoutInputPresenterTest >> makeNewInput [
 
 	^ PyramidLayoutInputPresenter new
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PyramidLayoutInputPresenterTest >> triggerValueChangedOf: anInput [
 
 	anInput buttonBasic click

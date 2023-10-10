@@ -1,6 +1,6 @@
 Class {
-	#name : #PyramidTreePresenter,
-	#superclass : #SpPresenter,
+	#name : 'PyramidTreePresenter',
+	#superclass : 'SpPresenter',
 	#traits : 'TPyramidProjectModelObserver',
 	#classTraits : 'TPyramidProjectModelObserver classTrait',
 	#instVars : [
@@ -12,10 +12,12 @@ Class {
 		'editorMenuBuilder',
 		'shouldUpdateSelection'
 	],
-	#category : #'Pyramid-Bloc-plugin-tree-library'
+	#category : 'Pyramid-Bloc-plugin-tree-library',
+	#package : 'Pyramid-Bloc',
+	#tag : 'plugin-tree-library'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PyramidTreePresenter >> actionAddNewElement [
 (PyramidPopoverFactory
 				                  makeWithPresenter: self libraryPresenterForRoot
@@ -23,13 +25,13 @@ PyramidTreePresenter >> actionAddNewElement [
 				                  position: SpPopoverPosition right) popup
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PyramidTreePresenter >> actionEditorMenu [
 
 	^ self editorMenuBuilder menuFor: self projectModel selection.
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PyramidTreePresenter >> actionSelectionChanged: aCollection [
 
 	self projectModel ifNil: [ ^ self ].
@@ -38,19 +40,19 @@ PyramidTreePresenter >> actionSelectionChanged: aCollection [
 	[self projectModel setSelection: aCollection selectedItems ] ensure: [ self shouldUpdateSelection: true ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidTreePresenter >> buttonAddToRoots [
 
 	^ buttonAddToRoots
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidTreePresenter >> columns [
 
 	^ columns
 ]
 
-{ #category : #layout }
+{ #category : 'layout' }
 PyramidTreePresenter >> defaultLayout [
 
 	^ SpBoxLayout newVertical
@@ -60,19 +62,19 @@ PyramidTreePresenter >> defaultLayout [
 		  yourself
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidTreePresenter >> editorMenuBuilder [
 
 	^ editorMenuBuilder
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidTreePresenter >> editorMenuBuilder: anObject [
 
 	editorMenuBuilder := anObject
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 PyramidTreePresenter >> initializePresenters [
 
 	shouldUpdateSelection := true.
@@ -97,25 +99,25 @@ PyramidTreePresenter >> initializePresenters [
 				                    yourself
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidTreePresenter >> libraryPresenterForRoot [
 
 	^ libraryPresenterForRoot
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidTreePresenter >> libraryPresenterForRoot: anObject [
 
 	libraryPresenterForRoot := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidTreePresenter >> projectModel [
 
 	^ projectModel
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidTreePresenter >> projectModel: anObject [
 
 	projectModel ifNotNil: [ projectModel removeObserver: self ].
@@ -124,27 +126,27 @@ PyramidTreePresenter >> projectModel: anObject [
 	
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PyramidTreePresenter >> pyramidElementsChanged [
 
 	self updateRoots.
 	self selectionHaveChanged ifTrue: [ self updateSelection ].
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PyramidTreePresenter >> pyramidRootsChanged [
 
 	self updateRoots .
 	self updateSelection
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PyramidTreePresenter >> pyramidSelectionChanged [
 
 	self updateSelection
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PyramidTreePresenter >> selectionHaveChanged [
 
 	self tree selectedItems size = self projectModel selection size ifFalse: [
@@ -156,25 +158,25 @@ PyramidTreePresenter >> selectionHaveChanged [
 	^ false
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidTreePresenter >> shouldUpdateSelection [
 
 	^ shouldUpdateSelection
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidTreePresenter >> shouldUpdateSelection: anObject [
 
 	shouldUpdateSelection := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidTreePresenter >> tree [
 
 	^ tree
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PyramidTreePresenter >> updateRoots [
 
 	self shouldUpdateSelection: false.
@@ -182,7 +184,7 @@ PyramidTreePresenter >> updateRoots [
 	self tree roots: self projectModel roots asArray ] ensure: [ self shouldUpdateSelection: true ]
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PyramidTreePresenter >> updateSelection [
 
 	self projectModel ifNil: [ ^ self ].
@@ -195,7 +197,7 @@ PyramidTreePresenter >> updateSelection [
 		ensure: [ self shouldUpdateSelection: true ]
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PyramidTreePresenter >> updateTree [
 
 	self tree columns: {  }.

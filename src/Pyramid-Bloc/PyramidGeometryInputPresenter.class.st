@@ -1,15 +1,17 @@
 Class {
-	#name : #PyramidGeometryInputPresenter,
-	#superclass : #PyramidInputPresenter,
+	#name : 'PyramidGeometryInputPresenter',
+	#superclass : 'PyramidInputPresenter',
 	#instVars : [
 		'whenValueChangedDo',
 		'geometry',
 		'geometryDictionary'
 	],
-	#category : #'Pyramid-Bloc-plugin-bloc-geometry'
+	#category : 'Pyramid-Bloc-plugin-bloc-geometry',
+	#package : 'Pyramid-Bloc',
+	#tag : 'plugin-bloc-geometry'
 }
 
-{ #category : #layout }
+{ #category : 'layout' }
 PyramidGeometryInputPresenter >> defaultLayout [
 
 	| defaultLayout |
@@ -23,26 +25,26 @@ PyramidGeometryInputPresenter >> defaultLayout [
 	^ defaultLayout
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidGeometryInputPresenter >> geometry [
 	"Return a BlElementGeometry"
 
 	^ geometry
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidGeometryInputPresenter >> geometry: aBlElementGeometry [
 
 	geometry := aBlElementGeometry
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidGeometryInputPresenter >> geometryDictionary [
 
 	^ geometryDictionary
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 PyramidGeometryInputPresenter >> initializeGeometryButtons [
 
 	geometryDictionary
@@ -104,7 +106,7 @@ PyramidGeometryInputPresenter >> initializeGeometryButtons [
 				 yourself)
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 PyramidGeometryInputPresenter >> initializePresenters [
 
 	whenValueChangedDo := [ :geo |  ].
@@ -113,7 +115,7 @@ PyramidGeometryInputPresenter >> initializePresenters [
 	self value: PyramidUnknowState new
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PyramidGeometryInputPresenter >> setNormalAndSelect: buttonModel [
 
 	self geometryDictionary valuesDo: [ :each | each normal ].
@@ -121,19 +123,19 @@ PyramidGeometryInputPresenter >> setNormalAndSelect: buttonModel [
 	buttonModel selected
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 PyramidGeometryInputPresenter >> setUnknow [
 
 	self geometryDictionary valuesDo: [ :each | each error ].
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PyramidGeometryInputPresenter >> value [
 
 	^ self geometry
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PyramidGeometryInputPresenter >> value: aBlGeometry [
 
 	self geometry: aBlGeometry.
@@ -143,13 +145,13 @@ PyramidGeometryInputPresenter >> value: aBlGeometry [
 		ifAbsent: [ self setUnknow ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidGeometryInputPresenter >> whenValueChangedDo [
 
 	^ whenValueChangedDo
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PyramidGeometryInputPresenter >> whenValueChangedDo: anObject [
 
 	whenValueChangedDo := anObject

@@ -1,15 +1,17 @@
 Class {
-	#name : #PyramidSaveModelVerifier,
-	#superclass : #Object,
+	#name : 'PyramidSaveModelVerifier',
+	#superclass : 'Object',
 	#instVars : [
 		'nextVerifiers',
 		'showBlock',
 		'verifyBlock'
 	],
-	#category : #'Pyramid-Bloc-plugin-save'
+	#category : 'Pyramid-Bloc-plugin-save',
+	#package : 'Pyramid-Bloc',
+	#tag : 'plugin-save'
 }
 
-{ #category : #constructor }
+{ #category : 'constructor' }
 PyramidSaveModelVerifier class >> classIsValid [
 
 	^ self new
@@ -19,7 +21,7 @@ PyramidSaveModelVerifier class >> classIsValid [
 		
 ]
 
-{ #category : #constructor }
+{ #category : 'constructor' }
 PyramidSaveModelVerifier class >> classPackageIsEqual [
 
 	^ self new
@@ -27,13 +29,17 @@ PyramidSaveModelVerifier class >> classPackageIsEqual [
 			  self class environment
 				  at: model savingClassName asSymbol
 				  ifPresent: [ :class |
-					  class package name = model savingPackageName ]
+					"
+					Model = class package >> OK
+					Model = class package '-' class packageTag >> OK
+					KO"
+					  class packageName = model savingPackageName ifTrue: [ true ] ifFalse: [ class packageTag ifNil: [false] ifNotNil: [ (class packageName ,'-', class packageTagName) = model savingPackageName ] ] ]
 				  ifAbsent: [ true ] ];
 		  showBlock: [ :view | view showClassPackageIsNotEqualError ];
 		  yourself
 ]
 
-{ #category : #constructor }
+{ #category : 'constructor' }
 PyramidSaveModelVerifier class >> methodIsValid [
 
 	^ self new
@@ -43,7 +49,7 @@ PyramidSaveModelVerifier class >> methodIsValid [
 		  
 ]
 
-{ #category : #constructor }
+{ #category : 'constructor' }
 PyramidSaveModelVerifier class >> modelNotNil [
 
 	^ self new
@@ -52,18 +58,17 @@ PyramidSaveModelVerifier class >> modelNotNil [
 		  yourself
 ]
 
-{ #category : #constructor }
+{ #category : 'constructor' }
 PyramidSaveModelVerifier class >> packageIsValid [
 
 	^ self new
 		  verifyBlock: [ :model |
-			  ($- split: model savingPackageName) allSatisfy: [ :each |
-					  each isValidGlobalName ] ];
+			  ($- split: model savingPackageName) first isValidGlobalName ];
 		  showBlock: [ :view | view showPackageIsNotValidError ];
 		  yourself
 ]
 
-{ #category : #constructor }
+{ #category : 'constructor' }
 PyramidSaveModelVerifier class >> projectModelNotNil [
 
 	^ self new
@@ -72,7 +77,7 @@ PyramidSaveModelVerifier class >> projectModelNotNil [
 		  yourself
 ]
 
-{ #category : #constructor }
+{ #category : 'constructor' }
 PyramidSaveModelVerifier class >> verifierNoError [
 
 	^ self modelNotNil addNext: (self projectModelNotNil addNext:
@@ -80,7 +85,7 @@ PyramidSaveModelVerifier class >> verifierNoError [
 				    (self classIsValid addNext: self classPackageIsEqual))))
 ]
 
-{ #category : #constructor }
+{ #category : 'constructor' }
 PyramidSaveModelVerifier class >> verifierNoErrorForInputsView [
 
 	^ self modelNotNil addNext: (self projectModelNotNil addNext:
@@ -90,63 +95,63 @@ PyramidSaveModelVerifier class >> verifierNoErrorForInputsView [
 					   (self classIsValid addNext: self classPackageIsEqual)))
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 PyramidSaveModelVerifier >> addNext: aVerifier [
 
 	self nextVerifiers add: aVerifier
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PyramidSaveModelVerifier >> allErrors: aSaveModel [
 
 	(self verifyBlock value: aSaveModel) ifFalse: [ ^ { self } ].
 	^ self nextVerifiers flatCollect: [ :each | each allErrors: aSaveModel ]
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PyramidSaveModelVerifier >> initialize [
 
 	super initialize.
 	nextVerifiers := OrderedCollection new
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PyramidSaveModelVerifier >> nextVerifiers [
 	^ nextVerifiers
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidSaveModelVerifier >> showBlock [
 
 	^ showBlock
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidSaveModelVerifier >> showBlock: anObject [
 
 	showBlock := anObject
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PyramidSaveModelVerifier >> showOn: aView [
 
 	self showBlock value: aView.
 ]
 
-{ #category : #drawing }
+{ #category : 'drawing' }
 PyramidSaveModelVerifier >> verify: aModel [
 
 	(self verifyBlock value: aModel) ifFalse: [ ^ false ].
 	^ self nextVerifiers allSatisfy: [ :each | each verify: aModel ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidSaveModelVerifier >> verifyBlock [
 
 	^ verifyBlock.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidSaveModelVerifier >> verifyBlock: anObject [
 
 	verifyBlock := anObject

@@ -1,27 +1,29 @@
 Class {
-	#name : #PyramidSavingServiceTest,
-	#superclass : #TestCase,
+	#name : 'PyramidSavingServiceTest',
+	#superclass : 'TestCase',
 	#instVars : [
 		'methodBuilder',
 		'savingService',
 		'savingClass'
 	],
-	#category : #'Pyramid-Tests-cases-plugin-save'
+	#category : 'Pyramid-Tests-cases-plugin-save',
+	#package : 'Pyramid-Tests',
+	#tag : 'cases-plugin-save'
 }
 
-{ #category : #running }
+{ #category : 'running' }
 PyramidSavingServiceTest >> savingClass [
 
 	^ savingClass
 ]
 
-{ #category : #running }
+{ #category : 'running' }
 PyramidSavingServiceTest >> savingService [
 
 	^ savingService
 ]
 
-{ #category : #running }
+{ #category : 'running' }
 PyramidSavingServiceTest >> setUp [
 
 	super setUp.
@@ -43,7 +45,7 @@ PyramidSavingServiceTest >> setUp [
 			               package: self class category ]
 ]
 
-{ #category : #running }
+{ #category : 'running' }
 PyramidSavingServiceTest >> tearDown [
 
 	savingClass ifNotNil: [ savingClass removeFromSystem ].
@@ -51,7 +53,7 @@ PyramidSavingServiceTest >> tearDown [
 	super tearDown
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PyramidSavingServiceTest >> testCanSave [
 	"Test:
 	
@@ -93,7 +95,7 @@ PyramidSavingServiceTest >> testCanSave [
 	model savingClassName: 'PyramidSavingClass'.
 	model savingMethodName: 'aPyramidSavingMethod'.
 	model savingPackageName: 'PyramidSavingPackage-abc'.
-	self deny: self savingService canSave.
+	self assert: self savingService canSave.
 
 	model savingClassName: 'PyramidSavingClass'.
 	model savingMethodName: 'aPyramidSavingMethod'.
@@ -104,6 +106,12 @@ PyramidSavingServiceTest >> testCanSave [
 	model savingMethodName: 'aPyramidSavingMethod'.
 	model savingPackageName: self savingClass package name.
 	self assert: self savingService canSave.
+	
+	self assert: self savingClass packageTag isNotNil.
+	model savingClassName: self savingClass name.
+	model savingMethodName: 'aPyramidSavingMethod'.
+	model savingPackageName: self savingClass packageName, '-', self savingClass packageTagName.
+	self assert: self savingService canSave.
 
 	model savingClassName: self savingClass name.
 	model savingMethodName: 'aPyramidSavingMethod'.
@@ -111,7 +119,7 @@ PyramidSavingServiceTest >> testCanSave [
 	self deny: self savingService canSave
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PyramidSavingServiceTest >> testErrorCannotSave [
 	"Test:
 	
@@ -122,20 +130,23 @@ PyramidSavingServiceTest >> testErrorCannotSave [
 	self should: [ self savingService save ] raise: PyramidSaveError
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PyramidSavingServiceTest >> testSave [
 	"Test:
 
 	Save on class side.
 	Assert the method is present class side.
 	Save on instance side.
-	Assert the method is present instance side."
+	Assert the method is present instance side.
+	
+	Save with package + tag.
+	Assert method is present."
 
 	| model |
 	model := PyramidSaveModel new.
 	model projectModel: PyramidProjectModel new.
 	model savingClassName: self savingClass name.
-	model savingPackageName: self savingClass package name.
+	model savingPackageName: self savingClass packageName.
 	self savingService saveModel: model.
 
 	self deny: (self savingClass classSide canUnderstand: #classMethod).
@@ -159,10 +170,19 @@ PyramidSavingServiceTest >> testSave [
 	self deny:
 		(self savingClass classSide canUnderstand: #instanceMethod).
 	self assert:
-		(self savingClass instanceSide canUnderstand: #instanceMethod)
+		(self savingClass instanceSide canUnderstand: #instanceMethod).
+
+	model onClass.
+	model savingPackageName: self savingClass packageName , '-' , self savingClass packageTagName.
+	model savingMethodName: 'packageWithTag'.
+	self savingService save.
+	self assert:
+		(self savingClass classSide canUnderstand: #packageWithTag).
+	self deny:
+		(self savingClass instanceSide canUnderstand: #packageWithTag)
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PyramidSavingServiceTest >> testSavingClass [
 	"Test:
 	
@@ -192,7 +212,7 @@ PyramidSavingServiceTest >> testSavingClass [
 		ifAbsent: [ self fail: 'The class do not exist' ]
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PyramidSavingServiceTest >> testSavingMethod [
 	"Test:
 

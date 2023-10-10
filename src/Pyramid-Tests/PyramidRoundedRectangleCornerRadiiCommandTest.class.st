@@ -1,18 +1,20 @@
 Class {
-	#name : #PyramidRoundedRectangleCornerRadiiCommandTest,
-	#superclass : #TestCase,
+	#name : 'PyramidRoundedRectangleCornerRadiiCommandTest',
+	#superclass : 'TestCase',
 	#traits : 'TPyramidCommandTest',
 	#classTraits : 'TPyramidCommandTest classTrait',
-	#category : #'Pyramid-Tests-cases-plugin-bloc-geometry'
+	#category : 'Pyramid-Tests-cases-plugin-bloc-geometry',
+	#package : 'Pyramid-Tests',
+	#tag : 'cases-plugin-bloc-geometry'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidRoundedRectangleCornerRadiiCommandTest >> command [
 
 	^ PyramidRoundedRectangleCornerRadiiCommand new
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PyramidRoundedRectangleCornerRadiiCommandTest >> targetContainers [
 
 	^ {
@@ -30,7 +32,7 @@ PyramidRoundedRectangleCornerRadiiCommandTest >> targetContainers [
 			   prop: (BlCornerRadii radius: 20)) }
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PyramidRoundedRectangleCornerRadiiCommandTest >> targetsCannotBeUsedFor [
 	"override if needed"
 

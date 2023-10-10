@@ -1,6 +1,6 @@
 Class {
-	#name : #PyramidSpaceBuilder,
-	#superclass : #Object,
+	#name : 'PyramidSpaceBuilder',
+	#superclass : 'Object',
 	#traits : 'TPyramidEditorTransformation',
 	#classTraits : 'TPyramidEditorTransformation classTrait',
 	#instVars : [
@@ -13,10 +13,12 @@ Class {
 	#classInstVars : [
 		'defaultEditorExtensions'
 	],
-	#category : #'Pyramid-Bloc-plugin-space'
+	#category : 'Pyramid-Bloc-plugin-space',
+	#package : 'Pyramid-Bloc',
+	#tag : 'plugin-space'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PyramidSpaceBuilder class >> defaultEditorBuilder [
 
 	<script: '
@@ -37,7 +39,7 @@ PyramidSpaceBuilder class >> defaultEditorBuilder [
 	^ builder
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidSpaceBuilder class >> defaultEditorExtensions [
 
 	<script: 'defaultEditorExtensions := nil'>
@@ -53,20 +55,20 @@ PyramidSpaceBuilder class >> defaultEditorExtensions [
 	^ defaultEditorExtensions
 ]
 
-{ #category : #adding }
+{ #category : 'adding' }
 PyramidSpaceBuilder >> addAllOverlaysNamed: aCollection [
 
 	aCollection reverseDo: [ :each | self addOverlayNamed: each ]
 ]
 
-{ #category : #adding }
+{ #category : 'adding' }
 PyramidSpaceBuilder >> addExtension: anExtension [
 
 	anExtension installOn: self.
 	self extensions add: anExtension
 ]
 
-{ #category : #adding }
+{ #category : 'adding' }
 PyramidSpaceBuilder >> addOverlayNamed: aString [
 
 	| overlay |
@@ -85,7 +87,7 @@ PyramidSpaceBuilder >> addOverlayNamed: aString [
 	self topMostOverlay: overlay
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PyramidSpaceBuilder >> build [
 
 	self space: BlSpace new.
@@ -104,7 +106,7 @@ PyramidSpaceBuilder >> build [
 	^ self space
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidSpaceBuilder >> editor: aPyramidEditor [
 
 	self extensions do: [ :each | each editor: aPyramidEditor ].
@@ -113,18 +115,18 @@ PyramidSpaceBuilder >> editor: aPyramidEditor [
 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidSpaceBuilder >> elementAt: aString [
 
 	^ (self overlays at: aString) element
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidSpaceBuilder >> extensions [
 ^ extensions
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 PyramidSpaceBuilder >> initialize [
 
 	overlays := Dictionary new.
@@ -132,36 +134,36 @@ PyramidSpaceBuilder >> initialize [
 	extensions := Set new
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidSpaceBuilder >> keyboard [
 
 	^ keyboard
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 PyramidSpaceBuilder >> overlays [
 	^ overlays
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidSpaceBuilder >> space [
 
 	^ space
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidSpaceBuilder >> space: anObject [
 
 	space := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidSpaceBuilder >> topMostOverlay [
 
 	^ topMostOverlay
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidSpaceBuilder >> topMostOverlay: anObject [
 
 	topMostOverlay := anObject
