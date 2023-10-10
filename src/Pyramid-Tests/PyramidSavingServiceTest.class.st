@@ -93,7 +93,7 @@ PyramidSavingServiceTest >> testCanSave [
 	model savingClassName: 'PyramidSavingClass'.
 	model savingMethodName: 'aPyramidSavingMethod'.
 	model savingPackageName: 'PyramidSavingPackage-abc'.
-	self deny: self savingService canSave.
+	self assert: self savingService canSave.
 
 	model savingClassName: 'PyramidSavingClass'.
 	model savingMethodName: 'aPyramidSavingMethod'.
@@ -107,7 +107,20 @@ PyramidSavingServiceTest >> testCanSave [
 
 	model savingClassName: self savingClass name.
 	model savingMethodName: 'aPyramidSavingMethod'.
-	model savingPackageName: self savingClass package name , 'notTheSame'.
+	model savingPackageName:
+		self savingClass package name , '-cases-plugin-save'.
+	self assert: self savingService canSave.
+
+	model savingClassName: self savingClass name.
+	model savingMethodName: 'aPyramidSavingMethod'.
+	model savingPackageName:
+		self savingClass package name , 'notTheSamePackage'.
+	self deny: self savingService canSave.
+
+	model savingClassName: self savingClass name.
+	model savingMethodName: 'aPyramidSavingMethod'.
+	model savingPackageName:
+		self savingClass package name , '-notTheSameTag'.
 	self deny: self savingService canSave
 ]
 
@@ -129,7 +142,10 @@ PyramidSavingServiceTest >> testSave [
 	Save on class side.
 	Assert the method is present class side.
 	Save on instance side.
-	Assert the method is present instance side."
+	Assert the method is present instance side.
+	
+	Save with package + tag.
+	Assert method is present."
 
 	| model |
 	model := PyramidSaveModel new.
@@ -159,7 +175,17 @@ PyramidSavingServiceTest >> testSave [
 	self deny:
 		(self savingClass classSide canUnderstand: #instanceMethod).
 	self assert:
-		(self savingClass instanceSide canUnderstand: #instanceMethod)
+		(self savingClass instanceSide canUnderstand: #instanceMethod).
+
+	model onClass.
+	model savingPackageName:
+		self savingClass package name , '-cases-plugin-save'.
+	model savingMethodName: 'packageWithTag'.
+	self savingService save.
+	self assert:
+		(self savingClass classSide canUnderstand: #packageWithTag).
+	self deny:
+		(self savingClass instanceSide canUnderstand: #packageWithTag)
 ]
 
 { #category : #tests }

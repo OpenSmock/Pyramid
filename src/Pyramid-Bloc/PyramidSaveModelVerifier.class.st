@@ -26,8 +26,20 @@ PyramidSaveModelVerifier class >> classPackageIsEqual [
 		  verifyBlock: [ :model |
 			  self class environment
 				  at: model savingClassName asSymbol
-				  ifPresent: [ :class |
-					  class package name = model savingPackageName ]
+				  ifPresent: [ :class | "
+					Model = class package >> OK
+					Model = class package '-' class packageTag >> OK
+					KO"
+					  class package name = model savingPackageName
+						  ifTrue: [ true ]
+						  ifFalse: [
+							  class package classTags
+								  detect: [ :tag | tag includesClass: class ]
+								  ifFound: [ :tag |
+									  class package name , '-' , tag name
+									  = model savingPackageName ]
+								  ifNone: [ false ].
+							   ] ]
 				  ifAbsent: [ true ] ];
 		  showBlock: [ :view | view showClassPackageIsNotEqualError ];
 		  yourself
@@ -57,8 +69,7 @@ PyramidSaveModelVerifier class >> packageIsValid [
 
 	^ self new
 		  verifyBlock: [ :model |
-			  ($- split: model savingPackageName) allSatisfy: [ :each |
-					  each isValidGlobalName ] ];
+			  ($- split: model savingPackageName) first isValidGlobalName ];
 		  showBlock: [ :view | view showPackageIsNotValidError ];
 		  yourself
 ]
