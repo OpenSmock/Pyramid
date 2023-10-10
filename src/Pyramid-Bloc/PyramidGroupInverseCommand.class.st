@@ -29,6 +29,7 @@ PyramidGroupInverseCommand >> setValueFor: aCollection with: roots [
 	elements := groupElement children asArray.
 	(roots includesAny: elements) ifTrue: [ ^ self ].
 	groupElement removeChildren.
+	elements do: [ :each | each position: each constraints position + groupElement constraints position ].
 
 	groupElement hasParent ifTrue: [
 		groupElement parent addChildren: elements.
