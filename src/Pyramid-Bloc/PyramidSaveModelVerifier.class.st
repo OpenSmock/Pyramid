@@ -35,9 +35,13 @@ PyramidSaveModelVerifier class >> classPackageIsEqual [
 					  class package name = model savingPackageName
 						  ifTrue: [ true ]
 						  ifFalse: [
-							  class packageTag ifNil: [ false ] ifNotNil: [
-									  class package name , '-' , class packageTag name
-									  = model savingPackageName ] ] ]
+							  class package classTags
+								  detect: [ :tag | tag includesClass: class ]
+								  ifFound: [ :tag |
+									  class package name , '-' , tag name
+									  = model savingPackageName ]
+								  ifNone: [ false ].
+							   ] ]
 				  ifAbsent: [ true ] ];
 		  showBlock: [ :view | view showClassPackageIsNotEqualError ];
 		  yourself
