@@ -121,7 +121,7 @@ PyramidSpaceBuilderTest >> testEditor [
 	self deny: extension editor.
 	self deny: extension projectModel.
 
-	builder editor: PyramidEditor new.
+	builder editor: PyramidEditorBlaBlaBla new.
 	"stub for a PyramidEditor"
 	self assert: extension editor.
 	self assert: extension projectModel

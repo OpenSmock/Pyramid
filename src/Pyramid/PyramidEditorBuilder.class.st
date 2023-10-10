@@ -34,7 +34,7 @@ PyramidEditorBuilder >> build [
 
 { #category : #accessing }
 PyramidEditorBuilder >> editor [
-editor ifNil: [ editor := PyramidEditor new ].
+editor ifNil: [ editor := PyramidEditorBlaBlaBla new ].
  ^ editor
 
 ]

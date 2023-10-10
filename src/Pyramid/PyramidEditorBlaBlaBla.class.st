@@ -1,5 +1,5 @@
 Class {
-	#name : #PyramidEditor,
+	#name : #PyramidEditorBlaBlaBla,
 	#superclass : #Object,
 	#instVars : [
 		'plugins',
@@ -11,7 +11,7 @@ Class {
 }
 
 { #category : #initialization }
-PyramidEditor >> initialize [
+PyramidEditorBlaBlaBla >> initialize [
 
 	projectModel := PyramidProjectModel new.
 	propertiesManager := PyramidPropertiesManagerForSelection new
@@ -21,43 +21,43 @@ PyramidEditor >> initialize [
 ]
 
 { #category : #accessing }
-PyramidEditor >> plugins [
+PyramidEditorBlaBlaBla >> plugins [
 
 	^ plugins
 ]
 
 { #category : #accessing }
-PyramidEditor >> plugins: aCollection [
+PyramidEditorBlaBlaBla >> plugins: aCollection [
 
 	plugins := aCollection
 ]
 
 { #category : #accessing }
-PyramidEditor >> projectModel [
+PyramidEditorBlaBlaBla >> projectModel [
 
 	^ projectModel
 ]
 
 { #category : #accessing }
-PyramidEditor >> propertiesManager [
+PyramidEditorBlaBlaBla >> propertiesManager [
 
 	^ propertiesManager
 ]
 
 { #category : #accessing }
-PyramidEditor >> view [
+PyramidEditorBlaBlaBla >> view [
 
 	^ self window presenter
 ]
 
 { #category : #accessing }
-PyramidEditor >> window [
+PyramidEditorBlaBlaBla >> window [
 
 	^ window
 ]
 
 { #category : #accessing }
-PyramidEditor >> window: anObject [
+PyramidEditorBlaBlaBla >> window: anObject [
 
 	window := anObject.
 	window at: #tabRight addItem: [ :builder |
