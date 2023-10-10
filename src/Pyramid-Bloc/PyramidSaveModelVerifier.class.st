@@ -28,12 +28,16 @@ PyramidSaveModelVerifier class >> classPackageIsEqual [
 		  verifyBlock: [ :model |
 			  self class environment
 				  at: model savingClassName asSymbol
-				  ifPresent: [ :class |
-					"
+				  ifPresent: [ :class | "
 					Model = class package >> OK
 					Model = class package '-' class packageTag >> OK
 					KO"
-					  class packageName = model savingPackageName ifTrue: [ true ] ifFalse: [ class packageTag ifNil: [false] ifNotNil: [ (class packageName ,'-', class packageTagName) = model savingPackageName ] ] ]
+					  class package name = model savingPackageName
+						  ifTrue: [ true ]
+						  ifFalse: [
+							  class packageTag ifNil: [ false ] ifNotNil: [
+									  class package name , '-' , class packageTag name
+									  = model savingPackageName ] ] ]
 				  ifAbsent: [ true ] ];
 		  showBlock: [ :view | view showClassPackageIsNotEqualError ];
 		  yourself

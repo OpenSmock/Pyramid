@@ -106,11 +106,12 @@ PyramidSavingServiceTest >> testCanSave [
 	model savingMethodName: 'aPyramidSavingMethod'.
 	model savingPackageName: self savingClass package name.
 	self assert: self savingService canSave.
-	
+
 	self assert: self savingClass packageTag isNotNil.
 	model savingClassName: self savingClass name.
 	model savingMethodName: 'aPyramidSavingMethod'.
-	model savingPackageName: self savingClass packageName, '-', self savingClass packageTagName.
+	model savingPackageName:
+		self savingClass package name , '-' , self savingClass packageTag name.
 	self assert: self savingService canSave.
 
 	model savingClassName: self savingClass name.
@@ -146,7 +147,7 @@ PyramidSavingServiceTest >> testSave [
 	model := PyramidSaveModel new.
 	model projectModel: PyramidProjectModel new.
 	model savingClassName: self savingClass name.
-	model savingPackageName: self savingClass packageName.
+	model savingPackageName: self savingClass package name.
 	self savingService saveModel: model.
 
 	self deny: (self savingClass classSide canUnderstand: #classMethod).
@@ -173,7 +174,8 @@ PyramidSavingServiceTest >> testSave [
 		(self savingClass instanceSide canUnderstand: #instanceMethod).
 
 	model onClass.
-	model savingPackageName: self savingClass packageName , '-' , self savingClass packageTagName.
+	model savingPackageName:
+		self savingClass package name , '-' , self savingClass packageTag name.
 	model savingMethodName: 'packageWithTag'.
 	self savingService save.
 	self assert:
