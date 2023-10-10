@@ -107,7 +107,6 @@ PyramidSavingServiceTest >> testCanSave [
 	model savingPackageName: self savingClass package name.
 	self assert: self savingService canSave.
 
-	self assert: self savingClass packageTag isNotNil.
 	model savingClassName: self savingClass name.
 	model savingMethodName: 'aPyramidSavingMethod'.
 	model savingPackageName:
@@ -116,12 +115,14 @@ PyramidSavingServiceTest >> testCanSave [
 
 	model savingClassName: self savingClass name.
 	model savingMethodName: 'aPyramidSavingMethod'.
-	model savingPackageName: self savingClass package name , 'notTheSamePackage'.
+	model savingPackageName:
+		self savingClass package name , 'notTheSamePackage'.
 	self deny: self savingService canSave.
-	
-model savingClassName: self savingClass name.
+
+	model savingClassName: self savingClass name.
 	model savingMethodName: 'aPyramidSavingMethod'.
-	model savingPackageName: self savingClass package name , '-notTheSameTag'.
+	model savingPackageName:
+		self savingClass package name , '-notTheSameTag'.
 	self deny: self savingService canSave
 ]
 
@@ -180,7 +181,7 @@ PyramidSavingServiceTest >> testSave [
 
 	model onClass.
 	model savingPackageName:
-		self savingClass package name , '-' , self savingClass packageTag name.
+		self savingClass package name , '-cases-plugin-save'.
 	model savingMethodName: 'packageWithTag'.
 	self savingService save.
 	self assert:
