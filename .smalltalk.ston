@@ -8,6 +8,9 @@ SmalltalkCISpec {
       #directory : 'src',
       #platforms : [ #pharo ]
     }
-  ]
-
+  ],
+  #testing : {
+    #packages : [ 'Pyramid.*' ],
+    #packages : [ 'Bloc-Serialization.*' ]
+  }
 }
