@@ -14,6 +14,8 @@ Pyramid helps you to produce final UI using Bloc library (and also Toplo).
 
 You can add plugins into Pyramid to extents the editor capacities or create [your own plugin](https://github.com/OpenSmock/Pyramid/wiki/Add-a-new-plugin-to-Pyramid) with your specifics functions !
 
+<img src="https://github.com/OpenSmock/Pyramid/assets/49183340/0ddc1ac3-bd6e-4f4b-bfb4-60eac4f48e39" width="200">
+
 ## <img src="/resources/puce.svg" width="75" height="75" align="bottom"> How to get Pyramid
 
 You can load a stable release version of Pyramid or the latest development version. 
