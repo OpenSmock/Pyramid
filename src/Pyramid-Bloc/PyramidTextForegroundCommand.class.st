@@ -18,5 +18,6 @@ PyramidTextForegroundCommand >> getValueFor: aBlTextElement [
 PyramidTextForegroundCommand >> setValueFor: aBlTextElement with: aColor [
 
 	aBlTextElement text attribute:
-		(BlTextForegroundAttribute paint: aColor)
+		(BlTextForegroundAttribute paint: aColor).
+	aBlTextElement textChanged
 ]

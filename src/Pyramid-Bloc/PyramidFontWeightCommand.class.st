@@ -15,5 +15,6 @@ PyramidFontWeightCommand >> getValueFor: aBlTextElement [
 PyramidFontWeightCommand >> setValueFor: aBlTextElement with: aNumber [
 
 	aBlTextElement text attribute:
-		(BlFontWeightAttribute weight: aNumber)
+		(BlFontWeightAttribute weight: aNumber).
+	aBlTextElement textChanged
 ]
