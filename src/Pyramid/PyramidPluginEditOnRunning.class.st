@@ -24,6 +24,29 @@ PyramidPluginEditOnRunning class >> editOnRunning: aBoolean [
 	editOnRunning := aBoolean
 ]
 
+{ #category : #initialization }
+PyramidPluginEditOnRunning class >> install [
+	"Do some stuff here when the plugin used class oriented behavior"
+	
+	self installBlUniverseListeners.
+]
+
+{ #category : #'universe management' }
+PyramidPluginEditOnRunning class >> installBlUniverseListeners [
+	
+	BlParallelUniverse all do:[ :universe |
+		universe 
+			when: BlParallelUniverseHostSpaceCreatedSignal 
+			do:[ :e | self receiveBlParallelUniverseHostSpaceCreatedSignal: e ].
+	].
+]
+
+{ #category : #'universe management' }
+PyramidPluginEditOnRunning class >> receiveBlParallelUniverseHostSpaceCreatedSignal: anEvent [
+
+	self editOnRunning ifFalse: [ ^ self ].
+]
+
 { #category : #adding }
 PyramidPluginEditOnRunning >> addPanelsOn: aPyramidSimpleWindow [
 
@@ -40,45 +63,4 @@ PyramidPluginEditOnRunning >> configureBuilder: aPyramidEditorBuilder [
 PyramidPluginEditOnRunning >> connectOn: aPyramidEditor [
 
 	"do nothing"
-]
-
-{ #category : #accessing }
-PyramidPluginEditOnRunning >> editOnRunning [
-
-	^ self class editOnRunning
-]
-
-{ #category : #accessing }
-PyramidPluginEditOnRunning >> editOnRunning: aBoolean [
-
-	self class editOnRunning: aBoolean
-]
-
-{ #category : #initialization }
-PyramidPluginEditOnRunning >> initialize [
-
-	super initialize.
-	self start.
-]
-
-{ #category : #events }
-PyramidPluginEditOnRunning >> receiveBlParallelUniverseHostSpaceCreatedSignal: anEvent [
-
-	
-]
-
-{ #category : #'start-stop' }
-PyramidPluginEditOnRunning >> start [
-	"Install BlUniverse listeners"
-	
-	BlParallelUniverse all do:[ :u |
-		u when: BlParallelUniverseHostSpaceCreatedSignal do:[ :e | self receiveBlParallelUniverseHostSpaceCreatedSignal: e ].
-	].
-]
-
-{ #category : #'start-stop' }
-PyramidPluginEditOnRunning >> stop [
-	"Remove BlUniverse listeners"
-	
-	"not necessary to remove"
 ]

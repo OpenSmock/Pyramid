@@ -11,6 +11,16 @@ TPyramidPlugin classSide >> initialize [
 	PyramidPluginManager uniqueInstance addPlugin: self
 ]
 
+{ #category : #initialization }
+TPyramidPlugin classSide >> install [
+	"Do some stuff here when the plugin used class oriented behavior"
+]
+
+{ #category : #initialization }
+TPyramidPlugin classSide >> uninstall [
+	"Undo some stuff here when the plugin used class oriented behavior"
+]
+
 { #category : #adding }
 TPyramidPlugin >> addPanelsOn: aPyramidSimpleWindow [
 ]
