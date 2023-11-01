@@ -46,12 +46,6 @@ PyramidBlocTextPlugin class >> fontWeight [
 	^ property
 ]
 
-{ #category : #'class initialization' }
-PyramidBlocTextPlugin class >> initialize [
-
-	PyramidPluginManager uniqueInstance addPlugin: self
-]
-
 { #category : #accessing }
 PyramidBlocTextPlugin class >> textForeground [
 
@@ -67,7 +61,7 @@ PyramidBlocTextPlugin class >> textForeground [
 	^ property
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #connecting }
 PyramidBlocTextPlugin >> connectOn: aPyramidEditor [
 
 	aPyramidEditor propertiesManager addProperty: self class changeText.

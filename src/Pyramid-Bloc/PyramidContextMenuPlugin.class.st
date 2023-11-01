@@ -12,6 +12,7 @@ Class {
 { #category : #'class initialization' }
 PyramidContextMenuPlugin class >> initialize [
 
+	self flag:'labordep: Why remove before add ?'.
 	PyramidPluginManager uniqueInstance removePlugin: self.
 	PyramidPluginManager uniqueInstance addPlugin: self
 ]
@@ -24,7 +25,7 @@ PyramidContextMenuPlugin >> addPanelsOn: aPyramidSimpleWindow [
 		self menuBrowseAndInspectOn: builder ]
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #connecting }
 PyramidContextMenuPlugin >> connectOn: aPyramidEditor [
 
 	self editor: aPyramidEditor.

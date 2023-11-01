@@ -1,5 +1,5 @@
 Class {
 	#name : #PyramidSaveError,
-	#superclass : #Error,
+	#superclass : #PyramidError,
 	#category : #'Pyramid-Bloc-plugin-save'
 }

@@ -85,12 +85,6 @@ PyramidTreePlugin class >> columnZIndex: aPyramidTreePlugin [
 		  yourself
 ]
 
-{ #category : #'class initialization' }
-PyramidTreePlugin class >> initialize [
-
-	PyramidPluginManager uniqueInstance addPlugin: self
-]
-
 { #category : #initialization }
 PyramidTreePlugin class >> setId: aString of: aBlElement onEditor: aPyramidEditor [
 
@@ -124,7 +118,7 @@ PyramidTreePlugin >> addPanelsOn: aPyramidSimpleWindow [
 		addItem: [ :builder | self menuAddAndDeleteOn: builder ]
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #connecting }
 PyramidTreePlugin >> connectOn: aPyramidEditor [
 
 	self editor: aPyramidEditor.

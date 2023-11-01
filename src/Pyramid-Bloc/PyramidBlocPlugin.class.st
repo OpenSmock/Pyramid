@@ -197,12 +197,6 @@ PyramidBlocPlugin class >> geometry [
 	^ property
 ]
 
-{ #category : #'class initialization' }
-PyramidBlocPlugin class >> initialize [
-
-	PyramidPluginManager uniqueInstance addPlugin: self
-]
-
 { #category : #accessing }
 PyramidBlocPlugin class >> layout [
 
@@ -301,7 +295,7 @@ PyramidBlocPlugin >> addPanelsOn: aPyramidSimpleWindow [
 		addItem: [ :builder | self menuChangeOrderOn: builder ]
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #connecting }
 PyramidBlocPlugin >> connectOn: aPyramidEditor [
 
 	self editor: aPyramidEditor.
