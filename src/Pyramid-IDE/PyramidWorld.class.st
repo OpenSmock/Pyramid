@@ -4,6 +4,34 @@ Class {
 	#category : #'Pyramid-IDE-Menus'
 }
 
+{ #category : #actions }
+PyramidWorld class >> displayLoadedPlugins [
+
+	| presenter stream |
+	presenter := SpTextPresenter new.
+	stream := ReadWriteStream on: String new.
+	
+	"Create loaded plugin list"
+	PyramidPluginManager uniqueInstance ifNotNil:[ :e |
+		
+		"Statistics"
+		stream 
+			nextPutAll: (e pluginClasses size) asString; 
+			nextPutAll: ' loaded plugin(s).'; 
+			cr; cr.
+		
+		"Details"
+		e pluginClasses do:[ :p |
+			stream nextPutAll: '-' ; nextPutAll: p name; cr.	
+		].
+	
+	] ifNil:[stream nextPutAll: 'No loaded plugins.'].
+	
+	presenter text: stream contents.
+	presenter open.
+	presenter withWindowDo: [ :w | w title: 'Pyramid loaded plugins' ].
+]
+
 { #category : #menu }
 PyramidWorld class >> menuBrowseSourcesOn: aBuilder [
 
@@ -28,6 +56,19 @@ PyramidWorld class >> menuGithubOn: aBuilder [
 		help: 'Open Pyramid Github page';
 		icon: (self iconNamed: #github);
 		action: [ WebBrowser openOn: 'https://github.com/OpenSmock/Pyramid' ]
+]
+
+{ #category : #menu }
+PyramidWorld class >> menuLoadedPluginsOn: aBuilder [
+
+	<worldMenu>
+	(aBuilder item: #New)
+		parent: #PyramidDev;
+		order: 1.0;
+		action: [ self displayLoadedPlugins ];
+		icon: (self iconNamed: #box);
+		help: 'Display all installed plugins';
+		label: 'Loaded plugins'
 ]
 
 { #category : #menu }
@@ -68,11 +109,11 @@ PyramidWorld class >> menuRefreshPluginOn: aBuilder [
 	<worldMenu>
 	(aBuilder item: #New)
 		parent: #PyramidDev;
-		order: 1.0;
+		order: 1.1;
 		action: [ self startRefreshPlugins ];
 		icon: (self iconNamed: #refresh);
-		help: 'Reload all Pyramid plugins, use this to install a new plugin';
-		label: 'Refresh plugins'
+		help: 'Reload all Pyramid plugins, use this for example to change installed plugin list';
+		label: 'Reload plugins'
 ]
 
 { #category : #menu }
