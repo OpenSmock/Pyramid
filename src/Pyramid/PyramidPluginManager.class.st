@@ -56,7 +56,7 @@ PyramidPluginManager >> isPluginInstalled: aPluginClass [
 	^ self pluginClasses includes: aPluginClass
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #private }
 PyramidPluginManager >> makeEditor [
 
 	^ PyramidEditorBuilder new
@@ -64,7 +64,7 @@ PyramidPluginManager >> makeEditor [
 		  build
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #private }
 PyramidPluginManager >> pluginClasses [
 
 	^ pluginClasses
