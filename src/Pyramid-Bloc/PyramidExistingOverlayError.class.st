@@ -1,5 +1,5 @@
 Class {
 	#name : #PyramidExistingOverlayError,
-	#superclass : #Error,
+	#superclass : #PyramidError,
 	#category : #'Pyramid-Bloc-plugin-space'
 }

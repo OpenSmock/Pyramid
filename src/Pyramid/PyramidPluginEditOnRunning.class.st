@@ -3,6 +3,9 @@ Class {
 	#superclass : #Object,
 	#traits : 'TPyramidPlugin',
 	#classTraits : 'TPyramidPlugin classTrait',
+	#instVars : [
+		'editOnRunning'
+	],
 	#classInstVars : [
 		'editOnRunning'
 	],
@@ -37,6 +40,18 @@ PyramidPluginEditOnRunning >> configureBuilder: aPyramidEditorBuilder [
 PyramidPluginEditOnRunning >> connectOn: aPyramidEditor [
 
 	"do nothing"
+]
+
+{ #category : #accessing }
+PyramidPluginEditOnRunning >> editOnRunning [
+
+	^ self class editOnRunning
+]
+
+{ #category : #accessing }
+PyramidPluginEditOnRunning >> editOnRunning: aBoolean [
+
+	self class editOnRunning: aBoolean
 ]
 
 { #category : #initialization }

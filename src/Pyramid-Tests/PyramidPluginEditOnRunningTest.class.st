@@ -5,7 +5,8 @@ Class {
 	#name : #PyramidPluginEditOnRunningTest,
 	#superclass : #TestCase,
 	#instVars : [
-		'editOnRunning'
+		'plugin',
+		'setting'
 	],
 	#category : #'Pyramid-Tests-cases-plugin-edit-on-running'
 }
@@ -14,29 +15,32 @@ Class {
 PyramidPluginEditOnRunningTest >> setUp [ 
 
 	super setUp.
-	editOnRunning := PyramidPluginEditOnRunning editOnRunning.
+	plugin := PyramidPluginEditOnRunning new.
+	setting := PyramidPluginEditOnRunning editOnRunning.
 ]
 
 { #category : #tests }
 PyramidPluginEditOnRunningTest >> tearDown [ 
 
+	plugin := nil.
+	PyramidPluginEditOnRunning editOnRunning: setting.
 	super tearDown.
-	PyramidPluginEditOnRunning editOnRunning: editOnRunning.
 ]
 
 { #category : #tests }
 PyramidPluginEditOnRunningTest >> testEditOnRunning [
 
-	PyramidPluginEditOnRunning editOnRunning: true.
+	plugin editOnRunning: true.
+	self assert: plugin editOnRunning.
 	self assert: PyramidPluginEditOnRunning editOnRunning.
 	
-	PyramidPluginEditOnRunning editOnRunning: false.
+	plugin editOnRunning: false.
+	self deny: plugin editOnRunning.
 	self deny: PyramidPluginEditOnRunning editOnRunning.
 ]
 
 { #category : #tests }
 PyramidPluginEditOnRunningTest >> testPlugin [
 
-	| plugin |
-	plugin := PyramidPluginEditOnRunning new.
+	self assert: plugin notNil.
 ]
