@@ -3,6 +3,14 @@ Trait {
 	#category : #'Pyramid-core'
 }
 
+{ #category : #initialization }
+TPyramidPlugin classSide >> initialize [ 
+	<script>
+
+	self = TPyramidPlugin ifTrue:[ ^ self ].
+	PyramidPluginManager uniqueInstance addPlugin: self
+]
+
 { #category : #adding }
 TPyramidPlugin >> addPanelsOn: aPyramidSimpleWindow [
 ]
@@ -13,6 +21,6 @@ TPyramidPlugin >> configureBuilder: aPyramidEditorBuilder [
 	
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #connecting }
 TPyramidPlugin >> connectOn: aPyramidEditor [
 ]

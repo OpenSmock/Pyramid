@@ -15,12 +15,6 @@ Class {
 	#category : #'Pyramid-Bloc-plugin-save'
 }
 
-{ #category : #'class initialization' }
-PyramidSavePlugin class >> initialize [
-
-	PyramidPluginManager uniqueInstance addPlugin: self
-]
-
 { #category : #'instance creation' }
 PyramidSavePlugin class >> openOn: aCollectionOfBlElement saveModel: aSaveModel [
 
@@ -51,7 +45,7 @@ PyramidSavePlugin >> addPanelsOn: aPyramidSimpleWindow [
 		builder makeButtonWithIcon: self inputsButton order: 2 ]
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #connecting }
 PyramidSavePlugin >> connectOn: aPyramidEditor [
 
 	self projectModel: aPyramidEditor projectModel.

@@ -6,12 +6,6 @@ Class {
 	#category : #'Pyramid-Bloc-plugin-copy-paste'
 }
 
-{ #category : #'class initialization' }
-PyramidCopyPastePlugin class >> initialize [
-
-	PyramidPluginManager uniqueInstance addPlugin: self
-]
-
 { #category : #adding }
 PyramidCopyPastePlugin >> addPanelsOn: aPyramidSimpleWindow [
 

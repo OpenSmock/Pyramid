@@ -10,12 +10,6 @@ Class {
 	#category : #'Pyramid-plugin-selection'
 }
 
-{ #category : #'as yet unclassified' }
-PyramidPluginSelection class >> initialize [
-
-	PyramidPluginManager uniqueInstance addPlugin: self
-]
-
 { #category : #adding }
 PyramidPluginSelection >> addPanelsOn: aPyramidSimpleWindow [
 
@@ -27,7 +21,7 @@ PyramidPluginSelection >> addPanelsOn: aPyramidSimpleWindow [
 			order: 1 ].
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #connecting }
 PyramidPluginSelection >> connectOn: aPyramidEditor [
 
 	self view projectModel: aPyramidEditor projectModel

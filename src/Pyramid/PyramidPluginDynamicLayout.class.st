@@ -13,12 +13,6 @@ Class {
 	#category : #'Pyramid-plugin-dynamic-layout'
 }
 
-{ #category : #initialization }
-PyramidPluginDynamicLayout class >> initialize [
-
-	PyramidPluginManager uniqueInstance addPlugin: self
-]
-
 { #category : #adding }
 PyramidPluginDynamicLayout >> addPanelsOn: aPyramidWindow [
 
@@ -71,7 +65,7 @@ PyramidPluginDynamicLayout >> configureBuilder: aPyramidBuilder [
 	aPyramidBuilder window: editorWindow
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #connecting }
 PyramidPluginDynamicLayout >> connectOn: aPyramidEditor [
 
 	self changeEditorLayout

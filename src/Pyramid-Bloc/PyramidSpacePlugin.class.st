@@ -11,13 +11,6 @@ Class {
 	#category : #'Pyramid-Bloc-plugin-space'
 }
 
-{ #category : #'class initialization' }
-PyramidSpacePlugin class >> initialize [
-	PyramidPluginManager uniqueInstance addPlugin: self
-
-	
-]
-
 { #category : #adding }
 PyramidSpacePlugin >> addPanelsOn: aPyramidSimpleWindow [
 
@@ -34,7 +27,7 @@ PyramidSpacePlugin >> builder [
 ^ builder
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #connecting }
 PyramidSpacePlugin >> connectOn: aPyramidEditor [
 
 	builder editor: aPyramidEditor.

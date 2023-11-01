@@ -12,12 +12,6 @@ Class {
 	#category : #'Pyramid-history'
 }
 
-{ #category : #'class initialization' }
-PyramidHistoryPlugin class >> initialize [
-
-	PyramidPluginManager uniqueInstance addPlugin: self
-]
-
 { #category : #adding }
 PyramidHistoryPlugin >> addPanelsOn: aPyramidSimpleWindow [
 
@@ -31,7 +25,7 @@ PyramidHistoryPlugin >> addPanelsOn: aPyramidSimpleWindow [
 		builder makeButtonWithIcon: self redoButton order: 20 ]
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #connecting }
 PyramidHistoryPlugin >> connectOn: aPyramidEditor [
 
 	self history: aPyramidEditor propertiesManager history.
