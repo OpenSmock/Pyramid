@@ -4,16 +4,20 @@ Extension { #name : #BlSpace }
 BlSpace >> editWithPyramid [
 
 	| editor elements spacePlaceholder |
+	"Prepare image to replace the application view"
 	spacePlaceholder := (self root exportAsForm dimmed: 0.5) asElement.
-	spacePlaceholder addChildren:
-		PyramidLogo logoOpenInPyramid materializeAsBlElement.
+	spacePlaceholder addChildren: PyramidLogo logoOpenInPyramid materializeAsBlElement.
+	
+	"Open editor"
 	editor := PyramidPluginManager uniqueInstance makeEditor.
 	editor window open.
 
-	elements := self root children asArray.
-	elements do: [ :each | self root removeChild: each ].
+	"Remove all blElement of the application root to be replaced by the image"
+	elements := self root children asArray copy.
+	self root removeChildren.
 	self root addChild: spacePlaceholder.
 
+	"Add child into Pyramid to be edited"
 	editor projectModel roots addAll: elements.
 	editor window whenClosedDo: [
 		| pyramidRoots |
@@ -23,5 +27,6 @@ BlSpace >> editWithPyramid [
 		editor projectModel roots removeAll.
 		self root removeChildren.
 		self root addChildren: pyramidRoots ].
+	
 	^ editor
 ]
