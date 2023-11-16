@@ -94,7 +94,7 @@ PyramidTreePresenter >> initializePresenters [
 		                    icon: (self iconNamed: #add);
 		                    action: [ self actionAddNewElement ];
 		                    help:
-			                    'Add a new element in the current Space root of the project.';
+			                    'Add a new element instance in the current Space root.';
 				                    yourself
 ]
 
