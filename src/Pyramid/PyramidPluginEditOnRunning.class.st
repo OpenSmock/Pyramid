@@ -44,6 +44,7 @@ PyramidPluginEditOnRunning class >> installBlUniverseListeners [
 { #category : #'universe management' }
 PyramidPluginEditOnRunning class >> receiveBlParallelUniverseHostSpaceCreatedSignal: anEvent [
 
+	self flag:'labordep: waiting for Bloc issue fix'.
 	self editOnRunning ifFalse: [ ^ self ].
 ]
 
