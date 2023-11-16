@@ -15,7 +15,7 @@ Class {
 	#category : #'Pyramid-Bloc-plugin-tree-library'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : #private }
 PyramidTreePresenter >> actionAddNewElement [
 (PyramidPopoverFactory
 				                  makeWithPresenter: self libraryPresenterForRoot
@@ -23,13 +23,13 @@ PyramidTreePresenter >> actionAddNewElement [
 				                  position: SpPopoverPosition right) popup
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #private }
 PyramidTreePresenter >> actionEditorMenu [
 
 	^ self editorMenuBuilder menuFor: self projectModel selection.
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #private }
 PyramidTreePresenter >> actionSelectionChanged: aCollection [
 
 	self projectModel ifNil: [ ^ self ].
@@ -124,27 +124,27 @@ PyramidTreePresenter >> projectModel: anObject [
 	
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #private }
 PyramidTreePresenter >> pyramidElementsChanged [
 
 	self updateRoots.
 	self selectionHaveChanged ifTrue: [ self updateSelection ].
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #private }
 PyramidTreePresenter >> pyramidRootsChanged [
 
 	self updateRoots .
 	self updateSelection
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #private }
 PyramidTreePresenter >> pyramidSelectionChanged [
 
 	self updateSelection
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #private }
 PyramidTreePresenter >> selectionHaveChanged [
 
 	self tree selectedItems size = self projectModel selection size ifFalse: [
@@ -174,7 +174,7 @@ PyramidTreePresenter >> tree [
 	^ tree
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #private }
 PyramidTreePresenter >> updateRoots [
 
 	self shouldUpdateSelection: false.
@@ -182,7 +182,7 @@ PyramidTreePresenter >> updateRoots [
 	self tree roots: self projectModel roots asArray ] ensure: [ self shouldUpdateSelection: true ]
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #private }
 PyramidTreePresenter >> updateSelection [
 
 	self projectModel ifNil: [ ^ self ].
@@ -195,7 +195,7 @@ PyramidTreePresenter >> updateSelection [
 		ensure: [ self shouldUpdateSelection: true ]
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #private }
 PyramidTreePresenter >> updateTree [
 
 	self tree columns: {  }.

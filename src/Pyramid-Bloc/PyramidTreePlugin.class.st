@@ -12,7 +12,7 @@ Class {
 	#category : #'Pyramid-Bloc-plugin-tree-library'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : #private }
 PyramidTreePlugin class >> columnNameAndType: aPyramidTreePlugin [
 
 	^ SpCompositeTableColumn new
@@ -46,7 +46,7 @@ PyramidTreePlugin class >> columnNameAndType: aPyramidTreePlugin [
 		  yourself
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #private }
 PyramidTreePlugin class >> columnVisibility: aPyramidTreePlugin [
 
 	^ SpCompositeTableColumn new
@@ -73,7 +73,7 @@ PyramidTreePlugin class >> columnVisibility: aPyramidTreePlugin [
 		  yourself
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #private }
 PyramidTreePlugin class >> columnZIndex: aPyramidTreePlugin [
 
 	^ SpStringTableColumn new
@@ -109,8 +109,8 @@ PyramidTreePlugin >> addPanelsOn: aPyramidSimpleWindow [
 	aPyramidSimpleWindow at: #tabLeft addItem: [ :builder |
 		builder
 			makeTab: self treePresenter
-			label: 'Tree'
-			icon: (self iconNamed: #catalog)
+			label: 'Elements tree'
+			icon: (self iconNamed: #hierarchy)
 			order: 1 ].
 
 	aPyramidSimpleWindow
@@ -176,19 +176,19 @@ PyramidTreePlugin >> initializeTreeColumns [
 	self treePresenter updateTree
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #private }
 PyramidTreePlugin >> libraryPresenterForElement [
 
 	^ libraryPresenterForElement
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #private }
 PyramidTreePlugin >> libraryPresenterForRoot [
 
 	^ libraryPresenterForRoot
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #private }
 PyramidTreePlugin >> menuAddAndDeleteOn: aBuilder [
 
 	aBuilder
