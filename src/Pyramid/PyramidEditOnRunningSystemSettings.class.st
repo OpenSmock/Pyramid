@@ -31,7 +31,7 @@ PyramidEditOnRunningSystemSettings class >> editOnRunningSettingOn: aBuilder [
 
 	(aBuilder setting: #editOnRunning)
 		parent: #pyramid;
-		label: 'Can edit opened BlSpaces';
+		label: '(Not working) Can edit opened BlSpaces';
 		target: self;
 		dialog: [self canEditDialog: aBuilder];
 		description: 'Setup availability to edit opened BlSpace in a Pyramid window. 
