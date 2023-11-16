@@ -16,21 +16,13 @@ Class {
 PyramidTreePlugin class >> columnNameAndType: aPyramidTreePlugin [
 
 	^ SpCompositeTableColumn new
-		 " sortFunction: PyramidElementIdSortFunction new;"
-		  title: 'Elements';
+		  title: 'Element';
+		
 		  addColumn:
 			  (SpImageTableColumn evaluated: [ :aBlElement | aBlElement asIcon ]);
-		  addColumn: (SpStringTableColumn new
-				   title: 'Class';
-				   evaluated: [ :aBlElement | aBlElement class name ];
-				   yourself);
-		  addColumn: (SpStringTableColumn new
-				   title: 'Identity';
-				   evaluated: [ :aBlElement | aBlElement identityHash printString ];
-				   displayColor: [ :aBlElement | Color gray ];
-				   yourself);
-		  addColumn: (SpStringTableColumn new
-				   title: 'Identifier';
+
+			addColumn: (SpStringTableColumn new
+				   title: 'Id';
 				   beEditable;
 				   onAcceptEdition: [ :aBlElement :newIdString |
 					   self
@@ -43,6 +35,18 @@ PyramidTreePlugin class >> columnNameAndType: aPyramidTreePlugin [
 						   ifFalse: [ aBlElement id asSymbol ] ];
 				   displayColor: [ :aBlElement | Smalltalk ui theme textColor ];
 				   yourself);
+
+		addColumn: (SpStringTableColumn new
+			   title: 'Class';
+			   evaluated: [ :aBlElement | aBlElement class name ];
+			   yourself);
+
+		  addColumn: (SpStringTableColumn new
+				   title: 'Hash num';
+				   evaluated: [ :aBlElement | aBlElement identityHash printString ];
+				   displayColor: [ :aBlElement | Color gray ];
+				   yourself);
+				
 		  yourself
 ]
 
@@ -50,7 +54,7 @@ PyramidTreePlugin class >> columnNameAndType: aPyramidTreePlugin [
 PyramidTreePlugin class >> columnVisibility: aPyramidTreePlugin [
 
 	^ SpCompositeTableColumn new
-		  title: 'Visibility';
+		  title: ''; "no title"
 		  "sortFunction: PyramidVisibilitySortFunction new;"
 		  width: 80;
 		  addColumn: (SpImageTableColumn evaluated: [ :aBlElement |
@@ -77,7 +81,7 @@ PyramidTreePlugin class >> columnVisibility: aPyramidTreePlugin [
 PyramidTreePlugin class >> columnZIndex: aPyramidTreePlugin [
 
 	^ SpStringTableColumn new
-		  title: 'z';
+		  title: 'Z';
 		  "sortFunction: PyramidElevationSortFunction new;"
 		  evaluated: [ :aBlElement |
 			  aBlElement elevation elevation printString ];
@@ -149,7 +153,8 @@ PyramidTreePlugin >> initialize [
 		                 libraryPresenterForRoot:
 			                 self libraryPresenterForRoot;
 		                 yourself.
-	self initializeTreeColumns.
+		
+	self initializeTreeColumns
 ]
 
 { #category : #initialization }

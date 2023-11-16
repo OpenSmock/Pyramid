@@ -17,10 +17,11 @@ Class {
 
 { #category : #private }
 PyramidTreePresenter >> actionAddNewElement [
-(PyramidPopoverFactory
-				                  makeWithPresenter: self libraryPresenterForRoot
-				                  relativeTo: self buttonAddToRoots
-				                  position: SpPopoverPosition right) popup
+
+	(PyramidPopoverFactory
+		 makeWithPresenter: self libraryPresenterForRoot
+		 relativeTo: self buttonAddToRoots
+		 position: SpPopoverPosition right) popup
 ]
 
 { #category : #private }
@@ -76,24 +77,24 @@ PyramidTreePresenter >> editorMenuBuilder: anObject [
 PyramidTreePresenter >> initializePresenters [
 
 	shouldUpdateSelection := true.
+	
 	tree := SpTreeTablePresenter new
 		        beMultipleSelection;
 		        beResizable;
 		        roots: {  };
 		        children: [ :each | each children ];
 		        contextMenu: [ self actionEditorMenu ];
-		        whenSelectionChangedDo: [ :selection |
-			        self actionSelectionChanged: selection ];
+		        whenSelectionChangedDo: [ :selection | self actionSelectionChanged: selection ];
 		        expandAll.
 
 	columns := OrderedCollection new.
 
 	buttonAddToRoots := SpButtonPresenter new
-		                    label: 'Add new element';
+		                    label: 'Add element';
 		                    icon: (self iconNamed: #add);
 		                    action: [ self actionAddNewElement ];
 		                    help:
-			                    'Add a new element on the roots of the design.';
+			                    'Add a new element in the current Space root of the project.';
 				                    yourself
 ]
 
