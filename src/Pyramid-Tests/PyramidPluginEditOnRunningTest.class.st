@@ -33,3 +33,10 @@ PyramidPluginEditOnRunningTest >> testEditOnRunning [
 	PyramidPluginEditOnRunning editOnRunning: false.
 	self deny: PyramidPluginEditOnRunning editOnRunning.
 ]
+
+{ #category : #tests }
+PyramidPluginEditOnRunningTest >> testInitializePlugin [
+	"Test if the plugin is installed because this is a core plugin that need to be installed"
+
+	self assert: (PyramidPluginManager uniqueInstance isPluginInstalled: PyramidPluginEditOnRunning)
+]
