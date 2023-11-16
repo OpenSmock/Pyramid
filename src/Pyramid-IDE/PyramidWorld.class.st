@@ -129,6 +129,29 @@ PyramidWorld class >> menuReportABugOn: aBuilder [
 		action: [ WebBrowser openOn: 'https://github.com/OpenSmock/Pyramid/issues/new' ]
 ]
 
+{ #category : #menu }
+PyramidWorld class >> menuSettingsOn: aBuilder [
+
+	<worldMenu>
+	(aBuilder item: #Settings)
+		parent: #PyramidUser;
+		order: 2.0;
+		label: 'Settings';
+		help: 'Open Pyramid system settings';
+		icon: (self iconNamed: #glamorousPreferences);
+		action: [ self openPyramidSettings ]
+]
+
+{ #category : #actions }
+PyramidWorld class >> openPyramidSettings [
+
+	| browser |
+	browser := SettingBrowser new.
+	browser changeSearchedText: 'Pyramid'.
+	browser open.
+	browser expandAll
+]
+
 { #category : #actions }
 PyramidWorld class >> startBrowseSources [
 
@@ -145,4 +168,8 @@ PyramidWorld class >> startNewDesign [
 PyramidWorld class >> startRefreshPlugins [
 
 	PyramidPluginManager reset
+]
+
+{ #category : #'see class side' }
+PyramidWorld >> seeClassSide [ 
 ]
