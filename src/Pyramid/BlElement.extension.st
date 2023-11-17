@@ -5,6 +5,8 @@ BlElement >> editWithPyramid [
 
 	| editor  oldParent |
 	editor := PyramidPluginManager uniqueInstance makeEditor.
+	
+	self flag:'labordep: the code below is too complicated, we need to have a more simple API to edit a BlElement, for example editElement:'.
 	oldParent := self parent.
 	self hasParent ifTrue: [ oldParent removeChild: self ].
 

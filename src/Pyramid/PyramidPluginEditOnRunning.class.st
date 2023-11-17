@@ -34,17 +34,37 @@ PyramidPluginEditOnRunning class >> install [
 { #category : #'universe management' }
 PyramidPluginEditOnRunning class >> installBlUniverseListeners [
 	
-	BlParallelUniverse all do:[ :universe |
+	Beacon instance
+		when: BlParallelUniverseHostSpaceCreatedSignal
+		send: #receiveBlParallelUniverseHostSpaceCreatedSignal:
+		to: self.
+	
+	"BlParallelUniverse all do:[ :universe |
 		universe 
 			when: BlParallelUniverseHostSpaceCreatedSignal 
 			do:[ :e | self receiveBlParallelUniverseHostSpaceCreatedSignal: e ].
-	].
+	]."
 ]
 
 { #category : #'universe management' }
 PyramidPluginEditOnRunning class >> receiveBlParallelUniverseHostSpaceCreatedSignal: anEvent [
 
 	self editOnRunning ifFalse: [ ^ self ].
+	
+	"add a sequence to install shortcut"
+]
+
+{ #category : #initialization }
+PyramidPluginEditOnRunning class >> uninstall [
+	"Undo some stuff here when the plugin used class oriented behavior"
+	
+	self uninstallBlUniverseListeners.
+]
+
+{ #category : #'universe management' }
+PyramidPluginEditOnRunning class >> uninstallBlUniverseListeners [
+
+	Beacon instance unsubscribe: self
 ]
 
 { #category : #adding }

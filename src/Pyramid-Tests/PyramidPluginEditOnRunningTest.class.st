@@ -25,6 +25,18 @@ PyramidPluginEditOnRunningTest >> tearDown [
 ]
 
 { #category : #tests }
+PyramidPluginEditOnRunningTest >> testCanEditBlSpace [
+
+	| space |
+	PyramidPluginEditOnRunning editOnRunning: true.
+	
+	"Create a BlSpace and check if it is configured correctly"
+	space := BlSpace new.
+	
+	self assert: space.
+]
+
+{ #category : #tests }
 PyramidPluginEditOnRunningTest >> testEditOnRunning [
 
 	PyramidPluginEditOnRunning editOnRunning: true.

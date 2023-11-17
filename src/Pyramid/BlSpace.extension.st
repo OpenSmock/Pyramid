@@ -12,6 +12,8 @@ BlSpace >> editWithPyramid [
 	editor := PyramidPluginManager uniqueInstance makeEditor.
 	editor window open.
 
+	self flag:'labordep: the code below is too complicated, we need to have a more simple API to edit a BlSpace, for example editSpace:'.
+
 	"Remove all blElement of the application root to be replaced by the image"
 	elements := self root children asArray copy.
 	self root removeChildren.
