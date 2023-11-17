@@ -10,6 +10,19 @@ Class {
 	#category : #'Pyramid-core'
 }
 
+{ #category : #private }
+PyramidEditor class >> buildEditor [
+
+	^ PyramidPluginManager uniqueInstance buildEditor
+]
+
+{ #category : #'instance creation' }
+PyramidEditor class >> open [
+	<script>
+
+	self buildEditor window open	
+]
+
 { #category : #initialization }
 PyramidEditor >> initialize [
 

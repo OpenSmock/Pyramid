@@ -9,16 +9,6 @@ Class {
 	#category : #'Pyramid-core'
 }
 
-{ #category : #'as yet unclassified' }
-PyramidEditorBuilder class >> makeEditor [
-
-	^ self new
-		  plugins:
-			  (PyramidPluginManager uniqueInstance pluginClasses collect: [ :class |
-					   class new ]);
-		  build
-]
-
 { #category : #building }
 PyramidEditorBuilder >> build [
 

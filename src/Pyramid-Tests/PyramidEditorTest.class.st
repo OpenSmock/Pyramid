@@ -34,7 +34,7 @@ PyramidEditorTest >> openFromBlSpace [
 PyramidEditorTest >> openNewEditor [
 
 	| editor spec |
-	editor := PyramidPluginManager uniqueInstance makeEditor.
+	editor := PyramidEditor buildEditor.
 	spec := editor window open.
 	(Duration milliSeconds: 10) wait.
 	self currentWorld doOneCycle.

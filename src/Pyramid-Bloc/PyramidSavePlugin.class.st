@@ -19,7 +19,7 @@ Class {
 PyramidSavePlugin class >> openOn: aCollectionOfBlElement saveModel: aSaveModel [
 
 	| editor savePlugin |
-	editor := PyramidEditorBuilder makeEditor.
+	editor := PyramidEditor buildEditor.
 	savePlugin := editor plugins select: [ :each | each class = self ].
 	savePlugin size = 1 ifFalse: [
 		Error signal:

@@ -47,6 +47,14 @@ PyramidPluginManager >> addPlugin: aPluginClass [
 	aPluginClass install.
 ]
 
+{ #category : #private }
+PyramidPluginManager >> buildEditor [
+
+	^ PyramidEditorBuilder new
+		  plugins: (self pluginClasses collect: [ :class | class new ]);
+		  build
+]
+
 { #category : #initialization }
 PyramidPluginManager >> initialize [
 

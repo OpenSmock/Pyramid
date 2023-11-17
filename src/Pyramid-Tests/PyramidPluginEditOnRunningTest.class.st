@@ -10,11 +10,24 @@ Class {
 	#category : #'Pyramid-Tests-cases-plugin-edit-on-running'
 }
 
+{ #category : #utils }
+PyramidPluginEditOnRunningTest >> closeSpace: aSpace [
+
+	aSpace when: BlSpaceShownEvent doOnce: [ :event |
+		BlSpace pulseUntilEmptyTaskQueue: aSpace timeout: 200 milliSeconds.
+		aSpace close ].
+]
+
 { #category : #tests }
 PyramidPluginEditOnRunningTest >> setUp [ 
 
 	super setUp.
+	
+	"Preserve user settings"
 	setting := PyramidPluginEditOnRunning editOnRunning.
+	
+	PyramidPluginEditOnRunning uninstall.
+	PyramidPluginEditOnRunning install.
 ]
 
 { #category : #tests }
@@ -25,15 +38,20 @@ PyramidPluginEditOnRunningTest >> tearDown [
 ]
 
 { #category : #tests }
-PyramidPluginEditOnRunningTest >> testCanEditBlSpace [
-
+PyramidPluginEditOnRunningTest >> testBlSpaceShortcutAddAndRemove [
 	| space |
+
 	PyramidPluginEditOnRunning editOnRunning: true.
 	
-	"Create a BlSpace and check if it is configured correctly"
 	space := BlSpace new.
+	self deny: (PyramidPluginEditOnRunning spaceIds includes: space id).
+	self deny: (space root shortcuts includes: (PyramidPluginEditOnRunning shortcut)).
 	
-	self assert: space.
+	space show.	
+	self assert: (PyramidPluginEditOnRunning spaceIds includes: space id).
+	self assert: (space root shortcuts includes: (PyramidPluginEditOnRunning shortcut)).
+	
+	self closeSpace: space.
 ]
 
 { #category : #tests }
@@ -44,4 +62,42 @@ PyramidPluginEditOnRunningTest >> testEditOnRunning [
 	
 	PyramidPluginEditOnRunning editOnRunning: false.
 	self deny: PyramidPluginEditOnRunning editOnRunning.
+]
+
+{ #category : #tests }
+PyramidPluginEditOnRunningTest >> testKeyCombination [
+
+	self assert: (PyramidPluginEditOnRunning keyCombination isKindOf: BlKeyCombination) 
+
+]
+
+{ #category : #tests }
+PyramidPluginEditOnRunningTest >> testNotEditEditor [
+	| space |
+
+	PyramidPluginEditOnRunning editOnRunning: true.
+	
+	space := PyramidEditor new.
+	self deny: (PyramidPluginEditOnRunning spaceIds includes: space id).
+	self deny: (space root shortcuts includes: (PyramidPluginEditOnRunning shortcut)).
+	
+	space show.	
+	self assert: (PyramidPluginEditOnRunning spaceIds includes: space id).
+	self assert: (space root shortcuts includes: (PyramidPluginEditOnRunning shortcut)).
+	
+	self closeSpace: space.
+]
+
+{ #category : #tests }
+PyramidPluginEditOnRunningTest >> testShortcut [
+
+	self assert: (PyramidPluginEditOnRunning shortcut isKindOf: BlShortcutWithAction).
+
+]
+
+{ #category : #tests }
+PyramidPluginEditOnRunningTest >> testSpaceIds [
+
+	self assert: PyramidPluginEditOnRunning spaceIds isEmpty.
+
 ]

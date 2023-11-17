@@ -4,7 +4,7 @@ Extension { #name : #BlElement }
 BlElement >> editWithPyramid [
 
 	| editor  oldParent |
-	editor := PyramidPluginManager uniqueInstance makeEditor.
+	editor := PyramidEditor buildEditor.
 	
 	self flag:'labordep: the code below is too complicated, we need to have a more simple API to edit a BlElement, for example editElement:'.
 	oldParent := self parent.
@@ -21,6 +21,7 @@ BlElement >> editWithPyramid [
 BlElement >> openInNewSpaceWithPyramidShortcut [
 
 	| space isEdit |
+	self deprecated:'use the edition capacity in pyramid properties'.
 	space := self openInNewSpace.
 	isEdit := false.
 	space when: BlKeyDownEvent do: [ :evt |

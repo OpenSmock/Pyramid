@@ -161,7 +161,7 @@ PyramidWorld class >> startBrowseSources [
 { #category : #actions }
 PyramidWorld class >> startNewDesign [
 
-	PyramidPluginManager uniqueInstance makeEditor window open	
+	PyramidEditor open
 ]
 
 { #category : #actions }

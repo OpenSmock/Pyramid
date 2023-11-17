@@ -7,10 +7,36 @@ Class {
 		'editOnRunning'
 	],
 	#classInstVars : [
-		'editOnRunning'
+		'editOnRunning',
+		'spaceIds',
+		'shortcut',
+		'keyCombination'
 	],
 	#category : #'Pyramid-plugin-edit-on-running'
 }
+
+{ #category : #private }
+PyramidPluginEditOnRunning class >> addShortcutInSpace: aSpace [
+
+	aSpace ifNil: [ ^ self ].
+	(self spaceIds includes: aSpace id) ifTrue:[ ^ self ].
+	
+	self spaceIds add: aSpace id.
+	aSpace root addShortcut: shortcut 
+]
+
+{ #category : #private }
+PyramidPluginEditOnRunning class >> doShortcutAction: anEvent [
+
+	| space editor whenClosedDo |
+	self editOnRunning ifFalse:[ ^ self ].
+	space := anEvent source space.
+	space ifNil:[ ^ self ].
+	
+	editor := space editWithPyramid.
+	whenClosedDo := editor window whenClosedDo.
+	editor window whenClosedDo: [ whenClosedDo value ].
+]
 
 { #category : #accessing }
 PyramidPluginEditOnRunning class >> editOnRunning [
@@ -29,29 +55,53 @@ PyramidPluginEditOnRunning class >> install [
 	"Do some stuff here when the plugin used class oriented behavior"
 	
 	self installBlUniverseListeners.
+	
 ]
 
 { #category : #'universe management' }
 PyramidPluginEditOnRunning class >> installBlUniverseListeners [
-	
+
 	Beacon instance
-		when: BlParallelUniverseHostSpaceCreatedSignal
-		send: #receiveBlParallelUniverseHostSpaceCreatedSignal:
-		to: self.
-	
-	"BlParallelUniverse all do:[ :universe |
-		universe 
-			when: BlParallelUniverseHostSpaceCreatedSignal 
-			do:[ :e | self receiveBlParallelUniverseHostSpaceCreatedSignal: e ].
-	]."
+		when: BlParallelUniverseHostStartRequestSignal
+		send: #receiveBlParallelUniverseHostSpaceRequestSignal:
+		to: self
+]
+
+{ #category : #accessing }
+PyramidPluginEditOnRunning class >> keyCombination [
+
+	^ keyCombination ifNil: [
+		  keyCombination := (BlKeyCombination builder key: KeyboardKey F12) build ]
 ]
 
 { #category : #'universe management' }
-PyramidPluginEditOnRunning class >> receiveBlParallelUniverseHostSpaceCreatedSignal: anEvent [
+PyramidPluginEditOnRunning class >> receiveBlParallelUniverseHostSpaceRequestSignal: anEvent [
 
-	self editOnRunning ifFalse: [ ^ self ].
-	
-	"add a sequence to install shortcut"
+	BlSpace spaceWithId: anEvent spaceId do: [ :e | self addShortcutInSpace: e ]
+]
+
+{ #category : #private }
+PyramidPluginEditOnRunning class >> removeShortcutInSpace: aSpace [
+
+	aSpace ifNil: [ ^ self ].
+
+	aSpace root removeShortcut: shortcut.
+	self spaceIds remove: aSpace id.
+]
+
+{ #category : #accessing }
+PyramidPluginEditOnRunning class >> shortcut [
+
+	^ shortcut ifNil: [
+		  shortcut := BlShortcutWithAction new
+			              combination: self keyCombination;
+			              action: [ :event | self doShortcutAction: event ] ]
+]
+
+{ #category : #accessing }
+PyramidPluginEditOnRunning class >> spaceIds [
+
+	^ spaceIds ifNil: [ spaceIds := Set new ]
 ]
 
 { #category : #initialization }
@@ -59,6 +109,11 @@ PyramidPluginEditOnRunning class >> uninstall [
 	"Undo some stuff here when the plugin used class oriented behavior"
 	
 	self uninstallBlUniverseListeners.
+	
+	self spaceIds do:[ :id | BlSpace spaceWithId: id do: [ :e | self removeShortcutInSpace: e ] ].
+	self spaceIds removeAll.
+	
+	shortcut := nil.
 ]
 
 { #category : #'universe management' }

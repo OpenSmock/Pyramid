@@ -9,7 +9,7 @@ BlSpace >> editWithPyramid [
 	spacePlaceholder addChildren: PyramidLogo logoOpenInPyramid materializeAsBlElement.
 	
 	"Open editor"
-	editor := PyramidPluginManager uniqueInstance makeEditor.
+	editor := PyramidEditor buildEditor.
 	editor window open.
 
 	self flag:'labordep: the code below is too complicated, we need to have a more simple API to edit a BlSpace, for example editSpace:'.
