@@ -74,8 +74,8 @@ PyramidPluginEditOnRunning class >> install [
 PyramidPluginEditOnRunning class >> installBlUniverseListeners [
 
 	Beacon instance
-		when: BlParallelUniverseHostStartRequestSignal
-		send: #receiveBlParallelUniverseHostSpaceRequestSignal:
+		when: BlParallelUniverseOpenSpaceRequestSignal
+		send: #receiveBlParallelUniverseHostSpaceSignal:
 		to: self
 ]
 
@@ -87,7 +87,7 @@ PyramidPluginEditOnRunning class >> keyCombination [
 ]
 
 { #category : #'universe management' }
-PyramidPluginEditOnRunning class >> receiveBlParallelUniverseHostSpaceRequestSignal: anEvent [
+PyramidPluginEditOnRunning class >> receiveBlParallelUniverseHostSpaceSignal: anEvent [
 
 	BlSpace spaceWithId: anEvent spaceId do: [ :e | self addShortcutInSpace: e ]
 ]
@@ -106,6 +106,7 @@ PyramidPluginEditOnRunning class >> shortcut [
 
 	^ shortcut ifNil: [
 		  shortcut := BlShortcutWithAction new
+			              name: 'Pyramid edition shortcut';
 			              combination: self keyCombination;
 			              action: [ :event | self doShortcutAction: event ] ]
 ]
