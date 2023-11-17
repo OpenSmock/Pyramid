@@ -80,6 +80,13 @@ PyramidPluginEditOnRunningTest >> testEditOnRunning [
 ]
 
 { #category : #tests }
+PyramidPluginEditOnRunningTest >> testInitializePlugin [
+	"Test if the plugin is installed because this is a core plugin that need to be installed"
+
+	self assert: (PyramidPluginManager uniqueInstance isPluginInstalled: PyramidPluginEditOnRunning)
+]
+
+{ #category : #tests }
 PyramidPluginEditOnRunningTest >> testKeyCombination [
 
 	self assert: (PyramidPluginEditOnRunning keyCombination isKindOf: BlKeyCombination) 
