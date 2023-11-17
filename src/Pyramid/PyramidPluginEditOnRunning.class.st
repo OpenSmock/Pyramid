@@ -37,6 +37,12 @@ PyramidPluginEditOnRunning class >> canEditSpace: aSpace [
 	^ true
 ]
 
+{ #category : #initialization }
+PyramidPluginEditOnRunning class >> cleanUp: anObject [
+
+	"do nothing"
+]
+
 { #category : #private }
 PyramidPluginEditOnRunning class >> doShortcutAction: anEvent [
 
@@ -108,7 +114,7 @@ PyramidPluginEditOnRunning class >> shortcut [
 		  shortcut := BlShortcutWithAction new
 			              name: 'Pyramid edition shortcut';
 			              combination: self keyCombination;
-			              action: [ :event | self doShortcutAction: event ] ]
+			              action: [ :event | [ self doShortcutAction: event] forkAt: Processor userBackgroundPriority named: 'Pyramid enter edition shortcut' ] ]
 ]
 
 { #category : #accessing }
@@ -125,8 +131,8 @@ PyramidPluginEditOnRunning class >> uninstall [
 	
 	self spaceIds do:[ :id | BlSpace spaceWithId: id do: [ :e | self removeShortcutInSpace: e ] ].
 	self spaceIds removeAll.
-	
 	shortcut := nil.
+	keyCombination := nil.
 ]
 
 { #category : #'universe management' }

@@ -28,7 +28,8 @@ PyramidPluginManager class >> reset [
 
 	<script>
 	self initialize.
-	TPyramidPlugin users do: [ :each | each initialize ]
+	TPyramidPlugin users do: [ :each | each uninstall ].
+	TPyramidPlugin users do: [ :each | each initialize ].
 ]
 
 { #category : #'instance creation' }
