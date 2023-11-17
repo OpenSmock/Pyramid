@@ -95,7 +95,7 @@ element editWithPyramid.
 space editWithPyramid.
 ```
 
-You can edit in Pyramid an opened BlSpace with `F12` keyboard shortcut, for that open a BlElement with `openInNewSpaceWithPyramidShortcut`.
+You can edit in Pyramid all opened BlSpace with `F12` keyboard shortcut, this feature can be disable in the settings.
 
 ## Plugins
 
