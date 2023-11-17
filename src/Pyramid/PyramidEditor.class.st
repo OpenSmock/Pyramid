@@ -20,7 +20,21 @@ PyramidEditor class >> buildEditor [
 PyramidEditor class >> open [
 	<script>
 
-	self buildEditor window open	
+	self buildEditor open
+]
+
+{ #category : #'open/close' }
+PyramidEditor >> close [
+
+	self window ifNil: [ ^ self ].
+	self window isClosed ifTrue:[ ^ self ].
+	self window close
+]
+
+{ #category : #plugins }
+PyramidEditor >> getPlugin: aPluginClass [
+
+	^ self plugins detect:[ :p | p class = aPluginClass ] ifNone:[ ]
 ]
 
 { #category : #initialization }
@@ -33,13 +47,21 @@ PyramidEditor >> initialize [
 	plugins := {  }
 ]
 
-{ #category : #accessing }
+{ #category : #'open/close' }
+PyramidEditor >> open [
+
+	self window ifNil: [ ^ self ].
+	self window isOpen ifTrue:[ ^ self ].
+	self window open
+]
+
+{ #category : #plugins }
 PyramidEditor >> plugins [
 
 	^ plugins
 ]
 
-{ #category : #accessing }
+{ #category : #plugins }
 PyramidEditor >> plugins: aCollection [
 
 	plugins := aCollection

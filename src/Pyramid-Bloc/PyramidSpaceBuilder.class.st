@@ -89,6 +89,7 @@ PyramidSpaceBuilder >> addOverlayNamed: aString [
 PyramidSpaceBuilder >> build [
 
 	self space: BlSpace new.
+	self space userData at: #isPyramidEditor put: true.
 
 	self overlays ifEmpty: [ ^ self space ].
 

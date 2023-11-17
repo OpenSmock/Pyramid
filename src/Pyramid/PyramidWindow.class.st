@@ -118,6 +118,12 @@ PyramidWindow >> services [
 	^ services
 ]
 
+{ #category : #accessing }
+PyramidWindow >> spec [
+
+	^ spec
+]
+
 { #category : #'api - showing' }
 PyramidWindow >> title [
 

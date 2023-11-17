@@ -21,6 +21,9 @@ PyramidPluginEditOnRunning class >> addShortcutInSpace: aSpace [
 	aSpace ifNil: [ ^ self ].
 	(self spaceIds includes: aSpace id) ifTrue:[ ^ self ].
 	
+	"Not edit the editor space to prevent cycling"
+	aSpace userData at: #isPyramidEditor ifPresent:[ ^ self ].
+	
 	self spaceIds add: aSpace id.
 	aSpace root addShortcut: shortcut 
 ]
