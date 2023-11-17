@@ -99,8 +99,10 @@ PyramidVisualPystonForCly >> build [
 { #category : #'as yet unclassified' }
 PyramidVisualPystonForCly >> buttonEditor [
 
-	^ self buttonLabel: 'Edit' help: 'Open the design in Pyramid' action: [ self openEditor ].
-	
+	^ self
+		  buttonLabel: 'Edit'
+		  help: 'Edit this design in Pyramid'
+		  action: [ self openEditor ]
 ]
 
 { #category : #'as yet unclassified' }
@@ -123,10 +125,9 @@ PyramidVisualPystonForCly >> buttonLabel: aLabel help: aString action: aBlock [
 PyramidVisualPystonForCly >> buttonOpen [
 
 	^ self
-		  buttonLabel: 'Open in new Space'
-		  help: 'Open this design in a new BlSpace'
+		  buttonLabel: 'Open'
+		  help: 'Open this design in a window'
 		  action: [ self openInNewSpace ]
-
 ]
 
 { #category : #initialization }
@@ -200,7 +201,7 @@ PyramidVisualPystonForCly >> openInNewSpace [
 	elements isCollection ifFalse: [ elements := { elements } ].
 
 	elements ifEmpty: [ ^ self ].
-	space := elements first openInNewSpaceWithPyramidShortcut.
+	space := elements first openInNewSpace.
 	space root addChildren: elements allButFirst
 ]
 

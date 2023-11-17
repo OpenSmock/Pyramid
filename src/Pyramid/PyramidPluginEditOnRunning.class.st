@@ -18,14 +18,23 @@ Class {
 { #category : #private }
 PyramidPluginEditOnRunning class >> addShortcutInSpace: aSpace [
 
-	aSpace ifNil: [ ^ self ].
+	(self canEditSpace: aSpace) ifFalse:[ ^ self ].
 	(self spaceIds includes: aSpace id) ifTrue:[ ^ self ].
 	
-	"Not edit the editor space to prevent cycling"
-	aSpace userData at: #isPyramidEditor ifPresent:[ ^ self ].
-	
 	self spaceIds add: aSpace id.
-	aSpace root addShortcut: shortcut 
+	aSpace root addShortcut: self shortcut 
+]
+
+{ #category : #testing }
+PyramidPluginEditOnRunning class >> canEditSpace: aSpace [
+
+	aSpace ifNil:[ ^ false ].
+
+	"Not edit the editor space or already edited to prevent cycling"
+	aSpace userData at: #pyramid_isEditor ifPresent:[ ^ false ].
+	aSpace userData at: #pyramid_isOnEdition ifPresent:[ ^ false ].
+	
+	^ true
 ]
 
 { #category : #private }
@@ -34,7 +43,7 @@ PyramidPluginEditOnRunning class >> doShortcutAction: anEvent [
 	| space editor whenClosedDo |
 	self editOnRunning ifFalse:[ ^ self ].
 	space := anEvent source space.
-	space ifNil:[ ^ self ].
+	(self canEditSpace: space) ifFalse:[ ^ self ].
 	
 	editor := space editWithPyramid.
 	whenClosedDo := editor window whenClosedDo.
@@ -88,7 +97,7 @@ PyramidPluginEditOnRunning class >> removeShortcutInSpace: aSpace [
 
 	aSpace ifNil: [ ^ self ].
 
-	aSpace root removeShortcut: shortcut.
+	aSpace root removeShortcut: self shortcut.
 	self spaceIds remove: aSpace id.
 ]
 

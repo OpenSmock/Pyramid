@@ -16,24 +16,3 @@ BlElement >> editWithPyramid [
 	editor window open.
 	^ editor
 ]
-
-{ #category : #'*Pyramid' }
-BlElement >> openInNewSpaceWithPyramidShortcut [
-
-	| space isEdit |
-	self deprecated:'use the edition capacity in pyramid properties'.
-	space := self openInNewSpace.
-	isEdit := false.
-	space when: BlKeyDownEvent do: [ :evt |
-		| editor whenClosedDo |
-		isEdit ifFalse: [
-			evt key = KeyboardKey F12 ifTrue: [
-				isEdit := true.
-				editor := space editWithPyramid.
-				whenClosedDo := editor window whenClosedDo.
-				editor window whenClosedDo: [
-					whenClosedDo value.
-					isEdit := false ] ] ] ].
-
-	^ space
-]
