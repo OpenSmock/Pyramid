@@ -12,7 +12,7 @@ Class {
 		'shortcut',
 		'keyCombination'
 	],
-	#category : #'Pyramid-plugin-edit-on-running'
+	#category : #'Pyramid-Bloc-plugin-edit-on-running'
 }
 
 { #category : #private }

@@ -1,7 +1,7 @@
 Class {
 	#name : #PyramidEditOnRunningSystemSettings,
 	#superclass : #Object,
-	#category : #'Pyramid-plugin-edit-on-running'
+	#category : #'Pyramid-Bloc-plugin-edit-on-running'
 }
 
 { #category : #dialog }
@@ -9,7 +9,7 @@ PyramidEditOnRunningSystemSettings class >> canEditDialog: aBuilder [
 
 	^ self theme newRowIn: self for: {
 		"Default shortcut is F12 because it is usually use to enter dev mode in webbrowsers"
-		self theme buttonLabelForText: 'with shortcut: F12' translated.
+		self theme buttonLabelForText: 'with key shortcut: F12' translated.
 	}
 ]
 
@@ -31,10 +31,10 @@ PyramidEditOnRunningSystemSettings class >> editOnRunningSettingOn: aBuilder [
 
 	(aBuilder setting: #editOnRunning)
 		parent: #pyramid;
-		label: 'Can edit opened BlSpaces';
+		label: 'Can edit Bloc opened windows';
 		target: self;
 		dialog: [self canEditDialog: aBuilder];
-		description: 'Setup availability to edit opened BlSpace in a Pyramid window. 
+		description: 'Setup availability to edit opened BlSpace window in Pyramid editor. 
 Press the required shortcut key(s) on a focused BlSpace window to edit it in Pyramid.'
 ]
 
