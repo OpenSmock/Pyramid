@@ -17,7 +17,9 @@ PyramidWorld class >> displayLoadedPlugins [
 		"Statistics"
 		stream 
 			nextPutAll: (e pluginClasses size) asString; 
-			nextPutAll: ' loaded plugin(s).'; 
+			nextPutAll: ' loaded / '; 
+			nextPutAll: (PyramidPluginManager imagePluginClasses size) asString;
+			nextPutAll: ' available plugin(s)';
 			cr; cr.
 		
 		"Details"
