@@ -17,6 +17,14 @@ TPyramidPlugin classSide >> install [
 ]
 
 { #category : #initialization }
+TPyramidPlugin classSide >> reset [
+
+	<script>
+	self uninstall.
+	self install
+]
+
+{ #category : #initialization }
 TPyramidPlugin classSide >> uninstall [
 	"Undo some stuff here when the plugin used class oriented behavior"
 ]

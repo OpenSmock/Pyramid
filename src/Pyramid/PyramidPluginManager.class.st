@@ -10,6 +10,27 @@ Class {
 	#category : #'Pyramid-core'
 }
 
+{ #category : #'instance creation' }
+PyramidPluginManager class >> cleanUp [
+	<script>
+	
+	self reset.
+]
+
+{ #category : #'instance creation' }
+PyramidPluginManager class >> cleanUp: anObject [
+	"clean up pyramid plugins"
+
+	self cleanUp
+]
+
+{ #category : #initialization }
+PyramidPluginManager class >> imagePluginClasses [
+	<script: 'self imagePluginClasses inspect'>
+
+	^ TPyramidPlugin users
+]
+
 { #category : #initialization }
 PyramidPluginManager class >> initialize [
 
@@ -24,11 +45,13 @@ PyramidPluginManager class >> new [
 
 { #category : #initialization }
 PyramidPluginManager class >> reset [
-	"Use this script to initiliaze each class implementing the trait TPyramidPlugin."
+	"Initialize each class implementing the trait TPyramidPlugin."
 
-	<script>
+	| imagePlugins |
 	self initialize.
-	TPyramidPlugin users do: [ :each | each initialize ]
+	imagePlugins := self imagePluginClasses.
+	imagePlugins do: [ :each | each uninstall ].
+	imagePlugins do: [ :each | each initialize ]
 ]
 
 { #category : #'instance creation' }
@@ -47,9 +70,18 @@ PyramidPluginManager >> addPlugin: aPluginClass [
 	aPluginClass install.
 ]
 
+{ #category : #private }
+PyramidPluginManager >> buildEditor [
+
+	^ PyramidEditorBuilder new
+		  plugins: (self pluginClasses collect: [ :class | class new ]);
+		  build
+]
+
 { #category : #initialization }
 PyramidPluginManager >> initialize [
 
+	super initialize.
 	pluginClasses := Set new
 ]
 

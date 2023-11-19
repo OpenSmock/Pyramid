@@ -22,7 +22,7 @@ PyramidEditorTest >> openFromBlSpace [
 	self assert: (editor projectModel roots includes: element).
 	self deny: (space root children includes: element).
 
-	editor window close.
+	editor close.
 	(Duration milliSeconds: 10) wait.
 
 	self assert: editor window isClosed.
@@ -34,14 +34,16 @@ PyramidEditorTest >> openFromBlSpace [
 PyramidEditorTest >> openNewEditor [
 
 	| editor spec |
-	editor := PyramidPluginManager uniqueInstance makeEditor.
-	spec := editor window open.
+	editor := PyramidEditor buildEditor.
+	editor open.
+	
+	spec := editor window spec.
 	(Duration milliSeconds: 10) wait.
 	self currentWorld doOneCycle.
 	self assert: editor window isOpen.
 	self assert: spec window isInWorld.
 
-	editor window close.
+	editor close.
 	(Duration milliSeconds: 10) wait.
 	self currentWorld doOneCycle.
 	self assert: editor window isClosed.

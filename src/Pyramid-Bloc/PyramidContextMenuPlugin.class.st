@@ -12,8 +12,10 @@ Class {
 { #category : #'class initialization' }
 PyramidContextMenuPlugin class >> initialize [
 
-	self flag:'labordep: Why remove before add ?'.
+	"Remove the plugin in case of already install (reset)"
 	PyramidPluginManager uniqueInstance removePlugin: self.
+	
+	"Add the plugin"
 	PyramidPluginManager uniqueInstance addPlugin: self
 ]
 

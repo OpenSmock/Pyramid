@@ -9,8 +9,12 @@ BlSpace >> editWithPyramid [
 	spacePlaceholder addChildren: PyramidLogo logoOpenInPyramid materializeAsBlElement.
 	
 	"Open editor"
-	editor := PyramidPluginManager uniqueInstance makeEditor.
+	editor := PyramidEditor buildEditor.
 	editor window open.
+
+	self flag:'labordep: the code below is too complicated, we need to have a more simple API to edit a BlSpace, for example editSpace:'.
+
+	self userData at: #pyramid_isOnEdition put: true.
 
 	"Remove all blElement of the application root to be replaced by the image"
 	elements := self root children asArray copy.
@@ -26,7 +30,8 @@ BlSpace >> editWithPyramid [
 			each hasParent ifTrue: [ each parent removeChild: each ] ].
 		editor projectModel roots removeAll.
 		self root removeChildren.
-		self root addChildren: pyramidRoots ].
+		self root addChildren: pyramidRoots.
+		self userData removeKey: #pyramid_isOnEdition. ].
 	
 	^ editor
 ]

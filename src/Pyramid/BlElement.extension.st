@@ -4,7 +4,9 @@ Extension { #name : #BlElement }
 BlElement >> editWithPyramid [
 
 	| editor  oldParent |
-	editor := PyramidPluginManager uniqueInstance makeEditor.
+	editor := PyramidEditor buildEditor.
+	
+	self flag:'labordep: the code below is too complicated, we need to have a more simple API to edit a BlElement, for example editElement:'.
 	oldParent := self parent.
 	self hasParent ifTrue: [ oldParent removeChild: self ].
 
@@ -13,24 +15,4 @@ BlElement >> editWithPyramid [
 
 	editor window open.
 	^ editor
-]
-
-{ #category : #'*Pyramid' }
-BlElement >> openInNewSpaceWithPyramidShortcut [
-
-	| space isEdit |
-	space := self openInNewSpace.
-	isEdit := false.
-	space when: BlKeyDownEvent do: [ :evt |
-		| editor whenClosedDo |
-		isEdit ifFalse: [
-			evt key = KeyboardKey F12 ifTrue: [
-				isEdit := true.
-				editor := space editWithPyramid.
-				whenClosedDo := editor window whenClosedDo.
-				editor window whenClosedDo: [
-					whenClosedDo value.
-					isEdit := false ] ] ] ].
-
-	^ space
 ]
