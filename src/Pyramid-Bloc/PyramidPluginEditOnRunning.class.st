@@ -10,6 +10,7 @@ Class {
 		'editOnRunning',
 		'spaceIds',
 		'shortcut',
+		'shortcutFork',
 		'keyCombination'
 	],
 	#category : #'Pyramid-Bloc-plugin-edit-on-running'
@@ -47,6 +48,12 @@ PyramidPluginEditOnRunning class >> cleanUp: anObject [
 PyramidPluginEditOnRunning class >> doShortcutAction: anEvent [
 
 	| space editor whenClosedDo |
+	
+	self flag:'labordep: this is a temporary processing because this fork is due to a Bloc openend issue'.
+	(shortcutFork notNil and:[ shortcutFork isTerminated ]) ifFalse:[ ^ self ].
+	
+	shortcutFork := [ 
+	
 	self editOnRunning ifFalse:[ ^ self ].
 	space := anEvent source space.
 	(self canEditSpace: space) ifFalse:[ ^ self ].
@@ -54,6 +61,8 @@ PyramidPluginEditOnRunning class >> doShortcutAction: anEvent [
 	editor := space editWithPyramid.
 	whenClosedDo := editor window whenClosedDo.
 	editor window whenClosedDo: [ whenClosedDo value ].
+	
+	] forkAt: Processor userBackgroundPriority named: 'Pyramid edit-on-running plugin shortcut'
 ]
 
 { #category : #accessing }
@@ -114,7 +123,7 @@ PyramidPluginEditOnRunning class >> shortcut [
 		  shortcut := BlShortcutWithAction new
 			              name: 'Pyramid edition shortcut';
 			              combination: self keyCombination;
-			              action: [ :event | [ self doShortcutAction: event] forkAt: Processor userBackgroundPriority named: 'Pyramid enter edition shortcut' ] ]
+			              action: [ :event | self doShortcutAction: event ] ]
 ]
 
 { #category : #accessing }
@@ -131,6 +140,7 @@ PyramidPluginEditOnRunning class >> uninstall [
 	
 	self spaceIds do:[ :id | BlSpace spaceWithId: id do: [ :e | self removeShortcutInSpace: e ] ].
 	self spaceIds removeAll.
+	shortcutFork ifNotNil: [ shortcutFork terminate. shortcutFork := nil ]. 
 	shortcut := nil.
 	keyCombination := nil.
 ]
