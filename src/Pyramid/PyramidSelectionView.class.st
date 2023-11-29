@@ -6,17 +6,17 @@ Class {
 	#instVars : [
 		'list',
 		'playground',
-		'projectModel'
+		'projectModel',
+		'codeObjectInteractionModel',
+		'contextLabel'
 	],
 	#category : #'Pyramid-plugin-selection'
 }
 
-{ #category : #'as yet unclassified' }
-PyramidSelectionView >> connectPlaygroundTo: anObject [
+{ #category : #accessing }
+PyramidSelectionView >> contextLabel [
 
-	self playground interactionModel:
-		(SpCodeObjectInteractionModel on: anObject).
-		self flag: #TODO. "remplacer ici par un interraction model custom en changeant la méthode doItReceiver par la meme chose mais en envoyant avant un message commande custom."
+	^ contextLabel
 ]
 
 { #category : #'as yet unclassified' }
@@ -30,15 +30,19 @@ PyramidSelectionView >> defaultLayout [
 
 	^ SpPanedLayout newVertical
 		  add: self list;
-		  add: self playground;
+		  add: (SpBoxLayout newVertical
+				   add: self contextLabel expand: false;
+				   add: self playground;
+				   yourself);
 		  yourself
 ]
 
 { #category : #initialization }
 PyramidSelectionView >> initializePresenters [
 
-	list := self newList.
-	playground := self newCode.
+	list := SpListPresenter new.
+	playground := PyramidSpCodePresenter new.
+	contextLabel := SpLabelPresenter new.
 ]
 
 { #category : #accessing }
@@ -62,27 +66,21 @@ PyramidSelectionView >> projectModel: aPyramidActiveProject [
 
 	projectModel := aPyramidActiveProject.
 	projectModel addObserver: self.
-	self updateSelection
+	self playground projectModel: aPyramidActiveProject.
+	
+		self pyramidSelectionChanged.
 ]
 
 { #category : #'as yet unclassified' }
 PyramidSelectionView >> pyramidSelectionChanged [
 
-	self updateSelection
+	self list items: self currentSelection.
+	contextLabel label: self valueOfSelf.
 ]
 
 { #category : #'as yet unclassified' }
-PyramidSelectionView >> updateSelection [
+PyramidSelectionView >> valueOfSelf [
 
-	| currentSelection |
-	currentSelection := self currentSelection.
-	
-	self list items: currentSelection.
-	currentSelection ifEmpty: [
-		self connectPlaygroundTo: nil.
-		^ self ].
-	currentSelection size = 1 ifTrue: [
-		self connectPlaygroundTo: currentSelection first.
-		^ self ].
-	self connectPlaygroundTo: currentSelection
+	^ 'self is <1s>' expandMacrosWith:
+		  self playground interactionModel doItReceiverString
 ]
