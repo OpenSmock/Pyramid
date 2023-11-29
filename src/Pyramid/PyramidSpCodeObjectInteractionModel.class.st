@@ -19,7 +19,8 @@ PyramidSpCodeObjectInteractionModel >> doItReceiver [
 { #category : #accessing }
 PyramidSpCodeObjectInteractionModel >> doItReceiverString [
 
-	self projectModel selection ifEmpty: [ ^ 'roots of project (use Collection methods)' ].
+	self projectModel selection ifEmpty: [
+		^ 'roots (use #Collection methods)' ].
 	self projectModel selection size = 1 ifTrue: [ ^ 'a single element' ].
 	^ 'a collection of <1p> elements' expandMacrosWith:
 		  self projectModel selection size
