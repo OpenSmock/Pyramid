@@ -29,8 +29,18 @@ PyramidSelectionView >> currentSelection [
 PyramidSelectionView >> defaultLayout [
 
 	^ SpPanedLayout newVertical
-		  add: self list;
 		  add: (SpBoxLayout newVertical
+				   add: (SpLabelPresenter new
+						    label: 'Selection';
+						    displayBold: [ :t | true ];
+						    yourself) expand: false;
+				   add: self list;
+				   yourself);
+		  add: (SpBoxLayout newVertical
+				   add: (SpLabelPresenter new
+						    label: 'Playground';
+						    displayBold: [ :t | true ];
+						    yourself)  expand: false;
 				   add: self contextLabel expand: false;
 				   add: self playground;
 				   yourself);
