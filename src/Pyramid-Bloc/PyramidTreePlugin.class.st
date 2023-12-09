@@ -13,35 +13,35 @@ Class {
 }
 
 { #category : #'as yet unclassified' }
+PyramidTreePlugin class >> columnHashValue: aPyramidTreePlugin [
+
+	^ SpStringTableColumn new
+		  title: 'Hash';
+		  evaluated: [ :aBlElement | aBlElement identityHash printString ];
+		  displayColor: [ :aBlElement | Color gray ];
+		  width: 60;
+		  yourself
+]
+
+{ #category : #'as yet unclassified' }
 PyramidTreePlugin class >> columnNameAndType: aPyramidTreePlugin [
 
 	^ SpCompositeTableColumn new
-		 " sortFunction: PyramidElementIdSortFunction new;"
 		  title: 'Elements';
 		  addColumn:
 			  (SpImageTableColumn evaluated: [ :aBlElement | aBlElement asIcon ]);
 		  addColumn: (SpStringTableColumn new
-				   title: 'Class';
-				   evaluated: [ :aBlElement | aBlElement class name ];
-				   yourself);
-		  addColumn: (SpStringTableColumn new
-				   title: 'Identity';
-				   evaluated: [ :aBlElement | aBlElement identityHash printString ];
-				   displayColor: [ :aBlElement | Color gray ];
-				   yourself);
-		  addColumn: (SpStringTableColumn new
 				   title: 'Identifier';
-				   beEditable;
-				   onAcceptEdition: [ :aBlElement :newIdString |
-					   self
-						   setId: newIdString
-						   of: aBlElement
-						   onEditor: aPyramidTreePlugin editor ];
 				   evaluated: [ :aBlElement |
 					   aBlElement elementId isNoId
-						   ifTrue: [ '' ]
+						   ifTrue: [ '@\no name\' ]
 						   ifFalse: [ aBlElement id asSymbol ] ];
-				   displayColor: [ :aBlElement | Smalltalk ui theme textColor ];
+				   yourself);
+		  addColumn: (SpStringTableColumn new
+				   title: 'Class';
+				   evaluated: [ :aBlElement | aBlElement class name ];
+				   displayColor: [ :aBlElement | Color gray ];
+				   displayItalic: [ :aBlElement | true ];
 				   yourself);
 		  yourself
 ]
@@ -51,7 +51,6 @@ PyramidTreePlugin class >> columnVisibility: aPyramidTreePlugin [
 
 	^ SpCompositeTableColumn new
 		  title: 'Visibility';
-		  "sortFunction: PyramidVisibilitySortFunction new;"
 		  width: 80;
 		  addColumn: (SpImageTableColumn evaluated: [ :aBlElement |
 					   aBlElement
@@ -78,20 +77,10 @@ PyramidTreePlugin class >> columnZIndex: aPyramidTreePlugin [
 
 	^ SpStringTableColumn new
 		  title: 'z';
-		  "sortFunction: PyramidElevationSortFunction new;"
 		  evaluated: [ :aBlElement |
 			  aBlElement elevation elevation printString ];
-		  width: 20;
+		  width: 16;
 		  yourself
-]
-
-{ #category : #initialization }
-PyramidTreePlugin class >> setId: aString of: aBlElement onEditor: aPyramidEditor [
-
-	aPyramidEditor propertiesManager commandExecutor
-		use: PyramidElementIdCommand new
-		on: { aBlElement }
-		with: aString
 ]
 
 { #category : #initialization }
@@ -171,6 +160,7 @@ PyramidTreePlugin >> initializeLibraryPresenters [
 PyramidTreePlugin >> initializeTreeColumns [
 
 	self treePresenter columns add: (self class columnNameAndType: self).
+	self treePresenter columns add: (self class columnHashValue: self).
 	self treePresenter columns add: (self class columnZIndex: self).
 	self treePresenter columns add: (self class columnVisibility: self).
 	self treePresenter updateTree
