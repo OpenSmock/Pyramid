@@ -6,13 +6,15 @@ BlSpace >> editWithPyramid [
 	| editor elements spacePlaceholder |
 	"Prepare image to replace the application view"
 	spacePlaceholder := (self root exportAsForm dimmed: 0.5) asElement.
-	spacePlaceholder addChildren: PyramidLogo logoOpenInPyramid materializeAsBlElement.
-	
+	spacePlaceholder addChildren:
+		PyramidLogo logoOpenInPyramid materializeAsBlElement.
+
 	"Open editor"
 	editor := PyramidEditor buildEditor.
 	editor window open.
 
-	self flag:'labordep: the code below is too complicated, we need to have a more simple API to edit a BlSpace, for example editSpace:'.
+	self flag:
+		'labordep: the code below is too complicated, we need to have a more simple API to edit a BlSpace, for example editSpace:'.
 
 	self userData at: #pyramid_isOnEdition put: true.
 
@@ -22,16 +24,16 @@ BlSpace >> editWithPyramid [
 	self root addChild: spacePlaceholder.
 
 	"Add child into Pyramid to be edited"
-	editor projectModel roots addAll: elements.
+	editor projectModel firstLevelElements addAll: elements.
 	editor window whenClosedDo: [
 		| pyramidRoots |
-		pyramidRoots := editor projectModel roots asArray.
+		pyramidRoots := editor projectModel firstLevelElements asArray.
 		pyramidRoots do: [ :each |
 			each hasParent ifTrue: [ each parent removeChild: each ] ].
-		editor projectModel roots removeAll.
+		editor projectModel firstLevelElements removeAll.
 		self root removeChildren.
 		self root addChildren: pyramidRoots.
-		self userData removeKey: #pyramid_isOnEdition. ].
-	
+		self userData removeKey: #pyramid_isOnEdition ].
+
 	^ editor
 ]

@@ -4,23 +4,24 @@ Class {
 	#traits : 'TPyramidProjectModelObserver',
 	#classTraits : 'TPyramidProjectModelObserver classTrait',
 	#instVars : [
-		'buttonAddToRoots',
 		'tree',
 		'columns',
 		'libraryPresenterForRoot',
 		'projectModel',
 		'editorMenuBuilder',
-		'shouldUpdateSelection'
+		'shouldUpdateSelection',
+		'buttonAddToFirstLevel'
 	],
 	#category : #'Pyramid-Bloc-plugin-tree-library'
 }
 
 { #category : #'as yet unclassified' }
 PyramidTreePresenter >> actionAddNewElement [
-(PyramidPopoverFactory
-				                  makeWithPresenter: self libraryPresenterForRoot
-				                  relativeTo: self buttonAddToRoots
-				                  position: SpPopoverPosition right) popup
+
+	(PyramidPopoverFactory
+		 makeWithPresenter: self libraryPresenterForRoot
+		 relativeTo: self buttonAddToFirstLevel
+		 position: SpPopoverPosition right) popup
 ]
 
 { #category : #'as yet unclassified' }
@@ -39,9 +40,9 @@ PyramidTreePresenter >> actionSelectionChanged: aCollection [
 ]
 
 { #category : #accessing }
-PyramidTreePresenter >> buttonAddToRoots [
+PyramidTreePresenter >> buttonAddToFirstLevel [
 
-	^ buttonAddToRoots
+	^ buttonAddToFirstLevel
 ]
 
 { #category : #accessing }
@@ -55,7 +56,7 @@ PyramidTreePresenter >> defaultLayout [
 
 	^ SpBoxLayout newVertical
 		  spacing: 4;
-		  add: self buttonAddToRoots expand: false;
+		  add: self buttonAddToFirstLevel expand: false;
 		  add: self tree expand: true;
 		  yourself
 ]
@@ -88,13 +89,13 @@ PyramidTreePresenter >> initializePresenters [
 
 	columns := OrderedCollection new.
 
-	buttonAddToRoots := SpButtonPresenter new
+	buttonAddToFirstLevel := SpButtonPresenter new
 		                    label: 'Add new element';
 		                    icon: (self iconNamed: #add);
 		                    action: [ self actionAddNewElement ];
 		                    help:
-			                    'Add a new element on the roots of the design.';
-				                    yourself
+			                    'Add a new element on the first level of the design.';
+		                    yourself
 ]
 
 { #category : #accessing }
@@ -132,9 +133,9 @@ PyramidTreePresenter >> pyramidElementsChanged [
 ]
 
 { #category : #'as yet unclassified' }
-PyramidTreePresenter >> pyramidRootsChanged [
+PyramidTreePresenter >> pyramidFirstLevelElementsChanged [
 
-	self updateRoots .
+	self updateRoots.
 	self updateSelection
 ]
 
@@ -178,8 +179,8 @@ PyramidTreePresenter >> tree [
 PyramidTreePresenter >> updateRoots [
 
 	self shouldUpdateSelection: false.
-	[
-	self tree roots: self projectModel roots asArray ] ensure: [ self shouldUpdateSelection: true ]
+	[ self tree roots: self projectModel firstLevelElements asArray ] ensure: [
+		self shouldUpdateSelection: true ]
 ]
 
 { #category : #'as yet unclassified' }

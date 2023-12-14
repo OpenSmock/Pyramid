@@ -10,7 +10,7 @@ Class {
 { #category : #accessing }
 PyramidSpCodeObjectInteractionModel >> doItReceiver [
 
-	self projectModel selection ifEmpty: [ ^ self projectModel roots ].
+	self projectModel selection ifEmpty: [ ^ self projectModel firstLevelElements ].
 	self projectModel selection size = 1 ifTrue: [
 		^ self projectModel selection first ].
 	^ self projectModel selection

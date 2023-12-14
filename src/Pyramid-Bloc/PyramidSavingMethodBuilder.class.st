@@ -96,7 +96,7 @@ PyramidSavingMethodBuilder >> serializeBlock: anObject [
 PyramidSavingMethodBuilder >> serializedString: aSaveModel [
 
 	| roots |
-	roots := aSaveModel projectModel roots asArray sorted:
+	roots := aSaveModel projectModel firstLevelElements asArray sorted:
 		         PyramidElevationSortFunction new.
 	self flag: #FIX. "The roots must be sorted before saving or else the order on the roots will not be kept"
 	^ self serializeBlock value: roots

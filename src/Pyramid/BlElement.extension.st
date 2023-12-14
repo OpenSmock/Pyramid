@@ -3,15 +3,17 @@ Extension { #name : #BlElement }
 { #category : #'*Pyramid' }
 BlElement >> editWithPyramid [
 
-	| editor  oldParent |
+	| editor oldParent |
 	editor := PyramidEditor buildEditor.
-	
-	self flag:'labordep: the code below is too complicated, we need to have a more simple API to edit a BlElement, for example editElement:'.
+
+	self flag:
+		'labordep: the code below is too complicated, we need to have a more simple API to edit a BlElement, for example editElement:'.
 	oldParent := self parent.
 	self hasParent ifTrue: [ oldParent removeChild: self ].
 
-	editor projectModel roots add: self.
-	editor window whenClosedDo: [ oldParent ifNotNil: [ oldParent addChild: self ] ].
+	editor projectModel firstLevelElements add: self.
+	editor window whenClosedDo: [
+		oldParent ifNotNil: [ oldParent addChild: self ] ].
 
 	editor window open.
 	^ editor

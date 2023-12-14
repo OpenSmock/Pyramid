@@ -25,7 +25,7 @@ PyramidSavePlugin class >> openOn: aCollectionOfBlElement saveModel: aSaveModel 
 		Error signal:
 			'Wrong installation of SavePlugin. Should only be one instance.' ].
 	savePlugin := savePlugin asArray first.
-	editor projectModel roots addAll: aCollectionOfBlElement.
+	editor projectModel firstLevelElements addAll: aCollectionOfBlElement.
 	savePlugin openOn: aSaveModel.
 	editor open
 ]
