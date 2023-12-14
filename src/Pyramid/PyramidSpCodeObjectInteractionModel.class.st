@@ -20,9 +20,10 @@ PyramidSpCodeObjectInteractionModel >> doItReceiver [
 PyramidSpCodeObjectInteractionModel >> doItReceiverString [
 
 	self projectModel selection ifEmpty: [
-		^ 'roots (use #Collection methods)' ].
-	self projectModel selection size = 1 ifTrue: [ ^ 'a single element' ].
-	^ 'a collection of <1p> elements' expandMacrosWith:
+		^ 'the collection of first level elements' ].
+	self projectModel selection size = 1 ifTrue: [
+		^ 'the selected element' ].
+	^ 'an array of <1p> selected elements' expandMacrosWith:
 		  self projectModel selection size
 ]
 
