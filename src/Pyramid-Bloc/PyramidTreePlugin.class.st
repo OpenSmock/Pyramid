@@ -78,7 +78,9 @@ PyramidTreePlugin class >> columnZIndex: aPyramidTreePlugin [
 	^ SpStringTableColumn new
 		  title: 'z';
 		  evaluated: [ :aBlElement |
-			  aBlElement elevation elevation printString ];
+			  aBlElement elevation elevation = 0
+				  ifTrue: [ '' ]
+				  ifFalse: [ aBlElement elevation elevation printString ] ];
 		  width: 16;
 		  yourself
 ]
