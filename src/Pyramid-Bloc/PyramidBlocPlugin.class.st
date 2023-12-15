@@ -402,33 +402,37 @@ PyramidBlocPlugin >> menuChangeOrderOn: aBuilder [
 			group
 				addItem: [ :item |
 					item
-						icon: (self iconNamed: #top);
-						name: 'Put in front';
-						enabled: true;
-						action: [ self send: PyramidSendTopCommand new on: { single } ];
-						yourself ];
-				addItem: [ :item |
-					item
-						icon: (self iconNamed: #up);
-						name: 'Send up';
-						enabled: true;
-						action: [ self send: PyramidSendUpCommand new on: { single } ];
-						yourself ];
-				addItem: [ :item |
-					item
-						icon: (self iconNamed: #down);
-						name: 'Send down';
-						enabled: true;
-						action: [ self send: PyramidSendDownCommand new on: { single } ];
-						yourself ];
-				addItem: [ :item |
-					item
-						icon: (self iconNamed: #bottom);
-						name: 'Put in back';
+						icon: PyramidDrawOrderIcons formOnForeground;
+						name: 'On foreground';
 						enabled: true;
 						action: [
-							self send: PyramidSendBottomCommand new on: { single } ];
-						yourself ] ]
+							self send: PyramidOnForegroundOrderCommand new on: { single } ];
+						yourself ];
+				addItem: [ :item |
+					item
+						icon: PyramidDrawOrderIcons formOnBackground;
+						name: 'On background';
+						enabled: true;
+						action: [
+							self send: PyramidOnBackgroundOrderCommand new on: { single } ];
+						yourself ];
+				addItem: [ :item |
+					item
+						icon: PyramidDrawOrderIcons formMoveForward;
+						name: 'Move forward';
+						enabled: true;
+						action: [
+							self send: PyramidMoveForwardOrderCommand new on: { single } ];
+						yourself ];
+				addItem: [ :item |
+					item
+						icon: PyramidDrawOrderIcons formMoveBackward;
+						name: 'Move backward';
+						enabled: true;
+						action: [
+							self send: PyramidMoveBackwardOrderCommand new on: { single } ];
+						yourself ];
+				yourself ]
 		order: 20
 ]
 

@@ -1,7 +1,7 @@
 Class {
 	#name : #PyramidDrawOrderIcons,
 	#superclass : #Object,
-	#category : #'Pyramid-Bloc-plugin-bloc-siblings'
+	#category : #'Pyramid-Bloc-plugin-bloc-order'
 }
 
 { #category : #'pyramid-serialized-bloc' }
