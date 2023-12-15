@@ -677,3 +677,39 @@ PyramidDrawOrderIcons class >> blocOnForeground [
 	}
 ]'
 ]
+
+{ #category : #'pyramid-serialized-bloc' }
+PyramidDrawOrderIcons class >> formMoveBackward [
+
+	^ (BlElement new
+		   size: 16 @ 16;
+		   addChildren: self blocMoveBackward materializeAsBlElement)
+		  exportAsForm
+]
+
+{ #category : #'pyramid-serialized-bloc' }
+PyramidDrawOrderIcons class >> formMoveForward [
+
+	^ (BlElement new
+		   size: 16 @ 16;
+		   addChildren: self blocMoveForward materializeAsBlElement)
+		  exportAsForm
+]
+
+{ #category : #'pyramid-serialized-bloc' }
+PyramidDrawOrderIcons class >> formOnBackground [
+
+	^ (BlElement new
+		   size: 16 @ 16;
+		   addChildren: self blocOnBackground materializeAsBlElement)
+		  exportAsForm
+]
+
+{ #category : #'pyramid-serialized-bloc' }
+PyramidDrawOrderIcons class >> formOnForeground [
+
+	^ (BlElement new
+		   size: 16 @ 16;
+		   addChildren: self blocOnForeground materializeAsBlElement)
+		  exportAsForm
+]
