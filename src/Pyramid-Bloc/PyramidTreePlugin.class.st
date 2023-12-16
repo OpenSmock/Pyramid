@@ -150,7 +150,7 @@ PyramidTreePlugin >> initializeLibraryPresenters [
 		                              editor: self editor;
 		idGenerator: idGenerator;
 		                              yourself.
-	libraryPresenterForRoot := PyramidLibraryPresenterForRoot new
+	libraryPresenterForRoot := PyramidLibraryPresenterForFirstLevelElement new
 		                           editor: self editor;
 		idGenerator: idGenerator;
 		                           yourself
@@ -234,10 +234,10 @@ PyramidTreePlugin >> removeSelectedElements [
 	self editor propertiesManager commandExecutor
 		use: PyramidRemoveSelectedElementsCommand new
 		on: self editor projectModel selection
-		with: self editor projectModel roots.
-		
+		with: self editor projectModel firstLevelElements.
+
 	"Update the selection after remove"
-	self editor projectModel updateSelection.
+	self editor projectModel updateSelection
 ]
 
 { #category : #accessing }

@@ -349,7 +349,7 @@ PyramidBlocPlugin >> groupCollection: aCollection [
 	self editor propertiesManager commandExecutor
 		use: self groupCommand
 		on: { aCollection }
-		with: self editor projectModel roots
+		with: self editor projectModel firstLevelElements
 ]
 
 { #category : #accessing }

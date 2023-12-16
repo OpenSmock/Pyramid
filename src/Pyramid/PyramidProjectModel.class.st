@@ -4,7 +4,7 @@ Class {
 	#traits : 'TPyramidProjectModel',
 	#classTraits : 'TPyramidProjectModel classTrait',
 	#instVars : [
-		'roots',
+		'firstLevelElements',
 		'selection'
 	],
 	#category : #'Pyramid-models'
@@ -14,22 +14,29 @@ Class {
 PyramidProjectModel >> allElements [
 
 	^ PyramidElementsManipulationHelper flattenChildrenOfCollection:
-		               self roots.
+		  self firstLevelElements
+]
+
+{ #category : #accessing }
+PyramidProjectModel >> firstLevelElements [
+
+	^ firstLevelElements
 ]
 
 { #category : #accessing }
 PyramidProjectModel >> initialize [
 
 	selection := PyramidCollectionWithCallbacks new.
-	roots := PyramidSortedCollectionWithCallbacks new sortFunction: PyramidElevationSortFunction new; yourself.
+	firstLevelElements := PyramidSortedCollectionWithCallbacks new
+		                      sortFunction: PyramidElevationSortFunction new;
+		                      yourself.
 
-	selection subscribe: self withCallback: [ self informSelectionChanged ].
-	roots subscribe: self withCallback: [ self informRootsChanged ]
-]
-
-{ #category : #accessing }
-PyramidProjectModel >> roots [
-^ roots
+	selection
+		subscribe: self
+		withCallback: [ self informSelectionChanged ].
+	firstLevelElements
+		subscribe: self
+		withCallback: [ self informFirstLevelElementsChanged ]
 ]
 
 { #category : #selection }
