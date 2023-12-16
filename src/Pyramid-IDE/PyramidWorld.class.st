@@ -1,7 +1,7 @@
 Class {
 	#name : #PyramidWorld,
 	#superclass : #Object,
-	#category : #'Pyramid-IDE-Menus'
+	#category : #'Pyramid-IDE-menus'
 }
 
 { #category : #actions }
