@@ -4,7 +4,7 @@ Extension { #name : #BlRadialGradientPaint }
 BlRadialGradientPaint >> = aBlPaint [
 
 	super = aBlPaint ifFalse: [ ^ false ].
-	^ self center = aBlPaint center and: [ self radius = aBlPaint radius ]
+	^ self innerCenter = aBlPaint innerCenter and: [ self innerRadius = aBlPaint innerRadius and: [ self outerCenter = aBlPaint outerCenter and: [ self outerRadius = aBlPaint outerRadius ] ] ]
 ]
 
 { #category : #'*Pyramid-Bloc' }
@@ -12,6 +12,6 @@ BlRadialGradientPaint >> selectOnGradientPaintInput: aPyramidGradientPaintInputP
 
 	super selectOnGradientPaintInput: aPyramidGradientPaintInputPresenter.
 	aPyramidGradientPaintInputPresenter radialButton click.
-	aPyramidGradientPaintInputPresenter centerInput value: self center.
-	aPyramidGradientPaintInputPresenter radiusInput value: self radius
+	aPyramidGradientPaintInputPresenter centerInput value: self outerCenter.
+	aPyramidGradientPaintInputPresenter radiusInput value: self outerRadius
 ]

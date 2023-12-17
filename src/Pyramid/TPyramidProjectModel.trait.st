@@ -18,9 +18,9 @@ TPyramidProjectModel >> informElementsChanged [
 ]
 
 { #category : #'as yet unclassified' }
-TPyramidProjectModel >> informRootsChanged [
+TPyramidProjectModel >> informFirstLevelElementsChanged [
 
-	self observers do: [ :each | each pyramidRootsChanged ]
+	self observers do: [ :each | each pyramidFirstLevelElementsChanged ]
 ]
 
 { #category : #'as yet unclassified' }

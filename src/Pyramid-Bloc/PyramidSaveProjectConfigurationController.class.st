@@ -60,7 +60,7 @@ PyramidSaveProjectConfigurationController >> pyramidElementsChanged [
 ]
 
 { #category : #'as yet unclassified' }
-PyramidSaveProjectConfigurationController >> pyramidRootsChanged [
+PyramidSaveProjectConfigurationController >> pyramidFirstLevelElementsChanged [
 
 	self saveModel isSaved: false.
 	self updateWindowTitle

@@ -1,7 +1,7 @@
 Class {
 	#name : #PyramidSystemSettings,
 	#superclass : #Object,
-	#category : #'Pyramid-IDE'
+	#category : #'Pyramid-IDE-settings-menu'
 }
 
 { #category : #settings }

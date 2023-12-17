@@ -150,10 +150,11 @@ PyramidMainExtension >> projectModel: aProjectModel [
 ]
 
 { #category : #'as yet unclassified' }
-PyramidMainExtension >> pyramidRootsChanged [
+PyramidMainExtension >> pyramidFirstLevelElementsChanged [
 
 	self containerElement removeChildren.
-	(self projectModel roots asArray sorted: PyramidElevationSortFunction new) do: [ :each |
+	(self projectModel firstLevelElements asArray sorted:
+		 PyramidElevationSortFunction new) do: [ :each |
 		each parent ifNotNil: [ :p | p removeChild: each ].
 		self containerElement addChild: each ]
 ]

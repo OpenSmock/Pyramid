@@ -19,14 +19,14 @@ PyramidEditorTest >> openFromBlSpace [
 	(Duration milliSeconds: 10) wait.
 
 	self assert: editor window isOpen.
-	self assert: (editor projectModel roots includes: element).
+	self assert: (editor projectModel firstLevelElements includes: element).
 	self deny: (space root children includes: element).
 
 	editor close.
 	(Duration milliSeconds: 10) wait.
 
 	self assert: editor window isClosed.
-	self deny: (editor projectModel roots includes: element).
+	self deny: (editor projectModel firstLevelElements includes: element).
 	self assert: (space root children includes: element)
 ]
 

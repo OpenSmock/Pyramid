@@ -10,7 +10,9 @@ TPyramidProjectModelObserver >> pyramidElementsChanged [
 ]
 
 { #category : #'as yet unclassified' }
-TPyramidProjectModelObserver >> pyramidRootsChanged [
+TPyramidProjectModelObserver >> pyramidFirstLevelElementsChanged [
+
+	
 ]
 
 { #category : #'as yet unclassified' }
