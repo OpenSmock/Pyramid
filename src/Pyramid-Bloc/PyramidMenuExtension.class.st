@@ -32,9 +32,9 @@ PyramidMenuExtension >> installOn: aBuilder [
 
 	self elementAtDisplay background: Color gray.
 
-	self elementAtEvents
-		when: BlSecondaryMouseUpEvent
-		do: [ :evt | self showMenuAt: evt ]
+	self elementAtEvents addEventHandler: (BlEventHandler
+			 on: BlSecondaryMouseUpEvent
+			 do: [ :evt | self showMenuAt: evt ])
 ]
 
 { #category : #accessing }
