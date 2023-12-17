@@ -178,8 +178,21 @@ PyramidTreePresenter >> tree [
 { #category : #'as yet unclassified' }
 PyramidTreePresenter >> updateRoots [
 
+	| roots parent shouldOrder |
 	self shouldUpdateSelection: false.
-	[ self tree roots: self projectModel firstLevelElements asArray ] ensure: [
+
+	roots := self projectModel roots asArray.
+	parent := nil.
+	
+	"If roots all have the same parent then it should be ordered by the parent children order."
+	shouldOrder := (roots allSatisfy: [ :each |
+		                parent ifNil: [ parent := each parent ].
+		                each parent = parent ]) and: [
+		               parent notNil and: [
+			               parent childrenCount = roots size ] ].
+	shouldOrder ifTrue: [ roots := parent children asArray ].
+
+	[ self tree roots: roots ] ensure: [
 		self shouldUpdateSelection: true ]
 ]
 

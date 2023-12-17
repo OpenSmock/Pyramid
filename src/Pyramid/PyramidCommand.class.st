@@ -52,7 +52,10 @@ PyramidCommand >> getValueFor: anObject [
 { #category : #'as yet unclassified' }
 PyramidCommand >> saveStatesOf: aCollection with: arguments [
 
-	^ self saveStatesOf: aCollection withCommand: self withArguments: arguments
+	^ self
+		  saveStatesOf: aCollection
+		  withCommand: self
+		  withArguments: arguments
 ]
 
 { #category : #'as yet unclassified' }
