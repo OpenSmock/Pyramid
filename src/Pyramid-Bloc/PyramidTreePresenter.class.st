@@ -181,7 +181,7 @@ PyramidTreePresenter >> updateRoots [
 	| roots parent shouldOrder |
 	self shouldUpdateSelection: false.
 
-	roots := self projectModel roots asArray.
+	roots := self projectModel firstLevelElements asArray.
 	parent := nil.
 	
 	"If roots all have the same parent then it should be ordered by the parent children order."
