@@ -29,5 +29,8 @@ PyramidSpaceContainer >> element: anObject [
 { #category : #initialization }
 PyramidSpaceContainer >> initialize [
 
-	element := BlElement new constraintsDo: [ :c | c vertical matchParent . c horizontal matchParent ]; clipChildren: false; yourself
+	element := (BlElement id: (self class name asSymbol))
+		           constraintsDo: [ :c | c vertical matchParent. c horizontal matchParent ];
+		           clipChildren: false;
+		           yourself
 ]
