@@ -12,9 +12,15 @@ TPyramidEditorExtension >> currentTransformTranslation [
 ]
 
 { #category : #'as yet unclassified' }
-TPyramidEditorExtension >> elementAtDisplay [
+TPyramidEditorExtension >> elementAtDisplays [
 
 	^ (self builder elementAt: #displays)
+]
+
+{ #category : #'as yet unclassified' }
+TPyramidEditorExtension >> elementAtDisplaysAddons [
+
+	^ self elementAtDisplays childWithId: #displaysAddons
 ]
 
 { #category : #'as yet unclassified' }

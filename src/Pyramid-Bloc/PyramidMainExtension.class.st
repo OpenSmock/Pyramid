@@ -78,7 +78,8 @@ PyramidMainExtension >> initialize [
 						                yourself);
 				               add: (PyramidPointInputPresenter new
 						                value: self defaultExtent;
-						                whenValueChangedDo: [ :point | self extent: point ];
+						                whenValueChangedDo: [ :point |
+							                self extent: point ];
 						                yourself);
 				               yourself);
 		              yourself.
@@ -95,6 +96,7 @@ PyramidMainExtension >> initialize [
 
 
 	containerElement := BlElement new
+		                    id: #MainExtension_containerElement;
 		                    constraintsDo: [ :c |
 			                    c vertical matchParent.
 			                    c horizontal matchParent ];
@@ -102,6 +104,7 @@ PyramidMainExtension >> initialize [
 		                    zIndex: 0;
 		                    yourself.
 	borderElement := BlElement new
+		                 id: #MainExtension_borderElement;
 		                 border: self defaultBorder;
 		                 outskirts: BlOutskirts outside;
 		                 constraintsDo: [ :c |
@@ -109,8 +112,10 @@ PyramidMainExtension >> initialize [
 			                 c horizontal matchParent ];
 		                 clipChildren: false;
 		                 zIndex: 1;
+								preventMeAndChildrenMouseEvents;
 		                 yourself.
 	sizeElement := BlElement new
+		               id: #MainExtension_sizeElement;
 		               size: self defaultExtent;
 		               clipChildren: false;
 		               addChildren: {

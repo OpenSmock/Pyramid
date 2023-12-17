@@ -22,19 +22,23 @@ PyramidMouseTransformExtension >> installOn: aBuilder [
 
 	self builder: aBuilder.
 
-	self elementAtEvents when: BlMiddleMouseDownEvent do: [ :evt |
-		self origin: self currentTransformTranslation - evt position.
-		self isDragging: true ].
+	self elementAtEvents addEventHandler: (BlEventHandler
+			 on: BlMiddleMouseDownEvent
+			 do: [ :evt |
+				 self origin: self currentTransformTranslation - evt position.
+				 self isDragging: true ]).
 
-	self elementAtEvents when: BlMouseMoveEvent do: [ :evt |
-		evt middleButtonPressed ifFalse: [ self isDragging: false ].
-		self isDragging ifTrue: [
-			self elementAtTransforms transformDo: [ :t |
-				t translateBy: evt position + self origin ].
-			self builder signalTransformationChanged ] ].
-	self elementAtEvents
-		when: BlMiddleMouseUpEvent
-		do: [ :evt | self isDragging: false ]
+	self elementAtEvents addEventHandler: (BlEventHandler
+			 on: BlMouseMoveEvent
+			 do: [ :evt |
+				 evt middleButtonPressed ifFalse: [ self isDragging: false ].
+				 self isDragging ifTrue: [
+					 self elementAtTransforms transformDo: [ :t |
+						 t translateBy: evt position + self origin ].
+					 self builder signalTransformationChanged ] ]).
+	self elementAtEvents addEventHandler: (BlEventHandler
+			 on: BlMiddleMouseUpEvent
+			 do: [ :evt | self isDragging: false ])
 ]
 
 { #category : #accessing }

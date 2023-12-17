@@ -30,8 +30,10 @@ PyramidPositionExtension >> installOn: aBuilder [
 
 	self builder: aBuilder.
 
-	self elementAtEvents when: BlMouseMoveEvent do: [ :evt |
-		self display text:
-			(evt position - self currentTransformTranslation) asRopedText ].
-	self elementAtDisplay addChild: self display.
+	self elementAtEvents addEventHandler: (BlEventHandler
+			 on: BlMouseMoveEvent
+			 do: [ :evt |
+				 self display text:
+					 (evt position - self currentTransformTranslation) asRopedText ]).
+	self elementAtDisplaysAddons addChild: self display
 ]

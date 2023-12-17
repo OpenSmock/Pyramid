@@ -31,6 +31,7 @@ PyramidSpaceBuilder class >> defaultEditorBuilder [
 			           { #displays. #transforms. #main. #events. #widgets };
 		           yourself.
 
+	(builder overlays at: #displays) element addChild: (BlElement new id: #displaysAddons; clipChildren: false; yourself).
 	self defaultEditorExtensions do: [ :class |
 		builder addExtension: class new ].
 
@@ -93,12 +94,12 @@ PyramidSpaceBuilder >> build [
 
 	self overlays ifEmpty: [ ^ self space ].
 
-	self space
-		when: BlKeyDownEvent
-		do: [ :evt | self keyboard add: evt key ].
-	self space
-		when: BlKeyUpEvent
-		do: [ :evt | self keyboard remove: evt key ].
+	self space addEventHandler: (BlEventHandler
+			 on: BlKeyDownEvent
+			 do: [ :evt | self keyboard add: evt key ]).
+	self space addEventHandler: (BlEventHandler
+			 on: BlKeyUpEvent
+			 do: [ :evt | self keyboard remove: evt key ]).
 
 	self signalTransformationChanged.
 	self topMostOverlay buildOn: self space root.

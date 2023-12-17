@@ -90,12 +90,14 @@ PyramidSelectionWidgetBorderBuilder >> leftLabelFor: aBlElement [
 	label := self labelWithColor: self mainLeftColor.
 	label transformDo: [ :t | t rotateBy: -90 ].
 
-	aBlElement when: BlElementExtentChangedEvent do: [ :evt |
-		label text: (aBlElement height < 50
-				 ifTrue: [ '' asRopedText ]
-				 ifFalse: [ aBlElement height printString asRopedText ]).
-		label requestLayout.
-		label position: -22 @ (aBlElement height - 20 / 2) ].
+	aBlElement addEventHandler: (BlEventHandler
+			 on: BlElementExtentChangedEvent
+			 do: [ :evt |
+				 label text: (aBlElement height < 50
+						  ifTrue: [ '' asRopedText ]
+						  ifFalse: [ aBlElement height printString asRopedText ]).
+				 label requestLayout.
+				 label position: -22 @ (aBlElement height - 20 / 2) ]).
 	^ label
 ]
 
@@ -167,11 +169,13 @@ PyramidSelectionWidgetBorderBuilder >> topLabelFor: aBlElement [
 	| label |
 	label := self labelWithColor: self mainTopColor.
 
-	aBlElement when: BlElementExtentChangedEvent do: [ :evt |
-		label text: (aBlElement width < 50
-				 ifTrue: [ '' asRopedText ]
-				 ifFalse: [ aBlElement width printString asRopedText ]).
-		label requestLayout.
-		label position: aBlElement width - 20 / 2 @ -13 ].
+	aBlElement addEventHandler: (BlEventHandler
+			 on: BlElementExtentChangedEvent
+			 do: [ :evt |
+				 label text: (aBlElement width < 50
+						  ifTrue: [ '' asRopedText ]
+						  ifFalse: [ aBlElement width printString asRopedText ]).
+				 label requestLayout.
+				 label position: aBlElement width - 20 / 2 @ -13 ]).
 	^ label
 ]

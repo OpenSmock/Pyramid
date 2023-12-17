@@ -127,7 +127,7 @@ PyramidSelectionWidgetExtension >> isDragging: anObject [
 PyramidSelectionWidgetExtension >> makeMonoSelectionFor: aBlElement [
 
 	| monoSelection eventElement dragGhostElement borderElement |
-	monoSelection := (BlOverlayElement on: aBlElement).
+	monoSelection := BlOverlayElement on: aBlElement.
 	monoSelection clipChildren: false.
 
 	dragGhostElement := BlElement new
@@ -145,12 +145,15 @@ PyramidSelectionWidgetExtension >> makeMonoSelectionFor: aBlElement [
 			                c vertical matchParent.
 			                c horizontal matchParent ];
 		                zIndex: 100;
-		                when: BlPrimaryMouseDownEvent
-		                do: [ :evt | self centerDragStart: evt ];
-		                when: BlMouseEvent
-		                do: [ :evt | self centerDragEvent: evt ];
-		                when: BlPrimaryMouseUpEvent
-		                do: [ :evt | self centerDragEnd: evt ];
+		                addEventHandler: (BlEventHandler
+				                 on: BlPrimaryMouseDownEvent
+				                 do: [ :evt | self centerDragStart: evt ]);
+		                addEventHandler: (BlEventHandler
+				                 on: BlMouseEvent
+				                 do: [ :evt | self centerDragEvent: evt ]);
+		                addEventHandler: (BlEventHandler
+				                 on: BlPrimaryMouseUpEvent
+				                 do: [ :evt | self centerDragEnd: evt ]);
 		                yourself.
 	borderElement := PyramidSelectionWidgetBorderBuilder new build.
 

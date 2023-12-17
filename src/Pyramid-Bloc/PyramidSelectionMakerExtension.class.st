@@ -120,23 +120,24 @@ PyramidSelectionMakerExtension >> installOn: aBuilder [
 
 	self builder: aBuilder.
 
-	self elementAtDisplay addChild: self selectionGhost.
-	self elementAtEvents
-		when: BlPrimaryMouseDownEvent
-		do: [ :evt | self dragStart: evt ].
-	self elementAtEvents
-		when: BlSecondaryMouseDownEvent
-		do: [ :evt | self dragStart: evt ].
+	self elementAtDisplaysAddons addChild: self selectionGhost.
+	self elementAtEvents addEventHandler: (BlEventHandler
+			 on: BlPrimaryMouseDownEvent
+			 do: [ :evt | self dragStart: evt ]).
+	self elementAtEvents addEventHandler: (BlEventHandler
+			 on: BlSecondaryMouseDownEvent
+			 do: [ :evt | self dragStart: evt ]).
 
-	self elementAtEvents
-		when: BlMouseMoveEvent
-		do: [ :evt | self dragEvent: evt ].
+	self elementAtEvents addEventHandler: (BlEventHandler
+			 on: BlMouseMoveEvent
+			 do: [ :evt | self dragEvent: evt ]).
 
-	self elementAtEvents
-		when: BlPrimaryMouseUpEvent
-		do: [ :evt | self dragEnd: evt ].
-	self elementAtEvents when: BlSecondaryMouseUpEvent do: [ :evt |
-		self dragEnd: evt ]
+	self elementAtEvents addEventHandler: (BlEventHandler
+			 on: BlPrimaryMouseUpEvent
+			 do: [ :evt | self dragEnd: evt ]).
+	self elementAtEvents addEventHandler: (BlEventHandler
+			 on: BlSecondaryMouseUpEvent
+			 do: [ :evt | self dragEnd: evt ])
 ]
 
 { #category : #accessing }
