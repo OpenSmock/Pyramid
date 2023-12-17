@@ -50,7 +50,7 @@ PyramidPluginTestMode >> initialize [
 	isTestOnGoing := false.
 	button := SpButtonPresenter new
 		          icon: self startTestIcon;
-		 help: self startTestHelp;
+		          help: 'Switch between test/edit mode.';
 		          action: [ self switchToTestMode ];
 		          yourself
 ]
@@ -67,27 +67,9 @@ PyramidPluginTestMode >> isTestOnGoing: aBoolean [
 ]
 
 { #category : #'as yet unclassified' }
-PyramidPluginTestMode >> noBuilderFoundHelp [
-
-	^ 'An error as occure. Please reload plugins on worldmenu > Library > Pyramid > reload plugins.'
-]
-
-{ #category : #'as yet unclassified' }
-PyramidPluginTestMode >> startTestHelp [
-
-	^ 'Switch to test mode.'
-]
-
-{ #category : #'as yet unclassified' }
 PyramidPluginTestMode >> startTestIcon [
 
 	^ self iconNamed: #smallDoIt
-]
-
-{ #category : #'as yet unclassified' }
-PyramidPluginTestMode >> stopTestHelp [
-
-	^ 'Switch to edit mode.'
 ]
 
 { #category : #'as yet unclassified' }
@@ -100,27 +82,32 @@ PyramidPluginTestMode >> stopTestIcon [
 PyramidPluginTestMode >> switchToTestMode [
 	"
 	if test ok
-	0. enabledTesting: false.
-	1. event element visibility: visible.""
+	0. isTestOnGoing: false.
+	1. event element visibility: visible.
+	2. displayAddons element visibility: visible.
 	if test nok
-	0. enabledTesting: true.
-	1. event element visibility: gone."
+	0. isTestOnGoing: true.
+	1. event element visibility: gone.
+	2. displayAddons element visibility: gone."
 
 	| event displayPosition |
-	self builder ifNil: [ self button help: self noBuilderFoundHelp. ^ self ].
+	self builder ifNil: [
+		self flag:
+			'If builder is nil then there is no space plugin loaded on current Pyramid instance.'.
+		self inform:
+			'No space plugin found. Please reload the Pyramid plugins on WorldMenu.'.
+		^ self ].
 	event := self elementAtEvents.
 	displayPosition := self elementAtDisplaysAddons.
 	self isTestOnGoing
 		ifTrue: [
 			self isTestOnGoing: false.
 			self button icon: self startTestIcon.
-			self button help: self startTestHelp.
 			event visibility: BlVisibility visible.
 			displayPosition visibility: BlVisibility visible ]
 		ifFalse: [
 			self isTestOnGoing: true.
 			self button icon: self stopTestIcon.
-			self button help: self stopTestHelp.
 			event visibility: BlVisibility gone.
 			displayPosition visibility: BlVisibility gone ]
 ]
