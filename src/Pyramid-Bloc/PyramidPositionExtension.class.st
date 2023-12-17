@@ -35,5 +35,5 @@ PyramidPositionExtension >> installOn: aBuilder [
 			 do: [ :evt |
 				 self display text:
 					 (evt position - self currentTransformTranslation) asRopedText ]).
-	self elementAtDisplay addChild: self display
+	self elementAtDisplaysAddons addChild: self display
 ]

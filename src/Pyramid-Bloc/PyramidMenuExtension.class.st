@@ -30,7 +30,7 @@ PyramidMenuExtension >> installOn: aBuilder [
 
 	self builder: aBuilder.
 
-	self elementAtDisplay background: Color gray.
+	self elementAtDisplays background: Color gray.
 
 	self elementAtEvents addEventHandler: (BlEventHandler
 			 on: BlSecondaryMouseUpEvent
@@ -73,9 +73,9 @@ PyramidMenuExtension >> showMenuAt: anEvent [
 		chooseColorSubMenu addItem: [ :item |
 			item
 				name: color printString;
-				action: [ self elementAtDisplay background: color ];
+				action: [ self elementAtDisplays background: color ];
 				icon: [
-					self elementAtDisplay background paint color = color
+					self elementAtDisplays background paint color = color
 						ifTrue: [ self iconNamed: #testGreen ]
 						ifFalse: [ self iconNamed: #testNotRun ] ] ] ].
 

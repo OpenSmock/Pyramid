@@ -31,6 +31,7 @@ PyramidSpaceBuilder class >> defaultEditorBuilder [
 			           { #displays. #transforms. #main. #events. #widgets };
 		           yourself.
 
+	(builder overlays at: #displays) element addChild: (BlElement new id: #displaysAddons; clipChildren: false; yourself).
 	self defaultEditorExtensions do: [ :class |
 		builder addExtension: class new ].
 
