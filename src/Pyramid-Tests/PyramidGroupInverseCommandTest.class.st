@@ -124,7 +124,6 @@ PyramidGroupInverseCommandTest >> testHistory [
 PyramidGroupInverseCommandTest >> testSetValueForWith [
 
 	| e1 e2 e3 e4 selection roots parent |
-
 	"parent is not nil. elements are not roots."
 	e1 := BlElement new.
 	e2 := BlElement new.
@@ -168,12 +167,20 @@ PyramidGroupInverseCommandTest >> testSetValueForWith [
 	selection do: [ :each | self assert: each parent equals: parent ].
 	self deny: (roots includes: e1).
 	self assert: (roots includesAll: selection).
-	
-"parent is nil. elements are not roots. element are not 0@0"
-	e1 := BlElement new position: (40@40); yourself.
-	e2 := BlElement new position: (60@60); yourself.
-	e3 := BlElement new position: (70@70); yourself.
-	e4 := BlElement new position: (100@100); yourself.
+
+	"parent is nil. elements are not roots. element are not 0@0"
+	e1 := BlElement new
+		      position: 40 @ 40;
+		      yourself.
+	e2 := BlElement new
+		      position: 60 @ 60;
+		      yourself.
+	e3 := BlElement new
+		      position: 70 @ 70;
+		      yourself.
+	e4 := BlElement new
+		      position: 100 @ 100;
+		      yourself.
 
 
 	selection := {
@@ -191,5 +198,5 @@ PyramidGroupInverseCommandTest >> testSetValueForWith [
 
 	self assert: e2 constraints position equals: 100 @ 100.
 	self assert: e3 constraints position equals: 110 @ 110.
-	self assert: e4 constraints position equals: 140 @ 140.
+	self assert: e4 constraints position equals: 140 @ 140
 ]

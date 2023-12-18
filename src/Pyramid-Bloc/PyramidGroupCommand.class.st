@@ -37,15 +37,29 @@ PyramidGroupCommand >> makeGroupElement [
 { #category : #'as yet unclassified' }
 PyramidGroupCommand >> makeGroupElementFor: aCollection [
 
-	| parent groupElement |
+	| parent groupElement correctOrderCollection |
 	"Remove any element from their parent. Add them to a ""group"" element. Then add the ""group"" to the parent."
 	parent := aCollection first parent.
-	parent ifNotNil: [ parent removeChildren: aCollection ].
+
+	"We must have the collection of element in the same order as in their parent and not in the selection order."
+	correctOrderCollection := self
+		                          orderCollection: aCollection
+		                          fromParent: parent.
+
+	parent ifNotNil: [ parent removeChildren: correctOrderCollection ].
 	groupElement := self makeGroupElement.
-	groupElement addChildren: aCollection.
+	groupElement addChildren: correctOrderCollection.
 	parent ifNotNil: [ parent addChild: groupElement ].
 
 	^ groupElement
+]
+
+{ #category : #'as yet unclassified' }
+PyramidGroupCommand >> orderCollection: aCollectionOfElement fromParent: aParentElement [
+
+	aParentElement ifNil: [ ^ aCollectionOfElement copy ].
+	^ aCollectionOfElement sorted: [ :e1 :e2 | (aParentElement childIndexOf: e1) < (aParentElement childIndexOf: e2)].
+	
 ]
 
 { #category : #'as yet unclassified' }
