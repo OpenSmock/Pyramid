@@ -3,8 +3,88 @@ Class {
 	#superclass : #TestCase,
 	#traits : 'TPyramidCommandTest',
 	#classTraits : 'TPyramidCommandTest classTrait',
-	#category : #'Pyramid-Tests-cases-plugin-bloc'
+	#category : #'Pyramid-Tests-cases-plugin-bloc-group'
 }
+
+{ #category : #tests }
+PyramidGroupCommandTest >> assertBeforeSetValuefor: selection parent: originalParent firstLevel: firstLevelElements elements: aCollection [
+	"children have the same parent (originalParent)."
+
+	self assert:
+		(selection allSatisfy: [ :e | e parent = originalParent ]).
+
+	"children order is correct"
+	self
+		assert: originalParent children first
+		equals: (aCollection at: 1).
+	self
+		assert: originalParent children second
+		equals: (aCollection at: 2).
+	self
+		assert: originalParent children third
+		equals: (aCollection at: 3).
+
+	"firstLevelElements does have all selection"
+	self assert: (selection allSatisfy: [ :target |
+			 firstLevelElements includes: target ]).
+	self assert: firstLevelElements size equals: 4.
+
+	"original parent does have selection as children."
+	self assert: (selection allSatisfy: [ :target |
+			 originalParent children includes: target ]).
+
+	"children position"
+	self
+		assert: (aCollection at: 1) constraints position
+		equals: 10 asPoint.
+	self
+		assert: (aCollection at: 2) constraints position
+		equals: 20 asPoint.
+	self
+		assert: (aCollection at: 3) constraints position
+		equals: 30 asPoint
+]
+
+{ #category : #tests }
+PyramidGroupCommandTest >> assertSetValuefor: selection parent: originalParent firstLevel: firstLevelElements elements: aCollection [
+
+	| group |
+	"children have the same parent (group) element."
+	group := selection first parent.
+	self assert: (selection allSatisfy: [ :e | e parent = group ]).
+
+	"children order is correct"
+	self assert: group children first equals: (aCollection at: 1).
+	self assert: group children second equals: (aCollection at: 2).
+	self assert: group children third equals: (aCollection at: 3).
+
+	"original parent has group as child"
+	self assert: (originalParent hasChild: group).
+
+	"firstLevelElements do not have selection"
+	self deny: (firstLevelElements anySatisfy: [ :target |
+			 selection includes: target ]).
+
+	"firstLevelElements includes groupElement"
+	self assert: (firstLevelElements includes: group).
+	self assert: firstLevelElements size equals: 2.
+
+	"original parent does not have selection as children."
+	self deny: (originalParent children anySatisfy: [ :target |
+			 selection includes: target ]).
+
+	"group and children position"
+	self assert: group constraints position equals: 10 asPoint.
+	self
+		assert: (aCollection at: 1) constraints position
+		equals: 0 asPoint.
+	self
+		assert: (aCollection at: 2) constraints position
+		equals: 10 asPoint.
+	self
+		assert: (aCollection at: 3) constraints position
+		equals: 20 asPoint
+]
 
 { #category : #accessing }
 PyramidGroupCommandTest >> command [
@@ -13,36 +93,67 @@ PyramidGroupCommandTest >> command [
 ]
 
 { #category : #'as yet unclassified' }
-PyramidGroupCommandTest >> targetsCanBeUsedFor [
+PyramidGroupCommandTest >> makeParentTestCase [
 
-	| parent elements |
-	parent := BlElement new.
-	elements := { BlElement new. BlElement new . BlElement new }.
-	parent addChildren: elements.
-	
-	^ { { BlElement new. BlElement new . BlElement new. BlElement new } . elements }
+	| parent e1 e2 e3 e4 |
+	parent := BlElement new
+		          id: #parent;
+		          yourself.
+	e1 := BlElement new
+		      id: #e1;
+				position: 10 asPoint;
+		      yourself.
+	e2 := BlElement new
+		      id: #e2;
+		position: 20 asPoint;
+		      yourself.
+	e3 := BlElement new
+		      id: #e3;
+		position: 30 asPoint;
+		      yourself.
+	e4 := BlElement new
+		      id: #e4;
+		position: 40 asPoint;
+		      yourself.
+	parent addChildren: {
+			e1.
+			e2.
+			e3.
+			e4 }.
+	^ parent
 ]
 
-{ #category : #'as yet unclassified' }
-PyramidGroupCommandTest >> targetsCannotBeUsedFor [
-	| parent elements |
-	parent := BlElement new.
-	elements := {
-		            BlElement new.
-		            BlElement new.
-		            BlElement new }.
-	parent addChildren: elements.
+{ #category : #tests }
+PyramidGroupCommandTest >> testCanBeUsedFor [
 
-	^ {
-		  {  }.
-		  (elements asOrderedCollection add: BlElement new; yourself) }
+	| originalParent selection e1 e2 e3 |
+	originalParent := self makeParentTestCase.
+	e1 := originalParent children first.
+	e2 := originalParent children second.
+	e3 := originalParent children third.
+	selection := {
+		             e3.
+		             e2.
+		             e1 }.
+	self assert: (self command canBeUsedFor: selection).
+	self targetsCannotBeUsedFor do: [ :each |
+		self deny: (self command canBeUsedFor: each) ]
 ]
 
 { #category : #tests }
 PyramidGroupCommandTest >> testGetValueFor [
 
-	self targetsCanBeUsedFor do: [ :each |
-		self assert: (self command getValueFor: each) equals: nil ]
+	| originalParent selection e1 e2 e3 |
+	originalParent := self makeParentTestCase.
+	e1 := originalParent children first.
+	e2 := originalParent children second.
+	e3 := originalParent children third.
+	selection := {
+		             e3.
+		             e2.
+		             e1 }.
+
+	self assert: (self command getValueFor: selection) equals: nil
 ]
 
 { #category : #tests }
@@ -53,201 +164,122 @@ PyramidGroupCommandTest >> testHistory [
 	undo
 	redo"
 
-	| history commandExecutor e1 e2 e3 e4 selection roots |
+	| history commandExecutor originalParent selection firstLevelElements e1 e2 e3 |
+	originalParent := self makeParentTestCase.
+	e1 := originalParent children first.
+	e2 := originalParent children second.
+	e3 := originalParent children third.
+	selection := {
+		             e3.
+		             e2.
+		             e1 }.
+	firstLevelElements := {
+		                      e1.
+		                      e2.
+		                      e3.
+		                      BlElement new } asOrderedCollection.
+
 	history := PyramidHistory new.
 	commandExecutor := PyramidHistoryCommandExecutor new
 		                   history: history;
 		                   wrappee: PyramidMainCommandExecutor new;
 		                   yourself.
 
-	"parent is not nil. elements are roots."
-	e1 := BlElement new id: #parent.
-	e2 := BlElement new id: #e2.
-	e3 := BlElement new id: #e3.
-	e4 := BlElement new id: #e4.
-
-	selection := {
-		             e2.
-		             e3.
-		             e4 }.
-	e1 addChildren: selection.
-	roots := OrderedCollection new.
-	roots addAll: selection.
-
-	self assert: (roots includesAll: selection).
-	self assert: (selection allSatisfy: [ :each | each parent = e1 ]).
-
 	"Do once"
-	commandExecutor use: self command on: { selection } with: roots.
-	self deny: (roots includesAny: selection).
-	self deny: (selection anySatisfy: [ :each | each parent = e1 ]).
+	commandExecutor
+		use: self command
+		on: { selection }
+		with: firstLevelElements.
+	self
+		assertSetValuefor: selection
+		parent: originalParent
+		firstLevel: firstLevelElements
+		elements: {
+				e1.
+				e2.
+				e3 }.
 
 	"Undo all"
 	history undo.
-	self assert: (roots includesAll: selection).
-	self assert: (selection allSatisfy: [ :each | each parent = e1 ]).
+	self
+		assertBeforeSetValuefor: selection
+		parent: originalParent
+		firstLevel: firstLevelElements
+		elements: {
+				e1.
+				e2.
+				e3 }.
 
 	"Redo all"
 	history redo.
-	self deny: (roots includesAny: selection).
-	self deny: (selection anySatisfy: [ :each | each parent = e1 ]).
+	self
+		assertSetValuefor: selection
+		parent: originalParent
+		firstLevel: firstLevelElements
+		elements: {
+				e1.
+				e2.
+				e3 }.
 
 	"Undo all"
 	history undo.
-	self assert: (roots includesAll: selection).
-	self assert: (selection allSatisfy: [ :each | each parent = e1 ]).
+	self
+		assertBeforeSetValuefor: selection
+		parent: originalParent
+		firstLevel: firstLevelElements
+		elements: {
+				e1.
+				e2.
+				e3 }.
 
 	"Redo all"
 	history redo.
-	self deny: (roots includesAny: selection).
-	self deny: (selection anySatisfy: [ :each | each parent = e1 ])
+	self
+		assertSetValuefor: selection
+		parent: originalParent
+		firstLevel: firstLevelElements
+		elements: {
+				e1.
+				e2.
+				e3 }
 ]
 
 { #category : #tests }
 PyramidGroupCommandTest >> testSetValueForWith [
 
-	| e1 e2 e3 e4 selection roots parent |
-	"parent is nil. elements are not roots. Order is not important because element are not display so it doesn't really make sense to test the order of the group command."
-	e1 := BlElement new.
-	e2 := BlElement new.
-	e3 := BlElement new.
-	e4 := BlElement new.
-
+	| originalParent selection firstLevelElements e1 e2 e3 |
+	originalParent := self makeParentTestCase.
+	e1 := originalParent children first.
+	e2 := originalParent children second.
+	e3 := originalParent children third.
 	selection := {
-		             e1.
-		             e2.
 		             e3.
-		             e4 }.
-	roots := OrderedCollection new.
-
-	selection do: [ :each | self assert: each parent equals: nil ].
-	self command setValueFor: selection with: roots.
-	parent := selection first parent.
-	self assert: parent isNotNil.
-	self assert: parent childrenCount equals: 4.
-	selection do: [ :each | self assert: each parent equals: parent ].
-
-
-	"parent is not nil. elements are not roots. Order in parent is not the same as in selection. The group should keep the parent order."
-	e1 := BlElement new.
-	e2 := BlElement new.
-	e3 := BlElement new.
-	e4 := BlElement new.
-
-	selection := {
 		             e2.
-		             e3.
-		             e4 }.
-	e1 addChildren: {
-			e4.
-			e3.
-			e2 }.
-	roots := OrderedCollection new.
+		             e1 }.
+	firstLevelElements := {
+		                      e1.
+		                      e2.
+		                      e3.
+		                      BlElement new } asOrderedCollection.
+		
+	self
+		assertBeforeSetValuefor: selection
+		parent: originalParent
+		firstLevel: firstLevelElements
+		elements: {
+				e1.
+				e2.
+				e3 }.
+		
+	"Command execution."
+	self command setValueFor: selection with: firstLevelElements.
 
-	selection do: [ :each | self assert: each parent equals: e1 ].
-	self command setValueFor: selection with: roots.
-	parent := selection first parent.
-	self deny: parent equals: e1.
-	selection do: [ :each | self assert: each parent equals: parent ].
-	"We test the order on new parent."
-	self assert: parent childrenCount equals: 3.
-	self assert: parent children first equals: e4.
-	self assert: parent children second equals: e3.
-	self assert: parent children last equals: e2.
-
-
-	"parent is nil. elements are roots. Order is not important because element are not display so it doesn't really make sense to test the order of the group command."
-	e1 := BlElement new.
-	e2 := BlElement new.
-	e3 := BlElement new.
-	e4 := BlElement new.
-
-	selection := {
-		             e1.
-		             e2.
-		             e3.
-		             e4 }.
-	roots := OrderedCollection new.
-	roots addAll: selection.
-
-	self assert: (roots includesAll: selection).
-	selection do: [ :each | self assert: each parent equals: nil ].
-	self command setValueFor: selection with: roots.
-	parent := selection first parent.
-	self assert: parent isNotNil.
-	self assert: parent childrenCount equals: 4.
-	selection do: [ :each | self assert: each parent equals: parent ].
-	self deny: (roots includesAny: selection).
-	self assert: (roots includes: parent).
-
-
-	"parent is not nil. elements are roots. Selection is not in correct order."
-	e1 := BlElement new.
-	e2 := BlElement new.
-	e3 := BlElement new.
-	e4 := BlElement new.
-
-	selection := {
-		             e2.
-		             e3.
-		             e4 }.
-	"e1 contains the same element as selection but not in the same order. Group should put them in order according to e1 children order."
-	e1 addChildren: {
-			e4.
-			e3.
-			e2 }.
-	"roots is selection."
-	roots := OrderedCollection new.
-	roots addAll: selection.
-
-	"We check the setup for the test is ok."
-	self assert: (roots includesAll: selection).
-	selection do: [ :each | self assert: each parent equals: e1 ].
-	"We execute the command."
-	self command setValueFor: selection with: roots.
-	"We check parent is not e1 and all elements have the same new parent. and new parent is in root."
-	parent := selection first parent.
-	self deny: parent equals: e1.
-	selection do: [ :each | self assert: each parent equals: parent ].
-	self deny: (roots includesAny: selection).
-	self assert: (roots includes: parent).
-	"We check if the new parent contains the 3 elements in the correct order."
-	self assert: parent childrenCount equals: 3.
-	self assert: parent children first equals: e4.
-	self assert: parent children second equals: e3.
-	self assert: parent children last equals: e2.
-
-
-	"parent is nil. elements are not roots. element are not 0@0"
-	e1 := BlElement new
-		      position: 40 @ 40;
-		      yourself.
-	e2 := BlElement new
-		      position: 60 @ 60;
-		      yourself.
-	e3 := BlElement new
-		      position: 70 @ 70;
-		      yourself.
-	e4 := BlElement new
-		      position: 100 @ 100;
-		      yourself.
-
-	selection := {
-		             e1.
-		             e2.
-		             e3.
-		             e4 }.
-	roots := OrderedCollection new.
-
-	selection do: [ :each | self assert: each parent equals: nil ].
-	self command setValueFor: selection with: roots.
-	parent := selection first parent.
-	self assert: parent isNotNil.
-	self assert: parent childrenCount equals: 4.
-	self assert: parent constraints position equals: 40 @ 40.
-	self assert: e1 constraints position equals: 0 @ 0.
-	self assert: e2 constraints position equals: 20 @ 20.
-	self assert: e3 constraints position equals: 30 @ 30.
-	self assert: e4 constraints position equals: 60 @ 60.
-	selection do: [ :each | self assert: each parent equals: parent ]
+	self
+		assertSetValuefor: selection
+		parent: originalParent
+		firstLevel: firstLevelElements
+		elements: {
+				e1.
+				e2.
+				e3 }
 ]
