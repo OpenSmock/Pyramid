@@ -4,7 +4,7 @@
 
 # Pyramid
 
-<img src="/resources/PyramidLogotype.svg" align="center">
+<img src="/resources/PyramidLogotype.svg" src-dark="/resources/PyramidLogotypeDark.svg" style="align: center; max-width: 33%; height: auto;">
 
 Pyramid is an User-Interface (UI) editor. 
 
