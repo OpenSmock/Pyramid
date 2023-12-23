@@ -51,8 +51,13 @@ PyramidSelectionView >> defaultLayout [
 PyramidSelectionView >> initializePresenters [
 
 	list := SpListPresenter new.
-	playground := PyramidSpCodePresenter new.
+	playground := SpCodePresenter new.
 	contextLabel := SpLabelPresenter new.
+
+	playground interactionModel: PyramidSpCodeObjectInteractionModel new.
+	playground announcer
+		when: SpCodeEvaluationSucceedAnnouncement
+		do: [ :ann | self projectModel informElementsChanged ]
 ]
 
 { #category : #accessing }
@@ -76,7 +81,7 @@ PyramidSelectionView >> projectModel: aPyramidActiveProject [
 
 	projectModel := aPyramidActiveProject.
 	projectModel addObserver: self.
-	self playground projectModel: aPyramidActiveProject.
+	self playground interactionModel projectModel: aPyramidActiveProject.
 	
 		self pyramidSelectionChanged.
 ]
