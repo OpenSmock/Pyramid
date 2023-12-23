@@ -2,10 +2,10 @@
 [![Pharo 11 CI](https://github.com/OpenSmock/Pyramid/actions/workflows/Pharo11CI.yml/badge.svg)](https://github.com/OpenSmock/Pyramid/actions/workflows/Pharo11CI.yml)
 [![Pharo 12 CI](https://github.com/OpenSmock/Pyramid/actions/workflows/Pharo12CI.yml/badge.svg)](https://github.com/OpenSmock/Pyramid/actions/workflows/Pharo12CI.yml)
 
-<picture align="center" width="33%" height="auto" >
+<picture>
   <source media="(prefers-color-scheme: light)" srcset="/assets/PyramidLogotype.svg">
   <source media="(prefers-color-scheme: dark)" srcset="/assets/PyramidLogotypeDark.svg">
-  <img src="/assets/PyramidLogotype.svg">
+  <img width="200" src="/assets/PyramidLogotype.svg">
 </picture>
 
 # Pyramid
