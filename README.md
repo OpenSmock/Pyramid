@@ -103,7 +103,7 @@ space editWithPyramid.
 
 You can edit in Pyramid all opened BlSpace with `F12` keyboard shortcut, this feature can be disable in the settings.
 
-## Plugins
+## <img src="/assets/PyramidPinPtah.svg" width="75" height="75" align="bottom"> Plugins
 
 ![image](https://user-images.githubusercontent.com/49183340/263474758-37833c2b-f7ad-4b46-ab58-cb3d92c28413.png)
 - [FigmaToWorld](https://github.com/OpenSmock/Pyramid-Plugins-FigmaToWorld) plugin provide capacities to import projects designed with [Figma](https://www.figma.com)
@@ -117,5 +117,11 @@ You can edit in Pyramid all opened BlSpace with `F12` keyboard shortcut, this fe
 - [Bloc-Serialization](https://github.com/OpenSmock/Bloc-Serialization)
 
 ## <img src="/assets/PyramidPinPtah.svg" width="75" height="75" align="bottom"> License
+
+<picture>
+  <source media="(prefers-color-scheme: light)" srcset="/assets/PyramidLogotypeCartoucheSimple.svg">
+  <source media="(prefers-color-scheme: dark)" srcset="/assets/PyramidLogotypeCartoucheSimpleDark.svg">
+  <img width="400" src="/assets/PyramidLogotypeCartoucheSimple.svg">
+</picture>
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
