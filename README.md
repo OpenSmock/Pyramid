@@ -2,9 +2,12 @@
 [![Pharo 11 CI](https://github.com/OpenSmock/Pyramid/actions/workflows/Pharo11CI.yml/badge.svg)](https://github.com/OpenSmock/Pyramid/actions/workflows/Pharo11CI.yml)
 [![Pharo 12 CI](https://github.com/OpenSmock/Pyramid/actions/workflows/Pharo12CI.yml/badge.svg)](https://github.com/OpenSmock/Pyramid/actions/workflows/Pharo12CI.yml)
 
-# Pyramid
+<picture style="align: center; max-width: 33%; height: auto;">
+  <source media="(prefers-color-scheme: light)" srcset="/resources/PyramidLogotype.svg">
+  <source media="(prefers-color-scheme: dark)" srcset="/resources/PyramidLogotypeDark.svg">
+</picture>
 
-<img src="/resources/PyramidLogotype.svg" src-dark="/resources/PyramidLogotypeDark.svg" style="align: center; max-width: 33%; height: auto;">
+# Pyramid
 
 Pyramid is an User-Interface (UI) editor. 
 
