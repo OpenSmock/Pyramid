@@ -7,6 +7,13 @@ Class {
 	#category : #'Pyramid-IDE-menus'
 }
 
+{ #category : #cleanup }
+PyramidWorld class >> cleanUp [
+	<script>
+	
+	self resetThemeIcons.
+]
+
 { #category : #actions }
 PyramidWorld class >> displayLoadedPlugins [
 	<script>
