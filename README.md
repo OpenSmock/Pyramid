@@ -2,9 +2,9 @@
 [![Pharo 11 CI](https://github.com/OpenSmock/Pyramid/actions/workflows/Pharo11CI.yml/badge.svg)](https://github.com/OpenSmock/Pyramid/actions/workflows/Pharo11CI.yml)
 [![Pharo 12 CI](https://github.com/OpenSmock/Pyramid/actions/workflows/Pharo12CI.yml/badge.svg)](https://github.com/OpenSmock/Pyramid/actions/workflows/Pharo12CI.yml)
 
-<picture style="align: center; max-width: 33%; height: auto;">
-  <source media="(prefers-color-scheme: light)" srcset="/resources/PyramidLogotype.svg">
-  <source media="(prefers-color-scheme: dark)" srcset="/resources/PyramidLogotypeDark.svg">
+<picture>
+  <source media="(prefers-color-scheme: light)" srcset="/assets/PyramidLogotype.svg">
+  <source media="(prefers-color-scheme: dark)" srcset="/assets/PyramidLogotypeDark.svg">
 </picture>
 
 # Pyramid
@@ -21,7 +21,7 @@ You can add plugins into Pyramid to extents the editor capacities or create [you
 
 <img src="https://github.com/OpenSmock/Pyramid/assets/49183340/0ddc1ac3-bd6e-4f4b-bfb4-60eac4f48e39" width="200">
 
-## <img src="/resources/PyramidPinPtah.svg" width="75" height="75" align="bottom"> How to get Pyramid
+## <img src="/assets/PyramidPinPtah.svg" width="75" height="75" align="bottom"> How to get Pyramid
 
 You can load a stable release version of Pyramid or the latest development version. 
 
@@ -53,7 +53,7 @@ Metacello new
 spec baseline: 'Pyramid' with: [ spec repository: 'github://OpenSmock/Pyramid:main/src' ].
 ```
 
-## <img src="/resources/PyramidPinPtah.svg" width="75" height="75" align="bottom"> How to use Pyramid
+## <img src="/assets/PyramidPinPtah.svg" width="75" height="75" align="bottom"> How to use Pyramid
 
 ### Create a new project
 
@@ -107,7 +107,7 @@ You can edit in Pyramid all opened BlSpace with `F12` keyboard shortcut, this fe
 ![image](https://user-images.githubusercontent.com/49183340/263474758-37833c2b-f7ad-4b46-ab58-cb3d92c28413.png)
 - [FigmaToWorld](https://github.com/OpenSmock/Pyramid-Plugins-FigmaToWorld) plugin provide capacities to import projects designed with [Figma](https://www.figma.com)
 
-## <img src="/resources/PyramidPinPtah.svg" width="75" height="75" align="bottom"> Dependencies
+## <img src="/assets/PyramidPinPtah.svg" width="75" height="75" align="bottom"> Dependencies
 
 ![image](https://github.com/OpenSmock/Pyramid/assets/34318678/099f25fc-74bd-477f-bef0-2ad7d47db10d)
 
@@ -115,6 +115,6 @@ You can edit in Pyramid all opened BlSpace with `F12` keyboard shortcut, this fe
 - [Alexandrie](https://github.com/pharo-graphics/Alexandrie)
 - [Bloc-Serialization](https://github.com/OpenSmock/Bloc-Serialization)
 
-## <img src="/resources/PyramidPinPtah.svg" width="75" height="75" align="bottom"> License
+## <img src="/assets/PyramidPinPtah.svg" width="75" height="75" align="bottom"> License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
