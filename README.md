@@ -5,6 +5,7 @@
 <picture>
   <source media="(prefers-color-scheme: light)" srcset="/assets/PyramidLogotype.svg">
   <source media="(prefers-color-scheme: dark)" srcset="/assets/PyramidLogotypeDark.svg">
+  <img src="/assets/PyramidLogotype.svg">
 </picture>
 
 # Pyramid
