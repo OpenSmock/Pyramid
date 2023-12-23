@@ -60,7 +60,7 @@ spec baseline: 'Pyramid' with: [ spec repository: 'github://OpenSmock/Pyramid:ma
 
 Open the Pyramid menu into Library and click `New Project`.
 
-![image](https://github.com/OpenSmock/Pyramid/assets/49183340/09b28b8e-f2df-489b-8855-68141efa6bf3)
+![image](https://github.com/OpenSmock/Pyramid/assets/49183340/602db97b-dcd1-4824-a3ef-125ee5bdfd16)
 
 Then the project view appears in a new window.
 
