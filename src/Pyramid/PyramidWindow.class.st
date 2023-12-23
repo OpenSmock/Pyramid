@@ -85,7 +85,7 @@ PyramidWindow >> initialize [
 PyramidWindow >> initializePresenter [
 	"a Spec presenter using the services as an entry"
 
-	presenter := PyramidSpWindowPresenter new layout: self layout; yourself.
+	presenter := PyramidSpPresenter new layout: self layout; yourself.
 	^ presenter
 ]
 
