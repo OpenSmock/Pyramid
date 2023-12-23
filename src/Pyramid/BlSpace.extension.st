@@ -7,7 +7,7 @@ BlSpace >> editWithPyramid [
 	"Prepare image to replace the application view"
 	spacePlaceholder := (self root exportAsForm dimmed: 0.5) asElement.
 	spacePlaceholder addChildren:
-		PyramidLogo logoOpenInPyramid materializeAsBlElement.
+		PyramidBlElementHelper openInPyramidHelper materializeAsBlElement.
 
 	"Open editor"
 	editor := PyramidEditor buildEditor.
