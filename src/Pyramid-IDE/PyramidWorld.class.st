@@ -62,6 +62,19 @@ PyramidWorld class >> menuBrowseSourcesOn: aBuilder [
 ]
 
 { #category : #menu }
+PyramidWorld class >> menuExamplesOn: aBuilder [
+
+	<worldMenu>
+	(aBuilder item: #Examples)
+		parent: #PyramidUser;
+		order: 3.0;
+		action: [ self startBrowseExamples ];
+		icon: (self iconNamed: #nautilus);
+		help: 'Browse Pyramid project examples';
+		label: 'Examples'
+]
+
+{ #category : #menu }
 PyramidWorld class >> menuGithubOn: aBuilder [
 
 	<worldMenu>
@@ -181,6 +194,17 @@ PyramidWorld class >> openPyramidSettings [
 	browser changeSearchedText: 'Pyramid'.
 	browser open.
 	browser expandAll
+]
+
+{ #category : #actions }
+PyramidWorld class >> startBrowseExamples [
+
+	<script>
+	| browser |
+	browser := Smalltalk tools browser open.
+	browser packageView filterField setText: 'Pyramid-Examples'.
+	browser selectClass: (self class environment at: #PyramidSimpleExamples).
+	browser switchToMetaLevelScope: ClyClassSideScope.
 ]
 
 { #category : #actions }
