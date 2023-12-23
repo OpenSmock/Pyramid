@@ -1634,3 +1634,7 @@ PyramidSimpleExamples class >> simpleFlowLayout [
 	}
 ]'
 ]
+
+{ #category : #'see class side' }
+PyramidSimpleExamples >> seeClassSide [ 
+]

@@ -14,19 +14,43 @@ Class {
 { #category : #'window - properties' }
 PyramidWindow class >> aboutText [
 
-	^ 'Pyramid is a User-Interface (UI) editor.
+	^ 'Pyramid is an User-Interface (UI) editor.
+
+https://github.com/OpenSmock/Pyramid
 
 LICENSE
 Licensed under the MIT License
 Copyright (c) 2022-2023 OpenSmock
 
-https://github.com/OpenSmock/Pyramid'
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.'
+]
+
+{ #category : #'window - properties' }
+PyramidWindow class >> aboutTitle [
+
+	^ 'Pyramid'
 ]
 
 { #category : #'window - properties' }
 PyramidWindow class >> defaultTitle [
 
-	^ 'New project | Pyramid'
+	^ 'New project | ' , self aboutTitle
 ]
 
 { #category : #accessing }
@@ -61,7 +85,7 @@ PyramidWindow >> initialize [
 PyramidWindow >> initializePresenter [
 	"a Spec presenter using the services as an entry"
 
-	presenter := SpPresenter new layout: self layout; yourself.
+	presenter := PyramidSpPresenter new layout: self layout; yourself.
 	^ presenter
 ]
 

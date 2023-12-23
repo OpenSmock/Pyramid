@@ -6,6 +6,7 @@ Class {
 
 { #category : #actions }
 PyramidWorld class >> displayLoadedPlugins [
+	<script>
 
 	| presenter stream |
 	presenter := SpTextPresenter new.
@@ -35,6 +36,19 @@ PyramidWorld class >> displayLoadedPlugins [
 ]
 
 { #category : #menu }
+PyramidWorld class >> menuAboutOn: aBuilder [
+
+	<worldMenu>
+	(aBuilder item: #Github)
+		parent: #PyramidContrib;
+		order: 3.0;
+		label: 'About';
+		help: 'Open Pyramid Github page';
+		icon: (self iconNamed: #smallInfo);
+		action: [ self openAbout ]
+]
+
+{ #category : #menu }
 PyramidWorld class >> menuBrowseSourcesOn: aBuilder [
 
 	<worldMenu>
@@ -48,12 +62,25 @@ PyramidWorld class >> menuBrowseSourcesOn: aBuilder [
 ]
 
 { #category : #menu }
+PyramidWorld class >> menuExamplesOn: aBuilder [
+
+	<worldMenu>
+	(aBuilder item: #Examples)
+		parent: #PyramidUser;
+		order: 3.0;
+		action: [ self startBrowseExamples ];
+		icon: (self iconNamed: #nautilus);
+		help: 'Browse Pyramid project examples';
+		label: 'Examples'
+]
+
+{ #category : #menu }
 PyramidWorld class >> menuGithubOn: aBuilder [
 
 	<worldMenu>
 	(aBuilder item: #Github)
-		parent: #PyramidDev;
-		order: 3.0;
+		parent: #PyramidContrib;
+		order: 1.0;
 		label: 'Github';
 		help: 'Open Pyramid Github page';
 		icon: (self iconNamed: #github);
@@ -101,7 +128,10 @@ PyramidWorld class >> menuPyramidOn: aBuilder [
 				order: 1;
 				withSeparatorAfter.	
 			(aBuilder group: #PyramidDev)
-				order: 2.
+				order: 2;
+				withSeparatorAfter.	
+			(aBuilder group: #PyramidContrib)
+				order: 3.
 		]
 ]
 
@@ -123,8 +153,8 @@ PyramidWorld class >> menuReportABugOn: aBuilder [
 
 	<worldMenu>
 	(aBuilder item: #Github)
-		parent: #PyramidDev;
-		order: 4.0;
+		parent: #PyramidContrib;
+		order: 2.0;
 		label: 'Report a Bug';
 		icon: (self iconNamed: #smallDebug);
 		help: 'Will open the github page to report an issue';
@@ -145,8 +175,20 @@ PyramidWorld class >> menuSettingsOn: aBuilder [
 ]
 
 { #category : #actions }
-PyramidWorld class >> openPyramidSettings [
+PyramidWorld class >> openAbout [
+	<script>
+	
+	| presenter |
+	presenter := SpTextPresenter new.
+	presenter text: PyramidWindow aboutText.
+	presenter open.
+	presenter withWindowDo: [ :w | w title: ('About ', PyramidWindow aboutTitle) ].
+]
 
+{ #category : #actions }
+PyramidWorld class >> openPyramidSettings [
+	<script>
+	
 	| browser |
 	browser := SettingBrowser new.
 	browser changeSearchedText: 'Pyramid'.
@@ -155,19 +197,33 @@ PyramidWorld class >> openPyramidSettings [
 ]
 
 { #category : #actions }
-PyramidWorld class >> startBrowseSources [
+PyramidWorld class >> startBrowseExamples [
 
+	<script>
+	| browser |
+	browser := Smalltalk tools browser open.
+	browser packageView filterField setText: 'Pyramid-Examples'.
+	browser selectClass: (self class environment at: #PyramidSimpleExamples).
+	browser switchToMetaLevelScope: ClyClassSideScope.
+]
+
+{ #category : #actions }
+PyramidWorld class >> startBrowseSources [
+	<script>
+	
 	Smalltalk tools browser open packageView filterField setText: 'Pyramid'
 ]
 
 { #category : #actions }
 PyramidWorld class >> startNewDesign [
+	<script>
 
 	PyramidEditor open
 ]
 
 { #category : #actions }
 PyramidWorld class >> startRefreshPlugins [
+	<script>
 
 	PyramidPluginManager reset
 ]
