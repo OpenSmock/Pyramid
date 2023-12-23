@@ -103,6 +103,10 @@ space editWithPyramid.
 
 You can edit in Pyramid all opened BlSpace with `F12` keyboard shortcut, this feature can be disable in the settings.
 
+When a window is open in Pyramid, an image is displayed on it to attract the user's attention:
+
+https://github.com/OpenSmock/Pyramid/assets/49183340/0c66a3ac-7bea-48c1-b1e8-0b093b1db4d5
+
 ## <img src="/assets/PyramidPinPtah.svg" width="75" height="75" align="bottom"> Plugins
 
 ![image](https://user-images.githubusercontent.com/49183340/263474758-37833c2b-f7ad-4b46-ab58-cb3d92c28413.png)
