@@ -8,23 +8,34 @@ Class {
 		'addButton',
 		'idGenerator'
 	],
+	#classVars : [
+		'IdGenerator'
+	],
 	#category : #'Pyramid-Bloc-plugin-tree-library'
 }
 
 { #category : #accessing }
 PyramidLibraryPresenter class >> idGenerator [
+
+	IdGenerator ifNil: [ IdGenerator := self makeIdGenerator ].
+	^ IdGenerator
+	
+]
+
+{ #category : #accessing }
+PyramidLibraryPresenter class >> makeIdGenerator [
 ^ Generator on: [ :generator |
-		               | index |
-		               index := 1.
-		               [
-		               Character alphabet do: [ :each |
-			               | next suffix |
-			               next := each asUppercase asString.
-			               suffix := index = 1
-				                         ifTrue: [ '' ]
-				                         ifFalse: [ index asString ].
-			               generator yield: next , suffix ].
-		               index := index + 1 ] repeat ].
+		  | index |
+		  index := 1.
+		  [
+		  Character alphabet do: [ :each |
+			  | next suffix |
+			  next := each asUppercase asString.
+			  suffix := index = 1
+				            ifTrue: [ '' ]
+				            ifFalse: [ index asString ].
+			  generator yield: next , suffix ].
+		  index := index + 1 ] repeat ]
 ]
 
 { #category : #initialization }
