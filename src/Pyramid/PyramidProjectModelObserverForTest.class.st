@@ -8,7 +8,7 @@ Class {
 		'pyramidFirstLevelElementsChangedAction',
 		'pyramidSelectionChangedAction'
 	],
-	#category : #'Pyramid-plugin-selection'
+	#category : #'Pyramid-plugin-playground'
 }
 
 { #category : #initialization }

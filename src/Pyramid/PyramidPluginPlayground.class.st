@@ -1,5 +1,5 @@
 Class {
-	#name : #PyramidPluginSelection,
+	#name : #PyramidPluginPlayground,
 	#superclass : #Object,
 	#traits : 'TPyramidPlugin',
 	#classTraits : 'TPyramidPlugin classTrait',
@@ -7,11 +7,11 @@ Class {
 		'activeProject',
 		'view'
 	],
-	#category : #'Pyramid-plugin-selection'
+	#category : #'Pyramid-plugin-playground'
 }
 
 { #category : #adding }
-PyramidPluginSelection >> addPanelsOn: aPyramidSimpleWindow [
+PyramidPluginPlayground >> addPanelsOn: aPyramidSimpleWindow [
 
 	aPyramidSimpleWindow at: #tabRight addItem: [ :builder |
 		builder
@@ -22,19 +22,19 @@ PyramidPluginSelection >> addPanelsOn: aPyramidSimpleWindow [
 ]
 
 { #category : #connecting }
-PyramidPluginSelection >> connectOn: aPyramidEditor [
+PyramidPluginPlayground >> connectOn: aPyramidEditor [
 
 	self view projectModel: aPyramidEditor projectModel
 ]
 
 { #category : #initialization }
-PyramidPluginSelection >> initialize [
+PyramidPluginPlayground >> initialize [
 
-	view := PyramidSelectionView new
+	view := PyramidPlaygroundView new
 ]
 
 { #category : #initialization }
-PyramidPluginSelection >> view [
+PyramidPluginPlayground >> view [
 
 	^ view
 ]

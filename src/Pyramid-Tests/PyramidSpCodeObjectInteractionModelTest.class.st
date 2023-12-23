@@ -6,7 +6,7 @@ Class {
 		'interactionModel',
 		'firstLevelElements'
 	],
-	#category : #'Pyramid-plugin-selection'
+	#category : #'Pyramid-Tests-cases-plugin-playground'
 }
 
 { #category : #running }
