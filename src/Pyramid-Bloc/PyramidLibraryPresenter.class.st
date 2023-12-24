@@ -15,14 +15,6 @@ Class {
 }
 
 { #category : #accessing }
-PyramidLibraryPresenter class >> idGenerator [
-
-	IdGenerator ifNil: [ IdGenerator := self makeIdGenerator ].
-	^ IdGenerator
-	
-]
-
-{ #category : #accessing }
 PyramidLibraryPresenter class >> makeIdGenerator [
 ^ Generator on: [ :generator |
 		  | index |
@@ -103,7 +95,7 @@ PyramidLibraryPresenter >> defaultLayout [
 						    expand: false;
 						    yourself)
 				   width: 300;
-				   yourself)
+				   yourself); yourself
 ]
 
 { #category : #accessing }
@@ -120,6 +112,7 @@ PyramidLibraryPresenter >> editor: aPyramidEditor [
 { #category : #accessing }
 PyramidLibraryPresenter >> idGenerator [
 
+	idGenerator ifNil: [ idGenerator := self class makeIdGenerator ].
 	^ idGenerator
 ]
 
@@ -131,8 +124,6 @@ PyramidLibraryPresenter >> idGenerator: anObject [
 
 { #category : #initialization }
 PyramidLibraryPresenter >> initializePresenters [
-
-	idGenerator := self class idGenerator.
 
 	addButton := SpButtonPresenter new
 		             label: self buttonLabel;

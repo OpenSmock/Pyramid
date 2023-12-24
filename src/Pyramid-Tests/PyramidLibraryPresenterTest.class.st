@@ -8,10 +8,10 @@ Class {
 PyramidLibraryPresenterTest >> testIdGenerator [
 	"We generate a bunch of id and we verify that none are the same"
 
-	| libraryPresForElements libraryPresForFirstLevel elements |
-	libraryPresForElements := PyramidLibraryPresenterForElement new.
-	libraryPresForFirstLevel := PyramidLibraryPresenterForFirstLevelElement
-		                            new.
+	| treePlugin libraryPresForElements libraryPresForFirstLevel elements |
+	treePlugin := PyramidTreePlugin new.
+	libraryPresForElements := treePlugin libraryPresenterForElement.
+	libraryPresForFirstLevel := treePlugin libraryPresenterForRoot.
 	elements := Bag new.
 	1 to: 100 do: [ :i |
 		elements add:
