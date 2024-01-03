@@ -1,5 +1,5 @@
 Class {
-	#name : #PyramidSelectionView,
+	#name : #PyramidPlaygroundView,
 	#superclass : #SpPresenter,
 	#traits : 'TPyramidProjectModelObserver',
 	#classTraits : 'TPyramidProjectModelObserver classTrait',
@@ -10,23 +10,23 @@ Class {
 		'codeObjectInteractionModel',
 		'contextLabel'
 	],
-	#category : #'Pyramid-plugin-selection'
+	#category : #'Pyramid-plugin-playground'
 }
 
 { #category : #accessing }
-PyramidSelectionView >> contextLabel [
+PyramidPlaygroundView >> contextLabel [
 
 	^ contextLabel
 ]
 
 { #category : #'as yet unclassified' }
-PyramidSelectionView >> currentSelection [
+PyramidPlaygroundView >> currentSelection [
 
 	^ self projectModel selection
 ]
 
 { #category : #layout }
-PyramidSelectionView >> defaultLayout [
+PyramidPlaygroundView >> defaultLayout [
 
 	^ SpPanedLayout newVertical
 		  add: (SpBoxLayout newVertical
@@ -48,48 +48,53 @@ PyramidSelectionView >> defaultLayout [
 ]
 
 { #category : #initialization }
-PyramidSelectionView >> initializePresenters [
+PyramidPlaygroundView >> initializePresenters [
 
 	list := SpListPresenter new.
-	playground := PyramidSpCodePresenter new.
+	playground := SpCodePresenter new.
 	contextLabel := SpLabelPresenter new.
+
+	playground interactionModel: PyramidSpCodeObjectInteractionModel new.
+	playground announcer
+		when: SpCodeEvaluationSucceedAnnouncement
+		do: [ :ann | self projectModel informElementsChanged ]
 ]
 
 { #category : #accessing }
-PyramidSelectionView >> list [
+PyramidPlaygroundView >> list [
 ^ list
 ]
 
 { #category : #accessing }
-PyramidSelectionView >> playground [
+PyramidPlaygroundView >> playground [
 	^ playground
 ]
 
 { #category : #accessing }
-PyramidSelectionView >> projectModel [
+PyramidPlaygroundView >> projectModel [
 
 	^ projectModel
 ]
 
 { #category : #accessing }
-PyramidSelectionView >> projectModel: aPyramidActiveProject [
+PyramidPlaygroundView >> projectModel: aPyramidActiveProject [
 
 	projectModel := aPyramidActiveProject.
 	projectModel addObserver: self.
-	self playground projectModel: aPyramidActiveProject.
+	self playground interactionModel projectModel: aPyramidActiveProject.
 	
 		self pyramidSelectionChanged.
 ]
 
 { #category : #'as yet unclassified' }
-PyramidSelectionView >> pyramidSelectionChanged [
+PyramidPlaygroundView >> pyramidSelectionChanged [
 
 	self list items: self currentSelection.
 	contextLabel label: self valueOfSelf.
 ]
 
 { #category : #'as yet unclassified' }
-PyramidSelectionView >> valueOfSelf [
+PyramidPlaygroundView >> valueOfSelf [
 
 	^ 'self is <1s>' expandMacrosWith:
 		  self playground interactionModel doItReceiverString

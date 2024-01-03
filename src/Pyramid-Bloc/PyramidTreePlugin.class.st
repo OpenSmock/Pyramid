@@ -9,89 +9,33 @@ Class {
 		'libraryPresenterForElement',
 		'libraryPresenterForRoot'
 	],
+	#classVars : [
+		'ColumnsBuildersClasses'
+	],
 	#category : #'Pyramid-Bloc-plugin-tree-library'
 }
 
-{ #category : #'as yet unclassified' }
-PyramidTreePlugin class >> columnHashValue: aPyramidTreePlugin [
+{ #category : #accessing }
+PyramidTreePlugin class >> columnsBuildersClasses [
 
-	^ SpStringTableColumn new
-		  title: 'Hash';
-		  evaluated: [ :aBlElement | aBlElement identityHash printString ];
-		  displayColor: [ :aBlElement | Color gray ];
-		  width: 60;
-		  yourself
-]
-
-{ #category : #'as yet unclassified' }
-PyramidTreePlugin class >> columnNameAndType: aPyramidTreePlugin [
-
-	^ SpCompositeTableColumn new
-		  title: 'Elements';
-		  addColumn:
-			  (SpImageTableColumn evaluated: [ :aBlElement | aBlElement asIcon ]);
-		  addColumn: (SpStringTableColumn new
-				   title: 'Identifier';
-				   evaluated: [ :aBlElement |
-					   aBlElement elementId isNoId
-						   ifTrue: [ '@\no name\' ]
-						   ifFalse: [ aBlElement id asSymbol ] ];
-				   yourself);
-		  addColumn: (SpStringTableColumn new
-				   title: 'Class';
-				   evaluated: [ :aBlElement | aBlElement class name ];
-				   displayColor: [ :aBlElement | Color gray ];
-				   displayItalic: [ :aBlElement | true ];
-				   yourself);
-		  yourself
-]
-
-{ #category : #'as yet unclassified' }
-PyramidTreePlugin class >> columnVisibility: aPyramidTreePlugin [
-
-	^ SpCompositeTableColumn new
-		  title: 'Visibility';
-		  width: 80;
-		  addColumn: (SpImageTableColumn evaluated: [ :aBlElement |
-					   aBlElement
-						   allParentsDetect: [ :parent | parent isVisible not ]
-						   ifFound: [ :parent | self iconNamed: #uncommentedClass ]
-						   ifNone: [ self iconNamed: #blank16 ] ]);
-		  addColumn: (SpImageTableColumn evaluated: [ :aBlElement |
-					   aBlElement visibility asIcon ]);
-		  addColumn: (SpLinkTableColumn new
-				   title: 'Visible';
-				   url: [ :aBlElement | '' ];
-				   action: [ :aBlElement |
-					   self
-						   setVisibility: aBlElement visibility nextVisibilityForTree
-						   of: aBlElement
-						   onEditor: aPyramidTreePlugin editor ];
-				   evaluated: [ :aBlElement | aBlElement visibility asString ];
-				   yourself);
-		  yourself
-]
-
-{ #category : #'as yet unclassified' }
-PyramidTreePlugin class >> columnZIndex: aPyramidTreePlugin [
-
-	^ SpStringTableColumn new
-		  title: 'z';
-		  evaluated: [ :aBlElement |
-			  aBlElement elevation elevation = 0
-				  ifTrue: [ '' ]
-				  ifFalse: [ aBlElement elevation elevation printString ] ];
-		  width: 16;
-		  yourself
+	ColumnsBuildersClasses ifNil: [
+		ColumnsBuildersClasses := Set new ].
+	^ ColumnsBuildersClasses
 ]
 
 { #category : #initialization }
-PyramidTreePlugin class >> setVisibility: aBlVisibility of: aBlElement onEditor: aPyramidEditor [
+PyramidTreePlugin class >> install [
+	"Do some stuff here when the plugin used class oriented behavior"
 
-	aPyramidEditor propertiesManager commandExecutor
-		use: PyramidVisibilityCommand new
-		on: { aBlElement }
-		with: aBlVisibility
+	self columnsBuildersClasses add: PyramidTreeBaseColumnsBuilder 
+]
+
+{ #category : #initialization }
+PyramidTreePlugin >> addColumns: aCollection [
+	aCollection do: [ :each | self treePresenter columns add: each ].
+	self treePresenter updateTree
+
+	
 ]
 
 { #category : #adding }
@@ -109,13 +53,19 @@ PyramidTreePlugin >> addPanelsOn: aPyramidSimpleWindow [
 		addItem: [ :builder | self menuAddAndDeleteOn: builder ]
 ]
 
+{ #category : #actions }
+PyramidTreePlugin >> configureBuilder: aPyramidEditorBuilder [
+
+	self class columnsBuildersClasses do: [ :each |
+		each new
+			editor: aPyramidEditorBuilder editor;
+			buildOn: self ]
+]
+
 { #category : #connecting }
 PyramidTreePlugin >> connectOn: aPyramidEditor [
 
 	self editor: aPyramidEditor.
-	self treePresenter projectModel: aPyramidEditor projectModel.
-	self treePresenter editorMenuBuilder:
-		(self editor window services at: #selectionMenu) builder
 ]
 
 { #category : #accessing }
@@ -125,11 +75,14 @@ PyramidTreePlugin >> editor [
 ]
 
 { #category : #accessing }
-PyramidTreePlugin >> editor: anObject [
+PyramidTreePlugin >> editor: aPyramidEditor [
 
-	editor := anObject.
-	self libraryPresenterForElement editor: anObject.
-	self libraryPresenterForRoot editor: anObject.
+	editor := aPyramidEditor.
+	self libraryPresenterForElement editor: aPyramidEditor.
+	self libraryPresenterForRoot editor: aPyramidEditor.
+	self treePresenter projectModel: aPyramidEditor projectModel.
+	self treePresenter editorMenuBuilder:
+		(self editor window services at: #selectionMenu) builder
 ]
 
 { #category : #initialization }
@@ -139,33 +92,23 @@ PyramidTreePlugin >> initialize [
 	treePresenter := PyramidTreePresenter new
 		                 libraryPresenterForRoot:
 			                 self libraryPresenterForRoot;
-		                 yourself.
-	self initializeTreeColumns.
+		                 yourself
 ]
 
 { #category : #initialization }
 PyramidTreePlugin >> initializeLibraryPresenters [
 
 	| idGenerator |
-	idGenerator :=  PyramidLibraryPresenter idGenerator.
+	idGenerator := PyramidLibraryPresenter makeIdGenerator.
 	libraryPresenterForElement := PyramidLibraryPresenterForElement new
 		                              editor: self editor;
-		idGenerator: idGenerator;
+		                              idGenerator: idGenerator;
 		                              yourself.
-	libraryPresenterForRoot := PyramidLibraryPresenterForFirstLevelElement new
+	libraryPresenterForRoot := PyramidLibraryPresenterForFirstLevelElement
+		                           new
 		                           editor: self editor;
-		idGenerator: idGenerator;
+		                           idGenerator: idGenerator;
 		                           yourself
-]
-
-{ #category : #initialization }
-PyramidTreePlugin >> initializeTreeColumns [
-
-	self treePresenter columns add: (self class columnNameAndType: self).
-	self treePresenter columns add: (self class columnHashValue: self).
-	self treePresenter columns add: (self class columnZIndex: self).
-	self treePresenter columns add: (self class columnVisibility: self).
-	self treePresenter updateTree
 ]
 
 { #category : #'as yet unclassified' }

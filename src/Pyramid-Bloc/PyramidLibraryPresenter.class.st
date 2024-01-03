@@ -8,23 +8,26 @@ Class {
 		'addButton',
 		'idGenerator'
 	],
+	#classVars : [
+		'IdGenerator'
+	],
 	#category : #'Pyramid-Bloc-plugin-tree-library'
 }
 
 { #category : #accessing }
-PyramidLibraryPresenter class >> idGenerator [
+PyramidLibraryPresenter class >> makeIdGenerator [
 ^ Generator on: [ :generator |
-		               | index |
-		               index := 1.
-		               [
-		               Character alphabet do: [ :each |
-			               | next suffix |
-			               next := each asUppercase asString.
-			               suffix := index = 1
-				                         ifTrue: [ '' ]
-				                         ifFalse: [ index asString ].
-			               generator yield: next , suffix ].
-		               index := index + 1 ] repeat ].
+		  | index |
+		  index := 1.
+		  [
+		  Character alphabet do: [ :each |
+			  | next suffix |
+			  next := each asUppercase asString.
+			  suffix := index = 1
+				            ifTrue: [ '' ]
+				            ifFalse: [ index asString ].
+			  generator yield: next , suffix ].
+		  index := index + 1 ] repeat ]
 ]
 
 { #category : #initialization }
@@ -92,7 +95,7 @@ PyramidLibraryPresenter >> defaultLayout [
 						    expand: false;
 						    yourself)
 				   width: 300;
-				   yourself)
+				   yourself); yourself
 ]
 
 { #category : #accessing }
@@ -109,6 +112,7 @@ PyramidLibraryPresenter >> editor: aPyramidEditor [
 { #category : #accessing }
 PyramidLibraryPresenter >> idGenerator [
 
+	idGenerator ifNil: [ idGenerator := self class makeIdGenerator ].
 	^ idGenerator
 ]
 
@@ -120,8 +124,6 @@ PyramidLibraryPresenter >> idGenerator: anObject [
 
 { #category : #initialization }
 PyramidLibraryPresenter >> initializePresenters [
-
-	idGenerator := self class idGenerator.
 
 	addButton := SpButtonPresenter new
 		             label: self buttonLabel;
