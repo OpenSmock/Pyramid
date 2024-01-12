@@ -7,7 +7,8 @@ Class {
 	#superclass : #Object,
 	#instVars : [
 		'cluster',
-		'property'
+		'property',
+		'isNilDefault'
 	],
 	#category : #'Pyramid-property'
 }
@@ -34,6 +35,24 @@ PyramidPropertyPresenterBuilder >> cluster [
 PyramidPropertyPresenterBuilder >> cluster: anObject [
 
 	cluster := anObject
+]
+
+{ #category : #initialization }
+PyramidPropertyPresenterBuilder >> initialize [
+
+isNilDefault := false.
+]
+
+{ #category : #initialization }
+PyramidPropertyPresenterBuilder >> isNilDefault [
+
+	^ isNilDefault
+]
+
+{ #category : #initialization }
+PyramidPropertyPresenterBuilder >> makeNilDefault [
+
+	isNilDefault := true
 ]
 
 { #category : #accessing }

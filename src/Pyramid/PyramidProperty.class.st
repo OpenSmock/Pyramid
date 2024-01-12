@@ -53,6 +53,12 @@ PyramidProperty >> initialize [
 ]
 
 { #category : #accessing }
+PyramidProperty >> makeNilDefault [
+
+	self presenterBuilder makeNilDefault.
+]
+
+{ #category : #accessing }
 PyramidProperty >> name [
 
 	^ name

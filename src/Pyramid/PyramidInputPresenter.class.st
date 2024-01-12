@@ -48,6 +48,12 @@ PyramidInputPresenter >> mixedValues [
 	self value: PyramidMixedValues new
 ]
 
+{ #category : #'as yet unclassified' }
+PyramidInputPresenter >> orNil [
+
+	^ PyramidInputOrNilPresenter new inputPresenter: self; yourself.
+]
+
 { #category : #accessing }
 PyramidInputPresenter >> strings [
 

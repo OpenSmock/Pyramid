@@ -36,6 +36,12 @@ PyramidUnknowState >> asIcon [
 ]
 
 { #category : #converting }
+PyramidUnknowState >> asNil [
+
+	^ nil
+]
+
+{ #category : #converting }
 PyramidUnknowState >> asOrientationForPyramid [
 
 	^ self
@@ -51,6 +57,12 @@ PyramidUnknowState >> asPyramidConstraintsArgument [
 PyramidUnknowState >> asString [
 
 	^ '@ Unknow state'
+]
+
+{ #category : #testing }
+PyramidUnknowState >> isNotNil [
+
+	^ false
 ]
 
 { #category : #initialization }

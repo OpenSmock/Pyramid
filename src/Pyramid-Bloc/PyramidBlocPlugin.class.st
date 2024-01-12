@@ -162,6 +162,7 @@ PyramidBlocPlugin class >> elementId [
 		            name: 'Element ID';
 		            command: (self performCommandFor: #id);
 		            pyramidInputPresenterClass: PyramidTextInputPresenter;
+						makeNilDefault;
 		            yourself.
 	property pyramidInputPresenterStrings help: 'Change the id.'.
 	^ property
