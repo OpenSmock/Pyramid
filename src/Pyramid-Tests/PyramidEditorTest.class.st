@@ -61,9 +61,14 @@ PyramidEditorTest >> testOpenFromBlSpace [
 { #category : #tests }
 PyramidEditorTest >> testOpenFromBlSpaceWithSpacePluginUninstalled [
 
+	| pluginsCount |
+	pluginsCount := PyramidPluginManager uniqueInstance pluginClasses size.
 	PyramidPluginManager uniqueInstance removePlugin: PyramidSpacePlugin.
 	self openFromBlSpace.
-	PyramidPluginManager uniqueInstance addPlugin: PyramidSpacePlugin
+	PyramidPluginManager uniqueInstance addPlugin: PyramidSpacePlugin.
+	self
+		assert: pluginsCount
+		equals: PyramidPluginManager uniqueInstance pluginClasses size
 ]
 
 { #category : #tests }
@@ -76,9 +81,15 @@ PyramidEditorTest >> testOpenNewEditor [
 
 { #category : #tests }
 PyramidEditorTest >> testOpenNewEditorWithSpacePluginUninstalled [
-	
+
+	| pluginsCount |
+	pluginsCount := PyramidPluginManager uniqueInstance pluginClasses
+		                size.
+	PyramidPluginManager uniqueInstance removePlugin: PyramidSpacePlugin.
 	PyramidPluginManager uniqueInstance removePlugin: PyramidSpacePlugin.
 	self openNewEditor.
 	PyramidPluginManager uniqueInstance addPlugin: PyramidSpacePlugin.
-	
+	self
+		assert: pluginsCount
+		equals: PyramidPluginManager uniqueInstance pluginClasses size
 ]

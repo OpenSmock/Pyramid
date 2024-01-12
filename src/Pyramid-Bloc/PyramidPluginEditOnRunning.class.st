@@ -158,12 +158,6 @@ PyramidPluginEditOnRunning >> addPanelsOn: aPyramidSimpleWindow [
 	"do nothing"
 ]
 
-{ #category : #actions }
-PyramidPluginEditOnRunning >> configureBuilder: aPyramidEditorBuilder [
-
-	"do nothing"
-]
-
 { #category : #connecting }
 PyramidPluginEditOnRunning >> connectOn: aPyramidEditor [
 

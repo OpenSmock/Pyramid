@@ -4,10 +4,10 @@ Trait {
 }
 
 { #category : #initialization }
-TPyramidPlugin classSide >> initialize [ 
-	<script>
+TPyramidPlugin classSide >> initialize [
 
-	self = TPyramidPlugin ifTrue:[ ^ self ].
+	<script>
+	self = TPyramidPlugin ifTrue: [ ^ self ].
 	PyramidPluginManager uniqueInstance addPlugin: self
 ]
 

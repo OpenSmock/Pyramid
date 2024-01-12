@@ -1,6 +1,8 @@
 Class {
 	#name : #PyramidEditor,
 	#superclass : #Object,
+	#traits : 'TPyramidSerchablePlugin',
+	#classTraits : 'TPyramidSerchablePlugin classTrait',
 	#instVars : [
 		'plugins',
 		'projectModel',

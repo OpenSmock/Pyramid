@@ -65,9 +65,10 @@ PyramidPluginManager class >> uniqueInstance [
 PyramidPluginManager >> addPlugin: aPluginClass [
 
 	self pluginClasses add: aPluginClass.
-	
+
 	"Install the class of the plugin when added"
 	aPluginClass install.
+
 ]
 
 { #category : #private }
@@ -109,7 +110,7 @@ PyramidPluginManager >> pluginClasses [
 PyramidPluginManager >> removePlugin: aPluginClass [
 
 	self pluginClasses remove: aPluginClass ifAbsent: [  ].
-	
+
 	"Uninstall the class of the plugin when added"
-	aPluginClass uninstall.
+	aPluginClass uninstall
 ]

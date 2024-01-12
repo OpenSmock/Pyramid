@@ -12,6 +12,13 @@ Class {
 	#category : #'Pyramid-Bloc-plugin-testmode'
 }
 
+{ #category : #'as yet unclassified' }
+PyramidPluginTestMode class >> extendPlugins [
+	"Put in a collection all linked plugins."
+
+	^ { PyramidSpacePlugin }
+]
+
 { #category : #adding }
 PyramidPluginTestMode >> addPanelsOn: aPyramidSimpleWindow [
 
@@ -33,15 +40,11 @@ PyramidPluginTestMode >> button [
 	^ button
 ]
 
-{ #category : #connecting }
-PyramidPluginTestMode >> connectOn: aPyramidEditor [
+{ #category : #actions }
+PyramidPluginTestMode >> configureBuilder: aPyramidEditorBuilder [
 
-	spacePlugin := aPyramidEditor plugins
-		               detect: [ :p | p isKindOf: PyramidSpacePlugin ]
-		               ifNone: [  ].
-		
-	spacePlugin ifNotNil: [ 	builder := spacePlugin builder ]
-
+	[spacePlugin := aPyramidEditorBuilder findPluginNamed: #PyramidSpacePlugin.
+	builder := spacePlugin builder] on: PyramidPluginNotFoundError do: [ :err | aPyramidEditorBuilder removePlugin: self ]
 ]
 
 { #category : #actions }

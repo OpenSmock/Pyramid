@@ -1,6 +1,8 @@
 Class {
 	#name : #PyramidEditorBuilder,
 	#superclass : #Object,
+	#traits : 'TPyramidSerchablePlugin',
+	#classTraits : 'TPyramidSerchablePlugin classTrait',
 	#instVars : [
 		'plugins',
 		'editor',
@@ -24,9 +26,14 @@ PyramidEditorBuilder >> build [
 
 { #category : #accessing }
 PyramidEditorBuilder >> editor [
-editor ifNil: [ editor := PyramidEditor new ].
- ^ editor
 
+	^ editor
+]
+
+{ #category : #building }
+PyramidEditorBuilder >> initialize [
+
+	editor := PyramidEditor new
 ]
 
 { #category : #accessing }
@@ -39,6 +46,12 @@ PyramidEditorBuilder >> plugins [
 PyramidEditorBuilder >> plugins: anObject [
 
 	plugins := anObject
+]
+
+{ #category : #removing }
+PyramidEditorBuilder >> removePlugin: aPlugin [
+
+	self plugins remove: aPlugin
 ]
 
 { #category : #building }
