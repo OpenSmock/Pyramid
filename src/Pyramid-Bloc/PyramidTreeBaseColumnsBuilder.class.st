@@ -49,7 +49,7 @@ PyramidTreeBaseColumnsBuilder >> nameAndTypeColumn [
 PyramidTreeBaseColumnsBuilder >> setVisibility: aBlVisibility of: aBlElement onEditor: aPyramidEditor [
 
 	aPyramidEditor propertiesManager commandExecutor
-		use: PyramidVisibilityCommand new
+		use: (PyramidBlocPlugin performCommandFor: #visibility)
 		on: { aBlElement }
 		with: aBlVisibility
 ]

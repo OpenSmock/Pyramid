@@ -16,13 +16,14 @@ PyramidBlocPlugin class >> background [
 	| property |
 	property := PyramidProperty new
 		            name: 'Background';
-		            command: PyramidBackgroundCommand new;
+		            command: (self performCommandFor: #background);
 		            pyramidInputPresenterClass:
 			            PyramidBackgroundInputWithModalPresenter;
 		            yourself.
 	property pyramidInputPresenterStrings help:
 		'Change the background of the element with a color, a gradient, an image.'.
-	property pyramidInputPresenterStrings windowTitle: 'Change background'.
+	property pyramidInputPresenterStrings windowTitle:
+		'Change background'.
 	^ property
 ]
 
@@ -32,7 +33,7 @@ PyramidBlocPlugin class >> clipChildren [
 	| property |
 	property := PyramidProperty new
 		            name: 'Clip Children';
-		            command: PyramidClipChildrenCommand new;
+		            command: (self performCommandFor: #clipChildren);
 		            pyramidInputPresenterClass: PyramidSwitchInputPresenter;
 		            yourself.
 	property pyramidInputPresenterStrings help:
@@ -159,7 +160,7 @@ PyramidBlocPlugin class >> elementId [
 	| property |
 	property := PyramidProperty new
 		            name: 'Element ID';
-		            command: PyramidElementIdCommand new;
+		            command: (self performCommandFor: #id);
 		            pyramidInputPresenterClass: PyramidTextInputPresenter;
 		            yourself.
 	property pyramidInputPresenterStrings help: 'Change the id.'.
@@ -190,7 +191,7 @@ PyramidBlocPlugin class >> geometry [
 	| property |
 	property := PyramidProperty new
 		            name: 'Geometry';
-		            command: PyramidGeometryCommand new;
+		            command: (self performCommandFor: #geometry);
 		            pyramidInputPresenterClass:
 			            PyramidGeometryInputPresenter;
 		            yourself.
@@ -203,10 +204,8 @@ PyramidBlocPlugin class >> layout [
 	| property |
 	property := PyramidProperty new
 		            name: 'Layout';
-		            command:
-			            PyramidLayoutBlocCommand new;
-		            pyramidInputPresenterClass:
-			            PyramidLayoutInputPresenter;
+		            command: (self performCommandFor: #layout);
+		            pyramidInputPresenterClass: PyramidLayoutInputPresenter;
 		            yourself.
 	^ property
 ]
@@ -217,13 +216,14 @@ PyramidBlocPlugin class >> margin [
 	| property |
 	property := PyramidProperty new
 		            name: 'Margin';
-		            command: PyramidMarginCommand new;
+		            command: (self performCommandFor: #margin);
 		            pyramidInputPresenterClass: PyramidInsetsInputPresenter;
 		            yourself.
-	property pyramidInputPresenterStrings help: 		'Change the margin. The margin will affect the space between the border and the elements outside. For example:
+	property pyramidInputPresenterStrings help:
+		'Change the margin. The margin will affect the space between the border and the elements outside. For example:
 	- "10" to set a margin of 10 px on each size.
 	- "10 20" to set a margin of 10 px on the top and bottom and 20 px on the right and left.
-	- "10 20 30 40" to set a margin of 10 px on top, 20 px on left, 30 px on bottom and 40 px on right.'..
+	- "10 20 30 40" to set a margin of 10 px on top, 20 px on left, 30 px on bottom and 40 px on right.'.
 	^ property
 ]
 
@@ -233,7 +233,7 @@ PyramidBlocPlugin class >> padding [
 	| property |
 	property := PyramidProperty new
 		            name: 'Padding';
-		            command: PyramidPaddingCommand new;
+		            command: (self performCommandFor: #padding);
 		            pyramidInputPresenterClass: PyramidInsetsInputPresenter;
 		            yourself.
 	property pyramidInputPresenterStrings help:
@@ -242,6 +242,15 @@ PyramidBlocPlugin class >> padding [
 	- "10 20" to set a padding of 10 px on the top and bottom and 20 px on the right and left.
 	- "10 20 30 40" to set a padding of 10 px on top, 20 px on left, 30 px on bottom and 40 px on right.'.
 	^ property
+]
+
+{ #category : #'as yet unclassified' }
+PyramidBlocPlugin class >> performCommandFor: aSymbol [
+
+	^ PyramidPerformCommand new
+		  validationBlock: self validationBlockForBlElement;
+		  selector: aSymbol;
+		  yourself
 ]
 
 { #category : #accessing }
@@ -258,14 +267,21 @@ PyramidBlocPlugin class >> position [
 	^ property
 ]
 
+{ #category : #'as yet unclassified' }
+PyramidBlocPlugin class >> validationBlockForBlElement [
+
+	^ [ :anObject | anObject isKindOf: BlElement ]
+]
+
 { #category : #accessing }
 PyramidBlocPlugin class >> visibility [
 
 	| property |
 	property := PyramidProperty new
 		            name: 'Visibility';
-		            command: PyramidVisibilityCommand new;
-		            pyramidInputPresenterClass: PyramidVisibilityInputPresenter;
+		            command: (self performCommandFor: #visibility);
+		            pyramidInputPresenterClass:
+			            PyramidVisibilityInputPresenter;
 		            yourself.
 	^ property
 ]
