@@ -15,6 +15,21 @@ PyramidWindowTest >> setUp [
 	window := PyramidTestWindow new.
 ]
 
+{ #category : #running }
+PyramidWindowTest >> tearDown [
+
+	self window close
+]
+
+{ #category : #tests }
+PyramidWindowTest >> testDoesServiceExists [
+
+	self assert: (self window doesServiceExists: #top).
+	self assert: (self window doesServiceExists: #center).
+	self assert: (self window doesServiceExists: #bottom).
+	self deny: (self window doesServiceExists: #blablabla)
+]
+
 { #category : #tests }
 PyramidWindowTest >> testServices [
 
@@ -25,7 +40,9 @@ PyramidWindowTest >> testServices [
 	t4 := SpButtonPresenter new.
 
 	presenter := self window presenter.
-	self assert: self window services size equals: 3.
+	self assert: (self window doesServiceExists: #top).
+	self assert: (self window doesServiceExists: #center).
+	self assert: (self window doesServiceExists: #bottom).
 	self assert: presenter layout presenters size equals: 3.
 	self assert: (self window services at: #top) items size equals: 0.
 
@@ -39,18 +56,18 @@ PyramidWindowTest >> testServices [
 
 	buttons := (presenter layout presenters at: 1) presenters.
 	self assert: buttons size equals: 3.
-	self assert:( buttons at: 1) equals: t3.
-	self assert:( buttons at: 2) equals: t2.
-	self assert:( buttons at: 3) equals: t1.
+	self assert: (buttons at: 1) equals: t3.
+	self assert: (buttons at: 2) equals: t2.
+	self assert: (buttons at: 3) equals: t1.
 
 	(self window services at: #top) addItem: [ :builder |
 		builder makeButtonWithIcon: t4 order: 4 ].
 	buttons := (presenter layout presenters at: 1) presenters.
 	self assert: buttons size equals: 4.
-	self assert:( buttons at: 1) equals: t3.
-	self assert:( buttons at: 2) equals: t2.
-	self assert:( buttons at: 3) equals: t1.
-	self assert:( buttons at: 4) equals: t4.
+	self assert: (buttons at: 1) equals: t3.
+	self assert: (buttons at: 2) equals: t2.
+	self assert: (buttons at: 3) equals: t1.
+	self assert: (buttons at: 4) equals: t4
 ]
 
 { #category : #accessing }

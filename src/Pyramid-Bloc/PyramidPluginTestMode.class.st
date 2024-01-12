@@ -43,8 +43,12 @@ PyramidPluginTestMode >> button [
 { #category : #actions }
 PyramidPluginTestMode >> configureBuilder: aPyramidEditorBuilder [
 
-	[spacePlugin := aPyramidEditorBuilder findPluginNamed: #PyramidSpacePlugin.
-	builder := spacePlugin builder] on: PyramidPluginNotFoundError do: [ :err | aPyramidEditorBuilder removePlugin: self ]
+	[
+	spacePlugin := aPyramidEditorBuilder findPluginNamed:
+		               #PyramidSpacePlugin.
+	builder := spacePlugin builder ]
+		on: PyramidPluginNotFoundError
+		do: [ :err | aPyramidEditorBuilder doNotBuildWith: self because: err ]
 ]
 
 { #category : #actions }

@@ -19,6 +19,14 @@ PyramidPanelModel class >> menu [
 ]
 
 { #category : #accessing }
+PyramidPanelModel class >> messages [
+
+	^ self new
+		  builder: PyramidMessagesPanelBuilder new;
+		  yourself
+]
+
+{ #category : #accessing }
 PyramidPanelModel class >> presenter [
 
 	^ self new

@@ -1,6 +1,8 @@
 Class {
 	#name : #PyramidWindow,
 	#superclass : #Object,
+	#traits : 'TPyramidWindowWithMessages + (TPyramidWindowOpennable - {#open. #close})',
+	#classTraits : 'TPyramidWindowWithMessages classTrait + TPyramidWindowOpennable classTrait',
 	#instVars : [
 		'presenter',
 		'services',
@@ -59,11 +61,9 @@ PyramidWindow >> at: aSymbol addItem: aBlock [
 	(self services at: aSymbol) addItem: aBlock
 ]
 
-{ #category : #'api - showing' }
-PyramidWindow >> close [
-
-	self isOpen ifFalse: [ ^ self ].
-	self presenter owner close.
+{ #category : #accessing }
+PyramidWindow >> doesServiceExists: aSymbol [
+	^ services includesKey: aSymbol
 ]
 
 { #category : #initialization }
@@ -89,33 +89,10 @@ PyramidWindow >> initializePresenter [
 	^ presenter
 ]
 
-{ #category : #'api - showing' }
-PyramidWindow >> isClosed [
-
-	^ self presenter owner ifNotNil: [ :w | w isClosed ] ifNil: [ true ]
-]
-
-{ #category : #'api - showing' }
-PyramidWindow >> isOpen [
-
-	^ self isClosed not
-]
-
 { #category : #accessing }
 PyramidWindow >> layout [
 
 	^ self shouldBeImplemented
-]
-
-{ #category : #'api - showing' }
-PyramidWindow >> open [
-
-	spec := self presenter asWindow open.
-	spec maximize.
-	spec title: self title.
-	spec aboutText: self class aboutText.
-	spec whenClosedDo: [ self whenClosedDo value ].
-	^ spec
 ]
 
 { #category : #private }
@@ -148,27 +125,8 @@ PyramidWindow >> spec [
 	^ spec
 ]
 
-{ #category : #'api - showing' }
-PyramidWindow >> title [
-
-	^ title
-]
-
-{ #category : #'api - showing' }
-PyramidWindow >> title: aString [
-
-	title := aString.
-	self isOpen ifTrue: [ self presenter owner title: aString ]
-]
-
 { #category : #accessing }
-PyramidWindow >> whenClosedDo [
+PyramidWindow >> spec: aSpec [
 
-	^ whenClosedDo
-]
-
-{ #category : #accessing }
-PyramidWindow >> whenClosedDo: aBlock [
-
-	whenClosedDo:= aBlock
+	 spec :=aSpec
 ]
