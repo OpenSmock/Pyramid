@@ -260,12 +260,16 @@ PyramidBlocPlugin class >> position [
 	| property |
 	property := PyramidProperty new
 		            name: 'Position';
-		            command: PyramidPositionCommand new;
+		            command: (PyramidValueCommand new
+				             validationBlock: self validationBlockForBlElement;
+				             writer: [ :obj :arg | obj constraints position: arg ];
+				             reader: [ :obj | obj constraints position ];
+				             yourself);
 		            pyramidInputPresenterClass: PyramidPointInputPresenter;
 		            yourself.
 	property pyramidInputPresenterStrings help:
 		'Set the position x and y of the element inside his parent.'.
-	^ property
+	^ property.
 ]
 
 { #category : #'as yet unclassified' }
