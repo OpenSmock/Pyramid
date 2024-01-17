@@ -7,7 +7,11 @@ Class {
 { #category : #'as yet unclassified' }
 PyramidPositionOffsetCommand >> commandInverse [
 
-	^ PyramidPositionCommand new
+	^ PyramidValueCommand new
+		  validationBlock: [ :anObject | anObject isKindOf: BlElement ];
+		  writer: [ :obj :arg | obj constraints position: arg ];
+		  reader: [ :obj | obj constraints position ];
+		  yourself
 ]
 
 { #category : #'as yet unclassified' }

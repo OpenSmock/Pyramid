@@ -4,7 +4,7 @@ Class {
 	#traits : 'TPyramidProjectModelObserver',
 	#classTraits : 'TPyramidProjectModelObserver classTrait',
 	#instVars : [
-		'list',
+		'inspectSelectionButton',
 		'playground',
 		'projectModel',
 		'codeObjectInteractionModel',
@@ -28,29 +28,36 @@ PyramidPlaygroundView >> currentSelection [
 { #category : #layout }
 PyramidPlaygroundView >> defaultLayout [
 
-	^ SpPanedLayout newVertical
-		  add: (SpBoxLayout newVertical
-				   add: (SpLabelPresenter new
-						    label: 'Selection';
-						    displayBold: [ :t | true ];
-						    yourself) expand: false;
-				   add: self list;
-				   yourself);
-		  add: (SpBoxLayout newVertical
-				   add: (SpLabelPresenter new
-						    label: 'Playground';
-						    displayBold: [ :t | true ];
-						    yourself)  expand: false;
-				   add: self contextLabel expand: false;
-				   add: self playground;
-				   yourself);
+	^ SpBoxLayout newVertical
+		  spacing: 4;
+		  add: (SpBoxLayout newHorizontal
+				   spacing: 4;
+				   add: (SpBoxLayout newVertical
+						    add: (SpLabelPresenter new
+								     label: 'Playground';
+								     displayBold: [ :t | true ];
+								     yourself)
+						    expand: false;
+						    add: self contextLabel expand: false;
+						    yourself)
+				   expand: true;
+				   add: self inspectSelectionButton withConstraints: [ :c |
+				   c width: 32.
+				   c height: 32 ];
+				   yourself)
+		  expand: false;
+		  add: self playground;
 		  yourself
 ]
 
 { #category : #initialization }
 PyramidPlaygroundView >> initializePresenters [
 
-	list := SpListPresenter new.
+	inspectSelectionButton := SpButtonPresenter new
+		                          icon: (self iconNamed: #smallInspectIt);
+		                          enabled: false;
+		help: 'Inspect the selection.';
+		                          yourself.
 	playground := SpCodePresenter new.
 	contextLabel := SpLabelPresenter new.
 
@@ -60,9 +67,10 @@ PyramidPlaygroundView >> initializePresenters [
 		do: [ :ann | self projectModel informElementsChanged ]
 ]
 
-{ #category : #accessing }
-PyramidPlaygroundView >> list [
-^ list
+{ #category : #'as yet unclassified' }
+PyramidPlaygroundView >> inspectSelectionButton [
+
+	^ inspectSelectionButton
 ]
 
 { #category : #accessing }
@@ -82,15 +90,35 @@ PyramidPlaygroundView >> projectModel: aPyramidActiveProject [
 	projectModel := aPyramidActiveProject.
 	projectModel addObserver: self.
 	self playground interactionModel projectModel: aPyramidActiveProject.
-	
-		self pyramidSelectionChanged.
+
+	self pyramidSelectionChanged.
+	self inspectSelectionButton enabled: true.
 ]
 
 { #category : #'as yet unclassified' }
 PyramidPlaygroundView >> pyramidSelectionChanged [
 
-	self list items: self currentSelection.
+	| selectionCopy |
 	contextLabel label: self valueOfSelf.
+
+	selectionCopy := self projectModel selection asArray.
+
+	selectionCopy ifEmpty: [
+		inspectSelectionButton
+			action: [ self projectModel firstLevelElements asArray inspect ];
+			help: 'Inspect the first level elements.'.
+		^ self ].
+
+	selectionCopy size = 1 ifTrue: [
+		inspectSelectionButton
+			action: [ selectionCopy first inspect ];
+			help: 'Inspect the selected element.'.
+		^ self ].
+
+	inspectSelectionButton
+		action: [ selectionCopy inspect ];
+		help: ('Inspect the <1p> selected elements.' expandMacrosWith:
+					 selectionCopy size)
 ]
 
 { #category : #'as yet unclassified' }

@@ -13,18 +13,18 @@ Class {
 { #category : #adding }
 PyramidPluginPlayground >> addPanelsOn: aPyramidSimpleWindow [
 
-	aPyramidSimpleWindow at: #tabRight addItem: [ :builder |
+	aPyramidSimpleWindow at: #tabRightBottom addItem: [ :builder |
 		builder
 			makeTab: self view
 			label: 'Playground'
 			icon: (self iconNamed: #open)
-			order: 1 ].
+			order: 1 ]
 ]
 
 { #category : #connecting }
 PyramidPluginPlayground >> connectOn: aPyramidEditor [
 
-	self view projectModel: aPyramidEditor projectModel
+	self view projectModel: aPyramidEditor projectModel.  
 ]
 
 { #category : #initialization }

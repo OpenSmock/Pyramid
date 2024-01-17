@@ -36,6 +36,12 @@ PyramidPropertiesManager >> commandExecutor: anObject [
 	self properties do: [ :each | each commandExecutor: anObject ]
 ]
 
+{ #category : #testing }
+PyramidPropertiesManager >> hasAnyPropertyWith: aCollection [
+
+	^ self presenterStrategy hasAnyPropertyWith: aCollection withManager: self
+]
+
 { #category : #accessing }
 PyramidPropertiesManager >> history [
 

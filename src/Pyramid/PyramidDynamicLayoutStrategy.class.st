@@ -23,6 +23,12 @@ PyramidDynamicLayoutStrategy class >> proportionRightAndLeft [
 ]
 
 { #category : #'as yet unclassified' }
+PyramidDynamicLayoutStrategy class >> proportionVertical [
+
+	^ 2 / 3
+]
+
+{ #category : #'as yet unclassified' }
 PyramidDynamicLayoutStrategy >> centerLayoutFor: aWindow [
 
 	^ self shouldBeImplemented 

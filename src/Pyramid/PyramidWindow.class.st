@@ -77,7 +77,8 @@ PyramidWindow >> initialize [
 	PyramidPanelModel toolbarHorizontal installOn: self at: #topRight.
 	PyramidPanelModel presenter installOn: self at: #space.
 	PyramidPanelModel tab installOn: self at: #tabLeft.
-	PyramidPanelModel tab installOn: self at: #tabRight.
+	PyramidPanelModel presenter installOn: self at: #tabRightTop.
+	PyramidPanelModel tab installOn: self at: #tabRightBottom.
 	PyramidPanelModel menu installOn: self at: #selectionMenu
 ]
 

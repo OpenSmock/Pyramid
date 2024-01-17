@@ -43,7 +43,7 @@ PyramidEditor >> getPlugin: aPluginClass [
 PyramidEditor >> initialize [
 
 	projectModel := PyramidProjectModel new.
-	propertiesManager := PyramidPropertiesManagerForSelection new
+	propertiesManager := PyramidPropertiesManagerWithGroups new
 		                     projectModel: projectModel;
 		                     yourself.
 	plugins := {  }
@@ -97,10 +97,8 @@ PyramidEditor >> window [
 PyramidEditor >> window: anObject [
 
 	window := anObject.
-	window at: #tabRight addItem: [ :builder |
-		builder
-			makeTab: self propertiesManager presenter
-			label: 'Properties'
-			icon: (self iconNamed: #box)
-			order: 1 ]
+	window
+		at: #tabRightTop
+		addItem: [ :builder |
+		builder makePresenter: self propertiesManager presenter ]
 ]

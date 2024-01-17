@@ -21,3 +21,10 @@ PyramidPresenterPropertiesStrategy >> buildPresenterFromCollection: aCollection 
 
 	^ self shouldBeImplemented
 ]
+
+{ #category : #testing }
+PyramidPresenterPropertiesStrategy >> hasAnyPropertyWith: aCollection
+		  withManager: aManager [
+		
+	^ true
+]

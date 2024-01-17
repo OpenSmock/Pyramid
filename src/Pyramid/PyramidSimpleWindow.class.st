@@ -13,7 +13,11 @@ PyramidSimpleWindow >> centerLayout [
 		  add: (SpPanedLayout newLeftToRight
 				   positionOfSlider: 3 / 4;
 				   add: (self services at: #space) presenter;
-				   add: (self services at: #tabRight) presenter;
+				   add: (SpPanedLayout newVertical
+						    positionOfSlider: 4 / 5;
+						    add: (self services at: #tabRightTop) presenter;
+						    add: (self services at: #tabRightBottom) presenter;
+						    yourself);
 				   yourself);
 		  yourself
 ]

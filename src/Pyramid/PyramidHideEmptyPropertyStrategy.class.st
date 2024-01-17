@@ -50,6 +50,13 @@ PyramidHideEmptyPropertyStrategy >> emptyPresenter [
 	^ presenter
 ]
 
+{ #category : #testing }
+PyramidHideEmptyPropertyStrategy >> hasAnyPropertyWith: aCollection withManager: aManager [
+
+	aManager properties collect: [ :each | each command ] thenDo: [ :command | aCollection do: [ :obj | (command canBeUsedFor: obj) ifTrue: [ ^ true ] ]].
+	^ false
+]
+
 { #category : #'as yet unclassified' }
 PyramidHideEmptyPropertyStrategy >> presenterWith: aCollection [
 
