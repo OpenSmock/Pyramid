@@ -15,6 +15,13 @@ Class {
 	#category : #'Pyramid-Bloc-plugin-save'
 }
 
+{ #category : #'meta-data' }
+PyramidSavePlugin class >> dependencies [
+	"Put symbol as the class name for each dependencies."
+
+	^ {  #PyramidBlocPlugin }
+]
+
 { #category : #'instance creation' }
 PyramidSavePlugin class >> openOn: aCollectionOfBlElement saveModel: aSaveModel [
 

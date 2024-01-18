@@ -44,6 +44,13 @@ PyramidPluginEditOnRunning class >> cleanUp: anObject [
 	"do nothing"
 ]
 
+{ #category : #'meta-data' }
+PyramidPluginEditOnRunning class >> dependencies [
+	"Put symbol as the class name for each dependencies."
+
+	^ { #PyramidSpacePlugin }
+]
+
 { #category : #private }
 PyramidPluginEditOnRunning class >> doShortcutAction: anEvent [
 

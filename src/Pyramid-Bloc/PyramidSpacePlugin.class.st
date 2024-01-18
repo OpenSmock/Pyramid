@@ -11,6 +11,13 @@ Class {
 	#category : #'Pyramid-Bloc-plugin-space'
 }
 
+{ #category : #'meta-data' }
+PyramidSpacePlugin class >> dependencies [
+	"Put symbol as the class name for each dependencies."
+
+	^ { #PyramidBlocPlugin }
+]
+
 { #category : #adding }
 PyramidSpacePlugin >> addPanelsOn: aPyramidSimpleWindow [
 

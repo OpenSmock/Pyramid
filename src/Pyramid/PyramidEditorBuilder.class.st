@@ -7,7 +7,7 @@ Class {
 		'plugins',
 		'editor',
 		'window',
-		'cannotBuildPlugins'
+		'cannotBuildPluginsMessages'
 	],
 	#category : #'Pyramid-core'
 }
@@ -15,7 +15,9 @@ Class {
 { #category : #building }
 PyramidEditorBuilder >> build [
 
-	self plugins asArray do: [ :each | each configureBuilder: self ].
+	self checkDependencies.
+	self orderPluginsBeforeBuild.
+	self plugins do: [ :each | each configureBuilder: self ].
 
 	self editor plugins: self plugins.
 	self editor window: self window.
@@ -23,23 +25,34 @@ PyramidEditorBuilder >> build [
 	self plugins do: [ :each | each addPanelsOn: self window ].
 	self plugins do: [ :each | each connectOn: self editor ].
 
-	self cannotBuildPlugins do: [ :each |
-		self editor window
-			atMessagesAddItem: [ :builder | builder addMessage: each asPyramidMessage ] ].
+	self cannotBuildPluginsMessages do: [ :each |
+		self editor window atMessagesAddItem: [ :builder |
+			builder addMessage: each asPyramidMessage ] ].
 	^ editor
 ]
 
 { #category : #accessing }
-PyramidEditorBuilder >> cannotBuildPlugins [
+PyramidEditorBuilder >> cannotBuildPluginsMessages [
 
-	^ cannotBuildPlugins
+	^ cannotBuildPluginsMessages
+]
+
+{ #category : #dependencies }
+PyramidEditorBuilder >> checkDependencies [
+
+	| listOfPlugins |
+	listOfPlugins := self plugins asArray.
+	listOfPlugins do: [ :each | [each checkDependenciesWith: self plugins] on: PyramidPluginNotFoundError do: [ :err | self doNotBuildWith: each because: err ] ]
 ]
 
 { #category : #'as yet unclassified' }
 PyramidEditorBuilder >> doNotBuildWith: aPyramidPlugin because: aPyramidError [
 
 	self removePlugin: aPyramidPlugin.
-	self cannotBuildPlugins add: (PyramidCannotBuildMessageItem new source: aPyramidPlugin; because: aPyramidError; yourself)
+	self cannotBuildPluginsMessages add: (PyramidCannotBuildMessageItem new
+			 source: aPyramidPlugin;
+			 because: aPyramidError;
+			 yourself)
 ]
 
 { #category : #accessing }
@@ -52,7 +65,13 @@ PyramidEditorBuilder >> editor [
 PyramidEditorBuilder >> initialize [
 
 	editor := PyramidEditor new.
-	cannotBuildPlugins := OrderedCollection new.
+	cannotBuildPluginsMessages := OrderedCollection new
+]
+
+{ #category : #dependencies }
+PyramidEditorBuilder >> orderPluginsBeforeBuild [
+
+	self plugins: self plugins sorted
 ]
 
 { #category : #accessing }
@@ -62,9 +81,9 @@ PyramidEditorBuilder >> plugins [
 ]
 
 { #category : #accessing }
-PyramidEditorBuilder >> plugins: anObject [
+PyramidEditorBuilder >> plugins: aCollection [
 
-	plugins := anObject
+	plugins := aCollection
 ]
 
 { #category : #removing }

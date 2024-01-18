@@ -12,11 +12,11 @@ Class {
 	#category : #'Pyramid-Bloc-plugin-testmode'
 }
 
-{ #category : #'as yet unclassified' }
-PyramidPluginTestMode class >> extendPlugins [
-	"Put in a collection all linked plugins."
+{ #category : #'meta-data' }
+PyramidPluginTestMode class >> dependencies [
+	"Put symbol as the class name for each dependencies."
 
-	^ { PyramidSpacePlugin }
+	^ { #PyramidSpacePlugin }
 ]
 
 { #category : #adding }

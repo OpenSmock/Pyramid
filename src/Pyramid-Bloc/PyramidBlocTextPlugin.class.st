@@ -20,6 +20,13 @@ PyramidBlocTextPlugin class >> changeText [
 	^ property
 ]
 
+{ #category : #'meta-data' }
+PyramidBlocTextPlugin class >> dependencies [
+	"Put symbol as the class name for each dependencies."
+
+	^ { #PyramidBlocPlugin }
+]
+
 { #category : #accessing }
 PyramidBlocTextPlugin class >> fontSize [
 

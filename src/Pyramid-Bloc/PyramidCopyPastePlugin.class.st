@@ -6,6 +6,13 @@ Class {
 	#category : #'Pyramid-Bloc-plugin-copy-paste'
 }
 
+{ #category : #'meta-data' }
+PyramidCopyPastePlugin class >> dependencies [
+	"Put symbol as the class name for each dependencies."
+
+	^ { #PyramidBlocPlugin }
+]
+
 { #category : #adding }
 PyramidCopyPastePlugin >> addPanelsOn: aPyramidSimpleWindow [
 

@@ -23,6 +23,13 @@ PyramidTreePlugin class >> columnsBuildersClasses [
 	^ ColumnsBuildersClasses
 ]
 
+{ #category : #'meta-data' }
+PyramidTreePlugin class >> dependencies [
+	"Put symbol as the class name for each dependencies."
+
+	^ { #PyramidBlocPlugin }
+]
+
 { #category : #initialization }
 PyramidTreePlugin class >> install [
 	"Do some stuff here when the plugin used class oriented behavior"

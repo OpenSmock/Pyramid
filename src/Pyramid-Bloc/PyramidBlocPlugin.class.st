@@ -353,6 +353,8 @@ PyramidBlocPlugin >> connectOn: aPyramidEditor [
 	groupLayout addProperty: self class constraintsPropV.
 	groupLayout addProperty: self class constraintsBasicV.
 	groupLayout addProperty: self class constraintsBasicVExact.
+	
+	"Margin and padding"
 	groupLayout addProperty: self class padding.
 	groupLayout addProperty: self class margin
 ]

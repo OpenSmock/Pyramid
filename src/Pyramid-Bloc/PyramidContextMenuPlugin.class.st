@@ -9,6 +9,13 @@ Class {
 	#category : #'Pyramid-Bloc-plugin-context-menu'
 }
 
+{ #category : #'meta-data' }
+PyramidContextMenuPlugin class >> dependencies [
+	"Put symbol as the class name for each dependencies."
+
+	^ {  #PyramidSpacePlugin }
+]
+
 { #category : #'class initialization' }
 PyramidContextMenuPlugin class >> initialize [
 
