@@ -16,6 +16,12 @@ PyramidFakePlugin class >> initialize [
 
 ]
 
+{ #category : #testing }
+PyramidFakePlugin class >> isTestPlugin [
+
+	^ true
+]
+
 { #category : #adding }
 PyramidFakePlugin >> addPanelsOn: aPyramidSimpleWindow [
 

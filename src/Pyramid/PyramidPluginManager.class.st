@@ -26,9 +26,9 @@ PyramidPluginManager class >> cleanUp: anObject [
 
 { #category : #initialization }
 PyramidPluginManager class >> imagePluginClasses [
-	<script: 'self imagePluginClasses inspect'>
 
-	^ TPyramidPlugin users
+	<script: 'self imagePluginClasses inspect'>
+	^ TPyramidPlugin users reject: [ :each | each isTestPlugin ]
 ]
 
 { #category : #initialization }

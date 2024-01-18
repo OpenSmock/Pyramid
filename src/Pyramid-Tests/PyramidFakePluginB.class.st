@@ -19,3 +19,9 @@ PyramidFakePluginB class >> initialize [
 	<script>
 
 ]
+
+{ #category : #testing }
+PyramidFakePluginB class >> isTestPlugin [
+
+	^ true
+]

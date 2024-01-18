@@ -32,6 +32,12 @@ TPyramidPlugin classSide >> install [
 	"Do some stuff here when the plugin used class oriented behavior"
 ]
 
+{ #category : #testing }
+TPyramidPlugin classSide >> isTestPlugin [
+
+	^ false
+]
+
 { #category : #initialization }
 TPyramidPlugin classSide >> reset [
 
