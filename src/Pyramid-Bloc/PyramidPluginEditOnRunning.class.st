@@ -30,6 +30,7 @@ PyramidPluginEditOnRunning class >> addShortcutInSpace: aSpace [
 PyramidPluginEditOnRunning class >> canEditSpace: aSpace [
 
 	aSpace ifNil:[ ^ false ].
+	(aSpace class canPerform: #userData) ifFalse:[^false].
 
 	"Not edit the editor space or already edited to prevent cycling"
 	aSpace userData at: #pyramid_isEditor ifPresent:[ ^ false ].
