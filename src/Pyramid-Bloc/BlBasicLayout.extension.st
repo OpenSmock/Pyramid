@@ -3,5 +3,5 @@ Extension { #name : #BlBasicLayout }
 { #category : #'*Pyramid-Bloc' }
 BlBasicLayout >> asIcon [
 
-	^ self iconNamed: #checkBoxOff
+	^ self iconNamed: #radioButtonUnselected
 ]

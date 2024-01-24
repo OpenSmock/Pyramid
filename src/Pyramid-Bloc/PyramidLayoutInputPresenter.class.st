@@ -17,7 +17,7 @@ PyramidLayoutInputPresenter >> allAssociationsLayoutClass [
 		  (BlLinearLayout -> #linear).
 		  (BlFlowLayout -> #flow).
 		  (BlFrameLayout -> #frame).
-		  (BlProportionalLayout -> #proportionnal) }
+		  (BlProportionalLayout -> #proportion) }
 ]
 
 { #category : #'as yet unclassified' }
@@ -54,7 +54,7 @@ PyramidLayoutInputPresenter >> defaultLayout [
 	self buttons do: [ :each |
 		currentLine add: each.
 		counter := counter + 1.
-		counter = 4 ifTrue: [
+		counter = 3 ifTrue: [
 			defaultLayout add: currentLine.
 			currentLine := SpBoxLayout newHorizontal spacing: 4.
 			counter := 1 ] ].
