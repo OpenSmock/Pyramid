@@ -5,9 +5,3 @@ BlBasicLayout >> asIcon [
 
 	^ self iconNamed: #checkBoxOff
 ]
-
-{ #category : #'*Pyramid-Bloc' }
-BlBasicLayout >> setLayoutOn: aPyramidLayoutInputPresenter [
-
-	aPyramidLayoutInputPresenter setBasic
-]

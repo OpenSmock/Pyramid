@@ -76,9 +76,3 @@ PyramidUnknowState >> setInsetsOn: aPyramidInsetsInputPresenter [
 
 	aPyramidInsetsInputPresenter inputArray value: self
 ]
-
-{ #category : #initialization }
-PyramidUnknowState >> setLayoutOn: aPyramidLayoutInputPresenter [
-
-	aPyramidLayoutInputPresenter setUnknowValue
-]
