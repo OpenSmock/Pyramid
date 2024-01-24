@@ -1,5 +1,5 @@
 Class {
-	#name : #PyramidFlowLayoutChangeOrientationCommandTest,
+	#name : #PyramidLayoutChangeOrientationCommandTest,
 	#superclass : #TestCase,
 	#traits : 'TPyramidCommandTest',
 	#classTraits : 'TPyramidCommandTest classTrait',
@@ -7,13 +7,13 @@ Class {
 }
 
 { #category : #accessing }
-PyramidFlowLayoutChangeOrientationCommandTest >> command [
+PyramidLayoutChangeOrientationCommandTest >> command [
 
-	^ PyramidFlowLayoutChangeOrientationCommand new
+	^ PyramidLayoutChangeOrientationCommand new
 ]
 
 { #category : #'as yet unclassified' }
-PyramidFlowLayoutChangeOrientationCommandTest >> targetContainers [
+PyramidLayoutChangeOrientationCommandTest >> targetContainers [
 
 	^ { (PyramidCommandTestContainer
 		   no: (BlElement new
@@ -50,7 +50,7 @@ PyramidFlowLayoutChangeOrientationCommandTest >> targetContainers [
 ]
 
 { #category : #'as yet unclassified' }
-PyramidFlowLayoutChangeOrientationCommandTest >> targetsCannotBeUsedFor [
+PyramidLayoutChangeOrientationCommandTest >> targetsCannotBeUsedFor [
 	"override if needed"
 
 	^ {

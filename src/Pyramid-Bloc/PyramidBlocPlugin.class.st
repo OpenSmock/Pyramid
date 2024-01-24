@@ -198,7 +198,7 @@ PyramidBlocPlugin class >> flowLayoutOrientation [
 	| property |
 	property := PyramidProperty new
 		            name: 'Orientation';
-		            command: PyramidFlowLayoutChangeOrientationCommand new;
+		            command: PyramidLayoutChangeOrientationCommand new;
 		            pyramidInputPresenterClass:
 			            PyramidFlowLayoutOrientationPresenter;
 		            yourself.
