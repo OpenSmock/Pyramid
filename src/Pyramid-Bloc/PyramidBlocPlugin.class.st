@@ -102,11 +102,37 @@ PyramidBlocPlugin class >> constraintsBasicVExact [
 ]
 
 { #category : #accessing }
+PyramidBlocPlugin class >> constraintsFrameH [
+
+	| property |
+	property := PyramidProperty new
+		            name: 'Constraints - Frame - horizontal';
+		            command: PyramidFrameHorizontalConstraintsCommand new;
+		            pyramidInputPresenterClass:
+			            PyramidHorizontalFrameConstraintsInputPresenter;
+		            yourself.
+	^ property
+]
+
+{ #category : #accessing }
+PyramidBlocPlugin class >> constraintsFrameV [
+
+	| property |
+	property := PyramidProperty new
+		            name: 'Constraints - Frame - vertical';
+		            command: PyramidFrameVerticalConstraintsCommand new;
+		            pyramidInputPresenterClass:
+			            PyramidVerticalFrameConstraintsInputPresenter;
+		            yourself.
+	^ property
+]
+
+{ #category : #accessing }
 PyramidBlocPlugin class >> constraintsPropH [
 
 	| property |
 	property := PyramidProperty new
-		            name: 'Constraints - horizontal';
+		            name: 'Constraints - Proportionnal - horizontal';
 		            command:
 			            PyramidProportionnalHorizontalConstraintsCommand new;
 		            pyramidInputPresenterClass: PyramidPointInputPresenter;
@@ -123,7 +149,7 @@ PyramidBlocPlugin class >> constraintsPropV [
 
 	| property |
 	property := PyramidProperty new
-		            name: 'Constraints - vertical';
+		            name: 'Constraints - Proportionnal - vertical';
 		            command:
 			            PyramidProportionnalVerticalConstraintsCommand new;
 		            pyramidInputPresenterClass: PyramidPointInputPresenter;
@@ -306,11 +332,14 @@ PyramidBlocPlugin >> connectOn: aPyramidEditor [
 	aPyramidEditor propertiesManager addProperty: self class geometry.
 	aPyramidEditor propertiesManager addProperty: self class cornerRadii.
 	aPyramidEditor propertiesManager addProperty: self class position.
-	
+
 	aPyramidEditor propertiesManager addProperty: self class layout.
-	aPyramidEditor propertiesManager addProperty: self class flowLayoutOrientation.
+	aPyramidEditor propertiesManager addProperty:
+		self class flowLayoutOrientation.
 
 	"Constraints - horizontal"
+	aPyramidEditor propertiesManager addProperty:
+		self class constraintsFrameH.
 	aPyramidEditor propertiesManager addProperty:
 		self class constraintsPropH.
 	aPyramidEditor propertiesManager addProperty:
@@ -319,6 +348,8 @@ PyramidBlocPlugin >> connectOn: aPyramidEditor [
 		self class constraintsBasicHExact.
 
 	"Constraints - vertical"
+	aPyramidEditor propertiesManager addProperty:
+		self class constraintsFrameV.
 	aPyramidEditor propertiesManager addProperty:
 		self class constraintsPropV.
 	aPyramidEditor propertiesManager addProperty:
