@@ -229,10 +229,8 @@ PyramidBlocPlugin class >> layout [
 	| property |
 	property := PyramidProperty new
 		            name: 'Layout';
-		            command:
-			            PyramidLayoutBlocCommand new;
-		            pyramidInputPresenterClass:
-			            PyramidLayoutInputPresenter;
+		            command: PyramidLayoutBlocCommand new;
+		            pyramidInputPresenterClass: PyramidLayoutInputPresenter;
 		            yourself.
 	^ property
 ]

@@ -53,6 +53,12 @@ PyramidUnknowState >> asString [
 	^ '@ Unknow state'
 ]
 
+{ #category : #'as yet unclassified' }
+PyramidUnknowState >> pyramidSelectOn: anInput [
+
+	anInput unselectAll
+]
+
 { #category : #initialization }
 PyramidUnknowState >> setConstraintsOn: aPyramidBasicConstraintsInputPresenter [
 

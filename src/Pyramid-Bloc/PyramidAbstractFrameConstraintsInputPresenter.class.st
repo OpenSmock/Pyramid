@@ -240,6 +240,15 @@ PyramidAbstractFrameConstraintsInputPresenter >> triggerValueChanged [
 	self whenValueChangedDo value: self value
 ]
 
+{ #category : #initialization }
+PyramidAbstractFrameConstraintsInputPresenter >> unselectAll [
+
+	self buttonNull state: false.
+	self buttonStart state: false.
+	self buttonCenter state: false.
+	self buttonEnd state: false
+]
+
 { #category : #'as yet unclassified' }
 PyramidAbstractFrameConstraintsInputPresenter >> value [
 

@@ -2,154 +2,132 @@ Class {
 	#name : #PyramidLayoutInputPresenter,
 	#superclass : #PyramidInputPresenter,
 	#instVars : [
-		'buttonBasic',
-		'buttonFlow',
-		'buttonProportionnal',
-		'whenValueChangedDo',
-		'value'
+		'buttonsDictionary',
+		'buttons',
+		'whenValueChangedDo'
 	],
 	#category : #'Pyramid-Bloc-plugin-bloc-layout'
 }
 
-{ #category : #accessing }
-PyramidLayoutInputPresenter >> buttonBasic [
+{ #category : #'as yet unclassified' }
+PyramidLayoutInputPresenter >> allAssociationsLayoutClass [
 
-	^ buttonBasic
+	^ {
+		  (BlBasicLayout -> #basic).
+		  (BlLinearLayout -> #linear).
+		  (BlFlowLayout -> #flow).
+		  (BlFrameLayout -> #frame).
+		  (BlProportionalLayout -> #proportionnal) }
+]
+
+{ #category : #'as yet unclassified' }
+PyramidLayoutInputPresenter >> associatedClassOf: aLabel [
+
+	| allClasses  |
+	allClasses :=  self allAssociationsLayoutClass select: [ :each | each value = aLabel ]  thenCollect: [ :each | each key ].
+	allClasses ifEmpty: [ ^ PyramidUnknowState new ].
+	allClasses size = 1 ifTrue: [ ^ allClasses first new ].
+	^ PyramidUnknowState new
 ]
 
 { #category : #accessing }
-PyramidLayoutInputPresenter >> buttonFlow [
+PyramidLayoutInputPresenter >> buttons [
 
-	^ buttonFlow
+	^ buttons
 ]
 
 { #category : #accessing }
-PyramidLayoutInputPresenter >> buttonProportionnal [
+PyramidLayoutInputPresenter >> buttonsDictionary [
 
-	^ buttonProportionnal
+	^ buttonsDictionary
 ]
 
 { #category : #layout }
 PyramidLayoutInputPresenter >> defaultLayout [
 
-	^ SpBoxLayout newHorizontal
-		  spacing: 4;
-		  add: self buttonBasic;
-		  add: self buttonFlow;
-		  add: self buttonProportionnal;
-		  yourself
+	| defaultLayout currentLine counter |
+	defaultLayout := SpBoxLayout newVertical
+		                 spacing: 4;
+		                 yourself.
+	currentLine := SpBoxLayout newHorizontal spacing: 4.
+	counter := 1.
+	self buttons do: [ :each |
+		currentLine add: each.
+		counter := counter + 1.
+		counter = 4 ifTrue: [
+			defaultLayout add: currentLine.
+			currentLine := SpBoxLayout newHorizontal spacing: 4.
+			counter := 1 ] ].
+	defaultLayout add: currentLine.
+	^ defaultLayout
 ]
 
 { #category : #initialization }
 PyramidLayoutInputPresenter >> initializePresenters [
 
-	whenValueChangedDo := [ :visibility |  ].
-	buttonBasic := SpButtonPresenter new
-		               label: 'No layout';
-		               help:
-			               'Remove the layout. The children will be place according to their position.';
-		               action: [
-			               self value: BlBasicLayout new.
-			               self whenValueChangedDo value: self value ];
-		               enabled: false;
-		               yourself.
-	buttonFlow := SpButtonPresenter new
-		              label: 'Flow';
-		              help:
-			              'Set the layout as Flow. The children will be place according to their order. The flow layout will display all children in line and will wrap arround if it does not have enought place.';
-		              action: [
-			              self value: BlFlowLayout horizontal.
-			              self whenValueChangedDo value: self value ];
-		              enabled: false;
-		              yourself.
-	buttonProportionnal := SpButtonPresenter new
-		                       label: 'ST layout';
-		help:
-			              'Set the layout as Proportional. The children will be place according to their relative top/bottom and left/right proportion.';
-		                       action: [
-			                       self value: BlProportionalLayout new.
-			                       self whenValueChangedDo value: self value ];
-		                       enabled: false;
-		                       yourself
+	whenValueChangedDo := [ :newVal | ].
+	buttonsDictionary := Dictionary new.
+	buttons := OrderedCollection new.
+	self allAssociationsLayoutClass do: [ :association |
+		| button |
+		button := self makeButtonFor: association.
+		buttons add: button.
+		buttonsDictionary at: association key put: button ]
 ]
 
-{ #category : #initialization }
-PyramidLayoutInputPresenter >> setBasic [
+{ #category : #'as yet unclassified' }
+PyramidLayoutInputPresenter >> makeButtonFor: anAssociation [
 
-	self buttonBasic
-		enabled: true;
-		icon: (self iconNamed: #checkboxSelected).
-	self buttonFlow
-		enabled: true;
-		icon: (self iconNamed: #checkboxUnselected).
-	self buttonProportionnal
-		enabled: true;
-		icon: (self iconNamed: #checkboxUnselected)
+	| class label |
+	class := anAssociation key.
+	label := anAssociation value.
+
+	^ SpButtonPresenter new
+		  icon: class new asIcon;
+		  label: label;
+		  action: [ self triggerFor: class ];
+		  yourself
 ]
 
-{ #category : #initialization }
-PyramidLayoutInputPresenter >> setFlow [
+{ #category : #'as yet unclassified' }
+PyramidLayoutInputPresenter >> triggerFor: aLayoutClass [
 
-	self buttonBasic
-		enabled: true;
-		icon: (self iconNamed: #checkboxUnselected).
-	self buttonFlow
-		enabled: true;
-		icon: (self iconNamed: #checkboxSelected).
-	self buttonProportionnal
-		enabled: true;
-		icon: (self iconNamed: #checkboxUnselected)
-]
-
-{ #category : #initialization }
-PyramidLayoutInputPresenter >> setProportionnal [
-
-	self buttonBasic
-		enabled: true;
-		icon: (self iconNamed: #checkboxUnselected).
-	self buttonFlow
-		enabled: true;
-		icon: (self iconNamed: #checkboxUnselected).
-	self buttonProportionnal
-		enabled: true;
-		icon: (self iconNamed: #checkboxSelected)
-]
-
-{ #category : #initialization }
-PyramidLayoutInputPresenter >> setUnknowValue [
-
-	self buttonBasic
-		enabled: false;
-		icon: (self iconNamed: #checkboxUnselected).
-	self buttonFlow
-		enabled: false;
-		icon: (self iconNamed: #checkboxUnselected).
-	self buttonProportionnal
-		enabled: false;
-		icon: (self iconNamed: #checkboxUnselected)
+	self whenValueChangedDo value: aLayoutClass new.
+	
 ]
 
 { #category : #'as yet unclassified' }
 PyramidLayoutInputPresenter >> value [
 
-	^ value
+	self buttons do: [ :each |
+		each state ifTrue: [ ^ self associatedClassOf: each label ] ].
+	^ PyramidUnknowState new.
 ]
 
 { #category : #'as yet unclassified' }
-PyramidLayoutInputPresenter >> value: anObject [
+PyramidLayoutInputPresenter >> value: aLayout [
 
-	value := anObject.
-	anObject setLayoutOn: self
+	self buttons do: [ :each | each state: false ].
+	self buttonsDictionary
+		at: aLayout class
+		ifPresent: [ :button | button state: true ]
 ]
 
-{ #category : #accessing }
+{ #category : #'as yet unclassified' }
+PyramidLayoutInputPresenter >> valueButtons [
+	"used for testing"
+
+	^ self buttons select: [ :each | each state ]
+]
+
+{ #category : #'as yet unclassified' }
 PyramidLayoutInputPresenter >> whenValueChangedDo [
 
 	^ whenValueChangedDo
 ]
 
-{ #category : #accessing }
-PyramidLayoutInputPresenter >> whenValueChangedDo: anObject [
+{ #category : #'as yet unclassified' }
+PyramidLayoutInputPresenter >> whenValueChangedDo: aBlock [
 
-	whenValueChangedDo := anObject
+	whenValueChangedDo := aBlock
 ]

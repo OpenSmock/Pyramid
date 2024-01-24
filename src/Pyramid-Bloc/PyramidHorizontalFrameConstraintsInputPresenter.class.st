@@ -73,5 +73,6 @@ PyramidHorizontalFrameConstraintsInputPresenter >> value [
 			self buttonCenter state ifTrue: [
 				^ BlFrameLayoutConstraintsHorizontal new alignCenter alignment ].
 			self buttonEnd state ifTrue: [
-				^ BlFrameLayoutConstraintsHorizontal new alignRight alignment ] ]
+				^ BlFrameLayoutConstraintsHorizontal new alignRight alignment ] ].
+		^ PyramidUnknowState new.
 ]
