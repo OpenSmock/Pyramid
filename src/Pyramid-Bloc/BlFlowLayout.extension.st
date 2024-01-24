@@ -12,6 +12,12 @@ BlFlowLayout >> = anObject [
 ]
 
 { #category : #'*Pyramid-Bloc' }
+BlFlowLayout >> asIcon [
+
+	^ self iconNamed: #smallJustified
+]
+
+{ #category : #'*Pyramid-Bloc' }
 BlFlowLayout >> setLayoutOn: aPyramidLayoutInputPresenter [
 
 	aPyramidLayoutInputPresenter setFlow
