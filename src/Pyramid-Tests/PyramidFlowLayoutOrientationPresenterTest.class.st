@@ -27,7 +27,7 @@ PyramidFlowLayoutOrientationPresenterTest >> expectedMixedValues [
 { #category : #tests }
 PyramidFlowLayoutOrientationPresenterTest >> makeNewInput [
 
-	^ PyramidAbstractLayoutOrientationPresenter new
+	^ PyramidFlowLayoutOrientationPresenter new
 ]
 
 { #category : #'as yet unclassified' }
