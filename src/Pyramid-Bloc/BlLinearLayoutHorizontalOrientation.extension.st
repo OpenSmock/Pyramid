@@ -5,3 +5,9 @@ BlLinearLayoutHorizontalOrientation >> asBooleanForPyramid [
 
 	^ false
 ]
+
+{ #category : #'*Pyramid-Bloc' }
+BlLinearLayoutHorizontalOrientation >> switchOrientation [
+
+	^ BlLinearLayoutVerticalOrientation new
+]

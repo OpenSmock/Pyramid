@@ -198,7 +198,7 @@ PyramidBlocPlugin class >> flowLayoutOrientation [
 	| property |
 	property := PyramidProperty new
 		            name: 'Orientation';
-		            command: PyramidLayoutChangeOrientationCommand new;
+		            command: PyramidLayoutChangeOrientationForFlowCommand new;
 		            pyramidInputPresenterClass:
 			            PyramidFlowLayoutOrientationPresenter;
 		            yourself.
@@ -232,6 +232,24 @@ PyramidBlocPlugin class >> layout [
 		            command: PyramidLayoutBlocCommand new;
 		            pyramidInputPresenterClass: PyramidLayoutInputPresenter;
 		            yourself.
+	^ property
+]
+
+{ #category : #accessing }
+PyramidBlocPlugin class >> linearLayoutOrientation [
+
+	| property |
+	property := PyramidProperty new
+		            name: 'Orientation';
+		            command: PyramidLayoutChangeOrientationForLinearCommand new;
+		            pyramidInputPresenterClass:
+			            PyramidLinearLayoutOrientationPresenter;
+		            yourself.
+	property pyramidInputPresenterStrings help:
+		'Change the orientation of the flow layout.'.
+	property pyramidInputPresenterStrings onLabel: 'Vertical'.
+	property pyramidInputPresenterStrings offLabel: 'Horizontal'.
+	property pyramidInputPresenterStrings uncertainLabel: 'Uncertain'.
 	^ property
 ]
 
@@ -334,6 +352,8 @@ PyramidBlocPlugin >> connectOn: aPyramidEditor [
 	aPyramidEditor propertiesManager addProperty: self class layout.
 	aPyramidEditor propertiesManager addProperty:
 		self class flowLayoutOrientation.
+	aPyramidEditor propertiesManager addProperty:
+		self class linearLayoutOrientation.
 
 	"Constraints - horizontal"
 	aPyramidEditor propertiesManager addProperty:

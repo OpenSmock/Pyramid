@@ -36,7 +36,13 @@ PyramidUnknowState >> asIcon [
 ]
 
 { #category : #converting }
-PyramidUnknowState >> asOrientationForPyramid [
+PyramidUnknowState >> asOrientationForFlowPyramid [
+
+	^ self
+]
+
+{ #category : #converting }
+PyramidUnknowState >> asOrientationForLinearPyramid [
 
 	^ self
 ]
