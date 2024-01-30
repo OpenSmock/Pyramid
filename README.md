@@ -41,6 +41,8 @@ Metacello new
 
 ### Stable release version
 
+Be careful the examples with gradient paint and the gradient paint selector will not work because Bloc updated its API.
+
 ```st
 Metacello new
 	baseline: 'Pyramid';
