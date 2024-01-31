@@ -170,9 +170,7 @@ PyramidPropertiesManagerTest >> testRemoveAllProperties [
 	self deny: (manager properties includes: prop1).
 	self deny: (manager properties includes: prop2).
 	self deny: (manager properties includes: prop3).
-	self deny: manager commandExecutor equals: prop1 commandExecutor.
-	self deny: manager commandExecutor equals: prop2 commandExecutor.
-	self deny: manager commandExecutor equals: prop3 commandExecutor.
+
 ]
 
 { #category : #tests }
@@ -212,23 +210,14 @@ PyramidPropertiesManagerTest >> testRemoveProperty [
 	self deny: (manager properties includes: prop1).
 	self assert: (manager properties includes: prop2).
 	self assert: (manager properties includes: prop3).
-	self deny: manager commandExecutor equals: prop1 commandExecutor.
-	self assert: manager commandExecutor equals: prop2 commandExecutor.
-	self assert: manager commandExecutor equals: prop3 commandExecutor.
 	manager removeProperty: prop2.
 	self deny: (manager properties includes: prop1).
 	self deny: (manager properties includes: prop2).
 	self assert: (manager properties includes: prop3).
-	self deny: manager commandExecutor equals: prop1 commandExecutor.
-	self deny: manager commandExecutor equals: prop2 commandExecutor.
-	self assert: manager commandExecutor equals: prop3 commandExecutor.
 	manager removeProperty: prop3.
 	self deny: (manager properties includes: prop1).
 	self deny: (manager properties includes: prop2).
 	self deny: (manager properties includes: prop3).
-	self deny: manager commandExecutor equals: prop1 commandExecutor.
-	self deny: manager commandExecutor equals: prop2 commandExecutor.
-	self deny: manager commandExecutor equals: prop3 commandExecutor.
 	hasFailed := false.
 	[ manager removeProperty: prop3 ]
 		on: PyramidPropertyNotInstalledError

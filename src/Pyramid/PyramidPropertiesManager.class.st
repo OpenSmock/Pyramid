@@ -88,7 +88,11 @@ PyramidPropertiesManager >> removeAllProperties [
 { #category : #removing }
 PyramidPropertiesManager >> removeProperty: aProperty [
 
-	(aProperty commandExecutor == self commandExecutor) ifFalse: [PyramidPropertyNotInstalledError new property: aProperty; manager: self; signal ].
-	aProperty commandExecutor: nil.
-	self properties remove: aProperty
+
+		self properties remove: aProperty ifAbsent: [ PyramidPropertyNotInstalledError new
+		property: aProperty;
+		manager: self;
+		signal ] .
+
+	
 ]

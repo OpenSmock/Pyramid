@@ -19,7 +19,7 @@ PyramidSelectorPossibleStamps >> findAllSelectorFor: aBlElement [
 PyramidSelectorPossibleStamps >> findAllSelectorFor: aBlElement on: aToStyleRule [
 
 	| interpreter |
-	interpreter := PyramidSelectorContainsInvalidTypeInterpreter new.
+	interpreter := PyramidContainsValidSelectorInterpreter new.
 	interpreter check: aToStyleRule selector on: aBlElement.
 	interpreter result
 		ifTrue: [

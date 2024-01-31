@@ -1,5 +1,5 @@
 Class {
-	#name : #PyramidSelectorContainsInvalidTypeInterpreter,
+	#name : #PyramidContainsValidSelectorInterpreter,
 	#superclass : #ToElementSelectorVisitor,
 	#instVars : [
 		'theme',
@@ -10,7 +10,7 @@ Class {
 }
 
 { #category : #operating }
-PyramidSelectorContainsInvalidTypeInterpreter >> check: aSelector on: anElement [
+PyramidContainsValidSelectorInterpreter >> check: aSelector on: anElement [
 
 	targetStack := Stack new.
 	self push: anElement.
@@ -20,20 +20,20 @@ PyramidSelectorContainsInvalidTypeInterpreter >> check: aSelector on: anElement 
 ]
 
 { #category : #initialization }
-PyramidSelectorContainsInvalidTypeInterpreter >> initialize [ 
+PyramidContainsValidSelectorInterpreter >> initialize [
 
 	super initialize.
-	result := false
+	result := true
 ]
 
 { #category : #accessing }
-PyramidSelectorContainsInvalidTypeInterpreter >> pop [
+PyramidContainsValidSelectorInterpreter >> pop [
 
 	^ targetStack pop
 ]
 
 { #category : #accessing }
-PyramidSelectorContainsInvalidTypeInterpreter >> push: anElement [
+PyramidContainsValidSelectorInterpreter >> push: anElement [
 
 	self themeDo: [ :th |
 		anElement skinManagerDo: [ :sm | sm setUp: anElement forTheme: th ] ].
@@ -41,44 +41,44 @@ PyramidSelectorContainsInvalidTypeInterpreter >> push: anElement [
 ]
 
 { #category : #accessing }
-PyramidSelectorContainsInvalidTypeInterpreter >> result [
+PyramidContainsValidSelectorInterpreter >> result [
 
 	^ result
 ]
 
 { #category : #accessing }
-PyramidSelectorContainsInvalidTypeInterpreter >> theme [
+PyramidContainsValidSelectorInterpreter >> theme [
 
 	^ theme
 ]
 
 { #category : #accessing }
-PyramidSelectorContainsInvalidTypeInterpreter >> theme: aTheme [
+PyramidContainsValidSelectorInterpreter >> theme: aTheme [
 
 	theme := aTheme
 ]
 
 { #category : #accessing }
-PyramidSelectorContainsInvalidTypeInterpreter >> themeDo: aBlock [
+PyramidContainsValidSelectorInterpreter >> themeDo: aBlock [
 
 	self theme ifNil: [ ^ self ].
 	aBlock value: self theme
 ]
 
 { #category : #accessing }
-PyramidSelectorContainsInvalidTypeInterpreter >> top [
+PyramidContainsValidSelectorInterpreter >> top [
 
 	^ targetStack top
 ]
 
 { #category : #visiting }
-PyramidSelectorContainsInvalidTypeInterpreter >> visitActionSelector: aSelector [
+PyramidContainsValidSelectorInterpreter >> visitActionSelector: aSelector [
 
 	result := aSelector action value: self top
 ]
 
 { #category : #visiting }
-PyramidSelectorContainsInvalidTypeInterpreter >> visitAndSelector: aSelector [
+PyramidContainsValidSelectorInterpreter >> visitAndSelector: aSelector [
 
 	aSelector left accept: self.
 	result ifFalse: [ ^ self ].
@@ -86,7 +86,7 @@ PyramidSelectorContainsInvalidTypeInterpreter >> visitAndSelector: aSelector [
 ]
 
 { #category : #visiting }
-PyramidSelectorContainsInvalidTypeInterpreter >> visitChildSelector: aSelector [
+PyramidContainsValidSelectorInterpreter >> visitChildSelector: aSelector [
 
 	| parent |
 	aSelector left accept: self.
@@ -104,21 +104,26 @@ PyramidSelectorContainsInvalidTypeInterpreter >> visitChildSelector: aSelector [
 ]
 
 { #category : #visiting }
-PyramidSelectorContainsInvalidTypeInterpreter >> visitIdSelector: aSelector [
+PyramidContainsValidSelectorInterpreter >> visitIdSelector: aSelector [
 
 	result := aSelector id = self top id
 ]
 
 { #category : #visiting }
-PyramidSelectorContainsInvalidTypeInterpreter >> visitNotSelector: aSelector [
+PyramidContainsValidSelectorInterpreter >> visitNotSelector: aSelector [
+	"
+	If left accept: self = true -> uncertain.
+	If left accept: self = true && left contains id = true -> false.
+	If left accept: self = true && left contains id = false -> true.
+	If left accept: self = false -> true.
+	"
 
-	self flag: #TODO.
 	aSelector left accept: self.
-	"result := result not"
+	result ifFalse: [ result := true ]
 ]
 
 { #category : #visiting }
-PyramidSelectorContainsInvalidTypeInterpreter >> visitOrSelector: aSelector [
+PyramidContainsValidSelectorInterpreter >> visitOrSelector: aSelector [
 
 	aSelector left accept: self.
 	result ifTrue: [ ^ self ].
@@ -126,13 +131,13 @@ PyramidSelectorContainsInvalidTypeInterpreter >> visitOrSelector: aSelector [
 ]
 
 { #category : #visiting }
-PyramidSelectorContainsInvalidTypeInterpreter >> visitParentSelector: aSelector [
+PyramidContainsValidSelectorInterpreter >> visitParentSelector: aSelector [
 
 	| current depth |
 	aSelector left accept: self.
 	result ifFalse: [ ^ self ].
 
-	result := false.
+	result := true.
 	current := self top.
 	depth := aSelector depth.
 
@@ -150,35 +155,34 @@ PyramidSelectorContainsInvalidTypeInterpreter >> visitParentSelector: aSelector 
 ]
 
 { #category : #visiting }
-PyramidSelectorContainsInvalidTypeInterpreter >> visitSiblingSelector: aSelector [
+PyramidContainsValidSelectorInterpreter >> visitSiblingSelector: aSelector [
 
 	| current |
 	aSelector left accept: self.
 	result ifFalse: [ ^ self ].
 
-	result := false.
+	result := true.
 	current := self top.
 	current siblingsDo: [ :sib |
 		self push: sib.
 		aSelector right accept: self.
 		self pop.
+		"Condition at least one sibling."
 		result ifTrue: [ ^ self ] ]
 ]
 
 { #category : #visiting }
-PyramidSelectorContainsInvalidTypeInterpreter >> visitStyleStampSelector: aSelector [
-
-	result := true
+PyramidContainsValidSelectorInterpreter >> visitStyleStampSelector: aSelector [
+"Do nothing"
 ]
 
 { #category : #visiting }
-PyramidSelectorContainsInvalidTypeInterpreter >> visitTypeSelector: aSelector [
+PyramidContainsValidSelectorInterpreter >> visitTypeSelector: aSelector [
 
 	result := (aSelector selectType: self top class)
 ]
 
 { #category : #visiting }
-PyramidSelectorContainsInvalidTypeInterpreter >> visitUniversalSelector: aSelector [
-
-	result := true
+PyramidContainsValidSelectorInterpreter >> visitUniversalSelector: aSelector [
+"Do nothing"
 ]

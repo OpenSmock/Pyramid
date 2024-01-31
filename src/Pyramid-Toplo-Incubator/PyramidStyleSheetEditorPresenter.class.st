@@ -14,8 +14,11 @@ PyramidStyleSheetEditorPresenter >> defaultLayout [
 
 	^ SpBoxLayout new
 		  spacing: 4;
-		  add: 'Toto' expand: false;
-		add: self stampPresenter expand: true;
+		  add: (SpLabelPresenter new
+						    label: 'Stamps edition';
+						    displayBold: [ :t | true ];
+						    yourself) expand: false;
+		  add: self stampPresenter expand: true;
 		  yourself
 ]
 
