@@ -2,9 +2,10 @@ Class {
 	#name : #PyramidContainsValidSelectorInterpreter,
 	#superclass : #ToElementSelectorVisitor,
 	#instVars : [
-		'theme',
 		'targetStack',
-		'result'
+		'validSelectors',
+		'invalidSelectors',
+		'ignoredSelectors'
 	],
 	#category : #'Pyramid-Toplo-Incubator'
 }
@@ -14,16 +15,23 @@ PyramidContainsValidSelectorInterpreter >> check: aSelector on: anElement [
 
 	targetStack := Stack new.
 	self push: anElement.
-	result := true.
+	validSelectors := OrderedCollection new.
+	invalidSelectors := OrderedCollection new.
+	ignoredSelectors := OrderedCollection new.
 	aSelector accept: self.
-	^ result
+	^ self result
 ]
 
-{ #category : #initialization }
-PyramidContainsValidSelectorInterpreter >> initialize [
+{ #category : #accessing }
+PyramidContainsValidSelectorInterpreter >> ignoredSelectors [
 
-	super initialize.
-	result := true
+	^ ignoredSelectors
+]
+
+{ #category : #accessing }
+PyramidContainsValidSelectorInterpreter >> invalidSelectors [
+
+	^ invalidSelectors
 ]
 
 { #category : #accessing }
@@ -35,34 +43,14 @@ PyramidContainsValidSelectorInterpreter >> pop [
 { #category : #accessing }
 PyramidContainsValidSelectorInterpreter >> push: anElement [
 
-	self themeDo: [ :th |
-		anElement skinManagerDo: [ :sm | sm setUp: anElement forTheme: th ] ].
 	targetStack push: anElement
 ]
 
 { #category : #accessing }
 PyramidContainsValidSelectorInterpreter >> result [
 
-	^ result
-]
-
-{ #category : #accessing }
-PyramidContainsValidSelectorInterpreter >> theme [
-
-	^ theme
-]
-
-{ #category : #accessing }
-PyramidContainsValidSelectorInterpreter >> theme: aTheme [
-
-	theme := aTheme
-]
-
-{ #category : #accessing }
-PyramidContainsValidSelectorInterpreter >> themeDo: aBlock [
-
-	self theme ifNil: [ ^ self ].
-	aBlock value: self theme
+	invalidSelectors ifNil: [ ^ false ].
+	^ invalidSelectors isEmpty
 ]
 
 { #category : #accessing }
@@ -71,18 +59,26 @@ PyramidContainsValidSelectorInterpreter >> top [
 	^ targetStack top
 ]
 
+{ #category : #accessing }
+PyramidContainsValidSelectorInterpreter >> validSelectors [
+
+	^ validSelectors
+]
+
 { #category : #visiting }
 PyramidContainsValidSelectorInterpreter >> visitActionSelector: aSelector [
-
-	result := aSelector action value: self top
+	
+(aSelector action value: self top)
+		ifTrue: [ self validSelectors add: aSelector ]
+		ifFalse: [ self invalidSelectors add: aSelector ]
 ]
 
 { #category : #visiting }
 PyramidContainsValidSelectorInterpreter >> visitAndSelector: aSelector [
 
 	aSelector left accept: self.
-	result ifFalse: [ ^ self ].
-	aSelector right accept: self.
+	self result ifFalse: [ self invalidSelectors add: self. ^ self ].
+	aSelector right accept: self
 ]
 
 { #category : #visiting }
@@ -90,23 +86,30 @@ PyramidContainsValidSelectorInterpreter >> visitChildSelector: aSelector [
 
 	| parent |
 	aSelector left accept: self.
-	result ifFalse: [ ^ self ].
+	self result ifFalse: [
+		self invalidSelectors add: aSelector.
+		^ self ].
 
-	result := false.
 	parent := self top.
 	"evaluate only for children at a given depth or at any depth if selector depth is not specified "
 	parent allChildrenBreadthFirstWithDepthDo: [ :child :depth |
 		(aSelector depth isNil or: [ aSelector depth = depth ]) ifTrue: [
 			self push: child.
+			self invalidSelectors removeAll.
 			aSelector right accept: self.
 			self pop.
-			result ifTrue: [ ^ self ] ] ]
+			self result ifTrue: [
+				self validSelectors add: aSelector.
+				^ self ] ] ].
+	self invalidSelectors add: aSelector
 ]
 
 { #category : #visiting }
 PyramidContainsValidSelectorInterpreter >> visitIdSelector: aSelector [
 
-	result := aSelector id = self top id
+	(aSelector id = self top id)
+		ifTrue: [ self validSelectors add: aSelector ]
+		ifFalse: [ self invalidSelectors add: aSelector ]
 ]
 
 { #category : #visiting }
@@ -118,16 +121,27 @@ PyramidContainsValidSelectorInterpreter >> visitNotSelector: aSelector [
 	If left accept: self = false -> true.
 	"
 
-	aSelector left accept: self.
-	result ifFalse: [ result := true ]
+	| interpreterForNot |
+	interpreterForNot := self class new.
+	interpreterForNot check: aSelector left on: self top.
+	self invalidSelectors addAll: interpreterForNot validSelectors.
+	self validSelectors addAll: interpreterForNot invalidSelectors
 ]
 
 { #category : #visiting }
 PyramidContainsValidSelectorInterpreter >> visitOrSelector: aSelector [
 
 	aSelector left accept: self.
-	result ifTrue: [ ^ self ].
+	self result ifTrue: [
+		self validSelectors add: aSelector.
+		^ self ].
 	aSelector right accept: self.
+	(self invalidSelectors includes: aSelector right) ifTrue: [
+		self invalidSelectors add: aSelector.
+		^ self ].
+	"It should be alright. we can remove all invalid."
+	self invalidSelectors removeAll.
+	self validSelectors add: aSelector
 ]
 
 { #category : #visiting }
@@ -135,9 +149,10 @@ PyramidContainsValidSelectorInterpreter >> visitParentSelector: aSelector [
 
 	| current depth |
 	aSelector left accept: self.
-	result ifFalse: [ ^ self ].
+	self result ifFalse: [
+		self invalidSelectors add: aSelector.
+		^ self ].
 
-	result := true.
 	current := self top.
 	depth := aSelector depth.
 
@@ -146,12 +161,18 @@ PyramidContainsValidSelectorInterpreter >> visitParentSelector: aSelector [
 	current ifNil: [ ^ self ].
 	depth ifNotNil: [
 		depth := depth - 1.
-		depth < 0 ifTrue: [ ^ self ] ].
+		depth < 0 ifTrue: [
+			self validSelectors add: aSelector.
+			^ self ] ].
 	(depth isNil or: [ depth isZero ]) ifTrue: [
+		self invalidSelectors removeAll.
 		self push: current.
 		aSelector right accept: self.
 		self pop.
-		(depth notNil or: [ result ]) ifTrue: [ ^ self ] ] ] repeat
+		(depth notNil or: [ self result ]) ifTrue: [
+			self validSelectors add: aSelector.
+			^ self ] ] ] repeat.
+	self invalidSelectors add: aSelector
 ]
 
 { #category : #visiting }
@@ -159,30 +180,38 @@ PyramidContainsValidSelectorInterpreter >> visitSiblingSelector: aSelector [
 
 	| current |
 	aSelector left accept: self.
-	result ifFalse: [ ^ self ].
+	self result ifFalse: [
+		self invalidSelectors add: aSelector.
+		^ self ].
 
-	result := true.
 	current := self top.
 	current siblingsDo: [ :sib |
+		self invalidSelectors removeAll.
 		self push: sib.
 		aSelector right accept: self.
 		self pop.
-		"Condition at least one sibling."
-		result ifTrue: [ ^ self ] ]
+		self result ifTrue: [
+			self validSelectors add: aSelector.
+			^ self ] ].
+	self invalidSelectors add: aSelector
 ]
 
 { #category : #visiting }
 PyramidContainsValidSelectorInterpreter >> visitStyleStampSelector: aSelector [
-"Do nothing"
+	self ignoredSelectors add: aSelector
+	
 ]
 
 { #category : #visiting }
 PyramidContainsValidSelectorInterpreter >> visitTypeSelector: aSelector [
 
-	result := (aSelector selectType: self top class)
+	(aSelector selectType: self top class) ifTrue: [ self validSelectors add: aSelector ] ifFalse: [ self invalidSelectors add: aSelector ]
 ]
 
 { #category : #visiting }
 PyramidContainsValidSelectorInterpreter >> visitUniversalSelector: aSelector [
-"Do nothing"
+
+	self ignoredSelectors add: aSelector
+
+	
 ]
