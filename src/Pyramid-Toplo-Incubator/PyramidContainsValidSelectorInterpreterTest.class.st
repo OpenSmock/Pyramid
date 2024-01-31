@@ -118,7 +118,6 @@ element := ToElement new.
 PyramidContainsValidSelectorInterpreterTest >> testVisitNotSelector [
 
 	| selector element |
-	
 	"action"
 	selector := [ :e | true ] asActionSelector not.
 	element := ToElement new.
@@ -128,7 +127,7 @@ PyramidContainsValidSelectorInterpreterTest >> testVisitNotSelector [
 	element := ToElement new.
 	self interpreter check: selector on: element.
 	self assert: self interpreter result.
-	
+
 	"type"
 	selector := ToButton asTypeSelector not.
 	element := ToButton new.
@@ -158,7 +157,16 @@ PyramidContainsValidSelectorInterpreterTest >> testVisitNotSelector [
 	self deny: self interpreter result.
 	element := ToElement new.
 	self interpreter check: selector on: element.
-	self assert: self interpreter result
+	self assert: self interpreter result.
+	
+	"universal"
+	selector := ToUniversalSelector new not.
+	element := ToElement new.
+	self interpreter check: selector on: element.
+	self deny: self interpreter result.
+	selector := ToUniversalSelector new not not.
+	self interpreter check: selector on: element.
+	self assert: self interpreter result.
 ]
 
 { #category : #tests }
@@ -214,7 +222,7 @@ PyramidContainsValidSelectorInterpreterTest >> testVisitParentSelector [
 	parent addChild: child.
 	self interpreter check: selector on: child.
 	self assert: self interpreter result.
-	
+
 	"child ok + parent ko -> false"
 	parent := ToElement new.
 	child := ToButton new.
@@ -229,7 +237,23 @@ PyramidContainsValidSelectorInterpreterTest >> testVisitParentSelector [
 	self interpreter check: selector on: child.
 	self deny: self interpreter result.
 
+	"child ok + parent ok -> true"
+	selector := ToButton asTypeSelector withParent:
+		            #hello asStampSelector.
+	parent := ToElement new addStamp: #hello.
+	child := ToButton new.
+	parent addChild: child.
+	self interpreter check: selector on: child.
+	self assert: self interpreter result.
 	
+	"child ok + parent ko -> false"
+	selector := ToButton asTypeSelector withParent:
+		            #hello asStampSelector.
+	parent := ToElement new.
+	child := ToButton new.
+	parent addChild: child.
+	self interpreter check: selector on: child.
+	self deny: self interpreter result
 ]
 
 { #category : #tests }

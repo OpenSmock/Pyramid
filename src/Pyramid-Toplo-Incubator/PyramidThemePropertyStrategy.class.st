@@ -16,10 +16,12 @@ PyramidThemePropertyStrategy >> buildPresenterFromCollection: aCollection andMan
 PyramidThemePropertyStrategy >> propertiesFor: aCollectionOfElements [
 
 	| elementsWithStyleSheetTheme allPossibleStamps allCommonStamps |
-	elementsWithStyleSheetTheme := aCollectionOfElements asOrderedCollection select: [
+	elementsWithStyleSheetTheme := aCollectionOfElements
+		                               asOrderedCollection select: [
 		                               :element |
-		                               element isAttachedToSceneGraph and: [ element toTheme isKindOf:
-			                               ToStyleSheetTheme ] ].
+		                               element isAttachedToSceneGraph and: [
+			                               element toTheme isKindOf:
+				                               ToStyleSheetTheme ] ].
 	elementsWithStyleSheetTheme ifEmpty: [ ^ {  } ].
 	allPossibleStamps := elementsWithStyleSheetTheme collect: [ :each |
 		                     PyramidSelectorPossibleStamps new
@@ -28,7 +30,7 @@ PyramidThemePropertyStrategy >> propertiesFor: aCollectionOfElements [
 	allCommonStamps := allPossibleStamps first.
 	allPossibleStamps do: [ :each |
 		allCommonStamps := allCommonStamps & each ].
-	^ allCommonStamps collect: [ :each | self propertyForStamp: each ]
+	^ allCommonStamps collect: [ :each | self propertyForStamp: each ].
 ]
 
 { #category : #'as yet unclassified' }

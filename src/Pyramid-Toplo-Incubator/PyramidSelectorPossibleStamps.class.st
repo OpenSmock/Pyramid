@@ -23,9 +23,9 @@ PyramidSelectorPossibleStamps >> findAllSelectorFor: aBlElement on: aToStyleRule
 	interpreter check: aToStyleRule selector on: aBlElement.
 	interpreter result
 		ifTrue: [
-			^ (aToStyleRule styleRules flatCollect: [ :each |
-				   self findAllSelectorFor: aBlElement on: each ])
-			  , { aToStyleRule selector } ]
+			^ interpreter ignoredSelectors asArray
+			  , (aToStyleRule styleRules flatCollect: [ :each |
+					   self findAllSelectorFor: aBlElement on: each ]) ]
 		ifFalse: [ ^ {  } ]
 ]
 
