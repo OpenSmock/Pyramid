@@ -1,6 +1,8 @@
 Class {
 	#name : #PyramidThemeSelectorPresenter,
 	#superclass : #SpPresenter,
+	#traits : 'TPyramidProjectModelObserver',
+	#classTraits : 'TPyramidProjectModelObserver classTrait',
 	#instVars : [
 		'themeSelector',
 		'variantSelector',
@@ -110,7 +112,14 @@ PyramidThemeSelectorPresenter >> projectModel [
 { #category : #accessing }
 PyramidThemeSelectorPresenter >> projectModel: anObject [
 
-	projectModel := anObject
+	projectModel := anObject.
+	anObject addObserver: self
+]
+
+{ #category : #'as yet unclassified' }
+PyramidThemeSelectorPresenter >> pyramidFirstLevelElementsChanged [
+
+	self applyThemeToRoot
 ]
 
 { #category : #accessing }

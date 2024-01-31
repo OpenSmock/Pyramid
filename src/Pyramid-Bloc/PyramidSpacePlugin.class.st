@@ -62,7 +62,8 @@ PyramidSpacePlugin >> makePresenterWithBlSpace: aBlSpace [
 	aBlSpace host: host.
 	aBlSpace addEventHandler: (BlEventHandler
 			 on: BlSpaceDestroyedEvent
-			 do: [ :evt | self updateMorphInCaseOfFaillure: morph ]).
+			 do: [ :evt |
+				 self updateMorphInCaseOfFaillure: morph ]).
 
 	self morphicPresenter morph: morph.
 	self morphicPresenter whenDisplayDo: [ aBlSpace show ]
