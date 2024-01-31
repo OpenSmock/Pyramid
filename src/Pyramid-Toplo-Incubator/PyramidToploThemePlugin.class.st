@@ -4,7 +4,8 @@ Class {
 	#traits : 'TPyramidPlugin',
 	#classTraits : 'TPyramidPlugin classTrait',
 	#instVars : [
-		'themePresenter'
+		'themePresenter',
+		'themePropertyManager'
 	],
 	#category : #'Pyramid-Toplo-Incubator'
 }
@@ -23,19 +24,29 @@ PyramidToploThemePlugin >> addPanelsOn: aPyramidSimpleWindow [
 { #category : #connecting }
 PyramidToploThemePlugin >> connectOn: aPyramidEditor [
 
-	self themePresenter projectModel: aPyramidEditor projectModel 
-
-	
+	self themePresenter editor: aPyramidEditor.
+	self themePropertyManager projectModel: aPyramidEditor projectModel 
 ]
 
 { #category : #initialization }
 PyramidToploThemePlugin >> initialize [
 
-	themePresenter := PyramidThemeSelectorPresenter new.
+	themePresenter := PyramidThemePresenter new.
+	themePropertyManager := PyramidPropertiesManagerForSelection new
+		                        presenterStrategy:
+			                        PyramidThemePropertyStrategy new;
+		                        yourself.
+	themePresenter styleSheetEditor stampPresenter: themePropertyManager presenter
 ]
 
 { #category : #accessing }
 PyramidToploThemePlugin >> themePresenter [
 
 	^ themePresenter
+]
+
+{ #category : #accessing }
+PyramidToploThemePlugin >> themePropertyManager [
+
+	^ themePropertyManager
 ]

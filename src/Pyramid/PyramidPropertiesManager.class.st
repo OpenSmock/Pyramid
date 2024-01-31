@@ -10,6 +10,12 @@ Class {
 	#category : #'Pyramid-property'
 }
 
+{ #category : #removing }
+PyramidPropertiesManager >> addAllProperties: aCollection [
+
+	aCollection do: [ :each | self addProperty: each ]
+]
+
 { #category : #adding }
 PyramidPropertiesManager >> addProperty: aPyramidProperty [
 
@@ -71,4 +77,18 @@ PyramidPropertiesManager >> presenterStrategy: anObject [
 PyramidPropertiesManager >> properties [
 
 	^ properties
+]
+
+{ #category : #removing }
+PyramidPropertiesManager >> removeAllProperties [
+
+	self properties asArray do: [ :each | self removeProperty: each ].
+]
+
+{ #category : #removing }
+PyramidPropertiesManager >> removeProperty: aProperty [
+
+	(aProperty commandExecutor == self commandExecutor) ifFalse: [PyramidPropertyNotInstalledError new property: aProperty; manager: self; signal ].
+	aProperty commandExecutor: nil.
+	self properties remove: aProperty
 ]

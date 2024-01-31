@@ -57,6 +57,7 @@ PyramidThemeSelectorPresenter >> defaultLayout [
 				   add: self variantSelector;
 				   yourself)
 		  expand: false;
+		add: SpNullPresenter new height: 10;
 		  yourself
 ]
 
