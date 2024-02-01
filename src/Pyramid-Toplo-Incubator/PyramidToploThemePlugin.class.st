@@ -21,6 +21,14 @@ PyramidToploThemePlugin >> addPanelsOn: aPyramidSimpleWindow [
 			order: 1 ]
 ]
 
+{ #category : #actions }
+PyramidToploThemePlugin >> configureBuilder: aPyramidEditorBuilder [
+
+	| spacePlugin |
+	spacePlugin := aPyramidEditorBuilder findPlugin: #PyramidSpacePlugin.
+	self themePresenter pyramidSpaceBuilderConfigurationOn: spacePlugin builder
+]
+
 { #category : #connecting }
 PyramidToploThemePlugin >> connectOn: aPyramidEditor [
 

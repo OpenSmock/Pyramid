@@ -2,8 +2,9 @@ Class {
 	#name : #PyramidThemePresenter,
 	#superclass : #SpPresenter,
 	#instVars : [
-		'themeSelector',
-		'styleSheetEditor'
+		'styleSheetEditor',
+		'themeSpaceSelector',
+		'themeElementSelector'
 	],
 	#category : #'Pyramid-Toplo-Incubator'
 }
@@ -11,20 +12,33 @@ Class {
 { #category : #layout }
 PyramidThemePresenter >> defaultLayout [
 
-	^ SpBoxLayout newVertical spacing: 4; add: self themeSelector expand: false; add: self styleSheetEditor expand: true; yourself
+	^ SpBoxLayout newVertical
+		  spacing: 4;
+		  add: self themeSpaceSelector expand: false;
+		 add: self themeElementSelector expand: false;
+		  add: self styleSheetEditor expand: true;
+		  yourself
 ]
 
 { #category : #accessing }
 PyramidThemePresenter >> editor: aPyramidEditor [
 
-	self themeSelector projectModel: aPyramidEditor projectModel
+	self themeSpaceSelector projectModel: aPyramidEditor projectModel.
+	self themeElementSelector projectModel: aPyramidEditor projectModel
 ]
 
 { #category : #layout }
 PyramidThemePresenter >> initializePresenters [
 
-	themeSelector := PyramidThemeSelectorPresenter new.
+	themeSpaceSelector := PyramidSpaceThemeSelectorPresenter new.
+	themeElementSelector := PyramidElementThemeSelectorPresenter new.
 	styleSheetEditor := PyramidStyleSheetEditorPresenter new
+]
+
+{ #category : #'as yet unclassified' }
+PyramidThemePresenter >> pyramidSpaceBuilderConfigurationOn: aSpaceBuilder [
+
+	aSpaceBuilder addExtension: self themeSpaceSelector
 ]
 
 { #category : #layout }
@@ -34,7 +48,13 @@ PyramidThemePresenter >> styleSheetEditor [
 ]
 
 { #category : #layout }
-PyramidThemePresenter >> themeSelector [
+PyramidThemePresenter >> themeElementSelector [
 
-	^ themeSelector
+	^ themeElementSelector
+]
+
+{ #category : #layout }
+PyramidThemePresenter >> themeSpaceSelector [
+
+	^ themeSpaceSelector
 ]
