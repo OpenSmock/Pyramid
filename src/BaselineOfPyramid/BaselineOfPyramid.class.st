@@ -24,7 +24,7 @@ BaselineOfPyramid >> baselineForCommon: spec [
 	self toploDependencies: spec.
 
 	"Packages"
-	self idePackages: spec.
+	self pyramidPackages: spec.
 	self blocPackages: spec.
 	self toploPackages: spec.
 
@@ -66,16 +66,6 @@ BaselineOfPyramid >> blocPackagesNames [
 	^ #( 'Pyramid' 'Pyramid-Bloc' 'Pyramid-Tests' 'Pyramid-IDE' 'Pyramid-Examples' )
 ]
 
-{ #category : #packages }
-BaselineOfPyramid >> idePackages: spec [
-
-	spec package: 'Pyramid'.
-	spec
-		package: 'Pyramid-IDE'
-		with: [ spec requires: #( 'Pyramid' ) ].
-
-]
-
 { #category : #actions }
 BaselineOfPyramid >> postload: loader package: packageSpec [
 
@@ -84,6 +74,16 @@ BaselineOfPyramid >> postload: loader package: packageSpec [
 
 { #category : #actions }
 BaselineOfPyramid >> preload: loader package: packageSpec [
+
+]
+
+{ #category : #packages }
+BaselineOfPyramid >> pyramidPackages: spec [
+
+	spec package: 'Pyramid'.
+	spec
+		package: 'Pyramid-IDE'
+		with: [ spec requires: #( 'Pyramid' ) ].
 
 ]
 
@@ -103,7 +103,7 @@ BaselineOfPyramid >> toploPackages: spec [
 
 	spec
 		package: 'Pyramid-Toplo'
-		with: [ spec requires: #( 'Bloc' 'ToploSerialization' 'Toplo' ) ].
+		with: [ spec requires: #( 'Toplo' 'ToploSerialization' 'Pyramid-Bloc' ) ].
 	spec
 		package: 'Pyramid-Toplo-Tests'
 		with: [ spec requires: #( 'Pyramid-Toplo' ) ].
