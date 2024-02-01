@@ -115,5 +115,5 @@ BaselineOfPyramid >> toploPackages: spec [
 { #category : #packages }
 BaselineOfPyramid >> toploPackagesNames [
 
-	^ #( 'Bloc' 'Pyramid-Toplo' 'Pyramid-Toplo-Tests' 'Pyramid-Toplo-Examples' )
+	^ #( 'PyramidBloc' 'Pyramid-Toplo' 'Pyramid-Toplo-Tests' 'Pyramid-Toplo-Examples' )
 ]
