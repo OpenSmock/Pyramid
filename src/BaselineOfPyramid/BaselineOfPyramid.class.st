@@ -29,9 +29,9 @@ BaselineOfPyramid >> baselineForCommon: spec [
 	self toploPackages: spec.
 
 	"Groups"
-	spec group: 'default' with: #( 'Bloc' 'Toplo' ). "complete version"
-	spec group: 'Bloc' with: self blocPackagesNames. "only Bloc"
-	spec group: 'Toplo' with: self toploPackagesNames "only Bloc and Toplo"
+	spec group: 'default' with: #( 'PyramidBloc' 'PyramidToplo' ). "complete version"
+	spec group: 'PyramidBloc' with: self blocPackagesNames. "only Bloc"
+	spec group: 'PyramidToplo' with: self toploPackagesNames "only Bloc and Toplo"
 ]
 
 { #category : #dependencies }
@@ -69,6 +69,7 @@ BaselineOfPyramid >> blocPackagesNames [
 { #category : #packages }
 BaselineOfPyramid >> idePackages: spec [
 
+	spec package: 'Pyramid'.
 	spec
 		package: 'Pyramid-IDE'
 		with: [ spec requires: #( 'Pyramid' ) ].
