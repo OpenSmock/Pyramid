@@ -3,7 +3,7 @@ Extension { #name : #BlSpace }
 { #category : #'*Pyramid' }
 BlSpace >> editWithPyramid [
 
-	| editor elements spacePlaceholder |
+	| editor elements spacePlaceholder openFromSpacePlugin |
 	"Prepare image to replace the application view"
 	spacePlaceholder := (self root exportAsForm dimmed: 0.5) asElement.
 	spacePlaceholder addChildren:
@@ -13,8 +13,9 @@ BlSpace >> editWithPyramid [
 	editor := PyramidEditor buildEditor.
 
 	"PyramidOpenFromSpacePlugin used to recover theme if Toplo is loaded."
-	(editor findPlugin: PyramidOpenFromSpacePlugin) extensions do: [
-		:each | each configureOpenFromSpace: self ].
+	openFromSpacePlugin := editor findPlugin: PyramidOpenFromSpacePlugin.
+	openFromSpacePlugin extensions do: [ :each |
+		each configureOpenFromSpace: self ].
 
 	"Open editor"
 	editor window open.
@@ -39,7 +40,9 @@ BlSpace >> editWithPyramid [
 		editor projectModel firstLevelElements removeAll.
 		self root removeChildren.
 		self root addChildren: pyramidRoots.
-		self userData removeKey: #pyramid_isOnEdition ].
+		self userData removeKey: #pyramid_isOnEdition.
+		openFromSpacePlugin extensions do: [ :each |
+		each configureCloseOnSpace: self ]. ].
 
 	^ editor
 ]

@@ -19,11 +19,12 @@ PyramidElementThemeSelectorPresenter >> applyTheme [
 	| themeToApplied |
 	self triggerThemeChangement ifFalse: [ ^ self ].
 	themeToApplied := nil.
-	self inheritSelector state ifFalse: [ 
-	themeToApplied := self themeSelector selectedItem variant:
-		                  self variantSelector selectedItem new.
-		].
-	self commandExecutor use: self themeCommand on: self projectModel selection asArray with: themeToApplied.
+	self inheritSelector state ifFalse: [
+		themeToApplied := self currentTheme ].
+	self commandExecutor
+		use: self themeCommand
+		on: self projectModel selection asArray
+		with: themeToApplied.
 	self projectModel informElementsChanged
 ]
 

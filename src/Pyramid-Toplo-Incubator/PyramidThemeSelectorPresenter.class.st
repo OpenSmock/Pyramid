@@ -23,6 +23,13 @@ PyramidThemeSelectorPresenter >> buttonRefreshTheme [
 	^ buttonRefreshTheme
 ]
 
+{ #category : #'as yet unclassified' }
+PyramidThemeSelectorPresenter >> currentTheme [
+
+	^ self themeSelector selectedItem variant:
+			                  self variantSelector selectedItem new
+]
+
 { #category : #layout }
 PyramidThemeSelectorPresenter >> defaultLayout [
 
