@@ -9,8 +9,14 @@ BlSpace >> editWithPyramid [
 	spacePlaceholder addChildren:
 		PyramidBlElementHelper openInPyramidHelper materializeAsBlElement.
 
-	"Open editor"
+	"Build editor"
 	editor := PyramidEditor buildEditor.
+
+	"PyramidOpenFromSpacePlugin used to recover theme if Toplo is loaded."
+	(editor findPlugin: PyramidOpenFromSpacePlugin) extensions do: [
+		:each | each configureOpenFromSpace: self ].
+
+	"Open editor"
 	editor window open.
 
 	self flag:

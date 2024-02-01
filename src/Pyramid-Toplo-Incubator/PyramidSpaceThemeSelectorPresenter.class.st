@@ -22,7 +22,7 @@ PyramidSpaceThemeSelectorPresenter >> applyTheme [
 { #category : #'as yet unclassified' }
 PyramidSpaceThemeSelectorPresenter >> informSpaceIsReady [
 
-	self applyTheme
+	"self applyTheme"
 ]
 
 { #category : #displaying }

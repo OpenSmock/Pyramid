@@ -48,22 +48,20 @@ PyramidPluginEditOnRunning class >> cleanUp: anObject [
 PyramidPluginEditOnRunning class >> doShortcutAction: anEvent [
 
 	| space editor whenClosedDo |
-	
-	self flag:'labordep: this is a temporary processing because this fork is due to a Bloc opened issue'.
-	(shortcutFork notNil and:[ shortcutFork isTerminated not ]) ifTrue:[ ^ self ].
-	
-	shortcutFork := [ 
-	
-		self editOnRunning ifTrue:[
-			space := anEvent source space.
-			(self canEditSpace: space) ifTrue:[
-				editor := space editWithPyramid.
-				whenClosedDo := editor window whenClosedDo.
-				editor window whenClosedDo: [ whenClosedDo value ].
-			].
-		].
-	
-	] forkAt: Processor userBackgroundPriority named: 'Pyramid edit-on-running plugin shortcut'
+	self flag:
+		'labordep: this is a temporary processing because this fork is due to a Bloc opened issue'.
+	(shortcutFork notNil and: [ shortcutFork isTerminated not ]) ifTrue: [
+		^ self ].
+
+	shortcutFork := [
+	                self editOnRunning ifTrue: [
+		                space := anEvent source space.
+		                (self canEditSpace: space) ifTrue: [
+			                editor := space editWithPyramid.
+			                whenClosedDo := editor window whenClosedDo.
+			                editor window whenClosedDo: [ whenClosedDo value ] ] ] ]
+		                forkAt: Processor userBackgroundPriority
+		                named: 'Pyramid edit-on-running plugin shortcut'
 ]
 
 { #category : #accessing }
@@ -150,22 +148,4 @@ PyramidPluginEditOnRunning class >> uninstall [
 PyramidPluginEditOnRunning class >> uninstallBlUniverseListeners [
 
 	Beacon instance unsubscribe: self
-]
-
-{ #category : #adding }
-PyramidPluginEditOnRunning >> addPanelsOn: aPyramidSimpleWindow [
-
-	"do nothing"
-]
-
-{ #category : #actions }
-PyramidPluginEditOnRunning >> configureBuilder: aPyramidEditorBuilder [
-
-	"do nothing"
-]
-
-{ #category : #connecting }
-PyramidPluginEditOnRunning >> connectOn: aPyramidEditor [
-
-	"do nothing"
 ]
