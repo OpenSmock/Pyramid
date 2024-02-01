@@ -6,7 +6,7 @@ Class {
 		'themeSpaceSelector',
 		'themeElementSelector'
 	],
-	#category : #'Pyramid-Toplo-Incubator'
+	#category : #'Pyramid-Toplo-plugin-theme-management'
 }
 
 { #category : #layout }

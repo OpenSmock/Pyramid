@@ -4,7 +4,7 @@ Class {
 	#instVars : [
 		'interpreter'
 	],
-	#category : #'Pyramid-Toplo-Incubator'
+	#category : #'Pyramid-Toplo-Tests-cases-plugin-theme-management'
 }
 
 { #category : #accessing }

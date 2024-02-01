@@ -3,7 +3,7 @@ Class {
 	#superclass : #TestCase,
 	#traits : 'TPyramidCommandTest',
 	#classTraits : 'TPyramidCommandTest classTrait',
-	#category : #'Pyramid-Toplo-Incubator'
+	#category : #'Pyramid-Toplo-Tests-cases-plugin-theme-management'
 }
 
 { #category : #accessing }

@@ -7,7 +7,7 @@ Class {
 		'themePresenter',
 		'themePropertyManager'
 	],
-	#category : #'Pyramid-Toplo-Incubator'
+	#category : #'Pyramid-Toplo-plugin-theme-management'
 }
 
 { #category : #adding }

@@ -7,7 +7,7 @@ Class {
 		'invalidSelectors',
 		'ignoredSelectors'
 	],
-	#category : #'Pyramid-Toplo-Incubator'
+	#category : #'Pyramid-Toplo-plugin-theme-management'
 }
 
 { #category : #operating }
