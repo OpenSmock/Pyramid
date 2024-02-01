@@ -27,3 +27,12 @@ PyramidSpaceThemeSelectorPresenter >> installOn: aBuilder [
 	self builder: aBuilder.
 	aBuilder addSpaceIsReadyObserver: self.
 ]
+
+{ #category : #initialization }
+PyramidSpaceThemeSelectorPresenter >> labelPresenter [
+
+	^ SpLabelPresenter new
+		  label: 'Space Theme';
+		  displayBold: [ :t | true ];
+		  yourself
+]

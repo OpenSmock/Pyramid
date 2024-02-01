@@ -30,24 +30,13 @@ PyramidThemeSelectorPresenter >> defaultLayout [
 		  spacing: 4;
 		  add: (SpBoxLayout newHorizontal
 				   spacing: 4;
-				   add: (SpLabelPresenter new
-						    label: 'Space Theme';
-						    displayBold: [ :t | true ];
-						    yourself);
+				   add: self labelPresenter;
 				   add: self buttonRefreshTheme withConstraints: [ :c |
-				   c height: 24.
-				   c width: 24 ];
+					   c height: 24.
+					   c width: 24 ];
 				   yourself)
 		  expand: false;
-		  add: self defaultLayoutForThemeAndVariant expand: false;
-		  yourself
-]
-
-{ #category : #layout }
-PyramidThemeSelectorPresenter >> defaultLayoutForThemeAndVariant [
-
-	^ SpBoxLayout newVertical spacing: 4;
-		  add: (SpBoxLayout newHorizontal
+		 add: (SpBoxLayout newHorizontal
 				   spacing: 4;
 				   add: 'Theme' width: 50;
 				   add: self themeSelector;
@@ -94,10 +83,29 @@ PyramidThemeSelectorPresenter >> initializePresenters [
 			                   self variantSelectionChanged: aNewVariant ];
 		                   yourself.
 	buttonRefreshTheme := SpButtonPresenter new
+	help: 'Refresh theme list.';
 		                      icon: (self iconNamed: #refresh);
 		                      action: [ self initializeAllPossibleThemes ];
 		                      yourself.
 	self initializeAllPossibleThemes
+]
+
+{ #category : #initialization }
+PyramidThemeSelectorPresenter >> labelPresenter [
+
+	^ self shouldBeImplemented
+]
+
+{ #category : #private }
+PyramidThemeSelectorPresenter >> selectTheme: aToTheme [
+
+	self triggerThemeChangement: false.
+	
+	self themeSelector selectItem: aToTheme class.
+	self variantSelector selectItem: aToTheme variant class.
+	
+	self triggerThemeChangement: true.
+	
 ]
 
 { #category : #'as yet unclassified' }
