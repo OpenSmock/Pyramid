@@ -15,12 +15,11 @@ PyramidVisibilityInputPresenter class >> blocGone [
 	"This class has been generated using Pyramid.
 
 	By: YannLEGOFF
-	2023-08-02 15:00:30"
+	2024-01-22 12:04:35"
 
 	<pySTON>
 	^ '[
 	BlElement {
-		#children : BlChildrenArray [ ],
 		#constraints : BlLayoutCommonConstraints {
 			#vertical : BlLayoutCommonConstraintsAxis {
 				#resizer : BlLayoutExactResizer {
@@ -39,11 +38,11 @@ PyramidVisibilityInputPresenter class >> blocGone [
 				#bottom : 0.0,
 				#right : 0.0
 			},
-			#padding : @10,
+			#padding : @9,
 			#minHeight : 0.0,
 			#minWidth : 0.0,
 			#maxHeight : Float [ #infinity ],
-			#maxWidth : @11,
+			#maxWidth : @10,
 			#ignoredByLayout : false,
 			#accountTransformation : false
 		},
@@ -62,16 +61,12 @@ PyramidVisibilityInputPresenter class >> blocGone [
 		#userData : IdentityDictionary {
 			#elementId : BlElementNamedId {
 				#identifier : #C
-			}
+			},
+			#shouldHandleMousePickOutsideEvent : false
 		},
-		#layout : BlBasicLayout { },
-		#eventDispatcher : BlElementEventDispatcher {
-			#owner : @2,
-			#handlers : [ ]
-		}
+		#layout : BlBasicLayout { }
 	},
 	BlElement {
-		#children : BlChildrenArray [ ],
 		#constraints : BlLayoutCommonConstraints {
 			#vertical : BlLayoutCommonConstraintsAxis {
 				#resizer : BlLayoutExactResizer {
@@ -84,12 +79,12 @@ PyramidVisibilityInputPresenter class >> blocGone [
 				}
 			},
 			#position : Point [ 11, 3 ],
-			#margin : @10,
-			#padding : @10,
+			#margin : @9,
+			#padding : @9,
 			#minHeight : 0.0,
 			#minWidth : 0.0,
-			#maxHeight : @11,
-			#maxWidth : @11,
+			#maxHeight : @10,
+			#maxWidth : @10,
 			#ignoredByLayout : false,
 			#accountTransformation : false
 		},
@@ -108,13 +103,10 @@ PyramidVisibilityInputPresenter class >> blocGone [
 		#userData : IdentityDictionary {
 			#elementId : BlElementNamedId {
 				#identifier : #E
-			}
+			},
+			#shouldHandleMousePickOutsideEvent : false
 		},
-		#layout : @18,
-		#eventDispatcher : BlElementEventDispatcher {
-			#owner : @21,
-			#handlers : [ ]
-		}
+		#layout : @17
 	}
 ]'
 ]
@@ -124,12 +116,11 @@ PyramidVisibilityInputPresenter class >> blocHidden [
 	"This class has been generated using Pyramid.
 
 	By: YannLEGOFF
-	2023-08-02 15:00:12"
+	2024-01-22 12:05:28"
 
 	<pySTON>
 	^ '[
 	BlElement {
-		#children : BlChildrenArray [ ],
 		#constraints : BlLayoutCommonConstraints {
 			#vertical : BlLayoutCommonConstraintsAxis {
 				#resizer : BlLayoutExactResizer {
@@ -148,11 +139,11 @@ PyramidVisibilityInputPresenter class >> blocHidden [
 				#bottom : 0.0,
 				#right : 0.0
 			},
-			#padding : @10,
+			#padding : @9,
 			#minHeight : 0.0,
 			#minWidth : 0.0,
 			#maxHeight : Float [ #infinity ],
-			#maxWidth : @11,
+			#maxWidth : @10,
 			#ignoredByLayout : false,
 			#accountTransformation : false
 		},
@@ -173,14 +164,9 @@ PyramidVisibilityInputPresenter class >> blocHidden [
 				#identifier : #C
 			}
 		},
-		#layout : BlBasicLayout { },
-		#eventDispatcher : BlElementEventDispatcher {
-			#owner : @2,
-			#handlers : [ ]
-		}
+		#layout : BlBasicLayout { }
 	},
 	BlElement {
-		#children : BlChildrenArray [ ],
 		#constraints : BlLayoutCommonConstraints {
 			#vertical : BlLayoutCommonConstraintsAxis {
 				#resizer : BlLayoutExactResizer {
@@ -193,12 +179,12 @@ PyramidVisibilityInputPresenter class >> blocHidden [
 				}
 			},
 			#position : Point [ 11, 3 ],
-			#margin : @10,
-			#padding : @10,
+			#margin : @9,
+			#padding : @9,
 			#minHeight : 0.0,
 			#minWidth : 0.0,
-			#maxHeight : @11,
-			#maxWidth : @11,
+			#maxHeight : @10,
+			#maxWidth : @10,
 			#ignoredByLayout : false,
 			#accountTransformation : false
 		},
@@ -219,14 +205,9 @@ PyramidVisibilityInputPresenter class >> blocHidden [
 				#identifier : #D
 			}
 		},
-		#layout : @18,
-		#eventDispatcher : BlElementEventDispatcher {
-			#owner : @21,
-			#handlers : [ ]
-		}
+		#layout : @17
 	},
 	BlElement {
-		#children : BlChildrenArray [ ],
 		#constraints : BlLayoutCommonConstraints {
 			#vertical : BlLayoutCommonConstraintsAxis {
 				#resizer : BlLayoutExactResizer {
@@ -239,12 +220,12 @@ PyramidVisibilityInputPresenter class >> blocHidden [
 				}
 			},
 			#position : Point [ 22, 3 ],
-			#margin : @10,
-			#padding : @10,
+			#margin : @9,
+			#padding : @9,
 			#minHeight : 0.0,
 			#minWidth : 0.0,
-			#maxHeight : @11,
-			#maxWidth : @11,
+			#maxHeight : @10,
+			#maxWidth : @10,
 			#ignoredByLayout : false,
 			#accountTransformation : false
 		},
@@ -265,11 +246,7 @@ PyramidVisibilityInputPresenter class >> blocHidden [
 				#identifier : #E
 			}
 		},
-		#layout : @18,
-		#eventDispatcher : BlElementEventDispatcher {
-			#owner : @37,
-			#handlers : [ ]
-		}
+		#layout : @17
 	}
 ]'
 ]
@@ -279,12 +256,11 @@ PyramidVisibilityInputPresenter class >> blocVisibilityUnknow [
 	"This class has been generated using Pyramid.
 
 	By: YannLEGOFF
-	2023-08-02 15:04:00"
+	2024-01-22 12:06:04"
 
 	<pySTON>
 	^ '[
 	BlElement {
-		#children : BlChildrenArray [ ],
 		#constraints : BlLayoutCommonConstraints {
 			#vertical : BlLayoutCommonConstraintsAxis {
 				#resizer : BlLayoutExactResizer {
@@ -303,11 +279,11 @@ PyramidVisibilityInputPresenter class >> blocVisibilityUnknow [
 				#bottom : 0.0,
 				#right : 0.0
 			},
-			#padding : @10,
+			#padding : @9,
 			#minHeight : 0.0,
 			#minWidth : 0.0,
 			#maxHeight : Float [ #infinity ],
-			#maxWidth : @11,
+			#maxWidth : @10,
 			#ignoredByLayout : false,
 			#accountTransformation : false
 		},
@@ -338,14 +314,9 @@ PyramidVisibilityInputPresenter class >> blocVisibilityUnknow [
 				#identifier : #C
 			}
 		},
-		#layout : BlBasicLayout { },
-		#eventDispatcher : BlElementEventDispatcher {
-			#owner : @2,
-			#handlers : [ ]
-		}
+		#layout : BlBasicLayout { }
 	},
 	BlElement {
-		#children : BlChildrenArray [ ],
 		#constraints : BlLayoutCommonConstraints {
 			#vertical : BlLayoutCommonConstraintsAxis {
 				#resizer : BlLayoutExactResizer {
@@ -358,12 +329,12 @@ PyramidVisibilityInputPresenter class >> blocVisibilityUnknow [
 				}
 			},
 			#position : Point [ 11, 3 ],
-			#margin : @10,
-			#padding : @10,
+			#margin : @9,
+			#padding : @9,
 			#minHeight : 0.0,
 			#minWidth : 0.0,
-			#maxHeight : @11,
-			#maxWidth : @11,
+			#maxHeight : @10,
+			#maxWidth : @10,
 			#ignoredByLayout : false,
 			#accountTransformation : false
 		},
@@ -394,14 +365,9 @@ PyramidVisibilityInputPresenter class >> blocVisibilityUnknow [
 				#identifier : #D
 			}
 		},
-		#layout : @22,
-		#eventDispatcher : BlElementEventDispatcher {
-			#owner : @25,
-			#handlers : [ ]
-		}
+		#layout : @21
 	},
 	BlElement {
-		#children : BlChildrenArray [ ],
 		#constraints : BlLayoutCommonConstraints {
 			#vertical : BlLayoutCommonConstraintsAxis {
 				#resizer : BlLayoutExactResizer {
@@ -414,12 +380,12 @@ PyramidVisibilityInputPresenter class >> blocVisibilityUnknow [
 				}
 			},
 			#position : Point [ 22, 3 ],
-			#margin : @10,
-			#padding : @10,
+			#margin : @9,
+			#padding : @9,
 			#minHeight : 0.0,
 			#minWidth : 0.0,
-			#maxHeight : @11,
-			#maxWidth : @11,
+			#maxHeight : @10,
+			#maxWidth : @10,
 			#ignoredByLayout : false,
 			#accountTransformation : false
 		},
@@ -450,11 +416,7 @@ PyramidVisibilityInputPresenter class >> blocVisibilityUnknow [
 				#identifier : #E
 			}
 		},
-		#layout : @22,
-		#eventDispatcher : BlElementEventDispatcher {
-			#owner : @45,
-			#handlers : [ ]
-		}
+		#layout : @21
 	}
 ]'
 ]
@@ -464,12 +426,11 @@ PyramidVisibilityInputPresenter class >> blocVisible [
 	"This class has been generated using Pyramid.
 
 	By: YannLEGOFF
-	2023-08-02 14:59:48"
+	2024-01-22 12:06:38"
 
 	<pySTON>
 	^ '[
 	BlElement {
-		#children : BlChildrenArray [ ],
 		#constraints : BlLayoutCommonConstraints {
 			#vertical : BlLayoutCommonConstraintsAxis {
 				#resizer : BlLayoutExactResizer {
@@ -488,11 +449,11 @@ PyramidVisibilityInputPresenter class >> blocVisible [
 				#bottom : 0.0,
 				#right : 0.0
 			},
-			#padding : @10,
+			#padding : @9,
 			#minHeight : 0.0,
 			#minWidth : 0.0,
 			#maxHeight : Float [ #infinity ],
-			#maxWidth : @11,
+			#maxWidth : @10,
 			#ignoredByLayout : false,
 			#accountTransformation : false
 		},
@@ -513,14 +474,9 @@ PyramidVisibilityInputPresenter class >> blocVisible [
 				#identifier : #C
 			}
 		},
-		#layout : BlBasicLayout { },
-		#eventDispatcher : BlElementEventDispatcher {
-			#owner : @2,
-			#handlers : [ ]
-		}
+		#layout : BlBasicLayout { }
 	},
 	BlElement {
-		#children : BlChildrenArray [ ],
 		#constraints : BlLayoutCommonConstraints {
 			#vertical : BlLayoutCommonConstraintsAxis {
 				#resizer : BlLayoutExactResizer {
@@ -533,12 +489,12 @@ PyramidVisibilityInputPresenter class >> blocVisible [
 				}
 			},
 			#position : Point [ 11, 3 ],
-			#margin : @10,
-			#padding : @10,
+			#margin : @9,
+			#padding : @9,
 			#minHeight : 0.0,
 			#minWidth : 0.0,
-			#maxHeight : @11,
-			#maxWidth : @11,
+			#maxHeight : @10,
+			#maxWidth : @10,
 			#ignoredByLayout : false,
 			#accountTransformation : false
 		},
@@ -559,14 +515,9 @@ PyramidVisibilityInputPresenter class >> blocVisible [
 				#identifier : #D
 			}
 		},
-		#layout : @18,
-		#eventDispatcher : BlElementEventDispatcher {
-			#owner : @21,
-			#handlers : [ ]
-		}
+		#layout : @17
 	},
 	BlElement {
-		#children : BlChildrenArray [ ],
 		#constraints : BlLayoutCommonConstraints {
 			#vertical : BlLayoutCommonConstraintsAxis {
 				#resizer : BlLayoutExactResizer {
@@ -579,12 +530,12 @@ PyramidVisibilityInputPresenter class >> blocVisible [
 				}
 			},
 			#position : Point [ 22, 3 ],
-			#margin : @10,
-			#padding : @10,
+			#margin : @9,
+			#padding : @9,
 			#minHeight : 0.0,
 			#minWidth : 0.0,
-			#maxHeight : @11,
-			#maxWidth : @11,
+			#maxHeight : @10,
+			#maxWidth : @10,
 			#ignoredByLayout : false,
 			#accountTransformation : false
 		},
@@ -605,11 +556,7 @@ PyramidVisibilityInputPresenter class >> blocVisible [
 				#identifier : #E
 			}
 		},
-		#layout : @18,
-		#eventDispatcher : BlElementEventDispatcher {
-			#owner : @37,
-			#handlers : [ ]
-		}
+		#layout : @17
 	}
 ]'
 ]
