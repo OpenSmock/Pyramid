@@ -3,6 +3,9 @@ Class {
 	#superclass : #PyramidThemeSelectorPresenter,
 	#traits : 'TPyramidSpaceExtension + TPyramidEditorSpaceIsReadyObserver',
 	#classTraits : 'TPyramidSpaceExtension classTrait + TPyramidEditorSpaceIsReadyObserver classTrait',
+	#instVars : [
+		'projectModel'
+	],
 	#category : #'Pyramid-Toplo-Incubator'
 }
 
@@ -13,6 +16,7 @@ PyramidSpaceThemeSelectorPresenter >> applyTheme [
 	themeToApplied := self themeSelector selectedItem variant:
 		                  self variantSelector selectedItem new.
 	self builder space toTheme: themeToApplied.
+	self projectModel informElementsChanged
 ]
 
 { #category : #'as yet unclassified' }
@@ -35,4 +39,16 @@ PyramidSpaceThemeSelectorPresenter >> labelPresenter [
 		  label: 'Space Theme';
 		  displayBold: [ :t | true ];
 		  yourself
+]
+
+{ #category : #accessing }
+PyramidSpaceThemeSelectorPresenter >> projectModel [
+
+	^ projectModel
+]
+
+{ #category : #accessing }
+PyramidSpaceThemeSelectorPresenter >> projectModel: anObject [
+
+	projectModel := anObject
 ]
