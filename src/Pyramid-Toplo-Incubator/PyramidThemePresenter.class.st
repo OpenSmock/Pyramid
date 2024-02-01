@@ -24,7 +24,8 @@ PyramidThemePresenter >> defaultLayout [
 PyramidThemePresenter >> editor: aPyramidEditor [
 
 	self themeSpaceSelector projectModel: aPyramidEditor projectModel.
-	self themeElementSelector projectModel: aPyramidEditor projectModel
+	self themeElementSelector projectModel: aPyramidEditor projectModel.
+	self themeElementSelector commandExecutor: aPyramidEditor propertiesManager commandExecutor 
 ]
 
 { #category : #layout }

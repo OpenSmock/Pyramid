@@ -6,7 +6,9 @@ Class {
 	#instVars : [
 		'projectModel',
 		'inheritSelector',
-		'labelPresenter'
+		'labelPresenter',
+		'commandExecutor',
+		'themeCommand'
 	],
 	#category : #'Pyramid-Toplo-Incubator'
 }
@@ -16,14 +18,25 @@ PyramidElementThemeSelectorPresenter >> applyTheme [
 
 	| themeToApplied |
 	self triggerThemeChangement ifFalse: [ ^ self ].
-	self inheritSelector state ifTrue: [
-		self projectModel selection do: [ :each | each toTheme: nil ].
-		^ self ].
+	themeToApplied := nil.
+	self inheritSelector state ifFalse: [ 
 	themeToApplied := self themeSelector selectedItem variant:
 		                  self variantSelector selectedItem new.
-	self projectModel selection do: [ :each |
-		each toTheme: themeToApplied ].
-	self projectModel informElementsChanged.
+		].
+	self commandExecutor use: self themeCommand on: self projectModel selection asArray with: themeToApplied.
+	self projectModel informElementsChanged
+]
+
+{ #category : #'as yet unclassified' }
+PyramidElementThemeSelectorPresenter >> commandExecutor [
+
+	^ commandExecutor
+]
+
+{ #category : #'as yet unclassified' }
+PyramidElementThemeSelectorPresenter >> commandExecutor: aCommandExecutor [
+
+	commandExecutor := aCommandExecutor
 ]
 
 { #category : #layout }
@@ -66,6 +79,7 @@ PyramidElementThemeSelectorPresenter >> inheritSelector [
 PyramidElementThemeSelectorPresenter >> initializePresenters [
 
 	super initializePresenters.
+	themeCommand := PyramidThemeCommand new.
 	inheritSelector := SpCheckBoxPresenter new
 		                   label: 'Inherits from parents';
 		                   whenChangedDo: [ :aBoolean | self applyTheme ];
@@ -76,7 +90,7 @@ PyramidElementThemeSelectorPresenter >> initializePresenters [
 		                  yourself.
 	self triggerThemeChangement: false.
 	self setDefaultStateForPresenters.
-	self triggerThemeChangement: true.
+	self triggerThemeChangement: true
 ]
 
 { #category : #initialization }
@@ -124,9 +138,15 @@ PyramidElementThemeSelectorPresenter >> setDefaultStateForPresenters [.
 ]
 
 { #category : #'as yet unclassified' }
+PyramidElementThemeSelectorPresenter >> themeCommand [
+
+	^ themeCommand
+]
+
+{ #category : #'as yet unclassified' }
 PyramidElementThemeSelectorPresenter >> updatePresenterFor: aCollectionOfElement [
 
-	| collectionOfLocalThemes collectionOfThemes |
+	| collectionOfLocalThemes |
 	"Default values"
 	self setDefaultStateForPresenters.
 
@@ -147,16 +167,9 @@ PyramidElementThemeSelectorPresenter >> updatePresenterFor: aCollectionOfElement
 		^ self ].
 
 	"Mix between local and unlocal theme"
-	collectionOfLocalThemes := (aCollectionOfElement asArray collect:
-		                           [ :each | each localTheme ]) asSet asArray.
+	collectionOfLocalThemes := (aCollectionOfElement asArray collect: [
+		                            :each | each localTheme ]) asSet asArray.
 	collectionOfLocalThemes size > 1 ifTrue: [
-		self labelPresenter label: 'Elements Theme (differents)'.
-		^ self ].
-
-	"Mix themes"
-	collectionOfThemes := (aCollectionOfElement asArray collect:
-		                      [ :each | each toTheme ]) asSet asArray.
-	collectionOfThemes size > 1 ifTrue: [
 		self labelPresenter label: 'Elements Theme (differents)'.
 		^ self ].
 
@@ -168,7 +181,7 @@ PyramidElementThemeSelectorPresenter >> updatePresenterFor: aCollectionOfElement
 		self inheritSelector state: false.
 		self themeSelector enabled: true.
 		self variantSelector enabled: true.
-		self selectTheme: collectionOfThemes first ].
-	
-	self layout: self defaultLayout.
+		self selectTheme: collectionOfLocalThemes first ].
+
+	self layout: self defaultLayout
 ]
