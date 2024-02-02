@@ -1,11 +1,11 @@
 Class {
-	#name : #PyramidFlowLayoutOrientationPresenter,
+	#name : #PyramidLinearLayoutOrientationPresenter,
 	#superclass : #PyramidAbstractLayoutOrientationPresenter,
 	#category : #'Pyramid-Bloc-plugin-bloc-layout'
 }
 
 { #category : #'as yet unclassified' }
-PyramidFlowLayoutOrientationPresenter >> value [
+PyramidLinearLayoutOrientationPresenter >> value [
 
-	^ self state asOrientationForFlowPyramid
+	^ self state asOrientationForLinearPyramid 
 ]

@@ -11,10 +11,24 @@ PyramidLayoutInputPresenterTest >> dummyValues [
 
 	^ {
 		  BlBasicLayout new.
-		BlFlowLayout horizontal.
-		BlFlowLayout vertical.
-		BlProportionalLayout new
-		 }
+		  BlFlowLayout horizontal.
+		  BlFlowLayout vertical.
+		  BlLinearLayout horizontal.
+		  BlLinearLayout vertical.
+		BlFrameLayout new.
+		  BlProportionalLayout new }
+]
+
+{ #category : #accessing }
+PyramidLayoutInputPresenterTest >> expectedEmptyValue [
+
+	^ PyramidUnknowState new
+]
+
+{ #category : #accessing }
+PyramidLayoutInputPresenterTest >> expectedMixedValues [
+
+	^ PyramidUnknowState new
 ]
 
 { #category : #tests }
@@ -26,5 +40,5 @@ PyramidLayoutInputPresenterTest >> makeNewInput [
 { #category : #'as yet unclassified' }
 PyramidLayoutInputPresenterTest >> triggerValueChangedOf: anInput [
 
-	anInput buttonBasic click
+	anInput valueButtons first click
 ]

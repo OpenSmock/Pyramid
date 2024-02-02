@@ -1,7 +1,13 @@
 Extension { #name : #False }
 
 { #category : #'*Pyramid-Bloc' }
-False >> asOrientationForPyramid [
+False >> asOrientationForFlowPyramid [
 
 	^ BlLayoutOrientation horizontal
+]
+
+{ #category : #'*Pyramid-Bloc' }
+False >> asOrientationForLinearPyramid [
+
+	^ BlLinearLayoutHorizontalOrientation new
 ]

@@ -36,7 +36,13 @@ PyramidUnknowState >> asIcon [
 ]
 
 { #category : #converting }
-PyramidUnknowState >> asOrientationForPyramid [
+PyramidUnknowState >> asOrientationForFlowPyramid [
+
+	^ self
+]
+
+{ #category : #converting }
+PyramidUnknowState >> asOrientationForLinearPyramid [
 
 	^ self
 ]
@@ -51,6 +57,12 @@ PyramidUnknowState >> asPyramidConstraintsArgument [
 PyramidUnknowState >> asString [
 
 	^ '@ Unknow state'
+]
+
+{ #category : #'as yet unclassified' }
+PyramidUnknowState >> pyramidSelectOn: anInput [
+
+	anInput unselectAll
 ]
 
 { #category : #initialization }
@@ -69,10 +81,4 @@ PyramidUnknowState >> setCornerRadiiOn: aPyramidCornerRadiiInputPresenter [
 PyramidUnknowState >> setInsetsOn: aPyramidInsetsInputPresenter [
 
 	aPyramidInsetsInputPresenter inputArray value: self
-]
-
-{ #category : #initialization }
-PyramidUnknowState >> setLayoutOn: aPyramidLayoutInputPresenter [
-
-	aPyramidLayoutInputPresenter setUnknowValue
 ]
