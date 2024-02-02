@@ -22,7 +22,8 @@ PyramidBlocPlugin class >> background [
 		            yourself.
 	property pyramidInputPresenterStrings help:
 		'Change the background of the element with a color, a gradient, an image.'.
-	property pyramidInputPresenterStrings windowTitle: 'Change background'.
+	property pyramidInputPresenterStrings windowTitle:
+		'Change background'.
 	^ property
 ]
 
