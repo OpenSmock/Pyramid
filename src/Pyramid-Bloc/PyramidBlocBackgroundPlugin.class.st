@@ -119,7 +119,8 @@ PyramidBlocBackgroundPlugin >> addPanelsOn: aPyramidSimpleWindow [
 { #category : #connecting }
 PyramidBlocBackgroundPlugin >> connectOn: aPyramidEditor [
 
-	propertiesManager projectModel: aPyramidEditor projectModel
+	propertiesManager projectModel: aPyramidEditor projectModel.
+	propertiesManager commandExecutor: aPyramidEditor propertiesManager commandExecutor
 ]
 
 { #category : #initialization }

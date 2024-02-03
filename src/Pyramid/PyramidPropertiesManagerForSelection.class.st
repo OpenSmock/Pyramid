@@ -57,13 +57,17 @@ PyramidPropertiesManagerForSelection >> projectModel: aPyramidProjectModel [
 { #category : #'as yet unclassified' }
 PyramidPropertiesManagerForSelection >> pyramidElementsChanged [
 
-	self shouldComputeProperties: true.
-	self presenter isVisible ifFalse: [ ^ self ].
-	self computeProperties
+	self selectionOrElementsChanged
 ]
 
 { #category : #'as yet unclassified' }
 PyramidPropertiesManagerForSelection >> pyramidSelectionChanged [
+
+	self selectionOrElementsChanged
+]
+
+{ #category : #'as yet unclassified' }
+PyramidPropertiesManagerForSelection >> selectionOrElementsChanged [
 
 	self shouldComputeProperties: true.
 	self presenter isVisible ifFalse: [ ^ self ].
