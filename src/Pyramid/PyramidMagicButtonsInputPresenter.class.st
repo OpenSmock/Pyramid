@@ -7,7 +7,8 @@ Class {
 		'buttonsNotSelected',
 		'whenValueChangedDo',
 		'selectedIndex',
-		'buttonUnknow'
+		'buttonUnknow',
+		'validationArray'
 	],
 	#classInstVars : [
 		'whenValueChangedDo'
@@ -48,27 +49,6 @@ PyramidMagicButtonsInputPresenter >> buttonsSelected [
 	^ buttonsSelected
 ]
 
-{ #category : #'as yet unclassified' }
-PyramidMagicButtonsInputPresenter >> defaultButtonsModel [
-
-	^ PyramidMagicButtonsModel new
-		  addButtonModel: (PyramidMagicButtonModel new
-				   icon: (self iconNamed: #smallOk);
-				   helpSelected: 'The value is ok.';
-				   helpNotSelected: 'Set the value to ok.';
-				   label: 'ok';
-				   inputValue: #ok;
-				   yourself);
-		  addButtonModel: (PyramidMagicButtonModel new
-				   icon: (self iconNamed: #smallCancel);
-				   helpSelected: 'The value is cancel.';
-				   helpNotSelected: 'Set the value to cancel.';
-				label: 'cancel';
-				   inputValue: #ok;
-				   yourself);
-		  yourself
-]
-
 { #category : #layout }
 PyramidMagicButtonsInputPresenter >> defaultLayout [
 
@@ -84,6 +64,13 @@ PyramidMagicButtonsInputPresenter >> emptyValue [
 	 self setUnknowValue
 ]
 
+{ #category : #'as yet unclassified' }
+PyramidMagicButtonsInputPresenter >> indexOf: aValue [
+
+	(1 to: self validationArray size do: [ :i | ((self validationArray at: i) value: aValue) ifTrue: [ ^ i ] ]).
+	^ 0
+]
+
 { #category : #accessing }
 PyramidMagicButtonsInputPresenter >> initializePresenters [
 
@@ -91,7 +78,11 @@ PyramidMagicButtonsInputPresenter >> initializePresenters [
 	valueArray := OrderedCollection new.
 	buttonsSelected := OrderedCollection new.
 	buttonsNotSelected := OrderedCollection new.
-	buttonUnknow := SpButtonPresenter new label: 'Unknow'; yourself
+	validationArray := OrderedCollection new.
+	buttonUnknow := SpButtonPresenter new
+		                label: 'Unknow';
+		                state: true;
+		                yourself
 ]
 
 { #category : #'as yet unclassified' }
@@ -122,18 +113,23 @@ PyramidMagicButtonsInputPresenter >> makeAssociatedButtonFor: aButtonModel [
 		                  icon: aButtonModel icon;
 		                  help: aButtonModel helpSelected;
 		                  label: aButtonModel label;
+								action: [
+			                     self whenValueChangedDo value:
+					                     aButtonModel inputValue value ];
+		                  state: true;
 		                  yourself.
 	buttonNotSelected := SpButtonPresenter new
 		                     icon: aButtonModel icon;
 		                     help: aButtonModel helpNotSelected;
 		                     action: [
 			                     self whenValueChangedDo value:
-					                     aButtonModel inputValue ];
+					                     aButtonModel inputValue value ];
 		                     yourself.
 
 	self valueArray add: aButtonModel inputValue.
-	self buttonsSelected  add: buttonSelected.
-	self buttonsNotSelected  add: buttonNotSelected
+	self validationArray add: aButtonModel inputValidation.
+	self buttonsSelected add: buttonSelected.
+	self buttonsNotSelected add: buttonNotSelected
 ]
 
 { #category : #'as yet unclassified' }
@@ -167,28 +163,32 @@ PyramidMagicButtonsInputPresenter >> setUnknowValue [
 ]
 
 { #category : #accessing }
-PyramidMagicButtonsInputPresenter >> strings [
+PyramidMagicButtonsInputPresenter >> validationArray [
 
-	strings ifNil: [ strings := self defaultButtonsModel ].
-	^ strings
+	^ validationArray
 ]
 
 { #category : #'as yet unclassified' }
 PyramidMagicButtonsInputPresenter >> value [
 
 	self selectedIndex = 0 ifTrue: [ ^ PyramidUnknowState new ].
-	^ self valueArray at: self selectedIndex
+	^ (self valueArray at: self selectedIndex) value
 ]
 
 { #category : #'as yet unclassified' }
 PyramidMagicButtonsInputPresenter >> value: aValue [
 
 	| buttonsList |
-	self selectedIndex: (self valueArray indexOf: aValue).
-	self selectedIndex = 0 ifTrue: [ self setUnknowValue. ^ self ].
+	self selectedIndex: (self indexOf: aValue).
+	self selectedIndex = 0 ifTrue: [
+		self setUnknowValue.
+		^ self ].
 	buttonsList := self buttonsNotSelected asArray.
-	buttonsList at: self selectedIndex put: (self buttonsSelected at: self selectedIndex).
-	self layout: (self layoutFor: buttonsList withSelectedIndex: self selectedIndex)
+	buttonsList
+		at: self selectedIndex
+		put: (self buttonsSelected at: self selectedIndex).
+	self layout:
+		(self layoutFor: buttonsList withSelectedIndex: self selectedIndex)
 ]
 
 { #category : #accessing }

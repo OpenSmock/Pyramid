@@ -35,6 +35,7 @@ PyramidMagicButtonsInputPresenterTest >> makeNewInput [
 						    helpNotSelected: 'Set the value to ok.';
 						    label: 'ok';
 						    inputValue: #ok;
+						inputValidation: [ :val | val = #ok ];
 						    yourself);
 				   addButtonModel: (PyramidMagicButtonModel new
 						    icon: (self iconNamed: #smallCancel);
@@ -42,6 +43,7 @@ PyramidMagicButtonsInputPresenterTest >> makeNewInput [
 						    helpNotSelected: 'Set the value to cancel.';
 						    label: 'cancel';
 						    inputValue: #cancel;
+						inputValidation: [ :val | val = #cancel ];
 						    yourself);
 				   yourself);
 		  yourself

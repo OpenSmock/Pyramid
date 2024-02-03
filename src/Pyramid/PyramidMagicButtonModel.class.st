@@ -6,7 +6,8 @@ Class {
 		'helpSelected',
 		'helpNotSelected',
 		'inputValue',
-		'label'
+		'label',
+		'inputValidation'
 	],
 	#category : #'Pyramid-specs-custom'
 }
@@ -45,6 +46,18 @@ PyramidMagicButtonModel >> icon [
 PyramidMagicButtonModel >> icon: anObject [
 
 	icon := anObject
+]
+
+{ #category : #'as yet unclassified' }
+PyramidMagicButtonModel >> inputValidation [
+
+	^ inputValidation
+]
+
+{ #category : #'as yet unclassified' }
+PyramidMagicButtonModel >> inputValidation: aFullBlockClosure [ 
+	
+	inputValidation := aFullBlockClosure
 ]
 
 { #category : #accessing }

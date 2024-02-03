@@ -3,7 +3,7 @@ Class {
 	#superclass : #Object,
 	#traits : 'TPyramidPlugin',
 	#classTraits : 'TPyramidPlugin classTrait',
-	#category : #'Pyramid-Bloc-plugin-bloc'
+	#category : #'Pyramid-Bloc-plugin-bloc-background'
 }
 
 { #category : #accessing }
@@ -23,13 +23,16 @@ PyramidBlocBackgroundPlugin class >> backgroundType [
 				 helpNotSelected: 'Set the value to Transparent.';
 				 label: 'Transparent';
 				 inputValue: BlTransparentBackground new;
+				 inputValidation: [ :value |
+					 value class = BlTransparentBackground ];
 				 yourself);
 		addButtonModel: (PyramidMagicButtonModel new
 				 icon: (self iconNamed: #paint);
 				 helpSelected: 'The value is paint.';
 				 helpNotSelected: 'Set the value to paint.';
 				 label: 'Paint';
-				 inputValue: (BlPaintBackground paint: Color random asBlPaint);
+				 inputValue: [(BlPaintBackground paint: Color random asBlPaint)];
+				 inputValidation: [ :value | value class == BlPaintBackground ];
 				 yourself);
 		addButtonModel: (PyramidMagicButtonModel new
 				 icon: (self iconNamed: #jigsawIcon);
@@ -38,6 +41,7 @@ PyramidBlocBackgroundPlugin class >> backgroundType [
 				 label: 'Image';
 				 inputValue:
 					 (BlImageBackground image: (self iconNamed: #pharoBig));
+				 inputValidation: [ :value | value class == BlImageBackground ];
 				 yourself).
 	^ property
 ]
