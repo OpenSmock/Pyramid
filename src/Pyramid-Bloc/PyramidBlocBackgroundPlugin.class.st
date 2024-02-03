@@ -3,8 +3,67 @@ Class {
 	#superclass : #Object,
 	#traits : 'TPyramidPlugin',
 	#classTraits : 'TPyramidPlugin classTrait',
+	#instVars : [
+		'propertiesManager'
+	],
 	#category : #'Pyramid-Bloc-plugin-bloc-background'
 }
+
+{ #category : #accessing }
+PyramidBlocBackgroundPlugin class >> backgroundPaintType [
+
+	| property |
+	property := PyramidProperty new
+		            name: 'Background Paint Type';
+		            command: PyramidPaintBackgroundCommand new;
+		            pyramidInputPresenterClass:
+			            PyramidMagicButtonsInputPresenter;
+		            yourself.
+	property pyramidInputPresenterStrings
+		addButtonModel: (PyramidMagicButtonModel new
+				 icon: (self iconNamed: #windowMaximize);
+				 helpSelected: 'The value is Solid.';
+				 helpNotSelected: 'Set the value to Solid.';
+				 label: 'Solid';
+				 inputValue: [
+					 BlColorPaint new
+						 color: Color random;
+						 yourself ];
+				 inputValidation: [ :value | value isKindOf: BlColorPaint ];
+				 yourself);
+		addButtonModel: (PyramidMagicButtonModel new
+				 icon: (self iconNamed: #upAndDownArrow);
+				 helpSelected: 'The value is Linear Gradient.';
+				 helpNotSelected: 'Set the value to Linear Gradient.';
+				 label: 'Linear';
+				 inputValue: [
+					 BlLinearGradientPaint vertical
+						 stops: {
+								 (0.0 -> Color random).
+								 (1.0 -> Color random) };
+						 yourself ];
+				 inputValidation: [ :value | value isKindOf: BlLinearGradientPaint ];
+				 yourself);
+		addButtonModel: (PyramidMagicButtonModel new
+				 icon: (self iconNamed: #radioButtonUnselected);
+				 helpSelected: 'The value is Linear Gradient.';
+				 helpNotSelected: 'Set the value to Linear Gradient.';
+				 label: 'Linear';
+				 inputValue: [
+					 BlRadialGradientPaint new
+						 stops: {
+								 (0.0 -> Color random).
+								 (1.0 -> Color random) };
+						 innerCenter: 50 @ 50;
+						 innerRadius: 0;
+						 outerCenter: 50 @ 50;
+						 outerRadius: 50;
+						 yourself ];
+				 inputValidation: [ :value | value isKindOf: BlRadialGradientPaint ];
+				 yourself);
+		yourself.
+	^ property
+]
 
 { #category : #accessing }
 PyramidBlocBackgroundPlugin class >> backgroundType [
@@ -46,10 +105,35 @@ PyramidBlocBackgroundPlugin class >> backgroundType [
 	^ property
 ]
 
+{ #category : #adding }
+PyramidBlocBackgroundPlugin >> addPanelsOn: aPyramidSimpleWindow [
+
+	aPyramidSimpleWindow at: #tabRight addItem: [ :builder |
+		builder
+			makeTab: self propertiesManager presenter
+			label: 'Visuals'
+			icon: (self iconNamed: #box)
+			order: 2 ]
+]
+
 { #category : #connecting }
 PyramidBlocBackgroundPlugin >> connectOn: aPyramidEditor [
 
-	"Background type"
-	aPyramidEditor propertiesManager addProperty: self class backgroundType.
-	
+	propertiesManager projectModel: aPyramidEditor projectModel
+]
+
+{ #category : #initialization }
+PyramidBlocBackgroundPlugin >> initialize [
+
+	propertiesManager := PyramidPropertiesManagerForSelection new.
+	propertiesManager addProperty:
+		self class backgroundType.
+	propertiesManager addProperty:
+		self class backgroundPaintType
+]
+
+{ #category : #adding }
+PyramidBlocBackgroundPlugin >> propertiesManager [
+
+	^ propertiesManager
 ]

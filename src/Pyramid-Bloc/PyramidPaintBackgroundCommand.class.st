@@ -7,7 +7,8 @@ Class {
 { #category : #testing }
 PyramidPaintBackgroundCommand >> canBeUsedFor: anObject [
 
-	^ (super canBeUsedFor: anObject) and: [ anObject background isKindOf: BlPaintBackground new ].
+	^ (super canBeUsedFor: anObject) and: [
+		  anObject background isKindOf: BlPaintBackground ]
 ]
 
 { #category : #'as yet unclassified' }
@@ -19,5 +20,5 @@ PyramidPaintBackgroundCommand >> getValueFor: aBlElement [
 { #category : #'as yet unclassified' }
 PyramidPaintBackgroundCommand >> setValueFor: aBlElement with: anArgument [
 
-	aBlElement background paint: anArgument
+	aBlElement background: (BlBackground paint: anArgument)
 ]
