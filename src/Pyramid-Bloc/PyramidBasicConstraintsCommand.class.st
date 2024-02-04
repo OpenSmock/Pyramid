@@ -4,18 +4,17 @@ Class {
 	#category : #'Pyramid-Bloc-plugin-bloc-layout'
 }
 
+{ #category : #'as yet unclassified' }
+PyramidBasicConstraintsCommand >> authorizedLayouts [
+
+
+	^ { BlBasicLayout . BlFlowLayout . BlLinearLayout . BlFrameLayout }
+]
+
 { #category : #testing }
 PyramidBasicConstraintsCommand >> canBeUsedFor: anObject [
 
 	^ (super canBeUsedFor: anObject) and: [
 		  anObject hasParent and: [
-			  self targetsLayoutClass includes: anObject parent layout class ] ]
-]
-
-{ #category : #'as yet unclassified' }
-PyramidBasicConstraintsCommand >> targetsLayoutClass [
-
-	^ {
-		  BlBasicLayout.
-		  BlFlowLayout }
+			  self authorizedLayouts includes: anObject parent layout class ] ]
 ]

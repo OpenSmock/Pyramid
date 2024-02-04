@@ -45,6 +45,32 @@ PyramidBlocPlugin class >> clipChildren [
 ]
 
 { #category : #accessing }
+PyramidBlocPlugin class >> constraintsFrameH [
+
+	| property |
+	property := PyramidProperty new
+		            name: 'Constraints - Frame - horizontal';
+		            command: PyramidFrameHorizontalConstraintsCommand new;
+		            pyramidInputPresenterClass:
+			            PyramidHorizontalFrameConstraintsInputPresenter;
+		            yourself.
+	^ property
+]
+
+{ #category : #accessing }
+PyramidBlocPlugin class >> constraintsFrameV [
+
+	| property |
+	property := PyramidProperty new
+		            name: 'Constraints - Frame - vertical';
+		            command: PyramidFrameVerticalConstraintsCommand new;
+		            pyramidInputPresenterClass:
+			            PyramidVerticalFrameConstraintsInputPresenter;
+		            yourself.
+	^ property
+]
+
+{ #category : #accessing }
 PyramidBlocPlugin class >> cornerRadii [
 
 	| property |
@@ -85,6 +111,24 @@ PyramidBlocPlugin class >> geometry [
 		            pyramidInputPresenterClass:
 			            PyramidGeometryInputPresenter;
 		            yourself.
+	^ property
+]
+
+{ #category : #accessing }
+PyramidBlocPlugin class >> linearLayoutOrientation [
+
+	| property |
+	property := PyramidProperty new
+		            name: 'Orientation';
+		            command: PyramidLayoutChangeOrientationForLinearCommand new;
+		            pyramidInputPresenterClass:
+			            PyramidLinearLayoutOrientationPresenter;
+		            yourself.
+	property pyramidInputPresenterStrings help:
+		'Change the orientation of the flow layout.'.
+	property pyramidInputPresenterStrings onLabel: 'Vertical'.
+	property pyramidInputPresenterStrings offLabel: 'Horizontal'.
+	property pyramidInputPresenterStrings uncertainLabel: 'Uncertain'.
 	^ property
 ]
 

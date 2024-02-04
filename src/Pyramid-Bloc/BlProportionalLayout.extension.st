@@ -1,7 +1,7 @@
 Extension { #name : #BlProportionalLayout }
 
 { #category : #'*Pyramid-Bloc' }
-BlProportionalLayout >> setLayoutOn: aPyramidLayoutInputPresenter [
+BlProportionalLayout >> asIcon [
 
-	aPyramidLayoutInputPresenter setProportionnal
+	^ self iconNamed: #haloScale
 ]

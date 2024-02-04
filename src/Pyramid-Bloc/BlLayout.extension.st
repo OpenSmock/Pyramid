@@ -8,7 +8,7 @@ BlLayout >> = anObject [
 ]
 
 { #category : #'*Pyramid-Bloc' }
-BlLayout >> setLayoutOn: aPyramidLayoutInputPresenter [
+BlLayout >> asIcon [
 
-	aPyramidLayoutInputPresenter setUnknowValue
+	^ self iconNamed: #smallQuestion
 ]
