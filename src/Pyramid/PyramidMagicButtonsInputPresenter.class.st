@@ -158,7 +158,6 @@ PyramidMagicButtonsInputPresenter >> setUnknowValue [
 	self selectedIndex: 0.
 	buttonsList := { self buttonUnknow }
 	               , self buttonsNotSelected asArray.
-	buttonsList at: 1 put: (self buttonsSelected at: 1).
 	self layout: (self layoutFor: buttonsList withSelectedIndex: 1)
 ]
 

@@ -1,5 +1,5 @@
 Class {
-	#name : #PyramidBlocBackgroundPlugin,
+	#name : #PyramidBackgroundBlocPlugin,
 	#superclass : #Object,
 	#traits : 'TPyramidPlugin',
 	#classTraits : 'TPyramidPlugin classTrait',
@@ -10,12 +10,25 @@ Class {
 }
 
 { #category : #accessing }
-PyramidBlocBackgroundPlugin class >> backgroundPaintType [
+PyramidBackgroundBlocPlugin class >> backgroundPaintColor [
+
+	| property |
+	property := PyramidProperty new
+		            name: 'Background Paint Color';
+		            command: PyramidBackgroundPaintColorCommand new;
+		            pyramidInputPresenterClass:
+			            PyramidColorInputSingleLineWithPickupButtonPresenter;
+		            yourself.
+	^ property
+]
+
+{ #category : #accessing }
+PyramidBackgroundBlocPlugin class >> backgroundPaintType [
 
 	| property |
 	property := PyramidProperty new
 		            name: 'Background Paint Type';
-		            command: PyramidPaintBackgroundCommand new;
+		            command: PyramidBackgroundPaintCommand new;
 		            pyramidInputPresenterClass:
 			            PyramidMagicButtonsInputPresenter;
 		            yourself.
@@ -29,7 +42,7 @@ PyramidBlocBackgroundPlugin class >> backgroundPaintType [
 					 BlColorPaint new
 						 color: Color random;
 						 yourself ];
-				 inputValidation: [ :value | value isKindOf: BlColorPaint ];
+				 inputValidation: [ :value | value = BlColorPaint ];
 				 yourself);
 		addButtonModel: (PyramidMagicButtonModel new
 				 icon: (self iconNamed: #upAndDownArrow);
@@ -42,7 +55,8 @@ PyramidBlocBackgroundPlugin class >> backgroundPaintType [
 								 (0.0 -> Color random).
 								 (1.0 -> Color random) };
 						 yourself ];
-				 inputValidation: [ :value | value isKindOf: BlLinearGradientPaint ];
+				 inputValidation: [ :value |
+				 value = BlLinearGradientPaint ];
 				 yourself);
 		addButtonModel: (PyramidMagicButtonModel new
 				 icon: (self iconNamed: #radioButtonUnselected);
@@ -59,19 +73,20 @@ PyramidBlocBackgroundPlugin class >> backgroundPaintType [
 						 outerCenter: 50 @ 50;
 						 outerRadius: 50;
 						 yourself ];
-				 inputValidation: [ :value | value isKindOf: BlRadialGradientPaint ];
+				 inputValidation: [ :value |
+				 value = BlRadialGradientPaint ];
 				 yourself);
 		yourself.
 	^ property
 ]
 
 { #category : #accessing }
-PyramidBlocBackgroundPlugin class >> backgroundType [
+PyramidBackgroundBlocPlugin class >> backgroundType [
 
 	| property |
 	property := PyramidProperty new
 		            name: 'Background Type';
-		            command: PyramidBackgroundCommand new;
+		            command: PyramidBackgroundTypeCommand new;
 		            pyramidInputPresenterClass:
 			            PyramidMagicButtonsInputPresenter;
 		            yourself.
@@ -83,15 +98,15 @@ PyramidBlocBackgroundPlugin class >> backgroundType [
 				 label: 'Transparent';
 				 inputValue: BlTransparentBackground new;
 				 inputValidation: [ :value |
-					 value class = BlTransparentBackground ];
+					 value = BlTransparentBackground ];
 				 yourself);
 		addButtonModel: (PyramidMagicButtonModel new
 				 icon: (self iconNamed: #paint);
 				 helpSelected: 'The value is paint.';
 				 helpNotSelected: 'Set the value to paint.';
 				 label: 'Paint';
-				 inputValue: [(BlPaintBackground paint: Color random asBlPaint)];
-				 inputValidation: [ :value | value class == BlPaintBackground ];
+				 inputValue: [ BlPaintBackground paint: Color random asBlPaint ];
+				 inputValidation: [ :value | value = BlPaintBackground ];
 				 yourself);
 		addButtonModel: (PyramidMagicButtonModel new
 				 icon: (self iconNamed: #jigsawIcon);
@@ -100,13 +115,13 @@ PyramidBlocBackgroundPlugin class >> backgroundType [
 				 label: 'Image';
 				 inputValue:
 					 (BlImageBackground image: (self iconNamed: #pharoBig));
-				 inputValidation: [ :value | value class == BlImageBackground ];
+				 inputValidation: [ :value | value = BlImageBackground ];
 				 yourself).
 	^ property
 ]
 
 { #category : #adding }
-PyramidBlocBackgroundPlugin >> addPanelsOn: aPyramidSimpleWindow [
+PyramidBackgroundBlocPlugin >> addPanelsOn: aPyramidSimpleWindow [
 
 	aPyramidSimpleWindow at: #tabRight addItem: [ :builder |
 		builder
@@ -117,24 +132,25 @@ PyramidBlocBackgroundPlugin >> addPanelsOn: aPyramidSimpleWindow [
 ]
 
 { #category : #connecting }
-PyramidBlocBackgroundPlugin >> connectOn: aPyramidEditor [
+PyramidBackgroundBlocPlugin >> connectOn: aPyramidEditor [
 
 	propertiesManager projectModel: aPyramidEditor projectModel.
 	propertiesManager commandExecutor: aPyramidEditor propertiesManager commandExecutor
 ]
 
 { #category : #initialization }
-PyramidBlocBackgroundPlugin >> initialize [
+PyramidBackgroundBlocPlugin >> initialize [
 
 	propertiesManager := PyramidPropertiesManagerForSelection new.
-	propertiesManager addProperty:
-		self class backgroundType.
-	propertiesManager addProperty:
-		self class backgroundPaintType
+	propertiesManager addProperty: self class backgroundType.
+	
+	"Paint"
+	propertiesManager addProperty: self class backgroundPaintType.
+	propertiesManager addProperty: self class backgroundPaintColor
 ]
 
 { #category : #adding }
-PyramidBlocBackgroundPlugin >> propertiesManager [
+PyramidBackgroundBlocPlugin >> propertiesManager [
 
 	^ propertiesManager
 ]

@@ -7,6 +7,16 @@ Class {
 { #category : #tests }
 PyramidCommandTest >> testClusterOf [
 
+	self testClusterOf0Element.
+	self testClusterOf1Element.
+	self testClusterOfNElementsWithSameValue.
+	self testClusterOfNElementsWithDifferentsValues.
+	self testClusterOfNElementsWithGroupedValue
+]
+
+{ #category : #tests }
+PyramidCommandTest >> testClusterOf0Element [
+
 	| mocks cluster |
 	"0 element"
 	mocks := {  }.
@@ -15,11 +25,16 @@ PyramidCommandTest >> testClusterOf [
 	self assert: cluster isEmpty.
 	self deny: cluster isTargetsSameArguments.
 	self assert: cluster allTargets isEmpty.
-	self assert: cluster arguments isEmpty.
+	self assert: cluster groups isEmpty.
 	self assert: cluster groupedAssociations isEmpty.
 	self assert: cluster individualAssociations isEmpty.
 
-	"1 element"
+]
+
+{ #category : #tests }
+PyramidCommandTest >> testClusterOf1Element [
+
+	| mocks cluster |
 	mocks := { (PyramidMockObjectForTest new
 		          count: 2;
 		          yourself) }.
@@ -28,46 +43,23 @@ PyramidCommandTest >> testClusterOf [
 	self assert: cluster isTargetsSameArguments.
 	self assert: cluster allTargets size equals: 1.
 	self assert: (cluster allTargets includes: mocks first).
-	self assert: cluster arguments size equals: 1.
-	self assert: cluster arguments first equals: 2.
+	self assert: cluster groups size equals: 1.
+	self assert: cluster groups first equals: 2.
 	self assert: cluster groupedAssociations size equals: 1.
 	self assert: cluster groupedAssociations keys first equals: 2.
-	self assert: (cluster groupedAssociations values first includes:  mocks first).
+	self assert:
+		(cluster groupedAssociations values first includes: mocks first).
 	self assert: cluster individualAssociations size equals: 1.
 	self assert: cluster individualAssociations first key equals: 2.
-	self assert: (cluster individualAssociations first value includes:  mocks first).
+	self assert:
+		(cluster individualAssociations first value includes: mocks first).
+]
 
+{ #category : #tests }
+PyramidCommandTest >> testClusterOfNElementsWithDifferentsValues [
 
-	"n element same value"
-	mocks := {
-		         (PyramidMockObjectForTest new
-			          count: 2;
-			          yourself).
-		         (PyramidMockObjectForTest new
-			          count: 2;
-			          yourself).
-		         (PyramidMockObjectForTest new
-			          count: 2;
-			          yourself) }.
-	cluster := PyramidSimpleMockCommand new clusterOf: mocks.
-	self deny: cluster isEmpty.
-	self assert: cluster isTargetsSameArguments.
-	self assert: cluster allTargets size equals: 3.
-	self assert: (cluster allTargets includes: mocks first).
-	self assert: (cluster allTargets includes: mocks second).
-	self assert: (cluster allTargets includes: mocks third).
-	self assert: cluster arguments size equals: 1.
-	self assert: cluster arguments first equals: 2.
-	self assert: cluster groupedAssociations size equals: 1.
-	self assert: cluster groupedAssociations keys first equals: 2.
-	self assert: (cluster groupedAssociations values first includes: mocks first).
-	self assert: (cluster groupedAssociations values first includes: mocks second).
-	self assert: (cluster groupedAssociations values first includes: mocks third).
-	self assert: cluster individualAssociations size equals: 3.
-	self assert: cluster individualAssociations first key equals: 2.
-	self assert: cluster individualAssociations second key equals: 2.
-	self assert: cluster individualAssociations third key equals: 2.
-	cluster individualAssociations do: [ :each | self assert: (mocks anySatisfy: [:mock | each value first = mock and: [each key = mock count]])].
+	| mocks cluster |
+
 
 	"n element different values"
 	mocks := {
@@ -87,13 +79,94 @@ PyramidCommandTest >> testClusterOf [
 	self assert: (cluster allTargets includes: mocks first).
 	self assert: (cluster allTargets includes: mocks second).
 	self assert: (cluster allTargets includes: mocks third).
-	self assert: cluster arguments size equals: 2.
-	self assert: (cluster arguments includes: 2).
-	self assert: (cluster arguments includes: 3).
+	self assert: cluster groups size equals: 2.
+	self assert: (cluster groups includes: 2).
+	self assert: (cluster groups includes: 3).
 	self assert: cluster groupedAssociations size equals: 2.
-	cluster groupedAssociations associationsDo: [ :each | self assert: (mocks anySatisfy: [:mock | each value first = mock and: [each key = mock count]])].
+	cluster groupedAssociations associationsDo: [ :each |
+		self assert: (mocks anySatisfy: [ :mock |
+				 each value first = mock and: [ each key = mock count ] ]) ].
 	self assert: cluster individualAssociations size equals: 3.
-	cluster individualAssociations do: [ :each | self assert: (mocks anySatisfy: [:mock | each value first = mock and: [each key = mock count]])].
+	cluster individualAssociations do: [ :each |
+		self assert: (mocks anySatisfy: [ :mock |
+				 each value first = mock and: [ each key = mock count ] ]) ]
+]
+
+{ #category : #tests }
+PyramidCommandTest >> testClusterOfNElementsWithGroupedValue [
+
+	| mocks cluster association |
+	"n element different values"
+	mocks := {
+		         (PyramidMockObjectForTest new
+			          count: 2;
+			          yourself).
+		         (PyramidMockObjectForTest new
+			          count: 3;
+			          yourself).
+		         (PyramidMockObjectForTest new
+			          count: 2;
+			          yourself) }.
+	cluster := PyramidSimpleMockGroupedCommand new clusterOf: mocks.
+	self deny: cluster isEmpty.
+	self assert: cluster isTargetsSameArguments.
+	self assert: cluster allTargets size equals: 3.
+	self assert: (cluster allTargets includes: mocks first).
+	self assert: (cluster allTargets includes: mocks second).
+	self assert: (cluster allTargets includes: mocks third).
+	self assert: cluster groups size equals: 1.
+	self assert: (cluster groups includes: #group).
+	self assert: cluster groupedAssociations size equals: 1.
+	association := cluster groupedAssociations associations first.
+	
+	self assert: (mocks anySatisfy: [ :mock |
+			 association value first = mock and: [ association key = #group ] ]).
+	self assert: cluster individualAssociations size equals: 3.
+	cluster individualAssociations do: [ :each |
+		self assert: (mocks anySatisfy: [ :mock |
+				 each value first = mock and: [ each key = #group ] ]) ]
+]
+
+{ #category : #tests }
+PyramidCommandTest >> testClusterOfNElementsWithSameValue [
+
+
+	"n element same value"
+	| mocks cluster |
+	mocks := {
+		         (PyramidMockObjectForTest new
+			          count: 2;
+			          yourself).
+		         (PyramidMockObjectForTest new
+			          count: 2;
+			          yourself).
+		         (PyramidMockObjectForTest new
+			          count: 2;
+			          yourself) }.
+	cluster := PyramidSimpleMockCommand new clusterOf: mocks.
+	self deny: cluster isEmpty.
+	self assert: cluster isTargetsSameArguments.
+	self assert: cluster allTargets size equals: 3.
+	self assert: (cluster allTargets includes: mocks first).
+	self assert: (cluster allTargets includes: mocks second).
+	self assert: (cluster allTargets includes: mocks third).
+	self assert: cluster groups size equals: 1.
+	self assert: cluster groups first equals: 2.
+	self assert: cluster groupedAssociations size equals: 1.
+	self assert: cluster groupedAssociations keys first equals: 2.
+	self assert:
+		(cluster groupedAssociations values first includes: mocks first).
+	self assert:
+		(cluster groupedAssociations values first includes: mocks second).
+	self assert:
+		(cluster groupedAssociations values first includes: mocks third).
+	self assert: cluster individualAssociations size equals: 3.
+	self assert: cluster individualAssociations first key equals: 2.
+	self assert: cluster individualAssociations second key equals: 2.
+	self assert: cluster individualAssociations third key equals: 2.
+	cluster individualAssociations do: [ :each |
+		self assert: (mocks anySatisfy: [ :mock |
+				 each value first = mock and: [ each key = mock count ] ]) ].
 
 ]
 
