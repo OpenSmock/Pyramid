@@ -68,6 +68,32 @@ PyramidBlocLayoutPlugin class >> constraintsBasicVExact [
 ]
 
 { #category : #accessing }
+PyramidBlocLayoutPlugin class >> constraintsFrameH [
+
+	| property |
+	property := PyramidProperty new
+		            name: 'Constraints - Frame - horizontal';
+		            command: PyramidFrameHorizontalConstraintsCommand new;
+		            pyramidInputPresenterClass:
+			            PyramidHorizontalFrameConstraintsInputPresenter;
+		            yourself.
+	^ property
+]
+
+{ #category : #accessing }
+PyramidBlocLayoutPlugin class >> constraintsFrameV [
+
+	| property |
+	property := PyramidProperty new
+		            name: 'Constraints - Frame - vertical';
+		            command: PyramidFrameVerticalConstraintsCommand new;
+		            pyramidInputPresenterClass:
+			            PyramidVerticalFrameConstraintsInputPresenter;
+		            yourself.
+	^ property
+]
+
+{ #category : #accessing }
 PyramidBlocLayoutPlugin class >> constraintsPropH [
 
 	| property |
@@ -106,8 +132,9 @@ PyramidBlocLayoutPlugin class >> flowLayoutOrientation [
 
 	| property |
 	property := PyramidProperty new
-		            name: 'Orientation';
-		            command: PyramidFlowLayoutChangeOrientationCommand new;
+		            name: 'Flow - Orientation';
+		            command:
+			            PyramidLayoutChangeOrientationForFlowCommand new;
 		            pyramidInputPresenterClass:
 			            PyramidFlowLayoutOrientationPresenter;
 		            yourself.
@@ -130,6 +157,25 @@ PyramidBlocLayoutPlugin class >> layout [
 		            pyramidInputPresenterClass:
 			            PyramidLayoutInputPresenter;
 		            yourself.
+	^ property
+]
+
+{ #category : #accessing }
+PyramidBlocLayoutPlugin class >> linearLayoutOrientation [
+
+	| property |
+	property := PyramidProperty new
+		            name: 'Linear - Orientation';
+		            command:
+			            PyramidLayoutChangeOrientationForLinearCommand new;
+		            pyramidInputPresenterClass:
+			            PyramidLinearLayoutOrientationPresenter;
+		            yourself.
+	property pyramidInputPresenterStrings help:
+		'Change the orientation of the linear layout.'.
+	property pyramidInputPresenterStrings onLabel: 'Vertical'.
+	property pyramidInputPresenterStrings offLabel: 'Horizontal'.
+	property pyramidInputPresenterStrings uncertainLabel: 'Uncertain'.
 	^ property
 ]
 
@@ -207,13 +253,17 @@ PyramidBlocLayoutPlugin >> initialize [
 	"Position | Margin | Padding"
 	propertiesManager addProperty: self class position.
 	propertiesManager addProperty: self class padding.
-	propertiesManager addProperty: self class margin.	
+	propertiesManager addProperty: self class margin.
 
 	propertiesManager addProperty: self class layout.
 	propertiesManager addProperty:
 		self class flowLayoutOrientation.
+	propertiesManager addProperty:
+		self class linearLayoutOrientation.
 
 	"Constraints - horizontal"
+	propertiesManager addProperty:
+		self class constraintsFrameH.
 	propertiesManager addProperty:
 		self class constraintsPropH.
 	propertiesManager addProperty:
@@ -223,13 +273,13 @@ PyramidBlocLayoutPlugin >> initialize [
 
 	"Constraints - vertical"
 	propertiesManager addProperty:
+		self class constraintsFrameV.
+	propertiesManager addProperty:
 		self class constraintsPropV.
 	propertiesManager addProperty:
 		self class constraintsBasicV.
 	propertiesManager addProperty:
 		self class constraintsBasicVExact.
-		
-
 ]
 
 { #category : #adding }

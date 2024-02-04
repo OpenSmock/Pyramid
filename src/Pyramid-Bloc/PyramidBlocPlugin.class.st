@@ -11,23 +11,6 @@ Class {
 }
 
 { #category : #accessing }
-PyramidBlocPlugin class >> background [
-
-	| property |
-	property := PyramidProperty new
-		            name: 'Background';
-		            command: PyramidBackgroundCommand new;
-		            pyramidInputPresenterClass:
-			            PyramidBackgroundInputWithModalPresenter;
-		            yourself.
-	property pyramidInputPresenterStrings help:
-		'Change the background of the element with a color, a gradient, an image.'.
-	property pyramidInputPresenterStrings windowTitle:
-		'Change background'.
-	^ property
-]
-
-{ #category : #accessing }
 PyramidBlocPlugin class >> clipChildren [
 
 	| property |
@@ -41,32 +24,6 @@ PyramidBlocPlugin class >> clipChildren [
 	property pyramidInputPresenterStrings onLabel: 'True'.
 	property pyramidInputPresenterStrings offLabel: 'False'.
 	property pyramidInputPresenterStrings uncertainLabel: 'Uncertain'.
-	^ property
-]
-
-{ #category : #accessing }
-PyramidBlocPlugin class >> constraintsFrameH [
-
-	| property |
-	property := PyramidProperty new
-		            name: 'Constraints - Frame - horizontal';
-		            command: PyramidFrameHorizontalConstraintsCommand new;
-		            pyramidInputPresenterClass:
-			            PyramidHorizontalFrameConstraintsInputPresenter;
-		            yourself.
-	^ property
-]
-
-{ #category : #accessing }
-PyramidBlocPlugin class >> constraintsFrameV [
-
-	| property |
-	property := PyramidProperty new
-		            name: 'Constraints - Frame - vertical';
-		            command: PyramidFrameVerticalConstraintsCommand new;
-		            pyramidInputPresenterClass:
-			            PyramidVerticalFrameConstraintsInputPresenter;
-		            yourself.
 	^ property
 ]
 
@@ -111,24 +68,6 @@ PyramidBlocPlugin class >> geometry [
 		            pyramidInputPresenterClass:
 			            PyramidGeometryInputPresenter;
 		            yourself.
-	^ property
-]
-
-{ #category : #accessing }
-PyramidBlocPlugin class >> linearLayoutOrientation [
-
-	| property |
-	property := PyramidProperty new
-		            name: 'Orientation';
-		            command: PyramidLayoutChangeOrientationForLinearCommand new;
-		            pyramidInputPresenterClass:
-			            PyramidLinearLayoutOrientationPresenter;
-		            yourself.
-	property pyramidInputPresenterStrings help:
-		'Change the orientation of the flow layout.'.
-	property pyramidInputPresenterStrings onLabel: 'Vertical'.
-	property pyramidInputPresenterStrings offLabel: 'Horizontal'.
-	property pyramidInputPresenterStrings uncertainLabel: 'Uncertain'.
 	^ property
 ]
 
