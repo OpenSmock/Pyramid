@@ -10,6 +10,56 @@ Class {
 }
 
 { #category : #accessing }
+PyramidBackgroundBlocPlugin class >> backgroundLinearEnd [
+
+	| property |
+	property := PyramidProperty new
+		            name: 'Background Linear End';
+		            command: PyramidBackgroundPaintLinearEndCommand new;
+		            pyramidInputPresenterClass: PyramidPointInputPresenter;
+		            yourself.
+	property pyramidInputPresenterStrings
+		help: 'Define the end of the linear gradient.';
+		labelX: 'x';
+		labelY: 'y'.
+	^ property
+]
+
+{ #category : #accessing }
+PyramidBackgroundBlocPlugin class >> backgroundLinearGradientDirection [
+
+	| property |
+	property := PyramidProperty new
+		            name: 'Background Linear Direction';
+		            command: PyramidBackgroundPaintLinearDirectionCommand new;
+		            pyramidInputPresenterClass:
+			            PyramidPointInputPresenter;
+		            yourself.
+	property pyramidInputPresenterStrings
+		help: 'Define the direction of the linear gradient.';
+		labelX: 'Start';
+		labelY: 'End'.
+	^ property
+]
+
+{ #category : #accessing }
+PyramidBackgroundBlocPlugin class >> backgroundLinearStart [
+
+	| property |
+	property := PyramidProperty new
+		            name: 'Background Linear Start';
+		            command:
+			            PyramidBackgroundPaintLinearStartCommand new;
+		            pyramidInputPresenterClass: PyramidPointInputPresenter;
+		            yourself.
+	property pyramidInputPresenterStrings
+		help: 'Define the start of the linear gradient.';
+		labelX: 'x';
+		labelY: 'y'.
+	^ property
+]
+
+{ #category : #accessing }
 PyramidBackgroundBlocPlugin class >> backgroundPaintColor [
 
 	| property |
@@ -92,6 +142,69 @@ PyramidBackgroundBlocPlugin class >> backgroundPaintType [
 ]
 
 { #category : #accessing }
+PyramidBackgroundBlocPlugin class >> backgroundRadialInnerCenter [
+
+	| property |
+	property := PyramidProperty new
+		            name: 'Background Radial Center In';
+		            command: PyramidBackgroundPaintRadialInnerCenterCommand new;
+		            pyramidInputPresenterClass: PyramidPointInputPresenter;
+		            yourself.
+	property pyramidInputPresenterStrings
+		help: 'Define the center of the inner radial gradient.';
+		labelX: 'x';
+		labelY: 'y'.
+	^ property
+]
+
+{ #category : #accessing }
+PyramidBackgroundBlocPlugin class >> backgroundRadialInnerRadius [
+
+	| property |
+	property := PyramidProperty new
+		            name: 'Background Radial Radius In';
+		            command:
+			            PyramidBackgroundPaintRadialInnerRadiusCommand new;
+		            pyramidInputPresenterClass: PyramidNumberInputPresenter;
+		            yourself.
+	property pyramidInputPresenterStrings
+		help: 'Define the center of the inner radius gradient.'.
+	^ property
+]
+
+{ #category : #accessing }
+PyramidBackgroundBlocPlugin class >> backgroundRadialOuterCenter [
+
+	| property |
+	property := PyramidProperty new
+		            name: 'Background Radial Center Out';
+		            command:
+			            PyramidBackgroundPaintRadialOuterCenterCommand new;
+		            pyramidInputPresenterClass: PyramidPointInputPresenter;
+		            yourself.
+	property pyramidInputPresenterStrings
+		help: 'Define the center of the outer radial gradient.';
+		labelX: 'x';
+		labelY: 'y'.
+	^ property
+]
+
+{ #category : #accessing }
+PyramidBackgroundBlocPlugin class >> backgroundRadialOuterRadius [
+
+	| property |
+	property := PyramidProperty new
+		            name: 'Background Radial Radius Out';
+		            command:
+			            PyramidBackgroundPaintRadialOuterRadiusCommand new;
+		            pyramidInputPresenterClass: PyramidNumberInputPresenter;
+		            yourself.
+	property pyramidInputPresenterStrings help:
+		'Define the center of the outer radius gradient.'.
+	^ property
+]
+
+{ #category : #accessing }
 PyramidBackgroundBlocPlugin class >> backgroundType [
 
 	| property |
@@ -158,7 +271,17 @@ PyramidBackgroundBlocPlugin >> initialize [
 	"Paint"
 	propertiesManager addProperty: self class backgroundPaintType.
 	propertiesManager addProperty: self class backgroundPaintColor.
-	propertiesManager addProperty: self class backgroundPaintStops
+	propertiesManager addProperty: self class backgroundPaintStops.
+
+	"Linear start | end"
+	propertiesManager addProperty: self class backgroundLinearStart.
+	propertiesManager addProperty: self class backgroundLinearEnd.
+
+	"Radial"
+	propertiesManager addProperty: self class backgroundRadialInnerCenter.
+	propertiesManager addProperty: self class backgroundRadialInnerRadius.
+	propertiesManager addProperty: self class backgroundRadialOuterCenter.
+	propertiesManager addProperty: self class backgroundRadialOuterRadius.
 ]
 
 { #category : #adding }
