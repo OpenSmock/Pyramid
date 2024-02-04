@@ -33,12 +33,18 @@ PyramidBackgroundImageInputPresenter >> image: anObject [
 	image := anObject
 ]
 
+{ #category : #accessing }
+PyramidBackgroundImageInputPresenter >> initializePresenters [ 
+
+	buttonEdit := SpButtonPresenter new label: 'Edit image'; action: [self openModal ]; yourself
+]
+
 { #category : #'as yet unclassified' }
 PyramidBackgroundImageInputPresenter >> openModalWindow [
 
 	| dialog window imageSelectorPresenter |
-	
 	imageSelectorPresenter := PyramidBackgroundStopsModalPresenter new.
+	imageSelectorPresenter image: self image.
 	window := imageSelectorPresenter asModalWindow.
 	window title: 'Choose the image'.
 	dialog := window open.
