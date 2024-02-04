@@ -22,6 +22,13 @@ PyramidBackgroundImageInputPresenter >> defaultLayout [
 ]
 
 { #category : #accessing }
+PyramidBackgroundImageInputPresenter >> emptyValue [
+
+	self image: PyramidEmptyValue  new.
+	self buttonEdit label: 'Empty value'
+]
+
+{ #category : #accessing }
 PyramidBackgroundImageInputPresenter >> image [
 
 	^ image
@@ -34,22 +41,47 @@ PyramidBackgroundImageInputPresenter >> image: anObject [
 ]
 
 { #category : #accessing }
-PyramidBackgroundImageInputPresenter >> initializePresenters [ 
+PyramidBackgroundImageInputPresenter >> initializePresenters [
 
-	buttonEdit := SpButtonPresenter new label: 'Edit image'; action: [self openModal ]; yourself
+	image := PyramidEmptyValue new.
+	buttonEdit := SpButtonPresenter new
+		              label: 'Edit image';
+		              action: [ self openModalWindow ];
+		              yourself
+]
+
+{ #category : #accessing }
+PyramidBackgroundImageInputPresenter >> mixedValues [
+
+	self image: PyramidMixedValues new.
+	self buttonEdit label: 'Mixed values'
 ]
 
 { #category : #'as yet unclassified' }
 PyramidBackgroundImageInputPresenter >> openModalWindow [
 
 	| dialog window imageSelectorPresenter |
-	imageSelectorPresenter := PyramidBackgroundStopsModalPresenter new.
+	imageSelectorPresenter := PyramidBackgroundImageModalPresenter new.
 	imageSelectorPresenter image: self image.
-	window := imageSelectorPresenter asModalWindow.
+	window := imageSelectorPresenter asDialogWindow.
 	window title: 'Choose the image'.
+
 	dialog := window open.
-	dialog isOk ifTrue: [
-		self whenValueChangedDo value: imageSelectorPresenter image ]
+	dialog resize: 800 @ 600.
+	dialog okAction: [
+		self whenValueChangedDo value: imageSelectorPresenter currentObject ]
+]
+
+{ #category : #accessing }
+PyramidBackgroundImageInputPresenter >> value [
+
+	^ self image
+]
+
+{ #category : #accessing }
+PyramidBackgroundImageInputPresenter >> value: anObject [
+
+	self image: anObject
 ]
 
 { #category : #accessing }

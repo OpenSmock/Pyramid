@@ -119,6 +119,14 @@ PyramidBackgroundImageModalPresenter >> codeBitmap [
 	^ codeBitmap
 ]
 
+{ #category : #action }
+PyramidBackgroundImageModalPresenter >> currentObject [
+
+	^ (self isProxySelected
+		 ifTrue: [ self proxyObject ]
+		 ifFalse: [ self bitmapObject ])
+]
+
 { #category : #layout }
 PyramidBackgroundImageModalPresenter >> defaultLayout [ 
 
@@ -206,9 +214,7 @@ PyramidBackgroundImageModalPresenter >> inputSelectorProxy [
 { #category : #action }
 PyramidBackgroundImageModalPresenter >> inspectCurrent [
 
-	(self isProxySelected
-		ifTrue: [ self proxyObject ]
-		ifFalse: [ self bitmapObject ]) inspect
+	(self currentObject) inspect
 ]
 
 { #category : #layout }
@@ -239,7 +245,7 @@ PyramidBackgroundImageModalPresenter >> proxyLayout [
 				   yourself)
 		  expand: false;
 		  add: self inputArgumentsProxy;
-		  add: self buttonInpectLayout  expand: false;
+		  add: self buttonInpectLayout expand: false;
 		  yourself
 ]
 

@@ -10,6 +10,19 @@ Class {
 }
 
 { #category : #accessing }
+PyramidBackgroundBlocPlugin class >> backgroundImageSelector [
+
+	| property |
+	property := PyramidProperty new
+		            name: 'Background Image Selector';
+		            command: PyramidBackgroundImageCommand new;
+		            pyramidInputPresenterClass:
+			            PyramidBackgroundImageInputPresenter;
+		            yourself.
+	^ property
+]
+
+{ #category : #accessing }
 PyramidBackgroundBlocPlugin class >> backgroundLinearEnd [
 
 	| property |
@@ -267,6 +280,9 @@ PyramidBackgroundBlocPlugin >> initialize [
 
 	propertiesManager := PyramidPropertiesManagerForSelection new.
 	propertiesManager addProperty: self class backgroundType.
+	
+	"Image"
+	propertiesManager addProperty: self class  backgroundImageSelector.
 
 	"Paint"
 	propertiesManager addProperty: self class backgroundPaintType.
@@ -281,7 +297,7 @@ PyramidBackgroundBlocPlugin >> initialize [
 	propertiesManager addProperty: self class backgroundRadialInnerCenter.
 	propertiesManager addProperty: self class backgroundRadialInnerRadius.
 	propertiesManager addProperty: self class backgroundRadialOuterCenter.
-	propertiesManager addProperty: self class backgroundRadialOuterRadius.
+	propertiesManager addProperty: self class backgroundRadialOuterRadius
 ]
 
 { #category : #adding }
