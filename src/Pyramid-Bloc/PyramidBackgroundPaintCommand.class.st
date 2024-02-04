@@ -26,5 +26,5 @@ PyramidBackgroundPaintCommand >> getValueFor: aBlElement [
 { #category : #'as yet unclassified' }
 PyramidBackgroundPaintCommand >> setValueFor: aBlElement with: anArgument [
 
-	aBlElement background: (BlBackground paint: anArgument)
+	aBlElement background: (BlBackground paint: anArgument value)
 ]

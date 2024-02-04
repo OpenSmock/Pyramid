@@ -171,7 +171,7 @@ PyramidMagicButtonsInputPresenter >> validationArray [
 PyramidMagicButtonsInputPresenter >> value [
 
 	self selectedIndex = 0 ifTrue: [ ^ PyramidUnknowState new ].
-	^ (self valueArray at: self selectedIndex) value
+	^ (self valueArray at: self selectedIndex)
 ]
 
 { #category : #'as yet unclassified' }

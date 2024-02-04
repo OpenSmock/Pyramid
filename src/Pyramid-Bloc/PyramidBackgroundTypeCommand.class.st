@@ -18,6 +18,7 @@ PyramidBackgroundTypeCommand >> getValueFor: aBlElement [
 
 { #category : #'as yet unclassified' }
 PyramidBackgroundTypeCommand >> setValueFor: aBlElement with: anArgument [
+	"Must be a blockClosure to ensure no background are created."
 
-	aBlElement background: anArgument
+	aBlElement background: anArgument value
 ]

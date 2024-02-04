@@ -8,8 +8,8 @@ Class {
 PyramidBackgroundPaintColorCommand >> canBeUsedFor: anObject [
 
 	^ (super canBeUsedFor: anObject) and: [
-		  (anObject background isKindOf: BlPaintBackground) and:
-		  [anObject background paint class = BlColorPaint] ]
+		  (anObject background isKindOf: BlPaintBackground) and: [
+			  anObject background paint isKindOf: BlColorPaint ] ]
 ]
 
 { #category : #'as yet unclassified' }
