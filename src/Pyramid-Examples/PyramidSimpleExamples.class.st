@@ -5,6 +5,67 @@ Class {
 }
 
 { #category : #'pyramid-serialized-bloc' }
+PyramidSimpleExamples class >> imageProxy [
+	"This class has been generated using Pyramid.
+
+	By: YannLEGOFF
+	2024-02-04 21:39:53"
+
+	<pySTON>
+	^ '[
+	BlElement {
+		#children : BlChildrenArray [ ],
+		#constraints : BlLayoutCommonConstraints {
+			#vertical : BlLayoutCommonConstraintsAxis {
+				#resizer : BlLayoutExactResizer {
+					#size : 200.0
+				}
+			},
+			#horizontal : BlLayoutCommonConstraintsAxis {
+				#resizer : BlLayoutExactResizer {
+					#size : 200.0
+				}
+			},
+			#position : Point [ 0.0, 0.0 ],
+			#margin : BlInsets {
+				#top : 0.0,
+				#left : 0.0,
+				#bottom : 0.0,
+				#right : 0.0
+			},
+			#padding : @10,
+			#minHeight : 0.0,
+			#minWidth : 0.0,
+			#maxHeight : Float [ #infinity ],
+			#maxWidth : @11,
+			#ignoredByLayout : false,
+			#accountTransformation : false
+		},
+		#visuals : BlCustomVisuals {
+			#background : BlImageBackground {
+				#image : PyramidExternalRessourceProxy {
+					#source : PyramidExternalRessourceSource {
+						#selector : #''iconNamed:'',
+						#target : #Object,
+						#arguments : [
+							#pharoBig
+						]
+					}
+				}
+			}
+		},
+		#userData : IdentityDictionary {
+			#shouldHandleMousePickOutsideEvent : false,
+			#elementId : BlElementNamedId {
+				#identifier : #A
+			}
+		},
+		#layout : BlBasicLayout { }
+	}
+]'
+]
+
+{ #category : #'pyramid-serialized-bloc' }
 PyramidSimpleExamples class >> little_cat [
 	"This class has been generated using Pyramid.
 

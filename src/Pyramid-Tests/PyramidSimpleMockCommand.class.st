@@ -1,7 +1,7 @@
 Class {
 	#name : #PyramidSimpleMockCommand,
 	#superclass : #PyramidMockCommand,
-	#category : #'Pyramid-commands'
+	#category : #'Pyramid-Tests-cases-command'
 }
 
 { #category : #'as yet unclassified' }

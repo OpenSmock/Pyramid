@@ -1,7 +1,7 @@
 Class {
 	#name : #PyramidPositionOffsetCommand,
 	#superclass : #PyramidAbstractBlocCommand,
-	#category : #'Pyramid-Bloc-plugin-bloc'
+	#category : #'Pyramid-Bloc-plugin-bloc-layout'
 }
 
 { #category : #'as yet unclassified' }

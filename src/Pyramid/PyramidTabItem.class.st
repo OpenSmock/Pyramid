@@ -20,9 +20,9 @@ PyramidTabItem >> <= anObject [
 PyramidTabItem >> addOnNotebook: aNotebook [
 
 	aNotebook addPage: (SpNotebookPage
-		       title: self label
-		       icon: self icon
-		       provider: self presenter)
+			 title: self label
+			 icon: self icon
+			 provider:  self presenter )
 ]
 
 { #category : #accessing }

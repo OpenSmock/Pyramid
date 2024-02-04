@@ -7,7 +7,7 @@ Class {
 { #category : #'as yet unclassified' }
 PyramidDynamicLayoutStrategy class >> proportion [
 
-	^ 1 / 6
+	^ 1 / 4
 ]
 
 { #category : #'as yet unclassified' }

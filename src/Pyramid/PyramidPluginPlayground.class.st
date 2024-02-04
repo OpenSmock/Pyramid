@@ -18,7 +18,7 @@ PyramidPluginPlayground >> addPanelsOn: aPyramidSimpleWindow [
 			makeTab: self view
 			label: 'Playground'
 			icon: (self iconNamed: #open)
-			order: 1 ].
+			order: 100 ]
 ]
 
 { #category : #connecting }
