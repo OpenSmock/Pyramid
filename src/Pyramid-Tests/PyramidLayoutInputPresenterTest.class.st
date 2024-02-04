@@ -37,6 +37,18 @@ PyramidLayoutInputPresenterTest >> makeNewInput [
 	^ PyramidLayoutInputPresenter new
 ]
 
+{ #category : #tests }
+PyramidLayoutInputPresenterTest >> testValue [
+
+	| input hasTrigger |
+	hasTrigger := false.
+	input := self makeNewInputWithModel.
+	input whenValueChangedDo: [ :val | hasTrigger := true ].
+	self dummyValues do: [ :each |
+		self putValue: each onInput: input.
+		self assert: (self equalityTestFor: each class and: input value class) ]
+]
+
 { #category : #'as yet unclassified' }
 PyramidLayoutInputPresenterTest >> triggerValueChangedOf: anInput [
 
