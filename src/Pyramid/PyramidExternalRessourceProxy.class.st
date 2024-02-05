@@ -33,13 +33,14 @@ PyramidExternalRessourceProxy >> fromSton: stonReader [
 
 	stonReader parseMapDo: [ :key :value |
 		key = #source ifTrue: [
-			self pyramidExternalRessourceSource: value.
-			self pyramidExternalRessourceObject: value getRessource ] ]
+			self pyramidExternalRessourceSource: value
+			 ] ]
 ]
 
 { #category : #accessing }
 PyramidExternalRessourceProxy >> pyramidExternalRessourceObject [
 
+	object ifNil: [ object := self pyramidExternalRessourceSource getRessource ].
 	^ object
 ]
 
