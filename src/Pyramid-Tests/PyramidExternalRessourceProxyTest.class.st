@@ -23,18 +23,18 @@ PyramidExternalRessourceProxyTest class >> stonOnStonAsObject [
 	PyramidExternalRessourceProxy {
 		#source : PyramidExternalRessourceSource {
 			#selector : #stonAsObject,
-			#target : #PyramidExternalRessourceProxyTest,
+			#target : Class [ #PyramidExternalRessourceProxyTest ],
 			#arguments : [ ]
 		}
 	},
 	PyramidExternalRessourceProxy {
 		#source : PyramidExternalRessourceSource {
 			#selector : #stonAsObject,
-			#target : #PyramidExternalRessourceProxyTest,
+			#target : @4,
 			#arguments : [ ]
 		}
 	}
-]'.
+]'
 ]
 
 { #category : #tests }
@@ -61,7 +61,6 @@ PyramidExternalRessourceProxyTest >> testStonOnSton [
 		          (PyramidExternalRessourceSource
 			           target: self class
 			           selector: #stonOnStonAsObject).
-
 	self assert: dummys first dummyValue equals: 0.
 	self assert: dummys last dummyValue equals: 0.
 	dummys first dummyValuePlus.
