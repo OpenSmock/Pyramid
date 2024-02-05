@@ -55,7 +55,7 @@ PyramidExternalRessourceSource >> fromSton: stonReader [
 
 	stonReader parseMapDo: [ :key :value |
 		key = #target ifTrue: [
-			self target: (self class environment classNamed: value) ].
+			self target: value ].
 		key = #selector ifTrue: [ self selector: value ].
 		key = #arguments ifTrue: [ self arguments: value ] ]
 ]
@@ -89,7 +89,7 @@ PyramidExternalRessourceSource >> stonOn: stonWriter [
 
 	stonWriter writeObject: self streamMap: [ :map |
 		map at: #selector put: self selector.
-		map at: #target put: self target name.
+		map at: #target put: self target.
 		map at: #arguments put: self arguments ]
 ]
 
