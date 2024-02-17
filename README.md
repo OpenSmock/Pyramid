@@ -74,6 +74,12 @@ Use the create button to add graphical element in your project view.
 
 https://github.com/OpenSmock/Pyramid/assets/49183340/a02db9ad-314a-4caf-884c-9da4da809293
 
+### Test behavior in the editor
+
+Use the test/edit button to switch between the edit mode and the test mode.
+
+https://github.com/OpenSmock/Pyramid/assets/49183340/a85d8c01-89dd-472c-ab4e-41d51a8629dd
+
 ### Save a project
 
 Setup the project to store your view into a Class.
