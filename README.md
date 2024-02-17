@@ -46,7 +46,7 @@ Be careful the examples with gradient paint and the gradient paint selector will
 ```st
 Metacello new
 	baseline: 'Pyramid';
-	repository: 'github://OpenSmock/Pyramid:alpha3';
+	repository: 'github://OpenSmock/Pyramid:alpha4';
 	load
 ```
 
