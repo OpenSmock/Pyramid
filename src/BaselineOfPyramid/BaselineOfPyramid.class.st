@@ -103,7 +103,7 @@ BaselineOfPyramid >> toploPackages: spec [
 
 	spec
 		package: 'Pyramid-Toplo'
-		with: [ spec requires: #( 'Toplo' 'ToploSerialization' 'Pyramid-Bloc' ) ].
+		with: [ spec requires: #( 'Toplo' 'ToploSerialization') ].
 	spec
 		package: 'Pyramid-Toplo-Tests'
 		with: [ spec requires: #( 'Pyramid-Toplo' ) ].
