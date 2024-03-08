@@ -92,7 +92,7 @@ BaselineOfPyramid >> toploDependencies: spec [
 
 	spec
 		baseline: 'Toplo'
-		with: [ spec repository: 'github://pharo-graphics/Toplo:master/src' ].
+		with: [ spec repository: 'github://pharo-graphics/Toplo:dev/src' ].
 	spec
 		baseline: 'ToploSerialization'
 		with: [ spec repository: 'github://OpenSmock/Toplo-Serialization:main/src' ]
@@ -115,5 +115,5 @@ BaselineOfPyramid >> toploPackages: spec [
 { #category : #packages }
 BaselineOfPyramid >> toploPackagesNames [
 
-	^ #( 'PyramidBloc' 'Pyramid-Toplo' 'Pyramid-Toplo-Tests' 'Pyramid-Toplo-Examples' )
+	^ #( 'Pyramid-Bloc' 'Pyramid-Toplo' 'Pyramid-Toplo-Tests' 'Pyramid-Toplo-Examples' )
 ]

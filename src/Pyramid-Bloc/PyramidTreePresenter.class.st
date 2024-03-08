@@ -82,7 +82,7 @@ PyramidTreePresenter >> initializePresenters [
 		        beResizable;
 		        roots: {  };
 		        children: [ :each |
-			        each isLeaf
+			        each shouldSerializedChildren not
 				        ifTrue: [ {  } ]
 				        ifFalse: [ each children ] ];
 		        contextMenu: [ self actionEditorMenu ];

@@ -60,12 +60,6 @@ PyramidElementThemeSelectorPresenter >> defaultLayout [
 				   add: self themeSelector;
 				   yourself)
 		  expand: false;
-		  add: (SpBoxLayout newHorizontal
-				   spacing: 4;
-				   add: 'Variant' width: 50;
-				   add: self variantSelector;
-				   yourself)
-		  expand: false;
 		  add: SpNullPresenter new height: 10;
 		  yourself
 ]
@@ -132,7 +126,6 @@ PyramidElementThemeSelectorPresenter >> pyramidSelectionChanged [
 { #category : #'as yet unclassified' }
 PyramidElementThemeSelectorPresenter >> setDefaultStateForPresenters [.
 	self themeSelector enabled: false.
-	self variantSelector enabled: false.
 	self inheritSelector enabled: false.
 	self inheritSelector state: true.
 
@@ -163,7 +156,6 @@ PyramidElementThemeSelectorPresenter >> updatePresenterFor: aCollectionOfElement
 		aCollectionOfElement first localTheme ifNotNil: [ :theme |
 			self inheritSelector state: false.
 			self themeSelector enabled: true.
-			self variantSelector enabled: true.
 			self selectTheme: theme ].
 		^ self ].
 
@@ -181,7 +173,6 @@ PyramidElementThemeSelectorPresenter >> updatePresenterFor: aCollectionOfElement
 	collectionOfLocalThemes first ifNotNil: [
 		self inheritSelector state: false.
 		self themeSelector enabled: true.
-		self variantSelector enabled: true.
 		self selectTheme: collectionOfLocalThemes first ].
 
 	self layout: self defaultLayout

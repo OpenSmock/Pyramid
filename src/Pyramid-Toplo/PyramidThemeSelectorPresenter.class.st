@@ -1,10 +1,8 @@
 Class {
 	#name : #PyramidThemeSelectorPresenter,
 	#superclass : #SpPresenter,
-	#classTraits : 'TPyramidProjectModelObserver classTrait',
 	#instVars : [
 		'themeSelector',
-		'variantSelector',
 		'buttonRefreshTheme',
 		'triggerThemeChangement'
 	],
@@ -26,8 +24,7 @@ PyramidThemeSelectorPresenter >> buttonRefreshTheme [
 { #category : #'as yet unclassified' }
 PyramidThemeSelectorPresenter >> currentTheme [
 
-	^ self themeSelector selectedItem variant:
-			                  self variantSelector selectedItem new
+	^ self themeSelector selectedItem
 ]
 
 { #category : #layout }
@@ -49,12 +46,6 @@ PyramidThemeSelectorPresenter >> defaultLayout [
 				   add: self themeSelector;
 				   yourself)
 		  expand: false;
-		  add: (SpBoxLayout newHorizontal
-				   spacing: 4;
-				   add: 'Variant' width: 50;
-				   add: self variantSelector;
-				   yourself)
-		  expand: false;
 		  add: SpNullPresenter new height: 10;
 		  yourself
 ]
@@ -67,6 +58,8 @@ PyramidThemeSelectorPresenter >> initializeAllPossibleThemes [
 
 	allThemes := ToTheme allSubclasses select: [ :theme |
 		             theme canBeDefault ].
+	
+	allThemes := allThemes collect: [ :each | each new ].
 
 	self triggerThemeChangement: false.
 	self themeSelector items: allThemes.
@@ -85,10 +78,6 @@ PyramidThemeSelectorPresenter >> initializePresenters [
 		                 whenSelectedItemChangedDo: [ :aThemeClass |
 			                 self themeSelectionChanged: aThemeClass ];
 		                 yourself.
-	variantSelector := SpDropListPresenter new
-		                   whenSelectedItemChangedDo: [ :aNewVariant |
-			                   self variantSelectionChanged: aNewVariant ];
-		                   yourself.
 	buttonRefreshTheme := SpButtonPresenter new
 	help: 'Refresh theme list.';
 		                      icon: (self iconNamed: #refresh);
@@ -107,10 +96,7 @@ PyramidThemeSelectorPresenter >> labelPresenter [
 PyramidThemeSelectorPresenter >> selectTheme: aToTheme [
 
 	self triggerThemeChangement: false.
-	
 	self themeSelector selectItem: aToTheme class.
-	self variantSelector selectItem: aToTheme variant class.
-	
 	self triggerThemeChangement: true.
 	
 ]
@@ -118,14 +104,7 @@ PyramidThemeSelectorPresenter >> selectTheme: aToTheme [
 { #category : #'as yet unclassified' }
 PyramidThemeSelectorPresenter >> themeSelectionChanged: aThemeClass [
 
-	| previousVariant |
 	aThemeClass ifNil: [ ^ self ].
-	previousVariant := self variantSelector selectedItem.
-	self variantSelector items: aThemeClass supportedVariantClasses.
-	self variantSelector selectItem:
-		((aThemeClass supportedVariantClasses includes: previousVariant)
-			 ifTrue: [ previousVariant ]
-			 ifFalse: [ aThemeClass supportedVariantClasses first ]).
 	self triggerThemeChangement ifTrue: [ self applyTheme ]
 	
 ]
@@ -153,10 +132,4 @@ PyramidThemeSelectorPresenter >> variantSelectionChanged: aVariantClass [
 
 	aVariantClass ifNil: [ ^ self ].
 	self triggerThemeChangement ifTrue: [ self applyTheme ]
-]
-
-{ #category : #accessing }
-PyramidThemeSelectorPresenter >> variantSelector [
-
-	^ variantSelector
 ]
