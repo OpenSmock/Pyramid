@@ -29,9 +29,9 @@ BaselineOfPyramid >> baselineForCommon: spec [
 	self toploPackages: spec.
 
 	"Groups"
-	spec group: 'default' with: #( 'Bloc' 'Toplo' ). "complete version"
-	spec group: 'Bloc' with: self blocPackagesNames. "only Bloc"
-	spec group: 'Toplo' with: self toploPackagesNames "only Bloc and Toplo"
+	spec group: 'default' with: #( 'BlocUI' 'ToploUI' ). "complete version"
+	spec group: 'BlocUI' with: self blocPackagesNames. "only Bloc"
+	spec group: 'ToploUI' with: self toploPackagesNames "only Bloc and Toplo"
 ]
 
 { #category : #dependencies }
