@@ -82,9 +82,9 @@ PyramidTreePresenter >> initializePresenters [
 		        beResizable;
 		        roots: {  };
 		        children: [ :each |
-			        each isLeaf
-				        ifTrue: [ {  } ]
-				        ifFalse: [ each children ] ];
+			        each shouldSerializedChildren 
+				        ifFalse: [ {  } ]
+				        ifTrue: [ each children ] ];
 		        contextMenu: [ self actionEditorMenu ];
 		        whenSelectionChangedDo: [ :selection |
 			        self actionSelectionChanged: selection ];
