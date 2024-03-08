@@ -1,7 +1,7 @@
 Extension { #name : #BlBasicLayout }
 
 { #category : #'*Pyramid-Bloc' }
-BlBasicLayout >> setLayoutOn: aPyramidLayoutInputPresenter [
+BlBasicLayout >> asIcon [
 
-	aPyramidLayoutInputPresenter setBasic
+	^ self iconNamed: #radioButtonUnselected
 ]

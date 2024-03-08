@@ -3,7 +3,7 @@ Class {
 	#superclass : #Object,
 	#instVars : [
 		'allTargets',
-		'arguments',
+		'groups',
 		'groupedAssociations',
 		'individualAssociations'
 	],
@@ -18,19 +18,19 @@ PyramidCluster >> allTargets [
 ]
 
 { #category : #accessing }
-PyramidCluster >> arguments [
-	"Collection of all arguments of the cluster"
-
-	^ arguments
-]
-
-{ #category : #accessing }
 PyramidCluster >> groupedAssociations [
 	"Collection of association with:
 	- key: anArgument
 	- value: { aTarget . aTarget }"
 
 	^ groupedAssociations
+]
+
+{ #category : #accessing }
+PyramidCluster >> groups [
+	"Collection of all groups of the cluster. By default the #getValueFor: result."
+
+	^ groups
 ]
 
 { #category : #accessing }
@@ -46,7 +46,7 @@ PyramidCluster >> individualAssociations [
 PyramidCluster >> initialize [
 
 	allTargets := OrderedCollection new.
-	arguments := OrderedCollection new.
+	groups := OrderedCollection new.
 	groupedAssociations := Dictionary new.
 	individualAssociations := OrderedCollection new
 ]
@@ -54,7 +54,7 @@ PyramidCluster >> initialize [
 { #category : #testing }
 PyramidCluster >> isEmpty [
 
-	^ self arguments isEmpty
+	^ self groups isEmpty
 ]
 
 { #category : #testing }
@@ -66,15 +66,17 @@ PyramidCluster >> isNotEmpty [
 { #category : #testing }
 PyramidCluster >> isTargetsSameArguments [
 	"true if all targets have the same argument."
-	^ self arguments size = 1
+
+	^ self groups size = 1
 ]
 
 { #category : #'as yet unclassified' }
 PyramidCluster >> register: aTarget forArguments: anArguments [
 
-	(self allTargets includes: aTarget) ifTrue: [^ self].
+	(self allTargets includes: aTarget) ifTrue: [ ^ self ].
 	self allTargets add: aTarget.
-	(self arguments includes: anArguments) ifFalse: [ self arguments add: anArguments ].
+	(self groups includes: anArguments) ifFalse: [
+		self groups add: anArguments ].
 	self individualAssociations add: anArguments -> { aTarget }.
 	self groupedAssociations
 		at: anArguments

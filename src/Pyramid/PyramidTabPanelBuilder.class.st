@@ -27,7 +27,8 @@ PyramidTabPanelBuilder >> makeTab: aPresenter label: aString icon: anIcon order:
 
 { #category : #accessing }
 PyramidTabPanelBuilder >> notebook [
-^ SpNotebookPresenter new
+
+	^ SpNotebookPresenter new
 ]
 
 { #category : #accessing }
@@ -35,7 +36,11 @@ PyramidTabPanelBuilder >> presenterOf: aCollectionOfItems [
 
 	| notebook |
 	notebook := self notebook.
-	aCollectionOfItems sorted do: [ :each | each addOnNotebook: notebook ].
+	notebook whenSelectedPageChangedDo: [ :new :old |
+		new presenterProvider visibleIf: true.
+		old ifNotNil: [ old presenterProvider visibleIf: false ] ].
+	aCollectionOfItems sorted do: [ :each | each addOnNotebook: notebook.
+		each presenter visibleIf: false ].
 	^ notebook
 ]
 

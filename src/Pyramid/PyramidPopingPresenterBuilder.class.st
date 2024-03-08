@@ -77,7 +77,7 @@ PyramidPopingPresenterBuilder >> buildPresenterAll [
 		^ input ].
 
 	self cluster isTargetsSameArguments
-		ifTrue: [ input value: self cluster arguments first ]
+		ifTrue: [ input value: self cluster groups first ]
 		ifFalse: [ input mixedValues ].
 
 	input whenValueChangedDo: [ :value |

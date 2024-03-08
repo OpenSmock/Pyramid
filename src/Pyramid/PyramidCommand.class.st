@@ -33,7 +33,10 @@ PyramidCommand >> clusterOf: aCollection [
 	| users cluster |
 	cluster := PyramidCluster new.
 	users := aCollection select: [ :each | self canBeUsedFor: each ].
-	users do: [ :each | cluster register: each forArguments: (self getValueFor: each) ].
+	users do: [ :each |
+		cluster
+			register: each
+			forArguments: (self getGroupedValueFor: each) ].
 	^ cluster
 ]
 
@@ -41,6 +44,12 @@ PyramidCommand >> clusterOf: aCollection [
 PyramidCommand >> commandInverse [
 
 	^ self
+]
+
+{ #category : #'as yet unclassified' }
+PyramidCommand >> getGroupedValueFor: anObject [
+
+	^ self getValueFor: anObject
 ]
 
 { #category : #'as yet unclassified' }

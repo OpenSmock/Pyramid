@@ -1,27 +1,11 @@
 Class {
 	#name : #PyramidFlowLayoutOrientationPresenter,
-	#superclass : #PyramidSwitchInputPresenter,
-	#instVars : [
-		'buttonSwitch'
-	],
+	#superclass : #PyramidAbstractLayoutOrientationPresenter,
 	#category : #'Pyramid-Bloc-plugin-bloc-layout'
 }
 
 { #category : #'as yet unclassified' }
-PyramidFlowLayoutOrientationPresenter >> switchState [
-
-	self value: self value switchOrientation.
-	self whenValueChangedDo value: self value
-]
-
-{ #category : #'as yet unclassified' }
 PyramidFlowLayoutOrientationPresenter >> value [
 
-	^ self state asOrientationForPyramid
-]
-
-{ #category : #'as yet unclassified' }
-PyramidFlowLayoutOrientationPresenter >> value: anOrientation [
-
-	super value: anOrientation asBooleanForPyramid
+	^ self state asOrientationForFlowPyramid
 ]

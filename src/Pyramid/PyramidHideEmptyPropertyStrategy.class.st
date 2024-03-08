@@ -43,7 +43,7 @@ PyramidHideEmptyPropertyStrategy >> emptyPresenter [
 	presenter := SpPresenter new.
 	layout := SpBoxLayout newVertical
 		          spacing: 4;
-		          add: 'No element selectionned';
+		          add: 'No elements selected';
 		          yourself.
 
 	presenter layout: layout.

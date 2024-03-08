@@ -5,17 +5,28 @@ Class {
 	#classTraits : 'TPyramidProjectModelObserver classTrait',
 	#instVars : [
 		'presenter',
-		'projectModel'
+		'projectModel',
+		'shouldComputeProperties'
 	],
 	#category : #'Pyramid-property'
 }
+
+{ #category : #'as yet unclassified' }
+PyramidPropertiesManagerForSelection >> computeProperties [
+
+	self presenter layout child:
+		(self buildPresenterFromCollection: self projectModel selection).
+		self shouldComputeProperties: false
+]
 
 { #category : #initialization }
 PyramidPropertiesManagerForSelection >> initialize [
 
 	super initialize.
+	shouldComputeProperties := false.
 	presenter := SpPresenter new
 		             layout: SpScrollableLayout new;
+		whenVisibleChangedDo: [ :isVisible | isVisible ifTrue: [ self computeProperties ] ];
 		             yourself.
 	commandExecutor := PyramidCallbackCommandExecutor new
 		                   wrappee: commandExecutor;
@@ -46,13 +57,31 @@ PyramidPropertiesManagerForSelection >> projectModel: aPyramidProjectModel [
 { #category : #'as yet unclassified' }
 PyramidPropertiesManagerForSelection >> pyramidElementsChanged [
 
-	self presenter layout child:
-		(self buildPresenterFromCollection: self projectModel selection)
+	self selectionOrElementsChanged
 ]
 
 { #category : #'as yet unclassified' }
 PyramidPropertiesManagerForSelection >> pyramidSelectionChanged [
 
-	self presenter layout child:
-		(self buildPresenterFromCollection: self projectModel selection)
+	self selectionOrElementsChanged
+]
+
+{ #category : #'as yet unclassified' }
+PyramidPropertiesManagerForSelection >> selectionOrElementsChanged [
+
+	self shouldComputeProperties: true.
+	self presenter isVisible ifFalse: [ ^ self ].
+	self computeProperties
+]
+
+{ #category : #'as yet unclassified' }
+PyramidPropertiesManagerForSelection >> shouldComputeProperties [
+
+	^ shouldComputeProperties
+]
+
+{ #category : #'as yet unclassified' }
+PyramidPropertiesManagerForSelection >> shouldComputeProperties: aBoolean [
+
+	shouldComputeProperties:= aBoolean
 ]

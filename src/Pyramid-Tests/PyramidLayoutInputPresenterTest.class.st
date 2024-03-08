@@ -11,10 +11,24 @@ PyramidLayoutInputPresenterTest >> dummyValues [
 
 	^ {
 		  BlBasicLayout new.
-		BlFlowLayout horizontal.
-		BlFlowLayout vertical.
-		BlProportionalLayout new
-		 }
+		  BlFlowLayout horizontal.
+		  BlFlowLayout vertical.
+		  BlLinearLayout horizontal.
+		  BlLinearLayout vertical.
+		BlFrameLayout new.
+		  BlProportionalLayout new }
+]
+
+{ #category : #accessing }
+PyramidLayoutInputPresenterTest >> expectedEmptyValue [
+
+	^ PyramidUnknowState new
+]
+
+{ #category : #accessing }
+PyramidLayoutInputPresenterTest >> expectedMixedValues [
+
+	^ PyramidUnknowState new
 ]
 
 { #category : #tests }
@@ -23,8 +37,20 @@ PyramidLayoutInputPresenterTest >> makeNewInput [
 	^ PyramidLayoutInputPresenter new
 ]
 
+{ #category : #tests }
+PyramidLayoutInputPresenterTest >> testValue [
+
+	| input hasTrigger |
+	hasTrigger := false.
+	input := self makeNewInputWithModel.
+	input whenValueChangedDo: [ :val | hasTrigger := true ].
+	self dummyValues do: [ :each |
+		self putValue: each onInput: input.
+		self assert: (self equalityTestFor: each class and: input value class) ]
+]
+
 { #category : #'as yet unclassified' }
 PyramidLayoutInputPresenterTest >> triggerValueChangedOf: anInput [
 
-	anInput buttonBasic click
+	anInput valueButtons first click
 ]
