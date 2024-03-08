@@ -81,7 +81,10 @@ PyramidTreePresenter >> initializePresenters [
 		        beMultipleSelection;
 		        beResizable;
 		        roots: {  };
-		        children: [ :each | each children ];
+		        children: [ :each |
+			        each shouldSerializedChildren not
+				        ifTrue: [ {  } ]
+				        ifFalse: [ each children ] ];
 		        contextMenu: [ self actionEditorMenu ];
 		        whenSelectionChangedDo: [ :selection |
 			        self actionSelectionChanged: selection ];
@@ -90,12 +93,12 @@ PyramidTreePresenter >> initializePresenters [
 	columns := OrderedCollection new.
 
 	buttonAddToFirstLevel := SpButtonPresenter new
-		                    label: 'Add new element';
-		                    icon: (self iconNamed: #add);
-		                    action: [ self actionAddNewElement ];
-		                    help:
-			                    'Add a new element on the first level of the design.';
-		                    yourself
+		                         label: 'Add new element';
+		                         icon: (self iconNamed: #add);
+		                         action: [ self actionAddNewElement ];
+		                         help:
+			                         'Add a new element on the first level of the design.';
+		                         yourself
 ]
 
 { #category : #accessing }

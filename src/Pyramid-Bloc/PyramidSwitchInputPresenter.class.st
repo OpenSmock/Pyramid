@@ -18,12 +18,11 @@ PyramidSwitchInputPresenter class >> blocToggleOff [
 	"This class has been generated using Pyramid.
 
 	By: YannLEGOFF
-	2023-07-19 09:03:05"
+	2024-01-22 13:50:13"
 
 	<pySTON>
 	^ '[
 	BlElement {
-		#children : BlChildrenArray [ ],
 		#constraints : BlLayoutCommonConstraints {
 			#vertical : BlLayoutCommonConstraintsAxis {
 				#resizer : BlLayoutExactResizer {
@@ -42,11 +41,11 @@ PyramidSwitchInputPresenter class >> blocToggleOff [
 				#bottom : 0.0,
 				#right : 0.0
 			},
-			#padding : @10,
+			#padding : @9,
 			#minHeight : 0.0,
 			#minWidth : 0.0,
 			#maxHeight : Float [ #infinity ],
-			#maxWidth : @11,
+			#maxWidth : @10,
 			#ignoredByLayout : false,
 			#accountTransformation : false
 		},
@@ -54,13 +53,7 @@ PyramidSwitchInputPresenter class >> blocToggleOff [
 			#geometry : BlRoundedRectangleGeometry {
 				#extent : Point [ 32.0, 16.0 ],
 				#pathCache : BlPathCache {
-					#geometry : @13,
-					#strokedBounds : BlBounds {
-						#left : 0.0,
-						#top : 0.0,
-						#right : 32.0,
-						#bottom : 16.0
-					}
+					#geometry : @12
 				},
 				#cornerRadii : BlCornerRadii {
 					#topLeft : 8.5,
@@ -111,14 +104,9 @@ PyramidSwitchInputPresenter class >> blocToggleOff [
 				#type : ''RECTANGLE''
 			}
 		},
-		#layout : BlBasicLayout { },
-		#eventDispatcher : BlElementEventDispatcher {
-			#owner : @2,
-			#handlers : [ ]
-		}
+		#layout : BlBasicLayout { }
 	},
 	BlElement {
-		#children : BlChildrenArray [ ],
 		#constraints : BlLayoutCommonConstraints {
 			#vertical : BlLayoutCommonConstraintsAxis {
 				#resizer : BlLayoutExactResizer {
@@ -131,12 +119,12 @@ PyramidSwitchInputPresenter class >> blocToggleOff [
 				}
 			},
 			#position : Point [ 2, 2.0 ],
-			#margin : @10,
-			#padding : @10,
+			#margin : @9,
+			#padding : @9,
 			#minHeight : 0.0,
 			#minWidth : 0.0,
-			#maxHeight : @11,
-			#maxWidth : @11,
+			#maxHeight : @10,
+			#maxWidth : @10,
 			#ignoredByLayout : false,
 			#accountTransformation : false
 		},
@@ -144,13 +132,7 @@ PyramidSwitchInputPresenter class >> blocToggleOff [
 			#geometry : BlEllipseGeometry {
 				#extent : Point [ 12.0, 12.0 ],
 				#pathCache : BlPathCache {
-					#geometry : @44,
-					#strokedBounds : BlBounds {
-						#left : 0.0,
-						#top : 0.0,
-						#right : 12.0,
-						#bottom : 12.0
-					}
+					#geometry : @39
 				}
 			},
 			#background : BlPaintBackground {
@@ -175,11 +157,7 @@ PyramidSwitchInputPresenter class >> blocToggleOff [
 				#type : ''ELLIPSE''
 			}
 		},
-		#layout : @32,
-		#eventDispatcher : BlElementEventDispatcher {
-			#owner : @35,
-			#handlers : [ ]
-		}
+		#layout : @30
 	}
 ]'
 ]
@@ -189,12 +167,11 @@ PyramidSwitchInputPresenter class >> blocToggleOn [
 	"This class has been generated using Pyramid.
 
 	By: YannLEGOFF
-	2023-07-19 09:04:48"
+	2024-01-22 13:50:48"
 
 	<pySTON>
 	^ '[
 	BlElement {
-		#children : BlChildrenArray [ ],
 		#constraints : BlLayoutCommonConstraints {
 			#vertical : BlLayoutCommonConstraintsAxis {
 				#resizer : BlLayoutExactResizer {
@@ -213,11 +190,11 @@ PyramidSwitchInputPresenter class >> blocToggleOn [
 				#bottom : 0.0,
 				#right : 0.0
 			},
-			#padding : @10,
+			#padding : @9,
 			#minHeight : 0.0,
 			#minWidth : 0.0,
 			#maxHeight : Float [ #infinity ],
-			#maxWidth : @11,
+			#maxWidth : @10,
 			#ignoredByLayout : false,
 			#accountTransformation : false
 		},
@@ -225,13 +202,7 @@ PyramidSwitchInputPresenter class >> blocToggleOn [
 			#geometry : BlRoundedRectangleGeometry {
 				#extent : Point [ 32.0, 16.0 ],
 				#pathCache : BlPathCache {
-					#geometry : @13,
-					#strokedBounds : BlBounds {
-						#left : 0.0,
-						#top : 0.0,
-						#right : 32.0,
-						#bottom : 16.0
-					}
+					#geometry : @12
 				},
 				#cornerRadii : BlCornerRadii {
 					#topLeft : 8.5,
@@ -282,14 +253,9 @@ PyramidSwitchInputPresenter class >> blocToggleOn [
 				#type : ''RECTANGLE''
 			}
 		},
-		#layout : BlBasicLayout { },
-		#eventDispatcher : BlElementEventDispatcher {
-			#owner : @2,
-			#handlers : [ ]
-		}
+		#layout : BlBasicLayout { }
 	},
 	BlElement {
-		#children : BlChildrenArray [ ],
 		#constraints : BlLayoutCommonConstraints {
 			#vertical : BlLayoutCommonConstraintsAxis {
 				#resizer : BlLayoutExactResizer {
@@ -302,12 +268,12 @@ PyramidSwitchInputPresenter class >> blocToggleOn [
 				}
 			},
 			#position : Point [ 18, 2.0 ],
-			#margin : @10,
-			#padding : @10,
+			#margin : @9,
+			#padding : @9,
 			#minHeight : 0.0,
 			#minWidth : 0.0,
-			#maxHeight : @11,
-			#maxWidth : @11,
+			#maxHeight : @10,
+			#maxWidth : @10,
 			#ignoredByLayout : false,
 			#accountTransformation : false
 		},
@@ -315,13 +281,7 @@ PyramidSwitchInputPresenter class >> blocToggleOn [
 			#geometry : BlEllipseGeometry {
 				#extent : Point [ 12.0, 12.0 ],
 				#pathCache : BlPathCache {
-					#geometry : @44,
-					#strokedBounds : BlBounds {
-						#left : 0.0,
-						#top : 0.0,
-						#right : 12.0,
-						#bottom : 12.0
-					}
+					#geometry : @39
 				}
 			},
 			#background : BlPaintBackground {
@@ -346,11 +306,7 @@ PyramidSwitchInputPresenter class >> blocToggleOn [
 				#type : ''ELLIPSE''
 			}
 		},
-		#layout : @32,
-		#eventDispatcher : BlElementEventDispatcher {
-			#owner : @35,
-			#handlers : [ ]
-		}
+		#layout : @30
 	}
 ]'
 ]
@@ -360,12 +316,11 @@ PyramidSwitchInputPresenter class >> blocToggleUncertain [
 	"This class has been generated using Pyramid.
 
 	By: YannLEGOFF
-	2023-07-19 10:03:54"
+	2024-01-22 13:51:37"
 
 	<pySTON>
 	^ '[
 	BlElement {
-		#children : BlChildrenArray [ ],
 		#constraints : BlLayoutCommonConstraints {
 			#vertical : BlLayoutCommonConstraintsAxis {
 				#resizer : BlLayoutExactResizer {
@@ -384,11 +339,11 @@ PyramidSwitchInputPresenter class >> blocToggleUncertain [
 				#bottom : 0.0,
 				#right : 0.0
 			},
-			#padding : @10,
+			#padding : @9,
 			#minHeight : 0.0,
 			#minWidth : 0.0,
 			#maxHeight : Float [ #infinity ],
-			#maxWidth : @11,
+			#maxWidth : @10,
 			#ignoredByLayout : false,
 			#accountTransformation : false
 		},
@@ -396,13 +351,7 @@ PyramidSwitchInputPresenter class >> blocToggleUncertain [
 			#geometry : BlRoundedRectangleGeometry {
 				#extent : Point [ 32.0, 16.0 ],
 				#pathCache : BlPathCache {
-					#geometry : @13,
-					#strokedBounds : BlBounds {
-						#left : 0.0,
-						#top : 0.0,
-						#right : 32.0,
-						#bottom : 16.0
-					}
+					#geometry : @12
 				},
 				#cornerRadii : BlCornerRadii {
 					#topLeft : 8.5,
@@ -453,14 +402,9 @@ PyramidSwitchInputPresenter class >> blocToggleUncertain [
 				#type : ''RECTANGLE''
 			}
 		},
-		#layout : BlBasicLayout { },
-		#eventDispatcher : BlElementEventDispatcher {
-			#owner : @2,
-			#handlers : [ ]
-		}
+		#layout : BlBasicLayout { }
 	},
 	BlElement {
-		#children : BlChildrenArray [ ],
 		#constraints : BlLayoutCommonConstraints {
 			#vertical : BlLayoutCommonConstraintsAxis {
 				#resizer : BlLayoutExactResizer {
@@ -473,12 +417,12 @@ PyramidSwitchInputPresenter class >> blocToggleUncertain [
 				}
 			},
 			#position : Point [ 10.0, 2.0 ],
-			#margin : @10,
-			#padding : @10,
+			#margin : @9,
+			#padding : @9,
 			#minHeight : 0.0,
 			#minWidth : 0.0,
-			#maxHeight : @11,
-			#maxWidth : @11,
+			#maxHeight : @10,
+			#maxWidth : @10,
 			#ignoredByLayout : false,
 			#accountTransformation : false
 		},
@@ -486,13 +430,7 @@ PyramidSwitchInputPresenter class >> blocToggleUncertain [
 			#geometry : BlEllipseGeometry {
 				#extent : Point [ 12.0, 12.0 ],
 				#pathCache : BlPathCache {
-					#geometry : @44,
-					#strokedBounds : BlBounds {
-						#left : 0.0,
-						#top : 0.0,
-						#right : 12.0,
-						#bottom : 12.0
-					}
+					#geometry : @39
 				}
 			},
 			#background : BlPaintBackground {
@@ -517,11 +455,7 @@ PyramidSwitchInputPresenter class >> blocToggleUncertain [
 				#type : ''ELLIPSE''
 			}
 		},
-		#layout : @32,
-		#eventDispatcher : BlElementEventDispatcher {
-			#owner : @35,
-			#handlers : [ ]
-		}
+		#layout : @30
 	}
 ]'
 ]

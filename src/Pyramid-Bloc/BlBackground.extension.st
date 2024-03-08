@@ -1,13 +1,6 @@
 Extension { #name : #BlBackground }
 
 { #category : #'*Pyramid-Bloc' }
-BlBackground >> = aBlBackground [
-
-	aBlBackground == self ifTrue: [ ^ true ].
-	^ aBlBackground class = self class
-]
-
-{ #category : #'*Pyramid-Bloc' }
 BlBackground >> asForm [
 
 	^ self shouldBeImplemented

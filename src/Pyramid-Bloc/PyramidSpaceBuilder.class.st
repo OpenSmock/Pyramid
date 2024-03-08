@@ -1,8 +1,8 @@
 Class {
 	#name : #PyramidSpaceBuilder,
 	#superclass : #Object,
-	#traits : 'TPyramidEditorTransformation',
-	#classTraits : 'TPyramidEditorTransformation classTrait',
+	#traits : 'TPyramidEditorTransformation + TPyramidEditorSpaceIsReady',
+	#classTraits : 'TPyramidEditorTransformation classTrait + TPyramidEditorSpaceIsReady classTrait',
 	#instVars : [
 		'topMostOverlay',
 		'overlays',
@@ -103,6 +103,7 @@ PyramidSpaceBuilder >> build [
 
 	self signalTransformationChanged.
 	self topMostOverlay buildOn: self space root.
+	self signalSpaceIsReady.
 	^ self space
 ]
 
@@ -111,8 +112,7 @@ PyramidSpaceBuilder >> editor: aPyramidEditor [
 
 	self extensions do: [ :each | each editor: aPyramidEditor ].
 	self extensions do: [ :each |
-		each projectModel: aPyramidEditor projectModel ].
-
+		each projectModel: aPyramidEditor projectModel ]
 ]
 
 { #category : #accessing }

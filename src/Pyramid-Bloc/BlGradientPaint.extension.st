@@ -1,14 +1,6 @@
 Extension { #name : #BlGradientPaint }
 
 { #category : #'*Pyramid-Bloc' }
-BlGradientPaint >> = aBlPaint [
-
-	self == aBlPaint ifTrue: [ ^ true ].
-	self class == aBlPaint class ifFalse: [ ^ false ].
-	^ self stops = aBlPaint stops
-]
-
-{ #category : #'*Pyramid-Bloc' }
 BlGradientPaint >> asForm [
 
 	^ (Morph new
