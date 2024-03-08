@@ -103,7 +103,7 @@ BaselineOfPyramid >> toploPackages: spec [
 
 	spec
 		package: 'Pyramid-Toplo'
-		with: [ spec requires: #( 'Toplo' 'ToploSerialization' 'Pyramid-Bloc' ) ].
+		with: [ spec requires: #( 'Toplo' 'ToploSerialization') ].
 	spec
 		package: 'Pyramid-Toplo-Tests'
 		with: [ spec requires: #( 'Pyramid-Toplo' ) ].
@@ -115,5 +115,8 @@ BaselineOfPyramid >> toploPackages: spec [
 { #category : #packages }
 BaselineOfPyramid >> toploPackagesNames [
 
-	^ #( 'PyramidBloc' 'Pyramid-Toplo' 'Pyramid-Toplo-Tests' 'Pyramid-Toplo-Examples' )
+	| packages |
+	packages := self blocPackagesNames asOrderedCollection.
+	packages addAll: #( 'Pyramid-Toplo' 'Pyramid-Toplo-Tests' 'Pyramid-Toplo-Examples' ).
+	^ packages asArray
 ]
