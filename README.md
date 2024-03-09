@@ -16,17 +16,20 @@ Pyramid is an User-Interface (UI) editor.
 
 Pyramid is a WYSIWYG application (What You See Is What You Get) in other terms it allows you to visually design the expected outcome.
 
-Pyramid helps you to produce final UI using Bloc library (and also Toplo).
+Pyramid helps you to produce final UI in Bloc and Toplo libraries.
 
-You can add plugins into Pyramid to extend the editor capacities or create [your own plugin](https://github.com/OpenSmock/Pyramid/wiki/Add-a-new-plugin-to-Pyramid) with your specific functions !
+The designed UI persistence is based on the "-Serialization" projects below. Pyramid saves a designed UI into a method as a string. Refer to the "-Serialization" projects to learn more.
+
+You can add plugins into Pyramid to extend the editor capacities or create [your own plugin](https://github.com/OpenSmock/Pyramid/wiki/Add-a-new-plugin-to-Pyramid) with your specific functions!
 
 <img src="https://github.com/OpenSmock/Pyramid/assets/49183340/0ddc1ac3-bd6e-4f4b-bfb4-60eac4f48e39" width="200">
 
 ## <img src="/assets/PyramidPinPtah.svg" width="75" height="75" align="bottom"> How to get Pyramid
 
-You can load a stable release version of Pyramid or the latest development version. 
+You can load a release version of Pyramid or the latest development version.
+Beware that Pyramid is currently in alpha development. The API is subject to significant changes, and stability is not guaranteed. Projects created during the alpha version are not designed to be compatible with newer versions of Pyramid. 
 
-The latest development version provides the new incoming functionalities but can be unstable.
+Pyramid is available with Bloc and Toplo as defaults. If you want to build UI without Toplo, you can choose to load Pyramid with only Bloc using the baseline option `load: 'BlocUI'`. Here's an example script below.
 
 To install a version of Pyramid, use one of the following scripts inside a playground.
 
@@ -39,9 +42,19 @@ Metacello new
 	load
 ```
 
-### Stable release version
+Only with Bloc (without Toplo features):
 
-Be careful, the examples with gradient paint and the gradient paint selector will not work because Bloc updated its API.
+```st
+Metacello new
+	baseline: 'Pyramid';
+	repository: 'github://OpenSmock/Pyramid:main/src';
+  load: 'BlocUI';
+	load
+```
+
+### Release version
+
+We advise you to use dependencies committed at the date of the Pyramid release (Bloc, Bloc-Serialization, etc.) to ensure compatibility with a release of Pyramid.
 
 ```st
 Metacello new
@@ -124,9 +137,11 @@ https://github.com/OpenSmock/Pyramid/assets/49183340/0c66a3ac-7bea-48c1-b1e8-0b0
 
 ![image](https://github.com/OpenSmock/Pyramid/assets/34318678/099f25fc-74bd-477f-bef0-2ad7d47db10d)
 
+- [Toplo](https://github.com/pharo-graphics/Toplo)
+- [Toplo-Serialization](https://github.com/OpenSmock/Toplo-Serialization)
 - [Bloc](https://github.com/pharo-graphics/Bloc)
-- [Alexandrie](https://github.com/pharo-graphics/Alexandrie)
 - [Bloc-Serialization](https://github.com/OpenSmock/Bloc-Serialization)
+- [Alexandrie](https://github.com/pharo-graphics/Alexandrie)
 
 ## <img src="/assets/PyramidPinPtah.svg" width="75" height="75" align="bottom"> License
 
