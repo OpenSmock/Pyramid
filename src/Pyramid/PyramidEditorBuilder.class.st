@@ -14,6 +14,9 @@ Class {
 { #category : #building }
 PyramidEditorBuilder >> build [
 
+	self plugins:
+		(self plugins select: [ :each | each class shouldInstall ]).
+
 	self plugins do: [ :each | each configureBuilder: self ].
 
 	self editor window: self window.

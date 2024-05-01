@@ -24,6 +24,12 @@ TPyramidPlugin classSide >> reset [
 	self install
 ]
 
+{ #category : #asserting }
+TPyramidPlugin classSide >> shouldInstall [
+
+	^ true
+]
+
 { #category : #initialization }
 TPyramidPlugin classSide >> uninstall [
 	"Undo some stuff here when the plugin used class oriented behavior"

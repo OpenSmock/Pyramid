@@ -9,6 +9,12 @@ Class {
 	#category : #'Pyramid-Tests-cases-core'
 }
 
+{ #category : #asserting }
+PyramidFakePlugin class >> shouldInstall [
+
+	^ true
+]
+
 { #category : #adding }
 PyramidFakePlugin >> addPanelsOn: aPyramidSimpleWindow [
 
