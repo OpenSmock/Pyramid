@@ -16,33 +16,56 @@ PyramidWorld class >> cleanUp [
 
 { #category : #actions }
 PyramidWorld class >> displayLoadedPlugins [
-	<script>
 
-	| presenter stream |
-	presenter := SpTextPresenter new.
+	<script>
+	| presenter stream displayBlock |
+	presenter := SpCodePresenter new
+		             editable: false;
+		             yourself.
 	stream := ReadWriteStream on: String new.
-	
+
+	displayBlock := [ :printStream :collection |
+	                (collection sorted: [ :a :b |
+		                 a className < b className ]) do: [ :plugin |
+		                printStream
+			                nextPutAll: plugin name;
+			                nextPutAll: '.';
+			                cr ] ].
+
 	"Create loaded plugin list"
-	PyramidPluginManager uniqueInstance ifNotNil:[ :e |
-		
-		"Statistics"
-		stream 
-			nextPutAll: (e pluginClasses size) asString; 
-			nextPutAll: ' loaded / '; 
-			nextPutAll: (PyramidPluginManager imagePluginClasses size) asString;
-			nextPutAll: ' available plugin(s)';
-			cr; cr.
-		
-		"Details"
-		e pluginClasses do:[ :p |
-			stream nextPutAll: '-' ; nextPutAll: p name; cr.	
-		].
-	
-	] ifNil:[stream nextPutAll: 'No loaded plugins.'].
-	
+	PyramidPluginManager uniqueInstance
+		ifNotNil: [ :e | "Statistics"
+			stream
+				nextPutAll: '"';
+				nextPutAll:
+					(e pluginClasses select: [ :p | p shouldInstall ]) size asString;
+				nextPutAll: ' installed / ';
+				nextPutAll: PyramidPluginManager imagePluginClasses size asString;
+				nextPutAll: ' available plugin(s)';
+				nextPutAll: '"';
+				cr;
+				cr.
+
+			"Details - not installed"
+			stream
+				nextPutAll: '"Not installed:"';
+				cr.
+			displayBlock
+				value: stream
+				value: (e pluginClasses reject: [ :p | p shouldInstall ]).
+			"Details - installed"
+			stream
+				cr;
+				nextPutAll: '"Installed:"';
+				cr.
+			displayBlock
+				value: stream
+				value: (e pluginClasses select: [ :p | p shouldInstall ]) ]
+		ifNil: [ stream nextPutAll: 'No loaded plugins.' ].
+
 	presenter text: stream contents.
 	presenter open.
-	presenter withWindowDo: [ :w | w title: 'Pyramid loaded plugins' ].
+	presenter withWindowDo: [ :w | w title: 'Pyramid loaded plugins' ]
 ]
 
 { #category : #'private - icons' }

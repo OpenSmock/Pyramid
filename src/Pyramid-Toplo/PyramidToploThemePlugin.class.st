@@ -10,6 +10,12 @@ Class {
 	#category : #'Pyramid-Toplo-plugin-theme-management'
 }
 
+{ #category : #asserting }
+PyramidToploThemePlugin class >> shouldInstall [
+
+	^ false
+]
+
 { #category : #adding }
 PyramidToploThemePlugin >> addPanelsOn: aPyramidSimpleWindow [
 
