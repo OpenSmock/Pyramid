@@ -151,12 +151,52 @@ PyramidBlocLayoutPlugin class >> layout [
 
 	| property |
 	property := PyramidProperty new
-		            name: 'Layout';
-		            command:
-			            PyramidLayoutBlocCommand new;
+		            name: 'Layout Type';
+		            command: PyramidLayoutBlocCommand new;
 		            pyramidInputPresenterClass:
-			            PyramidLayoutInputPresenter;
+			            PyramidMagicButtonsInputPresenter;
 		            yourself.
+	property pyramidInputPresenterStrings
+		addButtonModel: (PyramidMagicButtonModel new
+				 icon: (self iconNamed: #radioButtonUnselected);
+				 helpSelected: 'The element have no layout.';
+				 helpNotSelected: 'No layout.';
+				 label: 'Basic';
+				 inputValue: BlBasicLayout new;
+				 inputValidation: [ :value | value class = BlBasicLayout ];
+				 yourself);
+		addButtonModel: (PyramidMagicButtonModel new
+				 icon: (self iconNamed: #smallLeftFlush);
+				 helpSelected: 'The layout is linear.';
+				 helpNotSelected: 'Set the layout to linear.';
+				 label: 'Linear';
+				 inputValue: [ BlLinearLayout vertical ];
+				 inputValidation: [ :value | value class = BlLinearLayout ];
+				 yourself);
+		addButtonModel: (PyramidMagicButtonModel new
+				 icon: (self iconNamed: #smallJustified);
+				 helpSelected: 'The layout is flow.';
+				 helpNotSelected: 'Set the layout to flow.';
+				 label: 'Flow';
+				 inputValue: [ BlFlowLayout vertical ];
+				 inputValidation: [ :value | value class = BlFlowLayout ];
+				 yourself);
+		addButtonModel: (PyramidMagicButtonModel new
+				 icon: (self iconNamed: #windowMaximize);
+				 helpSelected: 'The layout is frame.';
+				 helpNotSelected: 'Set the layout to frame.';
+				 label: 'Frame';
+				 inputValue: [ BlFrameLayout new ];
+				 inputValidation: [ :value | value class = BlFrameLayout ];
+				 yourself);
+		addButtonModel: (PyramidMagicButtonModel new
+				 icon: (self iconNamed: #haloScale);
+				 helpSelected: 'The layout is proportionnal.';
+				 helpNotSelected: 'Set the layout to proportionnal.';
+				 label: 'Prop';
+				 inputValue: [ BlProportionalLayout new ];
+				 inputValidation: [ :value | value class = BlProportionalLayout ];
+				 yourself).
 	^ property
 ]
 
