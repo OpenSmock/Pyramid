@@ -1,16 +1,18 @@
 Class {
-	#name : #PyramidPluginPlayground,
-	#superclass : #Object,
+	#name : 'PyramidPluginPlayground',
+	#superclass : 'Object',
 	#traits : 'TPyramidPlugin',
 	#classTraits : 'TPyramidPlugin classTrait',
 	#instVars : [
 		'activeProject',
 		'view'
 	],
-	#category : #'Pyramid-plugin-playground'
+	#category : 'Pyramid-plugin-playground',
+	#package : 'Pyramid',
+	#tag : 'plugin-playground'
 }
 
-{ #category : #adding }
+{ #category : 'adding' }
 PyramidPluginPlayground >> addPanelsOn: aPyramidSimpleWindow [
 
 	aPyramidSimpleWindow at: #tabRight addItem: [ :builder |
@@ -21,19 +23,19 @@ PyramidPluginPlayground >> addPanelsOn: aPyramidSimpleWindow [
 			order: 100 ]
 ]
 
-{ #category : #connecting }
+{ #category : 'connecting' }
 PyramidPluginPlayground >> connectOn: aPyramidEditor [
 
 	self view projectModel: aPyramidEditor projectModel
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 PyramidPluginPlayground >> initialize [
 
 	view := PyramidPlaygroundView new
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 PyramidPluginPlayground >> view [
 
 	^ view

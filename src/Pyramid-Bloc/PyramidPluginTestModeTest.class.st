@@ -1,26 +1,28 @@
 Class {
-	#name : #PyramidPluginTestModeTest,
-	#superclass : #TestCase,
+	#name : 'PyramidPluginTestModeTest',
+	#superclass : 'TestCase',
 	#instVars : [
 		'plugin',
 		'spacePlugin',
 		'editor'
 	],
-	#category : #'Pyramid-Bloc-plugin-testmode'
+	#category : 'Pyramid-Bloc-plugin-testmode',
+	#package : 'Pyramid-Bloc',
+	#tag : 'plugin-testmode'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidPluginTestModeTest >> editor [
 ^ editor
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidPluginTestModeTest >> plugin [
 
 	^ plugin
 ]
 
-{ #category : #running }
+{ #category : 'running' }
 PyramidPluginTestModeTest >> setUp [
 
 	super setUp.
@@ -30,7 +32,7 @@ PyramidPluginTestModeTest >> setUp [
 	editor := PyramidEditorBuilder new plugins: { plugin . spacePlugin }; build.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PyramidPluginTestModeTest >> testIsTestOnGoing [
 
 	self assert: self plugin isTestOnGoing not.
@@ -40,7 +42,7 @@ PyramidPluginTestModeTest >> testIsTestOnGoing [
 	self assert: self plugin isTestOnGoing not.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PyramidPluginTestModeTest >> testSwitchToTestMode [
 
 	| element elementThatReceiveEvent |

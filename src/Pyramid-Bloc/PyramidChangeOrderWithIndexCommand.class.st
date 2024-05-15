@@ -1,10 +1,12 @@
 Class {
-	#name : #PyramidChangeOrderWithIndexCommand,
-	#superclass : #PyramidAbstractChangeDrawOrderCommand,
-	#category : #'Pyramid-Bloc-plugin-bloc-order'
+	#name : 'PyramidChangeOrderWithIndexCommand',
+	#superclass : 'PyramidAbstractChangeDrawOrderCommand',
+	#category : 'Pyramid-Bloc-plugin-bloc-order',
+	#package : 'Pyramid-Bloc',
+	#tag : 'plugin-bloc-order'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PyramidChangeOrderWithIndexCommand >> setValueFor: aBlElement with: anArgument [
 
 	| currentIndex parent |

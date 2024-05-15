@@ -1,15 +1,17 @@
 Class {
-	#name : #PyramidContextMenuPlugin,
-	#superclass : #Object,
+	#name : 'PyramidContextMenuPlugin',
+	#superclass : 'Object',
 	#traits : 'TPyramidPlugin',
 	#classTraits : 'TPyramidPlugin classTrait',
 	#instVars : [
 		'editor'
 	],
-	#category : #'Pyramid-Bloc-plugin-context-menu'
+	#category : 'Pyramid-Bloc-plugin-context-menu',
+	#package : 'Pyramid-Bloc',
+	#tag : 'plugin-context-menu'
 }
 
-{ #category : #'class initialization' }
+{ #category : 'class initialization' }
 PyramidContextMenuPlugin class >> initialize [
 
 	"Remove the plugin in case of already install (reset)"
@@ -19,7 +21,7 @@ PyramidContextMenuPlugin class >> initialize [
 	PyramidPluginManager uniqueInstance addPlugin: self
 ]
 
-{ #category : #adding }
+{ #category : 'adding' }
 PyramidContextMenuPlugin >> addPanelsOn: aPyramidSimpleWindow [
 
 	aPyramidSimpleWindow at: #selectionMenu addItem: [ :builder |
@@ -27,32 +29,32 @@ PyramidContextMenuPlugin >> addPanelsOn: aPyramidSimpleWindow [
 		self menuBrowseAndInspectOn: builder ]
 ]
 
-{ #category : #connecting }
+{ #category : 'connecting' }
 PyramidContextMenuPlugin >> connectOn: aPyramidEditor [
 
 	self editor: aPyramidEditor.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidContextMenuPlugin >> editor [
 
 	^ editor
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidContextMenuPlugin >> editor: anObject [
 
 	editor := anObject
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PyramidContextMenuPlugin >> getNameForSingle: aBlElement [
 
 	aBlElement id ifNil: [ ^ '@\no name\ ' , aBlElement className, ' ', aBlElement hash printString ].
 	^ aBlElement id , ' ' , aBlElement className, ' ', aBlElement hash printString
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PyramidContextMenuPlugin >> menuBrowseAndInspectOn: aBuilder [
 
 	aBuilder addGroupSingleSelection: [ :group :single |
@@ -88,7 +90,7 @@ PyramidContextMenuPlugin >> menuBrowseAndInspectOn: aBuilder [
 			yourself ] order: 1
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PyramidContextMenuPlugin >> menuContextOn: aBuilder [
 
 	aBuilder

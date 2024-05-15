@@ -1,22 +1,24 @@
 Class {
-	#name : #PyramidAbstractChangeDrawOrderCommand,
-	#superclass : #PyramidAbstractBlocCommand,
-	#category : #'Pyramid-Bloc-plugin-bloc-order'
+	#name : 'PyramidAbstractChangeDrawOrderCommand',
+	#superclass : 'PyramidAbstractBlocCommand',
+	#category : 'Pyramid-Bloc-plugin-bloc-order',
+	#package : 'Pyramid-Bloc',
+	#tag : 'plugin-bloc-order'
 }
 
-{ #category : #testing }
+{ #category : 'testing' }
 PyramidAbstractChangeDrawOrderCommand class >> isAbstract [
 
 	^ self == PyramidAbstractChangeDrawOrderCommand
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 PyramidAbstractChangeDrawOrderCommand >> canBeUsedFor: anObject [
 
 	^ (super canBeUsedFor: anObject) and: [ anObject hasParent]
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PyramidAbstractChangeDrawOrderCommand >> getValueFor: aBlElement [
 	"return current index for testing."
 

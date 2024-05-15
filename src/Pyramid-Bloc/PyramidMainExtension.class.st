@@ -1,6 +1,6 @@
 Class {
-	#name : #PyramidMainExtension,
-	#superclass : #Object,
+	#name : 'PyramidMainExtension',
+	#superclass : 'Object',
 	#traits : 'TPyramidSpaceExtension + TPyramidEditorExtension + TPyramidProjectModelObserver + TPyramidEditorTransformationObserver',
 	#classTraits : 'TPyramidSpaceExtension classTrait + TPyramidEditorExtension classTrait + TPyramidProjectModelObserver classTrait + TPyramidEditorTransformationObserver classTrait',
 	#instVars : [
@@ -12,61 +12,63 @@ Class {
 		'extentView',
 		'extentPopover'
 	],
-	#category : #'Pyramid-Bloc-plugin-space-extensions'
+	#category : 'Pyramid-Bloc-plugin-space-extensions',
+	#package : 'Pyramid-Bloc',
+	#tag : 'plugin-space-extensions'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidMainExtension >> borderElement [
 
 	^ borderElement
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidMainExtension >> containerElement [
 
 	^ containerElement
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidMainExtension >> defaultBorder [
 
 	^ BlBorder paint: Color blue width: 1
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidMainExtension >> defaultExtent [
 
 	^ 800 @ 600
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidMainExtension >> editor: aPyramidEditor [
 
 	aPyramidEditor window at: #topRight addItem: [ :buttonBuilder |
 		buttonBuilder makeButtonWithIcon: self extentButton order: 10 ]
 ]
 
-{ #category : #geometry }
+{ #category : 'geometry' }
 PyramidMainExtension >> extent: aPoint [
 
 	self elementAtWidgets size: aPoint.
 	self sizeElement size: aPoint
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidMainExtension >> extentButton [
 
 	^ extentButton
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PyramidMainExtension >> informTransformationChanged [
 
 	self elementAtEvents transformDo: [ :t |
 		t translateBy: self currentTransformTranslation negated ].
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 PyramidMainExtension >> initialize [
 
 	extentView := SpPresenter new
@@ -123,7 +125,7 @@ PyramidMainExtension >> initialize [
 				               borderElement } yourself
 ]
 
-{ #category : #displaying }
+{ #category : 'displaying' }
 PyramidMainExtension >> installOn: aBuilder [
 
 	self builder: aBuilder.
@@ -135,26 +137,26 @@ PyramidMainExtension >> installOn: aBuilder [
 	self elementAtWidgets size: self defaultExtent
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PyramidMainExtension >> offsetTranslation [
 
 	^ 50 @ 50
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidMainExtension >> projectModel [
 
 	^ projectModel
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidMainExtension >> projectModel: aProjectModel [
 
 	projectModel:= aProjectModel.
 	aProjectModel addObserver: self.
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PyramidMainExtension >> pyramidFirstLevelElementsChanged [
 
 	self containerElement removeChildren.
@@ -164,7 +166,7 @@ PyramidMainExtension >> pyramidFirstLevelElementsChanged [
 		self containerElement addChild: each ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidMainExtension >> sizeElement [
 
 	^ sizeElement

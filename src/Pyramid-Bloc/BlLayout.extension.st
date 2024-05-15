@@ -1,6 +1,6 @@
-Extension { #name : #BlLayout }
+Extension { #name : 'BlLayout' }
 
-{ #category : #'*Pyramid-Bloc' }
+{ #category : '*Pyramid-Bloc' }
 BlLayout >> asIcon [
 
 	^ self iconNamed: #smallQuestion

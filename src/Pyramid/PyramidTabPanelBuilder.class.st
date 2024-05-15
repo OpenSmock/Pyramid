@@ -1,20 +1,22 @@
 Class {
-	#name : #PyramidTabPanelBuilder,
-	#superclass : #PyramidPanelBuilder,
+	#name : 'PyramidTabPanelBuilder',
+	#superclass : 'PyramidPanelBuilder',
 	#instVars : [
 		'presenter',
 		'item'
 	],
-	#category : #'Pyramid-views'
+	#category : 'Pyramid-views',
+	#package : 'Pyramid',
+	#tag : 'views'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidTabPanelBuilder >> item [
 
 	^ item
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PyramidTabPanelBuilder >> makeTab: aPresenter label: aString icon: anIcon order: aNumber [
 
 	item := PyramidTabItem new
@@ -25,13 +27,13 @@ PyramidTabPanelBuilder >> makeTab: aPresenter label: aString icon: anIcon order:
 		        yourself
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidTabPanelBuilder >> notebook [
 
 	^ SpNotebookPresenter new
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidTabPanelBuilder >> presenterOf: aCollectionOfItems [
 
 	| notebook |
@@ -44,7 +46,7 @@ PyramidTabPanelBuilder >> presenterOf: aCollectionOfItems [
 	^ notebook
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 PyramidTabPanelBuilder >> reset [
 
 	item := nil

@@ -1,10 +1,12 @@
 Class {
-	#name : #PyramidBlElementHelper,
-	#superclass : #Object,
-	#category : #'Pyramid-Bloc-utils'
+	#name : 'PyramidBlElementHelper',
+	#superclass : 'Object',
+	#category : 'Pyramid-Bloc-utils',
+	#package : 'Pyramid-Bloc',
+	#tag : 'utils'
 }
 
-{ #category : #'pyramid-serialized-bloc' }
+{ #category : 'pyramid-serialized-bloc' }
 PyramidBlElementHelper class >> openInPyramidHelper [
 	"This class has been generated using Pyramid.
 

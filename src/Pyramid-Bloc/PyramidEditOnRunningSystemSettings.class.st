@@ -1,10 +1,12 @@
 Class {
-	#name : #PyramidEditOnRunningSystemSettings,
-	#superclass : #Object,
-	#category : #'Pyramid-Bloc-plugin-edit-on-running'
+	#name : 'PyramidEditOnRunningSystemSettings',
+	#superclass : 'Object',
+	#category : 'Pyramid-Bloc-plugin-edit-on-running',
+	#package : 'Pyramid-Bloc',
+	#tag : 'plugin-edit-on-running'
 }
 
-{ #category : #dialog }
+{ #category : 'dialog' }
 PyramidEditOnRunningSystemSettings class >> canEditDialog: aBuilder [
 
 	^ self theme newRowIn: self for: {
@@ -13,19 +15,19 @@ PyramidEditOnRunningSystemSettings class >> canEditDialog: aBuilder [
 	}
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidEditOnRunningSystemSettings class >> editOnRunning [
 
 	^ PyramidPluginEditOnRunning editOnRunning 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidEditOnRunningSystemSettings class >> editOnRunning: aBoolean [
 
 	PyramidPluginEditOnRunning editOnRunning: aBoolean
 ]
 
-{ #category : #settings }
+{ #category : 'settings' }
 PyramidEditOnRunningSystemSettings class >> editOnRunningSettingOn: aBuilder [
 	<systemsettings>
 
@@ -38,12 +40,12 @@ PyramidEditOnRunningSystemSettings class >> editOnRunningSettingOn: aBuilder [
 Press the required shortcut key(s) on a focused BlSpace window to edit it in Pyramid.'
 ]
 
-{ #category : #dialog }
+{ #category : 'dialog' }
 PyramidEditOnRunningSystemSettings class >> theme [
 
 	^ Smalltalk ui theme
 ]
 
-{ #category : #'see class side' }
+{ #category : 'see class side' }
 PyramidEditOnRunningSystemSettings >> seeClassSide [ 
 ]

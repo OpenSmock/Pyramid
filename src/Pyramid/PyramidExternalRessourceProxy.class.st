@@ -1,14 +1,16 @@
 Class {
-	#name : #PyramidExternalRessourceProxy,
-	#superclass : #Object,
+	#name : 'PyramidExternalRessourceProxy',
+	#superclass : 'Object',
 	#instVars : [
 		'object',
 		'source'
 	],
-	#category : #'Pyramid-external-ressources'
+	#category : 'Pyramid-external-ressources',
+	#package : 'Pyramid',
+	#tag : 'external-ressources'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PyramidExternalRessourceProxy class >> fromSource: aSource [
 
 	^ self new
@@ -17,7 +19,7 @@ PyramidExternalRessourceProxy class >> fromSource: aSource [
 		  yourself
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PyramidExternalRessourceProxy >> doesNotUnderstand: aMessage [
 
 	^ (self pyramidExternalRessourceObject respondsTo: aMessage selector)
@@ -28,7 +30,7 @@ PyramidExternalRessourceProxy >> doesNotUnderstand: aMessage [
 		  ifFalse: [ super doesNotUnderstand: aMessage ]
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 PyramidExternalRessourceProxy >> fromSton: stonReader [
 
 	stonReader parseMapDo: [ :key :value |
@@ -37,32 +39,32 @@ PyramidExternalRessourceProxy >> fromSton: stonReader [
 			 ] ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidExternalRessourceProxy >> pyramidExternalRessourceObject [
 
 	object ifNil: [ object := self pyramidExternalRessourceSource getRessource ].
 	^ object
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidExternalRessourceProxy >> pyramidExternalRessourceObject: anObject [
 
 	object := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidExternalRessourceProxy >> pyramidExternalRessourceSource [
 
 	^ source
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidExternalRessourceProxy >> pyramidExternalRessourceSource: anObject [
 
 	source := anObject
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PyramidExternalRessourceProxy >> stonOn: stonWriter [
 
 	stonWriter

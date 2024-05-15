@@ -1,16 +1,18 @@
 Class {
-	#name : #PyramidOnForegroundOrderCommand,
-	#superclass : #PyramidAbstractChangeDrawOrderCommand,
-	#category : #'Pyramid-Bloc-plugin-bloc-order'
+	#name : 'PyramidOnForegroundOrderCommand',
+	#superclass : 'PyramidAbstractChangeDrawOrderCommand',
+	#category : 'Pyramid-Bloc-plugin-bloc-order',
+	#package : 'Pyramid-Bloc',
+	#tag : 'plugin-bloc-order'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PyramidOnForegroundOrderCommand >> commandInverse [
 
 	^ PyramidChangeOrderWithIndexCommand new
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PyramidOnForegroundOrderCommand >> setValueFor: aBlElement with: anArgument [
 
 	| currentIndex parent |

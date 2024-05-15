@@ -1,6 +1,6 @@
 Class {
-	#name : #PyramidPlaygroundView,
-	#superclass : #SpPresenter,
+	#name : 'PyramidPlaygroundView',
+	#superclass : 'SpPresenter',
 	#traits : 'TPyramidProjectModelObserver',
 	#classTraits : 'TPyramidProjectModelObserver classTrait',
 	#instVars : [
@@ -10,22 +10,24 @@ Class {
 		'codeObjectInteractionModel',
 		'contextLabel'
 	],
-	#category : #'Pyramid-plugin-playground'
+	#category : 'Pyramid-plugin-playground',
+	#package : 'Pyramid',
+	#tag : 'plugin-playground'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidPlaygroundView >> contextLabel [
 
 	^ contextLabel
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PyramidPlaygroundView >> currentSelection [
 
 	^ self projectModel selection
 ]
 
-{ #category : #layout }
+{ #category : 'layout' }
 PyramidPlaygroundView >> defaultLayout [
 
 	^ SpPanedLayout newVertical
@@ -47,7 +49,7 @@ PyramidPlaygroundView >> defaultLayout [
 		  yourself
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 PyramidPlaygroundView >> initializePresenters [
 
 	list := SpListPresenter new.
@@ -58,25 +60,26 @@ PyramidPlaygroundView >> initializePresenters [
 	playground announcer
 		when: SpCodeEvaluationSucceedAnnouncement
 		do: [ :ann | self projectModel informElementsChanged ]
+		for: self
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidPlaygroundView >> list [
 ^ list
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidPlaygroundView >> playground [
 	^ playground
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidPlaygroundView >> projectModel [
 
 	^ projectModel
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidPlaygroundView >> projectModel: aPyramidActiveProject [
 
 	projectModel := aPyramidActiveProject.
@@ -86,14 +89,14 @@ PyramidPlaygroundView >> projectModel: aPyramidActiveProject [
 		self pyramidSelectionChanged.
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PyramidPlaygroundView >> pyramidSelectionChanged [
 
 	self list items: self currentSelection.
 	contextLabel label: self valueOfSelf.
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PyramidPlaygroundView >> valueOfSelf [
 
 	^ 'self is <1s>' expandMacrosWith:

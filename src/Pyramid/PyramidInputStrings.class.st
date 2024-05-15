@@ -1,25 +1,27 @@
 Class {
-	#name : #PyramidInputStrings,
-	#superclass : #Object,
+	#name : 'PyramidInputStrings',
+	#superclass : 'Object',
 	#instVars : [
 		'help'
 	],
-	#category : #'Pyramid-specs-custom'
+	#category : 'Pyramid-specs-custom',
+	#package : 'Pyramid',
+	#tag : 'specs-custom'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidInputStrings >> help [
 
 	^ help
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidInputStrings >> help: anObject [
 
 	help := anObject
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 PyramidInputStrings >> initialize [
 
 	help := ''

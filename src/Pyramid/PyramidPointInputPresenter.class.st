@@ -1,6 +1,6 @@
 Class {
-	#name : #PyramidPointInputPresenter,
-	#superclass : #PyramidInputPresenter,
+	#name : 'PyramidPointInputPresenter',
+	#superclass : 'PyramidInputPresenter',
 	#instVars : [
 		'inputX',
 		'inputY',
@@ -8,16 +8,18 @@ Class {
 		'labelX',
 		'labelY'
 	],
-	#category : #'Pyramid-specs-custom'
+	#category : 'Pyramid-specs-custom',
+	#package : 'Pyramid',
+	#tag : 'specs-custom'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidPointInputPresenter class >> stringsClass [
 
 	^ PyramidPointInputStrings
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PyramidPointInputPresenter >> applyStrings [
 
 	self inputX inputNumber help: self strings help.
@@ -26,7 +28,7 @@ PyramidPointInputPresenter >> applyStrings [
 	self labelY label: self strings labelY
 ]
 
-{ #category : #layout }
+{ #category : 'layout' }
 PyramidPointInputPresenter >> defaultLayout [
 
 	^ SpBoxLayout newHorizontal
@@ -40,7 +42,7 @@ PyramidPointInputPresenter >> defaultLayout [
 		  yourself
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 PyramidPointInputPresenter >> initializePresenters [
 
 	inputX := PyramidNumberInputPresenter new
@@ -55,31 +57,31 @@ PyramidPointInputPresenter >> initializePresenters [
 	labelY := SpLabelPresenter new
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidPointInputPresenter >> inputX [
 
 	^ inputX
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidPointInputPresenter >> inputY [
 
 	^ inputY
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidPointInputPresenter >> labelX [
 
 	^ labelX
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidPointInputPresenter >> labelY [
 
 	^ labelY
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PyramidPointInputPresenter >> value [
 
 	| x y |
@@ -90,7 +92,7 @@ PyramidPointInputPresenter >> value [
 	^ x @ y
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PyramidPointInputPresenter >> value: aPoint [
 
 	aPoint isPoint ifTrue: [
@@ -101,13 +103,13 @@ PyramidPointInputPresenter >> value: aPoint [
 		self inputY value: nil.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidPointInputPresenter >> whenValueChangedDo [
 
 	^ whenValueChangedDo
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidPointInputPresenter >> whenValueChangedDo: anObject [
 
 	whenValueChangedDo := anObject

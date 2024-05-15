@@ -1,40 +1,42 @@
 Class {
-	#name : #PyramidInputWithModalPresenter,
-	#superclass : #PyramidInputPresenter,
+	#name : 'PyramidInputWithModalPresenter',
+	#superclass : 'PyramidInputPresenter',
 	#instVars : [
 		'presenter',
 		'button',
 		'presenterModal',
 		'whenValueChangedDo'
 	],
-	#category : #'Pyramid-specs-custom'
+	#category : 'Pyramid-specs-custom',
+	#package : 'Pyramid',
+	#tag : 'specs-custom'
 }
 
-{ #category : #testing }
+{ #category : 'testing' }
 PyramidInputWithModalPresenter class >> isAbstract [
 
 	^ self == PyramidInputWithModalPresenter
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidInputWithModalPresenter class >> stringsClass [
 
 	^ PyramidModalInputStrings
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PyramidInputWithModalPresenter >> applyStrings [
 
 	self button help: self strings help
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidInputWithModalPresenter >> button [
 
 	^ button
 ]
 
-{ #category : #layout }
+{ #category : 'layout' }
 PyramidInputWithModalPresenter >> defaultLayout [
 
 	^ SpBoxLayout newHorizontal
@@ -43,7 +45,7 @@ PyramidInputWithModalPresenter >> defaultLayout [
 		  yourself
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 PyramidInputWithModalPresenter >> initializePresenters [
 
 	whenValueChangedDo := [ :arg1 |  ].
@@ -59,49 +61,49 @@ PyramidInputWithModalPresenter >> initializePresenters [
 					self whenValueChangedDo value: self presenterModal value ] ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidInputWithModalPresenter >> presenter [
 	^ presenter
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidInputWithModalPresenter >> presenter: anObject [
 
 	presenter := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidInputWithModalPresenter >> presenterModal [
 
 	^ presenterModal
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidInputWithModalPresenter >> presenterModal: anObject [
 
 	presenterModal := anObject
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PyramidInputWithModalPresenter >> value [
 
 	^ self presenterModal value
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PyramidInputWithModalPresenter >> value: anObject [
 
 	self presenterModal value: anObject.
 	self presenter value: anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidInputWithModalPresenter >> whenValueChangedDo [
 
 	^ whenValueChangedDo
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidInputWithModalPresenter >> whenValueChangedDo: anObject [
 
 	whenValueChangedDo := anObject

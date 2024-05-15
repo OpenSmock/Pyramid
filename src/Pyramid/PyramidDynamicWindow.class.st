@@ -1,19 +1,21 @@
 Class {
-	#name : #PyramidDynamicWindow,
-	#superclass : #PyramidWindow,
+	#name : 'PyramidDynamicWindow',
+	#superclass : 'PyramidWindow',
 	#instVars : [
 		'layoutStrategy'
 	],
-	#category : #'Pyramid-plugin-dynamic-layout'
+	#category : 'Pyramid-plugin-dynamic-layout',
+	#package : 'Pyramid',
+	#tag : 'plugin-dynamic-layout'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidDynamicWindow >> layout [
 
 	^ self layoutStrategy layoutFor: self
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidDynamicWindow >> layoutStrategy [
 
 	layoutStrategy ifNil: [
@@ -21,7 +23,7 @@ PyramidDynamicWindow >> layoutStrategy [
 	^ layoutStrategy
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidDynamicWindow >> layoutStrategy: aStrategy [
 
 	layoutStrategy := aStrategy.

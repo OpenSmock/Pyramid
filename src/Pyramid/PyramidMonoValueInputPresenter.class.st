@@ -1,45 +1,47 @@
 Class {
-	#name : #PyramidMonoValueInputPresenter,
-	#superclass : #PyramidInputPresenter,
+	#name : 'PyramidMonoValueInputPresenter',
+	#superclass : 'PyramidInputPresenter',
 	#instVars : [
 		'value',
 		'presenter'
 	],
-	#category : #'Pyramid-specs-custom'
+	#category : 'Pyramid-specs-custom',
+	#package : 'Pyramid',
+	#tag : 'specs-custom'
 }
 
-{ #category : #layout }
+{ #category : 'layout' }
 PyramidMonoValueInputPresenter >> defaultLayout [
 
 	^ SpBoxLayout new add: self presenter; yourself
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 PyramidMonoValueInputPresenter >> initializePresenters [
 
 	presenter := SpNullPresenter new.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidMonoValueInputPresenter >> presenter [
 
 	^ presenter
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidMonoValueInputPresenter >> presenter: aPresenter [
 
 	presenter := aPresenter.
 	self layout: self defaultLayout
 ]
 
-{ #category : #evaluating }
+{ #category : 'evaluating' }
 PyramidMonoValueInputPresenter >> value [
 
 	^ value
 ]
 
-{ #category : #evaluating }
+{ #category : 'evaluating' }
 PyramidMonoValueInputPresenter >> value: anObject [
 
 	value := anObject

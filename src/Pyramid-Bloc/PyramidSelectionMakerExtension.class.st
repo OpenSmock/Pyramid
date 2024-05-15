@@ -1,6 +1,6 @@
 Class {
-	#name : #PyramidSelectionMakerExtension,
-	#superclass : #Object,
+	#name : 'PyramidSelectionMakerExtension',
+	#superclass : 'Object',
 	#traits : 'TPyramidSpaceExtension + TPyramidEditorExtension + TPyramidKeyboardExtension',
 	#classTraits : 'TPyramidSpaceExtension classTrait + TPyramidEditorExtension classTrait + TPyramidKeyboardExtension classTrait',
 	#instVars : [
@@ -9,10 +9,12 @@ Class {
 		'dragOrigin',
 		'projectModel'
 	],
-	#category : #'Pyramid-Bloc-plugin-space-extensions'
+	#category : 'Pyramid-Bloc-plugin-space-extensions',
+	#package : 'Pyramid-Bloc',
+	#tag : 'plugin-space-extensions'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PyramidSelectionMakerExtension >> computeAdditiveSelection: aCollection [
 
 	| newSelection |
@@ -21,7 +23,7 @@ PyramidSelectionMakerExtension >> computeAdditiveSelection: aCollection [
 	self projectModel selection replaceAll: newSelection
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PyramidSelectionMakerExtension >> computeExclusifSelection: aCollection [
 
 	| newSelection oldCollection |
@@ -31,14 +33,14 @@ PyramidSelectionMakerExtension >> computeExclusifSelection: aCollection [
 	self projectModel selection replaceAll: newSelection
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PyramidSelectionMakerExtension >> computeNormalSelection: aCollection [
 
 	self projectModel ifNil: [ ^ self ].
 	self projectModel setSelection: aCollection
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PyramidSelectionMakerExtension >> computeSelection: anEvent [
 
 	| collection |
@@ -55,7 +57,7 @@ PyramidSelectionMakerExtension >> computeSelection: anEvent [
 	self computeNormalSelection: collection
 ]
 
-{ #category : #'event handling' }
+{ #category : 'event handling' }
 PyramidSelectionMakerExtension >> dragEnd: anEvent [
 
 	self isDragging: false.
@@ -63,7 +65,7 @@ PyramidSelectionMakerExtension >> dragEnd: anEvent [
 	self selectionGhost visibility: BlVisibility gone
 ]
 
-{ #category : #'event handling' }
+{ #category : 'event handling' }
 PyramidSelectionMakerExtension >> dragEvent: anEvent [
 
 	| xmin ymin |
@@ -80,19 +82,19 @@ PyramidSelectionMakerExtension >> dragEvent: anEvent [
 		size: (anEvent position - self dragOrigin) abs
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidSelectionMakerExtension >> dragOrigin [
 
 	^ dragOrigin
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidSelectionMakerExtension >> dragOrigin: anObject [
 
 	dragOrigin := anObject
 ]
 
-{ #category : #'event handling' }
+{ #category : 'event handling' }
 PyramidSelectionMakerExtension >> dragStart: anEvent [
 
 	self isDragging: true.
@@ -104,7 +106,7 @@ PyramidSelectionMakerExtension >> dragStart: anEvent [
 		visibility: BlVisibility visible
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 PyramidSelectionMakerExtension >> initialize [
 
 	isDragging := false.
@@ -115,7 +117,7 @@ PyramidSelectionMakerExtension >> initialize [
 		                  yourself
 ]
 
-{ #category : #displaying }
+{ #category : 'displaying' }
 PyramidSelectionMakerExtension >> installOn: aBuilder [
 
 	self builder: aBuilder.
@@ -140,25 +142,25 @@ PyramidSelectionMakerExtension >> installOn: aBuilder [
 			 do: [ :evt | self dragEnd: evt ])
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidSelectionMakerExtension >> isDragging [
 
 	^ isDragging
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidSelectionMakerExtension >> isDragging: anObject [
 
 	isDragging := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidSelectionMakerExtension >> projectModel [
 
 	^ projectModel
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidSelectionMakerExtension >> projectModel: aProjectModel [
 
 	projectModel := aProjectModel
@@ -166,7 +168,7 @@ PyramidSelectionMakerExtension >> projectModel: aProjectModel [
 	
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PyramidSelectionMakerExtension >> selectAllElementsInBound: aBound [
 
 
@@ -175,7 +177,7 @@ PyramidSelectionMakerExtension >> selectAllElementsInBound: aBound [
 		                   aBound containsRect: each boundsInSpace ].
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PyramidSelectionMakerExtension >> selectFirstElementAt: aPosition [
 
 	| selectedElements |
@@ -186,7 +188,7 @@ PyramidSelectionMakerExtension >> selectFirstElementAt: aPosition [
 	^ { selectedElements last }
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidSelectionMakerExtension >> selectionGhost [
 
 	^ selectionGhost

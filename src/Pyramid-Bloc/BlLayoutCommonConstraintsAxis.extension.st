@@ -1,12 +1,12 @@
-Extension { #name : #BlLayoutCommonConstraintsAxis }
+Extension { #name : 'BlLayoutCommonConstraintsAxis' }
 
-{ #category : #'*Pyramid-Bloc' }
+{ #category : '*Pyramid-Bloc' }
 BlLayoutCommonConstraintsAxis >> asPyramidConstraintsArgument [
 
 	^ self resizer asPyramidConstraintsArgument
 ]
 
-{ #category : #'*Pyramid-Bloc' }
+{ #category : '*Pyramid-Bloc' }
 BlLayoutCommonConstraintsAxis >> setConstraintsOn: aPyramidBasicConstraintsInputPresenter [
 
 	self resizer setResizerConstraintsOn: aPyramidBasicConstraintsInputPresenter

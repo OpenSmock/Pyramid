@@ -1,20 +1,22 @@
 Class {
-	#name : #PyramidCornerRadiiInputPresenter,
-	#superclass : #PyramidInputPresenter,
+	#name : 'PyramidCornerRadiiInputPresenter',
+	#superclass : 'PyramidInputPresenter',
 	#instVars : [
 		'inputArray',
 		'whenValueChangedDo'
 	],
-	#category : #'Pyramid-Bloc-plugin-bloc'
+	#category : 'Pyramid-Bloc-plugin-bloc',
+	#package : 'Pyramid-Bloc',
+	#tag : 'plugin-bloc'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PyramidCornerRadiiInputPresenter >> applyStrings [
 
 	self inputArray strings: self strings
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PyramidCornerRadiiInputPresenter >> cornerRadiiFrom: anArray [
 
 	anArray isCollection ifFalse: [ ^ anArray ].
@@ -36,13 +38,13 @@ PyramidCornerRadiiInputPresenter >> cornerRadiiFrom: anArray [
 	^ PyramidUnknowState new
 ]
 
-{ #category : #layout }
+{ #category : 'layout' }
 PyramidCornerRadiiInputPresenter >> defaultLayout [
 
 ^ SpBoxLayout newHorizontal add: self inputArray; yourself
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 PyramidCornerRadiiInputPresenter >> initializePresenters [
 
 	whenValueChangedDo := [ :insets |  ].
@@ -52,31 +54,31 @@ PyramidCornerRadiiInputPresenter >> initializePresenters [
 			              (self cornerRadiiFrom: array) ]
 ]
 
-{ #category : #layout }
+{ #category : 'layout' }
 PyramidCornerRadiiInputPresenter >> inputArray [
 
 	^ inputArray
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PyramidCornerRadiiInputPresenter >> value [
 
 	^ self cornerRadiiFrom: self inputArray value
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PyramidCornerRadiiInputPresenter >> value: aBlCornerRadii [
 
 	aBlCornerRadii setCornerRadiiOn: self
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 PyramidCornerRadiiInputPresenter >> whenValueChangedDo [
 
 	^	whenValueChangedDo
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 PyramidCornerRadiiInputPresenter >> whenValueChangedDo: aBlock [
 
 	whenValueChangedDo := aBlock

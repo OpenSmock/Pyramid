@@ -1,6 +1,6 @@
-Extension { #name : #BlColorPaint }
+Extension { #name : 'BlColorPaint' }
 
-{ #category : #'*Pyramid-Bloc' }
+{ #category : '*Pyramid-Bloc' }
 BlColorPaint >> asForm [
 
 	^ (Morph new
@@ -9,7 +9,7 @@ BlColorPaint >> asForm [
 		  yourself) asForm
 ]
 
-{ #category : #'*Pyramid-Bloc' }
+{ #category : '*Pyramid-Bloc' }
 BlColorPaint >> selectOnBackgroundInput: aPyramidBackgroundInputPresenter [
 
 	aPyramidBackgroundInputPresenter selectPaintSolidWith: self

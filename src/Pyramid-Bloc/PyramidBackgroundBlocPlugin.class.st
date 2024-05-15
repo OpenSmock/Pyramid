@@ -1,15 +1,17 @@
 Class {
-	#name : #PyramidBackgroundBlocPlugin,
-	#superclass : #Object,
+	#name : 'PyramidBackgroundBlocPlugin',
+	#superclass : 'Object',
 	#traits : 'TPyramidPlugin',
 	#classTraits : 'TPyramidPlugin classTrait',
 	#instVars : [
 		'propertiesManager'
 	],
-	#category : #'Pyramid-Bloc-plugin-bloc-background'
+	#category : 'Pyramid-Bloc-plugin-bloc-background',
+	#package : 'Pyramid-Bloc',
+	#tag : 'plugin-bloc-background'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidBackgroundBlocPlugin class >> backgroundImageSelector [
 
 	| property |
@@ -22,7 +24,7 @@ PyramidBackgroundBlocPlugin class >> backgroundImageSelector [
 	^ property
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidBackgroundBlocPlugin class >> backgroundLinearEnd [
 
 	| property |
@@ -38,7 +40,7 @@ PyramidBackgroundBlocPlugin class >> backgroundLinearEnd [
 	^ property
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidBackgroundBlocPlugin class >> backgroundLinearGradientDirection [
 
 	| property |
@@ -55,7 +57,7 @@ PyramidBackgroundBlocPlugin class >> backgroundLinearGradientDirection [
 	^ property
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidBackgroundBlocPlugin class >> backgroundLinearStart [
 
 	| property |
@@ -72,7 +74,21 @@ PyramidBackgroundBlocPlugin class >> backgroundLinearStart [
 	^ property
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
+PyramidBackgroundBlocPlugin class >> backgroundOpacity [
+
+	| property |
+	property := PyramidProperty new
+		            name: 'Background Opacity';
+		            command: PyramidBackgroudOpacityCommand new;
+		            pyramidInputPresenterClass: PyramidNumberInputPresenter;
+		            yourself.
+	property pyramidInputPresenterStrings help:
+		'Define the opacity of the background.'.
+	^ property
+]
+
+{ #category : 'accessing' }
 PyramidBackgroundBlocPlugin class >> backgroundPaintColor [
 
 	| property |
@@ -85,7 +101,7 @@ PyramidBackgroundBlocPlugin class >> backgroundPaintColor [
 	^ property
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidBackgroundBlocPlugin class >> backgroundPaintStops [
 
 	| property |
@@ -98,7 +114,7 @@ PyramidBackgroundBlocPlugin class >> backgroundPaintStops [
 	^ property
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidBackgroundBlocPlugin class >> backgroundPaintType [
 
 	| property |
@@ -154,7 +170,7 @@ PyramidBackgroundBlocPlugin class >> backgroundPaintType [
 	^ property
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidBackgroundBlocPlugin class >> backgroundRadialInnerCenter [
 
 	| property |
@@ -170,7 +186,7 @@ PyramidBackgroundBlocPlugin class >> backgroundRadialInnerCenter [
 	^ property
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidBackgroundBlocPlugin class >> backgroundRadialInnerRadius [
 
 	| property |
@@ -185,7 +201,7 @@ PyramidBackgroundBlocPlugin class >> backgroundRadialInnerRadius [
 	^ property
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidBackgroundBlocPlugin class >> backgroundRadialOuterCenter [
 
 	| property |
@@ -202,7 +218,7 @@ PyramidBackgroundBlocPlugin class >> backgroundRadialOuterCenter [
 	^ property
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidBackgroundBlocPlugin class >> backgroundRadialOuterRadius [
 
 	| property |
@@ -217,7 +233,7 @@ PyramidBackgroundBlocPlugin class >> backgroundRadialOuterRadius [
 	^ property
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidBackgroundBlocPlugin class >> backgroundType [
 
 	| property |
@@ -257,7 +273,393 @@ PyramidBackgroundBlocPlugin class >> backgroundType [
 	^ property
 ]
 
-{ #category : #adding }
+{ #category : 'accessing' }
+PyramidBackgroundBlocPlugin class >> borderDashArray [
+
+	| property |
+	property := PyramidProperty new
+		            name: 'Border Dash Array';
+		            command: PyramidBorderDashArrayCommand new;
+		            pyramidInputPresenterClass: PyramidDashArrayInputPresenter;
+		            yourself.
+	property pyramidInputPresenterStrings help:
+		'Define the dash array.'.
+	^ property
+]
+
+{ #category : 'accessing' }
+PyramidBackgroundBlocPlugin class >> borderDashOffset [
+
+	| property |
+	property := PyramidProperty new
+		            name: 'Border Dash Offset';
+		            command: PyramidBorderDashOffsetCommand new;
+		            pyramidInputPresenterClass: PyramidNumberInputPresenter;
+		            yourself.
+	property pyramidInputPresenterStrings help:
+		'Define the offset of the dash.'.
+	^ property
+]
+
+{ #category : 'accessing' }
+PyramidBackgroundBlocPlugin class >> borderLineCap [
+
+	| property |
+	property := PyramidProperty new
+		            name: 'Border Line Cap';
+		            command: PyramidBorderLineCapCommand new;
+		            pyramidInputPresenterClass:
+			            PyramidMagicButtonsInputPresenter;
+		            yourself.
+	property pyramidInputPresenterStrings
+		addButtonModel: (PyramidMagicButtonModel new
+				 icon: (self iconNamed: #windowMaximize);
+				 helpSelected: 'The value is Butt.';
+				 helpNotSelected: 'Set the value to Butt.';
+				 label: 'Butt';
+				 inputValue: [ BlStrokeLineCap butt ];
+				 inputValidation: [ :value | value = BlStrokeLineCap butt ];
+				 yourself);
+		addButtonModel: (PyramidMagicButtonModel new
+				 icon: (self iconNamed: #windowMaximize);
+				 helpSelected: 'The value is Round.';
+				 helpNotSelected: 'Set the value to Round.';
+				 label: 'Round';
+				 inputValue: [ BlStrokeLineCap round ];
+				 inputValidation: [ :value | value = BlStrokeLineCap round ];
+				 yourself);
+		addButtonModel: (PyramidMagicButtonModel new
+				 icon: (self iconNamed: #windowMaximize);
+				 helpSelected: 'The value is Square.';
+				 helpNotSelected: 'Set the value to Square.';
+				 label: 'Square';
+				 inputValue: [ BlStrokeLineCap square ];
+				 inputValidation: [ :value | value = BlStrokeLineCap square ];
+				 yourself);
+		yourself.
+	^ property
+]
+
+{ #category : 'accessing' }
+PyramidBackgroundBlocPlugin class >> borderLineJoin [
+
+	| property |
+	property := PyramidProperty new
+		            name: 'Border Line Join';
+		            command: PyramidBorderLineJoinCommand new;
+		            pyramidInputPresenterClass:
+			            PyramidMagicButtonsInputPresenter;
+		            yourself.
+	property pyramidInputPresenterStrings
+		addButtonModel: (PyramidMagicButtonModel new
+				 icon: (self iconNamed: #windowMaximize);
+				 helpSelected: 'The value is Bevel.';
+				 helpNotSelected: 'Set the value to Bevel.';
+				 label: 'Bevel';
+				 inputValue: [ BlStrokeLineJoin bevel ];
+				 inputValidation: [ :value | value = BlStrokeLineJoin bevel ];
+				 yourself);
+		addButtonModel: (PyramidMagicButtonModel new
+				 icon: (self iconNamed: #windowMaximize);
+				 helpSelected: 'The value is Miter.';
+				 helpNotSelected: 'Set the value to Miter.';
+				 label: 'Miter';
+				 inputValue: [ BlStrokeLineJoin miter ];
+				 inputValidation: [ :value | value = BlStrokeLineJoin miter ];
+				 yourself);
+		addButtonModel: (PyramidMagicButtonModel new
+				 icon: (self iconNamed: #windowMaximize);
+				 helpSelected: 'The value is Round.';
+				 helpNotSelected: 'Set the value to Round.';
+				 label: 'Round';
+				 inputValue: [ BlStrokeLineJoin round ];
+				 inputValidation: [ :value | value = BlStrokeLineJoin round ];
+				 yourself);
+		yourself.
+	^ property
+]
+
+{ #category : 'accessing' }
+PyramidBackgroundBlocPlugin class >> borderLinearEnd [
+
+	| property |
+	property := PyramidProperty new
+		            name: 'Border Linear End';
+		            command: PyramidBorderPaintLinearEndCommand new;
+		            pyramidInputPresenterClass: PyramidPointInputPresenter;
+		            yourself.
+	property pyramidInputPresenterStrings
+		help: 'Define the end of the linear gradient.';
+		labelX: 'x';
+		labelY: 'y'.
+	^ property
+]
+
+{ #category : 'accessing' }
+PyramidBackgroundBlocPlugin class >> borderLinearGradientDirection [
+
+	| property |
+	property := PyramidProperty new
+		            name: 'Border Linear Direction';
+		            command:
+			            PyramidBorderPaintLinearDirectionCommand new;
+		            pyramidInputPresenterClass: PyramidPointInputPresenter;
+		            yourself.
+	property pyramidInputPresenterStrings
+		help: 'Define the direction of the linear gradient.';
+		labelX: 'Start';
+		labelY: 'End'.
+	^ property
+]
+
+{ #category : 'accessing' }
+PyramidBackgroundBlocPlugin class >> borderLinearStart [
+
+	| property |
+	property := PyramidProperty new
+		            name: 'Border Linear Start';
+		            command: PyramidBorderPaintLinearStartCommand new;
+		            pyramidInputPresenterClass: PyramidPointInputPresenter;
+		            yourself.
+	property pyramidInputPresenterStrings
+		help: 'Define the start of the linear gradient.';
+		labelX: 'x';
+		labelY: 'y'.
+	^ property
+]
+
+{ #category : 'accessing' }
+PyramidBackgroundBlocPlugin class >> borderMiterLimit [
+
+	| property |
+	property := PyramidProperty new
+		            name: 'Border Miter Limit';
+		            command: PyramidBorderMiterLimitCommand new;
+		            pyramidInputPresenterClass: PyramidNumberInputPresenter;
+		            yourself.
+	property pyramidInputPresenterStrings help:
+		'Define the miter limit of the border.'.
+	^ property
+]
+
+{ #category : 'accessing' }
+PyramidBackgroundBlocPlugin class >> borderOpacity [
+
+	| property |
+	property := PyramidProperty new
+		            name: 'Border Opacity';
+		            command: PyramidBorderOpacityCommand new;
+		            pyramidInputPresenterClass: PyramidNumberInputPresenter;
+		            yourself.
+	property pyramidInputPresenterStrings help:
+		'Define the opacity of the border.'.
+	^ property
+]
+
+{ #category : 'accessing' }
+PyramidBackgroundBlocPlugin class >> borderPaintColor [
+
+	| property |
+	property := PyramidProperty new
+		            name: 'Border Paint Color';
+		            command: PyramidBorderPaintColorCommand new;
+		            pyramidInputPresenterClass:
+			            PyramidColorInputSingleLineWithPickupButtonPresenter;
+		            yourself.
+	^ property
+]
+
+{ #category : 'accessing' }
+PyramidBackgroundBlocPlugin class >> borderPaintStops [
+
+	| property |
+	property := PyramidProperty new
+		            name: 'Border Paint Stops';
+		            command: PyramidBorderPaintStopsCommand new;
+		            pyramidInputPresenterClass:
+			            PyramidBackgroundStopsInputPresenter;
+		            yourself.
+	^ property
+]
+
+{ #category : 'accessing' }
+PyramidBackgroundBlocPlugin class >> borderPaintType [
+
+	| property |
+	property := PyramidProperty new
+		            name: 'Border Paint Type';
+		            command: PyramidBorderPaintCommand new;
+		            pyramidInputPresenterClass:
+			            PyramidMagicButtonsInputPresenter;
+		            yourself.
+	property pyramidInputPresenterStrings
+		addButtonModel: (PyramidMagicButtonModel new
+				 icon: (self iconNamed: #windowMaximize);
+				 helpSelected: 'The value is Solid.';
+				 helpNotSelected: 'Set the value to Solid.';
+				 label: 'Solid';
+				 inputValue: [
+					 [
+					 BlColorPaint new
+						 color: Color random;
+						 yourself ] ];
+				 inputValidation: [ :value | value class = BlColorPaint ];
+				 yourself);
+		addButtonModel: (PyramidMagicButtonModel new
+				 icon: (self iconNamed: #upAndDownArrow);
+				 helpSelected: 'The value is Linear Gradient.';
+				 helpNotSelected: 'Set the value to Linear Gradient.';
+				 label: 'Linear';
+				 inputValue: [
+					 [
+					 BlLinearGradientPaint vertical
+						 stops: {
+								 (0.0 -> Color random).
+								 (1.0 -> Color random) };
+						 yourself ] ];
+				 inputValidation: [ :value | value class = BlLinearGradientPaint ];
+				 yourself);
+		addButtonModel: (PyramidMagicButtonModel new
+				 icon: (self iconNamed: #radioButtonUnselected);
+				 helpSelected: 'The value is Linear Gradient.';
+				 helpNotSelected: 'Set the value to Linear Gradient.';
+				 label: 'Linear';
+				 inputValue: [
+					 [
+					 BlRadialGradientPaint new
+						 stops: {
+								 (0.0 -> Color random).
+								 (1.0 -> Color random) };
+						 innerCenter: 50 @ 50;
+						 innerRadius: 0;
+						 outerCenter: 50 @ 50;
+						 outerRadius: 50;
+						 yourself ] ];
+				 inputValidation: [ :value | value class = BlRadialGradientPaint ];
+				 yourself);
+		yourself.
+	^ property
+]
+
+{ #category : 'accessing' }
+PyramidBackgroundBlocPlugin class >> borderRadialInnerCenter [
+
+	| property |
+	property := PyramidProperty new
+		            name: 'Border Radial Center In';
+		            command:
+			            PyramidBorderPaintRadialInnerCenterCommand new;
+		            pyramidInputPresenterClass: PyramidPointInputPresenter;
+		            yourself.
+	property pyramidInputPresenterStrings
+		help: 'Define the center of the inner radial gradient.';
+		labelX: 'x';
+		labelY: 'y'.
+	^ property
+]
+
+{ #category : 'accessing' }
+PyramidBackgroundBlocPlugin class >> borderRadialInnerRadius [
+
+	| property |
+	property := PyramidProperty new
+		            name: 'Border Radial Radius In';
+		            command:
+			            PyramidBorderPaintRadialInnerRadiusCommand new;
+		            pyramidInputPresenterClass: PyramidNumberInputPresenter;
+		            yourself.
+	property pyramidInputPresenterStrings help:
+		'Define the center of the inner radius gradient.'.
+	^ property
+]
+
+{ #category : 'accessing' }
+PyramidBackgroundBlocPlugin class >> borderRadialOuterCenter [
+
+	| property |
+	property := PyramidProperty new
+		            name: 'Border Radial Center Out';
+		            command:
+			            PyramidBorderPaintRadialOuterCenterCommand new;
+		            pyramidInputPresenterClass: PyramidPointInputPresenter;
+		            yourself.
+	property pyramidInputPresenterStrings
+		help: 'Define the center of the outer radial gradient.';
+		labelX: 'x';
+		labelY: 'y'.
+	^ property
+]
+
+{ #category : 'accessing' }
+PyramidBackgroundBlocPlugin class >> borderRadialOuterRadius [
+
+	| property |
+	property := PyramidProperty new
+		            name: 'Border Radial Radius Out';
+		            command:
+			            PyramidBorderPaintRadialOuterRadiusCommand new;
+		            pyramidInputPresenterClass: PyramidNumberInputPresenter;
+		            yourself.
+	property pyramidInputPresenterStrings help:
+		'Define the center of the outer radius gradient.'.
+	^ property
+]
+
+{ #category : 'accessing' }
+PyramidBackgroundBlocPlugin class >> borderWidth [
+
+	| property |
+	property := PyramidProperty new
+		            name: 'Border Width';
+		            command: PyramidBorderWidthCommand new;
+		            pyramidInputPresenterClass:
+			            PyramidNumberInputPresenter;
+		            yourself.
+		property pyramidInputPresenterStrings help:
+		'Define the width of the border.'.
+	^ property
+]
+
+{ #category : 'accessing' }
+PyramidBackgroundBlocPlugin class >> outskirts [
+
+	| property |
+	property := PyramidProperty new
+		            name: 'Element Outskirts';
+		            command: PyramidOutskirtsCommand new;
+		            pyramidInputPresenterClass:
+			            PyramidMagicButtonsInputPresenter;
+		            yourself.
+	property pyramidInputPresenterStrings
+		addButtonModel: (PyramidMagicButtonModel new
+				 icon: (self iconNamed: #menuPin);
+				 helpSelected: 'The value is Inside.';
+				 helpNotSelected: 'Set the value to Inside.';
+				 label: 'Inside';
+				 inputValue: [ BlOutskirts inside ];
+				 inputValidation: [ :value | value class = BlOutskirtsInside ];
+				 yourself);
+		addButtonModel: (PyramidMagicButtonModel new
+				 icon: (self iconNamed: #radioButtonPressed);
+				 helpSelected: 'The value is Centered.';
+				 helpNotSelected: 'Set the value to Centered.';
+				 label: 'Centered';
+				 inputValue: [ BlOutskirts centered ];
+				 inputValidation: [ :value | value class = BlOutskirtsCentered ];
+				 yourself);
+		addButtonModel: (PyramidMagicButtonModel new
+				 icon: (self iconNamed: #radioButtonUnselected);
+				 helpSelected: 'The value is Outside.';
+				 helpNotSelected: 'Set the value to Outside.';
+				 label: 'Outside';
+				 inputValue: [ BlOutskirts outside ];
+				 inputValidation: [ :value | value class = BlOutskirtsOutside ];
+				 yourself);
+		yourself.
+	^ property
+]
+
+{ #category : 'adding' }
 PyramidBackgroundBlocPlugin >> addPanelsOn: aPyramidSimpleWindow [
 
 	aPyramidSimpleWindow at: #tabRight addItem: [ :builder |
@@ -268,21 +670,24 @@ PyramidBackgroundBlocPlugin >> addPanelsOn: aPyramidSimpleWindow [
 			order: 2 ]
 ]
 
-{ #category : #connecting }
+{ #category : 'connecting' }
 PyramidBackgroundBlocPlugin >> connectOn: aPyramidEditor [
 
 	propertiesManager projectModel: aPyramidEditor projectModel.
 	propertiesManager commandExecutor: aPyramidEditor propertiesManager commandExecutor
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 PyramidBackgroundBlocPlugin >> initialize [
 
 	propertiesManager := PyramidPropertiesManagerForSelection new.
+
+	"Background properties"
+	"Type"
 	propertiesManager addProperty: self class backgroundType.
-	
+
 	"Image"
-	propertiesManager addProperty: self class  backgroundImageSelector.
+	propertiesManager addProperty: self class backgroundImageSelector.
 
 	"Paint"
 	propertiesManager addProperty: self class backgroundPaintType.
@@ -297,10 +702,38 @@ PyramidBackgroundBlocPlugin >> initialize [
 	propertiesManager addProperty: self class backgroundRadialInnerCenter.
 	propertiesManager addProperty: self class backgroundRadialInnerRadius.
 	propertiesManager addProperty: self class backgroundRadialOuterCenter.
-	propertiesManager addProperty: self class backgroundRadialOuterRadius
+	propertiesManager addProperty: self class backgroundRadialOuterRadius.
+
+	"Outskirts properties"
+	propertiesManager addProperty: self class outskirts.
+
+	"Border properties"
+	propertiesManager addProperty: self class borderWidth.
+
+	"Style"
+	propertiesManager addProperty: self class borderDashArray.
+	propertiesManager addProperty: self class borderDashOffset.
+	propertiesManager addProperty: self class borderLineCap.
+	propertiesManager addProperty: self class borderLineJoin.
+	propertiesManager addProperty: self class borderMiterLimit.
+
+	"Paint"
+	propertiesManager addProperty: self class borderPaintType.
+	propertiesManager addProperty: self class borderPaintColor.
+	propertiesManager addProperty: self class borderPaintStops.
+
+	"Linear start | end"
+	propertiesManager addProperty: self class borderLinearStart.
+	propertiesManager addProperty: self class borderLinearEnd.
+
+	"Radial"
+	propertiesManager addProperty: self class borderRadialInnerCenter.
+	propertiesManager addProperty: self class borderRadialInnerRadius.
+	propertiesManager addProperty: self class borderRadialOuterCenter.
+	propertiesManager addProperty: self class borderRadialOuterRadius
 ]
 
-{ #category : #adding }
+{ #category : 'adding' }
 PyramidBackgroundBlocPlugin >> propertiesManager [
 
 	^ propertiesManager

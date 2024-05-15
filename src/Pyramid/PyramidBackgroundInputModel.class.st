@@ -1,32 +1,34 @@
 Class {
-	#name : #PyramidBackgroundInputModel,
-	#superclass : #Object,
+	#name : 'PyramidBackgroundInputModel',
+	#superclass : 'Object',
 	#instVars : [
 		'page',
 		'presenter'
 	],
-	#category : #'Pyramid-specs-custom'
+	#category : 'Pyramid-specs-custom',
+	#package : 'Pyramid',
+	#tag : 'specs-custom'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidBackgroundInputModel >> page [
 
 	^ page
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidBackgroundInputModel >> page: anObject [
 
 	page := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidBackgroundInputModel >> presenter [
 
 	^ presenter
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidBackgroundInputModel >> presenter: anObject [
 
 	presenter := anObject

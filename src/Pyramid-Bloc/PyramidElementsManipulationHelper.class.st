@@ -1,10 +1,12 @@
 Class {
-	#name : #PyramidElementsManipulationHelper,
-	#superclass : #Object,
-	#category : #'Pyramid-Bloc-utils'
+	#name : 'PyramidElementsManipulationHelper',
+	#superclass : 'Object',
+	#category : 'Pyramid-Bloc-utils',
+	#package : 'Pyramid-Bloc',
+	#tag : 'utils'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PyramidElementsManipulationHelper class >> accumulateChildrenOf: aBlElement in: aCollection [
 
 	aCollection add: aBlElement.
@@ -13,7 +15,7 @@ PyramidElementsManipulationHelper class >> accumulateChildrenOf: aBlElement in: 
 		self accumulateChildrenOf: each in: aCollection ]
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PyramidElementsManipulationHelper class >> accumulateParentsOf: aCollectionOfBlElement in: result [
 
 	| elementToTest onCollection nextCollection shouldKeepIt |
@@ -36,7 +38,7 @@ PyramidElementsManipulationHelper class >> accumulateParentsOf: aCollectionOfBlE
 	self accumulateParentsOf: nextCollection in: result
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PyramidElementsManipulationHelper class >> flattenChildrenOfCollection: aCollection [
 	"Consider:
 A1->A2-A3.
@@ -56,7 +58,7 @@ returns
 	^ ret
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PyramidElementsManipulationHelper class >> onlyParents: aCollectionOfBlElement [
 	"return a collection whithout any parent-child relation.
 	Example:

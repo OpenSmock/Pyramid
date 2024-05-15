@@ -1,20 +1,22 @@
 Class {
-	#name : #PyramidInputPreviewPresenter,
-	#superclass : #PyramidInputPresenter,
+	#name : 'PyramidInputPreviewPresenter',
+	#superclass : 'PyramidInputPresenter',
 	#instVars : [
 		'image',
 		'label'
 	],
-	#category : #'Pyramid-specs-custom'
+	#category : 'Pyramid-specs-custom',
+	#package : 'Pyramid',
+	#tag : 'specs-custom'
 }
 
-{ #category : #testing }
+{ #category : 'testing' }
 PyramidInputPreviewPresenter class >> isAbstract [
 
 	^ self == PyramidInputPreviewPresenter
 ]
 
-{ #category : #layout }
+{ #category : 'layout' }
 PyramidInputPreviewPresenter >> defaultLayout [
 
 	^ SpBoxLayout newHorizontal spacing: 4; vAlignCenter;
@@ -23,26 +25,26 @@ PyramidInputPreviewPresenter >> defaultLayout [
 		  yourself
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidInputPreviewPresenter >> image [
 
 	^ image
 ]
 
-{ #category : #'initialization - deprecated' }
+{ #category : 'initialization - deprecated' }
 PyramidInputPreviewPresenter >> initializePresenter [
 
 	image := SpImagePresenter new autoScale: true; yourself.
 	label := SpLabelPresenter new
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidInputPreviewPresenter >> label [
 
 	^ label
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PyramidInputPreviewPresenter >> value [
 
 	^ PyramidUnknowState new.

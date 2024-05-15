@@ -1,19 +1,21 @@
 Class {
-	#name : #PyramidMultiplePluginsFoundError,
-	#superclass : #PyramidError,
+	#name : 'PyramidMultiplePluginsFoundError',
+	#superclass : 'PyramidError',
 	#instVars : [
 		'plugins'
 	],
-	#category : #'Pyramid-core'
+	#category : 'Pyramid-core',
+	#package : 'Pyramid',
+	#tag : 'core'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidMultiplePluginsFoundError >> plugins [
 
 	^ plugins
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidMultiplePluginsFoundError >> plugins: anObject [
 
 	plugins := anObject

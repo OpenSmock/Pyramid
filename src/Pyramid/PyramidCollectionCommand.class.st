@@ -1,22 +1,24 @@
 Class {
-	#name : #PyramidCollectionCommand,
-	#superclass : #PyramidCommand,
-	#category : #'Pyramid-commands'
+	#name : 'PyramidCollectionCommand',
+	#superclass : 'PyramidCommand',
+	#category : 'Pyramid-commands',
+	#package : 'Pyramid',
+	#tag : 'commands'
 }
 
-{ #category : #testing }
+{ #category : 'testing' }
 PyramidCollectionCommand class >> isAbstract [
 
 	^ self == PyramidCollectionCommand
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 PyramidCollectionCommand >> canBeUsedFor: anObject [
 
 	^ anObject isCollection
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PyramidCollectionCommand >> saveStatesOf: aCollection withCommand: aCommand withArguments: anArguments [
 
 	| mementos |

@@ -1,83 +1,85 @@
 Class {
-	#name : #PyramidUnknowState,
-	#superclass : #Object,
-	#category : #'Pyramid-specs-custom'
+	#name : 'PyramidUnknowState',
+	#superclass : 'Object',
+	#category : 'Pyramid-specs-custom',
+	#package : 'Pyramid',
+	#tag : 'specs-custom'
 }
 
-{ #category : #comparing }
+{ #category : 'comparing' }
 PyramidUnknowState >> = anObject [
 
 	self == anObject ifTrue: [ ^ true ].
 	^ self class = anObject class
 ]
 
-{ #category : #converting }
+{ #category : 'converting' }
 PyramidUnknowState >> asBlBackground [
 
 	^ self
 ]
 
-{ #category : #converting }
+{ #category : 'converting' }
 PyramidUnknowState >> asBooleanForPyramid [
 
 	^ self
 ]
 
-{ #category : #converting }
+{ #category : 'converting' }
 PyramidUnknowState >> asColor [
 
 	^ Color transparent
 ]
 
-{ #category : #converting }
+{ #category : 'converting' }
 PyramidUnknowState >> asIcon [
 
 	^ self iconNamed: #comments
 ]
 
-{ #category : #converting }
+{ #category : 'converting' }
 PyramidUnknowState >> asOrientationForFlowPyramid [
 
 	^ self
 ]
 
-{ #category : #converting }
+{ #category : 'converting' }
 PyramidUnknowState >> asOrientationForLinearPyramid [
 
 	^ self
 ]
 
-{ #category : #converting }
+{ #category : 'converting' }
 PyramidUnknowState >> asPyramidConstraintsArgument [
 
 	^ self
 ]
 
-{ #category : #converting }
+{ #category : 'converting' }
 PyramidUnknowState >> asString [
 
 	^ '@ Unknow state'
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PyramidUnknowState >> pyramidSelectOn: anInput [
 
 	anInput unselectAll
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 PyramidUnknowState >> setConstraintsOn: aPyramidBasicConstraintsInputPresenter [
 
 	aPyramidBasicConstraintsInputPresenter setUnknowValue
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 PyramidUnknowState >> setCornerRadiiOn: aPyramidCornerRadiiInputPresenter [
 
 	aPyramidCornerRadiiInputPresenter inputArray value: self
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 PyramidUnknowState >> setInsetsOn: aPyramidInsetsInputPresenter [
 
 	aPyramidInsetsInputPresenter inputArray value: self

@@ -1,6 +1,6 @@
-Extension { #name : #BlHorizontalStartAlignment }
+Extension { #name : 'BlHorizontalStartAlignment' }
 
-{ #category : #'*Pyramid-Bloc' }
+{ #category : '*Pyramid-Bloc' }
 BlHorizontalStartAlignment >> pyramidSelectOn: aFrameConstraintsPresenter [
 
 	aFrameConstraintsPresenter selectStart.

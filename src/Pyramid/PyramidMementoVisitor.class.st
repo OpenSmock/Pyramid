@@ -1,16 +1,18 @@
 Class {
-	#name : #PyramidMementoVisitor,
-	#superclass : #Object,
-	#category : #'Pyramid-history'
+	#name : 'PyramidMementoVisitor',
+	#superclass : 'Object',
+	#category : 'Pyramid-history',
+	#package : 'Pyramid',
+	#tag : 'history'
 }
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 PyramidMementoVisitor >> visitCommandMemento: aCompositeMemento [
 
 	self shouldBeImplemented
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 PyramidMementoVisitor >> visitCompositeMemento: aCompositeMemento [
 
 	self shouldBeImplemented

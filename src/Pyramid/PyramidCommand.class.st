@@ -10,24 +10,26 @@ In some rare case, the method saveStatesOf: aCollection withCommand: aCommand wi
 
 "
 Class {
-	#name : #PyramidCommand,
-	#superclass : #Object,
-	#category : #'Pyramid-commands'
+	#name : 'PyramidCommand',
+	#superclass : 'Object',
+	#category : 'Pyramid-commands',
+	#package : 'Pyramid',
+	#tag : 'commands'
 }
 
-{ #category : #testing }
+{ #category : 'testing' }
 PyramidCommand class >> isAbstract [
 
 	^ self == PyramidCommand
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 PyramidCommand >> canBeUsedFor: anObject [
 
 	^ self shouldBeImplemented
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PyramidCommand >> clusterOf: aCollection [
 
 	| users cluster |
@@ -40,25 +42,25 @@ PyramidCommand >> clusterOf: aCollection [
 	^ cluster
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PyramidCommand >> commandInverse [
 
 	^ self
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PyramidCommand >> getGroupedValueFor: anObject [
 
 	^ self getValueFor: anObject
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PyramidCommand >> getValueFor: anObject [
 
 	^ self shouldBeImplemented
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PyramidCommand >> saveStatesOf: aCollection with: arguments [
 
 	^ self
@@ -67,7 +69,7 @@ PyramidCommand >> saveStatesOf: aCollection with: arguments [
 		  withArguments: arguments
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PyramidCommand >> saveStatesOf: aCollection withCommand: aCommand withArguments: anArguments [
 
 	| mementos |
@@ -83,19 +85,19 @@ PyramidCommand >> saveStatesOf: aCollection withCommand: aCommand withArguments:
 		  yourself
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PyramidCommand >> saveStatesWithCommandInverseOf: aCollection with: arguments [
 
 	^ self saveStatesOf: aCollection withCommand: self commandInverse withArguments: arguments
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PyramidCommand >> setValueFor: anObject with: anArgument [
 
 	self shouldBeImplemented
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PyramidCommand >> useOn: aCollection with: anArgument [
 
 	aCollection do: [ :each | self setValueFor: each with: anArgument ]
