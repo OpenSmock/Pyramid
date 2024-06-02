@@ -15,5 +15,6 @@ PyramidBackgroundOpacityCommand >> getValueFor: aBlElement [
 { #category : 'as yet unclassified' }
 PyramidBackgroundOpacityCommand >> setValueFor: aBlElement with: anArgument [
 
+	aBlElement background: aBlElement background paint asBlBackground.
 	aBlElement background opacity: anArgument
 ]
