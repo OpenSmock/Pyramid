@@ -51,7 +51,7 @@ PyramidHistoryPlugin >> history: anObject [
 PyramidHistoryPlugin >> initialize [
 
 	undoButton := SpButtonPresenter new
-		              icon: (self iconNamed: #smallUndo);
+		              icon: (Smalltalk ui icons iconNamed: #smallUndo);
 		              action: [
 			              self history undo.
 			              self projectModel informElementsChanged ];
@@ -59,7 +59,7 @@ PyramidHistoryPlugin >> initialize [
 		              help: 'Undo';
 		              yourself.
 	redoButton := SpButtonPresenter new
-		              icon: (self iconNamed: #smallRedo);
+		              icon: (Smalltalk ui icons iconNamed: #smallRedo);
 		              action: [
 			              self history redo.
 			              self projectModel informElementsChanged ];

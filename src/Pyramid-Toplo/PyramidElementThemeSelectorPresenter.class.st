@@ -1,6 +1,6 @@
 Class {
-	#name : #PyramidElementThemeSelectorPresenter,
-	#superclass : #PyramidThemeSelectorPresenter,
+	#name : 'PyramidElementThemeSelectorPresenter',
+	#superclass : 'PyramidThemeSelectorPresenter',
 	#traits : 'TPyramidProjectModelObserver',
 	#classTraits : 'TPyramidProjectModelObserver classTrait',
 	#instVars : [
@@ -10,10 +10,12 @@ Class {
 		'commandExecutor',
 		'themeCommand'
 	],
-	#category : #'Pyramid-Toplo-plugin-theme-management'
+	#category : 'Pyramid-Toplo-plugin-theme-management',
+	#package : 'Pyramid-Toplo',
+	#tag : 'plugin-theme-management'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PyramidElementThemeSelectorPresenter >> applyTheme [
 
 	| themeToApplied |
@@ -28,19 +30,19 @@ PyramidElementThemeSelectorPresenter >> applyTheme [
 	self projectModel informElementsChanged
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PyramidElementThemeSelectorPresenter >> commandExecutor [
 
 	^ commandExecutor
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PyramidElementThemeSelectorPresenter >> commandExecutor: aCommandExecutor [
 
 	commandExecutor := aCommandExecutor
 ]
 
-{ #category : #layout }
+{ #category : 'layout' }
 PyramidElementThemeSelectorPresenter >> defaultLayout [
 
 	^ SpBoxLayout newVertical
@@ -64,13 +66,13 @@ PyramidElementThemeSelectorPresenter >> defaultLayout [
 		  yourself
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidElementThemeSelectorPresenter >> inheritSelector [
 
 	^ inheritSelector
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 PyramidElementThemeSelectorPresenter >> initializePresenters [
 
 	super initializePresenters.
@@ -88,26 +90,26 @@ PyramidElementThemeSelectorPresenter >> initializePresenters [
 	self triggerThemeChangement: true
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 PyramidElementThemeSelectorPresenter >> labelPresenter [
 
 	^ labelPresenter
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidElementThemeSelectorPresenter >> projectModel [
 
 	^ projectModel
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidElementThemeSelectorPresenter >> projectModel: anObject [
 
 	projectModel := anObject.
 	anObject addObserver: self
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PyramidElementThemeSelectorPresenter >> pyramidElementsChanged [
 
 	self triggerThemeChangement: false.
@@ -115,7 +117,7 @@ PyramidElementThemeSelectorPresenter >> pyramidElementsChanged [
 	self triggerThemeChangement: true
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PyramidElementThemeSelectorPresenter >> pyramidSelectionChanged [
 
 	self triggerThemeChangement: false.
@@ -123,7 +125,7 @@ PyramidElementThemeSelectorPresenter >> pyramidSelectionChanged [
 	self triggerThemeChangement: true.
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PyramidElementThemeSelectorPresenter >> setDefaultStateForPresenters [.
 	self themeSelector enabled: false.
 	self inheritSelector enabled: false.
@@ -131,13 +133,13 @@ PyramidElementThemeSelectorPresenter >> setDefaultStateForPresenters [.
 
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PyramidElementThemeSelectorPresenter >> themeCommand [
 
 	^ themeCommand
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PyramidElementThemeSelectorPresenter >> updatePresenterFor: aCollectionOfElement [
 
 	| collectionOfLocalThemes |

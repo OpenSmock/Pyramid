@@ -6,9 +6,9 @@ Class {
 		'whenValueChangedDo',
 		'image'
 	],
-	#category : 'Pyramid-Bloc-plugin-bloc-background',
+	#category : 'Pyramid-Bloc-plugin-bloc-visuals',
 	#package : 'Pyramid-Bloc',
-	#tag : 'plugin-bloc-background'
+	#tag : 'plugin-bloc-visuals'
 }
 
 { #category : 'accessing' }

@@ -65,8 +65,8 @@ PyramidTreeBaseColumnsBuilder >> visibilityColumn [
 		  addColumn: (SpImageTableColumn evaluated: [ :aBlElement |
 					   aBlElement
 						   allParentsDetect: [ :parent | parent isVisible not ]
-						   ifFound: [ :parent | self iconNamed: #uncommentedClass ]
-						   ifNone: [ self iconNamed: #blank16 ] ]);
+						   ifFound: [ :parent | Smalltalk ui icons iconNamed: #uncommentedClass ]
+						   ifNone: [ Smalltalk ui icons iconNamed: #blank16 ] ]);
 		  addColumn: (SpImageTableColumn evaluated: [ :aBlElement |
 					   aBlElement visibility asIcon ]);
 		  addColumn: (SpLinkTableColumn new

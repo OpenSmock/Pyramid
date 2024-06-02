@@ -33,25 +33,25 @@ PyramidHorizontalFrameConstraintsInputPresenter >> helpStart [
 { #category : 'as yet unclassified' }
 PyramidHorizontalFrameConstraintsInputPresenter >> iconCenter [
 
-	^ (self iconNamed: #windowMinimize) rotateBy: #left centerAt: 8 @ 8
+	^ (Smalltalk ui icons iconNamed: #windowMinimize) rotateBy: #left centerAt: 8 @ 8
 ]
 
 { #category : 'as yet unclassified' }
 PyramidHorizontalFrameConstraintsInputPresenter >> iconEnd [
 
-	^( self iconNamed: #windowMenu) rotateBy: -90
+	^ (Smalltalk ui icons iconNamed: #windowMenu) rotateBy: -90
 ]
 
 { #category : 'as yet unclassified' }
 PyramidHorizontalFrameConstraintsInputPresenter >> iconNull [
 
-	^ self iconNamed: #windowMaximize
+	^ Smalltalk ui icons iconNamed: #windowMaximize
 ]
 
 { #category : 'as yet unclassified' }
 PyramidHorizontalFrameConstraintsInputPresenter >> iconStart [
 
-	^ (self iconNamed: #windowMenu) rotateBy: 90
+	^ (Smalltalk ui icons iconNamed: #windowMenu) rotateBy: 90
 ]
 
 { #category : 'as yet unclassified' }

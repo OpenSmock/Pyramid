@@ -1,33 +1,35 @@
 Class {
-	#name : #PyramidToploThemePlugin,
-	#superclass : #Object,
+	#name : 'PyramidToploThemePlugin',
+	#superclass : 'Object',
 	#traits : 'TPyramidPlugin',
 	#classTraits : 'TPyramidPlugin classTrait',
 	#instVars : [
 		'themePresenter',
 		'themePropertyManager'
 	],
-	#category : #'Pyramid-Toplo-plugin-theme-management'
+	#category : 'Pyramid-Toplo-plugin-theme-management',
+	#package : 'Pyramid-Toplo',
+	#tag : 'plugin-theme-management'
 }
 
-{ #category : #asserting }
+{ #category : 'asserting' }
 PyramidToploThemePlugin class >> shouldInstall [
 
 	^ false
 ]
 
-{ #category : #adding }
+{ #category : 'adding' }
 PyramidToploThemePlugin >> addPanelsOn: aPyramidSimpleWindow [
 
 	aPyramidSimpleWindow at: #tabRight addItem: [ :builder |
 		builder
 			makeTab: self themePresenter
 			label: 'Toplo-Theme'
-			icon: (self iconNamed: #smallPushpin)
+			icon: (Smalltalk ui icons iconNamed: #smallPushpin)
 			order: 1 ]
 ]
 
-{ #category : #actions }
+{ #category : 'actions' }
 PyramidToploThemePlugin >> configureBuilder: aPyramidEditorBuilder [
 
 	| spacePlugin |
@@ -35,14 +37,14 @@ PyramidToploThemePlugin >> configureBuilder: aPyramidEditorBuilder [
 	self themePresenter pyramidSpaceBuilderConfigurationOn: spacePlugin builder
 ]
 
-{ #category : #connecting }
+{ #category : 'connecting' }
 PyramidToploThemePlugin >> connectOn: aPyramidEditor [
 
 	self themePresenter editor: aPyramidEditor.
 	self themePropertyManager projectModel: aPyramidEditor projectModel 
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 PyramidToploThemePlugin >> initialize [
 
 	themePresenter := PyramidThemePresenter new.
@@ -53,13 +55,13 @@ PyramidToploThemePlugin >> initialize [
 	themePresenter styleSheetEditor stampPresenter: themePropertyManager presenter
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidToploThemePlugin >> themePresenter [
 
 	^ themePresenter
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidToploThemePlugin >> themePropertyManager [
 
 	^ themePropertyManager

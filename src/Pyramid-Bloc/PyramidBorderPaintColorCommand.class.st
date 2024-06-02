@@ -1,9 +1,9 @@
 Class {
 	#name : 'PyramidBorderPaintColorCommand',
 	#superclass : 'PyramidAbstractBorderCommand',
-	#category : 'Pyramid-Bloc-plugin-bloc-background',
+	#category : 'Pyramid-Bloc-plugin-bloc-visuals',
 	#package : 'Pyramid-Bloc',
-	#tag : 'plugin-bloc-background'
+	#tag : 'plugin-bloc-visuals'
 }
 
 { #category : 'testing' }
@@ -22,5 +22,5 @@ PyramidBorderPaintColorCommand >> getValueFor: aBlElement [
 { #category : 'as yet unclassified' }
 PyramidBorderPaintColorCommand >> updateBuilder: aBuilder with: anArgument [
 
-	aBuilder paint color: anArgument asBlPaint
+	aBuilder paint: anArgument asBlPaint
 ]

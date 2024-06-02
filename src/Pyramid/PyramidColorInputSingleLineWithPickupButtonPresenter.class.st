@@ -41,9 +41,9 @@ PyramidColorInputSingleLineWithPickupButtonPresenter >> initializePresenters [
 	multiLinesInput := PyramidColorInputMultiLinesPresenter new.
 	singleLineInput := PyramidColorInputSingleLinePresenter new.
 	button := SpButtonPresenter new
-					 help: 'Select a color';
+		          help: 'Select a color';
 		          action: [ self openMultiLinesModal ];
-		          icon: (self iconNamed: #haloRecolor);
+		          icon: (Smalltalk ui icons iconNamed: #haloRecolor);
 		          yourself.
 
 	singleLineInput whenValueChangedDo: [ :color |

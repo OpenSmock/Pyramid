@@ -42,7 +42,7 @@ PyramidSpacePlugin >> initialize [
 	builder := PyramidSpaceBuilder defaultEditorBuilder.
 	morphicPresenter := SpMorphPresenter new.
 	resetSpaceButton := SpButtonPresenter new
-		                    icon: (self iconNamed: #smallUpdate);
+		                    icon: (Smalltalk ui icons iconNamed: #smallUpdate);
 		                    action: [ self resetSpace ];
 		                    help: 'Refresh space in case of an issue';
 		                    yourself

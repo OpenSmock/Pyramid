@@ -85,12 +85,12 @@ PyramidPluginDynamicLayout >> initialize [
 	isRightOpened := true.
 
 	leftButton := SpButtonPresenter new
-		              icon: (self iconNamed: #solidMenu);
+		              icon: (Smalltalk ui icons iconNamed: #solidMenu);
 		              action: [ self changeLeftLayout ];
 		              help: self leftButtonHelp;
 		              yourself.
 	rightButton := SpButtonPresenter new
-		               icon: (self iconNamed: #solidMenu);
+		               icon: (Smalltalk ui icons iconNamed: #solidMenu);
 		               action: [ self changeRightLayout ];
 		               help: self rightButtonHelp;
 		               yourself

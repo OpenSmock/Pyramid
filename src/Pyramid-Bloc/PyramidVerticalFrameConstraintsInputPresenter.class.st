@@ -33,25 +33,25 @@ PyramidVerticalFrameConstraintsInputPresenter >> helpStart [
 { #category : 'as yet unclassified' }
 PyramidVerticalFrameConstraintsInputPresenter >> iconCenter [
 
-	^ self iconNamed: #windowMinimize
+	^ Smalltalk ui icons iconNamed: #windowMinimize
 ]
 
 { #category : 'as yet unclassified' }
 PyramidVerticalFrameConstraintsInputPresenter >> iconEnd [
 
-	^ (self iconNamed: #windowMenu)
+	^ Smalltalk ui icons iconNamed: #windowMenu
 ]
 
 { #category : 'as yet unclassified' }
 PyramidVerticalFrameConstraintsInputPresenter >> iconNull [
 
-	^ self iconNamed: #windowMaximize
+	^ Smalltalk ui icons iconNamed: #windowMaximize
 ]
 
 { #category : 'as yet unclassified' }
 PyramidVerticalFrameConstraintsInputPresenter >> iconStart [
 
-	^ (self iconNamed: #windowMenu) rotateBy: 180
+	^ (Smalltalk ui icons iconNamed: #windowMenu) rotateBy: 180
 ]
 
 { #category : 'as yet unclassified' }

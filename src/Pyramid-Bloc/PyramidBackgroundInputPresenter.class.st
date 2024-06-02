@@ -42,7 +42,7 @@ PyramidBackgroundInputPresenter >> initializeModelEmptyValue [
 				                    yourself);
 		                   page: (SpNotebookPage
 				                    title: '@ Empty'
-				                    icon: (self iconNamed: #smallDebug)
+				                    icon: (Smalltalk ui icons iconNamed: #smallDebug)
 				                    provider: [ self modelEmptyValue presenter ]);
 		                   yourself
 ]
@@ -58,7 +58,7 @@ PyramidBackgroundInputPresenter >> initializeModelImage [
 				               yourself);
 		              page: (SpNotebookPage
 				               title: 'Image'
-				               icon: (self iconNamed: #open)
+				               icon: (Smalltalk ui icons iconNamed: #open)
 				               provider: [ self modelImage presenter ]);
 		              yourself.
 
@@ -75,7 +75,7 @@ PyramidBackgroundInputPresenter >> initializeModelMixedValues [
 				                     yourself);
 		                    page: (SpNotebookPage
 				                     title: '@ Mixed'
-				                     icon: (self iconNamed: #smallDebug)
+				                     icon: (Smalltalk ui icons iconNamed: #smallDebug)
 				                     provider: [ self modelMixedValues presenter ]);
 		                    yourself
 ]
@@ -92,7 +92,7 @@ PyramidBackgroundInputPresenter >> initializeModelPaintGradient [
 				                       yourself);
 		                      page: (SpNotebookPage
 				                       title: 'Gradient'
-				                       icon: (self iconNamed: #image)
+				                       icon: (Smalltalk ui icons iconNamed: #image)
 				                       provider: [
 				                       self modelPaintGradient presenter ]);
 		                      yourself.
@@ -112,7 +112,7 @@ PyramidBackgroundInputPresenter >> initializeModelPaintSolid [
 				                    yourself);
 		                   page: (SpNotebookPage
 				                    title: 'Paint'
-				                    icon: (self iconNamed: #smallSelect)
+				                    icon: (Smalltalk ui icons iconNamed: #smallSelect)
 				                    provider: [ self modelPaintSolid presenter ]);
 		                   yourself.
 
@@ -132,7 +132,7 @@ PyramidBackgroundInputPresenter >> initializeModelTransparent [
 				                     yourself);
 		                    page: (SpNotebookPage
 				                     title: 'Transparent'
-				                     icon: (self iconNamed: #changeRemove)
+				                     icon: (Smalltalk ui icons iconNamed: #changeRemove)
 				                     provider: [ self modelTransparent presenter ]);
 		                    yourself.
 

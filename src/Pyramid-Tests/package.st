@@ -1,1 +1,1 @@
-Package { #name : #'Pyramid-Tests' }
+Package { #name : 'Pyramid-Tests' }

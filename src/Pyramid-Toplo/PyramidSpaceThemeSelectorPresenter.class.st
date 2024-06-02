@@ -1,22 +1,24 @@
 Class {
-	#name : #PyramidSpaceThemeSelectorPresenter,
-	#superclass : #PyramidThemeSelectorPresenter,
+	#name : 'PyramidSpaceThemeSelectorPresenter',
+	#superclass : 'PyramidThemeSelectorPresenter',
 	#traits : 'TPyramidSpaceExtension',
 	#classTraits : 'TPyramidSpaceExtension classTrait',
 	#instVars : [
 		'projectModel'
 	],
-	#category : #'Pyramid-Toplo-plugin-theme-management'
+	#category : 'Pyramid-Toplo-plugin-theme-management',
+	#package : 'Pyramid-Toplo',
+	#tag : 'plugin-theme-management'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PyramidSpaceThemeSelectorPresenter >> applyTheme [
 
 	self builder space toTheme: self currentTheme.
 	self projectModel informElementsChanged
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 PyramidSpaceThemeSelectorPresenter >> labelPresenter [
 
 	^ SpLabelPresenter new
@@ -25,13 +27,13 @@ PyramidSpaceThemeSelectorPresenter >> labelPresenter [
 		  yourself
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidSpaceThemeSelectorPresenter >> projectModel [
 
 	^ projectModel
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidSpaceThemeSelectorPresenter >> projectModel: anObject [
 
 	projectModel := anObject

@@ -148,27 +148,26 @@ PyramidStopsInputPresenter >> makeNewStopInput: anAssociation [
 			         self whenValueChangedDo value: self value ];
 		         yourself.
 	buttonRemove := SpButtonPresenter new
-		                icon: (self iconNamed: #smallDelete);
+		                icon: (Smalltalk ui icons iconNamed: #smallDelete);
 		                help: 'Remove this value from the gradient';
 		                action: [
 			                self removeStopInput: input andPresenter: presenter ];
 		                yourself.
 	buttonAddBefore := SpButtonPresenter new
-		                   icon: (self iconNamed: #up);
+		                   icon: (Smalltalk ui icons iconNamed: #up);
 		                   help: 'Add a Stop before this one';
 		                   action: [ self addStopInputBefore: input ];
 		                   yourself.
 	buttonAddAfter := SpButtonPresenter new
-		                  icon: (self iconNamed: #down);
+		                  icon: (Smalltalk ui icons iconNamed: #down);
 		                  help: 'Add a Stop after this one';
 		                  action: [ self addStopInputAfter: input ];
 		                  yourself.
-	presenter
-		             layout: (self
-				              layoutForStopInput: input
-				              remove: buttonRemove
-				              addBefore: buttonAddBefore
-				              addAfter: buttonAddAfter).
+	presenter layout: (self
+			 layoutForStopInput: input
+			 remove: buttonRemove
+			 addBefore: buttonAddBefore
+			 addAfter: buttonAddAfter).
 
 	self addStopInput: input andPresenter: presenter
 ]

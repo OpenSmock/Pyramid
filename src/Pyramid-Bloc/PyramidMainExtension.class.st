@@ -87,7 +87,7 @@ PyramidMainExtension >> initialize [
 		              yourself.
 
 	extentButton := SpButtonPresenter new
-		                icon: (self iconNamed: #window);
+		                icon: (Smalltalk ui icons iconNamed: #window);
 		                help: 'Project configuration';
 		                action: [ extentPopover popup ];
 		                yourself.

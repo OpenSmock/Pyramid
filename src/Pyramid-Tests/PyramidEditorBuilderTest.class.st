@@ -1,10 +1,12 @@
 Class {
-	#name : #PyramidEditorBuilderTest,
-	#superclass : #TestCase,
-	#category : #'Pyramid-Tests-cases-core'
+	#name : 'PyramidEditorBuilderTest',
+	#superclass : 'TestCase',
+	#category : 'Pyramid-Tests-cases-core',
+	#package : 'Pyramid-Tests',
+	#tag : 'cases-core'
 }
 
-{ #category : #tests }
+{ #category : 'tests' }
 PyramidEditorBuilderTest >> testBuild1 [
 
 	| editor plugin1 plugin2 |
@@ -23,7 +25,7 @@ PyramidEditorBuilderTest >> testBuild1 [
 	self assert: plugin2 isInstalled
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PyramidEditorBuilderTest >> testBuild2 [
 
 	| editor plugin1 plugin2 |

@@ -103,6 +103,6 @@ PyramidEditor >> window: anObject [
 		builder
 			makeTab: self propertiesManager presenter
 			label: 'Properties'
-			icon: (self iconNamed: #box)
+			icon: (Smalltalk ui icons iconNamed: #box)
 			order: 1 ]
 ]

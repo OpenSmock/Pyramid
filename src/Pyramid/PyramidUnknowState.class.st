@@ -34,7 +34,7 @@ PyramidUnknowState >> asColor [
 { #category : 'converting' }
 PyramidUnknowState >> asIcon [
 
-	^ self iconNamed: #comments
+	^ Smalltalk ui icons iconNamed: #comments
 ]
 
 { #category : 'converting' }

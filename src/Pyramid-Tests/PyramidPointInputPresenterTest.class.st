@@ -1,12 +1,14 @@
 Class {
-	#name : #PyramidPointInputPresenterTest,
-	#superclass : #TestCase,
+	#name : 'PyramidPointInputPresenterTest',
+	#superclass : 'TestCase',
 	#traits : 'TPyramidInputPresenterTest',
 	#classTraits : 'TPyramidInputPresenterTest classTrait',
-	#category : #'Pyramid-Tests-cases-specs-custom'
+	#category : 'Pyramid-Tests-cases-specs-custom',
+	#package : 'Pyramid-Tests',
+	#tag : 'cases-specs-custom'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidPointInputPresenterTest >> dummyValues [
 
 	^ {
@@ -18,25 +20,25 @@ PyramidPointInputPresenterTest >> dummyValues [
 		   }
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidPointInputPresenterTest >> expectedEmptyValue [
 
 	^ PyramidUnknowState new
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidPointInputPresenterTest >> expectedMixedValues [
 
 	^ PyramidUnknowState new
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PyramidPointInputPresenterTest >> makeNewInput [
 
 	^ PyramidPointInputPresenter new
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PyramidPointInputPresenterTest >> triggerValueChangedOf: anInput [
 
 	anInput inputX inputNumber contextKeyBindings keymaps do: [ :bind |

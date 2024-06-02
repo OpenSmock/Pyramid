@@ -1,12 +1,14 @@
 Class {
-	#name : #PyramidInsetsInputPresenterTest,
-	#superclass : #TestCase,
+	#name : 'PyramidInsetsInputPresenterTest',
+	#superclass : 'TestCase',
 	#traits : 'TPyramidInputPresenterTest',
 	#classTraits : 'TPyramidInputPresenterTest classTrait',
-	#category : #'Pyramid-Tests-cases-specs-custom'
+	#category : 'Pyramid-Tests-cases-specs-custom',
+	#package : 'Pyramid-Tests',
+	#tag : 'cases-specs-custom'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidInsetsInputPresenterTest >> dummyValues [
 
 	^ {
@@ -15,25 +17,25 @@ PyramidInsetsInputPresenterTest >> dummyValues [
 		  BlInsets top: 1 left: 2 bottom: 3 right: 4}
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidInsetsInputPresenterTest >> expectedEmptyValue [
 
 	^ PyramidUnknowState new
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidInsetsInputPresenterTest >> expectedMixedValues [
 
 	^ PyramidUnknowState new
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PyramidInsetsInputPresenterTest >> makeNewInput [
 
 	^ PyramidInsetsInputPresenter new
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PyramidInsetsInputPresenterTest >> triggerValueChangedOf: anInput [
 
 	anInput inputArray inputArray contextKeyBindings keymaps do: [ :bind |

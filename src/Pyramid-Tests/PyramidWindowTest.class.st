@@ -1,13 +1,15 @@
 Class {
-	#name : #PyramidWindowTest,
-	#superclass : #TestCase,
+	#name : 'PyramidWindowTest',
+	#superclass : 'TestCase',
 	#instVars : [
 		'window'
 	],
-	#category : #'Pyramid-Tests-cases-views'
+	#category : 'Pyramid-Tests-cases-views',
+	#package : 'Pyramid-Tests',
+	#tag : 'cases-views'
 }
 
-{ #category : #running }
+{ #category : 'running' }
 PyramidWindowTest >> setUp [
 	super setUp.
 
@@ -15,7 +17,7 @@ PyramidWindowTest >> setUp [
 	window := PyramidTestWindow new.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PyramidWindowTest >> testServices [
 
 	| t1 t2 t3 t4 presenter buttons |
@@ -53,7 +55,7 @@ PyramidWindowTest >> testServices [
 	self assert:( buttons at: 4) equals: t4.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidWindowTest >> window [
 ^ window
 ]

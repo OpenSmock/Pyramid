@@ -160,7 +160,7 @@ PyramidBlocLayoutPlugin class >> layout [
 		            yourself.
 	property pyramidInputPresenterStrings
 		addButtonModel: (PyramidMagicButtonModel new
-				 icon: (self iconNamed: #radioButtonUnselected);
+				 icon: (Smalltalk ui icons iconNamed: #radioButtonUnselected);
 				 helpSelected: 'The element have no layout.';
 				 helpNotSelected: 'No layout.';
 				 label: 'Basic';
@@ -168,7 +168,7 @@ PyramidBlocLayoutPlugin class >> layout [
 				 inputValidation: [ :value | value class = BlBasicLayout ];
 				 yourself);
 		addButtonModel: (PyramidMagicButtonModel new
-				 icon: (self iconNamed: #smallLeftFlush);
+				 icon: (Smalltalk ui icons iconNamed: #smallLeftFlush);
 				 helpSelected: 'The layout is linear.';
 				 helpNotSelected: 'Set the layout to linear.';
 				 label: 'Linear';
@@ -176,7 +176,7 @@ PyramidBlocLayoutPlugin class >> layout [
 				 inputValidation: [ :value | value class = BlLinearLayout ];
 				 yourself);
 		addButtonModel: (PyramidMagicButtonModel new
-				 icon: (self iconNamed: #smallJustified);
+				 icon: (Smalltalk ui icons iconNamed: #smallJustified);
 				 helpSelected: 'The layout is flow.';
 				 helpNotSelected: 'Set the layout to flow.';
 				 label: 'Flow';
@@ -184,7 +184,7 @@ PyramidBlocLayoutPlugin class >> layout [
 				 inputValidation: [ :value | value class = BlFlowLayout ];
 				 yourself);
 		addButtonModel: (PyramidMagicButtonModel new
-				 icon: (self iconNamed: #windowMaximize);
+				 icon: (Smalltalk ui icons iconNamed: #windowMaximize);
 				 helpSelected: 'The layout is frame.';
 				 helpNotSelected: 'Set the layout to frame.';
 				 label: 'Frame';
@@ -192,7 +192,7 @@ PyramidBlocLayoutPlugin class >> layout [
 				 inputValidation: [ :value | value class = BlFrameLayout ];
 				 yourself);
 		addButtonModel: (PyramidMagicButtonModel new
-				 icon: (self iconNamed: #haloScale);
+				 icon: (Smalltalk ui icons iconNamed: #haloScale);
 				 helpSelected: 'The layout is proportionnal.';
 				 helpNotSelected: 'Set the layout to proportionnal.';
 				 label: 'Prop';
@@ -275,7 +275,7 @@ PyramidBlocLayoutPlugin >> addPanelsOn: aPyramidSimpleWindow [
 		builder
 			makeTab: self propertiesManager presenter
 			label: 'Layout'
-			icon: (self iconNamed: #box)
+			icon: (Smalltalk ui icons iconNamed: #box)
 			order: 3 ]
 ]
 

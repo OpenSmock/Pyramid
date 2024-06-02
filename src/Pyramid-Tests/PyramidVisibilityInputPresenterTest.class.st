@@ -1,24 +1,26 @@
 Class {
-	#name : #PyramidVisibilityInputPresenterTest,
-	#superclass : #TestCase,
+	#name : 'PyramidVisibilityInputPresenterTest',
+	#superclass : 'TestCase',
 	#traits : 'TPyramidInputPresenterTest',
 	#classTraits : 'TPyramidInputPresenterTest classTrait',
-	#category : #'Pyramid-Tests-cases-specs-custom'
+	#category : 'Pyramid-Tests-cases-specs-custom',
+	#package : 'Pyramid-Tests',
+	#tag : 'cases-specs-custom'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidVisibilityInputPresenterTest >> dummyValues [
 
 	^ { BlVisibility gone . BlVisibility hidden . BlVisibility visible }
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PyramidVisibilityInputPresenterTest >> makeNewInput [
 
 	^ PyramidVisibilityInputPresenter new
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PyramidVisibilityInputPresenterTest >> triggerValueChangedOf: anInput [
 
 	anInput buttonNotVisible click

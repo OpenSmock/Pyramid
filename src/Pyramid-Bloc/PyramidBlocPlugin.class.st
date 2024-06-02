@@ -155,7 +155,7 @@ PyramidBlocPlugin >> groupMenuBlock: group for: aCollection [
 
 	group addItem: [ :item |
 		item
-			icon: (self iconNamed: #collection);
+			icon: (Smalltalk ui icons iconNamed: #collection);
 			name: 'Group selection';
 			enabled: true;
 			action: [ self groupCollection: aCollection ];

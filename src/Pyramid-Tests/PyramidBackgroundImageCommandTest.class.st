@@ -1,40 +1,42 @@
 Class {
-	#name : #PyramidBackgroundImageCommandTest,
-	#superclass : #TestCase,
+	#name : 'PyramidBackgroundImageCommandTest',
+	#superclass : 'TestCase',
 	#traits : 'TPyramidCommandTest',
 	#classTraits : 'TPyramidCommandTest classTrait',
-	#category : #'Pyramid-Tests-cases-plugin-bloc-background'
+	#category : 'Pyramid-Tests-cases-plugin-bloc-visuals',
+	#package : 'Pyramid-Tests',
+	#tag : 'cases-plugin-bloc-visuals'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidBackgroundImageCommandTest >> command [
 
 	^ PyramidBackgroundImageCommand new
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PyramidBackgroundImageCommandTest >> targetContainers [
 
 	^ {
 		  (PyramidCommandTestContainer
 			   no: (BlElement new
-					    background: (BlBackground image: (self iconNamed: #add));
+					    background: (BlBackground image: (Smalltalk ui icons iconNamed: #add));
 					    yourself)
 			   with: (BlElement new
-					    background: (BlBackground image: (self iconNamed: #remove));
+					    background: (BlBackground image: (Smalltalk ui icons iconNamed: #remove));
 					    yourself)
-			   prop: (self iconNamed: #remove)).
+			   prop: (Smalltalk ui icons iconNamed: #remove)).
 		  (PyramidCommandTestContainer
 			   no: (BlElement new
-					    background: (BlBackground image: (self iconNamed: #add));
+					    background: (BlBackground image: (Smalltalk ui icons iconNamed: #add));
 					    yourself)
 			   with: (BlElement new
-					    background: (BlBackground image: (self iconNamed: #pharoBig));
+					    background: (BlBackground image: (Smalltalk ui icons iconNamed: #pharoBig));
 					    yourself)
-			   prop: (self iconNamed: #pharoBig)) }
+			   prop: (Smalltalk ui icons iconNamed: #pharoBig)) }
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PyramidBackgroundImageCommandTest >> targetsCannotBeUsedFor [
 	"override if needed"
 

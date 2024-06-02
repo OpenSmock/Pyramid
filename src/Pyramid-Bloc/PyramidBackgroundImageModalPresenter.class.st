@@ -13,16 +13,16 @@ Class {
 		'buttonExampleFileSystem',
 		'buttonExampleBloc'
 	],
-	#category : 'Pyramid-Bloc-plugin-bloc-background',
+	#category : 'Pyramid-Bloc-plugin-bloc-visuals',
 	#package : 'Pyramid-Bloc',
-	#tag : 'plugin-bloc-background'
+	#tag : 'plugin-bloc-visuals'
 }
 
 { #category : 'as yet unclassified' }
 PyramidBackgroundImageModalPresenter class >> ensurePharoBigFileExists [
 
 	'./pharoBig.png' asFileReference exists ifTrue: [ ^ self ].
-	PNGReadWriter putForm: (Object iconNamed: #pharoBig) onFileNamed: './pharoBig.png'
+	PNGReadWriter putForm: (Smalltalk ui icons iconNamed: #pharoBig) onFileNamed: './pharoBig.png'
 	
 ]
 
@@ -162,7 +162,7 @@ PyramidBackgroundImageModalPresenter >> initializePresenters [
 	buttonInspect := SpButtonPresenter new
 		                 help: 'Verify the image.';
 		                 label: 'Inspect';
-		                 icon: (self iconNamed: #smallInspectIt);
+		                 icon: (Smalltalk ui icons iconNamed: #smallInspectIt);
 		                 action: [ self inspectCurrent ];
 		                 yourself.
 	codeBitmap := SpCodePresenter new

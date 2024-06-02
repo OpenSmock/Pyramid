@@ -1,24 +1,26 @@
 Class {
-	#name : #PyramidMoveForwardOrderCommandTest,
-	#superclass : #TestCase,
+	#name : 'PyramidMoveForwardOrderCommandTest',
+	#superclass : 'TestCase',
 	#traits : 'TPyramidCommandTest',
 	#classTraits : 'TPyramidCommandTest classTrait',
-	#category : #'Pyramid-Tests-cases-plugin-bloc-order'
+	#category : 'Pyramid-Tests-cases-plugin-bloc-order',
+	#package : 'Pyramid-Tests',
+	#tag : 'cases-plugin-bloc-order'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PyramidMoveForwardOrderCommandTest >> argumentsForHistory [
 
 	^ { 1 . 2 . 3 }
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidMoveForwardOrderCommandTest >> command [
 
 	^ PyramidMoveForwardOrderCommand new
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PyramidMoveForwardOrderCommandTest >> makeElementWithChildren [
 
 	| parent c1 c2 c3 |
@@ -30,7 +32,7 @@ PyramidMoveForwardOrderCommandTest >> makeElementWithChildren [
 	^ parent
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PyramidMoveForwardOrderCommandTest >> targetContainers [
 
 	| test1 test2 test3 |
@@ -53,7 +55,7 @@ PyramidMoveForwardOrderCommandTest >> targetContainers [
 			   prop: 3) }
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PyramidMoveForwardOrderCommandTest >> targetsCanBeUsedFor [
 
 	^ self targetContainers flatCollect: [ :each |
@@ -61,28 +63,28 @@ PyramidMoveForwardOrderCommandTest >> targetsCanBeUsedFor [
 			  each targetNoProp } ]
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PyramidMoveForwardOrderCommandTest >> targetsCannotBeUsedFor [
 	"override if needed"
 
 	^ { nil. false. 0. $a . BlElement new }
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidMoveForwardOrderCommandTest >> targetsWithValuesAndValues [
 
 	^ self targetContainers collect: [ :each |
 		  each targetNoProp -> each prop ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidMoveForwardOrderCommandTest >> targetsWithoutValuesAndValues [
 
 	^ self targetContainers collect: [ :each |
 		  each targetNoProp -> each targetWithProp ]
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PyramidMoveForwardOrderCommandTest >> testHistory [
 	"Do once.
 	undo

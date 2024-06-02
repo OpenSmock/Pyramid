@@ -30,7 +30,7 @@ PyramidCopyPastePlugin >> copyAsStonMenu: aBuilder [
 			group
 				addItem: [ :item |
 					item
-						icon: (self iconNamed: #smallCopy);
+						icon: (Smalltalk ui icons iconNamed: #smallCopy);
 						name: 'Copy';
 						action: [ self copyAsStonInClipboard: { single } ];
 						yourself ];
@@ -42,7 +42,7 @@ PyramidCopyPastePlugin >> copyAsStonMenu: aBuilder [
 			group
 				addItem: [ :item |
 					item
-						icon: (self iconNamed: #smallCopy);
+						icon: (Smalltalk ui icons iconNamed: #smallCopy);
 						name: 'Copy (select only one element)';
 						enabled: false;
 						yourself ];

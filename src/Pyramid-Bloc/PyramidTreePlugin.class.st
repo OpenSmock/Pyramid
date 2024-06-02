@@ -47,7 +47,7 @@ PyramidTreePlugin >> addPanelsOn: aPyramidSimpleWindow [
 		builder
 			makeTab: self treePresenter
 			label: 'Tree'
-			icon: (self iconNamed: #catalog)
+			icon: (Smalltalk ui icons iconNamed: #catalog)
 			order: 1 ].
 
 	aPyramidSimpleWindow
@@ -134,7 +134,7 @@ PyramidTreePlugin >> menuAddAndDeleteOn: aBuilder [
 				anItem
 					name: 'Add element...';
 					help: 'Add a new element on the roots of the design.';
-					icon: (self iconNamed: #add);
+					icon: (Smalltalk ui icons iconNamed: #add);
 					action: [
 						(PyramidPopoverFactory
 							 makeWithPresenter: self libraryPresenterForRoot
@@ -148,7 +148,7 @@ PyramidTreePlugin >> menuAddAndDeleteOn: aBuilder [
 				anItem
 					name: 'Add child element...';
 					help: 'Add a new element as a child of the selected element.';
-					icon: (self iconNamed: #add);
+					icon: (Smalltalk ui icons iconNamed: #add);
 					action: [
 						(PyramidPopoverFactory
 							 makeWithPresenter: self libraryPresenterForElement
@@ -159,7 +159,7 @@ PyramidTreePlugin >> menuAddAndDeleteOn: aBuilder [
 					name: 'Remove element';
 					help:
 						'Delete the selected element and its content';
-					icon: (self iconNamed: #delete);
+					icon: (Smalltalk ui icons iconNamed: #delete);
 					action: [ self removeSelectedElements ] ] ]
 		order: 10.
 
@@ -170,7 +170,7 @@ PyramidTreePlugin >> menuAddAndDeleteOn: aBuilder [
 					name: 'Remove selection';
 					help:
 						'Delete all selected elements and their contents';
-					icon: (self iconNamed: #delete);
+					icon: (Smalltalk ui icons iconNamed: #delete);
 					action: [ self removeSelectedElements ] ] ]
 		order: 10
 ]

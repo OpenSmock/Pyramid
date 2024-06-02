@@ -1,10 +1,12 @@
 Class {
-	#name : #PyramidThemePropertyStrategy,
-	#superclass : #PyramidHideEmptyPropertyStrategy,
-	#category : #'Pyramid-Toplo-plugin-theme-management'
+	#name : 'PyramidThemePropertyStrategy',
+	#superclass : 'PyramidHideEmptyPropertyStrategy',
+	#category : 'Pyramid-Toplo-plugin-theme-management',
+	#package : 'Pyramid-Toplo',
+	#tag : 'plugin-theme-management'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PyramidThemePropertyStrategy >> buildPresenterFromCollection: aCollection andManager: aManager [
 
 	aManager removeAllProperties.
@@ -12,7 +14,7 @@ PyramidThemePropertyStrategy >> buildPresenterFromCollection: aCollection andMan
 	^ super buildPresenterFromCollection: aCollection andManager: aManager
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PyramidThemePropertyStrategy >> propertiesFor: aCollectionOfElements [
 
 	| elementsWithStyleSheetTheme allPossibleStamps allCommonStamps |
@@ -33,7 +35,7 @@ PyramidThemePropertyStrategy >> propertiesFor: aCollectionOfElements [
 	^ allCommonStamps collect: [ :each | self propertyForStamp: each ].
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PyramidThemePropertyStrategy >> propertyForStamp: aStamp [
 
 	| property |

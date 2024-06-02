@@ -1,13 +1,15 @@
 Class {
-	#name : #PyramidSpCodeObjectInteractionModel,
-	#superclass : #SpCodeInteractionModel,
+	#name : 'PyramidSpCodeObjectInteractionModel',
+	#superclass : 'SpCodeInteractionModel',
 	#instVars : [
 		'projectModel'
 	],
-	#category : #'Pyramid-Tests-cases-plugin-playground'
+	#category : 'Pyramid-Tests-cases-plugin-playground',
+	#package : 'Pyramid-Tests',
+	#tag : 'cases-plugin-playground'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidSpCodeObjectInteractionModel >> doItReceiver [
 
 	self projectModel selection ifEmpty: [ ^ self projectModel firstLevelElements ].
@@ -16,7 +18,7 @@ PyramidSpCodeObjectInteractionModel >> doItReceiver [
 	^ self projectModel selection
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidSpCodeObjectInteractionModel >> doItReceiverString [
 
 	self projectModel selection ifEmpty: [
@@ -27,19 +29,19 @@ PyramidSpCodeObjectInteractionModel >> doItReceiverString [
 		  self projectModel selection size
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 PyramidSpCodeObjectInteractionModel >> isScripting [
 
 	^ true
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidSpCodeObjectInteractionModel >> projectModel [
 
 	^ projectModel
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidSpCodeObjectInteractionModel >> projectModel: aPyramidActiveProject [
 
 	projectModel := aPyramidActiveProject

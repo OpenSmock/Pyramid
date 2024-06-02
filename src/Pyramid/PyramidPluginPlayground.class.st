@@ -19,7 +19,7 @@ PyramidPluginPlayground >> addPanelsOn: aPyramidSimpleWindow [
 		builder
 			makeTab: self view
 			label: 'Playground'
-			icon: (self iconNamed: #open)
+			icon: (Smalltalk ui icons iconNamed: #open)
 			order: 100 ]
 ]
 

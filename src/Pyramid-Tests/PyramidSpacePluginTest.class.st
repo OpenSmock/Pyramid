@@ -1,10 +1,12 @@
 Class {
-	#name : #PyramidSpacePluginTest,
-	#superclass : #TestCase,
-	#category : #'Pyramid-Tests-cases-plugin-space'
+	#name : 'PyramidSpacePluginTest',
+	#superclass : 'TestCase',
+	#category : 'Pyramid-Tests-cases-plugin-space',
+	#package : 'Pyramid-Tests',
+	#tag : 'cases-plugin-space'
 }
 
-{ #category : #tests }
+{ #category : 'tests' }
 PyramidSpacePluginTest >> testResetSpace [
 
 	| plugin space |

@@ -61,13 +61,13 @@ PyramidContextMenuPlugin >> menuBrowseAndInspectOn: aBuilder [
 		group
 			addItem: [ :item |
 				item
-					icon: (self iconNamed: #nautilus);
+					icon: (Smalltalk ui icons iconNamed: #nautilus);
 					name: 'Browse selected item';
 					action: [ single browse ];
 					yourself ];
 			addItem: [ :item |
 				item
-					icon: (self iconNamed: #smallInspectIt);
+					icon: (Smalltalk ui icons iconNamed: #smallInspectIt);
 					name: 'Inspect selected item';
 					action: [ single inspect ];
 					yourself ];
@@ -77,13 +77,13 @@ PyramidContextMenuPlugin >> menuBrowseAndInspectOn: aBuilder [
 		group
 			addItem: [ :item |
 				item
-					icon: (self iconNamed: #nautilus);
+					icon: (Smalltalk ui icons iconNamed: #nautilus);
 					name: 'Browse first item';
 					action: [ multi first browse ];
 					yourself ];
 			addItem: [ :item |
 				item
-					icon: (self iconNamed: #smallInspectIt);
+					icon: (Smalltalk ui icons iconNamed: #smallInspectIt);
 					name: 'Inspect all items';
 					action: [ multi inspect ];
 					yourself ];
@@ -98,7 +98,7 @@ PyramidContextMenuPlugin >> menuContextOn: aBuilder [
 			group
 				addItem: [ :item |
 					item
-						icon: (self iconNamed: single systemIconName);
+						icon: (Smalltalk ui icons iconNamed: single systemIconName);
 						name: (self getNameForSingle: single);
 						enabled: false;
 						yourself ];
@@ -110,7 +110,7 @@ PyramidContextMenuPlugin >> menuContextOn: aBuilder [
 			group
 				addItem: [ :item |
 					item
-						icon: (self iconNamed: #collection);
+						icon: (Smalltalk ui icons iconNamed: #collection);
 						name: multi size printString , ' elements';
 						enabled: false;
 						yourself ];

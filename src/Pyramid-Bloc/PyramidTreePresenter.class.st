@@ -96,7 +96,7 @@ PyramidTreePresenter >> initializePresenters [
 
 	buttonAddToFirstLevel := SpButtonPresenter new
 		                         label: 'Add new element';
-		                         icon: (self iconNamed: #add);
+		                         icon: (Smalltalk ui icons iconNamed: #add);
 		                         action: [ self actionAddNewElement ];
 		                         help:
 			                         'Add a new element on the first level of the design.';

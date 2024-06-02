@@ -1,18 +1,20 @@
 Class {
-	#name : #PyramidBackgroundPaintColorCommandTest,
-	#superclass : #TestCase,
+	#name : 'PyramidBackgroundPaintColorCommandTest',
+	#superclass : 'TestCase',
 	#traits : 'TPyramidCommandTest',
 	#classTraits : 'TPyramidCommandTest classTrait',
-	#category : #'Pyramid-Tests-cases-plugin-bloc-background'
+	#category : 'Pyramid-Tests-cases-plugin-bloc-visuals',
+	#package : 'Pyramid-Tests',
+	#tag : 'cases-plugin-bloc-visuals'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidBackgroundPaintColorCommandTest >> command [
 
 	^ PyramidBackgroundPaintColorCommand new
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PyramidBackgroundPaintColorCommandTest >> targetContainers [
 
 	^ {
@@ -35,7 +37,7 @@ PyramidBackgroundPaintColorCommandTest >> targetContainers [
 		   }
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PyramidBackgroundPaintColorCommandTest >> targetsCannotBeUsedFor [
 	"override if needed"
 

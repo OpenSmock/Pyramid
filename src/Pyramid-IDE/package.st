@@ -1,1 +1,1 @@
-Package { #name : #'Pyramid-IDE' }
+Package { #name : 'Pyramid-IDE' }

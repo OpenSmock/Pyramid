@@ -68,7 +68,7 @@ PyramidSavePlugin >> initialize [
 		                 yourself.
 
 	inputsButton := SpButtonPresenter new
-		                icon: (self iconNamed: #smallRemoteOpen);
+		                icon: (Smalltalk ui icons iconNamed: #smallRemoteOpen);
 		                help: 'Project configuration';
 		                action: [
 			                (PyramidPopoverFactory
@@ -78,7 +78,7 @@ PyramidSavePlugin >> initialize [
 		                yourself.
 
 	saveButton := SpButtonPresenter new
-		              icon: (self iconNamed: #smallSave);
+		              icon: (Smalltalk ui icons iconNamed: #smallSave);
 		              help: 'Save project';
 		              action: [ self saveAction ];
 		              yourself

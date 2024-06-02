@@ -44,7 +44,7 @@ PyramidPopingPresenterBuilder >> buildLayoutAll: presenterAll grouped: presenter
 		                  yourself.
 
 	buttonPopup := SpButtonPresenter new
-		               icon: (self iconNamed: #edit);
+		               icon: (Smalltalk ui icons iconNamed: #edit);
 		help: 'Show groups and individuals values';
 		               yourself.
 
@@ -61,7 +61,7 @@ PyramidPopingPresenterBuilder >> buildLayoutOnlyForAll: presenterAll [
 
 	| buttonPopup |
 	buttonPopup := SpButtonPresenter new
-		               icon: (self iconNamed: #edit);
+		               icon: (Smalltalk ui icons iconNamed: #edit);
 		               enabled: false;
 		               yourself.
 
@@ -103,7 +103,7 @@ PyramidPopingPresenterBuilder >> buildPresenterWithButtonsFor: anAssociation wit
 			with: value ].
 
 	buttonApplyToAll := SpButtonPresenter new
-		                    icon: (self iconNamed: #smallExpert);
+		                    icon: (Smalltalk ui icons iconNamed: #smallExpert);
 		help: 'Apply this value to all selected elements.';
 		                    action: [
 			                    self property commandExecutor

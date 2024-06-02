@@ -81,13 +81,13 @@ PyramidBasicConstraintsInputPresenter >> setExact [
 
 	self buttonExact
 		enabled: true;
-		icon: (self iconNamed: #checkboxSelected).
+		icon: (Smalltalk ui icons iconNamed: #checkboxSelected).
 	self buttonFitContent
 		enabled: true;
-		icon: (self iconNamed: #checkboxUnselected).
+		icon: (Smalltalk ui icons iconNamed: #checkboxUnselected).
 	self buttonMatchParent
 		enabled: true;
-		icon: (self iconNamed: #checkboxUnselected)
+		icon: (Smalltalk ui icons iconNamed: #checkboxUnselected)
 ]
 
 { #category : 'initialization' }
@@ -95,29 +95,41 @@ PyramidBasicConstraintsInputPresenter >> setFitContent [
 
 	self buttonExact
 		enabled: true;
-		icon: (self iconNamed: #checkboxUnselected).
+		icon: (Smalltalk ui icons iconNamed: #checkboxUnselected).
 	self buttonFitContent
 		enabled: true;
-		icon: (self iconNamed: #checkboxSelected).
+		icon: (Smalltalk ui icons iconNamed: #checkboxSelected).
 	self buttonMatchParent
 		enabled: true;
-		icon: (self iconNamed: #checkboxUnselected)
+		icon: (Smalltalk ui icons iconNamed: #checkboxUnselected)
 ]
 
 { #category : 'initialization' }
 PyramidBasicConstraintsInputPresenter >> setMatchParent [
 
-	self buttonExact enabled: true; icon: (self iconNamed: #checkboxUnselected).
-	self buttonFitContent enabled: true; icon: (self iconNamed: #checkboxUnselected).
-	self buttonMatchParent enabled: true; icon: (self iconNamed: #checkboxSelected).
+	self buttonExact
+		enabled: true;
+		icon: (Smalltalk ui icons iconNamed: #checkboxUnselected).
+	self buttonFitContent
+		enabled: true;
+		icon: (Smalltalk ui icons iconNamed: #checkboxUnselected).
+	self buttonMatchParent
+		enabled: true;
+		icon: (Smalltalk ui icons iconNamed: #checkboxSelected)
 ]
 
 { #category : 'initialization' }
 PyramidBasicConstraintsInputPresenter >> setUnknowValue [
 
-	self buttonExact enabled: false; icon: (self iconNamed: #checkboxUnselected).
-	self buttonFitContent enabled: false; icon: (self iconNamed: #checkboxUnselected).
-	self buttonMatchParent enabled: false; icon: (self iconNamed: #checkboxUnselected).
+	self buttonExact
+		enabled: false;
+		icon: (Smalltalk ui icons iconNamed: #checkboxUnselected).
+	self buttonFitContent
+		enabled: false;
+		icon: (Smalltalk ui icons iconNamed: #checkboxUnselected).
+	self buttonMatchParent
+		enabled: false;
+		icon: (Smalltalk ui icons iconNamed: #checkboxUnselected)
 ]
 
 { #category : 'as yet unclassified' }

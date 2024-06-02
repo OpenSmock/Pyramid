@@ -9,9 +9,9 @@ Class {
 		'colorInput',
 		'stopsArray'
 	],
-	#category : 'Pyramid-Bloc-plugin-bloc-background',
+	#category : 'Pyramid-Bloc-plugin-bloc-visuals',
 	#package : 'Pyramid-Bloc',
-	#tag : 'plugin-bloc-background'
+	#tag : 'plugin-bloc-visuals'
 }
 
 { #category : 'adding' }
@@ -83,12 +83,12 @@ PyramidBackgroundStopsModalPresenter >> initializePresenters [
 	stopsArray := {  }.
 	buttonAddStops := SpButtonPresenter new
 		                  label: 'Add a color';
-		                  icon: (self iconNamed: #add);
+		                  icon: (Smalltalk ui icons iconNamed: #add);
 		                  action: [ self addNewStop ];
 		                  yourself.
 	buttonRemoveStops := SpButtonPresenter new
 		                     label: 'Remove';
-		                     icon: (self iconNamed: #remove);
+		                     icon: (Smalltalk ui icons iconNamed: #remove);
 		                     yourself.
 	colorInput := PyramidColorInputSingleLineWithPickupButtonPresenter
 		              new.

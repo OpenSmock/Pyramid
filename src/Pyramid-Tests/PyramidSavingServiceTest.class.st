@@ -1,27 +1,29 @@
 Class {
-	#name : #PyramidSavingServiceTest,
-	#superclass : #TestCase,
+	#name : 'PyramidSavingServiceTest',
+	#superclass : 'TestCase',
 	#instVars : [
 		'methodBuilder',
 		'savingService',
 		'savingClass'
 	],
-	#category : #'Pyramid-Tests-cases-plugin-save'
+	#category : 'Pyramid-Tests-cases-plugin-save',
+	#package : 'Pyramid-Tests',
+	#tag : 'cases-plugin-save'
 }
 
-{ #category : #running }
+{ #category : 'running' }
 PyramidSavingServiceTest >> savingClass [
 
 	^ savingClass
 ]
 
-{ #category : #running }
+{ #category : 'running' }
 PyramidSavingServiceTest >> savingService [
 
 	^ savingService
 ]
 
-{ #category : #running }
+{ #category : 'running' }
 PyramidSavingServiceTest >> setUp [
 
 	super setUp.
@@ -43,7 +45,7 @@ PyramidSavingServiceTest >> setUp [
 			               package: self class category ]
 ]
 
-{ #category : #running }
+{ #category : 'running' }
 PyramidSavingServiceTest >> tearDown [
 
 	savingClass ifNotNil: [ savingClass removeFromSystem ].
@@ -51,7 +53,7 @@ PyramidSavingServiceTest >> tearDown [
 	super tearDown
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PyramidSavingServiceTest >> testCanSave [
 	"Test:
 	
@@ -124,7 +126,7 @@ PyramidSavingServiceTest >> testCanSave [
 	self deny: self savingService canSave
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PyramidSavingServiceTest >> testErrorCannotSave [
 	"Test:
 	
@@ -135,7 +137,7 @@ PyramidSavingServiceTest >> testErrorCannotSave [
 	self should: [ self savingService save ] raise: PyramidSaveError
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PyramidSavingServiceTest >> testSave [
 	"Test:
 
@@ -188,7 +190,7 @@ PyramidSavingServiceTest >> testSave [
 		(self savingClass instanceSide canUnderstand: #packageWithTag)
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PyramidSavingServiceTest >> testSavingClass [
 	"Test:
 	
@@ -218,7 +220,7 @@ PyramidSavingServiceTest >> testSavingClass [
 		ifAbsent: [ self fail: 'The class do not exist' ]
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PyramidSavingServiceTest >> testSavingMethod [
 	"Test:
 

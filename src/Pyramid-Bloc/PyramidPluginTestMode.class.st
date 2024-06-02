@@ -71,13 +71,13 @@ PyramidPluginTestMode >> isTestOnGoing: aBoolean [
 { #category : 'as yet unclassified' }
 PyramidPluginTestMode >> startTestIcon [
 
-	^ self iconNamed: #smallDoIt
+	^ Smalltalk ui icons iconNamed: #smallDoIt
 ]
 
 { #category : 'as yet unclassified' }
 PyramidPluginTestMode >> stopTestIcon [
 
-	^ self iconNamed: #stop
+	^ Smalltalk ui icons iconNamed: #stop
 ]
 
 { #category : 'actions' }

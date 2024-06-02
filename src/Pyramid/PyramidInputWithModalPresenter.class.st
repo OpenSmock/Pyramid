@@ -51,7 +51,7 @@ PyramidInputWithModalPresenter >> initializePresenters [
 	whenValueChangedDo := [ :arg1 |  ].
 	button := SpButtonPresenter new.
 	button
-		icon: (self iconNamed: #smallCogInitialState);
+		icon: (Smalltalk ui icons iconNamed: #smallCogInitialState);
 		action: [
 			| dialog window |
 			window := self presenterModal asModalWindow.

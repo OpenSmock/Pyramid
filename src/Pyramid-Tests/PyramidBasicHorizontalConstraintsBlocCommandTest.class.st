@@ -1,18 +1,20 @@
 Class {
-	#name : #PyramidBasicHorizontalConstraintsBlocCommandTest,
-	#superclass : #TestCase,
+	#name : 'PyramidBasicHorizontalConstraintsBlocCommandTest',
+	#superclass : 'TestCase',
 	#traits : 'TPyramidCommandTest',
 	#classTraits : 'TPyramidCommandTest classTrait',
-	#category : #'Pyramid-Tests-cases-plugin-bloc-layout'
+	#category : 'Pyramid-Tests-cases-plugin-bloc-layout',
+	#package : 'Pyramid-Tests',
+	#tag : 'cases-plugin-bloc-layout'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidBasicHorizontalConstraintsBlocCommandTest >> command [
 
 	^ PyramidBasicHorizontalConstraintsBlocCommand new
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PyramidBasicHorizontalConstraintsBlocCommandTest >> targetContainers [
 
 	| p1 a1 b1 c1 d1 p2 a2 b2 c2 d2 |
@@ -56,7 +58,7 @@ PyramidBasicHorizontalConstraintsBlocCommandTest >> targetContainers [
 		  (PyramidCommandTestContainer no: a2 with: d2 prop: #matchParent) }
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PyramidBasicHorizontalConstraintsBlocCommandTest >> targetsCannotBeUsedFor [
 	"override if needed"
 
@@ -69,14 +71,14 @@ PyramidBasicHorizontalConstraintsBlocCommandTest >> targetsCannotBeUsedFor [
 		   }
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PyramidBasicHorizontalConstraintsBlocCommandTest >> testGetValueFor [
 
 	self targetsWithValuesAndValues do: [ :each |
 		self assert: (self command getValueFor: each key) asPyramidConstraintsArgument equals: each value ].
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PyramidBasicHorizontalConstraintsBlocCommandTest >> testHistory [
 	"Do once.
 	undo
@@ -133,7 +135,7 @@ PyramidBasicHorizontalConstraintsBlocCommandTest >> testHistory [
 				equals: argument ] ]
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PyramidBasicHorizontalConstraintsBlocCommandTest >> testSetValueForWith [
 
 	self targetsWithoutValuesAndValues do: [ :each |

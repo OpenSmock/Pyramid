@@ -23,13 +23,13 @@ PyramidBackgroundPreviewPresenter >> setBackgroundValue: anObject [
 { #category : 'initialization' }
 PyramidBackgroundPreviewPresenter >> setUnknowValue [
 
-	self image: (self iconNamed: #help) label: PyramidUnknowState new asString
+	self image: (Smalltalk ui icons iconNamed: #help) label: PyramidUnknowState new asString
 ]
 
 { #category : 'initialization' }
 PyramidBackgroundPreviewPresenter >> setUnknowValue: anObject [
 
-	self image: (self iconNamed: #help) label: anObject asString
+	self image: (Smalltalk ui icons iconNamed: #help) label: anObject asString
 ]
 
 { #category : 'as yet unclassified' }

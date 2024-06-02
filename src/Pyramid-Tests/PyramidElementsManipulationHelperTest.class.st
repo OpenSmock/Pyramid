@@ -1,10 +1,12 @@
 Class {
-	#name : #PyramidElementsManipulationHelperTest,
-	#superclass : #TestCase,
-	#category : #'Pyramid-Tests-cases-bloc-utils'
+	#name : 'PyramidElementsManipulationHelperTest',
+	#superclass : 'TestCase',
+	#category : 'Pyramid-Tests-cases-bloc-utils',
+	#package : 'Pyramid-Tests',
+	#tag : 'cases-bloc-utils'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PyramidElementsManipulationHelperTest >> arrayOf3Elements [
 
 	| e1 e2 e3|
@@ -17,7 +19,7 @@ PyramidElementsManipulationHelperTest >> arrayOf3Elements [
 	^ { e1 . e2 . e3 }
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PyramidElementsManipulationHelperTest >> arrayOfElements [
 
 "
@@ -38,7 +40,7 @@ D1 -> D2 -> D3.
 
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PyramidElementsManipulationHelperTest >> testFlattenChildrenOfCollection [
 
 	| arrayOfElements test result |
@@ -57,7 +59,7 @@ PyramidElementsManipulationHelperTest >> testFlattenChildrenOfCollection [
 				 (arrayOfElements at: 2) first firstChild firstChild })
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PyramidElementsManipulationHelperTest >> testOnlyParents [
 	"selection := {A1 . B1 . B2 . C1 . C3}.
 	PyramidElementsManipulationHelper onlyParents: selection

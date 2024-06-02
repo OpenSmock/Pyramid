@@ -1,12 +1,12 @@
 Class {
 	#name : 'PyramidBackgroundPaintColorCommand',
 	#superclass : 'PyramidAbstractBlocCommand',
-	#category : 'Pyramid-Bloc-plugin-bloc-background',
+	#category : 'Pyramid-Bloc-plugin-bloc-visuals',
 	#package : 'Pyramid-Bloc',
-	#tag : 'plugin-bloc-background'
+	#tag : 'plugin-bloc-visuals'
 }
 
-{ #category : 'testing' }
+{ #category : 'as yet unclassified' }
 PyramidBackgroundPaintColorCommand >> canBeUsedFor: anObject [
 
 	^ (super canBeUsedFor: anObject) and: [

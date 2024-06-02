@@ -65,19 +65,19 @@ PyramidSaveProjectConfigurationView >> defaultLayout [
 		  expand: false;
 		  add: (SpBoxLayout newHorizontal
 				   spacing: 4;
-				   add: (self iconNamed: #packageColored) expand: false;
+				   add: (Smalltalk ui icons iconNamed: #packageColored) expand: false;
 				   add: self inputPackage)
 		  expand: false;
 		  add: self labelErrorPackage expand: false;
 		  add: (SpBoxLayout newHorizontal
 				   spacing: 4;
-				   add: (self iconNamed: #class) expand: false;
+				   add: (Smalltalk ui icons iconNamed: #class) expand: false;
 				   add: self inputClass)
 		  expand: false;
 		  add: self labelErrorClass expand: false;
 		  add: (SpBoxLayout newHorizontal
 				   spacing: 4;
-				   add: (self iconNamed: #changeUpdate) expand: false;
+				   add: (Smalltalk ui icons iconNamed: #changeUpdate) expand: false;
 				   add: self inputMethod)
 		  expand: false;
 		  add: self labelErrorMethod expand: false;
@@ -129,22 +129,22 @@ PyramidSaveProjectConfigurationView >> initializePresenters [
 	inputClass := self newTextInput
 		              placeholder: 'Enter a class name';
 		              whenTextChangedDo: [ :text |
-			self shouldTriggerEvent ifTrue: [
-			              self controller textUpdatedFromClass: text ] ];
+			              self shouldTriggerEvent ifTrue: [
+					              self controller textUpdatedFromClass: text ] ];
 		              yourself.
 
 	inputMethod := self newTextInput
 		               placeholder: 'Enter a method name';
 		               whenTextChangedDo: [ :text |
-			self shouldTriggerEvent ifTrue: [
-			               self controller textUpdatedFromMethod: text ] ];
+			               self shouldTriggerEvent ifTrue: [
+					               self controller textUpdatedFromMethod: text ] ];
 		               yourself.
 
 	buttonClass := self newRadioButton
 		               label: 'save on class side';
 		               whenChangedDo: [ :aBoolean |
-			self shouldTriggerEvent ifTrue: [
-			               self controller radioUpdatedOnClassSide: aBoolean ] ];
+			               self shouldTriggerEvent ifTrue: [
+					               self controller radioUpdatedOnClassSide: aBoolean ] ];
 		               yourself.
 	buttonInstance := self newRadioButton
 		                  label: 'save on instance side';
@@ -153,7 +153,7 @@ PyramidSaveProjectConfigurationView >> initializePresenters [
 
 	buttonBrowse := SpButtonPresenter new
 		                help: 'Browse project class';
-		                icon: (self iconNamed: #nautilus);
+		                icon: (Smalltalk ui icons iconNamed: #nautilus);
 		                action: [ self controller browseProjectClass ];
 		                enabled: false;
 		                yourself.

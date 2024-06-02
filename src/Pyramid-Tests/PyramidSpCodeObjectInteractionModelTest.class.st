@@ -1,32 +1,34 @@
 Class {
-	#name : #PyramidSpCodeObjectInteractionModelTest,
-	#superclass : #TestCase,
+	#name : 'PyramidSpCodeObjectInteractionModelTest',
+	#superclass : 'TestCase',
 	#instVars : [
 		'projectModel',
 		'interactionModel',
 		'firstLevelElements'
 	],
-	#category : #'Pyramid-Tests-cases-plugin-playground'
+	#category : 'Pyramid-Tests-cases-plugin-playground',
+	#package : 'Pyramid-Tests',
+	#tag : 'cases-plugin-playground'
 }
 
-{ #category : #running }
+{ #category : 'running' }
 PyramidSpCodeObjectInteractionModelTest >> firstLevelElements [
 
 	^ firstLevelElements
 ]
 
-{ #category : #running }
+{ #category : 'running' }
 PyramidSpCodeObjectInteractionModelTest >> interactionModel [
 
 	^ interactionModel
 ]
 
-{ #category : #running }
+{ #category : 'running' }
 PyramidSpCodeObjectInteractionModelTest >> projectModel [
 	^ projectModel
 ]
 
-{ #category : #running }
+{ #category : 'running' }
 PyramidSpCodeObjectInteractionModelTest >> setUp [
 
 	super setUp.
@@ -40,7 +42,7 @@ PyramidSpCodeObjectInteractionModelTest >> setUp [
 		                    yourself
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PyramidSpCodeObjectInteractionModelTest >> testDoItReceiver [
 
 	| obj1 obj2 |
@@ -64,7 +66,7 @@ PyramidSpCodeObjectInteractionModelTest >> testDoItReceiver [
 	self assert: (interactionModel doItReceiver includes: obj2)
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PyramidSpCodeObjectInteractionModelTest >> testDoItReceiverString [
 
 	self projectModel setSelection: #(  ).

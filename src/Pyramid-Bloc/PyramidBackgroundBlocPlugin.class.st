@@ -6,9 +6,9 @@ Class {
 	#instVars : [
 		'propertiesManager'
 	],
-	#category : 'Pyramid-Bloc-plugin-bloc-background',
+	#category : 'Pyramid-Bloc-plugin-bloc-visuals',
 	#package : 'Pyramid-Bloc',
-	#tag : 'plugin-bloc-background'
+	#tag : 'plugin-bloc-visuals'
 }
 
 { #category : 'accessing' }
@@ -80,7 +80,7 @@ PyramidBackgroundBlocPlugin class >> backgroundOpacity [
 	| property |
 	property := PyramidProperty new
 		            name: 'Background Opacity';
-		            command: PyramidBackgroudOpacityCommand new;
+		            command: PyramidBackgroundOpacityCommand new;
 		            pyramidInputPresenterClass: PyramidNumberInputPresenter;
 		            yourself.
 	property pyramidInputPresenterStrings help:
@@ -126,7 +126,7 @@ PyramidBackgroundBlocPlugin class >> backgroundPaintType [
 		            yourself.
 	property pyramidInputPresenterStrings
 		addButtonModel: (PyramidMagicButtonModel new
-				 icon: (self iconNamed: #windowMaximize);
+				 icon: (Smalltalk ui icons iconNamed: #windowMaximize);
 				 helpSelected: 'The value is Solid.';
 				 helpNotSelected: 'Set the value to Solid.';
 				 label: 'Solid';
@@ -137,7 +137,7 @@ PyramidBackgroundBlocPlugin class >> backgroundPaintType [
 				 inputValidation: [ :value | value = BlColorPaint ];
 				 yourself);
 		addButtonModel: (PyramidMagicButtonModel new
-				 icon: (self iconNamed: #upAndDownArrow);
+				 icon: (Smalltalk ui icons iconNamed: #upAndDownArrow);
 				 helpSelected: 'The value is Linear Gradient.';
 				 helpNotSelected: 'Set the value to Linear Gradient.';
 				 label: 'Linear';
@@ -150,7 +150,7 @@ PyramidBackgroundBlocPlugin class >> backgroundPaintType [
 				 inputValidation: [ :value | value = BlLinearGradientPaint ];
 				 yourself);
 		addButtonModel: (PyramidMagicButtonModel new
-				 icon: (self iconNamed: #radioButtonUnselected);
+				 icon: (Smalltalk ui icons iconNamed: #radioButtonUnselected);
 				 helpSelected: 'The value is Linear Gradient.';
 				 helpNotSelected: 'Set the value to Linear Gradient.';
 				 label: 'Linear';
@@ -245,7 +245,7 @@ PyramidBackgroundBlocPlugin class >> backgroundType [
 		            yourself.
 	property pyramidInputPresenterStrings
 		addButtonModel: (PyramidMagicButtonModel new
-				 icon: (self iconNamed: #uncheckedBox);
+				 icon: (Smalltalk ui icons iconNamed: #uncheckedBox);
 				 helpSelected: 'The value is Transparent.';
 				 helpNotSelected: 'Set the value to Transparent.';
 				 label: 'Transparent';
@@ -253,7 +253,7 @@ PyramidBackgroundBlocPlugin class >> backgroundType [
 				 inputValidation: [ :value | value = BlTransparentBackground ];
 				 yourself);
 		addButtonModel: (PyramidMagicButtonModel new
-				 icon: (self iconNamed: #paint);
+				 icon: (Smalltalk ui icons iconNamed: #paint);
 				 helpSelected: 'The value is paint.';
 				 helpNotSelected: 'Set the value to paint.';
 				 label: 'Paint';
@@ -262,12 +262,12 @@ PyramidBackgroundBlocPlugin class >> backgroundType [
 				 inputValidation: [ :value | value = BlPaintBackground ];
 				 yourself);
 		addButtonModel: (PyramidMagicButtonModel new
-				 icon: (self iconNamed: #jigsawIcon);
+				 icon: (Smalltalk ui icons iconNamed: #jigsawIcon);
 				 helpSelected: 'The value is image.';
 				 helpNotSelected: 'Set the value to image.';
 				 label: 'Image';
 				 inputValue: [
-					 BlImageBackground image: (self iconNamed: #pharoBig) ];
+					 BlImageBackground image: (Smalltalk ui icons iconNamed: #pharoBig) ];
 				 inputValidation: [ :value | value = BlImageBackground ];
 				 yourself).
 	^ property
@@ -313,7 +313,7 @@ PyramidBackgroundBlocPlugin class >> borderLineCap [
 		            yourself.
 	property pyramidInputPresenterStrings
 		addButtonModel: (PyramidMagicButtonModel new
-				 icon: (self iconNamed: #windowMaximize);
+				 icon: ((Smalltalk ui icons iconNamed: #windowMenu) rotateBy: -45);
 				 helpSelected: 'The value is Butt.';
 				 helpNotSelected: 'Set the value to Butt.';
 				 label: 'Butt';
@@ -321,7 +321,7 @@ PyramidBackgroundBlocPlugin class >> borderLineCap [
 				 inputValidation: [ :value | value = BlStrokeLineCap butt ];
 				 yourself);
 		addButtonModel: (PyramidMagicButtonModel new
-				 icon: (self iconNamed: #windowMaximize);
+				 icon: (Smalltalk ui icons iconNamed: #radioButtonUnselected);
 				 helpSelected: 'The value is Round.';
 				 helpNotSelected: 'Set the value to Round.';
 				 label: 'Round';
@@ -329,7 +329,7 @@ PyramidBackgroundBlocPlugin class >> borderLineCap [
 				 inputValidation: [ :value | value = BlStrokeLineCap round ];
 				 yourself);
 		addButtonModel: (PyramidMagicButtonModel new
-				 icon: (self iconNamed: #windowMaximize);
+				 icon: (Smalltalk ui icons iconNamed: #windowMaximize);
 				 helpSelected: 'The value is Square.';
 				 helpNotSelected: 'Set the value to Square.';
 				 label: 'Square';
@@ -352,7 +352,7 @@ PyramidBackgroundBlocPlugin class >> borderLineJoin [
 		            yourself.
 	property pyramidInputPresenterStrings
 		addButtonModel: (PyramidMagicButtonModel new
-				 icon: (self iconNamed: #windowMaximize);
+				 icon: ((Smalltalk ui icons iconNamed: #windowMenu) rotateBy: -45);
 				 helpSelected: 'The value is Bevel.';
 				 helpNotSelected: 'Set the value to Bevel.';
 				 label: 'Bevel';
@@ -360,7 +360,7 @@ PyramidBackgroundBlocPlugin class >> borderLineJoin [
 				 inputValidation: [ :value | value = BlStrokeLineJoin bevel ];
 				 yourself);
 		addButtonModel: (PyramidMagicButtonModel new
-				 icon: (self iconNamed: #windowMaximize);
+				 icon: (Smalltalk ui icons iconNamed: #windowMaximize);
 				 helpSelected: 'The value is Miter.';
 				 helpNotSelected: 'Set the value to Miter.';
 				 label: 'Miter';
@@ -368,7 +368,7 @@ PyramidBackgroundBlocPlugin class >> borderLineJoin [
 				 inputValidation: [ :value | value = BlStrokeLineJoin miter ];
 				 yourself);
 		addButtonModel: (PyramidMagicButtonModel new
-				 icon: (self iconNamed: #windowMaximize);
+				 icon: (Smalltalk ui icons iconNamed: #radioButtonUnselected);
 				 helpSelected: 'The value is Round.';
 				 helpNotSelected: 'Set the value to Round.';
 				 label: 'Round';
@@ -385,7 +385,7 @@ PyramidBackgroundBlocPlugin class >> borderLinearEnd [
 	| property |
 	property := PyramidProperty new
 		            name: 'Border Linear End';
-		            command: PyramidBorderPaintLinearEndCommand new;
+		            command: PyramidBorderPaintLinearDirectionEndCommand new;
 		            pyramidInputPresenterClass: PyramidPointInputPresenter;
 		            yourself.
 	property pyramidInputPresenterStrings
@@ -418,7 +418,7 @@ PyramidBackgroundBlocPlugin class >> borderLinearStart [
 	| property |
 	property := PyramidProperty new
 		            name: 'Border Linear Start';
-		            command: PyramidBorderPaintLinearStartCommand new;
+		            command: PyramidBorderPaintLinearDirectionStartCommand new;
 		            pyramidInputPresenterClass: PyramidPointInputPresenter;
 		            yourself.
 	property pyramidInputPresenterStrings
@@ -494,7 +494,7 @@ PyramidBackgroundBlocPlugin class >> borderPaintType [
 		            yourself.
 	property pyramidInputPresenterStrings
 		addButtonModel: (PyramidMagicButtonModel new
-				 icon: (self iconNamed: #windowMaximize);
+				 icon: (Smalltalk ui icons iconNamed: #windowMaximize);
 				 helpSelected: 'The value is Solid.';
 				 helpNotSelected: 'Set the value to Solid.';
 				 label: 'Solid';
@@ -506,7 +506,7 @@ PyramidBackgroundBlocPlugin class >> borderPaintType [
 				 inputValidation: [ :value | value class = BlColorPaint ];
 				 yourself);
 		addButtonModel: (PyramidMagicButtonModel new
-				 icon: (self iconNamed: #upAndDownArrow);
+				 icon: (Smalltalk ui icons iconNamed: #upAndDownArrow);
 				 helpSelected: 'The value is Linear Gradient.';
 				 helpNotSelected: 'Set the value to Linear Gradient.';
 				 label: 'Linear';
@@ -520,7 +520,7 @@ PyramidBackgroundBlocPlugin class >> borderPaintType [
 				 inputValidation: [ :value | value class = BlLinearGradientPaint ];
 				 yourself);
 		addButtonModel: (PyramidMagicButtonModel new
-				 icon: (self iconNamed: #radioButtonUnselected);
+				 icon: (Smalltalk ui icons iconNamed: #radioButtonUnselected);
 				 helpSelected: 'The value is Linear Gradient.';
 				 helpNotSelected: 'Set the value to Linear Gradient.';
 				 label: 'Linear';
@@ -621,6 +621,20 @@ PyramidBackgroundBlocPlugin class >> borderWidth [
 ]
 
 { #category : 'accessing' }
+PyramidBackgroundBlocPlugin class >> opacity [
+
+	| property |
+	property := PyramidProperty new
+		            name: 'Element Opacity';
+		            command: PyramidOpacityCommand new;
+		            pyramidInputPresenterClass: PyramidNumberInputPresenter;
+		            yourself.
+	property pyramidInputPresenterStrings help:
+		'Define the opacity of the element.'.
+	^ property
+]
+
+{ #category : 'accessing' }
 PyramidBackgroundBlocPlugin class >> outskirts [
 
 	| property |
@@ -632,7 +646,7 @@ PyramidBackgroundBlocPlugin class >> outskirts [
 		            yourself.
 	property pyramidInputPresenterStrings
 		addButtonModel: (PyramidMagicButtonModel new
-				 icon: (self iconNamed: #menuPin);
+				 icon: (Smalltalk ui icons iconNamed: #menuPin);
 				 helpSelected: 'The value is Inside.';
 				 helpNotSelected: 'Set the value to Inside.';
 				 label: 'Inside';
@@ -640,7 +654,7 @@ PyramidBackgroundBlocPlugin class >> outskirts [
 				 inputValidation: [ :value | value class = BlOutskirtsInside ];
 				 yourself);
 		addButtonModel: (PyramidMagicButtonModel new
-				 icon: (self iconNamed: #radioButtonPressed);
+				 icon: (Smalltalk ui icons iconNamed: #radioButtonPressed);
 				 helpSelected: 'The value is Centered.';
 				 helpNotSelected: 'Set the value to Centered.';
 				 label: 'Centered';
@@ -648,7 +662,7 @@ PyramidBackgroundBlocPlugin class >> outskirts [
 				 inputValidation: [ :value | value class = BlOutskirtsCentered ];
 				 yourself);
 		addButtonModel: (PyramidMagicButtonModel new
-				 icon: (self iconNamed: #radioButtonUnselected);
+				 icon: (Smalltalk ui icons iconNamed: #radioButtonUnselected);
 				 helpSelected: 'The value is Outside.';
 				 helpNotSelected: 'Set the value to Outside.';
 				 label: 'Outside';
@@ -666,7 +680,7 @@ PyramidBackgroundBlocPlugin >> addPanelsOn: aPyramidSimpleWindow [
 		builder
 			makeTab: self propertiesManager presenter
 			label: 'Visuals'
-			icon: (self iconNamed: #box)
+			icon: (Smalltalk ui icons iconNamed: #box)
 			order: 2 ]
 ]
 
@@ -682,8 +696,11 @@ PyramidBackgroundBlocPlugin >> initialize [
 
 	propertiesManager := PyramidPropertiesManagerForSelection new.
 
+	"Element opacity"
+	propertiesManager addProperty: self class opacity.
+
 	"Background properties"
-	"Type"
+	propertiesManager addProperty: self class backgroundOpacity.
 	propertiesManager addProperty: self class backgroundType.
 
 	"Image"
@@ -708,6 +725,7 @@ PyramidBackgroundBlocPlugin >> initialize [
 	propertiesManager addProperty: self class outskirts.
 
 	"Border properties"
+	propertiesManager addProperty: self class borderOpacity.
 	propertiesManager addProperty: self class borderWidth.
 
 	"Style"

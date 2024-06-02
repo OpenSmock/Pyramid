@@ -78,8 +78,8 @@ PyramidMenuExtension >> showMenuAt: anEvent [
 				action: [ self elementAtDisplays background: color ];
 				icon: [
 					self elementAtDisplays background paint color = color
-						ifTrue: [ self iconNamed: #testGreen ]
-						ifFalse: [ self iconNamed: #testNotRun ] ] ] ].
+						ifTrue: [ Smalltalk ui icons iconNamed: #testGreen ]
+						ifFalse: [ Smalltalk ui icons iconNamed: #testNotRun ] ] ] ].
 
 	currentMenu addGroup: [ :group |
 		group addItem: [ :item |

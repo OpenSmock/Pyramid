@@ -1,18 +1,20 @@
 Class {
-	#name : #PyramidBackgroundPaintStopsCommandTest,
-	#superclass : #TestCase,
+	#name : 'PyramidBackgroundPaintStopsCommandTest',
+	#superclass : 'TestCase',
 	#traits : 'TPyramidCommandTest',
 	#classTraits : 'TPyramidCommandTest classTrait',
-	#category : #'Pyramid-Tests-cases-plugin-bloc-background'
+	#category : 'Pyramid-Tests-cases-plugin-bloc-visuals',
+	#package : 'Pyramid-Tests',
+	#tag : 'cases-plugin-bloc-visuals'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidBackgroundPaintStopsCommandTest >> command [
 
 	^ PyramidBackgroundPaintStopsCommand new
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PyramidBackgroundPaintStopsCommandTest >> targetContainers [
 
 	^ {
@@ -87,7 +89,7 @@ PyramidBackgroundPaintStopsCommandTest >> targetContainers [
 			 }
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PyramidBackgroundPaintStopsCommandTest >> targetsCannotBeUsedFor [
 	"override if needed"
 
