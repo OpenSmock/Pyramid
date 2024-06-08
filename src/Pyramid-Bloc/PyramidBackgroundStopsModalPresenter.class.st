@@ -56,16 +56,19 @@ PyramidBackgroundStopsModalPresenter >> defaultLayout [
 				                     spacing: 4;
 				                     add: self buttonAddStops;
 				                     add: self buttonRemoveStops;
-				                     yourself);
+				                     yourself)
+		                    expand: false;
 		                    add: (SpLabelPresenter new
 				                     label: 'Position';
 				                     displayBold: [ :t | true ];
-				                     yourself);
+				                     yourself)
+		                    expand: false;
 		                    add: self positionInput;
 		                    add: (SpLabelPresenter new
 				                     label: 'Color';
 				                     displayBold: [ :t | true ];
-				                     yourself);
+				                     yourself)
+		                    expand: false;
 		                    add: self colorInput;
 		                    yourself.
 
@@ -194,26 +197,28 @@ PyramidBackgroundStopsModalPresenter >> tableStops [
 { #category : 'as yet unclassified' }
 PyramidBackgroundStopsModalPresenter >> updateCurrentStop: anAssociation [
 
-	self positionInput visibleIf: anAssociation isNotNil.
-	self colorInput visibleIf: anAssociation isNotNil.
+	self positionInput enabled: anAssociation isNotNil.
+	self colorInput enabled: anAssociation isNotNil.
 	self buttonRemoveStops enabled: anAssociation isNotNil.
-	anAssociation ifNil: [ ^ self ].
+	anAssociation ifNil: [ 
+		self colorInput emptyValue.
+		^ self ].
 	self buttonRemoveStops action: [ self removeStop: anAssociation ].
 	self positionInput
 		value: anAssociation key;
 		whenValueChangedDo: [ :newPosition |
 			(newPosition between: 0.0 and: 1.0)
-				ifTrue: [ anAssociation key: newPosition.
-					self positionInput value:  newPosition]
+				ifTrue: [
+					anAssociation key: newPosition.
+					self positionInput value: newPosition ]
 				ifFalse: [
 					| number |
 					number := newPosition asInteger.
 					number negative ifTrue: [ number := number negated ].
 					number := number / (10 raisedTo: number decimalDigitLength).
 					anAssociation key: number.
-					self positionInput value:  number ].
-			self orderStopsArray.
-			  ].
+					self positionInput value: number ].
+			self orderStopsArray ].
 	self colorInput
 		value: anAssociation value;
 		whenValueChangedDo: [ :newColor |
@@ -224,5 +229,6 @@ PyramidBackgroundStopsModalPresenter >> updateCurrentStop: anAssociation [
 { #category : 'as yet unclassified' }
 PyramidBackgroundStopsModalPresenter >> updatePresenter [
 
-self tableStops refresh
+	self tableStops refresh.
+	self layout: self defaultLayout
 ]
