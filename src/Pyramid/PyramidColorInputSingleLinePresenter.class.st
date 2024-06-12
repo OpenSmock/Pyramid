@@ -66,11 +66,11 @@ PyramidColorInputSingleLinePresenter >> initializePresenter [
 	whenValueChangedDo := [ :c |  ].
 	hexInput := PyramidTextInputPresenter new
 		            value: 'FF0000';
-		            help: 'Set the color value as an hex.';
+		            strings: (PyramidInputStrings new help: 'Set the color value as an hex.');
 		            yourself.
 	alphaInput := PyramidNumberInputPresenter new
 		              value: 100;
-		              help: 'Set the alpha value as a %.';
+		              strings: (PyramidInputStrings new help:'Set the alpha value as a %.');
 		              yourself.
 	previewPresenter := SpMorphPresenter new
 		                    morph: Morph new;

@@ -1,10 +1,11 @@
 Class {
-	#name : #PyramidSimpleExamples,
-	#superclass : #Object,
-	#category : #'Pyramid-Examples'
+	#name : 'PyramidSimpleExamples',
+	#superclass : 'Object',
+	#category : 'Pyramid-Examples',
+	#package : 'Pyramid-Examples'
 }
 
-{ #category : #'pyramid-serialized-bloc' }
+{ #category : 'pyramid-serialized-bloc' }
 PyramidSimpleExamples class >> imageProxy [
 	"This class has been generated using Pyramid.
 
@@ -65,7 +66,7 @@ PyramidSimpleExamples class >> imageProxy [
 ]'
 ]
 
-{ #category : #'pyramid-serialized-bloc' }
+{ #category : 'pyramid-serialized-bloc' }
 PyramidSimpleExamples class >> little_cat [
 	"This class has been generated using Pyramid.
 
@@ -497,12 +498,12 @@ PyramidSimpleExamples class >> little_cat [
 ]'
 ]
 
-{ #category : #'pyramid-serialized-bloc' }
+{ #category : 'pyramid-serialized-bloc' }
 PyramidSimpleExamples class >> little_cat_in_black [
 	"This class has been generated using Pyramid.
 
 	By: YannLEGOFF
-	2024-01-23 17:11:30"
+	2024-06-12 10:16:55"
 
 	<pySTON>
 	^ '[
@@ -544,13 +545,7 @@ PyramidSimpleExamples class >> little_cat_in_black [
 									#geometry : BlEllipseGeometry {
 										#extent : Point [ 10.0, 100.0 ],
 										#pathCache : BlPathCache {
-											#geometry : @19,
-											#strokedBounds : BlBounds {
-												#left : 0.0,
-												#top : 0.0,
-												#right : 10.0,
-												#bottom : 100.0
-											}
+											#geometry : @19
 										}
 									},
 									#background : BlPaintBackground {
@@ -560,7 +555,6 @@ PyramidSimpleExamples class >> little_cat_in_black [
 									}
 								},
 								#userData : IdentityDictionary {
-									#shouldHandleMousePickOutsideEvent : false,
 									#elementId : BlElementNamedId {
 										#identifier : #E
 									}
@@ -589,7 +583,7 @@ PyramidSimpleExamples class >> little_cat_in_black [
 							#geometry : BlRoundedRectangleGeometry {
 								#extent : Point [ 100.0, 100.0 ],
 								#pathCache : BlPathCache {
-									#geometry : @34,
+									#geometry : @33,
 									#strokedBounds : BlBounds {
 										#left : 0.0,
 										#top : 0.0,
@@ -612,12 +606,11 @@ PyramidSimpleExamples class >> little_cat_in_black [
 							}
 						},
 						#userData : IdentityDictionary {
-							#shouldHandleMousePickOutsideEvent : false,
 							#elementId : BlElementNamedId {
 								#identifier : #C
 							}
 						},
-						#layout : @28
+						#layout : @27
 					},
 					BlElement {
 						#children : BlChildrenArray [
@@ -641,7 +634,7 @@ PyramidSimpleExamples class >> little_cat_in_black [
 										#bottom : 0.0,
 										#right : 0.0
 									},
-									#padding : @55,
+									#padding : @54,
 									#minHeight : 0.0,
 									#minWidth : 0.0,
 									#maxHeight : @17,
@@ -653,19 +646,12 @@ PyramidSimpleExamples class >> little_cat_in_black [
 									#geometry : BlEllipseGeometry {
 										#extent : Point [ 10.0, 100.0 ],
 										#pathCache : BlPathCache {
-											#geometry : @57,
-											#strokedBounds : BlBounds {
-												#left : 0.0,
-												#top : 0.0,
-												#right : 10.0,
-												#bottom : 100.0
-											}
+											#geometry : @56
 										}
 									},
-									#background : @23
+									#background : @22
 								},
 								#userData : IdentityDictionary {
-									#shouldHandleMousePickOutsideEvent : false,
 									#elementId : BlElementNamedId {
 										#identifier : #E
 									}
@@ -694,7 +680,7 @@ PyramidSimpleExamples class >> little_cat_in_black [
 							#geometry : BlRoundedRectangleGeometry {
 								#extent : Point [ 100.0, 100.0 ],
 								#pathCache : BlPathCache {
-									#geometry : @69,
+									#geometry : @67,
 									#strokedBounds : BlBounds {
 										#left : 0.0,
 										#top : 0.0,
@@ -710,15 +696,14 @@ PyramidSimpleExamples class >> little_cat_in_black [
 								},
 								#center : Point [ 50.0, 50.0 ]
 							},
-							#background : @40
+							#background : @39
 						},
 						#userData : IdentityDictionary {
-							#shouldHandleMousePickOutsideEvent : false,
 							#elementId : BlElementNamedId {
 								#identifier : #D
 							}
 						},
-						#layout : @28
+						#layout : @27
 					}
 				],
 				#constraints : BlLayoutCommonConstraints {
@@ -728,7 +713,32 @@ PyramidSimpleExamples class >> little_cat_in_black [
 						}
 					},
 					#horizontal : BlLayoutCommonConstraintsAxis {
-						#resizer : @79
+						#resizer : @77
+					},
+					#constraints : {
+						Class [ #BlFrameLayout ] : BlFrameLayoutConstraints {
+							#vertical : BlFrameLayoutConstraintsVertical {
+								#alignment : BlVerticalCoordinateTopAlignment {
+									#coordinate : 0.3,
+									#relativeAlignment : BlTopAlignment { }
+								},
+								#weight : 1.0
+							},
+							#horizontal : BlFrameLayoutConstraintsHorizontal {
+								#alignment : BlHorizontalCenterAlignment { },
+								#weight : 1.0
+							}
+						},
+						Class [ #BlProportionalLayout ] : BlProportionalLayoutConstraints {
+							#vertical : BlProportionalLayoutConstraintsVertical {
+								#top : 0.0,
+								#bottom : 1.0
+							},
+							#horizontal : BlProportionalLayoutConstraintsHorizontal {
+								#left : 0.0,
+								#right : 1.0
+							}
+						}
 					},
 					#position : Point [ 373.0, 166.0 ],
 					#margin : @16,
@@ -738,6 +748,8 @@ PyramidSimpleExamples class >> little_cat_in_black [
 					#maxHeight : @17,
 					#maxWidth : @17,
 					#ignoredByLayout : false,
+					#previouslyAccessedConstraints : @81,
+					#previouslyAccessedConstraintsType : @80,
 					#accountTransformation : false
 				},
 				#visuals : BlCustomVisuals {
@@ -747,12 +759,11 @@ PyramidSimpleExamples class >> little_cat_in_black [
 					#clipChildren : false
 				},
 				#userData : IdentityDictionary {
-					#shouldHandleMousePickOutsideEvent : false,
 					#elementId : BlElementNamedId {
 						#identifier : #eyes
 					}
 				},
-				#layout : @28
+				#layout : @27
 			},
 			BlElement {
 				#children : BlChildrenArray [
@@ -760,10 +771,10 @@ PyramidSimpleExamples class >> little_cat_in_black [
 						#children : BlChildrenArray [ ],
 						#constraints : BlLayoutCommonConstraints {
 							#vertical : BlLayoutCommonConstraintsAxis {
-								#resizer : @79
+								#resizer : @77
 							},
 							#horizontal : BlLayoutCommonConstraintsAxis {
-								#resizer : @79
+								#resizer : @77
 							},
 							#position : Point [ 0.0, 0.0 ],
 							#margin : @16,
@@ -779,28 +790,21 @@ PyramidSimpleExamples class >> little_cat_in_black [
 							#geometry : BlEllipseGeometry {
 								#extent : Point [ 50.0, 50.0 ],
 								#pathCache : BlPathCache {
-									#geometry : @95,
-									#strokedBounds : BlBounds {
-										#left : 0.0,
-										#top : 0.0,
-										#right : 50.0,
-										#bottom : 50.0
-									}
+									#geometry : @105
 								}
 							},
 							#background : BlPaintBackground {
 								#paint : BlColorPaint {
-									#color : Color [ #white ]
+									#color : @41
 								}
 							}
 						},
 						#userData : IdentityDictionary {
-							#shouldHandleMousePickOutsideEvent : false,
 							#elementId : BlElementNamedId {
 								#identifier : #G
 							}
 						},
-						#layout : @28
+						#layout : @27
 					},
 					BlElement {
 						#children : BlChildrenArray [ ],
@@ -811,7 +815,7 @@ PyramidSimpleExamples class >> little_cat_in_black [
 								}
 							},
 							#horizontal : BlLayoutCommonConstraintsAxis {
-								#resizer : @79
+								#resizer : @77
 							},
 							#position : Point [ 0.0, 0.0 ],
 							#margin : @16,
@@ -827,13 +831,7 @@ PyramidSimpleExamples class >> little_cat_in_black [
 							#geometry : BlRoundedRectangleGeometry {
 								#extent : Point [ 50.0, 25.0 ],
 								#pathCache : BlPathCache {
-									#geometry : @112,
-									#strokedBounds : BlBounds {
-										#left : 0.0,
-										#top : 0.0,
-										#right : 50.0,
-										#bottom : 25.0
-									}
+									#geometry : @120
 								},
 								#cornerRadii : BlCornerRadii {
 									#topLeft : 12,
@@ -843,23 +841,44 @@ PyramidSimpleExamples class >> little_cat_in_black [
 								},
 								#center : Point [ 25.0, 12.5 ]
 							},
-							#background : @99
+							#background : @108
 						},
 						#userData : IdentityDictionary {
-							#shouldHandleMousePickOutsideEvent : false,
 							#elementId : BlElementNamedId {
 								#identifier : #H
 							}
 						},
-						#layout : @28
+						#layout : @27
 					}
 				],
 				#constraints : BlLayoutCommonConstraints {
 					#vertical : BlLayoutCommonConstraintsAxis {
-						#resizer : @79
+						#resizer : @77
 					},
 					#horizontal : BlLayoutCommonConstraintsAxis {
-						#resizer : @79
+						#resizer : @77
+					},
+					#constraints : {
+						@80 : BlFrameLayoutConstraints {
+							#vertical : BlFrameLayoutConstraintsVertical {
+								#alignment : BlVerticalCenterAlignment { },
+								#weight : 1.0
+							},
+							#horizontal : BlFrameLayoutConstraintsHorizontal {
+								#alignment : @86,
+								#weight : 1.0
+							}
+						},
+						@87 : BlProportionalLayoutConstraints {
+							#vertical : BlProportionalLayoutConstraintsVertical {
+								#top : 0.0,
+								#bottom : 1.0
+							},
+							#horizontal : BlProportionalLayoutConstraintsHorizontal {
+								#left : 0.0,
+								#right : 1.0
+							}
+						}
 					},
 					#position : Point [ 373.0, 263.0 ],
 					#margin : @16,
@@ -869,19 +888,20 @@ PyramidSimpleExamples class >> little_cat_in_black [
 					#maxHeight : @17,
 					#maxWidth : @17,
 					#ignoredByLayout : false,
+					#previouslyAccessedConstraints : @131,
+					#previouslyAccessedConstraintsType : @80,
 					#accountTransformation : false
 				},
 				#visuals : BlCustomVisuals {
 					#geometry : BlRectangleGeometry { },
-					#background : @83
+					#background : @93
 				},
 				#userData : IdentityDictionary {
-					#shouldHandleMousePickOutsideEvent : false,
 					#elementId : BlElementNamedId {
 						#identifier : #nose
 					}
 				},
-				#layout : @28
+				#layout : @27
 			},
 			BlElement {
 				#children : BlChildrenArray [
@@ -912,7 +932,7 @@ PyramidSimpleExamples class >> little_cat_in_black [
 							#geometry : BlEllipseGeometry {
 								#extent : Point [ 150.0, 10.0 ],
 								#pathCache : BlPathCache {
-									#geometry : @139,
+									#geometry : @154,
 									#strokedBounds : BlBounds {
 										#left : 0.0,
 										#top : 0.0,
@@ -923,17 +943,16 @@ PyramidSimpleExamples class >> little_cat_in_black [
 							},
 							#background : BlPaintBackground {
 								#paint : BlColorPaint {
-									#color : Color [ #white ]
+									#color : @41
 								}
 							}
 						},
 						#userData : IdentityDictionary {
-							#shouldHandleMousePickOutsideEvent : false,
 							#elementId : BlElementNamedId {
 								#identifier : #J
 							}
 						},
-						#layout : @28
+						#layout : @27
 					},
 					BlElement {
 						#children : BlChildrenArray [ ],
@@ -962,7 +981,7 @@ PyramidSimpleExamples class >> little_cat_in_black [
 							#geometry : BlEllipseGeometry {
 								#extent : Point [ 150.0, 10.0 ],
 								#pathCache : BlPathCache {
-									#geometry : @157,
+									#geometry : @171,
 									#strokedBounds : BlBounds {
 										#left : 0.0,
 										#top : 0.0,
@@ -971,15 +990,14 @@ PyramidSimpleExamples class >> little_cat_in_black [
 									}
 								}
 							},
-							#background : @143
+							#background : @158
 						},
 						#userData : IdentityDictionary {
-							#shouldHandleMousePickOutsideEvent : false,
 							#elementId : BlElementNamedId {
 								#identifier : #K
 							}
 						},
-						#layout : @28
+						#layout : @27
 					},
 					BlElement {
 						#children : BlChildrenArray [ ],
@@ -1008,7 +1026,7 @@ PyramidSimpleExamples class >> little_cat_in_black [
 							#geometry : BlEllipseGeometry {
 								#extent : Point [ 150.0, 10.0 ],
 								#pathCache : BlPathCache {
-									#geometry : @172,
+									#geometry : @186,
 									#strokedBounds : BlBounds {
 										#left : 0.0,
 										#top : 0.0,
@@ -1017,15 +1035,14 @@ PyramidSimpleExamples class >> little_cat_in_black [
 									}
 								}
 							},
-							#background : @143
+							#background : @158
 						},
 						#userData : IdentityDictionary {
-							#shouldHandleMousePickOutsideEvent : false,
 							#elementId : BlElementNamedId {
 								#identifier : #L
 							}
 						},
-						#layout : @28
+						#layout : @27
 					},
 					BlElement {
 						#children : BlChildrenArray [ ],
@@ -1054,7 +1071,7 @@ PyramidSimpleExamples class >> little_cat_in_black [
 							#geometry : BlEllipseGeometry {
 								#extent : Point [ 150.0, 10.0 ],
 								#pathCache : BlPathCache {
-									#geometry : @187,
+									#geometry : @201,
 									#strokedBounds : BlBounds {
 										#left : 0.0,
 										#top : 0.0,
@@ -1063,23 +1080,47 @@ PyramidSimpleExamples class >> little_cat_in_black [
 									}
 								}
 							},
-							#background : @143
+							#background : @158
 						},
 						#userData : IdentityDictionary {
-							#shouldHandleMousePickOutsideEvent : false,
 							#elementId : BlElementNamedId {
 								#identifier : #M
 							}
 						},
-						#layout : @28
+						#layout : @27
 					}
 				],
 				#constraints : BlLayoutCommonConstraints {
 					#vertical : BlLayoutCommonConstraintsAxis {
-						#resizer : @79
+						#resizer : @77
 					},
 					#horizontal : BlLayoutCommonConstraintsAxis {
-						#resizer : @79
+						#resizer : @77
+					},
+					#constraints : {
+						@80 : BlFrameLayoutConstraints {
+							#vertical : BlFrameLayoutConstraintsVertical {
+								#alignment : BlVerticalCoordinateTopAlignment {
+									#coordinate : 0.6,
+									#relativeAlignment : @84
+								},
+								#weight : 1.0
+							},
+							#horizontal : BlFrameLayoutConstraintsHorizontal {
+								#alignment : @86,
+								#weight : 1.0
+							}
+						},
+						@87 : BlProportionalLayoutConstraints {
+							#vertical : BlProportionalLayoutConstraintsVertical {
+								#top : 0.0,
+								#bottom : 1.0
+							},
+							#horizontal : BlProportionalLayoutConstraintsHorizontal {
+								#left : 0.0,
+								#right : 1.0
+							}
+						}
 					},
 					#position : Point [ 373.0, 364.0 ],
 					#margin : @16,
@@ -1089,19 +1130,20 @@ PyramidSimpleExamples class >> little_cat_in_black [
 					#maxHeight : @17,
 					#maxWidth : @17,
 					#ignoredByLayout : false,
+					#previouslyAccessedConstraints : @211,
+					#previouslyAccessedConstraintsType : @80,
 					#accountTransformation : false
 				},
 				#visuals : BlCustomVisuals {
-					#background : @83,
+					#background : @93,
 					#clipChildren : false
 				},
 				#userData : IdentityDictionary {
-					#shouldHandleMousePickOutsideEvent : false,
 					#elementId : BlElementNamedId {
 						#identifier : #mustach
 					}
 				},
-				#layout : @28
+				#layout : @27
 			}
 		],
 		#constraints : BlLayoutCommonConstraints {
@@ -1109,7 +1151,7 @@ PyramidSimpleExamples class >> little_cat_in_black [
 				#resizer : BlLayoutMatchParentResizer { }
 			},
 			#horizontal : BlLayoutCommonConstraintsAxis {
-				#resizer : @202
+				#resizer : @224
 			},
 			#position : Point [ 0, 0 ],
 			#margin : @16,
@@ -1124,22 +1166,21 @@ PyramidSimpleExamples class >> little_cat_in_black [
 		#visuals : BlCustomVisuals {
 			#background : BlPaintBackground {
 				#paint : BlColorPaint {
-					#color : Color [ #black ]
+					#color : @24
 				}
 			}
 		},
 		#userData : IdentityDictionary {
-			#shouldHandleMousePickOutsideEvent : false,
 			#elementId : BlElementNamedId {
 				#identifier : #background
 			}
 		},
-		#layout : @28
+		#layout : BlFrameLayout { }
 	}
 ]'
 ]
 
-{ #category : #'pyramid-serialized-bloc' }
+{ #category : 'pyramid-serialized-bloc' }
 PyramidSimpleExamples class >> marble [
 	"This class has been generated using Pyramid.
 
@@ -1479,7 +1520,7 @@ PyramidSimpleExamples class >> marble [
 ]'
 ]
 
-{ #category : #'pyramid-serialized-bloc' }
+{ #category : 'pyramid-serialized-bloc' }
 PyramidSimpleExamples class >> marble2 [
 	"This class has been generated using Pyramid.
 
@@ -1879,7 +1920,7 @@ PyramidSimpleExamples class >> marble2 [
 ]'
 ]
 
-{ #category : #'pyramid-serialized-bloc' }
+{ #category : 'pyramid-serialized-bloc' }
 PyramidSimpleExamples class >> marble3 [
 	"This class has been generated using Pyramid.
 
@@ -2576,7 +2617,7 @@ PyramidSimpleExamples class >> marble3 [
 ]'
 ]
 
-{ #category : #'pyramid-serialized-bloc' }
+{ #category : 'pyramid-serialized-bloc' }
 PyramidSimpleExamples class >> simpleFlowLayout [
 	"This class has been generated using Pyramid.
 
@@ -3096,6 +3137,6 @@ PyramidSimpleExamples class >> simpleFlowLayout [
 ]'
 ]
 
-{ #category : #'see class side' }
+{ #category : 'see class side' }
 PyramidSimpleExamples >> seeClassSide [ 
 ]

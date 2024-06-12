@@ -95,7 +95,9 @@ PyramidBackgroundStopsModalPresenter >> initializePresenters [
 		                     yourself.
 	colorInput := PyramidColorInputSingleLineWithPickupButtonPresenter
 		              new.
-	positionInput := PyramidNumberInputPresenter new.
+	positionInput := PyramidNumberInputPresenter new strings:
+		                 (PyramidInputStrings new help:
+			                  'Set the position of the color in the gradiant (generally between 0 and 1).').
 	tableStops := SpTablePresenter new
 		              whenSelectedItemChangedDo: [ :stop |
 			              self updateCurrentStop: stop ];
@@ -107,9 +109,9 @@ PyramidBackgroundStopsModalPresenter >> initializePresenters [
 				  color: association value;
 				  asForm ]) width: 20).
 	tableStops addColumn: ((SpStringTableColumn
-			 title: 'Position'
-			 evaluated: [ :association |
-			 association key asFloat printShowingDecimalPlaces: 4 ])width: 70).
+			  title: 'Position'
+			  evaluated: [ :association |
+			  association key asFloat printShowingDecimalPlaces: 4 ]) width: 70).
 	tableStops addColumn: (SpStringTableColumn
 			 title: 'Color'
 			 evaluated: [ :association | association value printString ]).
