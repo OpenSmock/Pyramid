@@ -1,16 +1,18 @@
 Class {
-	#name : #PyramidTreeBaseColumnsBuilder,
-	#superclass : #PyramidAbstractColumnsBuilder,
-	#category : #'Pyramid-Bloc-plugin-tree-library'
+	#name : 'PyramidTreeBaseColumnsBuilder',
+	#superclass : 'PyramidAbstractColumnsBuilder',
+	#category : 'Pyramid-Bloc-plugin-tree-library',
+	#package : 'Pyramid-Bloc',
+	#tag : 'plugin-tree-library'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PyramidTreeBaseColumnsBuilder >> buildOn: aPyramidTreePlugin [
 
 	aPyramidTreePlugin addColumns: { self nameAndTypeColumn . self hashColumn . self zIndexColumn . self visibilityColumn  }
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidTreeBaseColumnsBuilder >> hashColumn [
 
 	^ SpStringTableColumn new
@@ -22,7 +24,7 @@ PyramidTreeBaseColumnsBuilder >> hashColumn [
 			              yourself
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidTreeBaseColumnsBuilder >> nameAndTypeColumn [
 
 	^ SpCompositeTableColumn new
@@ -45,7 +47,7 @@ PyramidTreeBaseColumnsBuilder >> nameAndTypeColumn [
 		  yourself
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 PyramidTreeBaseColumnsBuilder >> setVisibility: aBlVisibility of: aBlElement onEditor: aPyramidEditor [
 
 	aPyramidEditor propertiesManager commandExecutor
@@ -54,7 +56,7 @@ PyramidTreeBaseColumnsBuilder >> setVisibility: aBlVisibility of: aBlElement onE
 		with: aBlVisibility
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidTreeBaseColumnsBuilder >> visibilityColumn [
 
 	^ SpCompositeTableColumn new
@@ -63,8 +65,8 @@ PyramidTreeBaseColumnsBuilder >> visibilityColumn [
 		  addColumn: (SpImageTableColumn evaluated: [ :aBlElement |
 					   aBlElement
 						   allParentsDetect: [ :parent | parent isVisible not ]
-						   ifFound: [ :parent | self iconNamed: #uncommentedClass ]
-						   ifNone: [ self iconNamed: #blank16 ] ]);
+						   ifFound: [ :parent | Smalltalk ui icons iconNamed: #uncommentedClass ]
+						   ifNone: [ Smalltalk ui icons iconNamed: #blank16 ] ]);
 		  addColumn: (SpImageTableColumn evaluated: [ :aBlElement |
 					   aBlElement visibility asIcon ]);
 		  addColumn: (SpLinkTableColumn new
@@ -80,7 +82,7 @@ PyramidTreeBaseColumnsBuilder >> visibilityColumn [
 		  yourself
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidTreeBaseColumnsBuilder >> zIndexColumn [
 
 	^ SpStringTableColumn new

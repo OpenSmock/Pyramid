@@ -1,12 +1,14 @@
 Class {
-	#name : #PyramidGroupCommandTest,
-	#superclass : #TestCase,
+	#name : 'PyramidGroupCommandTest',
+	#superclass : 'TestCase',
 	#traits : 'TPyramidCommandTest',
 	#classTraits : 'TPyramidCommandTest classTrait',
-	#category : #'Pyramid-Tests-cases-plugin-bloc-group'
+	#category : 'Pyramid-Tests-cases-plugin-bloc-group',
+	#package : 'Pyramid-Tests',
+	#tag : 'cases-plugin-bloc-group'
 }
 
-{ #category : #tests }
+{ #category : 'tests' }
 PyramidGroupCommandTest >> assertBeforeSetValuefor: selection parent: originalParent firstLevel: firstLevelElements elements: aCollection [
 	"children have the same parent (originalParent)."
 
@@ -45,7 +47,7 @@ PyramidGroupCommandTest >> assertBeforeSetValuefor: selection parent: originalPa
 		equals: 30 asPoint
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PyramidGroupCommandTest >> assertSetValuefor: selection parent: originalParent firstLevel: firstLevelElements elements: aCollection [
 
 	| group |
@@ -86,13 +88,13 @@ PyramidGroupCommandTest >> assertSetValuefor: selection parent: originalParent f
 		equals: 20 asPoint
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidGroupCommandTest >> command [
 
 	^ PyramidGroupCommand new
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PyramidGroupCommandTest >> makeParentTestCase [
 
 	| parent e1 e2 e3 e4 |
@@ -123,7 +125,7 @@ PyramidGroupCommandTest >> makeParentTestCase [
 	^ parent
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PyramidGroupCommandTest >> testCanBeUsedFor [
 
 	| originalParent selection e1 e2 e3 |
@@ -140,7 +142,7 @@ PyramidGroupCommandTest >> testCanBeUsedFor [
 		self deny: (self command canBeUsedFor: each) ]
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PyramidGroupCommandTest >> testGetValueFor [
 
 	| originalParent selection e1 e2 e3 |
@@ -156,7 +158,7 @@ PyramidGroupCommandTest >> testGetValueFor [
 	self assert: (self command getValueFor: selection) equals: nil
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PyramidGroupCommandTest >> testHistory [
 	"Do once.
 	undo
@@ -244,7 +246,7 @@ PyramidGroupCommandTest >> testHistory [
 				e3 }
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PyramidGroupCommandTest >> testSetValueForWith [
 
 	| originalParent selection firstLevelElements e1 e2 e3 |

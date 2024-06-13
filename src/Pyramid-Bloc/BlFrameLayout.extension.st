@@ -1,6 +1,6 @@
-Extension { #name : #BlFrameLayout }
+Extension { #name : 'BlFrameLayout' }
 
-{ #category : #'*Pyramid-Bloc' }
+{ #category : '*Pyramid-Bloc' }
 BlFrameLayout >> asIcon [
 
 	^ self iconNamed: #windowMaximize

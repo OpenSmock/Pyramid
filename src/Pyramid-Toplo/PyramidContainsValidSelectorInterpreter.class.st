@@ -1,16 +1,18 @@
 Class {
-	#name : #PyramidContainsValidSelectorInterpreter,
-	#superclass : #ToElementSelectorVisitor,
+	#name : 'PyramidContainsValidSelectorInterpreter',
+	#superclass : 'ToElementSelectorVisitor',
 	#instVars : [
 		'targetElement',
 		'validSelectors',
 		'invalidSelectors',
 		'ignoredSelectors'
 	],
-	#category : #'Pyramid-Toplo-plugin-theme-management'
+	#category : 'Pyramid-Toplo-plugin-theme-management',
+	#package : 'Pyramid-Toplo',
+	#tag : 'plugin-theme-management'
 }
 
-{ #category : #operating }
+{ #category : 'operating' }
 PyramidContainsValidSelectorInterpreter >> check: aSelector on: anElement [
 
 	targetElement := anElement.
@@ -20,39 +22,39 @@ PyramidContainsValidSelectorInterpreter >> check: aSelector on: anElement [
 	aSelector accept: self.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidContainsValidSelectorInterpreter >> ignoredSelectors [
 
 	^ ignoredSelectors
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidContainsValidSelectorInterpreter >> invalidSelectors [
 
 	^ invalidSelectors
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidContainsValidSelectorInterpreter >> result [
 
 	invalidSelectors ifNil: [ ^ false ].
 	^ invalidSelectors isEmpty
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidContainsValidSelectorInterpreter >> targetElement [
 
 	
 	^ targetElement
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidContainsValidSelectorInterpreter >> validSelectors [
 
 	^ validSelectors
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 PyramidContainsValidSelectorInterpreter >> visitActionSelector: aSelector [
 
 	(aSelector action value: self targetElement)
@@ -60,7 +62,7 @@ PyramidContainsValidSelectorInterpreter >> visitActionSelector: aSelector [
 		ifFalse: [ self invalidSelectors add: aSelector ]
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 PyramidContainsValidSelectorInterpreter >> visitAndSelector: aSelector [
 
 	| interpreterForAndLeft interpreterForAndRight |
@@ -83,7 +85,7 @@ PyramidContainsValidSelectorInterpreter >> visitAndSelector: aSelector [
 	self ignoredSelectors addAll: interpreterForAndRight ignoredSelectors
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 PyramidContainsValidSelectorInterpreter >> visitChildSelector: aSelector [
 
 	| parent interpreterForLeft interpreterForRight |
@@ -107,7 +109,7 @@ PyramidContainsValidSelectorInterpreter >> visitChildSelector: aSelector [
 	self invalidSelectors add: aSelector
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 PyramidContainsValidSelectorInterpreter >> visitIdSelector: aSelector [
 
 	aSelector id = self targetElement id
@@ -115,7 +117,7 @@ PyramidContainsValidSelectorInterpreter >> visitIdSelector: aSelector [
 		ifFalse: [ self invalidSelectors add: aSelector ]
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 PyramidContainsValidSelectorInterpreter >> visitNotSelector: aSelector [
 
 	| interpreterForNot |
@@ -126,7 +128,7 @@ PyramidContainsValidSelectorInterpreter >> visitNotSelector: aSelector [
 	self ignoredSelectors addAll: interpreterForNot ignoredSelectors
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 PyramidContainsValidSelectorInterpreter >> visitOrSelector: aSelector [
 
 	| interpreterForOrLeft interpreterForOrRight |
@@ -149,7 +151,7 @@ PyramidContainsValidSelectorInterpreter >> visitOrSelector: aSelector [
 	self validSelectors add: aSelector
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 PyramidContainsValidSelectorInterpreter >> visitParentSelector: aSelector [
 
 	| depth current interpreterForLeft interpreterForRight |
@@ -182,7 +184,7 @@ PyramidContainsValidSelectorInterpreter >> visitParentSelector: aSelector [
 			^ self ] ] ] repeat
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 PyramidContainsValidSelectorInterpreter >> visitSiblingSelector: aSelector [
 
 	| current interpreterForSiblingLeft interpreterForSiblingRight |
@@ -208,13 +210,13 @@ PyramidContainsValidSelectorInterpreter >> visitSiblingSelector: aSelector [
 	self invalidSelectors add: aSelector
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 PyramidContainsValidSelectorInterpreter >> visitStyleStampSelector: aSelector [
 	self ignoredSelectors add: aSelector
 	
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 PyramidContainsValidSelectorInterpreter >> visitTypeSelector: aSelector [
 
 	(aSelector selectType: self targetElement class)
@@ -222,7 +224,7 @@ PyramidContainsValidSelectorInterpreter >> visitTypeSelector: aSelector [
 		ifFalse: [ self invalidSelectors add: aSelector ]
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 PyramidContainsValidSelectorInterpreter >> visitUniversalSelector: aSelector [
 
 	"Must be valid for not"

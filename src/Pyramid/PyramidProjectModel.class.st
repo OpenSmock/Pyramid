@@ -1,29 +1,31 @@
 Class {
-	#name : #PyramidProjectModel,
-	#superclass : #Object,
+	#name : 'PyramidProjectModel',
+	#superclass : 'Object',
 	#traits : 'TPyramidProjectModel',
 	#classTraits : 'TPyramidProjectModel classTrait',
 	#instVars : [
 		'firstLevelElements',
 		'selection'
 	],
-	#category : #'Pyramid-models'
+	#category : 'Pyramid-models',
+	#package : 'Pyramid',
+	#tag : 'models'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidProjectModel >> allElements [
 
 	^ PyramidElementsManipulationHelper flattenChildrenOfCollection:
 		  self firstLevelElements
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidProjectModel >> firstLevelElements [
 
 	^ firstLevelElements
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidProjectModel >> initialize [
 
 	selection := PyramidCollectionWithCallbacks new.
@@ -39,20 +41,20 @@ PyramidProjectModel >> initialize [
 		withCallback: [ self informFirstLevelElementsChanged ]
 ]
 
-{ #category : #selection }
+{ #category : 'selection' }
 PyramidProjectModel >> selection [
 
 	^ selection
 ]
 
-{ #category : #selection }
+{ #category : 'selection' }
 PyramidProjectModel >> setSelection: aBlElementCollection [
 	"Replace current selection by another one"
 	
 	self selection replaceAll: aBlElementCollection
 ]
 
-{ #category : #selection }
+{ #category : 'selection' }
 PyramidProjectModel >> updateSelection [
 	"Update the selection list regarding existing elements"
 	

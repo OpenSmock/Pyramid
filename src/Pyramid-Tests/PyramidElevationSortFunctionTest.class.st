@@ -1,10 +1,12 @@
 Class {
-	#name : #PyramidElevationSortFunctionTest,
-	#superclass : #TestCase,
-	#category : #'Pyramid-Tests-cases-bloc-utils'
+	#name : 'PyramidElevationSortFunctionTest',
+	#superclass : 'TestCase',
+	#category : 'Pyramid-Tests-cases-bloc-utils',
+	#package : 'Pyramid-Tests',
+	#tag : 'cases-bloc-utils'
 }
 
-{ #category : #tests }
+{ #category : 'tests' }
 PyramidElevationSortFunctionTest >> testSorting [
 
 	| data sorted parent e1 e2 e3 e4 e5 |

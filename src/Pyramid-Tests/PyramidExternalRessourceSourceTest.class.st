@@ -1,10 +1,12 @@
 Class {
-	#name : #PyramidExternalRessourceSourceTest,
-	#superclass : #TestCase,
-	#category : #'Pyramid-Tests-cases-external-ressources'
+	#name : 'PyramidExternalRessourceSourceTest',
+	#superclass : 'TestCase',
+	#category : 'Pyramid-Tests-cases-external-ressources',
+	#package : 'Pyramid-Tests',
+	#tag : 'cases-external-ressources'
 }
 
-{ #category : #tests }
+{ #category : 'tests' }
 PyramidExternalRessourceSourceTest >> testFormFromFileNamed [
 
 	| form hash path ressource newRessource |
@@ -28,7 +30,7 @@ PyramidExternalRessourceSourceTest >> testFormFromFileNamed [
 			self assert: path asFileReference exists not ]
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PyramidExternalRessourceSourceTest >> testGetRessource [
 
 	| externalRessource object |
@@ -39,7 +41,7 @@ PyramidExternalRessourceSourceTest >> testGetRessource [
 	self assert: object dummyValue equals: 3.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PyramidExternalRessourceSourceTest >> testSerialize [
 
 	| array arrayColors |
@@ -60,7 +62,7 @@ PyramidExternalRessourceSourceTest >> testSerialize [
 	
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PyramidExternalRessourceSourceTest >> testTargetSelector [
 
 	| color newColor |
@@ -71,7 +73,7 @@ PyramidExternalRessourceSourceTest >> testTargetSelector [
 	self assert: newColor getRessource equals: Color red
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PyramidExternalRessourceSourceTest >> testTargetSelectorArguments [
 
 	| color newColor |

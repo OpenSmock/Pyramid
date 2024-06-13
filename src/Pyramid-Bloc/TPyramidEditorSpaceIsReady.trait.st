@@ -1,30 +1,32 @@
 Trait {
-	#name : #TPyramidEditorSpaceIsReady,
+	#name : 'TPyramidEditorSpaceIsReady',
 	#instVars : [
 		'spaceIsReadyObservers'
 	],
-	#category : #'Pyramid-Bloc-plugin-space-extensions'
+	#category : 'Pyramid-Bloc-plugin-space-extensions',
+	#package : 'Pyramid-Bloc',
+	#tag : 'plugin-space-extensions'
 }
 
-{ #category : #adding }
+{ #category : 'adding' }
 TPyramidEditorSpaceIsReady >> addSpaceIsReadyObserver: anObject [
 
 	self spaceIsReadyObservers add: anObject
 ]
 
-{ #category : #adding }
+{ #category : 'adding' }
 TPyramidEditorSpaceIsReady >> removeSpaceIsReadyObserver: anObject [
 
 	self spaceIsReadyObservers remove: anObject
 ]
 
-{ #category : #signalling }
+{ #category : 'signalling' }
 TPyramidEditorSpaceIsReady >> signalSpaceIsReady [
 
 	self spaceIsReadyObservers do: [ :each | each informSpaceIsReady ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 TPyramidEditorSpaceIsReady >> spaceIsReadyObservers [
 
 	spaceIsReadyObservers ifNil: [ spaceIsReadyObservers := Set new ].

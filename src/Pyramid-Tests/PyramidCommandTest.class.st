@@ -1,10 +1,12 @@
 Class {
-	#name : #PyramidCommandTest,
-	#superclass : #TestCase,
-	#category : #'Pyramid-Tests-cases-command'
+	#name : 'PyramidCommandTest',
+	#superclass : 'TestCase',
+	#category : 'Pyramid-Tests-cases-command',
+	#package : 'Pyramid-Tests',
+	#tag : 'cases-command'
 }
 
-{ #category : #tests }
+{ #category : 'tests' }
 PyramidCommandTest >> testClusterOf [
 
 	self testClusterOf0Element.
@@ -14,7 +16,7 @@ PyramidCommandTest >> testClusterOf [
 	self testClusterOfNElementsWithGroupedValue
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PyramidCommandTest >> testClusterOf0Element [
 
 	| mocks cluster |
@@ -31,7 +33,7 @@ PyramidCommandTest >> testClusterOf0Element [
 
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PyramidCommandTest >> testClusterOf1Element [
 
 	| mocks cluster |
@@ -55,7 +57,7 @@ PyramidCommandTest >> testClusterOf1Element [
 		(cluster individualAssociations first value includes: mocks first).
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PyramidCommandTest >> testClusterOfNElementsWithDifferentsValues [
 
 	| mocks cluster |
@@ -92,7 +94,7 @@ PyramidCommandTest >> testClusterOfNElementsWithDifferentsValues [
 				 each value first = mock and: [ each key = mock count ] ]) ]
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PyramidCommandTest >> testClusterOfNElementsWithGroupedValue [
 
 	| mocks cluster association |
@@ -127,7 +129,7 @@ PyramidCommandTest >> testClusterOfNElementsWithGroupedValue [
 				 each value first = mock and: [ each key = #group ] ]) ]
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PyramidCommandTest >> testClusterOfNElementsWithSameValue [
 
 
@@ -170,7 +172,7 @@ PyramidCommandTest >> testClusterOfNElementsWithSameValue [
 
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PyramidCommandTest >> testSaveStatesOfWith [
 
 	| mocks mementos |
@@ -247,7 +249,7 @@ PyramidCommandTest >> testSaveStatesOfWith [
 	self assert: mementos mementos second arguments equals: nil
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PyramidCommandTest >> testSaveStatesWithCommandInverseOfWith [
 
 	| mocks mementos |
@@ -330,7 +332,7 @@ PyramidCommandTest >> testSaveStatesWithCommandInverseOfWith [
 	self assert: mementos mementos second arguments equals: nil
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PyramidCommandTest >> testUseOnWith [
 
 	| mocks |

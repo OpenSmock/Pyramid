@@ -1,10 +1,12 @@
 Class {
-	#name : #PyramidBackgroundPaintRadialCommand,
-	#superclass : #PyramidAbstractBlocCommand,
-	#category : #'Pyramid-Bloc-plugin-bloc-background'
+	#name : 'PyramidBackgroundPaintRadialCommand',
+	#superclass : 'PyramidAbstractBlocCommand',
+	#category : 'Pyramid-Bloc-plugin-bloc-visuals',
+	#package : 'Pyramid-Bloc',
+	#tag : 'plugin-bloc-visuals'
 }
 
-{ #category : #testing }
+{ #category : 'testing' }
 PyramidBackgroundPaintRadialCommand >> canBeUsedFor: anObject [
 
 	^ (super canBeUsedFor: anObject) and: [

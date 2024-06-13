@@ -1,24 +1,26 @@
 Class {
-	#name : #PyramidRemoveChildCommandTest,
-	#superclass : #TestCase,
+	#name : 'PyramidRemoveChildCommandTest',
+	#superclass : 'TestCase',
 	#traits : 'TPyramidCommandTest',
 	#classTraits : 'TPyramidCommandTest classTrait',
-	#category : #'Pyramid-Tests-cases-plugin-bloc'
+	#category : 'Pyramid-Tests-cases-plugin-bloc',
+	#package : 'Pyramid-Tests',
+	#tag : 'cases-plugin-bloc'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidRemoveChildCommandTest >> command [
 
 	^ PyramidRemoveChildCommand new
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PyramidRemoveChildCommandTest >> targetsCanBeUsedFor [
 
 	^ { BlElement new . BlElement new addChild: BlElement new; yourself }
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidRemoveChildCommandTest >> targetsWithoutValuesAndValues [
 
 	^ self targetsCanBeUsedFor collect: [ :each | | e1 |
@@ -29,7 +31,7 @@ PyramidRemoveChildCommandTest >> targetsWithoutValuesAndValues [
 		  each -> e1 ]
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PyramidRemoveChildCommandTest >> testGetValueFor [
 	"ignore get return nothing"
 
@@ -37,7 +39,7 @@ PyramidRemoveChildCommandTest >> testGetValueFor [
 	
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PyramidRemoveChildCommandTest >> testHistory [
 	"Do once.
 	undo
@@ -110,7 +112,7 @@ PyramidRemoveChildCommandTest >> testHistory [
 			self deny: (target children includes: argument) ] ]
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PyramidRemoveChildCommandTest >> testSetValueForWith [
 
 	self targetsWithoutValuesAndValues do: [ :each |

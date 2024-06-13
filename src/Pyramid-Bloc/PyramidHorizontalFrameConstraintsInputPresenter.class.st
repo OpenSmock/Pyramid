@@ -1,58 +1,60 @@
 Class {
-	#name : #PyramidHorizontalFrameConstraintsInputPresenter,
-	#superclass : #PyramidAbstractFrameConstraintsInputPresenter,
-	#category : #'Pyramid-Bloc-plugin-bloc-layout'
+	#name : 'PyramidHorizontalFrameConstraintsInputPresenter',
+	#superclass : 'PyramidAbstractFrameConstraintsInputPresenter',
+	#category : 'Pyramid-Bloc-plugin-bloc-layout',
+	#package : 'Pyramid-Bloc',
+	#tag : 'plugin-bloc-layout'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PyramidHorizontalFrameConstraintsInputPresenter >> helpCenter [
 
 	^ 'Align the horizontal axis on the center of the shape.'
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PyramidHorizontalFrameConstraintsInputPresenter >> helpEnd [
 
 	^ 'Align on the Right border.'
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PyramidHorizontalFrameConstraintsInputPresenter >> helpNull [
 
 	^ 'Do not align horizontaly.'
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PyramidHorizontalFrameConstraintsInputPresenter >> helpStart [
 
 	^ 'Align on the Left border.'
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PyramidHorizontalFrameConstraintsInputPresenter >> iconCenter [
 
-	^ (self iconNamed: #windowMinimize) rotateBy: #left centerAt: 8 @ 8
+	^ (Smalltalk ui icons iconNamed: #windowMinimize) rotateBy: #left centerAt: 8 @ 8
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PyramidHorizontalFrameConstraintsInputPresenter >> iconEnd [
 
-	^( self iconNamed: #windowMenu) rotateBy: -90
+	^ (Smalltalk ui icons iconNamed: #windowMenu) rotateBy: -90
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PyramidHorizontalFrameConstraintsInputPresenter >> iconNull [
 
-	^ self iconNamed: #windowMaximize
+	^ Smalltalk ui icons iconNamed: #windowMaximize
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PyramidHorizontalFrameConstraintsInputPresenter >> iconStart [
 
-	^ (self iconNamed: #windowMenu) rotateBy: 90
+	^ (Smalltalk ui icons iconNamed: #windowMenu) rotateBy: 90
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PyramidHorizontalFrameConstraintsInputPresenter >> value [
 
 	self buttonNull state ifTrue: [ ^ BlHorizontalAlignment null ].

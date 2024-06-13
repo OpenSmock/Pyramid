@@ -1,6 +1,6 @@
-Extension { #name : #BlBasicLayout }
+Extension { #name : 'BlBasicLayout' }
 
-{ #category : #'*Pyramid-Bloc' }
+{ #category : '*Pyramid-Bloc' }
 BlBasicLayout >> asIcon [
 
 	^ self iconNamed: #radioButtonUnselected

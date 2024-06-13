@@ -1,10 +1,12 @@
 Class {
-	#name : #PyramidBackgroundPaintColorCommand,
-	#superclass : #PyramidAbstractBlocCommand,
-	#category : #'Pyramid-Bloc-plugin-bloc-background'
+	#name : 'PyramidBackgroundPaintColorCommand',
+	#superclass : 'PyramidAbstractBlocCommand',
+	#category : 'Pyramid-Bloc-plugin-bloc-visuals',
+	#package : 'Pyramid-Bloc',
+	#tag : 'plugin-bloc-visuals'
 }
 
-{ #category : #testing }
+{ #category : 'as yet unclassified' }
 PyramidBackgroundPaintColorCommand >> canBeUsedFor: anObject [
 
 	^ (super canBeUsedFor: anObject) and: [
@@ -12,13 +14,13 @@ PyramidBackgroundPaintColorCommand >> canBeUsedFor: anObject [
 			  anObject background paint isKindOf: BlColorPaint ] ]
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PyramidBackgroundPaintColorCommand >> getValueFor: aBlElement [
 
 	^ aBlElement background paint color
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PyramidBackgroundPaintColorCommand >> setValueFor: aBlElement with: anArgument [
 
 	aBlElement background: (BlBackground paint: anArgument asBlPaint)

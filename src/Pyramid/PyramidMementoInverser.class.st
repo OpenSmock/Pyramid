@@ -1,10 +1,12 @@
 Class {
-	#name : #PyramidMementoInverser,
-	#superclass : #PyramidMementoVisitor,
-	#category : #'Pyramid-history'
+	#name : 'PyramidMementoInverser',
+	#superclass : 'PyramidMementoVisitor',
+	#category : 'Pyramid-history',
+	#package : 'Pyramid',
+	#tag : 'history'
 }
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 PyramidMementoInverser >> visitCommandMemento: aCommandMemento [
 
 	| memento |
@@ -16,7 +18,7 @@ PyramidMementoInverser >> visitCommandMemento: aCommandMemento [
 	^ memento
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 PyramidMementoInverser >> visitCompositeMemento: aCompositeMemento [
 
 	| memento |

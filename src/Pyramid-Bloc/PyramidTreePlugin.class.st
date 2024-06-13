@@ -1,6 +1,6 @@
 Class {
-	#name : #PyramidTreePlugin,
-	#superclass : #Object,
+	#name : 'PyramidTreePlugin',
+	#superclass : 'Object',
 	#traits : 'TPyramidPlugin',
 	#classTraits : 'TPyramidPlugin classTrait',
 	#instVars : [
@@ -12,10 +12,12 @@ Class {
 	#classVars : [
 		'ColumnsBuildersClasses'
 	],
-	#category : #'Pyramid-Bloc-plugin-tree-library'
+	#category : 'Pyramid-Bloc-plugin-tree-library',
+	#package : 'Pyramid-Bloc',
+	#tag : 'plugin-tree-library'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidTreePlugin class >> columnsBuildersClasses [
 
 	ColumnsBuildersClasses ifNil: [
@@ -23,14 +25,14 @@ PyramidTreePlugin class >> columnsBuildersClasses [
 	^ ColumnsBuildersClasses
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 PyramidTreePlugin class >> install [
 	"Do some stuff here when the plugin used class oriented behavior"
 
 	self columnsBuildersClasses add: PyramidTreeBaseColumnsBuilder 
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 PyramidTreePlugin >> addColumns: aCollection [
 	aCollection do: [ :each | self treePresenter columns add: each ].
 	self treePresenter updateTree
@@ -38,14 +40,14 @@ PyramidTreePlugin >> addColumns: aCollection [
 	
 ]
 
-{ #category : #adding }
+{ #category : 'adding' }
 PyramidTreePlugin >> addPanelsOn: aPyramidSimpleWindow [
 
 	aPyramidSimpleWindow at: #tabLeft addItem: [ :builder |
 		builder
 			makeTab: self treePresenter
 			label: 'Tree'
-			icon: (self iconNamed: #catalog)
+			icon: (Smalltalk ui icons iconNamed: #catalog)
 			order: 1 ].
 
 	aPyramidSimpleWindow
@@ -53,7 +55,7 @@ PyramidTreePlugin >> addPanelsOn: aPyramidSimpleWindow [
 		addItem: [ :builder | self menuAddAndDeleteOn: builder ]
 ]
 
-{ #category : #actions }
+{ #category : 'actions' }
 PyramidTreePlugin >> configureBuilder: aPyramidEditorBuilder [
 
 	self class columnsBuildersClasses do: [ :each |
@@ -62,19 +64,19 @@ PyramidTreePlugin >> configureBuilder: aPyramidEditorBuilder [
 			buildOn: self ]
 ]
 
-{ #category : #connecting }
+{ #category : 'connecting' }
 PyramidTreePlugin >> connectOn: aPyramidEditor [
 
 	self editor: aPyramidEditor.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidTreePlugin >> editor [
 
 	^ editor
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidTreePlugin >> editor: aPyramidEditor [
 
 	editor := aPyramidEditor.
@@ -85,7 +87,7 @@ PyramidTreePlugin >> editor: aPyramidEditor [
 		(self editor window services at: #selectionMenu) builder
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 PyramidTreePlugin >> initialize [
 
 	self initializeLibraryPresenters.
@@ -95,7 +97,7 @@ PyramidTreePlugin >> initialize [
 		                 yourself
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 PyramidTreePlugin >> initializeLibraryPresenters [
 
 	| idGenerator |
@@ -111,19 +113,19 @@ PyramidTreePlugin >> initializeLibraryPresenters [
 		                           yourself
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PyramidTreePlugin >> libraryPresenterForElement [
 
 	^ libraryPresenterForElement
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PyramidTreePlugin >> libraryPresenterForRoot [
 
 	^ libraryPresenterForRoot
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PyramidTreePlugin >> menuAddAndDeleteOn: aBuilder [
 
 	aBuilder
@@ -132,7 +134,7 @@ PyramidTreePlugin >> menuAddAndDeleteOn: aBuilder [
 				anItem
 					name: 'Add element...';
 					help: 'Add a new element on the roots of the design.';
-					icon: (self iconNamed: #add);
+					icon: (Smalltalk ui icons iconNamed: #add);
 					action: [
 						(PyramidPopoverFactory
 							 makeWithPresenter: self libraryPresenterForRoot
@@ -146,7 +148,7 @@ PyramidTreePlugin >> menuAddAndDeleteOn: aBuilder [
 				anItem
 					name: 'Add child element...';
 					help: 'Add a new element as a child of the selected element.';
-					icon: (self iconNamed: #add);
+					icon: (Smalltalk ui icons iconNamed: #add);
 					action: [
 						(PyramidPopoverFactory
 							 makeWithPresenter: self libraryPresenterForElement
@@ -157,7 +159,7 @@ PyramidTreePlugin >> menuAddAndDeleteOn: aBuilder [
 					name: 'Remove element';
 					help:
 						'Delete the selected element and its content';
-					icon: (self iconNamed: #delete);
+					icon: (Smalltalk ui icons iconNamed: #delete);
 					action: [ self removeSelectedElements ] ] ]
 		order: 10.
 
@@ -168,12 +170,12 @@ PyramidTreePlugin >> menuAddAndDeleteOn: aBuilder [
 					name: 'Remove selection';
 					help:
 						'Delete all selected elements and their contents';
-					icon: (self iconNamed: #delete);
+					icon: (Smalltalk ui icons iconNamed: #delete);
 					action: [ self removeSelectedElements ] ] ]
 		order: 10
 ]
 
-{ #category : #removing }
+{ #category : 'removing' }
 PyramidTreePlugin >> removeSelectedElements [
 
 	self editor propertiesManager commandExecutor
@@ -185,7 +187,7 @@ PyramidTreePlugin >> removeSelectedElements [
 	self editor projectModel updateSelection
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidTreePlugin >> treePresenter [
 
 	^ treePresenter

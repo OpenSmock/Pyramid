@@ -1,6 +1,6 @@
-Extension { #name : #BlVerticalCoordinateTopAlignment }
+Extension { #name : 'BlVerticalCoordinateTopAlignment' }
 
-{ #category : #'*Pyramid-Bloc' }
+{ #category : '*Pyramid-Bloc' }
 BlVerticalCoordinateTopAlignment >> pyramidSelectOn: aFrameConstraintsPresenter [
 
 	aFrameConstraintsPresenter selectStart.

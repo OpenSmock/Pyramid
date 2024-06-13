@@ -1,18 +1,20 @@
 Class {
-	#name : #PyramidLayoutBlocCommandTest,
-	#superclass : #TestCase,
+	#name : 'PyramidLayoutBlocCommandTest',
+	#superclass : 'TestCase',
 	#traits : 'TPyramidCommandTest',
 	#classTraits : 'TPyramidCommandTest classTrait',
-	#category : #'Pyramid-Tests-cases-plugin-bloc-layout'
+	#category : 'Pyramid-Tests-cases-plugin-bloc-layout',
+	#package : 'Pyramid-Tests',
+	#tag : 'cases-plugin-bloc-layout'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidLayoutBlocCommandTest >> command [
 
 	^ PyramidLayoutBlocCommand new
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PyramidLayoutBlocCommandTest >> targetContainers [
 
 	^ {

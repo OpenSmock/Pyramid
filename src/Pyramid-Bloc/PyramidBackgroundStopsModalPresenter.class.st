@@ -1,6 +1,6 @@
 Class {
-	#name : #PyramidBackgroundStopsModalPresenter,
-	#superclass : #SpPresenter,
+	#name : 'PyramidBackgroundStopsModalPresenter',
+	#superclass : 'SpPresenter',
 	#instVars : [
 		'tableStops',
 		'buttonAddStops',
@@ -9,10 +9,12 @@ Class {
 		'colorInput',
 		'stopsArray'
 	],
-	#category : #'Pyramid-Bloc-plugin-bloc-background'
+	#category : 'Pyramid-Bloc-plugin-bloc-visuals',
+	#package : 'Pyramid-Bloc',
+	#tag : 'plugin-bloc-visuals'
 }
 
-{ #category : #adding }
+{ #category : 'adding' }
 PyramidBackgroundStopsModalPresenter >> addNewStop [
 
 	| association |
@@ -21,31 +23,31 @@ PyramidBackgroundStopsModalPresenter >> addNewStop [
 	self tableStops selectItem: association.
 ]
 
-{ #category : #adding }
+{ #category : 'adding' }
 PyramidBackgroundStopsModalPresenter >> addToStopsArray: association [
 
 	self stopsArray: (self stopsArray , {association }) sorted.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidBackgroundStopsModalPresenter >> buttonAddStops [
 
 	^ buttonAddStops
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidBackgroundStopsModalPresenter >> buttonRemoveStops [
 
 	^ buttonRemoveStops
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidBackgroundStopsModalPresenter >> colorInput [
 
 	^ colorInput
 ]
 
-{ #category : #layout }
+{ #category : 'layout' }
 PyramidBackgroundStopsModalPresenter >> defaultLayout [
 
 	| inputPanelLayout |
@@ -54,16 +56,19 @@ PyramidBackgroundStopsModalPresenter >> defaultLayout [
 				                     spacing: 4;
 				                     add: self buttonAddStops;
 				                     add: self buttonRemoveStops;
-				                     yourself);
+				                     yourself)
+		                    expand: false;
 		                    add: (SpLabelPresenter new
 				                     label: 'Position';
 				                     displayBold: [ :t | true ];
-				                     yourself);
+				                     yourself)
+		                    expand: false;
 		                    add: self positionInput;
 		                    add: (SpLabelPresenter new
 				                     label: 'Color';
 				                     displayBold: [ :t | true ];
-				                     yourself);
+				                     yourself)
+		                    expand: false;
 		                    add: self colorInput;
 		                    yourself.
 
@@ -75,22 +80,24 @@ PyramidBackgroundStopsModalPresenter >> defaultLayout [
 		  yourself
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 PyramidBackgroundStopsModalPresenter >> initializePresenters [
 
 	stopsArray := {  }.
 	buttonAddStops := SpButtonPresenter new
 		                  label: 'Add a color';
-		                  icon: (self iconNamed: #add);
+		                  icon: (Smalltalk ui icons iconNamed: #add);
 		                  action: [ self addNewStop ];
 		                  yourself.
 	buttonRemoveStops := SpButtonPresenter new
 		                     label: 'Remove';
-		                     icon: (self iconNamed: #remove);
+		                     icon: (Smalltalk ui icons iconNamed: #remove);
 		                     yourself.
 	colorInput := PyramidColorInputSingleLineWithPickupButtonPresenter
 		              new.
-	positionInput := PyramidNumberInputPresenter new.
+	positionInput := PyramidNumberInputPresenter new strings:
+		                 (PyramidInputStrings new help:
+			                  'Set the position of the color in the gradiant (generally between 0 and 1).').
 	tableStops := SpTablePresenter new
 		              whenSelectedItemChangedDo: [ :stop |
 			              self updateCurrentStop: stop ];
@@ -102,16 +109,16 @@ PyramidBackgroundStopsModalPresenter >> initializePresenters [
 				  color: association value;
 				  asForm ]) width: 20).
 	tableStops addColumn: ((SpStringTableColumn
-			 title: 'Position'
-			 evaluated: [ :association |
-			 association key asFloat printShowingDecimalPlaces: 4 ])width: 70).
+			  title: 'Position'
+			  evaluated: [ :association |
+			  association key asFloat printShowingDecimalPlaces: 4 ]) width: 70).
 	tableStops addColumn: (SpStringTableColumn
 			 title: 'Color'
 			 evaluated: [ :association | association value printString ]).
 	self updateCurrentStop: nil
 ]
 
-{ #category : #adding }
+{ #category : 'adding' }
 PyramidBackgroundStopsModalPresenter >> makeNewAssociation [
 
 	| position color index |
@@ -149,7 +156,7 @@ PyramidBackgroundStopsModalPresenter >> makeNewAssociation [
 	^ position -> color
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PyramidBackgroundStopsModalPresenter >> orderStopsArray [
 
 	|currentSelection|
@@ -158,60 +165,62 @@ PyramidBackgroundStopsModalPresenter >> orderStopsArray [
 	self tableStops selectItem: currentSelection
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidBackgroundStopsModalPresenter >> positionInput [
 
 	^ positionInput
 ]
 
-{ #category : #removing }
+{ #category : 'removing' }
 PyramidBackgroundStopsModalPresenter >> removeStop: anAssociation [
 
 	self stopsArray: (self stopsArray copyWithout: anAssociation)
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidBackgroundStopsModalPresenter >> stopsArray [
 
 	^ stopsArray
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidBackgroundStopsModalPresenter >> stopsArray: anObject [
 
 	stopsArray := anObject.
 	self tableStops items: stopsArray.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidBackgroundStopsModalPresenter >> tableStops [
 
 	^ tableStops
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PyramidBackgroundStopsModalPresenter >> updateCurrentStop: anAssociation [
 
-	self positionInput visibleIf: anAssociation isNotNil.
-	self colorInput visibleIf: anAssociation isNotNil.
+	self positionInput enabled: anAssociation isNotNil.
+	self colorInput enabled: anAssociation isNotNil.
 	self buttonRemoveStops enabled: anAssociation isNotNil.
-	anAssociation ifNil: [ ^ self ].
+	anAssociation ifNil: [ 
+		self colorInput emptyValue.
+		^ self ].
 	self buttonRemoveStops action: [ self removeStop: anAssociation ].
 	self positionInput
 		value: anAssociation key;
 		whenValueChangedDo: [ :newPosition |
 			(newPosition between: 0.0 and: 1.0)
-				ifTrue: [ anAssociation key: newPosition.
-					self positionInput value:  newPosition]
+				ifTrue: [
+					anAssociation key: newPosition.
+					self positionInput value: newPosition ]
 				ifFalse: [
 					| number |
 					number := newPosition asInteger.
 					number negative ifTrue: [ number := number negated ].
 					number := number / (10 raisedTo: number decimalDigitLength).
 					anAssociation key: number.
-					self positionInput value:  number ].
-			self orderStopsArray.
-			  ].
+					self positionInput value: number ].
+			self orderStopsArray ].
 	self colorInput
 		value: anAssociation value;
 		whenValueChangedDo: [ :newColor |
@@ -219,8 +228,9 @@ PyramidBackgroundStopsModalPresenter >> updateCurrentStop: anAssociation [
 			self updatePresenter ]
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PyramidBackgroundStopsModalPresenter >> updatePresenter [
 
-self tableStops refresh
+	self tableStops refresh.
+	self layout: self defaultLayout
 ]

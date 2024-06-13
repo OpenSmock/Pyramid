@@ -1,26 +1,28 @@
 Class {
-	#name : #PyramidModalInputStrings,
-	#superclass : #PyramidInputStrings,
+	#name : 'PyramidModalInputStrings',
+	#superclass : 'PyramidInputStrings',
 	#instVars : [
 		'windowTitle'
 	],
-	#category : #'Pyramid-specs-custom'
+	#category : 'Pyramid-specs-custom',
+	#package : 'Pyramid',
+	#tag : 'specs-custom'
 }
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 PyramidModalInputStrings >> initialize [
 
 super initialize.
 windowTitle := ''
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidModalInputStrings >> windowTitle [
 
 	^ windowTitle
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidModalInputStrings >> windowTitle: anObject [
 
 	windowTitle := anObject

@@ -1,22 +1,24 @@
 Class {
-	#name : #PyramidMixedValues,
-	#superclass : #PyramidUnknowState,
-	#category : #'Pyramid-specs-custom'
+	#name : 'PyramidMixedValues',
+	#superclass : 'PyramidUnknowState',
+	#category : 'Pyramid-specs-custom',
+	#package : 'Pyramid',
+	#tag : 'specs-custom'
 }
 
-{ #category : #converting }
+{ #category : 'converting' }
 PyramidMixedValues >> asString [
 
 	^ '@ Mixed state'
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PyramidMixedValues >> selectOnBackgroundInput: aPyramidBackgroundInputPresenter [
 
 	aPyramidBackgroundInputPresenter selectMixedValues.
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 PyramidMixedValues >> setVisibilityOn: aPyramidVisibilityInputPresenter [
 
 	aPyramidVisibilityInputPresenter setVisibilityMixedValues

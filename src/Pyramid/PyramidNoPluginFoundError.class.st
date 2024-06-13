@@ -1,19 +1,21 @@
 Class {
-	#name : #PyramidNoPluginFoundError,
-	#superclass : #PyramidError,
+	#name : 'PyramidNoPluginFoundError',
+	#superclass : 'PyramidError',
 	#instVars : [
 		'query'
 	],
-	#category : #'Pyramid-core'
+	#category : 'Pyramid-core',
+	#package : 'Pyramid',
+	#tag : 'core'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidNoPluginFoundError >> query [
 
 	^ query
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidNoPluginFoundError >> query: anObject [
 
 	query := anObject

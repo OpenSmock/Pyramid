@@ -1,28 +1,30 @@
 Class {
-	#name : #PyramidColorInputSingleLineWithPickupButtonPresenter,
-	#superclass : #PyramidInputPresenter,
+	#name : 'PyramidColorInputSingleLineWithPickupButtonPresenter',
+	#superclass : 'PyramidInputPresenter',
 	#instVars : [
 		'singleLineInput',
 		'button',
 		'multiLinesInput',
 		'whenValueChangedDo'
 	],
-	#category : #'Pyramid-specs-custom'
+	#category : 'Pyramid-specs-custom',
+	#package : 'Pyramid',
+	#tag : 'specs-custom'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PyramidColorInputSingleLineWithPickupButtonPresenter >> applytStrings [
 
 	self singleLineInput strings: self strings.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidColorInputSingleLineWithPickupButtonPresenter >> button [
 
 	^ button
 ]
 
-{ #category : #layout }
+{ #category : 'layout' }
 PyramidColorInputSingleLineWithPickupButtonPresenter >> defaultLayout [
 
 	^ SpBoxLayout newVertical add: (SpBoxLayout newHorizontal
@@ -32,16 +34,16 @@ PyramidColorInputSingleLineWithPickupButtonPresenter >> defaultLayout [
 		  yourself) height: 24
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 PyramidColorInputSingleLineWithPickupButtonPresenter >> initializePresenters [
 
 	whenValueChangedDo := [ :color |  ].
 	multiLinesInput := PyramidColorInputMultiLinesPresenter new.
 	singleLineInput := PyramidColorInputSingleLinePresenter new.
 	button := SpButtonPresenter new
-					 help: 'Select a color';
+		          help: 'Select a color';
 		          action: [ self openMultiLinesModal ];
-		          icon: (self iconNamed: #haloRecolor);
+		          icon: (Smalltalk ui icons iconNamed: #haloRecolor);
 		          yourself.
 
 	singleLineInput whenValueChangedDo: [ :color |
@@ -51,13 +53,13 @@ PyramidColorInputSingleLineWithPickupButtonPresenter >> initializePresenters [
 	self value: Color red
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidColorInputSingleLineWithPickupButtonPresenter >> multiLinesInput [
 
 	^ multiLinesInput
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 PyramidColorInputSingleLineWithPickupButtonPresenter >> openMultiLinesModal [
 
 	| dialog color window |
@@ -72,32 +74,32 @@ PyramidColorInputSingleLineWithPickupButtonPresenter >> openMultiLinesModal [
 		ifFalse: [ self multiLinesInput value: self singleLineInput value ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidColorInputSingleLineWithPickupButtonPresenter >> singleLineInput [
 
 	^ singleLineInput
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PyramidColorInputSingleLineWithPickupButtonPresenter >> value [
 
 	^ self singleLineInput value
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PyramidColorInputSingleLineWithPickupButtonPresenter >> value: aColor [
 
 	self singleLineInput value: aColor.
 	self multiLinesInput value: aColor 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidColorInputSingleLineWithPickupButtonPresenter >> whenValueChangedDo [
 
 	^ whenValueChangedDo
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PyramidColorInputSingleLineWithPickupButtonPresenter >> whenValueChangedDo: anObject [
 
 	whenValueChangedDo := anObject

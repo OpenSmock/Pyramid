@@ -1,23 +1,25 @@
 Class {
-	#name : #PyramidCluster,
-	#superclass : #Object,
+	#name : 'PyramidCluster',
+	#superclass : 'Object',
 	#instVars : [
 		'allTargets',
 		'groups',
 		'groupedAssociations',
 		'individualAssociations'
 	],
-	#category : #'Pyramid-commands'
+	#category : 'Pyramid-commands',
+	#package : 'Pyramid',
+	#tag : 'commands'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PyramidCluster >> allTargets [
 	"Collection of all targets of the cluster"
 
 	^ allTargets
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidCluster >> groupedAssociations [
 	"Collection of association with:
 	- key: anArgument
@@ -26,14 +28,14 @@ PyramidCluster >> groupedAssociations [
 	^ groupedAssociations
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidCluster >> groups [
 	"Collection of all groups of the cluster. By default the #getValueFor: result."
 
 	^ groups
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidCluster >> individualAssociations [
 	"Collection of association with:
 	- key: anArgument
@@ -42,7 +44,7 @@ PyramidCluster >> individualAssociations [
 	^ individualAssociations
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 PyramidCluster >> initialize [
 
 	allTargets := OrderedCollection new.
@@ -51,26 +53,26 @@ PyramidCluster >> initialize [
 	individualAssociations := OrderedCollection new
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 PyramidCluster >> isEmpty [
 
 	^ self groups isEmpty
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 PyramidCluster >> isNotEmpty [
 
 	^ self isEmpty not
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 PyramidCluster >> isTargetsSameArguments [
 	"true if all targets have the same argument."
 
 	^ self groups size = 1
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PyramidCluster >> register: aTarget forArguments: anArguments [
 
 	(self allTargets includes: aTarget) ifTrue: [ ^ self ].
@@ -87,7 +89,7 @@ PyramidCluster >> register: aTarget forArguments: anArguments [
 				yourself ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidCluster >> size [
 
 	^ self allTargets size

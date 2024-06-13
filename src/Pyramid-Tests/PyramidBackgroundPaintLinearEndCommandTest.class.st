@@ -1,18 +1,20 @@
 Class {
-	#name : #PyramidBackgroundPaintLinearEndCommandTest,
-	#superclass : #TestCase,
+	#name : 'PyramidBackgroundPaintLinearEndCommandTest',
+	#superclass : 'TestCase',
 	#traits : 'TPyramidCommandTest',
 	#classTraits : 'TPyramidCommandTest classTrait',
-	#category : #'Pyramid-Tests-cases-plugin-bloc-background'
+	#category : 'Pyramid-Tests-cases-plugin-bloc-visuals',
+	#package : 'Pyramid-Tests',
+	#tag : 'cases-plugin-bloc-visuals'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidBackgroundPaintLinearEndCommandTest >> command [
 
 	^ PyramidBackgroundPaintLinearEndCommand new
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PyramidBackgroundPaintLinearEndCommandTest >> targetContainers [
 
 	^ {
@@ -58,7 +60,7 @@ PyramidBackgroundPaintLinearEndCommandTest >> targetContainers [
 			   prop: 0 @ 0) }
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PyramidBackgroundPaintLinearEndCommandTest >> targetsCannotBeUsedFor [
 	"override if needed"
 

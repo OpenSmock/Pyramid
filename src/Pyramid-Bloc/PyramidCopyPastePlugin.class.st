@@ -1,12 +1,14 @@
 Class {
-	#name : #PyramidCopyPastePlugin,
-	#superclass : #Object,
+	#name : 'PyramidCopyPastePlugin',
+	#superclass : 'Object',
 	#traits : 'TPyramidPlugin',
 	#classTraits : 'TPyramidPlugin classTrait',
-	#category : #'Pyramid-Bloc-plugin-copy-paste'
+	#category : 'Pyramid-Bloc-plugin-copy-paste',
+	#package : 'Pyramid-Bloc',
+	#tag : 'plugin-copy-paste'
 }
 
-{ #category : #adding }
+{ #category : 'adding' }
 PyramidCopyPastePlugin >> addPanelsOn: aPyramidSimpleWindow [
 
 	aPyramidSimpleWindow
@@ -14,13 +16,13 @@ PyramidCopyPastePlugin >> addPanelsOn: aPyramidSimpleWindow [
 		addItem: [ :builder | self copyAsStonMenu: builder ]
 ]
 
-{ #category : #copying }
+{ #category : 'copying' }
 PyramidCopyPastePlugin >> copyAsStonInClipboard: aCollection [
 
 	Clipboard clipboardText: (BlSerializer serialize: aCollection)
 ]
 
-{ #category : #copying }
+{ #category : 'copying' }
 PyramidCopyPastePlugin >> copyAsStonMenu: aBuilder [
 
 	aBuilder
@@ -28,7 +30,7 @@ PyramidCopyPastePlugin >> copyAsStonMenu: aBuilder [
 			group
 				addItem: [ :item |
 					item
-						icon: (self iconNamed: #smallCopy);
+						icon: (Smalltalk ui icons iconNamed: #smallCopy);
 						name: 'Copy';
 						action: [ self copyAsStonInClipboard: { single } ];
 						yourself ];
@@ -40,7 +42,7 @@ PyramidCopyPastePlugin >> copyAsStonMenu: aBuilder [
 			group
 				addItem: [ :item |
 					item
-						icon: (self iconNamed: #smallCopy);
+						icon: (Smalltalk ui icons iconNamed: #smallCopy);
 						name: 'Copy (select only one element)';
 						enabled: false;
 						yourself ];

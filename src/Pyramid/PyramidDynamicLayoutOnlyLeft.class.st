@@ -1,10 +1,12 @@
 Class {
-	#name : #PyramidDynamicLayoutOnlyLeft,
-	#superclass : #PyramidDynamicLayoutStrategy,
-	#category : #'Pyramid-plugin-dynamic-layout'
+	#name : 'PyramidDynamicLayoutOnlyLeft',
+	#superclass : 'PyramidDynamicLayoutStrategy',
+	#category : 'Pyramid-plugin-dynamic-layout',
+	#package : 'Pyramid',
+	#tag : 'plugin-dynamic-layout'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PyramidDynamicLayoutOnlyLeft >> centerLayoutFor: aWindow [
 
 	^ SpPanedLayout newLeftToRight

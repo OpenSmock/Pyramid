@@ -9,12 +9,14 @@ In other terms, any property who is not linked to any object in the collection w
 
 "
 Class {
-	#name : #PyramidHideEmptyPropertyStrategy,
-	#superclass : #PyramidPresenterPropertiesStrategy,
-	#category : #'Pyramid-property'
+	#name : 'PyramidHideEmptyPropertyStrategy',
+	#superclass : 'PyramidPresenterPropertiesStrategy',
+	#category : 'Pyramid-property',
+	#package : 'Pyramid',
+	#tag : 'property'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PyramidHideEmptyPropertyStrategy >> buildPresenterFromClustersAndProperties: aCollection [
 
 	| notEmptyClustersAndProperties presenters |
@@ -26,7 +28,7 @@ PyramidHideEmptyPropertyStrategy >> buildPresenterFromClustersAndProperties: aCo
 	^ self presenterWith: presenters
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PyramidHideEmptyPropertyStrategy >> buildPresenterFromCollection: aCollection andManager: aManager [
 
 	| clustersAndProps |
@@ -36,7 +38,7 @@ PyramidHideEmptyPropertyStrategy >> buildPresenterFromCollection: aCollection an
 	^ self buildPresenterFromClustersAndProperties: clustersAndProps
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PyramidHideEmptyPropertyStrategy >> emptyPresenter [
 
 	| presenter layout |
@@ -50,7 +52,7 @@ PyramidHideEmptyPropertyStrategy >> emptyPresenter [
 	^ presenter
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PyramidHideEmptyPropertyStrategy >> presenterWith: aCollection [
 
 	| presenter layout |

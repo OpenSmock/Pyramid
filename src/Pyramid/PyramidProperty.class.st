@@ -1,6 +1,6 @@
 Class {
-	#name : #PyramidProperty,
-	#superclass : #Object,
+	#name : 'PyramidProperty',
+	#superclass : 'Object',
 	#instVars : [
 		'command',
 		'commandExecutor',
@@ -9,10 +9,12 @@ Class {
 		'name',
 		'pyramidInputPresenterStrings'
 	],
-	#category : #'Pyramid-property'
+	#category : 'Pyramid-property',
+	#package : 'Pyramid',
+	#tag : 'property'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PyramidProperty >> buildPresenterFromCluster: aCluster [
 
 	^ self presenterBuilder
@@ -21,81 +23,81 @@ PyramidProperty >> buildPresenterFromCluster: aCluster [
 		  build
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidProperty >> command [
 
 	^ command
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidProperty >> command: anObject [
 
 	command := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidProperty >> commandExecutor [
 
 	^ commandExecutor
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidProperty >> commandExecutor: anObject [
 
 	commandExecutor := anObject
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 PyramidProperty >> initialize [
 
 	presenterBuilder := PyramidPopingPresenterBuilder new.
 	name := 'Default property name'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidProperty >> name [
 
 	^ name
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidProperty >> name: anObject [
 
 	name := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidProperty >> presenterBuilder [
 
 	^ presenterBuilder
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidProperty >> presenterBuilder: anObject [
 
 	presenterBuilder := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidProperty >> pyramidInputPresenterClass [
 
 	^ pyramidInputPresenterClass
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidProperty >> pyramidInputPresenterClass: anObject [
 
 	pyramidInputPresenterClass := anObject.
 	self pyramidInputPresenterStrings: anObject stringsClass new
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidProperty >> pyramidInputPresenterStrings [
 
 	^ pyramidInputPresenterStrings
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidProperty >> pyramidInputPresenterStrings: anObject [
 
 	pyramidInputPresenterStrings := anObject

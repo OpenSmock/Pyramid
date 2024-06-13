@@ -1,6 +1,6 @@
 Class {
-	#name : #PyramidPropertiesManagerForSelection,
-	#superclass : #PyramidPropertiesManager,
+	#name : 'PyramidPropertiesManagerForSelection',
+	#superclass : 'PyramidPropertiesManager',
 	#traits : 'TPyramidProjectModelObserver',
 	#classTraits : 'TPyramidProjectModelObserver classTrait',
 	#instVars : [
@@ -8,10 +8,12 @@ Class {
 		'projectModel',
 		'shouldComputeProperties'
 	],
-	#category : #'Pyramid-property'
+	#category : 'Pyramid-property',
+	#package : 'Pyramid',
+	#tag : 'property'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PyramidPropertiesManagerForSelection >> computeProperties [
 
 	self presenter layout child:
@@ -19,7 +21,7 @@ PyramidPropertiesManagerForSelection >> computeProperties [
 		self shouldComputeProperties: false
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 PyramidPropertiesManagerForSelection >> initialize [
 
 	super initialize.
@@ -34,19 +36,19 @@ PyramidPropertiesManagerForSelection >> initialize [
 	commandExecutor afterDo: [ self projectModel informElementsChanged ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidPropertiesManagerForSelection >> presenter [
 
 	^ presenter
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidPropertiesManagerForSelection >> projectModel [
 
 	^ projectModel
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidPropertiesManagerForSelection >> projectModel: aPyramidProjectModel [
 
 	projectModel ifNotNil: [ projectModel removeObserver: self ].
@@ -54,19 +56,19 @@ PyramidPropertiesManagerForSelection >> projectModel: aPyramidProjectModel [
 	projectModel addObserver: self
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PyramidPropertiesManagerForSelection >> pyramidElementsChanged [
 
 	self selectionOrElementsChanged
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PyramidPropertiesManagerForSelection >> pyramidSelectionChanged [
 
 	self selectionOrElementsChanged
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PyramidPropertiesManagerForSelection >> selectionOrElementsChanged [
 
 	self shouldComputeProperties: true.
@@ -74,13 +76,13 @@ PyramidPropertiesManagerForSelection >> selectionOrElementsChanged [
 	self computeProperties
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PyramidPropertiesManagerForSelection >> shouldComputeProperties [
 
 	^ shouldComputeProperties
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PyramidPropertiesManagerForSelection >> shouldComputeProperties: aBoolean [
 
 	shouldComputeProperties:= aBoolean

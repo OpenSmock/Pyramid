@@ -1,6 +1,6 @@
 Class {
-	#name : #PyramidProjectModelObserverForTest,
-	#superclass : #Object,
+	#name : 'PyramidProjectModelObserverForTest',
+	#superclass : 'Object',
 	#traits : 'TPyramidProjectModelObserver',
 	#classTraits : 'TPyramidProjectModelObserver classTrait',
 	#instVars : [
@@ -8,65 +8,67 @@ Class {
 		'pyramidFirstLevelElementsChangedAction',
 		'pyramidSelectionChangedAction'
 	],
-	#category : #'Pyramid-plugin-playground'
+	#category : 'Pyramid-plugin-playground',
+	#package : 'Pyramid',
+	#tag : 'plugin-playground'
 }
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 PyramidProjectModelObserverForTest >> initialize [ 
 
 	self pyramidElementsChangedAction: [  ].
 	self pyramidFirstLevelElementsChangedAction: [  ].self pyramidSelectionChangedAction: [  ]
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PyramidProjectModelObserverForTest >> pyramidElementsChanged [
 
 	self pyramidElementsChangedAction value.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidProjectModelObserverForTest >> pyramidElementsChangedAction [
 
 	^ pyramidElementsChangedAction
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidProjectModelObserverForTest >> pyramidElementsChangedAction: anObject [
 
 	pyramidElementsChangedAction := anObject
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PyramidProjectModelObserverForTest >> pyramidFirstLevelElementsChanged [
 
 	self pyramidFirstLevelElementsChangedAction value
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidProjectModelObserverForTest >> pyramidFirstLevelElementsChangedAction [
 
 	^ pyramidFirstLevelElementsChangedAction
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidProjectModelObserverForTest >> pyramidFirstLevelElementsChangedAction: anObject [
 
 	pyramidFirstLevelElementsChangedAction := anObject
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PyramidProjectModelObserverForTest >> pyramidSelectionChanged [
 
 	self pyramidSelectionChangedAction value
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidProjectModelObserverForTest >> pyramidSelectionChangedAction [
 
 	^ pyramidSelectionChangedAction
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidProjectModelObserverForTest >> pyramidSelectionChangedAction: anObject [
 
 	pyramidSelectionChangedAction := anObject

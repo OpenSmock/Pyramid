@@ -1,6 +1,6 @@
-Extension { #name : #BlElement }
+Extension { #name : 'BlElement' }
 
-{ #category : #'*Pyramid' }
+{ #category : '*Pyramid' }
 BlElement >> editWithPyramid [
 
 	| editor oldParent |

@@ -1,10 +1,12 @@
 Class {
-	#name : #PyramidElevationSortFunction,
-	#superclass : #SortFunction,
-	#category : #'Pyramid-Bloc-utils'
+	#name : 'PyramidElevationSortFunction',
+	#superclass : 'SortFunction',
+	#category : 'Pyramid-Bloc-utils',
+	#package : 'Pyramid-Bloc',
+	#tag : 'utils'
 }
 
-{ #category : #evaluating }
+{ #category : 'evaluating' }
 PyramidElevationSortFunction >> collate: aFirstObject with: aSecondObject [
 	" res = zIndex - zIndex
 if (res = 0) and (parent is same) and (parent not nil) then

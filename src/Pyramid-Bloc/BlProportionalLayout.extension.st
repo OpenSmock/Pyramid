@@ -1,6 +1,6 @@
-Extension { #name : #BlProportionalLayout }
+Extension { #name : 'BlProportionalLayout' }
 
-{ #category : #'*Pyramid-Bloc' }
+{ #category : '*Pyramid-Bloc' }
 BlProportionalLayout >> asIcon [
 
 	^ self iconNamed: #haloScale

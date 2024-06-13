@@ -1,6 +1,6 @@
-Extension { #name : #BlCornerRadii }
+Extension { #name : 'BlCornerRadii' }
 
-{ #category : #'*Pyramid-Bloc' }
+{ #category : '*Pyramid-Bloc' }
 BlCornerRadii >> setCornerRadiiOn: aPyramidInsetsInputPresenter [
 
 	((self topLeft closeTo: self bottomRight) and: [(self topRight closeTo: self bottomLeft)]) ifTrue: [

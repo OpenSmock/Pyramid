@@ -1,10 +1,12 @@
 Class {
-	#name : #PyramidSpPresenter,
-	#superclass : #SpPresenter,
-	#category : #'Pyramid-views'
+	#name : 'PyramidSpPresenter',
+	#superclass : 'SpPresenter',
+	#category : 'Pyramid-views',
+	#package : 'Pyramid',
+	#tag : 'views'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidSpPresenter >> aboutTitle [
 
 	^ PyramidWindow aboutTitle

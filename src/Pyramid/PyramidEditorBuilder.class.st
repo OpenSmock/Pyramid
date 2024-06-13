@@ -1,6 +1,6 @@
 Class {
-	#name : #PyramidEditorBuilder,
-	#superclass : #Object,
+	#name : 'PyramidEditorBuilder',
+	#superclass : 'Object',
 	#traits : 'TPyramidFindPlugin',
 	#classTraits : 'TPyramidFindPlugin classTrait',
 	#instVars : [
@@ -8,11 +8,16 @@ Class {
 		'editor',
 		'window'
 	],
-	#category : #'Pyramid-core'
+	#category : 'Pyramid-core',
+	#package : 'Pyramid',
+	#tag : 'core'
 }
 
-{ #category : #building }
+{ #category : 'building' }
 PyramidEditorBuilder >> build [
+
+	self plugins:
+		(self plugins select: [ :each | each class shouldInstall ]).
 
 	self plugins do: [ :each | each configureBuilder: self ].
 
@@ -24,26 +29,26 @@ PyramidEditorBuilder >> build [
 	^ editor
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidEditorBuilder >> editor [
 editor ifNil: [ editor := PyramidEditor new ].
  ^ editor
 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidEditorBuilder >> plugins [
 
 	^ plugins
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidEditorBuilder >> plugins: anObject [
 
 	plugins := anObject
 ]
 
-{ #category : #building }
+{ #category : 'building' }
 PyramidEditorBuilder >> window [
 
 window ifNil: [ window := PyramidSimpleWindow new ].
@@ -52,7 +57,7 @@ window ifNil: [ window := PyramidSimpleWindow new ].
 	
 ]
 
-{ #category : #building }
+{ #category : 'building' }
 PyramidEditorBuilder >> window: aPyramidWindow [
 
 	window ifNotNil: [

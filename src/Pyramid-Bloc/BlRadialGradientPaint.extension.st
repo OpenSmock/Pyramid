@@ -1,6 +1,6 @@
-Extension { #name : #BlRadialGradientPaint }
+Extension { #name : 'BlRadialGradientPaint' }
 
-{ #category : #'*Pyramid-Bloc' }
+{ #category : '*Pyramid-Bloc' }
 BlRadialGradientPaint >> selectOnGradientPaintInput: aPyramidGradientPaintInputPresenter [
 
 	super selectOnGradientPaintInput: aPyramidGradientPaintInputPresenter.

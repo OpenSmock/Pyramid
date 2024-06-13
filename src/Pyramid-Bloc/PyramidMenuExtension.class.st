@@ -1,16 +1,18 @@
 Class {
-	#name : #PyramidMenuExtension,
-	#superclass : #Object,
+	#name : 'PyramidMenuExtension',
+	#superclass : 'Object',
 	#traits : 'TPyramidSpaceExtension + TPyramidEditorExtension',
 	#classTraits : 'TPyramidSpaceExtension classTrait + TPyramidEditorExtension classTrait',
 	#instVars : [
 		'menu',
 		'projectModel'
 	],
-	#category : #'Pyramid-Bloc-plugin-space-extensions'
+	#category : 'Pyramid-Bloc-plugin-space-extensions',
+	#package : 'Pyramid-Bloc',
+	#tag : 'plugin-space-extensions'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PyramidMenuExtension >> backgroundColors [
 
 	^ {
@@ -19,13 +21,13 @@ PyramidMenuExtension >> backgroundColors [
 		Color black }
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidMenuExtension >> editor: aPyramidEditor [
 
 	self menu: (aPyramidEditor window services at: #selectionMenu)
 ]
 
-{ #category : #displaying }
+{ #category : 'displaying' }
 PyramidMenuExtension >> installOn: aBuilder [
 
 	self builder: aBuilder.
@@ -37,31 +39,31 @@ PyramidMenuExtension >> installOn: aBuilder [
 			 do: [ :evt | self showMenuAt: evt ])
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidMenuExtension >> menu [
 
 	^ menu
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidMenuExtension >> menu: anObject [
 
 	menu := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidMenuExtension >> projectModel [
 
 	^ projectModel
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidMenuExtension >> projectModel: aProjectModel [
 
 	projectModel := aProjectModel
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidMenuExtension >> showMenuAt: anEvent [
 
 	| currentMenu chooseColorSubMenu |
@@ -76,8 +78,8 @@ PyramidMenuExtension >> showMenuAt: anEvent [
 				action: [ self elementAtDisplays background: color ];
 				icon: [
 					self elementAtDisplays background paint color = color
-						ifTrue: [ self iconNamed: #testGreen ]
-						ifFalse: [ self iconNamed: #testNotRun ] ] ] ].
+						ifTrue: [ Smalltalk ui icons iconNamed: #testGreen ]
+						ifFalse: [ Smalltalk ui icons iconNamed: #testNotRun ] ] ] ].
 
 	currentMenu addGroup: [ :group |
 		group addItem: [ :item |

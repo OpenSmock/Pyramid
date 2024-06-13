@@ -1,14 +1,16 @@
 Class {
-	#name : #PyramidCollectionWithCallbacks,
-	#superclass : #SequenceableCollection,
+	#name : 'PyramidCollectionWithCallbacks',
+	#superclass : 'SequenceableCollection',
 	#instVars : [
 		'collection',
 		'subscriptions'
 	],
-	#category : #'Pyramid-models'
+	#category : 'Pyramid-models',
+	#package : 'Pyramid',
+	#tag : 'models'
 }
 
-{ #category : #adding }
+{ #category : 'adding' }
 PyramidCollectionWithCallbacks >> add: newObject [
 
 	| result |
@@ -17,7 +19,7 @@ PyramidCollectionWithCallbacks >> add: newObject [
 	^ result
 ]
 
-{ #category : #adding }
+{ #category : 'adding' }
 PyramidCollectionWithCallbacks >> addAll: newObjects [
 
 	| result |
@@ -27,32 +29,32 @@ PyramidCollectionWithCallbacks >> addAll: newObjects [
 	^ result
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidCollectionWithCallbacks >> at: anInteger [
 
 	^ self collection at: anInteger
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidCollectionWithCallbacks >> collection [
 
 	^ collection
 ]
 
-{ #category : #enumerating }
+{ #category : 'enumerating' }
 PyramidCollectionWithCallbacks >> do: aBlock [
 
 	^ self collection do: aBlock
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 PyramidCollectionWithCallbacks >> initialize [
 
 	collection := OrderedCollection new.
 	subscriptions := Dictionary new
 ]
 
-{ #category : #removing }
+{ #category : 'removing' }
 PyramidCollectionWithCallbacks >> remove: oldObject [
 
 	| result |
@@ -61,7 +63,7 @@ PyramidCollectionWithCallbacks >> remove: oldObject [
 	^ result
 ]
 
-{ #category : #removing }
+{ #category : 'removing' }
 PyramidCollectionWithCallbacks >> remove: oldObject ifAbsent: anExceptionBlock [
 
 	| result |
@@ -72,7 +74,7 @@ PyramidCollectionWithCallbacks >> remove: oldObject ifAbsent: anExceptionBlock [
 	^ result
 ]
 
-{ #category : #removing }
+{ #category : 'removing' }
 PyramidCollectionWithCallbacks >> removeAll [
 
 	| result |
@@ -82,7 +84,7 @@ PyramidCollectionWithCallbacks >> removeAll [
 	^ result
 ]
 
-{ #category : #removing }
+{ #category : 'removing' }
 PyramidCollectionWithCallbacks >> removeAll: oldObjects [
 
 	| result |
@@ -92,7 +94,7 @@ PyramidCollectionWithCallbacks >> removeAll: oldObjects [
 	^ result
 ]
 
-{ #category : #removing }
+{ #category : 'removing' }
 PyramidCollectionWithCallbacks >> replaceAll: newObjects [
 
 	| result |
@@ -104,31 +106,31 @@ PyramidCollectionWithCallbacks >> replaceAll: newObjects [
 	^ result
 ]
 
-{ #category : #signalling }
+{ #category : 'signalling' }
 PyramidCollectionWithCallbacks >> signalChanged [
 
 	self subscriptions do: [ :callback | callback value ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidCollectionWithCallbacks >> size [ 
 
 ^ self collection size
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PyramidCollectionWithCallbacks >> subscribe: anObject withCallback: aBlock [
 
 	self subscriptions at: anObject ifPresent: [ Error signal: 'Already subscribed.' ] ifAbsentPut: [ aBlock ]
 	
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidCollectionWithCallbacks >> subscriptions [
 ^ subscriptions
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PyramidCollectionWithCallbacks >> unsubscribe: anObject [
 
 	self subscriptions

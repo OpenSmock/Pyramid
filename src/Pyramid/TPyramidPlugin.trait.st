@@ -1,9 +1,11 @@
 Trait {
-	#name : #TPyramidPlugin,
-	#category : #'Pyramid-core'
+	#name : 'TPyramidPlugin',
+	#category : 'Pyramid-core',
+	#package : 'Pyramid',
+	#tag : 'core'
 }
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 TPyramidPlugin classSide >> initialize [ 
 	<script>
 
@@ -11,12 +13,12 @@ TPyramidPlugin classSide >> initialize [
 	PyramidPluginManager uniqueInstance addPlugin: self
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 TPyramidPlugin classSide >> install [
 	"Do some stuff here when the plugin used class oriented behavior"
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 TPyramidPlugin classSide >> reset [
 
 	<script>
@@ -24,21 +26,27 @@ TPyramidPlugin classSide >> reset [
 	self install
 ]
 
-{ #category : #initialization }
+{ #category : 'asserting' }
+TPyramidPlugin classSide >> shouldInstall [
+
+	^ true
+]
+
+{ #category : 'initialization' }
 TPyramidPlugin classSide >> uninstall [
 	"Undo some stuff here when the plugin used class oriented behavior"
 ]
 
-{ #category : #adding }
+{ #category : 'adding' }
 TPyramidPlugin >> addPanelsOn: aPyramidSimpleWindow [
 ]
 
-{ #category : #actions }
+{ #category : 'actions' }
 TPyramidPlugin >> configureBuilder: aPyramidEditorBuilder [
 
 	
 ]
 
-{ #category : #connecting }
+{ #category : 'connecting' }
 TPyramidPlugin >> connectOn: aPyramidEditor [
 ]

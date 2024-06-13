@@ -1,10 +1,12 @@
 Class {
-	#name : #PyramidLibraryPresenterForFirstLevelElement,
-	#superclass : #PyramidLibraryPresenter,
-	#category : #'Pyramid-Bloc-plugin-tree-library'
+	#name : 'PyramidLibraryPresenterForFirstLevelElement',
+	#superclass : 'PyramidLibraryPresenter',
+	#category : 'Pyramid-Bloc-plugin-tree-library',
+	#package : 'Pyramid-Bloc',
+	#tag : 'plugin-tree-library'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PyramidLibraryPresenterForFirstLevelElement >> buttonAction [
 
 	self editor propertiesManager commandExecutor
@@ -13,7 +15,7 @@ PyramidLibraryPresenterForFirstLevelElement >> buttonAction [
 		with: self list selectedItem blockMaker value
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 PyramidLibraryPresenterForFirstLevelElement >> buttonLabel [
 
 	^ 'Add new on first level'

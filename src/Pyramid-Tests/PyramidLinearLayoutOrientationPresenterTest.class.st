@@ -1,12 +1,14 @@
 Class {
-	#name : #PyramidLinearLayoutOrientationPresenterTest,
-	#superclass : #TestCase,
+	#name : 'PyramidLinearLayoutOrientationPresenterTest',
+	#superclass : 'TestCase',
 	#traits : 'TPyramidInputPresenterTest',
 	#classTraits : 'TPyramidInputPresenterTest classTrait',
-	#category : #'Pyramid-Tests-cases-specs-custom'
+	#category : 'Pyramid-Tests-cases-specs-custom',
+	#package : 'Pyramid-Tests',
+	#tag : 'cases-specs-custom'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidLinearLayoutOrientationPresenterTest >> dummyValues [
 
 	^ {
@@ -17,25 +19,25 @@ PyramidLinearLayoutOrientationPresenterTest >> dummyValues [
 		  BlLinearLayoutHorizontalOrientation new }
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidLinearLayoutOrientationPresenterTest >> expectedEmptyValue [
 
 	^ PyramidUnknowState new
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidLinearLayoutOrientationPresenterTest >> expectedMixedValues [
 
 	^ PyramidUnknowState new
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PyramidLinearLayoutOrientationPresenterTest >> makeNewInput [
 
 	^ PyramidLinearLayoutOrientationPresenter new
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PyramidLinearLayoutOrientationPresenterTest >> triggerValueChangedOf: anInput [
 
 	anInput button click

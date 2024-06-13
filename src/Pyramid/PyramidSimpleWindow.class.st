@@ -1,10 +1,12 @@
 Class {
-	#name : #PyramidSimpleWindow,
-	#superclass : #PyramidWindow,
-	#category : #'Pyramid-views'
+	#name : 'PyramidSimpleWindow',
+	#superclass : 'PyramidWindow',
+	#category : 'Pyramid-views',
+	#package : 'Pyramid',
+	#tag : 'views'
 }
 
-{ #category : #specs }
+{ #category : 'specs' }
 PyramidSimpleWindow >> centerLayout [
 
 	^ SpPanedLayout newLeftToRight
@@ -18,7 +20,7 @@ PyramidSimpleWindow >> centerLayout [
 		  yourself
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PyramidSimpleWindow >> layout [
 
 	| mainLayout |
@@ -30,7 +32,7 @@ PyramidSimpleWindow >> layout [
 	^ mainLayout
 ]
 
-{ #category : #specs }
+{ #category : 'specs' }
 PyramidSimpleWindow >> topLayout [
 
 	| layout |

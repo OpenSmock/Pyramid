@@ -1,6 +1,6 @@
-Extension { #name : #BlTextElement }
+Extension { #name : 'BlTextElement' }
 
-{ #category : #'*Pyramid-Bloc' }
+{ #category : '*Pyramid-Bloc' }
 BlTextElement >> asIcon [
 
 	^ self iconNamed: #smallFonts
