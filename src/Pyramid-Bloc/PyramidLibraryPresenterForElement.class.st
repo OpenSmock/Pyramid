@@ -10,9 +10,9 @@ Class {
 PyramidLibraryPresenterForElement >> buttonAction [
 
 	self editor propertiesManager commandExecutor
-		use: PyramidAddChildCommand new
+		use: PyramidAddChildrenCommand new
 		on: self editor projectModel selection
-		with: self list selectedItem blockMaker value
+		with: self elementToAdd
 ]
 
 { #category : 'private' }

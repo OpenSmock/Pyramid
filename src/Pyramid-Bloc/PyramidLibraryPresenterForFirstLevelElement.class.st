@@ -10,9 +10,9 @@ Class {
 PyramidLibraryPresenterForFirstLevelElement >> buttonAction [
 
 	self editor propertiesManager commandExecutor
-		use: PyramidAddToCollectionCommand new
+		use: PyramidAddAllToCollectionCommand new
 		on: { self editor projectModel firstLevelElements }
-		with: self list selectedItem blockMaker value
+		with: self elementToAdd
 ]
 
 { #category : 'private' }
