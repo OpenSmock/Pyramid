@@ -28,7 +28,7 @@ PyramidVisualPystonForCly class >> shouldBeActivatedInContext: aBrowserContext [
 { #category : 'accessing' }
 PyramidVisualPystonForCly class >> tabOrder [
 
-	^ 1
+	^ 100
 ]
 
 { #category : 'accessing' }
@@ -82,10 +82,11 @@ PyramidVisualPystonForCly >> belongsToRemovedBrowserContext [
 { #category : 'building' }
 PyramidVisualPystonForCly >> build [
 
-	| buttonEditor buttonOpen blElement |
+	| buttonEditor buttonOpen buttonCopy blElement |
 	self cellInset: 5.
 	buttonEditor := self buttonEditor.
 	buttonOpen := self buttonOpen.
+	buttonCopy := self buttonCopy.
 	blElement := self getStonFromMethod materializeAsBlElement.
 	blElement isCollection ifTrue: [
 		blElement := BlElement new
@@ -95,7 +96,17 @@ PyramidVisualPystonForCly >> build [
 	imageMorph := ImageMorph withForm: blElement exportAsForm.
 	self addMorph: imageMorph fullFrame: LayoutFrame identity.
 	self addMorph: buttonEditor.
-	self addMorph: buttonOpen
+	self addMorph: buttonOpen.
+	self addMorph: buttonCopy
+]
+
+{ #category : 'as yet unclassified' }
+PyramidVisualPystonForCly >> buttonCopy [
+
+	^ self
+		  buttonLabel: 'Copy in Clipboard'
+		  help: 'Copy to clipboard to paste it in Pyramid.'
+		  action: [ self copyElement ]
 ]
 
 { #category : 'as yet unclassified' }
@@ -130,6 +141,12 @@ PyramidVisualPystonForCly >> buttonOpen [
 		  buttonLabel: 'Open'
 		  help: 'Open this design in a window'
 		  action: [ self openInNewSpace ]
+]
+
+{ #category : 'as yet unclassified' }
+PyramidVisualPystonForCly >> copyElement [
+
+	Clipboard clipboardText: self getStonFromMethod
 ]
 
 { #category : 'initialization' }
@@ -205,20 +222,6 @@ PyramidVisualPystonForCly >> openInNewSpace [
 	elements ifEmpty: [ ^ self ].
 	space := elements first openInNewSpace.
 	space root addChildren: elements allButFirst
-]
-
-{ #category : 'printing' }
-PyramidVisualPystonForCly >> printContext [
-
-	^ self method printSystemPath
-]
-
-{ #category : 'initialization' }
-PyramidVisualPystonForCly >> resetStateForSnapshot [
-
-	super resetStateForSnapshot.
-
-	imageMorph := nil
 ]
 
 { #category : 'initialization' }
