@@ -10,6 +10,32 @@ Class {
 }
 
 { #category : 'as yet unclassified' }
+NeoPyramidLibraryModel class >> addDefaultOnLibrary: library [
+
+	| factoryElement factoryTextElement |
+
+	factoryElement := NeoPyramidLibraryFactory new
+				             elementIcon:
+					             (Smalltalk ui icons iconNamed: #class);
+				             elementName: 'Simple Element';
+				             elementBlock: [ {BlElement new background: Color random; yourself} ];
+				             yourself.
+	factoryTextElement := NeoPyramidLibraryFactory new
+				             elementIcon:
+					             (Smalltalk ui icons iconNamed: #haloFontSize);
+				             elementName: 'Simple Element';
+				             elementBlock: [ {BlTextElement new text: 'Change me' asRopedText; yourself} ];
+				             yourself.
+
+	library
+		addCategoryWithName: '(Default)'
+		withIcon: (Smalltalk ui icons iconNamed: #box)
+		withAllFactories: { factoryElement . factoryTextElement } sorted.
+
+	^ library
+]
+
+{ #category : 'as yet unclassified' }
 NeoPyramidLibraryModel class >> addPystonOnLibrary: library [
 	| pragmas methods packages |
 	pragmas := Pragma allNamed: #pySTON.
@@ -68,6 +94,7 @@ NeoPyramidLibraryModel class >> defaultLibrary [
 	| library |
 	library := self new.
 
+	self addDefaultOnLibrary: library.
 	self addPystonOnLibrary: library.
 	self addToploOnLibrary: library.
 
