@@ -1,5 +1,5 @@
 Class {
-	#name : 'NeoPyramidLibraryPresenter',
+	#name : 'PyramidElementToAddPresenter',
 	#superclass : 'SpPresenter',
 	#instVars : [
 		'selector',
@@ -14,26 +14,26 @@ Class {
 }
 
 { #category : 'as yet unclassified' }
-NeoPyramidLibraryPresenter class >> defaultEmptyFactory [
+PyramidElementToAddPresenter class >> defaultEmptyFactory [
 
-	^ NeoPyramidLibraryFactoryEmpty new
+	^ PyramidElementToAddFactoryEmpty new
 ]
 
 { #category : 'accessing' }
-NeoPyramidLibraryPresenter >> addButton [
+PyramidElementToAddPresenter >> addButton [
 
 	^ addButton
 ]
 
 { #category : 'accessing' }
-NeoPyramidLibraryPresenter >> currentFactory [
+PyramidElementToAddPresenter >> currentFactory [
 
 	currentFactory ifNil: [ currentFactory := self class defaultEmptyFactory ].
 	^ currentFactory
 ]
 
 { #category : 'accessing' }
-NeoPyramidLibraryPresenter >> currentFactory: anObject [
+PyramidElementToAddPresenter >> currentFactory: anObject [
 
 	currentFactory := anObject.
 	self preview image: self currentFactory makeForm.
@@ -41,75 +41,67 @@ NeoPyramidLibraryPresenter >> currentFactory: anObject [
 ]
 
 { #category : 'layout' }
-NeoPyramidLibraryPresenter >> defaultLayout [
+PyramidElementToAddPresenter >> defaultLayout [
 
-	^ SpBoxLayout newVertical
-		  spacing: 4;
-		  add: (SpLabelPresenter new
-				   label: 'Library';
-				   displayBold: [ :a | true ];
-				   yourself)
-		  expand: false;
-		  add: (SpPanedLayout newHorizontal
+	^ SpPanedLayout newHorizontal
 				   add: self selector;
 				   add: (SpBoxLayout newVertical
 						    spacing: 4;
 						    add: self preview expand: true;
 						    add: self addButton expand: false;
 						    yourself);
-				   yourself) height: 400;
-		  yourself
+				   yourself
 ]
 
 { #category : 'requirements' }
-NeoPyramidLibraryPresenter >> elementToAdd [
+PyramidElementToAddPresenter >> elementToAdd [
 
 	^ self currentFactory makeElement
 ]
 
 { #category : 'initialization - deprecated' }
-NeoPyramidLibraryPresenter >> initializePresenter [
+PyramidElementToAddPresenter >> initializePresenter [
 
 	addButton := SpButtonPresenter new
 		             label: 'Add';
 		             icon: (Smalltalk ui icons iconNamed: #add);
 		             enabled: false;
 		             yourself.
-	selector := NeoPyramidLibraryFactoryPresenter new whenItemChangeDo: [
+	selector := PyramidElementToAddFactoryPresenter new whenItemChangeDo: [
 		            :aFactory | self currentFactory: aFactory ].
 	preview := SpImagePresenter new autoScale: true.
-	libraryModel := NeoPyramidLibraryModel defaultLibrary.
+	libraryModel := PyramidElementToAddModel defaultLibrary.
 	self refresh
 ]
 
 { #category : 'accessing' }
-NeoPyramidLibraryPresenter >> libraryModel [
+PyramidElementToAddPresenter >> libraryModel [
 
 	^ libraryModel
 ]
 
 { #category : 'accessing' }
-NeoPyramidLibraryPresenter >> libraryModel: anObject [
+PyramidElementToAddPresenter >> libraryModel: anObject [
 
 	libraryModel := anObject.
 	self refresh
 ]
 
 { #category : 'accessing' }
-NeoPyramidLibraryPresenter >> preview [
+PyramidElementToAddPresenter >> preview [
 
 	^ preview
 ]
 
 { #category : 'accessing' }
-NeoPyramidLibraryPresenter >> refresh [
+PyramidElementToAddPresenter >> refresh [
 
 	self currentFactory: nil.
 	self selector categories: self libraryModel allCategories
 ]
 
 { #category : 'accessing' }
-NeoPyramidLibraryPresenter >> selector [
+PyramidElementToAddPresenter >> selector [
 
 	^ selector
 ]

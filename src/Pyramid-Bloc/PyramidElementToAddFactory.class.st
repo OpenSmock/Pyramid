@@ -1,5 +1,5 @@
 Class {
-	#name : 'NeoPyramidLibraryFactory',
+	#name : 'PyramidElementToAddFactory',
 	#superclass : 'Object',
 	#instVars : [
 		'elementIcon',
@@ -12,62 +12,62 @@ Class {
 }
 
 { #category : 'comparing' }
-NeoPyramidLibraryFactory >> <= aPyramidLibraryCategory [
+PyramidElementToAddFactory >> <= aPyramidLibraryCategory [
 
 	^ self elementName <= aPyramidLibraryCategory elementName
 ]
 
 { #category : 'testing' }
-NeoPyramidLibraryFactory >> canMakeNewElement [
+PyramidElementToAddFactory >> canMakeNewElement [
 
 	[self elementBlock value] on: Error do: [ ^ false ].
 	^ true
 ]
 
 { #category : 'accessing' }
-NeoPyramidLibraryFactory >> elementBlock [
+PyramidElementToAddFactory >> elementBlock [
 
 	^ elementBlock
 ]
 
 { #category : 'accessing' }
-NeoPyramidLibraryFactory >> elementBlock: anObject [
+PyramidElementToAddFactory >> elementBlock: anObject [
 
 	elementBlock := anObject
 ]
 
 { #category : 'accessing' }
-NeoPyramidLibraryFactory >> elementIcon [
+PyramidElementToAddFactory >> elementIcon [
 
 	^ elementIcon
 ]
 
 { #category : 'accessing' }
-NeoPyramidLibraryFactory >> elementIcon: anObject [
+PyramidElementToAddFactory >> elementIcon: anObject [
 
 	elementIcon := anObject
 ]
 
 { #category : 'accessing' }
-NeoPyramidLibraryFactory >> elementName [
+PyramidElementToAddFactory >> elementName [
 
 	^ elementName
 ]
 
 { #category : 'accessing' }
-NeoPyramidLibraryFactory >> elementName: anObject [
+PyramidElementToAddFactory >> elementName: anObject [
 
 	elementName := anObject
 ]
 
 { #category : 'as yet unclassified' }
-NeoPyramidLibraryFactory >> makeElement [
+PyramidElementToAddFactory >> makeElement [
 
 	^ self elementBlock value
 ]
 
 { #category : 'as yet unclassified' }
-NeoPyramidLibraryFactory >> makeForm [
+PyramidElementToAddFactory >> makeForm [
 
 	| array |
 	array := self elementBlock value.

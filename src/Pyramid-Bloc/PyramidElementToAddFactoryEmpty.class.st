@@ -1,19 +1,19 @@
 Class {
-	#name : 'NeoPyramidLibraryFactoryEmpty',
-	#superclass : 'NeoPyramidLibraryFactory',
+	#name : 'PyramidElementToAddFactoryEmpty',
+	#superclass : 'PyramidElementToAddFactory',
 	#category : 'Pyramid-Bloc-plugin-tree-library',
 	#package : 'Pyramid-Bloc',
 	#tag : 'plugin-tree-library'
 }
 
 { #category : 'testing' }
-NeoPyramidLibraryFactoryEmpty >> canMakeNewElement [
+PyramidElementToAddFactoryEmpty >> canMakeNewElement [
 
 	^ false
 ]
 
 { #category : 'as yet unclassified' }
-NeoPyramidLibraryFactoryEmpty >> makeForm [
+PyramidElementToAddFactoryEmpty >> makeForm [
 
 	^ BlElement new asForm
 ]

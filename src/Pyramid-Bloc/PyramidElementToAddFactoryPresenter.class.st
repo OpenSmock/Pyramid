@@ -1,5 +1,5 @@
 Class {
-	#name : 'NeoPyramidLibraryFactoryPresenter',
+	#name : 'PyramidElementToAddFactoryPresenter',
 	#superclass : 'SpPresenter',
 	#instVars : [
 		'categoryPresenter',
@@ -15,38 +15,38 @@ Class {
 }
 
 { #category : 'accessing' }
-NeoPyramidLibraryFactoryPresenter >> categories [
+PyramidElementToAddFactoryPresenter >> categories [
 
 	^ categories
 ]
 
 { #category : 'accessing' }
-NeoPyramidLibraryFactoryPresenter >> categories: anObject [
+PyramidElementToAddFactoryPresenter >> categories: anObject [
 
 	categories := anObject.
 	self categoryPresenter items: anObject
 ]
 
 { #category : 'accessing' }
-NeoPyramidLibraryFactoryPresenter >> categoryPresenter [
+PyramidElementToAddFactoryPresenter >> categoryPresenter [
 
 	^ categoryPresenter
 ]
 
 { #category : 'layout' }
-NeoPyramidLibraryFactoryPresenter >> defaultLayout [
+PyramidElementToAddFactoryPresenter >> defaultLayout [
 
 	^ SpPanedLayout newHorizontal add: self categoryPresenter; add: self factoryPresenter ; yourself.
 ]
 
 { #category : 'accessing' }
-NeoPyramidLibraryFactoryPresenter >> factoryPresenter [
+PyramidElementToAddFactoryPresenter >> factoryPresenter [
 
 	^ factoryPresenter
 ]
 
 { #category : 'initialization - deprecated' }
-NeoPyramidLibraryFactoryPresenter >> initialize [
+PyramidElementToAddFactoryPresenter >> initialize [
 
 	super initialize.
 	whenItemChangeDo := [ :e |  ].
@@ -54,14 +54,14 @@ NeoPyramidLibraryFactoryPresenter >> initialize [
 ]
 
 { #category : 'initialization - deprecated' }
-NeoPyramidLibraryFactoryPresenter >> initializePresenter [
+PyramidElementToAddFactoryPresenter >> initializePresenter [
 
-	whenItemChangeDo := [ :e | ].
+	whenItemChangeDo := [ :e |  ].
 	categoryPresenter := SpTablePresenter new
 		                     addColumn: ((SpImageTableColumn
 				                       title: 'Icon'
 				                       evaluated: [ :aCategory | aCategory icon ])
-				                      width: 50;
+				                      width: 20;
 				                      yourself);
 		                     addColumn:
 		                     (SpStringTableColumn
@@ -72,30 +72,30 @@ NeoPyramidLibraryFactoryPresenter >> initializePresenter [
 		                     beResizable;
 		                     yourself.
 	factoryPresenter := SpTablePresenter new
-	 addColumn: ((SpImageTableColumn
+		                    addColumn: ((SpImageTableColumn
 				                      title: 'Icon'
 				                      evaluated: [ :aFactory |
 					                      aFactory elementIcon ])
-				                     width: 50;
+				                     width: 20;
 				                     yourself);
 		                    addColumn:
-			                    (SpStringTableColumn
-				                     title: 'Name'
-				                     evaluated: #elementName);
+		                    (SpStringTableColumn
+			                     title: 'Name'
+			                     evaluated: #elementName);
 		                    whenSelectedItemChangedDo: [ :factory |
-			                    self selectedFactory: factory ];
+		                    self selectedFactory: factory ];
 		                    beResizable;
 		                    yourself
 ]
 
 { #category : 'accessing' }
-NeoPyramidLibraryFactoryPresenter >> selectedCategory [
+PyramidElementToAddFactoryPresenter >> selectedCategory [
 
 	^ selectedCategory
 ]
 
 { #category : 'accessing' }
-NeoPyramidLibraryFactoryPresenter >> selectedCategory: anObject [
+PyramidElementToAddFactoryPresenter >> selectedCategory: anObject [
 
 	selectedCategory := anObject.
 	anObject ifNil: [ ^ self ].
@@ -103,26 +103,26 @@ NeoPyramidLibraryFactoryPresenter >> selectedCategory: anObject [
 ]
 
 { #category : 'accessing' }
-NeoPyramidLibraryFactoryPresenter >> selectedFactory [
+PyramidElementToAddFactoryPresenter >> selectedFactory [
 
 	^ selectedFactory
 ]
 
 { #category : 'accessing' }
-NeoPyramidLibraryFactoryPresenter >> selectedFactory: anObject [
+PyramidElementToAddFactoryPresenter >> selectedFactory: anObject [
 
 	selectedFactory := anObject.
 	self whenItemChangeDo value: anObject
 ]
 
 { #category : 'accessing' }
-NeoPyramidLibraryFactoryPresenter >> whenItemChangeDo [
+PyramidElementToAddFactoryPresenter >> whenItemChangeDo [
 
 	^ whenItemChangeDo
 ]
 
 { #category : 'accessing' }
-NeoPyramidLibraryFactoryPresenter >> whenItemChangeDo: anObject [
+PyramidElementToAddFactoryPresenter >> whenItemChangeDo: anObject [
 
 	whenItemChangeDo := anObject
 ]

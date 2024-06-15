@@ -1,5 +1,5 @@
 Class {
-	#name : 'NeoPyramidLibraryCategory',
+	#name : 'PyramidElementToAddCategory',
 	#superclass : 'Object',
 	#instVars : [
 		'name',
@@ -12,13 +12,13 @@ Class {
 }
 
 { #category : 'comparing' }
-NeoPyramidLibraryCategory >> <= aPyramidLibraryCategory [
+PyramidElementToAddCategory >> <= aPyramidLibraryCategory [
 
 	^ self name <= aPyramidLibraryCategory name
 ]
 
 { #category : 'converting' }
-NeoPyramidLibraryCategory >> asNotebookPage [
+PyramidElementToAddCategory >> asNotebookPage [
 
 	^ SpNotebookPage
 		  title: self name
@@ -27,31 +27,31 @@ NeoPyramidLibraryCategory >> asNotebookPage [
 ]
 
 { #category : 'accessing' }
-NeoPyramidLibraryCategory >> factories [
+PyramidElementToAddCategory >> factories [
 
 	^ factories
 ]
 
 { #category : 'accessing' }
-NeoPyramidLibraryCategory >> factories: anObject [
+PyramidElementToAddCategory >> factories: anObject [
 
 	factories := anObject
 ]
 
 { #category : 'accessing' }
-NeoPyramidLibraryCategory >> icon [
+PyramidElementToAddCategory >> icon [
 
 	^ icon
 ]
 
 { #category : 'accessing' }
-NeoPyramidLibraryCategory >> icon: anObject [
+PyramidElementToAddCategory >> icon: anObject [
 
 	icon := anObject
 ]
 
 { #category : 'as yet unclassified' }
-NeoPyramidLibraryCategory >> makeProvider [
+PyramidElementToAddCategory >> makeProvider [
 
 	^ 
 	  SpTablePresenter new
@@ -68,13 +68,13 @@ NeoPyramidLibraryCategory >> makeProvider [
 ]
 
 { #category : 'accessing' }
-NeoPyramidLibraryCategory >> name [
+PyramidElementToAddCategory >> name [
 
 	^ name
 ]
 
 { #category : 'accessing' }
-NeoPyramidLibraryCategory >> name: anObject [
+PyramidElementToAddCategory >> name: anObject [
 
 	name := anObject
 ]

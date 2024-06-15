@@ -1,8 +1,7 @@
 Class {
-	#name : 'PyramidLibraryPresenter',
+	#name : 'PyramidLibraryContainerPresenter',
 	#superclass : 'SpPresenter',
 	#instVars : [
-		'editor',
 		'library',
 		'idGenerator'
 	],
@@ -15,7 +14,7 @@ Class {
 }
 
 { #category : 'accessing' }
-PyramidLibraryPresenter class >> makeIdGenerator [
+PyramidLibraryContainerPresenter class >> makeIdGenerator [
 ^ Generator on: [ :generator |
 		  | index |
 		  index := 1.
@@ -31,39 +30,36 @@ PyramidLibraryPresenter class >> makeIdGenerator [
 ]
 
 { #category : 'as yet unclassified' }
-PyramidLibraryPresenter >> buttonAction [
+PyramidLibraryContainerPresenter >> buttonAction: aBlock [
 
-	^ self shouldBeImplemented
+	library addButton action: aBlock
 ]
 
 { #category : 'as yet unclassified' }
-PyramidLibraryPresenter >> buttonLabel [
+PyramidLibraryContainerPresenter >> buttonLabel: aString [
 
-	^ self shouldBeImplemented
+	library addButton label: aString
 ]
 
 { #category : 'initialization' }
-PyramidLibraryPresenter >> defaultLayout [
+PyramidLibraryContainerPresenter >> defaultLayout [
 
-	^ SpBoxLayout newHorizontal
+	^ SpBoxLayout newVertical
 		  spacing: 4;
-		  add: library width: 800;
-		  yourself
-]
-
-{ #category : 'accessing' }
-PyramidLibraryPresenter >> editor [
-	^ editor
-]
-
-{ #category : 'accessing' }
-PyramidLibraryPresenter >> editor: aPyramidEditor [
-
-	editor := aPyramidEditor
+		  add: (SpLabelPresenter new
+				   label: 'Library';
+				   displayBold: [ :a | true ];
+				   yourself)
+		  expand: false;
+		  add: (SpBoxLayout newHorizontal
+				   add: library width: 800;
+				   yourself)
+		  height: 400;
+		  yourself.
 ]
 
 { #category : 'requirements' }
-PyramidLibraryPresenter >> elementToAdd [
+PyramidLibraryContainerPresenter >> elementToAdd [
 
 	| array |
 	array := self library elementToAdd.
@@ -72,28 +68,33 @@ PyramidLibraryPresenter >> elementToAdd [
 ]
 
 { #category : 'accessing' }
-PyramidLibraryPresenter >> idGenerator [
+PyramidLibraryContainerPresenter >> idGenerator [
 
 	idGenerator ifNil: [ idGenerator := self class makeIdGenerator ].
 	^ idGenerator
 ]
 
 { #category : 'accessing' }
-PyramidLibraryPresenter >> idGenerator: anObject [
+PyramidLibraryContainerPresenter >> idGenerator: anObject [
 
 	idGenerator := anObject
 ]
 
 { #category : 'initialization' }
-PyramidLibraryPresenter >> initializePresenters [
+PyramidLibraryContainerPresenter >> initializePresenters [
 
-	library := NeoPyramidLibraryPresenter new.
-	library addButton label: self buttonLabel.
-	library addButton action: [ self buttonAction ]
+	library := PyramidElementToAddPresenter new.
+
 ]
 
 { #category : 'requirements' }
-PyramidLibraryPresenter >> library [
+PyramidLibraryContainerPresenter >> library [
 
 	^ library
+]
+
+{ #category : 'requirements' }
+PyramidLibraryContainerPresenter >> library: aLibrary [
+
+	library := aLibrary
 ]
