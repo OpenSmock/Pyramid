@@ -1,12 +1,9 @@
 Class {
 	#name : 'PyramidPlaygroundView',
 	#superclass : 'SpPresenter',
-	#traits : 'TPyramidProjectModelObserver',
-	#classTraits : 'TPyramidProjectModelObserver classTrait',
 	#instVars : [
 		'list',
 		'playground',
-		'projectModel',
 		'codeObjectInteractionModel',
 		'contextLabel'
 	],
@@ -19,12 +16,6 @@ Class {
 PyramidPlaygroundView >> contextLabel [
 
 	^ contextLabel
-]
-
-{ #category : 'as yet unclassified' }
-PyramidPlaygroundView >> currentSelection [
-
-	^ self projectModel selection
 ]
 
 { #category : 'layout' }
@@ -74,32 +65,27 @@ PyramidPlaygroundView >> playground [
 ]
 
 { #category : 'accessing' }
-PyramidPlaygroundView >> projectModel [
-
-	^ projectModel
-]
-
-{ #category : 'accessing' }
 PyramidPlaygroundView >> projectModel: aPyramidActiveProject [
 
-	projectModel := aPyramidActiveProject.
-	projectModel announcer when: PyramidSelectionChangedEvent send: #pyramidSelectionChanged: to: self.
+	aPyramidActiveProject announcer
+		when: PyramidSelectionChangedEvent
+		send: #pyramidSelectionChanged:
+		to: self.
 	self playground interactionModel projectModel: aPyramidActiveProject.
 
-	self pyramidSelectionChanged
-]
-
-{ #category : 'as yet unclassified' }
-PyramidPlaygroundView >> pyramidSelectionChanged [
-
-	self list items: self currentSelection.
-	contextLabel label: self valueOfSelf.
+	self updateSelectedElementsWith: {  }
 ]
 
 { #category : 'as yet unclassified' }
 PyramidPlaygroundView >> pyramidSelectionChanged: anEvent [
 
-	self list items: self currentSelection.
+	self updateSelectedElementsWith: anEvent selection.
+]
+
+{ #category : 'as yet unclassified' }
+PyramidPlaygroundView >> updateSelectedElementsWith: aCollection [
+
+	self list items: aCollection.
 	contextLabel label: self valueOfSelf
 ]
 

@@ -1,8 +1,8 @@
 Class {
 	#name : 'PyramidSelectionWidgetExtension',
 	#superclass : 'Object',
-	#traits : 'TPyramidSpaceExtension + TPyramidEditorExtension + TPyramidProjectModelObserver + TPyramidEditorTransformationObserver',
-	#classTraits : 'TPyramidSpaceExtension classTrait + TPyramidEditorExtension classTrait + TPyramidProjectModelObserver classTrait + TPyramidEditorTransformationObserver classTrait',
+	#traits : 'TPyramidSpaceExtension + TPyramidEditorExtension + TPyramidEditorTransformationObserver',
+	#classTraits : 'TPyramidSpaceExtension classTrait + TPyramidEditorExtension classTrait + TPyramidEditorTransformationObserver classTrait',
 	#instVars : [
 		'projectModel',
 		'widgetElement',
@@ -198,15 +198,10 @@ PyramidSelectionWidgetExtension >> projectModel: aProjectModel [
 ]
 
 { #category : 'events' }
-PyramidSelectionWidgetExtension >> pyramidSelectionChanged [
-
-	self updateSelection
-]
-
-{ #category : 'events' }
 PyramidSelectionWidgetExtension >> pyramidSelectionChanged: anEvent [
 
-	self updateSelection
+	self removeSelection.
+	self makeNewSelection
 ]
 
 { #category : 'selection element' }
@@ -229,13 +224,6 @@ PyramidSelectionWidgetExtension >> removeSelection [
 
 	self removeMonoSelections: self widgetElement.
 	self widgetElement removeChildren.
-]
-
-{ #category : 'selection' }
-PyramidSelectionWidgetExtension >> updateSelection [
-
-	self removeSelection.
-	self makeNewSelection
 ]
 
 { #category : 'as yet unclassified' }

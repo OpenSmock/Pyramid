@@ -1,8 +1,6 @@
 Class {
 	#name : 'PyramidProjectModelObserverForTest',
 	#superclass : 'Object',
-	#traits : 'TPyramidProjectModelObserver',
-	#classTraits : 'TPyramidProjectModelObserver classTrait',
 	#instVars : [
 		'pyramidElementsChangedAction',
 		'pyramidFirstLevelElementsChangedAction',
@@ -27,7 +25,7 @@ PyramidProjectModelObserverForTest >> pyramidElementsChanged: anEvent [
 	self pyramidElementsChangedAction value: anEvent
 ]
 
-{ #category : 'accessing' }
+{ #category : 'as yet unclassified' }
 PyramidProjectModelObserverForTest >> pyramidElementsChangedAction [
 
 	^ pyramidElementsChangedAction

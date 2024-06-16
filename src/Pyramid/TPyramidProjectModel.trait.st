@@ -42,19 +42,28 @@ TPyramidProjectModel >> firstLevelElements [
 { #category : 'as yet unclassified' }
 TPyramidProjectModel >> informElementsChanged [
 
-	self announce: PyramidElementsChangedEvent new
+	self announce: (PyramidElementsChangedEvent new
+			 firstLevelElements: self firstLevelElements;
+			 selection: self selection;
+			 yourself).
 ]
 
 { #category : 'as yet unclassified' }
 TPyramidProjectModel >> informFirstLevelElementsChanged [
 
-	self announce: PyramidFirstLevelElementsChangedEvent new
+	self announce: (PyramidFirstLevelElementsChangedEvent new
+			 firstLevelElements: self firstLevelElements;
+			 selection: self selection;
+			 yourself)
 ]
 
 { #category : 'as yet unclassified' }
 TPyramidProjectModel >> informSelectionChanged [
 
-	self announce: PyramidSelectionChangedEvent new
+	self announce: (PyramidSelectionChangedEvent new
+			 firstLevelElements: self firstLevelElements;
+			 selection: self selection;
+			 yourself)
 ]
 
 { #category : 'accessing' }

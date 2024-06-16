@@ -1,12 +1,10 @@
 Class {
 	#name : 'PyramidPropertiesManagerForSelection',
 	#superclass : 'PyramidPropertiesManager',
-	#traits : 'TPyramidProjectModelObserver',
-	#classTraits : 'TPyramidProjectModelObserver classTrait',
 	#instVars : [
 		'presenter',
-		'projectModel',
-		'shouldComputeProperties'
+		'shouldComputeProperties',
+		'projectModel'
 	],
 	#category : 'Pyramid-property',
 	#package : 'Pyramid',
@@ -14,11 +12,11 @@ Class {
 }
 
 { #category : 'as yet unclassified' }
-PyramidPropertiesManagerForSelection >> computeProperties [
+PyramidPropertiesManagerForSelection >> computeProperties: aCollection [
 
 	self presenter layout child:
-		(self buildPresenterFromCollection: self projectModel selection).
-		self shouldComputeProperties: false
+		(self buildPresenterFromCollection: aCollection).
+	self shouldComputeProperties: false
 ]
 
 { #category : 'initialization' }
@@ -28,7 +26,8 @@ PyramidPropertiesManagerForSelection >> initialize [
 	shouldComputeProperties := false.
 	presenter := SpPresenter new
 		             layout: SpScrollableLayout new;
-		whenVisibleChangedDo: [ :isVisible | isVisible ifTrue: [ self computeProperties ] ];
+		             whenVisibleChangedDo: [ :isVisible |
+			             isVisible ifTrue: [ self computeProperties: self projectModel selection ] ];
 		             yourself.
 	commandExecutor := PyramidCallbackCommandExecutor new
 		                   wrappee: commandExecutor;
@@ -52,41 +51,22 @@ PyramidPropertiesManagerForSelection >> projectModel [
 PyramidPropertiesManagerForSelection >> projectModel: aPyramidProjectModel [
 
 	projectModel := aPyramidProjectModel.
-	projectModel announcer when: PyramidElementsChangedEvent send: #pyramidElementsChanged: to: self.
-	projectModel announcer when: PyramidSelectionChangedEvent send: #pyramidSelectionChanged: to: self.
-
+	aPyramidProjectModel announcer
+		when: PyramidElementsChangedEvent
+		send: #selectionOrElementsChanged:
+		to: self.
+	aPyramidProjectModel announcer
+		when: PyramidSelectionChangedEvent
+		send: #selectionOrElementsChanged:
+		to: self
 ]
 
 { #category : 'as yet unclassified' }
-PyramidPropertiesManagerForSelection >> pyramidElementsChanged [
-
-	self selectionOrElementsChanged
-]
-
-{ #category : 'as yet unclassified' }
-PyramidPropertiesManagerForSelection >> pyramidElementsChanged: anEvent [
-
-	self selectionOrElementsChanged
-]
-
-{ #category : 'as yet unclassified' }
-PyramidPropertiesManagerForSelection >> pyramidSelectionChanged [
-
-	self selectionOrElementsChanged
-]
-
-{ #category : 'as yet unclassified' }
-PyramidPropertiesManagerForSelection >> pyramidSelectionChanged: anEvent [
-
-	self selectionOrElementsChanged
-]
-
-{ #category : 'as yet unclassified' }
-PyramidPropertiesManagerForSelection >> selectionOrElementsChanged [
+PyramidPropertiesManagerForSelection >> selectionOrElementsChanged: anEvent [
 
 	self shouldComputeProperties: true.
 	self presenter isVisible ifFalse: [ ^ self ].
-	self computeProperties
+	self computeProperties: anEvent selection
 ]
 
 { #category : 'as yet unclassified' }

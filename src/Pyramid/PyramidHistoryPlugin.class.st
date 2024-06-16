@@ -1,8 +1,8 @@
 Class {
 	#name : 'PyramidHistoryPlugin',
 	#superclass : 'Object',
-	#traits : 'TPyramidPlugin + TPyramidProjectModelObserver',
-	#classTraits : 'TPyramidPlugin classTrait + TPyramidProjectModelObserver classTrait',
+	#traits : 'TPyramidPlugin',
+	#classTraits : 'TPyramidPlugin classTrait',
 	#instVars : [
 		'undoButton',
 		'redoButton',
@@ -32,7 +32,7 @@ PyramidHistoryPlugin >> connectOn: aPyramidEditor [
 
 	self history: aPyramidEditor propertiesManager history.
 	self projectModel: aPyramidEditor projectModel.
-	self pyramidSelectionChanged
+	self pyramidElementsChanged: nil.
 ]
 
 { #category : 'accessing' }
@@ -79,13 +79,6 @@ PyramidHistoryPlugin >> projectModel: anObject [
 
 	projectModel := anObject.
 	projectModel announcer when: PyramidElementsChangedEvent send: #pyramidSelectionChanged: to: self.
-]
-
-{ #category : 'as yet unclassified' }
-PyramidHistoryPlugin >> pyramidElementsChanged [
-
-	undoButton enabled: self history canUndo.
-	redoButton enabled: self history canRedo
 ]
 
 { #category : 'as yet unclassified' }

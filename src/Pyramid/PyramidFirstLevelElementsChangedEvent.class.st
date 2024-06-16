@@ -1,6 +1,6 @@
 Class {
 	#name : 'PyramidFirstLevelElementsChangedEvent',
-	#superclass : 'PyramidEvent',
+	#superclass : 'PyramidProjectModelEvent',
 	#category : 'Pyramid-core',
 	#package : 'Pyramid',
 	#tag : 'core'

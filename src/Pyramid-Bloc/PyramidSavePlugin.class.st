@@ -52,8 +52,8 @@ PyramidSavePlugin >> connectOn: aPyramidEditor [
 
 	self projectModel: aPyramidEditor projectModel.
 	self saveModel projectModel: aPyramidEditor projectModel.
-	aPyramidEditor announcer when: PyramidElementsChangedEvent send: #pyramidElementsChanged: to: self inputsController.
-	aPyramidEditor announcer when: PyramidFirstLevelElementsChangedEvent send: #pyramidFirstLevelElementsChanged: to: self inputsController.
+	self inputsController projectModel: aPyramidEditor projectModel.
+	
 ]
 
 { #category : 'initialization' }

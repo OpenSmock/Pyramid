@@ -1,8 +1,6 @@
 Class {
 	#name : 'PyramidSaveProjectConfigurationController',
 	#superclass : 'Object',
-	#traits : 'TPyramidProjectModelObserver',
-	#classTraits : 'TPyramidProjectModelObserver classTrait',
 	#instVars : [
 		'view',
 		'saveModel',
@@ -55,31 +53,16 @@ PyramidSaveProjectConfigurationController >> isSaved [
 ]
 
 { #category : 'as yet unclassified' }
-PyramidSaveProjectConfigurationController >> pyramidElementsChanged [
+PyramidSaveProjectConfigurationController >> projectModel: aProjectModel [
 
-	self saveModel isSaved: false.
-	self updateWindowTitle
-]
-
-{ #category : 'as yet unclassified' }
-PyramidSaveProjectConfigurationController >> pyramidElementsChanged: anEvent [
-
-	self saveModel isSaved: false.
-	self updateWindowTitle
-]
-
-{ #category : 'as yet unclassified' }
-PyramidSaveProjectConfigurationController >> pyramidFirstLevelElementsChanged [
-
-	self saveModel isSaved: false.
-	self updateWindowTitle
-]
-
-{ #category : 'as yet unclassified' }
-PyramidSaveProjectConfigurationController >> pyramidFirstLevelElementsChanged: anEvent [
-
-	self saveModel isSaved: false.
-	self updateWindowTitle
+	aProjectModel announcer
+		when: PyramidElementsChangedEvent
+		send: #updateSaveState:
+		to: self.
+	aProjectModel announcer
+		when: PyramidFirstLevelElementsChangedEvent
+		send: #updateSaveState:
+		to: self
 ]
 
 { #category : 'as yet unclassified' }
@@ -128,6 +111,13 @@ PyramidSaveProjectConfigurationController >> textUpdatedFromPackage: aString [
 	self saveModel savingPackageName: aString.
 	self saveModel isSaved: false.
 	self updateView
+]
+
+{ #category : 'as yet unclassified' }
+PyramidSaveProjectConfigurationController >> updateSaveState: anEvent [
+
+	self saveModel isSaved: false.
+	self updateWindowTitle
 ]
 
 { #category : 'as yet unclassified' }
