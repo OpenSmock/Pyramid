@@ -193,12 +193,18 @@ PyramidSelectionWidgetExtension >> projectModel [
 PyramidSelectionWidgetExtension >> projectModel: aProjectModel [
 
 	projectModel := aProjectModel.
-	projectModel addObserver: self.
-	self makeNewSelection.
+	projectModel announcer when: PyramidSelectionChangedEvent send: #pyramidSelectionChanged: to: self.
+	self makeNewSelection
 ]
 
 { #category : 'events' }
 PyramidSelectionWidgetExtension >> pyramidSelectionChanged [
+
+	self updateSelection
+]
+
+{ #category : 'events' }
+PyramidSelectionWidgetExtension >> pyramidSelectionChanged: anEvent [
 
 	self updateSelection
 ]

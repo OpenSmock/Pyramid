@@ -152,12 +152,22 @@ PyramidMainExtension >> projectModel [
 { #category : 'accessing' }
 PyramidMainExtension >> projectModel: aProjectModel [
 
-	projectModel:= aProjectModel.
-	aProjectModel addObserver: self.
+	projectModel := aProjectModel.
+	aProjectModel announcer when: PyramidFirstLevelElementsChangedEvent send: #pyramidFirstLevelElementsChanged: to: self
 ]
 
 { #category : 'as yet unclassified' }
 PyramidMainExtension >> pyramidFirstLevelElementsChanged [
+
+	self containerElement removeChildren.
+	(self projectModel firstLevelElements asArray sorted:
+		 PyramidElevationSortFunction new) do: [ :each |
+		each parent ifNotNil: [ :p | p removeChild: each ].
+		self containerElement addChild: each ]
+]
+
+{ #category : 'as yet unclassified' }
+PyramidMainExtension >> pyramidFirstLevelElementsChanged: anEvent [
 
 	self containerElement removeChildren.
 	(self projectModel firstLevelElements asArray sorted:

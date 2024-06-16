@@ -78,11 +78,18 @@ PyramidHistoryPlugin >> projectModel [
 PyramidHistoryPlugin >> projectModel: anObject [
 
 	projectModel := anObject.
-	anObject addObserver: self.
+	projectModel announcer when: PyramidElementsChangedEvent send: #pyramidSelectionChanged: to: self.
 ]
 
 { #category : 'as yet unclassified' }
 PyramidHistoryPlugin >> pyramidElementsChanged [
+
+	undoButton enabled: self history canUndo.
+	redoButton enabled: self history canRedo
+]
+
+{ #category : 'as yet unclassified' }
+PyramidHistoryPlugin >> pyramidElementsChanged: anEvent [
 
 	undoButton enabled: self history canUndo.
 	redoButton enabled: self history canRedo

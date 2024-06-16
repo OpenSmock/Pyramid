@@ -1,45 +1,64 @@
 Trait {
 	#name : 'TPyramidProjectModel',
 	#instVars : [
-		'observers'
+		'editor'
 	],
+	#classTraits : '{} + TraitedClass',
 	#category : 'Pyramid-models',
 	#package : 'Pyramid',
 	#tag : 'models'
 }
 
-{ #category : 'adding' }
-TPyramidProjectModel >> addObserver: anObserver [
-	self observers add: anObserver
+{ #category : 'as yet unclassified' }
+TPyramidProjectModel >> announce: anEvent [
+
+	self announcer announce: anEvent
+]
+
+{ #category : 'as yet unclassified' }
+TPyramidProjectModel >> announcer [
+
+	^ self editor announcer
+]
+
+{ #category : 'accessing' }
+TPyramidProjectModel >> editor [
+
+	^ editor
+]
+
+{ #category : 'accessing' }
+TPyramidProjectModel >> editor: anObject [
+
+	editor := anObject
+]
+
+{ #category : 'accessing' }
+TPyramidProjectModel >> firstLevelElements [
+
+	^ self shouldBeImplemented
 ]
 
 { #category : 'as yet unclassified' }
 TPyramidProjectModel >> informElementsChanged [
 
-	self observers do: [ :each | each pyramidElementsChanged ]
+	self announce: PyramidElementsChangedEvent new
 ]
 
 { #category : 'as yet unclassified' }
 TPyramidProjectModel >> informFirstLevelElementsChanged [
 
-	self observers do: [ :each | each pyramidFirstLevelElementsChanged ]
+	self announce: PyramidFirstLevelElementsChangedEvent new
 ]
 
 { #category : 'as yet unclassified' }
 TPyramidProjectModel >> informSelectionChanged [
 
-	self observers do: [ :each | each pyramidSelectionChanged ]
+	self announce: PyramidSelectionChangedEvent new
 ]
 
-{ #category : 'adding' }
-TPyramidProjectModel >> observers [
+{ #category : 'accessing' }
+TPyramidProjectModel >> selection [
 
-	observers ifNil: [ observers := Set new ].
-	^ observers
-]
-
-{ #category : 'adding' }
-TPyramidProjectModel >> removeObserver: anObserver [
-
-	self observers remove: anObserver
+	^ self shouldBeImplemented
 ]

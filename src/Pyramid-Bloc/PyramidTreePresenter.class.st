@@ -124,9 +124,11 @@ PyramidTreePresenter >> projectModel [
 { #category : 'accessing' }
 PyramidTreePresenter >> projectModel: anObject [
 
-	projectModel ifNotNil: [ projectModel removeObserver: self ].
 	projectModel := anObject.
-	projectModel addObserver: self 
+	projectModel announcer when: PyramidElementsChangedEvent send: #pyramidElementsChanged: to: self.
+	projectModel announcer when: PyramidFirstLevelElementsChangedEvent send: #pyramidFirstLevelElementsChanged: to: self.
+	projectModel announcer when: PyramidSelectionChangedEvent send: #pyramidSelectionChanged: to: self.
+
 	
 ]
 
@@ -138,6 +140,13 @@ PyramidTreePresenter >> pyramidElementsChanged [
 ]
 
 { #category : 'as yet unclassified' }
+PyramidTreePresenter >> pyramidElementsChanged: anEvent [
+
+	self updateRoots.
+	self selectionHaveChanged ifTrue: [ self updateSelection ]
+]
+
+{ #category : 'as yet unclassified' }
 PyramidTreePresenter >> pyramidFirstLevelElementsChanged [
 
 	self updateRoots.
@@ -145,7 +154,20 @@ PyramidTreePresenter >> pyramidFirstLevelElementsChanged [
 ]
 
 { #category : 'as yet unclassified' }
+PyramidTreePresenter >> pyramidFirstLevelElementsChanged: anEvent [
+
+	self updateRoots.
+	self updateSelection
+]
+
+{ #category : 'as yet unclassified' }
 PyramidTreePresenter >> pyramidSelectionChanged [
+
+	self updateSelection
+]
+
+{ #category : 'as yet unclassified' }
+PyramidTreePresenter >> pyramidSelectionChanged: anEvent [
 
 	self updateSelection
 ]

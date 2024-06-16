@@ -1,5 +1,5 @@
 Class {
-	#name : 'PyramidStopsInputPresenterTest',
+	#name : 'PyramidBackgroundStopsInputPresenterTest',
 	#superclass : 'TestCase',
 	#traits : 'TPyramidInputPresenterTest',
 	#classTraits : 'TPyramidInputPresenterTest classTrait',
@@ -9,7 +9,7 @@ Class {
 }
 
 { #category : 'accessing' }
-PyramidStopsInputPresenterTest >> dummyValues [
+PyramidBackgroundStopsInputPresenterTest >> dummyValues [
 
 	^ { {
 		  (0 -> Color blue).
@@ -25,25 +25,25 @@ PyramidStopsInputPresenterTest >> dummyValues [
 ]
 
 { #category : 'accessing' }
-PyramidStopsInputPresenterTest >> expectedEmptyValue [
+PyramidBackgroundStopsInputPresenterTest >> expectedEmptyValue [
 
-	^ {  }
+	^ PyramidUnknowState new
 ]
 
 { #category : 'accessing' }
-PyramidStopsInputPresenterTest >> expectedMixedValues [
+PyramidBackgroundStopsInputPresenterTest >> expectedMixedValues [
 
-	^ {  }
+	^ PyramidUnknowState new
 ]
 
 { #category : 'tests' }
-PyramidStopsInputPresenterTest >> makeNewInput [
+PyramidBackgroundStopsInputPresenterTest >> makeNewInput [
 
-	^ PyramidStopsInputPresenter new
+	^ PyramidBackgroundStopsInputPresenter new
 ]
 
 { #category : 'as yet unclassified' }
-PyramidStopsInputPresenterTest >> triggerValueChangedOf: anInput [
+PyramidBackgroundStopsInputPresenterTest >> triggerValueChangedOf: anInput [
 
-	anInput bypassTrigger
+	anInput whenValueChangedDo value: anInput value
 ]

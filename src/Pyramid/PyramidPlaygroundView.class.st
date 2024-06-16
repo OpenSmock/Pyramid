@@ -83,10 +83,10 @@ PyramidPlaygroundView >> projectModel [
 PyramidPlaygroundView >> projectModel: aPyramidActiveProject [
 
 	projectModel := aPyramidActiveProject.
-	projectModel addObserver: self.
+	projectModel announcer when: PyramidSelectionChangedEvent send: #pyramidSelectionChanged: to: self.
 	self playground interactionModel projectModel: aPyramidActiveProject.
-	
-		self pyramidSelectionChanged.
+
+	self pyramidSelectionChanged
 ]
 
 { #category : 'as yet unclassified' }
@@ -94,6 +94,13 @@ PyramidPlaygroundView >> pyramidSelectionChanged [
 
 	self list items: self currentSelection.
 	contextLabel label: self valueOfSelf.
+]
+
+{ #category : 'as yet unclassified' }
+PyramidPlaygroundView >> pyramidSelectionChanged: anEvent [
+
+	self list items: self currentSelection.
+	contextLabel label: self valueOfSelf
 ]
 
 { #category : 'as yet unclassified' }

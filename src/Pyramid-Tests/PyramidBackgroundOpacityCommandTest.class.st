@@ -18,18 +18,24 @@ PyramidBackgroundOpacityCommandTest >> command [
 PyramidBackgroundOpacityCommandTest >> targetContainers [
 
 	| e1 e2 |
-	e1 := (BlElement new background: Color red; yourself).
+	e1 := BlElement new
+		      id: #e1;
+		      background: Color red;
+		      yourself.
 	e1 background opacity: 0.4.
-	e2 := (BlElement new background: Color red; yourself).
+	e2 := BlElement new
+		      id: #e2;
+		      background: Color red;
+		      yourself.
 	e2 background opacity: 0.3.
 
 	^ {
 		  (PyramidCommandTestContainer
-			   no: (BlElement new background: Color red)
+			   no: (BlElement new id: #e3; background: Color red)
 			   with: e1
 			   prop: 0.4).
 		  (PyramidCommandTestContainer
-			   no: (BlElement new background: Color red)
+			   no: (BlElement new id: #e4; background: Color red)
 			   with: e2
 			   prop: 0.3) }
 ]

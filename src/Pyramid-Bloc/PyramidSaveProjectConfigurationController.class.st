@@ -62,7 +62,21 @@ PyramidSaveProjectConfigurationController >> pyramidElementsChanged [
 ]
 
 { #category : 'as yet unclassified' }
+PyramidSaveProjectConfigurationController >> pyramidElementsChanged: anEvent [
+
+	self saveModel isSaved: false.
+	self updateWindowTitle
+]
+
+{ #category : 'as yet unclassified' }
 PyramidSaveProjectConfigurationController >> pyramidFirstLevelElementsChanged [
+
+	self saveModel isSaved: false.
+	self updateWindowTitle
+]
+
+{ #category : 'as yet unclassified' }
+PyramidSaveProjectConfigurationController >> pyramidFirstLevelElementsChanged: anEvent [
 
 	self saveModel isSaved: false.
 	self updateWindowTitle

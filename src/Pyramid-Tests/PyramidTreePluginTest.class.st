@@ -33,7 +33,6 @@ PyramidTreePluginTest >> testRemoveSelectedElements [
 	editor window: PyramidSimpleWindow new.
 	plugin := PyramidTreePlugin new.
 	plugin editor: editor.
-	editor projectModel addObserver: plugin treePresenter.
 	editor projectModel firstLevelElements addAll: {
 			e1.
 			e2.

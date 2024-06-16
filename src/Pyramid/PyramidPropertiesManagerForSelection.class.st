@@ -51,9 +51,10 @@ PyramidPropertiesManagerForSelection >> projectModel [
 { #category : 'accessing' }
 PyramidPropertiesManagerForSelection >> projectModel: aPyramidProjectModel [
 
-	projectModel ifNotNil: [ projectModel removeObserver: self ].
 	projectModel := aPyramidProjectModel.
-	projectModel addObserver: self
+	projectModel announcer when: PyramidElementsChangedEvent send: #pyramidElementsChanged: to: self.
+	projectModel announcer when: PyramidSelectionChangedEvent send: #pyramidSelectionChanged: to: self.
+
 ]
 
 { #category : 'as yet unclassified' }
@@ -63,7 +64,19 @@ PyramidPropertiesManagerForSelection >> pyramidElementsChanged [
 ]
 
 { #category : 'as yet unclassified' }
+PyramidPropertiesManagerForSelection >> pyramidElementsChanged: anEvent [
+
+	self selectionOrElementsChanged
+]
+
+{ #category : 'as yet unclassified' }
 PyramidPropertiesManagerForSelection >> pyramidSelectionChanged [
+
+	self selectionOrElementsChanged
+]
+
+{ #category : 'as yet unclassified' }
+PyramidPropertiesManagerForSelection >> pyramidSelectionChanged: anEvent [
 
 	self selectionOrElementsChanged
 ]
