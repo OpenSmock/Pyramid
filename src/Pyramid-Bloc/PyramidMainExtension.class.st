@@ -1,11 +1,10 @@
 Class {
 	#name : 'PyramidMainExtension',
 	#superclass : 'Object',
-	#traits : 'TPyramidSpaceExtension + TPyramidEditorExtension + TPyramidProjectModelObserver + TPyramidEditorTransformationObserver',
-	#classTraits : 'TPyramidSpaceExtension classTrait + TPyramidEditorExtension classTrait + TPyramidProjectModelObserver classTrait + TPyramidEditorTransformationObserver classTrait',
+	#traits : 'TPyramidSpaceExtension + TPyramidEditorExtension + TPyramidEditorTransformationObserver',
+	#classTraits : 'TPyramidSpaceExtension classTrait + TPyramidEditorExtension classTrait + TPyramidEditorTransformationObserver classTrait',
 	#instVars : [
 		'containerElement',
-		'projectModel',
 		'borderElement',
 		'sizeElement',
 		'extentButton',
@@ -144,23 +143,19 @@ PyramidMainExtension >> offsetTranslation [
 ]
 
 { #category : 'accessing' }
-PyramidMainExtension >> projectModel [
-
-	^ projectModel
-]
-
-{ #category : 'accessing' }
 PyramidMainExtension >> projectModel: aProjectModel [
 
-	projectModel:= aProjectModel.
-	aProjectModel addObserver: self.
+	aProjectModel announcer
+		when: PyramidFirstLevelElementsChangedEvent
+		send: #pyramidFirstLevelElementsChanged:
+		to: self
 ]
 
 { #category : 'as yet unclassified' }
-PyramidMainExtension >> pyramidFirstLevelElementsChanged [
+PyramidMainExtension >> pyramidFirstLevelElementsChanged: anEvent [
 
 	self containerElement removeChildren.
-	(self projectModel firstLevelElements asArray sorted:
+	(anEvent firstLevelElements asArray sorted:
 		 PyramidElevationSortFunction new) do: [ :each |
 		each parent ifNotNil: [ :p | p removeChild: each ].
 		self containerElement addChild: each ]

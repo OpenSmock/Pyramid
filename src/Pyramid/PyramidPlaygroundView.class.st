@@ -1,12 +1,9 @@
 Class {
 	#name : 'PyramidPlaygroundView',
 	#superclass : 'SpPresenter',
-	#traits : 'TPyramidProjectModelObserver',
-	#classTraits : 'TPyramidProjectModelObserver classTrait',
 	#instVars : [
 		'list',
 		'playground',
-		'projectModel',
 		'codeObjectInteractionModel',
 		'contextLabel'
 	],
@@ -19,12 +16,6 @@ Class {
 PyramidPlaygroundView >> contextLabel [
 
 	^ contextLabel
-]
-
-{ #category : 'as yet unclassified' }
-PyramidPlaygroundView >> currentSelection [
-
-	^ self projectModel selection
 ]
 
 { #category : 'layout' }
@@ -57,10 +48,6 @@ PyramidPlaygroundView >> initializePresenters [
 	contextLabel := SpLabelPresenter new.
 
 	playground interactionModel: PyramidSpCodeObjectInteractionModel new.
-	playground announcer
-		when: SpCodeEvaluationSucceedAnnouncement
-		do: [ :ann | self projectModel informElementsChanged ]
-		for: self
 ]
 
 { #category : 'accessing' }
@@ -74,26 +61,31 @@ PyramidPlaygroundView >> playground [
 ]
 
 { #category : 'accessing' }
-PyramidPlaygroundView >> projectModel [
-
-	^ projectModel
-]
-
-{ #category : 'accessing' }
 PyramidPlaygroundView >> projectModel: aPyramidActiveProject [
 
-	projectModel := aPyramidActiveProject.
-	projectModel addObserver: self.
+	aPyramidActiveProject announcer
+		when: PyramidSelectionChangedEvent
+		send: #pyramidSelectionChanged:
+		to: self.
 	self playground interactionModel projectModel: aPyramidActiveProject.
-	
-		self pyramidSelectionChanged.
+	playground announcer
+		when: SpCodeEvaluationSucceedAnnouncement
+		do: [ :ann | aPyramidActiveProject informElementsChanged ]
+		for: self.
+	self updateSelectedElementsWith: {  }.
 ]
 
 { #category : 'as yet unclassified' }
-PyramidPlaygroundView >> pyramidSelectionChanged [
+PyramidPlaygroundView >> pyramidSelectionChanged: anEvent [
 
-	self list items: self currentSelection.
-	contextLabel label: self valueOfSelf.
+	self updateSelectedElementsWith: anEvent selection.
+]
+
+{ #category : 'as yet unclassified' }
+PyramidPlaygroundView >> updateSelectedElementsWith: aCollection [
+
+	self list items: aCollection.
+	contextLabel label: self valueOfSelf
 ]
 
 { #category : 'as yet unclassified' }

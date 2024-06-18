@@ -1,8 +1,6 @@
 Class {
 	#name : 'PyramidElementThemeSelectorPresenter',
 	#superclass : 'PyramidThemeSelectorPresenter',
-	#traits : 'TPyramidProjectModelObserver',
-	#classTraits : 'TPyramidProjectModelObserver classTrait',
 	#instVars : [
 		'projectModel',
 		'inheritSelector',
@@ -66,6 +64,14 @@ PyramidElementThemeSelectorPresenter >> defaultLayout [
 		  yourself
 ]
 
+{ #category : 'as yet unclassified' }
+PyramidElementThemeSelectorPresenter >> elementsOrSelectionChanged: anEvent [
+
+	self triggerThemeChangement: false.
+	self updatePresenterFor: anEvent selection.
+	self triggerThemeChangement: true
+]
+
 { #category : 'accessing' }
 PyramidElementThemeSelectorPresenter >> inheritSelector [
 
@@ -103,34 +109,19 @@ PyramidElementThemeSelectorPresenter >> projectModel [
 ]
 
 { #category : 'accessing' }
-PyramidElementThemeSelectorPresenter >> projectModel: anObject [
+PyramidElementThemeSelectorPresenter >> projectModel: aPyramidProjectModel [
 
-	projectModel := anObject.
-	anObject addObserver: self
+	projectModel := aPyramidProjectModel.
+	projectModel when: PyramidElementsChangedEvent send: #elementsOrSelectionChanged: to: self.
+	projectModel when: PyramidSelectionChangedEvent send: #elementsOrSelectionChanged: to: self.
 ]
 
 { #category : 'as yet unclassified' }
-PyramidElementThemeSelectorPresenter >> pyramidElementsChanged [
+PyramidElementThemeSelectorPresenter >> setDefaultStateForPresenters [
 
-	self triggerThemeChangement: false.
-	self updatePresenterFor: self projectModel selection.
-	self triggerThemeChangement: true
-]
-
-{ #category : 'as yet unclassified' }
-PyramidElementThemeSelectorPresenter >> pyramidSelectionChanged [
-
-	self triggerThemeChangement: false.
-	self updatePresenterFor: self projectModel selection.
-	self triggerThemeChangement: true.
-]
-
-{ #category : 'as yet unclassified' }
-PyramidElementThemeSelectorPresenter >> setDefaultStateForPresenters [.
 	self themeSelector enabled: false.
 	self inheritSelector enabled: false.
 	self inheritSelector state: true.
-
 ]
 
 { #category : 'as yet unclassified' }

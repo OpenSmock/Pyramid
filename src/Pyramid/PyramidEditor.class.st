@@ -7,7 +7,8 @@ Class {
 		'plugins',
 		'projectModel',
 		'window',
-		'propertiesManager'
+		'propertiesManager',
+		'announcer'
 	],
 	#category : 'Pyramid-core',
 	#package : 'Pyramid',
@@ -28,6 +29,12 @@ PyramidEditor class >> open [
 ]
 
 { #category : 'open/close' }
+PyramidEditor >> announcer [
+
+	^ announcer
+]
+
+{ #category : 'open/close' }
 PyramidEditor >> close [
 
 	self window ifNil: [ ^ self ].
@@ -44,11 +51,14 @@ PyramidEditor >> getPlugin: aPluginClass [
 { #category : 'initialization' }
 PyramidEditor >> initialize [
 
-	projectModel := PyramidProjectModel new.
+	announcer := Announcer new.
+	plugins := {  }.
+	projectModel := PyramidProjectModel new editor: self; yourself.
 	propertiesManager := PyramidPropertiesManagerForSelection new
 		                     projectModel: projectModel;
 		                     yourself.
-	plugins := {  }
+	
+	
 ]
 
 { #category : 'open/close' }
