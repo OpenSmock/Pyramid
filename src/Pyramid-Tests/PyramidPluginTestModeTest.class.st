@@ -6,9 +6,9 @@ Class {
 		'spacePlugin',
 		'editor'
 	],
-	#category : 'Pyramid-Bloc-plugin-testmode',
-	#package : 'Pyramid-Bloc',
-	#tag : 'plugin-testmode'
+	#category : 'Pyramid-Tests-cases-plugin-testmode',
+	#package : 'Pyramid-Tests',
+	#tag : 'cases-plugin-testmode'
 }
 
 { #category : 'accessing' }

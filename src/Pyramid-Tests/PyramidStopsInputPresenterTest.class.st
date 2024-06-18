@@ -39,7 +39,7 @@ PyramidStopsInputPresenterTest >> expectedMixedValues [
 { #category : 'tests' }
 PyramidStopsInputPresenterTest >> makeNewInput [
 
-	^ PyramidStopsInputPresenter new
+	^ PyramidBackgroundStopsInputPresenter new
 ]
 
 { #category : 'as yet unclassified' }

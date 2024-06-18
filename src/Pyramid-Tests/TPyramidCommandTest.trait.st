@@ -88,7 +88,9 @@ TPyramidCommandTest >> testHistory [
 	"Undo all"
 	self argumentsForHistory reverseDo: [ :argument |
 		targets do: [ :target |
-			self assert: (self command getValueFor: target) equals: argument ].
+			self
+				assert: (self command getValueFor: target)
+				equals: argument ].
 		history canUndo ifTrue: [ history undo ] ].
 
 	"Redo all"
