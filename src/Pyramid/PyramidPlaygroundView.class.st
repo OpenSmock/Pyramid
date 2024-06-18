@@ -48,10 +48,6 @@ PyramidPlaygroundView >> initializePresenters [
 	contextLabel := SpLabelPresenter new.
 
 	playground interactionModel: PyramidSpCodeObjectInteractionModel new.
-	playground announcer
-		when: SpCodeEvaluationSucceedAnnouncement
-		do: [ :ann | self projectModel informElementsChanged ]
-		for: self
 ]
 
 { #category : 'accessing' }
@@ -72,8 +68,11 @@ PyramidPlaygroundView >> projectModel: aPyramidActiveProject [
 		send: #pyramidSelectionChanged:
 		to: self.
 	self playground interactionModel projectModel: aPyramidActiveProject.
-
-	self updateSelectedElementsWith: {  }
+	playground announcer
+		when: SpCodeEvaluationSucceedAnnouncement
+		do: [ :ann | aPyramidActiveProject informElementsChanged ]
+		for: self.
+	self updateSelectedElementsWith: {  }.
 ]
 
 { #category : 'as yet unclassified' }

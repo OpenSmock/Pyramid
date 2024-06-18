@@ -1,12 +1,12 @@
 Class {
 	#name : 'PyramidSpCodeObjectInteractionModel',
-	#superclass : 'SpCodeInteractionModel',
+	#superclass : 'SpCodeScriptingInteractionModel',
 	#instVars : [
 		'projectModel'
 	],
-	#category : 'Pyramid-Tests-cases-plugin-playground',
-	#package : 'Pyramid-Tests',
-	#tag : 'cases-plugin-playground'
+	#category : 'Pyramid-plugin-playground',
+	#package : 'Pyramid',
+	#tag : 'plugin-playground'
 }
 
 { #category : 'accessing' }

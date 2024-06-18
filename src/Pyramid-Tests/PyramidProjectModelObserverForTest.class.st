@@ -6,9 +6,9 @@ Class {
 		'pyramidFirstLevelElementsChangedAction',
 		'pyramidSelectionChangedAction'
 	],
-	#category : 'Pyramid-plugin-playground',
-	#package : 'Pyramid',
-	#tag : 'plugin-playground'
+	#category : 'Pyramid-Tests-cases-models',
+	#package : 'Pyramid-Tests',
+	#tag : 'cases-models'
 }
 
 { #category : 'initialization' }
