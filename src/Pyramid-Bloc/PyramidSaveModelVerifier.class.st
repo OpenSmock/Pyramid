@@ -26,8 +26,21 @@ PyramidSaveModelVerifier class >> classPackageIsEqual [
 
 	^ self new
 		  verifyBlock: [ :model |
-			  self classPackageIsEqual: model.
-			   ];
+			  Smalltalk globals
+				  at: model savingClassName asSymbol
+				  ifPresent: [ :class | "
+					Model = class package >> OK
+					Model = class package '-' class packageTag >> OK
+					KO"
+					  class package name = model savingPackageName
+						  ifTrue: [ true ]
+						  ifFalse: [
+							  (model savingPackageName endsWith: class packageTag name)
+								  ifFalse: [ false ]
+								  ifTrue: [
+									  model savingPackageName = (class package name , '-'
+									  , class packageTag name) ] ] ]
+				  ifAbsent: [ true ] ];
 		  showBlock: [ :view | view showClassPackageIsNotEqualError ];
 		  yourself
 ]
