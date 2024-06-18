@@ -11,17 +11,19 @@ Class {
 
 { #category : 'tests' }
 PyramidPluginManagerTest >> testIsPluginInstalled [
-
 	"Test incorrect values"
+
 	| pluginClasses |
-	self deny: (PyramidPluginManager uniqueInstance isPluginInstalled: nil).
-	
+	self deny:
+		(PyramidPluginManager uniqueInstance isPluginInstalled: nil).
+
 	"Test if all plugins are installed"
 	pluginClasses := PyramidPluginManager imagePluginClasses.
+	pluginClasses do: [ :each | each install ].
 	self assert: pluginClasses notEmpty.
-	pluginClasses do:[ :c |
-		self assert: (PyramidPluginManager uniqueInstance isPluginInstalled: c).
-	].
+	pluginClasses do: [ :c |
+		self assert:
+			(PyramidPluginManager uniqueInstance isPluginInstalled: c) ]
 ]
 
 { #category : 'tests' }
