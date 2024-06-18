@@ -40,7 +40,7 @@ BaselineOfPyramid >> blocDependencies: spec [
 
 	spec
 		baseline: 'Bloc'
-		with: [ spec repository: 'github://pharo-graphics/Bloc:dev/src' ].
+		with: [ spec repository: 'github://pharo-graphics/Bloc:master/src' ].
 	spec
 		baseline: 'BlocSerialization'
 		with: [
@@ -93,7 +93,7 @@ BaselineOfPyramid >> toploDependencies: spec [
 
 	spec
 		baseline: 'Toplo'
-		with: [ spec repository: 'github://pharo-graphics/Toplo:dev/src' ].
+		with: [ spec repository: 'github://pharo-graphics/Toplo:master/src' ].
 	spec
 		baseline: 'ToploSerialization'
 		with: [
