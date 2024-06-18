@@ -41,7 +41,8 @@ PyramidSavingServiceTest >> setUp [
 
 	savingClass := self class classInstaller make: [ :aClassBuilder |
 		               aClassBuilder
-			               name: 'PyramidSaveTestMySavingClass', testSelector asSymbol;
+			               name:
+				               'PyramidSaveTestMySavingClass';
 			               package: self class category ]
 ]
 

@@ -26,23 +26,28 @@ PyramidSaveModelVerifier class >> classPackageIsEqual [
 
 	^ self new
 		  verifyBlock: [ :model |
-			  self class environment
-				  at: model savingClassName asSymbol
-				  ifPresent: [ :class | "
+			  self classPackageIsEqual: model.
+			   ];
+		  showBlock: [ :view | view showClassPackageIsNotEqualError ];
+		  yourself
+]
+
+{ #category : 'constructor' }
+PyramidSaveModelVerifier class >> classPackageIsEqual: model [
+
+	Smalltalk globals
+		at: model savingClassName asSymbol
+		ifPresent: [ :class | "
 					Model = class package >> OK
 					Model = class package '-' class packageTag >> OK
 					KO"
-					  class package name = model savingPackageName
-						  ifTrue: [ true ]
-						  ifFalse: [
-							  (model savingPackageName endsWith: class packageTag name)
-								  ifFalse: [ false ]
-								  ifTrue: [
-									  model savingPackageName = (class package name , '-'
-									  , class packageTag name) ] ] ]
-				  ifAbsent: [ true ] ];
-		  showBlock: [ :view | view showClassPackageIsNotEqualError ];
-		  yourself
+			class isClass ifFalse: [ ^ false ].
+			class package name = model savingPackageName ifTrue: [ ^ true ].
+			(model savingPackageName endsWith: class packageTag name) ifFalse: [
+				^ false ].
+			^ model savingPackageName
+			  = (class package name , '-' , class packageTag name) ]
+		ifAbsent: [ ^ true ]
 ]
 
 { #category : 'constructor' }
