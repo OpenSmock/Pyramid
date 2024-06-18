@@ -181,7 +181,7 @@ PyramidSavingServiceTest >> testSave [
 
 	model onClass.
 	model savingPackageName:
-		self class package name , '-cases-plugin-save'.
+		self savingClass package name.
 	model savingMethodName: 'packageWithTag'.
 	self savingService save.
 	self assert:
