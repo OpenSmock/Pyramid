@@ -19,6 +19,23 @@ PyramidProjectModelObserverForTest >> initialize [
 	self pyramidSelectionChangedAction: [ :evt | ]
 ]
 
+{ #category : 'accessing' }
+PyramidProjectModelObserverForTest >> projectModel: aProjectModel [
+
+	aProjectModel announcer
+		when: PyramidElementsChangedEvent
+		send: #pyramidElementsChanged:
+		to: self.
+	aProjectModel announcer
+		when: PyramidFirstLevelElementsChangedEvent
+		send: #pyramidFirstLevelElementsChanged:
+		to: self.
+	aProjectModel announcer
+		when: PyramidSelectionChangedEvent
+		send: #pyramidSelectionChanged:
+		to: self
+]
+
 { #category : 'as yet unclassified' }
 PyramidProjectModelObserverForTest >> pyramidElementsChanged: anEvent [
 
