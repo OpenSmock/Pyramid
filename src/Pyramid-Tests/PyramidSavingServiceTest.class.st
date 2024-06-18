@@ -64,6 +64,8 @@ PyramidSavingServiceTest >> testCanSave [
 	Assert canSave"
 
 	| model |
+	"Skip it if VM 11 because of bugs when deleting classes."
+	SystemVersion current major = 11 ifTrue: [ ^ self skip. ].
 	self deny: self savingService canSave.
 
 	model := PyramidSaveModel new.
@@ -91,66 +93,40 @@ PyramidSavingServiceTest >> testCanSave [
 	model savingClassName: 'PyramidSavingClass'.
 	model savingMethodName: 'aPyramidSavingMethod'.
 	model savingPackageName: 'PyramidSavingPackage'.
-	Smalltalk globals
-		at: model savingClassName asSymbol
-		ifPresent: [ :class |
-			class isObsolete ifFalse: [
-				self assert: self savingService canSave ] ].
+	self assert: self savingService canSave.
 
 	model savingClassName: 'PyramidSavingClass'.
 	model savingMethodName: 'aPyramidSavingMethod'.
 	model savingPackageName: 'PyramidSavingPackage-abc'.
-	Smalltalk globals
-		at: model savingClassName asSymbol
-		ifPresent: [ :class |
-			class isObsolete ifFalse: [
-				self assert: self savingService canSave ] ].
+	self assert: self savingService canSave.
 
 	model savingClassName: 'PyramidSavingClass'.
 	model savingMethodName: 'aPyramidSavingMethod'.
 	model savingPackageName: 'PyramidSavingPackage-Abc-Def'.
-	Smalltalk globals
-		at: model savingClassName asSymbol
-		ifPresent: [ :class |
-			class isObsolete ifFalse: [
-				self assert: self savingService canSave ] ].
+	self assert: self savingService canSave.
 
 	model savingClassName: self savingClass name.
 	model savingMethodName: 'aPyramidSavingMethod'.
 	model savingPackageName: self savingClass package name.
-	Smalltalk globals
-		at: model savingClassName asSymbol
-		ifPresent: [ :class |
-			class isObsolete ifFalse: [
-				self assert: self savingService canSave ] ].
+	self assert: self savingService canSave.
 
 	model savingClassName: self savingClass name.
 	model savingMethodName: 'aPyramidSavingMethod'.
 	model savingPackageName:
 		self class package name , '-cases-plugin-save'.
-	Smalltalk globals
-		at: model savingClassName asSymbol
-		ifPresent: [ :class |
-			class isObsolete ifFalse: [
-				self assert: self savingService canSave ] ].
+	self assert: self savingService canSave.
 
 	model savingClassName: self savingClass name.
 	model savingMethodName: 'aPyramidSavingMethod'.
 	model savingPackageName:
 		self savingClass package name , 'notTheSamePackage'.
-	Smalltalk globals
-		at: model savingClassName asSymbol
-		ifPresent: [ :class |
-			class isObsolete ifFalse: [ self deny: self savingService canSave ] ].
+	self deny: self savingService canSave.
 
 	model savingClassName: self savingClass name.
 	model savingMethodName: 'aPyramidSavingMethod'.
 	model savingPackageName:
 		self savingClass package name , '-notTheSameTag'.
-	Smalltalk globals
-		at: model savingClassName asSymbol
-		ifPresent: [ :class |
-			class isObsolete ifFalse: [ self deny: self savingService canSave ] ]
+	self deny: self savingService canSave
 ]
 
 { #category : 'tests' }
