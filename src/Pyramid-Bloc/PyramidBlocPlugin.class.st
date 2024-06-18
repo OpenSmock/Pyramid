@@ -113,13 +113,16 @@ PyramidBlocPlugin >> addPanelsOn: aPyramidSimpleWindow [
 { #category : 'connecting' }
 PyramidBlocPlugin >> connectOn: aPyramidEditor [
 
+	"Configure the sort function."
+	aPyramidEditor projectModel firstLevelElements sortFunction: PyramidElevationSortFunction new.
+
 	self editor: aPyramidEditor.
 	aPyramidEditor propertiesManager addProperty: self class elementId.
 	aPyramidEditor propertiesManager addProperty: self class visibility.
 	aPyramidEditor propertiesManager addProperty: self class zIndex.
 	aPyramidEditor propertiesManager addProperty: self class clipChildren.
 	aPyramidEditor propertiesManager addProperty: self class geometry.
-	aPyramidEditor propertiesManager addProperty: self class cornerRadii.
+	aPyramidEditor propertiesManager addProperty: self class cornerRadii
 ]
 
 { #category : 'accessing' }

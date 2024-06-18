@@ -29,9 +29,7 @@ PyramidProjectModel >> firstLevelElements [
 PyramidProjectModel >> initialize [
 
 	selection := PyramidCollectionWithCallbacks new.
-	firstLevelElements := PyramidSortedCollectionWithCallbacks new
-		                      sortFunction: PyramidElevationSortFunction new;
-		                      yourself.
+	firstLevelElements := PyramidSortedCollectionWithCallbacks new.
 
 	selection
 		subscribe: self
