@@ -28,12 +28,11 @@ PyramidPluginEditOnRunningTest >> setUp [
 	"Preserve user settings"
 	setting := PyramidPluginEditOnRunning editOnRunning.
 
-	"Ensure the plugin are insalled and initialized"
 	PyramidPluginEditOnRunning uninstall.
 	PyramidPluginEditOnRunning install.
-	PyramidSpacePlugin uninstall.
-	PyramidSpacePlugin install
 	
+	PyramidPluginEditOnRunning initialize.
+	PyramidSpacePlugin initialize.
 ]
 
 { #category : 'tests' }
