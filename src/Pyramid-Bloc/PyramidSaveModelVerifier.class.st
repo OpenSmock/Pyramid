@@ -33,24 +33,6 @@ PyramidSaveModelVerifier class >> classPackageIsEqual [
 ]
 
 { #category : 'constructor' }
-PyramidSaveModelVerifier class >> classPackageIsEqual: model [
-
-	Smalltalk globals
-		at: model savingClassName asSymbol
-		ifPresent: [ :class | "
-					Model = class package >> OK
-					Model = class package '-' class packageTag >> OK
-					KO"
-			class isClass ifFalse: [ ^ false ].
-			class package name = model savingPackageName ifTrue: [ ^ true ].
-			(model savingPackageName endsWith: class packageTag name) ifFalse: [
-				^ false ].
-			^ model savingPackageName
-			  = (class package name , '-' , class packageTag name) ]
-		ifAbsent: [ ^ true ]
-]
-
-{ #category : 'constructor' }
 PyramidSaveModelVerifier class >> methodIsValid [
 
 	^ self new
