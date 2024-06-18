@@ -13,13 +13,6 @@ Class {
 }
 
 { #category : 'accessing' }
-PyramidProjectModel >> allElements [
-
-	^ PyramidElementsManipulationHelper flattenChildrenOfCollection:
-		  self firstLevelElements
-]
-
-{ #category : 'accessing' }
 PyramidProjectModel >> firstLevelElements [
 
 	^ firstLevelElements
