@@ -15,6 +15,13 @@ PyramidSortedCollectionWithCallbacks >> collection: aCollection [
 	collection := aCollection	
 ]
 
+{ #category : 'initialization' }
+PyramidSortedCollectionWithCallbacks >> initialize [
+
+	super initialize.
+	sortFunction := [ :a :b | true ].
+]
+
 { #category : 'signalling' }
 PyramidSortedCollectionWithCallbacks >> signalChanged [
 
