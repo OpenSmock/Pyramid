@@ -41,7 +41,8 @@ PyramidSavingServiceTest >> setUp [
 
 	savingClass := self class classInstaller make: [ :aClassBuilder |
 		               aClassBuilder
-			               name: 'PyramidSaveTestMySavingClass';
+			               name:
+				               'PyramidSaveTestMySavingClass';
 			               package: self class category ]
 ]
 
@@ -63,6 +64,8 @@ PyramidSavingServiceTest >> testCanSave [
 	Assert canSave"
 
 	| model |
+	"Skip it if VM 11 because of bugs when deleting classes."
+	SystemVersion current major = 11 ifTrue: [ ^ self skip. ].
 	self deny: self savingService canSave.
 
 	model := PyramidSaveModel new.
@@ -110,7 +113,7 @@ PyramidSavingServiceTest >> testCanSave [
 	model savingClassName: self savingClass name.
 	model savingMethodName: 'aPyramidSavingMethod'.
 	model savingPackageName:
-		self savingClass package name , '-cases-plugin-save'.
+		self class package name , '-cases-plugin-save'.
 	self assert: self savingService canSave.
 
 	model savingClassName: self savingClass name.
@@ -181,7 +184,7 @@ PyramidSavingServiceTest >> testSave [
 
 	model onClass.
 	model savingPackageName:
-		self savingClass package name , '-cases-plugin-save'.
+		self savingClass package name.
 	model savingMethodName: 'packageWithTag'.
 	self savingService save.
 	self assert:

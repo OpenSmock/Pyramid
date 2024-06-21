@@ -34,7 +34,7 @@ PyramidSpCodeObjectInteractionModelTest >> setUp [
 	super setUp.
 
 	firstLevelElements := Object new.
-	projectModel := PyramidProjectModel new.
+	projectModel := PyramidEditor new projectModel.
 	projectModel firstLevelElements add: firstLevelElements.
 
 	interactionModel := PyramidSpCodeObjectInteractionModel new

@@ -1,32 +1,48 @@
 Class {
 	#name : 'PyramidProjectModelObserverForTest',
 	#superclass : 'Object',
-	#traits : 'TPyramidProjectModelObserver',
-	#classTraits : 'TPyramidProjectModelObserver classTrait',
 	#instVars : [
 		'pyramidElementsChangedAction',
 		'pyramidFirstLevelElementsChangedAction',
 		'pyramidSelectionChangedAction'
 	],
-	#category : 'Pyramid-plugin-playground',
-	#package : 'Pyramid',
-	#tag : 'plugin-playground'
+	#category : 'Pyramid-Tests-cases-models',
+	#package : 'Pyramid-Tests',
+	#tag : 'cases-models'
 }
 
 { #category : 'initialization' }
-PyramidProjectModelObserverForTest >> initialize [ 
+PyramidProjectModelObserverForTest >> initialize [
 
-	self pyramidElementsChangedAction: [  ].
-	self pyramidFirstLevelElementsChangedAction: [  ].self pyramidSelectionChangedAction: [  ]
-]
-
-{ #category : 'as yet unclassified' }
-PyramidProjectModelObserverForTest >> pyramidElementsChanged [
-
-	self pyramidElementsChangedAction value.
+	self pyramidElementsChangedAction: [ :evt | ].
+	self pyramidFirstLevelElementsChangedAction: [ :evt | ].
+	self pyramidSelectionChangedAction: [ :evt | ]
 ]
 
 { #category : 'accessing' }
+PyramidProjectModelObserverForTest >> projectModel: aProjectModel [
+
+	aProjectModel announcer
+		when: PyramidElementsChangedEvent
+		send: #pyramidElementsChanged:
+		to: self.
+	aProjectModel announcer
+		when: PyramidFirstLevelElementsChangedEvent
+		send: #pyramidFirstLevelElementsChanged:
+		to: self.
+	aProjectModel announcer
+		when: PyramidSelectionChangedEvent
+		send: #pyramidSelectionChanged:
+		to: self
+]
+
+{ #category : 'as yet unclassified' }
+PyramidProjectModelObserverForTest >> pyramidElementsChanged: anEvent [
+
+	self pyramidElementsChangedAction value: anEvent
+]
+
+{ #category : 'as yet unclassified' }
 PyramidProjectModelObserverForTest >> pyramidElementsChangedAction [
 
 	^ pyramidElementsChangedAction
@@ -39,9 +55,9 @@ PyramidProjectModelObserverForTest >> pyramidElementsChangedAction: anObject [
 ]
 
 { #category : 'as yet unclassified' }
-PyramidProjectModelObserverForTest >> pyramidFirstLevelElementsChanged [
+PyramidProjectModelObserverForTest >> pyramidFirstLevelElementsChanged: anEvent [
 
-	self pyramidFirstLevelElementsChangedAction value
+	self pyramidFirstLevelElementsChangedAction value: anEvent
 ]
 
 { #category : 'accessing' }
@@ -57,9 +73,9 @@ PyramidProjectModelObserverForTest >> pyramidFirstLevelElementsChangedAction: an
 ]
 
 { #category : 'as yet unclassified' }
-PyramidProjectModelObserverForTest >> pyramidSelectionChanged [
+PyramidProjectModelObserverForTest >> pyramidSelectionChanged: anEvent [
 
-	self pyramidSelectionChangedAction value
+	self pyramidSelectionChangedAction value: anEvent
 ]
 
 { #category : 'accessing' }
