@@ -112,8 +112,14 @@ PyramidElementThemeSelectorPresenter >> projectModel [
 PyramidElementThemeSelectorPresenter >> projectModel: aPyramidProjectModel [
 
 	projectModel := aPyramidProjectModel.
-	projectModel when: PyramidElementsChangedEvent send: #elementsOrSelectionChanged: to: self.
-	projectModel when: PyramidSelectionChangedEvent send: #elementsOrSelectionChanged: to: self.
+	projectModel
+		when: PyramidElementsChangedEvent
+		do: [ :evt | self elementsOrSelectionChanged: evt ]
+		for: self.
+	projectModel
+		when: PyramidSelectionChangedEvent
+		do: [ :evt | self elementsOrSelectionChanged: evt ]
+		for: self.
 ]
 
 { #category : 'as yet unclassified' }

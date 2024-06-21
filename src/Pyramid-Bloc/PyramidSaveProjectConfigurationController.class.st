@@ -57,12 +57,12 @@ PyramidSaveProjectConfigurationController >> projectModel: aProjectModel [
 
 	aProjectModel announcer
 		when: PyramidElementsChangedEvent
-		send: #updateSaveState:
-		to: self.
+		do: [ :evt | self updateSaveState: evt ]
+		for: self.
 	aProjectModel announcer
 		when: PyramidFirstLevelElementsChangedEvent
-		send: #updateSaveState:
-		to: self
+		do: [ :evt | self updateSaveState: evt ]
+		for: self.
 ]
 
 { #category : 'as yet unclassified' }

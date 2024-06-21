@@ -147,8 +147,8 @@ PyramidMainExtension >> projectModel: aProjectModel [
 
 	aProjectModel announcer
 		when: PyramidFirstLevelElementsChangedEvent
-		send: #pyramidFirstLevelElementsChanged:
-		to: self
+		do: [ :evt | self pyramidFirstLevelElementsChanged: evt ]
+		for: self
 ]
 
 { #category : 'as yet unclassified' }

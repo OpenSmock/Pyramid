@@ -193,7 +193,10 @@ PyramidSelectionWidgetExtension >> projectModel [
 PyramidSelectionWidgetExtension >> projectModel: aProjectModel [
 
 	projectModel := aProjectModel.
-	projectModel announcer when: PyramidSelectionChangedEvent send: #pyramidSelectionChanged: to: self.
+	projectModel announcer
+		when: PyramidSelectionChangedEvent
+		do: [ :evt | self pyramidSelectionChanged: evt ]
+		for: self.
 	self makeNewSelection
 ]
 

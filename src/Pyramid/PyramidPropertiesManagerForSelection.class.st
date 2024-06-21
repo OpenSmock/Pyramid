@@ -53,12 +53,12 @@ PyramidPropertiesManagerForSelection >> projectModel: aPyramidProjectModel [
 	projectModel := aPyramidProjectModel.
 	aPyramidProjectModel announcer
 		when: PyramidElementsChangedEvent
-		send: #selectionOrElementsChanged:
-		to: self.
+		do: [ :evt | self selectionOrElementsChanged: evt ]
+		for: self.
 	aPyramidProjectModel announcer
 		when: PyramidSelectionChangedEvent
-		send: #selectionOrElementsChanged:
-		to: self
+		do: [ :evt | self selectionOrElementsChanged: evt ]
+		for: self.
 ]
 
 { #category : 'as yet unclassified' }

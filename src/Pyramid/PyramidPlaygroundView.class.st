@@ -65,14 +65,14 @@ PyramidPlaygroundView >> projectModel: aPyramidActiveProject [
 
 	aPyramidActiveProject announcer
 		when: PyramidSelectionChangedEvent
-		send: #pyramidSelectionChanged:
-		to: self.
+		do: [ :evt | self pyramidSelectionChanged: evt ]
+		for: self.
 	self playground interactionModel projectModel: aPyramidActiveProject.
 	playground announcer
 		when: SpCodeEvaluationSucceedAnnouncement
 		do: [ :ann | aPyramidActiveProject informElementsChanged ]
 		for: self.
-	self updateSelectedElementsWith: {  }.
+	self updateSelectedElementsWith: {  }
 ]
 
 { #category : 'as yet unclassified' }

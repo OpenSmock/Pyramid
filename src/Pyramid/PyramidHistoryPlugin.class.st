@@ -80,8 +80,8 @@ PyramidHistoryPlugin >> projectModel: anObject [
 	projectModel := anObject.
 	projectModel announcer
 		when: PyramidElementsChangedEvent
-		send: #pyramidElementsChanged:
-		to: self
+		do: [ :evt | self pyramidElementsChanged: evt ]
+		for: self
 ]
 
 { #category : 'as yet unclassified' }

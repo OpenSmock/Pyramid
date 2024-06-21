@@ -123,11 +123,18 @@ PyramidTreePresenter >> projectModel [
 PyramidTreePresenter >> projectModel: anObject [
 
 	projectModel := anObject.
-	projectModel announcer when: PyramidElementsChangedEvent send: #pyramidElementsChanged: to: self.
-	projectModel announcer when: PyramidFirstLevelElementsChangedEvent send: #pyramidFirstLevelElementsChanged: to: self.
-	projectModel announcer when: PyramidSelectionChangedEvent send: #pyramidSelectionChanged: to: self.
-
-	
+	projectModel announcer
+		when: PyramidElementsChangedEvent
+		do: [ :evt | self pyramidElementsChanged: evt ]
+		for: self.
+	projectModel announcer
+		when: PyramidFirstLevelElementsChangedEvent
+		do: [ :evt | self pyramidFirstLevelElementsChanged: evt ]
+		for: self.
+	projectModel announcer
+		when: PyramidSelectionChangedEvent
+		do: [ :evt | self pyramidSelectionChanged: evt ]
+		for: self.
 ]
 
 { #category : 'as yet unclassified' }
