@@ -160,12 +160,11 @@ PyramidTreePlugin >> initialize [
 { #category : 'initialization' }
 PyramidTreePlugin >> initializeLibraryPresenters [
 
-	| idGenerator library |
-	library := PyramidElementToAddPresenter new.
+	| idGenerator |
 	idGenerator := PyramidLibraryContainerPresenter makeIdGenerator.
 	libraryPresenterForElement := PyramidLibraryContainerPresenter new
 		                              idGenerator: idGenerator;
-		                              library: library;
+		                              library: PyramidElementToAddPresenter new;
 		                              buttonLabel: 'Add new child';
 		                              buttonAction: [
 			                              self editor propertiesManager
@@ -179,7 +178,7 @@ PyramidTreePlugin >> initializeLibraryPresenters [
 		                              yourself.
 	libraryPresenterForRoot := PyramidLibraryContainerPresenter new
 		                           idGenerator: idGenerator;
-		                           library: library;
+		                           library: PyramidElementToAddPresenter new;
 		                           buttonLabel: 'Add new on first level';
 		                           buttonAction: [
 			                           self editor propertiesManager
@@ -191,7 +190,7 @@ PyramidTreePlugin >> initializeLibraryPresenters [
 						                           firstLevelElements }
 				                           with:
 					                           libraryPresenterForRoot elementToAdd ];
-		                           yourself.
+		                           yourself
 ]
 
 { #category : 'as yet unclassified' }
