@@ -10,7 +10,7 @@ SmalltalkCISpec {
     }
   ],
   #testing : {
-    #packages : [ 'Pyramid.*' ],
+    #categories : [ 'Pyramid*' ],
     #packages : [ 'Bloc-Serialization.*' ]
   }
 }

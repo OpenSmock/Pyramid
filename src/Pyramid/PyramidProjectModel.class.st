@@ -1,9 +1,8 @@
 Class {
 	#name : 'PyramidProjectModel',
 	#superclass : 'Object',
-	#traits : 'TPyramidProjectModel',
-	#classTraits : 'TPyramidProjectModel classTrait',
 	#instVars : [
+		'editor',
 		'firstLevelElements',
 		'selection'
 	],
@@ -12,11 +11,28 @@ Class {
 	#tag : 'models'
 }
 
-{ #category : 'accessing' }
-PyramidProjectModel >> allElements [
+{ #category : 'as yet unclassified' }
+PyramidProjectModel >> announce: anEvent [
 
-	^ PyramidElementsManipulationHelper flattenChildrenOfCollection:
-		  self firstLevelElements
+	self announcer announce: anEvent
+]
+
+{ #category : 'as yet unclassified' }
+PyramidProjectModel >> announcer [
+
+	^ self editor announcer
+]
+
+{ #category : 'accessing' }
+PyramidProjectModel >> editor [
+
+	^ editor
+]
+
+{ #category : 'accessing' }
+PyramidProjectModel >> editor: anObject [
+
+	editor := anObject
 ]
 
 { #category : 'accessing' }
@@ -25,13 +41,38 @@ PyramidProjectModel >> firstLevelElements [
 	^ firstLevelElements
 ]
 
+{ #category : 'as yet unclassified' }
+PyramidProjectModel >> informElementsChanged [
+
+	self announce: (PyramidElementsChangedEvent new
+			 firstLevelElements: self firstLevelElements;
+			 selection: self selection;
+			 yourself)
+]
+
+{ #category : 'as yet unclassified' }
+PyramidProjectModel >> informFirstLevelElementsChanged [
+
+	self announce: (PyramidFirstLevelElementsChangedEvent new
+			 firstLevelElements: self firstLevelElements;
+			 selection: self selection;
+			 yourself)
+]
+
+{ #category : 'as yet unclassified' }
+PyramidProjectModel >> informSelectionChanged [
+
+	self announce: (PyramidSelectionChangedEvent new
+			 firstLevelElements: self firstLevelElements;
+			 selection: self selection;
+			 yourself)
+]
+
 { #category : 'accessing' }
 PyramidProjectModel >> initialize [
 
 	selection := PyramidCollectionWithCallbacks new.
-	firstLevelElements := PyramidSortedCollectionWithCallbacks new
-		                      sortFunction: PyramidElevationSortFunction new;
-		                      yourself.
+	firstLevelElements := PyramidSortedCollectionWithCallbacks new.
 
 	selection
 		subscribe: self

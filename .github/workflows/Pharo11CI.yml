@@ -9,8 +9,6 @@ on:
       - 'main'
   pull_request:
     types: [assigned, opened, synchronize, reopened]
-  schedule:
-    - cron:  '0 12 * * 0'
 
 jobs:
   build:

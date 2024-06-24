@@ -17,12 +17,16 @@ PyramidCopyPastePluginTest >> testCopyAsStonMenu [
 	PyramidCopyPastePlugin new copyAsStonMenu: menuBuilder.
 
 	menu := menuBuilder menuFor: {  }.
-	self assert: menu menuGroups size equals: 0.
+	self assert: menu menuGroups size equals: 1.
+	self assert: menu menuGroups first menuItems size equals: 2.
+	self deny: menu menuGroups first menuItems first isEnabled.
+	self assert: menu menuGroups first menuItems second isEnabled.
 
 	menu := menuBuilder menuFor: { BlElement new }.
 	self assert: menu menuGroups size equals: 1.
-	self assert: menu menuGroups first menuItems size equals: 1.
+	self assert: menu menuGroups first menuItems size equals: 2.
 	self assert: menu menuGroups first menuItems first isEnabled.
+	self assert: menu menuGroups first menuItems second isEnabled.
 	Clipboard clipboardText: ''.
 	self assert: Clipboard clipboardText equals: ''.
 	menu menuGroups first menuItems first action value.
@@ -36,6 +40,7 @@ PyramidCopyPastePluginTest >> testCopyAsStonMenu [
 			        BlElement new.
 			        BlElement new }.
 	self assert: menu menuGroups size equals: 1.
-	self assert: menu menuGroups first menuItems size equals: 1.
-	self deny: menu menuGroups first menuItems first isEnabled
+	self assert: menu menuGroups first menuItems size equals: 2.
+	self deny: menu menuGroups first menuItems first isEnabled.
+	self deny: menu menuGroups first menuItems second isEnabled.
 ]

@@ -52,7 +52,8 @@ PyramidSavePlugin >> connectOn: aPyramidEditor [
 
 	self projectModel: aPyramidEditor projectModel.
 	self saveModel projectModel: aPyramidEditor projectModel.
-	aPyramidEditor projectModel addObserver: self inputsController
+	self inputsController projectModel: aPyramidEditor projectModel.
+	
 ]
 
 { #category : 'initialization' }

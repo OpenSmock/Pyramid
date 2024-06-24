@@ -21,15 +21,18 @@ PyramidPluginEditOnRunningTest >> closeSpace: aSpace [
 ]
 
 { #category : 'tests' }
-PyramidPluginEditOnRunningTest >> setUp [ 
+PyramidPluginEditOnRunningTest >> setUp [
 
 	super setUp.
-	
+
 	"Preserve user settings"
 	setting := PyramidPluginEditOnRunning editOnRunning.
-	
+
 	PyramidPluginEditOnRunning uninstall.
 	PyramidPluginEditOnRunning install.
+	
+	PyramidPluginEditOnRunning initialize.
+	PyramidSpacePlugin initialize.
 ]
 
 { #category : 'tests' }

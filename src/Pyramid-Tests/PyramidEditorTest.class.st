@@ -52,6 +52,14 @@ PyramidEditorTest >> openNewEditor [
 	self deny: spec window isInWorld
 ]
 
+{ #category : 'running' }
+PyramidEditorTest >> setUp [
+	super setUp.
+
+	"Need to initialize the plugin inorder to be sure they are loaded on the baseline when we use the CI."
+	PyramidPluginManager imagePluginClasses do: [ :each | each initialize ].
+]
+
 { #category : 'tests' }
 PyramidEditorTest >> testOpenFromBlSpace [
 
