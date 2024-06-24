@@ -10,19 +10,34 @@ Class {
 PyramidLibraryPresenterTest >> testIdGenerator [
 	"We generate a bunch of id and we verify that none are the same"
 
-	| treePlugin libraryPresForElements libraryPresForFirstLevel elements |
+	| treePlugin libraryPresForElements libraryPresForFirstLevel elementIds |
 	treePlugin := PyramidTreePlugin new.
 	libraryPresForElements := treePlugin libraryPresenterForElement.
 	libraryPresForFirstLevel := treePlugin libraryPresenterForRoot.
-	elements := Bag new.
+	libraryPresForElements library currentFactory:
+		(PyramidElementToAddFactory new
+			 elementBlock: [
+				 {
+					 BlElement new.
+					 BlElement new } ];
+			 yourself).
+	libraryPresForFirstLevel library currentFactory:
+		(PyramidElementToAddFactory new
+			 elementBlock: [
+				 {
+					 BlElement new.
+					 BlElement new } ];
+			 yourself).
+
+	elementIds := Bag new.
 	1 to: 100 do: [ :i |
-		elements add:
-			libraryPresForElements list selectedItem blockMaker value id
-				asSymbol ].
+		elementIds addAll:
+			(libraryPresForElements elementToAdd collect: [ :each |
+				 each id asSymbol ]) ].
 	1 to: 100 do: [ :i |
-		elements add:
-			libraryPresForFirstLevel list selectedItem blockMaker value id
-				asSymbol ].
-	self assert: elements size equals: 200.
-	self assert: elements asSet size equals: 200
+		elementIds addAll:
+			(libraryPresForFirstLevel elementToAdd collect: [ :each |
+				 each id asSymbol ]) ].
+	self assert: elementIds size equals: 400.
+	self assert: elementIds asSet size equals: 400.
 ]

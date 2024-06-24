@@ -1,8 +1,8 @@
 Class {
 	#name : 'PyramidTreePlugin',
 	#superclass : 'Object',
-	#traits : 'TPyramidPlugin',
-	#classTraits : 'TPyramidPlugin classTrait',
+	#traits : 'TPyramidPlugin + TPyramidElementToAdd',
+	#classTraits : 'TPyramidPlugin classTrait + TPyramidElementToAdd classTrait',
 	#instVars : [
 		'treePresenter',
 		'editor',
@@ -16,6 +16,68 @@ Class {
 	#package : 'Pyramid-Bloc',
 	#tag : 'plugin-tree-library'
 }
+
+{ #category : 'as yet unclassified' }
+PyramidTreePlugin class >> addDefaultOnLibrary: library [
+
+	| factoryElement factoryTextElement |
+
+	factoryElement := PyramidElementToAddFactory new
+				             elementIcon:
+					             (Smalltalk ui icons iconNamed: #class);
+				             elementName: 'Simple Element';
+				             elementBlock: [ {BlElement new background: Color random; yourself} ];
+				             yourself.
+	factoryTextElement := PyramidElementToAddFactory new
+				             elementIcon:
+					             (Smalltalk ui icons iconNamed: #haloFontSize);
+				             elementName: 'Simple Element';
+				             elementBlock: [ {BlTextElement new text: 'Change me' asRopedText; yourself} ];
+				             yourself.
+
+	library
+		addCategoryWithName: '(Default)'
+		withIcon: (Smalltalk ui icons iconNamed: #box)
+		withAllFactories: { factoryElement . factoryTextElement } sorted.
+
+	^ library
+]
+
+{ #category : 'adding' }
+PyramidTreePlugin class >> addOnLibrary: aLibrary [
+
+	self addDefaultOnLibrary: aLibrary.
+	self addPystonOnLibrary: aLibrary
+]
+
+{ #category : 'as yet unclassified' }
+PyramidTreePlugin class >> addPystonOnLibrary: library [
+
+	| pragmas methods packages |
+	pragmas := Pragma allNamed: #pySTON.
+	methods := (pragmas collect: #method) asSet.
+	packages := (methods collect: #package) asSet.
+
+	packages do: [ :package |
+		| factories |
+		factories := methods
+			             select: [ :method | method package = package ]
+			             thenCollect: [ :method |
+				             PyramidElementToAddFactory new
+					             elementIcon: (Smalltalk ui icons iconNamed:
+								              method methodClass soleInstance systemIconName);
+					             elementName: method selector;
+					             elementBlock: [
+						             (method methodClass soleInstance perform:
+								              method selector) materializeAsBlElement ];
+					             yourself ].
+		library
+			addCategoryWithName: package name
+			withIcon: (Smalltalk ui icons iconNamed: #smallInfo)
+			withAllFactories: factories asArray sorted ].
+
+	^ library
+]
 
 { #category : 'accessing' }
 PyramidTreePlugin class >> columnsBuildersClasses [
@@ -80,8 +142,6 @@ PyramidTreePlugin >> editor [
 PyramidTreePlugin >> editor: aPyramidEditor [
 
 	editor := aPyramidEditor.
-	self libraryPresenterForElement editor: aPyramidEditor.
-	self libraryPresenterForRoot editor: aPyramidEditor.
 	self treePresenter projectModel: aPyramidEditor projectModel.
 	self treePresenter editorMenuBuilder:
 		(self editor window services at: #selectionMenu) builder
@@ -101,15 +161,35 @@ PyramidTreePlugin >> initialize [
 PyramidTreePlugin >> initializeLibraryPresenters [
 
 	| idGenerator |
-	idGenerator := PyramidLibraryPresenter makeIdGenerator.
-	libraryPresenterForElement := PyramidLibraryPresenterForElement new
-		                              editor: self editor;
+	idGenerator := PyramidLibraryContainerPresenter makeIdGenerator.
+	libraryPresenterForElement := PyramidLibraryContainerPresenter new
 		                              idGenerator: idGenerator;
+		                              library: PyramidElementToAddPresenter new;
+		                              buttonLabel: 'Add new child';
+		                              buttonAction: [
+			                              self editor propertiesManager
+				                              commandExecutor
+				                              use: PyramidAddChildrenCommand new
+				                              on:
+					                              self editor projectModel selection
+				                              with:
+					                              libraryPresenterForElement
+						                              elementToAdd ];
 		                              yourself.
-	libraryPresenterForRoot := PyramidLibraryPresenterForFirstLevelElement
-		                           new
-		                           editor: self editor;
+	libraryPresenterForRoot := PyramidLibraryContainerPresenter new
 		                           idGenerator: idGenerator;
+		                           library: PyramidElementToAddPresenter new;
+		                           buttonLabel: 'Add new on first level';
+		                           buttonAction: [
+			                           self editor propertiesManager
+				                           commandExecutor
+				                           use:
+					                           PyramidAddAllToCollectionCommand new
+				                           on:
+					                           { self editor projectModel
+						                           firstLevelElements }
+				                           with:
+					                           libraryPresenterForRoot elementToAdd ];
 		                           yourself
 ]
 
