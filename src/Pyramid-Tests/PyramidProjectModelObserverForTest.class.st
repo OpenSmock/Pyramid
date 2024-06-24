@@ -11,12 +11,12 @@ Class {
 	#tag : 'cases-models'
 }
 
-{ #category : 'initialization' }
+{ #category : 'accessing' }
 PyramidProjectModelObserverForTest >> initialize [
 
-	self pyramidElementsChangedAction: [ :evt | ].
-	self pyramidFirstLevelElementsChangedAction: [ :evt | ].
-	self pyramidSelectionChangedAction: [ :evt | ]
+	self pyramidElementsChangedAction: [ :evt |  ].
+	self pyramidFirstLevelElementsChangedAction: [ :evt |  ].
+	self pyramidSelectionChangedAction: [ :evt |  ]
 ]
 
 { #category : 'accessing' }
@@ -37,12 +37,18 @@ PyramidProjectModelObserverForTest >> projectModel: aProjectModel [
 ]
 
 { #category : 'as yet unclassified' }
+PyramidProjectModelObserverForTest >> pyramidElementsChanged [
+
+	self pyramidElementsChangedAction value.
+]
+
+{ #category : 'accessing' }
 PyramidProjectModelObserverForTest >> pyramidElementsChanged: anEvent [
 
 	self pyramidElementsChangedAction value: anEvent
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : 'accessing' }
 PyramidProjectModelObserverForTest >> pyramidElementsChangedAction [
 
 	^ pyramidElementsChangedAction
@@ -55,6 +61,12 @@ PyramidProjectModelObserverForTest >> pyramidElementsChangedAction: anObject [
 ]
 
 { #category : 'as yet unclassified' }
+PyramidProjectModelObserverForTest >> pyramidFirstLevelElementsChanged [
+
+	self pyramidFirstLevelElementsChangedAction value
+]
+
+{ #category : 'accessing' }
 PyramidProjectModelObserverForTest >> pyramidFirstLevelElementsChanged: anEvent [
 
 	self pyramidFirstLevelElementsChangedAction value: anEvent
@@ -73,6 +85,12 @@ PyramidProjectModelObserverForTest >> pyramidFirstLevelElementsChangedAction: an
 ]
 
 { #category : 'as yet unclassified' }
+PyramidProjectModelObserverForTest >> pyramidSelectionChanged [
+
+	self pyramidSelectionChangedAction value
+]
+
+{ #category : 'accessing' }
 PyramidProjectModelObserverForTest >> pyramidSelectionChanged: anEvent [
 
 	self pyramidSelectionChangedAction value: anEvent
