@@ -11,7 +11,9 @@ Class {
 { #category : 'accessing' }
 PyramidBlocTextPlugin class >> changeText [
 
+	<pyManualProperty>
 	| property |
+	
 	property := PyramidProperty new
 		            name: 'Text';
 		            command: PyramidChangeTextCommand new;
@@ -38,6 +40,7 @@ PyramidBlocTextPlugin class >> fontSize [
 { #category : 'accessing' }
 PyramidBlocTextPlugin class >> fontWeight [
 
+	<pyManualProperty>
 	| property |
 	property := PyramidProperty new
 		            name: 'Font weight';
@@ -51,6 +54,7 @@ PyramidBlocTextPlugin class >> fontWeight [
 { #category : 'accessing' }
 PyramidBlocTextPlugin class >> textForeground [
 
+	<pyManualProperty>
 	| property |
 	property := PyramidProperty new
 		            name: 'Text foreground';
@@ -66,8 +70,14 @@ PyramidBlocTextPlugin class >> textForeground [
 { #category : 'connecting' }
 PyramidBlocTextPlugin >> connectOn: aPyramidEditor [
 
-	aPyramidEditor propertiesManager addProperty: self class changeText.
-	aPyramidEditor propertiesManager addProperty: self class fontSize.
-	aPyramidEditor propertiesManager addProperty: self class fontWeight.
-	aPyramidEditor propertiesManager addProperty: self class textForeground
+	(self class class methods select: [ :e |
+		 e hasPragmaNamed: #pyManualProperty ]) do: [ :m |
+		aPyramidEditor propertiesManager addProperty:
+			(self class perform: m selector) ].
+
+	BlTextElement new simpleReneDescription do: [ :propertyDescription |
+		| property |
+		property := PyramidMagritteProperty new magritteDescription:
+			            propertyDescription.
+		aPyramidEditor propertiesManager addProperty: property ]
 ]

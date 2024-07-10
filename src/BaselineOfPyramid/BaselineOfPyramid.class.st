@@ -81,11 +81,13 @@ BaselineOfPyramid >> preload: loader package: packageSpec [
 { #category : 'packages' }
 BaselineOfPyramid >> pyramidPackages: spec [
 
-	spec package: 'Pyramid'.
-	spec
-		package: 'Pyramid-IDE'
-		with: [ spec requires: #( 'Pyramid' ) ].
+	spec baseline: 'SimpleRene' with: [
+		spec
+			repository: 'github://pharo-contributions/SimpleRene:v1.0.0';
+			loads: #( Core ) ].
 
+	spec package: 'Pyramid' with: [ spec requires: #( 'SimpleRene' ) ].
+	spec package: 'Pyramid-IDE' with: [ spec requires: #( 'Pyramid' ) ]
 ]
 
 { #category : 'dependencies' }
