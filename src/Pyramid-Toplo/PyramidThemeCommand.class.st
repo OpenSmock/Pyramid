@@ -15,5 +15,5 @@ PyramidThemeCommand >> getValueFor: anObject [
 { #category : 'as yet unclassified' }
 PyramidThemeCommand >> setValueFor: anObject with: nilOrToTheme [
 
-	anObject toTheme: nilOrToTheme
+	anObject localTheme: nilOrToTheme
 ]

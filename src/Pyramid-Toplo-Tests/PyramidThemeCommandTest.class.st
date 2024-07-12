@@ -21,20 +21,20 @@ PyramidThemeCommandTest >> targetContainers [
 		  (PyramidCommandTestContainer
 			   no: BlElement new
 			   with: (BlElement new
-					    toTheme: ToRawTheme new;
+					    localTheme: ToRawTheme new;
 					    yourself)
 			   prop: ToRawTheme new).
 		  (PyramidCommandTestContainer
 			   no: (BlElement new
-					    toTheme: ToRawDarkTheme new;
+					    localTheme: ToRawDarkTheme new;
 					    yourself)
 			   with: (BlElement new
-					    toTheme: ToRawTheme new;
+					    localTheme: ToRawTheme new;
 					    yourself)
 			   prop: ToRawTheme new).
 			 (PyramidCommandTestContainer
 			   no: (BlElement new
-					    toTheme: ToRawDarkTheme new;
+					    localTheme: ToRawDarkTheme new;
 					    yourself)
 			   with: (BlElement new)
 			   prop: nil) }
