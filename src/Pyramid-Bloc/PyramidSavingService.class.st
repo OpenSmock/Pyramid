@@ -2,14 +2,96 @@ Class {
 	#name : 'PyramidSavingService',
 	#superclass : 'Object',
 	#instVars : [
-		'methodBuilder',
 		'saveModel',
 		'verifier'
+	],
+	#classInstVars : [
+		'currentMethodBuilder',
+		'stash',
+		'ston',
+		'currentMethodBuilderSelector'
 	],
 	#category : 'Pyramid-Bloc-plugin-save',
 	#package : 'Pyramid-Bloc',
 	#tag : 'plugin-save'
 }
+
+{ #category : 'as yet unclassified' }
+PyramidSavingService class >> allSaveMethodBuilders [
+
+	^ (Pragma allNamed: #pyramidSaveMethodBuilder:) collect: [ :pragma | pragma arguments first -> pragma methodSelector ]
+
+	
+]
+
+{ #category : 'as yet unclassified' }
+PyramidSavingService class >> currentMethodBuilder [
+
+	^ self perform: self currentMethodBuilderSelector
+]
+
+{ #category : 'accessing' }
+PyramidSavingService class >> currentMethodBuilderSelector [
+
+	currentMethodBuilderSelector ifNil: [ currentMethodBuilderSelector := #stash ].
+	^ currentMethodBuilderSelector
+]
+
+{ #category : 'accessing' }
+PyramidSavingService class >> currentMethodBuilderSelector: anObject [
+
+	currentMethodBuilderSelector := anObject
+]
+
+{ #category : 'as yet unclassified' }
+PyramidSavingService class >> saveMethodBuilderSettingOn: aBuilder [
+
+	<systemsettings>
+	(aBuilder pickOne: #currentMethodBuilderSelector)
+		parent: #pyramid;
+		label: 'Select the serialization format';
+		target: self;
+		default: #stash;
+		domainValues: self allSaveMethodBuilders;
+		description:
+			'Change the serialization format when saving a project.'
+]
+
+{ #category : 'as yet unclassified' }
+PyramidSavingService class >> stash [
+
+	<pyramidSaveMethodBuilder: 'Serialize as Source Code'>
+	^ PyramidSavingMethodBuilder new
+		         classifier: #'pyramid-serialized-bloc';
+		         comment: [
+			         'This class has been generated using Pyramid.<r><r><t>By: <1s><r><t><2s> <3s>'
+				         expandMacrosWith: Author uniqueInstance fullName
+				         with: Date today yyyymmdd
+				         with: Time now print24 ];
+		         pragma: 'pyStash';
+		         serializeBlock: [ :collection |
+			         '[ <1s> ] value' expandMacrosWith:
+					         (BlStashSerializer serialize: collection) ];
+		         yourself
+]
+
+{ #category : 'as yet unclassified' }
+PyramidSavingService class >> ston [
+
+	<pyramidSaveMethodBuilder: 'Serialize as STON object'>
+	^ PyramidSavingMethodBuilder new
+		        classifier: #'pyramid-serialized-bloc';
+		        comment: [
+			        'This class has been generated using Pyramid.<r><r><t>By: <1s><r><t><2s> <3s>'
+				        expandMacrosWith: Author uniqueInstance fullName
+				        with: Date today yyyymmdd
+				        with: Time now print24 ];
+		        pragma: 'pySTON';
+		        serializeBlock: [ :collection |
+			        '<1p>' expandMacrosWith:
+					        (BlStonSerializer serialize: collection) ];
+		        yourself
+]
 
 { #category : 'testing' }
 PyramidSavingService >> canSave [
@@ -31,13 +113,7 @@ PyramidSavingService >> errorCannotSave [
 { #category : 'accessing' }
 PyramidSavingService >> methodBuilder [
 
-	^ methodBuilder
-]
-
-{ #category : 'accessing' }
-PyramidSavingService >> methodBuilder: anObject [
-
-	methodBuilder := anObject
+	^ self class currentMethodBuilder
 ]
 
 { #category : 'testing' }

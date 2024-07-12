@@ -13,7 +13,8 @@ Class {
 		'labelErrorMethod',
 		'controller',
 		'saveModel',
-		'shouldTriggerEvent'
+		'shouldTriggerEvent',
+		'openSettingsLink'
 	],
 	#category : 'Pyramid-Bloc-plugin-save',
 	#package : 'Pyramid-Bloc',
@@ -65,7 +66,8 @@ PyramidSaveProjectConfigurationView >> defaultLayout [
 		  expand: false;
 		  add: (SpBoxLayout newHorizontal
 				   spacing: 4;
-				   add: (Smalltalk ui icons iconNamed: #packageColored) expand: false;
+				   add: (Smalltalk ui icons iconNamed: #packageColored)
+				   expand: false;
 				   add: self inputPackage)
 		  expand: false;
 		  add: self labelErrorPackage expand: false;
@@ -77,7 +79,8 @@ PyramidSaveProjectConfigurationView >> defaultLayout [
 		  add: self labelErrorClass expand: false;
 		  add: (SpBoxLayout newHorizontal
 				   spacing: 4;
-				   add: (Smalltalk ui icons iconNamed: #changeUpdate) expand: false;
+				   add: (Smalltalk ui icons iconNamed: #changeUpdate)
+				   expand: false;
 				   add: self inputMethod)
 		  expand: false;
 		  add: self labelErrorMethod expand: false;
@@ -87,6 +90,11 @@ PyramidSaveProjectConfigurationView >> defaultLayout [
 				   add: self buttonBrowse width: 32;
 				   yourself)
 		  expand: false;
+		  add: (SpBoxLayout newHorizontal
+				   add: 'Go on ' expand: false;
+				   add: self openSettingsLink expand: false;
+				   add: ' to change the format.';
+				   yourself);
 		  yourself
 ]
 
@@ -160,7 +168,12 @@ PyramidSaveProjectConfigurationView >> initializePresenters [
 
 	labelErrorPackage := self newLabel.
 	labelErrorClass := self newLabel.
-	labelErrorMethod := self newLabel
+	labelErrorMethod := self newLabel.
+	openSettingsLink := self newLink.
+	openSettingsLink
+		label: 'Pyramid Settings';
+		action: [
+			self openSettingsBrowser ]
 ]
 
 { #category : 'accessing' }
@@ -212,6 +225,22 @@ PyramidSaveProjectConfigurationView >> model: aPySaveModel [
 
 	saveModel := aPySaveModel.
 	self updateFromModelWithoutEvents
+]
+
+{ #category : 'initialization' }
+PyramidSaveProjectConfigurationView >> openSettingsBrowser [
+
+	| browser |
+	browser := SettingBrowser new.
+	browser changeSearchedText: 'Pyramid'.
+	browser open.
+	browser expandAll
+]
+
+{ #category : 'accessing' }
+PyramidSaveProjectConfigurationView >> openSettingsLink [
+
+	^ openSettingsLink
 ]
 
 { #category : 'accessing' }

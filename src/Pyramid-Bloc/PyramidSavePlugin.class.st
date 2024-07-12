@@ -65,7 +65,6 @@ PyramidSavePlugin >> initialize [
 
 	savingService := PyramidSavingService new
 		                 saveModel: saveModel;
-		                 methodBuilder: PyramidSavingMethodBuilder ston;
 		                 yourself.
 
 	inputsButton := SpButtonPresenter new
