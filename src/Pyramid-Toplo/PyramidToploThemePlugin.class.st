@@ -1,8 +1,8 @@
 Class {
 	#name : 'PyramidToploThemePlugin',
 	#superclass : 'Object',
-	#traits : 'TPyramidPlugin',
-	#classTraits : 'TPyramidPlugin classTrait',
+	#traits : 'TPyramidPlugin + TPyramidElementToAdd',
+	#classTraits : 'TPyramidPlugin classTrait + TPyramidElementToAdd classTrait',
 	#instVars : [
 		'themePresenter',
 		'themePropertyManager'
@@ -11,6 +11,27 @@ Class {
 	#package : 'Pyramid-Toplo',
 	#tag : 'plugin-theme-management'
 }
+
+{ #category : 'adding' }
+PyramidToploThemePlugin class >> addOnLibrary: aLibrary [
+
+	| classes factories |
+	classes := ToElement allSubclasses.
+	factories := classes
+		             reject: [ :each | each isAbstract ]
+		             thenCollect: [ :class |
+			             PyramidElementToAddFactory new
+				             elementIcon:
+					             (Smalltalk ui icons iconNamed: class systemIconName);
+				             elementName: class name;
+				             elementBlock: [ { class new } ];
+				             yourself ].
+
+	aLibrary
+		addCategoryWithName: 'Toplo'
+		withIcon: (Smalltalk ui icons iconNamed: #smallInfo)
+		withAllFactories: factories asArray sorted.
+]
 
 { #category : 'asserting' }
 PyramidToploThemePlugin class >> shouldInstall [

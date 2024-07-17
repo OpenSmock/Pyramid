@@ -80,9 +80,17 @@ PyramidProjectModelTest >> setUp [
 	observer := PyramidProjectModelObserverForTest new.
 
 	observer projectModel: projectModel.
-	
-	projectModel firstLevelElements addAll: { BlElement new. BlElement new. BlElement new. BlElement new}.
-	projectModel selection addAll: { BlElement new. BlElement new. BlElement new. BlElement new}.
+
+	projectModel firstLevelElements addAll: {
+			BlElement new.
+			BlElement new.
+			BlElement new.
+			BlElement new }.
+	projectModel selection addAll: {
+			BlElement new.
+			BlElement new.
+			BlElement new.
+			BlElement new }.
 
 	pyramidElementsChanged := false.
 	pyramidFirstLevelElementsChanged := false.
