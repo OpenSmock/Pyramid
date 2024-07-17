@@ -14,553 +14,168 @@ Class {
 
 { #category : 'pyramid-serialized-bloc' }
 PyramidVisibilityInputPresenter class >> blocGone [
-	"This class has been generated using Pyramid.
-
-	By: YannLEGOFF
-	2024-01-22 12:04:35"
-
-	<pySTON>
-	^ '[
-	BlElement {
-		#constraints : BlLayoutCommonConstraints {
-			#vertical : BlLayoutCommonConstraintsAxis {
-				#resizer : BlLayoutExactResizer {
-					#size : 8.0
-				}
-			},
-			#horizontal : BlLayoutCommonConstraintsAxis {
-				#resizer : BlLayoutExactResizer {
-					#size : 8.0
-				}
-			},
-			#position : Point [ 0, 3 ],
-			#margin : BlInsets {
-				#top : 0.0,
-				#left : 0.0,
-				#bottom : 0.0,
-				#right : 0.0
-			},
-			#padding : @9,
-			#minHeight : 0.0,
-			#minWidth : 0.0,
-			#maxHeight : Float [ #infinity ],
-			#maxWidth : @10,
-			#ignoredByLayout : false,
-			#accountTransformation : false
-		},
-		#visuals : BlCustomVisuals {
-			#background : BlPaintBackground {
-				#paint : BlColorPaint {
-					#color : Color {
-						#red : 0.3333333333333333,
-						#green : 1.0,
-						#blue : 0.3333333333333333,
-						#alpha : 1.0
-					}
-				}
-			}
-		},
-		#userData : IdentityDictionary {
-			#elementId : BlElementNamedId {
-				#identifier : #C
-			},
-			#shouldHandleMousePickOutsideEvent : false
-		},
-		#layout : BlBasicLayout { }
-	},
-	BlElement {
-		#constraints : BlLayoutCommonConstraints {
-			#vertical : BlLayoutCommonConstraintsAxis {
-				#resizer : BlLayoutExactResizer {
-					#size : 8.0
-				}
-			},
-			#horizontal : BlLayoutCommonConstraintsAxis {
-				#resizer : BlLayoutExactResizer {
-					#size : 8.0
-				}
-			},
-			#position : Point [ 11, 3 ],
-			#margin : @9,
-			#padding : @9,
-			#minHeight : 0.0,
-			#minWidth : 0.0,
-			#maxHeight : @10,
-			#maxWidth : @10,
-			#ignoredByLayout : false,
-			#accountTransformation : false
-		},
-		#visuals : BlCustomVisuals {
-			#background : BlPaintBackground {
-				#paint : BlColorPaint {
-					#color : Color {
-						#red : 0.3333333333333333,
-						#green : 0.3333333333333333,
-						#blue : 1.0,
-						#alpha : 1.0
-					}
-				}
-			}
-		},
-		#userData : IdentityDictionary {
-			#elementId : BlElementNamedId {
-				#identifier : #E
-			},
-			#shouldHandleMousePickOutsideEvent : false
-		},
-		#layout : @17
-	}
-]'
+<pyStash>
+	^ [ "BlStashSerializer"
+{(BlElement new
+   id: #C;
+   background: (BlPaintBackground new
+         opacity: 1.0;
+         paint: (BlColorPaint new
+               color: (Color r: 0.3333333333333333 g: 1.0 b: 0.3333333333333333 alpha: 1.0);
+               yourself);
+         yourself);
+   layout: BlBasicLayout uniqueInstance;
+   constraintsDo: [:constraints |  constraints horizontal exact: 8.0.
+      constraints vertical exact: 8.0.
+      constraints position: 0 @ 3 ];
+   yourself) . 
+(BlElement new
+   id: #E;
+   background: (BlPaintBackground new
+         opacity: 1.0;
+         paint: (BlColorPaint new
+               color: (Color r: 0.3333333333333333 g: 0.3333333333333333 b: 1.0 alpha: 1.0);
+               yourself);
+         yourself);
+   layout: BlBasicLayout uniqueInstance;
+   constraintsDo: [:constraints |  constraints horizontal exact: 8.0.
+      constraints vertical exact: 8.0.
+      constraints position: 11 @ 3 ];
+   yourself)}
+	] value
 ]
 
 { #category : 'pyramid-serialized-bloc' }
 PyramidVisibilityInputPresenter class >> blocHidden [
-	"This class has been generated using Pyramid.
-
-	By: YannLEGOFF
-	2024-01-22 12:05:28"
-
-	<pySTON>
-	^ '[
-	BlElement {
-		#constraints : BlLayoutCommonConstraints {
-			#vertical : BlLayoutCommonConstraintsAxis {
-				#resizer : BlLayoutExactResizer {
-					#size : 8.0
-				}
-			},
-			#horizontal : BlLayoutCommonConstraintsAxis {
-				#resizer : BlLayoutExactResizer {
-					#size : 8.0
-				}
-			},
-			#position : Point [ 0, 3 ],
-			#margin : BlInsets {
-				#top : 0.0,
-				#left : 0.0,
-				#bottom : 0.0,
-				#right : 0.0
-			},
-			#padding : @9,
-			#minHeight : 0.0,
-			#minWidth : 0.0,
-			#maxHeight : Float [ #infinity ],
-			#maxWidth : @10,
-			#ignoredByLayout : false,
-			#accountTransformation : false
-		},
-		#visuals : BlCustomVisuals {
-			#background : BlPaintBackground {
-				#paint : BlColorPaint {
-					#color : Color {
-						#red : 0.3333333333333333,
-						#green : 1.0,
-						#blue : 0.3333333333333333,
-						#alpha : 1.0
-					}
-				}
-			}
-		},
-		#userData : IdentityDictionary {
-			#elementId : BlElementNamedId {
-				#identifier : #C
-			}
-		},
-		#layout : BlBasicLayout { }
-	},
-	BlElement {
-		#constraints : BlLayoutCommonConstraints {
-			#vertical : BlLayoutCommonConstraintsAxis {
-				#resizer : BlLayoutExactResizer {
-					#size : 8.0
-				}
-			},
-			#horizontal : BlLayoutCommonConstraintsAxis {
-				#resizer : BlLayoutExactResizer {
-					#size : 8.0
-				}
-			},
-			#position : Point [ 11, 3 ],
-			#margin : @9,
-			#padding : @9,
-			#minHeight : 0.0,
-			#minWidth : 0.0,
-			#maxHeight : @10,
-			#maxWidth : @10,
-			#ignoredByLayout : false,
-			#accountTransformation : false
-		},
-		#visuals : BlCustomVisuals {
-			#background : BlPaintBackground {
-				#paint : BlColorPaint {
-					#color : Color {
-						#red : 1.0,
-						#green : 0.3333333333333333,
-						#blue : 0.3333333333333333,
-						#alpha : 0.2980392156862745
-					}
-				}
-			}
-		},
-		#userData : IdentityDictionary {
-			#elementId : BlElementNamedId {
-				#identifier : #D
-			}
-		},
-		#layout : @17
-	},
-	BlElement {
-		#constraints : BlLayoutCommonConstraints {
-			#vertical : BlLayoutCommonConstraintsAxis {
-				#resizer : BlLayoutExactResizer {
-					#size : 8.0
-				}
-			},
-			#horizontal : BlLayoutCommonConstraintsAxis {
-				#resizer : BlLayoutExactResizer {
-					#size : 8.0
-				}
-			},
-			#position : Point [ 22, 3 ],
-			#margin : @9,
-			#padding : @9,
-			#minHeight : 0.0,
-			#minWidth : 0.0,
-			#maxHeight : @10,
-			#maxWidth : @10,
-			#ignoredByLayout : false,
-			#accountTransformation : false
-		},
-		#visuals : BlCustomVisuals {
-			#background : BlPaintBackground {
-				#paint : BlColorPaint {
-					#color : Color {
-						#red : 0.3333333333333333,
-						#green : 0.3333333333333333,
-						#blue : 1.0,
-						#alpha : 1.0
-					}
-				}
-			}
-		},
-		#userData : IdentityDictionary {
-			#elementId : BlElementNamedId {
-				#identifier : #E
-			}
-		},
-		#layout : @17
-	}
-]'
+<pyStash>
+	^ [ "BlStashSerializer"
+{(BlElement new
+   id: #C;
+   background: (BlPaintBackground new
+         opacity: 1.0;
+         paint: (BlColorPaint new
+               color: (Color r: 0.3333333333333333 g: 1.0 b: 0.3333333333333333 alpha: 1.0);
+               yourself);
+         yourself);
+   layout: BlBasicLayout uniqueInstance;
+   constraintsDo: [:constraints |  constraints horizontal exact: 8.0.
+      constraints vertical exact: 8.0.
+      constraints position: 0 @ 3 ];
+   yourself) . 
+(BlElement new
+   id: #D;
+   background: (BlPaintBackground new
+         opacity: 1.0;
+         paint: (BlColorPaint new
+               color: (Color r: 1.0 g: 0.3333333333333333 b: 0.3333333333333333 alpha: 0.2980392156862745);
+               yourself);
+         yourself);
+   layout: BlBasicLayout uniqueInstance;
+   constraintsDo: [:constraints |  constraints horizontal exact: 8.0.
+      constraints vertical exact: 8.0.
+      constraints position: 11 @ 3 ];
+   yourself) . 
+(BlElement new
+   id: #E;
+   background: (BlPaintBackground new
+         opacity: 1.0;
+         paint: (BlColorPaint new
+               color: (Color r: 0.3333333333333333 g: 0.3333333333333333 b: 1.0 alpha: 1.0);
+               yourself);
+         yourself);
+   layout: BlBasicLayout uniqueInstance;
+   constraintsDo: [:constraints |  constraints horizontal exact: 8.0.
+      constraints vertical exact: 8.0.
+      constraints position: 22 @ 3 ];
+   yourself)}
+	] value
 ]
 
 { #category : 'pyramid-serialized-bloc' }
 PyramidVisibilityInputPresenter class >> blocVisibilityUnknow [
-	"This class has been generated using Pyramid.
-
-	By: YannLEGOFF
-	2024-01-22 12:06:04"
-
-	<pySTON>
-	^ '[
-	BlElement {
-		#constraints : BlLayoutCommonConstraints {
-			#vertical : BlLayoutCommonConstraintsAxis {
-				#resizer : BlLayoutExactResizer {
-					#size : 8.0
-				}
-			},
-			#horizontal : BlLayoutCommonConstraintsAxis {
-				#resizer : BlLayoutExactResizer {
-					#size : 8.0
-				}
-			},
-			#position : Point [ 0, 3 ],
-			#margin : BlInsets {
-				#top : 0.0,
-				#left : 0.0,
-				#bottom : 0.0,
-				#right : 0.0
-			},
-			#padding : @9,
-			#minHeight : 0.0,
-			#minWidth : 0.0,
-			#maxHeight : Float [ #infinity ],
-			#maxWidth : @10,
-			#ignoredByLayout : false,
-			#accountTransformation : false
-		},
-		#visuals : BlCustomVisuals {
-			#background : BlPaintBackground {
-				#paint : BlLinearGradientPaint {
-					#stops : [
-						0 : Color {
-							#red : 1.0,
-							#green : 0.8592375366568915,
-							#blue : 0.2590420332355816,
-							#alpha : 1.0
-						},
-						1 : Color {
-							#red : 1.0,
-							#green : 0.8592375366568915,
-							#blue : 0.2590420332355816,
-							#alpha : 0.0
-						}
-					],
-					#start : Point [ 0, 0 ],
-					#end : Point [ 8.0, 0.0 ]
-				}
-			}
-		},
-		#userData : IdentityDictionary {
-			#elementId : BlElementNamedId {
-				#identifier : #C
-			}
-		},
-		#layout : BlBasicLayout { }
-	},
-	BlElement {
-		#constraints : BlLayoutCommonConstraints {
-			#vertical : BlLayoutCommonConstraintsAxis {
-				#resizer : BlLayoutExactResizer {
-					#size : 8.0
-				}
-			},
-			#horizontal : BlLayoutCommonConstraintsAxis {
-				#resizer : BlLayoutExactResizer {
-					#size : 8.0
-				}
-			},
-			#position : Point [ 11, 3 ],
-			#margin : @9,
-			#padding : @9,
-			#minHeight : 0.0,
-			#minWidth : 0.0,
-			#maxHeight : @10,
-			#maxWidth : @10,
-			#ignoredByLayout : false,
-			#accountTransformation : false
-		},
-		#visuals : BlCustomVisuals {
-			#background : BlPaintBackground {
-				#paint : BlLinearGradientPaint {
-					#stops : [
-						0 : Color {
-							#red : 1.0,
-							#green : 0.8592375366568915,
-							#blue : 0.2590420332355816,
-							#alpha : 1.0
-						},
-						1 : Color {
-							#red : 1.0,
-							#green : 0.8592375366568915,
-							#blue : 0.2590420332355816,
-							#alpha : 0.0
-						}
-					],
-					#start : Point [ 0, 0 ],
-					#end : Point [ 8.0, 0.0 ]
-				}
-			}
-		},
-		#userData : IdentityDictionary {
-			#elementId : BlElementNamedId {
-				#identifier : #D
-			}
-		},
-		#layout : @21
-	},
-	BlElement {
-		#constraints : BlLayoutCommonConstraints {
-			#vertical : BlLayoutCommonConstraintsAxis {
-				#resizer : BlLayoutExactResizer {
-					#size : 8.0
-				}
-			},
-			#horizontal : BlLayoutCommonConstraintsAxis {
-				#resizer : BlLayoutExactResizer {
-					#size : 8.0
-				}
-			},
-			#position : Point [ 22, 3 ],
-			#margin : @9,
-			#padding : @9,
-			#minHeight : 0.0,
-			#minWidth : 0.0,
-			#maxHeight : @10,
-			#maxWidth : @10,
-			#ignoredByLayout : false,
-			#accountTransformation : false
-		},
-		#visuals : BlCustomVisuals {
-			#background : BlPaintBackground {
-				#paint : BlLinearGradientPaint {
-					#stops : [
-						0 : Color {
-							#red : 1.0,
-							#green : 0.8592375366568915,
-							#blue : 0.2590420332355816,
-							#alpha : 1.0
-						},
-						1 : Color {
-							#red : 1.0,
-							#green : 0.8592375366568915,
-							#blue : 0.2590420332355816,
-							#alpha : 0.0
-						}
-					],
-					#start : Point [ 0, 0 ],
-					#end : Point [ 8.0, 0.0 ]
-				}
-			}
-		},
-		#userData : IdentityDictionary {
-			#elementId : BlElementNamedId {
-				#identifier : #E
-			}
-		},
-		#layout : @21
-	}
-]'
+<pyStash>
+	^ [ "BlStashSerializer"
+| blpaintbackground1 |
+blpaintbackground1 := BlPaintBackground new.
+{(BlElement new
+   id: #C;
+   background: (blpaintbackground1
+         opacity: 1.0;
+         paint: (BlLinearGradientPaint new
+               stops: {(0 -> (Color r: 1.0 g: 0.8592375366568915 b: 0.2590420332355816 alpha: 1.0)) . 
+                  (1.0 -> (Color r: 1.0 g: 0.8592375366568915 b: 0.2590420332355816 alpha: 0.0))};
+               start: 0 @ 0;
+               end: 8.0 @ 0;
+               yourself);
+         yourself);
+   layout: BlBasicLayout uniqueInstance;
+   constraintsDo: [:constraints |  constraints horizontal exact: 8.0.
+      constraints vertical exact: 8.0.
+      constraints position: 0 @ 3 ];
+   yourself) . 
+(BlElement new
+   id: #D;
+   background: blpaintbackground1;
+   layout: BlBasicLayout uniqueInstance;
+   constraintsDo: [:constraints |  constraints horizontal exact: 8.0.
+      constraints vertical exact: 8.0.
+      constraints position: 11 @ 3 ];
+   yourself) . 
+(BlElement new
+   id: #E;
+   background: blpaintbackground1;
+   layout: BlBasicLayout uniqueInstance;
+   constraintsDo: [:constraints |  constraints horizontal exact: 8.0.
+      constraints vertical exact: 8.0.
+      constraints position: 22 @ 3 ];
+   yourself)}
+	] value
 ]
 
 { #category : 'pyramid-serialized-bloc' }
 PyramidVisibilityInputPresenter class >> blocVisible [
-	"This class has been generated using Pyramid.
-
-	By: YannLEGOFF
-	2024-01-22 12:06:38"
-
-	<pySTON>
-	^ '[
-	BlElement {
-		#constraints : BlLayoutCommonConstraints {
-			#vertical : BlLayoutCommonConstraintsAxis {
-				#resizer : BlLayoutExactResizer {
-					#size : 8.0
-				}
-			},
-			#horizontal : BlLayoutCommonConstraintsAxis {
-				#resizer : BlLayoutExactResizer {
-					#size : 8.0
-				}
-			},
-			#position : Point [ 0, 3 ],
-			#margin : BlInsets {
-				#top : 0.0,
-				#left : 0.0,
-				#bottom : 0.0,
-				#right : 0.0
-			},
-			#padding : @9,
-			#minHeight : 0.0,
-			#minWidth : 0.0,
-			#maxHeight : Float [ #infinity ],
-			#maxWidth : @10,
-			#ignoredByLayout : false,
-			#accountTransformation : false
-		},
-		#visuals : BlCustomVisuals {
-			#background : BlPaintBackground {
-				#paint : BlColorPaint {
-					#color : Color {
-						#red : 0.3333333333333333,
-						#green : 1.0,
-						#blue : 0.3333333333333333,
-						#alpha : 1.0
-					}
-				}
-			}
-		},
-		#userData : IdentityDictionary {
-			#elementId : BlElementNamedId {
-				#identifier : #C
-			}
-		},
-		#layout : BlBasicLayout { }
-	},
-	BlElement {
-		#constraints : BlLayoutCommonConstraints {
-			#vertical : BlLayoutCommonConstraintsAxis {
-				#resizer : BlLayoutExactResizer {
-					#size : 8.0
-				}
-			},
-			#horizontal : BlLayoutCommonConstraintsAxis {
-				#resizer : BlLayoutExactResizer {
-					#size : 8.0
-				}
-			},
-			#position : Point [ 11, 3 ],
-			#margin : @9,
-			#padding : @9,
-			#minHeight : 0.0,
-			#minWidth : 0.0,
-			#maxHeight : @10,
-			#maxWidth : @10,
-			#ignoredByLayout : false,
-			#accountTransformation : false
-		},
-		#visuals : BlCustomVisuals {
-			#background : BlPaintBackground {
-				#paint : BlColorPaint {
-					#color : Color {
-						#red : 1.0,
-						#green : 0.3333333333333333,
-						#blue : 0.3333333333333333,
-						#alpha : 1.0
-					}
-				}
-			}
-		},
-		#userData : IdentityDictionary {
-			#elementId : BlElementNamedId {
-				#identifier : #D
-			}
-		},
-		#layout : @17
-	},
-	BlElement {
-		#constraints : BlLayoutCommonConstraints {
-			#vertical : BlLayoutCommonConstraintsAxis {
-				#resizer : BlLayoutExactResizer {
-					#size : 8.0
-				}
-			},
-			#horizontal : BlLayoutCommonConstraintsAxis {
-				#resizer : BlLayoutExactResizer {
-					#size : 8.0
-				}
-			},
-			#position : Point [ 22, 3 ],
-			#margin : @9,
-			#padding : @9,
-			#minHeight : 0.0,
-			#minWidth : 0.0,
-			#maxHeight : @10,
-			#maxWidth : @10,
-			#ignoredByLayout : false,
-			#accountTransformation : false
-		},
-		#visuals : BlCustomVisuals {
-			#background : BlPaintBackground {
-				#paint : BlColorPaint {
-					#color : Color {
-						#red : 0.3333333333333333,
-						#green : 0.3333333333333333,
-						#blue : 1.0,
-						#alpha : 1.0
-					}
-				}
-			}
-		},
-		#userData : IdentityDictionary {
-			#elementId : BlElementNamedId {
-				#identifier : #E
-			}
-		},
-		#layout : @17
-	}
-]'
+<pyStash>
+	^ [ "BlStashSerializer"
+{(BlElement new
+   id: #C;
+   background: (BlPaintBackground new
+         opacity: 1.0;
+         paint: (BlColorPaint new
+               color: (Color r: 0.3333333333333333 g: 1.0 b: 0.3333333333333333 alpha: 1.0);
+               yourself);
+         yourself);
+   layout: BlBasicLayout uniqueInstance;
+   constraintsDo: [:constraints |  constraints horizontal exact: 8.0.
+      constraints vertical exact: 8.0.
+      constraints position: 0 @ 3 ];
+   yourself) . 
+(BlElement new
+   id: #D;
+   background: (BlPaintBackground new
+         opacity: 1.0;
+         paint: (BlColorPaint new
+               color: (Color r: 1.0 g: 0.3333333333333333 b: 0.3333333333333333 alpha: 1.0);
+               yourself);
+         yourself);
+   layout: BlBasicLayout uniqueInstance;
+   constraintsDo: [:constraints |  constraints horizontal exact: 8.0.
+      constraints vertical exact: 8.0.
+      constraints position: 11 @ 3 ];
+   yourself) . 
+(BlElement new
+   id: #E;
+   background: (BlPaintBackground new
+         opacity: 1.0;
+         paint: (BlColorPaint new
+               color: (Color r: 0.3333333333333333 g: 0.3333333333333333 b: 1.0 alpha: 1.0);
+               yourself);
+         yourself);
+   layout: BlBasicLayout uniqueInstance;
+   constraintsDo: [:constraints |  constraints horizontal exact: 8.0.
+      constraints vertical exact: 8.0.
+      constraints position: 22 @ 3 ];
+   yourself)}
+	] value
 ]
 
 { #category : 'as yet unclassified' }

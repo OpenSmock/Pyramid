@@ -21,8 +21,8 @@ PyramidVisualPystonForCly class >> browserTabActivation [
 { #category : 'accessing' }
 PyramidVisualPystonForCly class >> shouldBeActivatedInContext: aBrowserContext [
 
-	^ aBrowserContext selectedMethods anySatisfy: [ :method | 
-		  method pragmas anySatisfy: [ :pragma | pragma selector = #pySTON ] ]
+	^ aBrowserContext selectedMethods anySatisfy: [ :method |
+		  method pragmas anySatisfy: [ :pragma | pragma selector = #pySTON or: [ pragma selector = #pyStash ] ] ]
 ]
 
 { #category : 'accessing' }
@@ -146,7 +146,9 @@ PyramidVisualPystonForCly >> buttonOpen [
 { #category : 'as yet unclassified' }
 PyramidVisualPystonForCly >> copyElement [
 
-	Clipboard clipboardText: self getStonFromMethod
+	| element |
+	element := BlSerializer materialize: self getStonFromMethod.
+	(Clipboard clipboardText: (BlSerializer serialize: element with: BlStashSerializer))
 ]
 
 { #category : 'initialization' }

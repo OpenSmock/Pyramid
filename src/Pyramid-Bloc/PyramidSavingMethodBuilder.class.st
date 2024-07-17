@@ -7,26 +7,14 @@ Class {
 		'pragma',
 		'serializeBlock'
 	],
+	#classInstVars : [
+		'stash',
+		'ston'
+	],
 	#category : 'Pyramid-Bloc-plugin-save',
 	#package : 'Pyramid-Bloc',
 	#tag : 'plugin-save'
 }
-
-{ #category : 'as yet unclassified' }
-PyramidSavingMethodBuilder class >> ston [
-
-	^ self new
-		  classifier: #'pyramid-serialized-bloc';
-		  comment:
-			  [('This class has been generated using Pyramid.<r><r><t>By: <1s><r><t><2s> <3s>'
-				   expandMacrosWith: Author uniqueInstance fullName
-				   with: Date today yyyymmdd
-				   with: Time now print24)];
-		  pragma: 'pySTON';
-		  serializeBlock: [ :collection |
-			  BlSerializer serialize: collection ];
-		  yourself
-]
 
 { #category : 'instance creation' }
 PyramidSavingMethodBuilder >> build: aSaveModel [
@@ -34,13 +22,15 @@ PyramidSavingMethodBuilder >> build: aSaveModel [
 	| result |
 	result := '<1s><r>' expandMacrosWith: aSaveModel savingMethodName.
 	self comment ifNotNil: [
-		result := result , ('<t>"<1s>"<r>' expandMacrosWith: self comment value) ].
+		result := result
+		          , ('<t>"<1s>"<r>' expandMacrosWith: self comment value) ].
 	result := result , '<r>' expandMacros.
 	self pragma ifNotNil: [
-		result := result , ('<t>%<<1s>><r>' expandMacrosWith: self pragma value) ].
+		result := result
+		          , ('<t>%<<1s>><r>' expandMacrosWith: self pragma value) ].
 	result := result
 	          ,
-	          ('<t>^ <1p>' expandMacrosWith:
+	          ('<t>^ <1s>' expandMacrosWith:
 		           (self serializedString: aSaveModel)).
 
 	^ result
