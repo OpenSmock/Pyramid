@@ -19,6 +19,5 @@ PyramidFontSizeCommand >> getValueFor: aBlTextElement [
 { #category : 'as yet unclassified' }
 PyramidFontSizeCommand >> setValueFor: aBlTextElement with: aNumber [
 
-	aBlTextElement text attribute: (BlFontSizeAttribute size: aNumber).
-	aBlTextElement textChanged
+	aBlTextElement fontSize: aNumber
 ]

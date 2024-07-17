@@ -176,7 +176,5 @@ PyramidPopingPresenterBuilder >> layoutForLabel: aString input: anInput button: 
 { #category : 'as yet unclassified' }
 PyramidPopingPresenterBuilder >> makeNewInput [
 
-	^ self property pyramidInputPresenterClass new
-		  strings: self property pyramidInputPresenterStrings;
-		  yourself
+	^ self property makeNewInput
 ]

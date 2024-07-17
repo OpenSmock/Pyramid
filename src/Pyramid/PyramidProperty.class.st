@@ -54,6 +54,14 @@ PyramidProperty >> initialize [
 	name := 'Default property name'
 ]
 
+{ #category : 'tests' }
+PyramidProperty >> makeNewInput [
+
+	^ self pyramidInputPresenterClass new
+		  strings: self pyramidInputPresenterStrings;
+		  yourself
+]
+
 { #category : 'accessing' }
 PyramidProperty >> name [
 

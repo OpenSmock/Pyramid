@@ -6,7 +6,8 @@ Class {
 	#superclass : 'PyramidInputPresenter',
 	#instVars : [
 		'inputNumber',
-		'submitBlock'
+		'submitBlock',
+		'min'
 	],
 	#category : 'Pyramid-specs-custom',
 	#package : 'Pyramid',
@@ -30,7 +31,16 @@ PyramidNumberInputPresenter >> defaultLayout [
 { #category : 'as yet unclassified' }
 PyramidNumberInputPresenter >> getNumberFrom: aString [
 
-	^ NumberParser parse: aString onError: [ PyramidUnknowState new ]
+	| number |
+	number := (NumberParser parse: aString onError: [ PyramidUnknowState new ]).
+	min ifNotNil: [ ^ number max: min ].
+	^ number
+]
+
+{ #category : 'as yet unclassified' }
+PyramidNumberInputPresenter >> help: aString [
+
+	self inputNumber help: aString
 ]
 
 { #category : 'initialization - deprecated' }
@@ -42,14 +52,21 @@ PyramidNumberInputPresenter >> initializePresenters [
 
 { #category : 'accessing' }
 PyramidNumberInputPresenter >> inputNumber [
-^ inputNumber
+
+	^ inputNumber
+]
+
+{ #category : 'accessing' }
+PyramidNumberInputPresenter >> min: anInteger [
+
+	min := anInteger
 ]
 
 { #category : 'accessing' }
 PyramidNumberInputPresenter >> submitBlock [
 
-	submitBlock ifNil: [ submitBlock := [ :n | ] ].
-^ submitBlock
+	submitBlock ifNil: [ submitBlock := [ :n |  ] ].
+	^ submitBlock
 ]
 
 { #category : 'accessing' }
