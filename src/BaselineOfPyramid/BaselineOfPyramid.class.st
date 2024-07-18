@@ -1,11 +1,10 @@
 Class {
-	#name : 'BaselineOfPyramid',
-	#superclass : 'BaselineOf',
-	#category : 'BaselineOfPyramid',
-	#package : 'BaselineOfPyramid'
+	#name : #BaselineOfPyramid,
+	#superclass : #BaselineOf,
+	#category : #BaselineOfPyramid
 }
 
-{ #category : 'baselines' }
+{ #category : #baselines }
 BaselineOfPyramid >> baseline: spec [
 
 	<baseline>
@@ -13,7 +12,7 @@ BaselineOfPyramid >> baseline: spec [
 	spec for: #common do: [ self baselineForCommon: spec ]
 ]
 
-{ #category : 'baselines' }
+{ #category : #baselines }
 BaselineOfPyramid >> baselineForCommon: spec [
 
 	<baseline>
@@ -35,50 +34,53 @@ BaselineOfPyramid >> baselineForCommon: spec [
 	spec group: 'ToploUI' with: self toploPackagesNames "only Bloc and Toplo"
 ]
 
-{ #category : 'dependencies' }
+{ #category : #dependencies }
 BaselineOfPyramid >> blocDependencies: spec [
 
 	spec
 		baseline: 'Bloc'
 		with: [ spec repository: 'github://pharo-graphics/Bloc:master/src' ].
+		
 	spec
 		baseline: 'BlocSerialization'
 		with: [
 		spec repository: 'github://OpenSmock/Bloc-Serialization:main/src' ]
 ]
 
-{ #category : 'packages' }
+{ #category : #packages }
 BaselineOfPyramid >> blocPackages: spec [
 
 	spec
 		package: 'Pyramid-Bloc'
 		with: [ spec requires: #( 'Pyramid' 'Bloc' ) ].
+		
 	spec
 		package: 'Pyramid-Tests'
 		with: [ spec requires: #( 'Pyramid-Bloc' ) ].
+		
 	spec
 		package: 'Pyramid-Examples'
 		with: [ spec requires: #( 'Pyramid-Bloc' ) ]
 ]
 
-{ #category : 'packages' }
+{ #category : #packages }
 BaselineOfPyramid >> blocPackagesNames [
 
 	^ #( 'Pyramid' 'Pyramid-Bloc' 'Pyramid-Tests' 'Pyramid-IDE' 'Pyramid-Examples' )
 ]
 
-{ #category : 'actions' }
+{ #category : #actions }
 BaselineOfPyramid >> postload: loader package: packageSpec [
 
 	PyramidPluginManager reset
 ]
 
-{ #category : 'actions' }
+{ #category : #actions }
 BaselineOfPyramid >> preload: loader package: packageSpec [
 
 ]
 
-{ #category : 'packages' }
+{ #category : #packages }
 BaselineOfPyramid >> pyramidPackages: spec [
 
 	spec package: 'Pyramid'.
@@ -88,33 +90,36 @@ BaselineOfPyramid >> pyramidPackages: spec [
 
 ]
 
-{ #category : 'dependencies' }
+{ #category : #dependencies }
 BaselineOfPyramid >> toploDependencies: spec [
 
 	spec
 		baseline: 'Toplo'
-		with: [ spec repository: 'github://pharo-graphics/Toplo:master/src' ].
+		with: [ spec repository: 'github://pharo-graphics/Toplo:dev/src' ].
+		
 	spec
 		baseline: 'ToploSerialization'
 		with: [
 		spec repository: 'github://OpenSmock/Toplo-Serialization:main/src' ]
 ]
 
-{ #category : 'packages' }
+{ #category : #packages }
 BaselineOfPyramid >> toploPackages: spec [
 
 	spec
 		package: 'Pyramid-Toplo'
 		with: [ spec requires: #( 'Toplo' 'ToploSerialization') ].
+		
 	spec
 		package: 'Pyramid-Toplo-Tests'
 		with: [ spec requires: #( 'Pyramid-Toplo' ) ].
+		
 	spec
 		package: 'Pyramid-Toplo-Examples'
 		with: [ spec requires: #( 'Pyramid-Toplo' ) ]
 ]
 
-{ #category : 'packages' }
+{ #category : #packages }
 BaselineOfPyramid >> toploPackagesNames [
 
 	| packages |
