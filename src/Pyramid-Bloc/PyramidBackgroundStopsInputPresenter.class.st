@@ -1,24 +1,22 @@
 Class {
-	#name : 'PyramidBackgroundStopsInputPresenter',
-	#superclass : 'PyramidInputPresenter',
+	#name : #PyramidBackgroundStopsInputPresenter,
+	#superclass : #PyramidInputPresenter,
 	#classTraits : 'TPyramidPlugin classTrait',
 	#instVars : [
 		'buttonEdit',
 		'stops',
 		'whenValueChangedDo'
 	],
-	#category : 'Pyramid-Bloc-plugin-bloc-visuals',
-	#package : 'Pyramid-Bloc',
-	#tag : 'plugin-bloc-visuals'
+	#category : #'Pyramid-Bloc-plugin-bloc-visuals'
 }
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidBackgroundStopsInputPresenter >> buttonEdit [
 
 	^ buttonEdit
 ]
 
-{ #category : 'layout' }
+{ #category : #layout }
 PyramidBackgroundStopsInputPresenter >> defaultLayout [
 
 	^ SpBoxLayout newVertical
@@ -26,7 +24,7 @@ PyramidBackgroundStopsInputPresenter >> defaultLayout [
 		  yourself
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidBackgroundStopsInputPresenter >> editStops [
 
 	| dialog window stopsPresenter stopsArray |
@@ -42,7 +40,7 @@ PyramidBackgroundStopsInputPresenter >> editStops [
 		self whenValueChangedDo value: stopsPresenter stopsArray ]
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidBackgroundStopsInputPresenter >> emptyValue [
 
 	self stops: nil.
@@ -50,7 +48,7 @@ PyramidBackgroundStopsInputPresenter >> emptyValue [
 	self buttonEdit icon: nil
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidBackgroundStopsInputPresenter >> iconForEditButton [
 
 	| morph |
@@ -62,7 +60,7 @@ PyramidBackgroundStopsInputPresenter >> iconForEditButton [
 	^ morph asForm
 ]
 
-{ #category : 'initialization' }
+{ #category : #initialization }
 PyramidBackgroundStopsInputPresenter >> initializePresenters [
 
 	whenValueChangedDo := [ :value |  ].
@@ -72,7 +70,7 @@ PyramidBackgroundStopsInputPresenter >> initializePresenters [
 		              yourself
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidBackgroundStopsInputPresenter >> mixedValues [
 
 	self stops: nil.
@@ -80,19 +78,19 @@ PyramidBackgroundStopsInputPresenter >> mixedValues [
 	self buttonEdit icon: nil.
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidBackgroundStopsInputPresenter >> stops [
 
 	^ stops
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidBackgroundStopsInputPresenter >> stops: anObject [
 
 	stops := anObject
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidBackgroundStopsInputPresenter >> updatePresenter [
 
 	self stops ifNil: [
@@ -101,7 +99,7 @@ PyramidBackgroundStopsInputPresenter >> updatePresenter [
 	self buttonEdit icon: self iconForEditButton
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidBackgroundStopsInputPresenter >> value [
 
 	self stops isCollection
@@ -109,7 +107,7 @@ PyramidBackgroundStopsInputPresenter >> value [
 		ifFalse: [ ^ PyramidUnknowState new ]
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidBackgroundStopsInputPresenter >> value: aCollection [
 
 	self stops: aCollection.
@@ -117,13 +115,13 @@ PyramidBackgroundStopsInputPresenter >> value: aCollection [
 	self buttonEdit icon: self iconForEditButton
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidBackgroundStopsInputPresenter >> whenValueChangedDo [
 
 	^ whenValueChangedDo
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidBackgroundStopsInputPresenter >> whenValueChangedDo: anObject [
 
 	whenValueChangedDo := anObject

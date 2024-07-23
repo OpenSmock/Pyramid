@@ -1,6 +1,6 @@
 Class {
-	#name : 'PyramidLibraryContainerPresenter',
-	#superclass : 'SpPresenter',
+	#name : #PyramidLibraryContainerPresenter,
+	#superclass : #SpPresenter,
 	#instVars : [
 		'library',
 		'idGenerator'
@@ -8,12 +8,10 @@ Class {
 	#classVars : [
 		'IdGenerator'
 	],
-	#category : 'Pyramid-Bloc-plugin-tree-library',
-	#package : 'Pyramid-Bloc',
-	#tag : 'plugin-tree-library'
+	#category : #'Pyramid-Bloc-plugin-tree-library'
 }
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidLibraryContainerPresenter class >> makeIdGenerator [
 ^ Generator on: [ :generator |
 		  | index |
@@ -29,19 +27,19 @@ PyramidLibraryContainerPresenter class >> makeIdGenerator [
 		  index := index + 1 ] repeat ]
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidLibraryContainerPresenter >> buttonAction: aBlock [
 
 	library addButton action: aBlock
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidLibraryContainerPresenter >> buttonLabel: aString [
 
 	library addButton label: aString
 ]
 
-{ #category : 'initialization' }
+{ #category : #initialization }
 PyramidLibraryContainerPresenter >> defaultLayout [
 
 	^ SpBoxLayout newVertical
@@ -58,7 +56,7 @@ PyramidLibraryContainerPresenter >> defaultLayout [
 		  yourself.
 ]
 
-{ #category : 'requirements' }
+{ #category : #requirements }
 PyramidLibraryContainerPresenter >> elementToAdd [
 
 	| array |
@@ -67,33 +65,33 @@ PyramidLibraryContainerPresenter >> elementToAdd [
 	^ array
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidLibraryContainerPresenter >> idGenerator [
 
 	idGenerator ifNil: [ idGenerator := self class makeIdGenerator ].
 	^ idGenerator
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidLibraryContainerPresenter >> idGenerator: anObject [
 
 	idGenerator := anObject
 ]
 
-{ #category : 'initialization' }
+{ #category : #initialization }
 PyramidLibraryContainerPresenter >> initializePresenters [
 
 	library := PyramidElementToAddPresenter new.
 
 ]
 
-{ #category : 'requirements' }
+{ #category : #requirements }
 PyramidLibraryContainerPresenter >> library [
 
 	^ library
 ]
 
-{ #category : 'requirements' }
+{ #category : #requirements }
 PyramidLibraryContainerPresenter >> library: aLibrary [
 
 	library := aLibrary

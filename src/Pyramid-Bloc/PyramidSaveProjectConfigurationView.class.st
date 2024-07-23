@@ -1,6 +1,6 @@
 Class {
-	#name : 'PyramidSaveProjectConfigurationView',
-	#superclass : 'SpPresenter',
+	#name : #PyramidSaveProjectConfigurationView,
+	#superclass : #SpPresenter,
 	#instVars : [
 		'inputPackage',
 		'inputClass',
@@ -16,30 +16,28 @@ Class {
 		'shouldTriggerEvent',
 		'openSettingsLink'
 	],
-	#category : 'Pyramid-Bloc-plugin-save',
-	#package : 'Pyramid-Bloc',
-	#tag : 'plugin-save'
+	#category : #'Pyramid-Bloc-plugin-save'
 }
 
-{ #category : 'layout' }
+{ #category : #layout }
 PyramidSaveProjectConfigurationView >> buttonBrowse [
 
 	^ buttonBrowse
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidSaveProjectConfigurationView >> buttonClass [ 
 
 	^ buttonClass
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidSaveProjectConfigurationView >> buttonInstance [ 
 
 	^ buttonInstance
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidSaveProjectConfigurationView >> controller [
 
 	controller ifNil: [
@@ -49,12 +47,12 @@ PyramidSaveProjectConfigurationView >> controller [
 	^ controller
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidSaveProjectConfigurationView >> controller: aPySaveFormController [
 	controller := aPySaveFormController
 ]
 
-{ #category : 'layout' }
+{ #category : #layout }
 PyramidSaveProjectConfigurationView >> defaultLayout [
 
 	^ SpBoxLayout newVertical
@@ -98,24 +96,24 @@ PyramidSaveProjectConfigurationView >> defaultLayout [
 		  yourself
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidSaveProjectConfigurationView >> hideLabelClass [
 	self labelErrorClass label: ''.
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidSaveProjectConfigurationView >> hideLabelMethod [
 
 	self labelErrorMethod label: ''
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidSaveProjectConfigurationView >> hideLabelPackage [
 
 	self labelErrorPackage label: ''
 ]
 
-{ #category : 'configuration' }
+{ #category : #configuration }
 PyramidSaveProjectConfigurationView >> hideLabels [
 
 	self labelErrorClass label: ''.
@@ -123,7 +121,7 @@ PyramidSaveProjectConfigurationView >> hideLabels [
 	self labelErrorPackage label: ''.
 ]
 
-{ #category : 'initialization' }
+{ #category : #initialization }
 PyramidSaveProjectConfigurationView >> initializePresenters [
 
 	shouldTriggerEvent := true.
@@ -176,58 +174,58 @@ PyramidSaveProjectConfigurationView >> initializePresenters [
 			self openSettingsBrowser ]
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidSaveProjectConfigurationView >> inputClass [
 
 	^ inputClass
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidSaveProjectConfigurationView >> inputMethod [ 
 
 	^ inputMethod
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidSaveProjectConfigurationView >> inputPackage [
 	^ inputPackage
 
 
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidSaveProjectConfigurationView >> labelErrorClass [ 
 
 	^ labelErrorClass
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidSaveProjectConfigurationView >> labelErrorMethod [
 
 	^ labelErrorMethod
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidSaveProjectConfigurationView >> labelErrorPackage [ 
 
 	^ labelErrorPackage
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidSaveProjectConfigurationView >> model [
 
 	saveModel ifNil: [ saveModel := PyramidSaveModel new yourself ].
 	^ saveModel
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidSaveProjectConfigurationView >> model: aPySaveModel [
 
 	saveModel := aPySaveModel.
 	self updateFromModelWithoutEvents
 ]
 
-{ #category : 'initialization' }
+{ #category : #initialization }
 PyramidSaveProjectConfigurationView >> openSettingsBrowser [
 
 	| browser |
@@ -237,39 +235,39 @@ PyramidSaveProjectConfigurationView >> openSettingsBrowser [
 	browser expandAll
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidSaveProjectConfigurationView >> openSettingsLink [
 
 	^ openSettingsLink
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidSaveProjectConfigurationView >> saveModel [
 
 	saveModel ifNil: [ saveModel := PyramidSaveModel new yourself ].
 	^ saveModel
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidSaveProjectConfigurationView >> saveModel: aPySaveModel [
 
 	saveModel := aPySaveModel.
 	self updateFromModelWithoutEvents
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidSaveProjectConfigurationView >> shouldTriggerEvent [
 
 	^ shouldTriggerEvent
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidSaveProjectConfigurationView >> shouldTriggerEvent: aBoolean [
 
 	shouldTriggerEvent := aBoolean
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidSaveProjectConfigurationView >> showClassIsNotValidError [
 
 	self labelErrorClass
@@ -277,7 +275,7 @@ PyramidSaveProjectConfigurationView >> showClassIsNotValidError [
 		label: 'Class name is not valid.'
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidSaveProjectConfigurationView >> showClassPackageIsNotEqualError [
 
 	self labelErrorClass
@@ -285,7 +283,7 @@ PyramidSaveProjectConfigurationView >> showClassPackageIsNotEqualError [
 		label: 'This class already exist in another package.'
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidSaveProjectConfigurationView >> showMethodIsNotValidError [
 
 	self labelErrorMethod
@@ -293,7 +291,7 @@ PyramidSaveProjectConfigurationView >> showMethodIsNotValidError [
 		label: 'Method name is not valid.'
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidSaveProjectConfigurationView >> showModelNilError [
 
 	self labelErrorPackage
@@ -301,7 +299,7 @@ PyramidSaveProjectConfigurationView >> showModelNilError [
 		label: 'No model available.'
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidSaveProjectConfigurationView >> showPackageIsNotValidError [
 
 	self labelErrorPackage
@@ -309,7 +307,7 @@ PyramidSaveProjectConfigurationView >> showPackageIsNotValidError [
 		label: 'Package name is not valid.'
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidSaveProjectConfigurationView >> showProjectModelNilError [
 
 	self labelErrorPackage
@@ -317,7 +315,7 @@ PyramidSaveProjectConfigurationView >> showProjectModelNilError [
 		label: 'No project loaded.'
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidSaveProjectConfigurationView >> updateFromModelWithoutEvents [
 
 	self shouldTriggerEvent: false.

@@ -1,6 +1,6 @@
 Class {
-	#name : 'PyramidElementToAddPresenter',
-	#superclass : 'SpPresenter',
+	#name : #PyramidElementToAddPresenter,
+	#superclass : #SpPresenter,
 	#instVars : [
 		'selector',
 		'preview',
@@ -8,31 +8,29 @@ Class {
 		'libraryModel',
 		'currentFactory'
 	],
-	#category : 'Pyramid-Bloc-plugin-tree-library',
-	#package : 'Pyramid-Bloc',
-	#tag : 'plugin-tree-library'
+	#category : #'Pyramid-Bloc-plugin-tree-library'
 }
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidElementToAddPresenter class >> defaultEmptyFactory [
 
 	^ PyramidElementToAddFactoryEmpty new
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidElementToAddPresenter >> addButton [
 
 	^ addButton
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidElementToAddPresenter >> currentFactory [
 
 	currentFactory ifNil: [ currentFactory := self class defaultEmptyFactory ].
 	^ currentFactory
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidElementToAddPresenter >> currentFactory: anObject [
 
 	currentFactory := anObject.
@@ -40,7 +38,7 @@ PyramidElementToAddPresenter >> currentFactory: anObject [
 	self addButton enabled: self currentFactory canMakeNewElement
 ]
 
-{ #category : 'layout' }
+{ #category : #layout }
 PyramidElementToAddPresenter >> defaultLayout [
 
 	^ SpPanedLayout newHorizontal
@@ -53,13 +51,13 @@ PyramidElementToAddPresenter >> defaultLayout [
 				   yourself
 ]
 
-{ #category : 'requirements' }
+{ #category : #requirements }
 PyramidElementToAddPresenter >> elementToAdd [
 
 	^ self currentFactory makeElement
 ]
 
-{ #category : 'initialization - deprecated' }
+{ #category : #'initialization - deprecated' }
 PyramidElementToAddPresenter >> initializePresenter [
 
 	addButton := SpButtonPresenter new
@@ -74,33 +72,33 @@ PyramidElementToAddPresenter >> initializePresenter [
 	self refresh
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidElementToAddPresenter >> libraryModel [
 
 	^ libraryModel
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidElementToAddPresenter >> libraryModel: anObject [
 
 	libraryModel := anObject.
 	self refresh
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidElementToAddPresenter >> preview [
 
 	^ preview
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidElementToAddPresenter >> refresh [
 
 	self currentFactory: nil.
 	self selector categories: self libraryModel allCategories
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidElementToAddPresenter >> selector [
 
 	^ selector

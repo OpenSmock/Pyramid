@@ -1,17 +1,15 @@
 Class {
-	#name : 'PyramidBlocLayoutPlugin',
-	#superclass : 'Object',
+	#name : #PyramidBlocLayoutPlugin,
+	#superclass : #Object,
 	#traits : 'TPyramidPlugin',
 	#classTraits : 'TPyramidPlugin classTrait',
 	#instVars : [
 		'propertiesManager'
 	],
-	#category : 'Pyramid-Bloc-plugin-bloc-layout',
-	#package : 'Pyramid-Bloc',
-	#tag : 'plugin-bloc-layout'
+	#category : #'Pyramid-Bloc-plugin-bloc-layout'
 }
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidBlocLayoutPlugin class >> constraintsBasicH [
 
 	| property |
@@ -25,7 +23,7 @@ PyramidBlocLayoutPlugin class >> constraintsBasicH [
 	^ property
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidBlocLayoutPlugin class >> constraintsBasicHExact [
 
 	| property |
@@ -40,7 +38,7 @@ PyramidBlocLayoutPlugin class >> constraintsBasicHExact [
 	^ property
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidBlocLayoutPlugin class >> constraintsBasicV [
 
 	| property |
@@ -54,7 +52,7 @@ PyramidBlocLayoutPlugin class >> constraintsBasicV [
 	^ property
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidBlocLayoutPlugin class >> constraintsBasicVExact [
 
 	| property |
@@ -69,7 +67,7 @@ PyramidBlocLayoutPlugin class >> constraintsBasicVExact [
 	^ property
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidBlocLayoutPlugin class >> constraintsFrameH [
 
 	| property |
@@ -82,7 +80,7 @@ PyramidBlocLayoutPlugin class >> constraintsFrameH [
 	^ property
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidBlocLayoutPlugin class >> constraintsFrameV [
 
 	| property |
@@ -95,7 +93,7 @@ PyramidBlocLayoutPlugin class >> constraintsFrameV [
 	^ property
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidBlocLayoutPlugin class >> constraintsPropH [
 
 	| property |
@@ -112,7 +110,7 @@ PyramidBlocLayoutPlugin class >> constraintsPropH [
 	^ property
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidBlocLayoutPlugin class >> constraintsPropV [
 
 	| property |
@@ -129,7 +127,7 @@ PyramidBlocLayoutPlugin class >> constraintsPropV [
 	^ property
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidBlocLayoutPlugin class >> flowLayoutOrientation [
 
 	| property |
@@ -148,7 +146,7 @@ PyramidBlocLayoutPlugin class >> flowLayoutOrientation [
 	^ property
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidBlocLayoutPlugin class >> layout [
 
 	| property |
@@ -202,7 +200,7 @@ PyramidBlocLayoutPlugin class >> layout [
 	^ property
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidBlocLayoutPlugin class >> linearLayoutOrientation [
 
 	| property |
@@ -221,7 +219,7 @@ PyramidBlocLayoutPlugin class >> linearLayoutOrientation [
 	^ property
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidBlocLayoutPlugin class >> margin [
 
 	| property |
@@ -237,7 +235,7 @@ PyramidBlocLayoutPlugin class >> margin [
 	^ property
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidBlocLayoutPlugin class >> padding [
 
 	| property |
@@ -254,7 +252,7 @@ PyramidBlocLayoutPlugin class >> padding [
 	^ property
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidBlocLayoutPlugin class >> position [
 
 	| property |
@@ -268,7 +266,7 @@ PyramidBlocLayoutPlugin class >> position [
 	^ property
 ]
 
-{ #category : 'adding' }
+{ #category : #adding }
 PyramidBlocLayoutPlugin >> addPanelsOn: aPyramidSimpleWindow [
 
 	aPyramidSimpleWindow at: #tabRight addItem: [ :builder |
@@ -279,7 +277,7 @@ PyramidBlocLayoutPlugin >> addPanelsOn: aPyramidSimpleWindow [
 			order: 3 ]
 ]
 
-{ #category : 'connecting' }
+{ #category : #connecting }
 PyramidBlocLayoutPlugin >> connectOn: aPyramidEditor [
 
 	propertiesManager projectModel: aPyramidEditor projectModel.
@@ -287,7 +285,7 @@ PyramidBlocLayoutPlugin >> connectOn: aPyramidEditor [
 		aPyramidEditor propertiesManager commandExecutor
 ]
 
-{ #category : 'initialization' }
+{ #category : #initialization }
 PyramidBlocLayoutPlugin >> initialize [
 
 	propertiesManager := PyramidPropertiesManagerForSelection new.
@@ -324,7 +322,7 @@ PyramidBlocLayoutPlugin >> initialize [
 		self class constraintsBasicVExact.
 ]
 
-{ #category : 'adding' }
+{ #category : #adding }
 PyramidBlocLayoutPlugin >> propertiesManager [
 
 	^ propertiesManager

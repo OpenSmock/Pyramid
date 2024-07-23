@@ -1,23 +1,21 @@
 Class {
-	#name : 'PyramidElementToAddCategory',
-	#superclass : 'Object',
+	#name : #PyramidElementToAddCategory,
+	#superclass : #Object,
 	#instVars : [
 		'name',
 		'icon',
 		'factories'
 	],
-	#category : 'Pyramid-Bloc-plugin-tree-library',
-	#package : 'Pyramid-Bloc',
-	#tag : 'plugin-tree-library'
+	#category : #'Pyramid-Bloc-plugin-tree-library'
 }
 
-{ #category : 'comparing' }
+{ #category : #comparing }
 PyramidElementToAddCategory >> <= aPyramidLibraryCategory [
 
 	^ self name <= aPyramidLibraryCategory name
 ]
 
-{ #category : 'converting' }
+{ #category : #converting }
 PyramidElementToAddCategory >> asNotebookPage [
 
 	^ SpNotebookPage
@@ -26,31 +24,31 @@ PyramidElementToAddCategory >> asNotebookPage [
 		  provider: [self makeProvider]
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidElementToAddCategory >> factories [
 
 	^ factories
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidElementToAddCategory >> factories: anObject [
 
 	factories := anObject
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidElementToAddCategory >> icon [
 
 	^ icon
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidElementToAddCategory >> icon: anObject [
 
 	icon := anObject
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidElementToAddCategory >> makeProvider [
 
 	^ 
@@ -67,13 +65,13 @@ PyramidElementToAddCategory >> makeProvider [
 		  yourself
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidElementToAddCategory >> name [
 
 	^ name
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidElementToAddCategory >> name: anObject [
 
 	name := anObject

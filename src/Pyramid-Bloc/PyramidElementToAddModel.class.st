@@ -1,15 +1,13 @@
 Class {
-	#name : 'PyramidElementToAddModel',
-	#superclass : 'Object',
+	#name : #PyramidElementToAddModel,
+	#superclass : #Object,
 	#instVars : [
 		'categories'
 	],
-	#category : 'Pyramid-Bloc-plugin-tree-library',
-	#package : 'Pyramid-Bloc',
-	#tag : 'plugin-tree-library'
+	#category : #'Pyramid-Bloc-plugin-tree-library'
 }
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidElementToAddModel class >> defaultLibrary [
 
 	| library |
@@ -18,7 +16,7 @@ PyramidElementToAddModel class >> defaultLibrary [
 	^ library
 ]
 
-{ #category : 'adding' }
+{ #category : #adding }
 PyramidElementToAddModel >> addCategoryWithName: aCategoryName withIcon: aCategoryIcon withAllFactories: aCollection [
 
 	| newCategory |
@@ -30,13 +28,13 @@ PyramidElementToAddModel >> addCategoryWithName: aCategoryName withIcon: aCatego
 	categories add: newCategory
 ]
 
-{ #category : 'initialization' }
+{ #category : #initialization }
 PyramidElementToAddModel >> allCategories [
 
 	^ categories
 ]
 
-{ #category : 'initialization' }
+{ #category : #initialization }
 PyramidElementToAddModel >> initialize [
 
 	categories := OrderedCollection new.

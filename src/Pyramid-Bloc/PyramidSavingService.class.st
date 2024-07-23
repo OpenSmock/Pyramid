@@ -1,6 +1,6 @@
 Class {
-	#name : 'PyramidSavingService',
-	#superclass : 'Object',
+	#name : #PyramidSavingService,
+	#superclass : #Object,
 	#instVars : [
 		'saveModel',
 		'verifier'
@@ -11,12 +11,10 @@ Class {
 		'ston',
 		'currentMethodBuilderSelector'
 	],
-	#category : 'Pyramid-Bloc-plugin-save',
-	#package : 'Pyramid-Bloc',
-	#tag : 'plugin-save'
+	#category : #'Pyramid-Bloc-plugin-save'
 }
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidSavingService class >> allSaveMethodBuilders [
 
 	^ (Pragma allNamed: #pyramidSaveMethodBuilder:) collect: [ :pragma | pragma arguments first -> pragma methodSelector ]
@@ -24,26 +22,26 @@ PyramidSavingService class >> allSaveMethodBuilders [
 	
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidSavingService class >> currentMethodBuilder [
 
 	^ self perform: self currentMethodBuilderSelector
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidSavingService class >> currentMethodBuilderSelector [
 
 	currentMethodBuilderSelector ifNil: [ currentMethodBuilderSelector := #stash ].
 	^ currentMethodBuilderSelector
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidSavingService class >> currentMethodBuilderSelector: anObject [
 
 	currentMethodBuilderSelector := anObject
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidSavingService class >> saveMethodBuilderSettingOn: aBuilder [
 
 	<systemsettings>
@@ -57,7 +55,7 @@ PyramidSavingService class >> saveMethodBuilderSettingOn: aBuilder [
 			'Change the serialization format when saving a project.'
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidSavingService class >> stash [
 
 	<pyramidSaveMethodBuilder: 'Serialize as Source Code'>
@@ -75,7 +73,7 @@ PyramidSavingService class >> stash [
 		         yourself
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidSavingService class >> ston [
 
 	<pyramidSaveMethodBuilder: 'Serialize as STON object'>
@@ -93,7 +91,7 @@ PyramidSavingService class >> ston [
 		        yourself
 ]
 
-{ #category : 'testing' }
+{ #category : #testing }
 PyramidSavingService >> canSave [
 	"Verify:
 	- savingModel is not nil
@@ -104,19 +102,19 @@ PyramidSavingService >> canSave [
 	^ self verifier verify: self saveModel
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidSavingService >> errorCannotSave [
 
 	PyramidSaveError signal: 'Cannot save with given model. Check canSave method to more explenation.'
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidSavingService >> methodBuilder [
 
 	^ self class currentMethodBuilder
 ]
 
-{ #category : 'testing' }
+{ #category : #testing }
 PyramidSavingService >> save [
 
 	| class |
@@ -134,19 +132,19 @@ PyramidSavingService >> save [
 				classified: self methodBuilder classifier ]
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidSavingService >> saveModel [
 
 	^ saveModel
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidSavingService >> saveModel: anObject [
 
 	saveModel := anObject
 ]
 
-{ #category : 'tests' }
+{ #category : #tests }
 PyramidSavingService >> savingClass [
 
 	| class |
@@ -159,20 +157,20 @@ PyramidSavingService >> savingClass [
 			  package: self saveModel savingPackageName ]
 ]
 
-{ #category : 'tests' }
+{ #category : #tests }
 PyramidSavingService >> savingMethod [
 
 	^ self methodBuilder build: self saveModel
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidSavingService >> verifier [
 
 	verifier ifNil: [ verifier := PyramidSaveModelVerifier verifierNoError ].
 	^ verifier
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidSavingService >> verifier: aVerifier [
 
 	verifier := aVerifier

@@ -1,6 +1,6 @@
 Class {
-	#name : 'PyramidBackgroundImageModalPresenter',
-	#superclass : 'SpPresenter',
+	#name : #PyramidBackgroundImageModalPresenter,
+	#superclass : #SpPresenter,
 	#instVars : [
 		'radioProxy',
 		'radioBitmap',
@@ -13,12 +13,10 @@ Class {
 		'buttonExampleFileSystem',
 		'buttonExampleBloc'
 	],
-	#category : 'Pyramid-Bloc-plugin-bloc-visuals',
-	#package : 'Pyramid-Bloc',
-	#tag : 'plugin-bloc-visuals'
+	#category : #'Pyramid-Bloc-plugin-bloc-visuals'
 }
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidBackgroundImageModalPresenter class >> ensurePharoBigFileExists [
 
 	'./pharoBig.png' asFileReference exists ifTrue: [ ^ self ].
@@ -26,7 +24,7 @@ PyramidBackgroundImageModalPresenter class >> ensurePharoBigFileExists [
 	
 ]
 
-{ #category : 'layout' }
+{ #category : #layout }
 PyramidBackgroundImageModalPresenter >> baseLayout [
 
 	^ SpBoxLayout newVertical
@@ -57,7 +55,7 @@ PyramidBackgroundImageModalPresenter >> baseLayout [
 		  yourself
 ]
 
-{ #category : 'layout' }
+{ #category : #layout }
 PyramidBackgroundImageModalPresenter >> bitmapLayout [
 
 	^ self baseLayout
@@ -71,7 +69,7 @@ PyramidBackgroundImageModalPresenter >> bitmapLayout [
 		  yourself
 ]
 
-{ #category : 'special objects' }
+{ #category : #'special objects' }
 PyramidBackgroundImageModalPresenter >> bitmapObject [
 
 	^ self codeBitmap
@@ -80,24 +78,24 @@ PyramidBackgroundImageModalPresenter >> bitmapObject [
 		  onError: [ :err | err pass ]
 ]
 
-{ #category : 'initialization' }
+{ #category : #initialization }
 PyramidBackgroundImageModalPresenter >> buttonExampleBloc [
 
 	^ buttonExampleBloc
 ]
 
-{ #category : 'initialization' }
+{ #category : #initialization }
 PyramidBackgroundImageModalPresenter >> buttonExampleDefault [
 	^ buttonExampleDefault
 ]
 
-{ #category : 'initialization' }
+{ #category : #initialization }
 PyramidBackgroundImageModalPresenter >> buttonExampleFileSystem [
 
 	^ buttonExampleFileSystem
 ]
 
-{ #category : 'layout' }
+{ #category : #layout }
 PyramidBackgroundImageModalPresenter >> buttonInpectLayout [
 
 	^ SpBoxLayout newHorizontal
@@ -109,19 +107,19 @@ PyramidBackgroundImageModalPresenter >> buttonInpectLayout [
 		  yourself
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidBackgroundImageModalPresenter >> buttonInspect [
 
 	^ buttonInspect
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidBackgroundImageModalPresenter >> codeBitmap [
 
 	^ codeBitmap
 ]
 
-{ #category : 'action' }
+{ #category : #action }
 PyramidBackgroundImageModalPresenter >> currentObject [
 
 	^ (self isProxySelected
@@ -129,14 +127,14 @@ PyramidBackgroundImageModalPresenter >> currentObject [
 		 ifFalse: [ self bitmapObject ])
 ]
 
-{ #category : 'layout' }
+{ #category : #layout }
 PyramidBackgroundImageModalPresenter >> defaultLayout [ 
 
 	self isProxySelected ifTrue: [ ^ self proxyLayout ].
 	^ self bitmapLayout
 ]
 
-{ #category : 'action' }
+{ #category : #action }
 PyramidBackgroundImageModalPresenter >> image: aForm [
 
 	self codeBitmap beForObject: aForm.
@@ -144,7 +142,7 @@ PyramidBackgroundImageModalPresenter >> image: aForm [
 '
 ]
 
-{ #category : 'initialization' }
+{ #category : #initialization }
 PyramidBackgroundImageModalPresenter >> initializePresenters [
 
 	radioProxy := SpRadioButtonPresenter new
@@ -195,37 +193,37 @@ PyramidBackgroundImageModalPresenter >> initializePresenters [
 		                        yourself
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidBackgroundImageModalPresenter >> inputArgumentsProxy [
 
 	^ inputArgumentsProxy
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidBackgroundImageModalPresenter >> inputReceiverProxy [
 
 	^ inputReceiverProxy
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidBackgroundImageModalPresenter >> inputSelectorProxy [
 
 	^ inputSelectorProxy
 ]
 
-{ #category : 'action' }
+{ #category : #action }
 PyramidBackgroundImageModalPresenter >> inspectCurrent [
 
 	(self currentObject) inspect
 ]
 
-{ #category : 'layout' }
+{ #category : #layout }
 PyramidBackgroundImageModalPresenter >> isProxySelected [
 
 	^ self radioProxy state
 ]
 
-{ #category : 'layout' }
+{ #category : #layout }
 PyramidBackgroundImageModalPresenter >> proxyLayout [
 
 	^ self baseLayout
@@ -251,7 +249,7 @@ PyramidBackgroundImageModalPresenter >> proxyLayout [
 		  yourself
 ]
 
-{ #category : 'special objects' }
+{ #category : #'special objects' }
 PyramidBackgroundImageModalPresenter >> proxyObject [
 
 	| receiver selector arguments proxySource proxy |
@@ -278,19 +276,19 @@ PyramidBackgroundImageModalPresenter >> proxyObject [
 	^ PyramidExternalRessourceProxy fromSource: proxySource
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidBackgroundImageModalPresenter >> radioBitmap [
 
 	^ radioBitmap
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidBackgroundImageModalPresenter >> radioProxy [
 
 	^ radioProxy
 ]
 
-{ #category : 'initialization' }
+{ #category : #initialization }
 PyramidBackgroundImageModalPresenter >> setTextToBloc [
 
 	self codeBitmap text: self textBitmapBloc.
@@ -299,7 +297,7 @@ PyramidBackgroundImageModalPresenter >> setTextToBloc [
 	self inputArgumentsProxy text: self textArgumentsBloc
 ]
 
-{ #category : 'initialization' }
+{ #category : #initialization }
 PyramidBackgroundImageModalPresenter >> setTextToDefault [
 
 	self codeBitmap text: self textBitmapDefault.
@@ -308,7 +306,7 @@ PyramidBackgroundImageModalPresenter >> setTextToDefault [
 	self inputArgumentsProxy text: self textArgumentsDefault.
 ]
 
-{ #category : 'initialization' }
+{ #category : #initialization }
 PyramidBackgroundImageModalPresenter >> setTextToFile [
 
 	self codeBitmap text: self textBitmapFile.
@@ -317,56 +315,56 @@ PyramidBackgroundImageModalPresenter >> setTextToFile [
 	self inputArgumentsProxy text: self textArgumentsFile
 ]
 
-{ #category : 'text' }
+{ #category : #text }
 PyramidBackgroundImageModalPresenter >> textArguments [
 
 	^ '"Use it like a Playground. Last object must be a Collection that will be used as arguments."
 '
 ]
 
-{ #category : 'text' }
+{ #category : #text }
 PyramidBackgroundImageModalPresenter >> textArgumentsBloc [
 
 	^ self textArguments , '{  }
 '
 ]
 
-{ #category : 'text' }
+{ #category : #text }
 PyramidBackgroundImageModalPresenter >> textArgumentsDefault [
 
 	^ self textArguments, '#(#pharoBig)
 '
 ]
 
-{ #category : 'text' }
+{ #category : #text }
 PyramidBackgroundImageModalPresenter >> textArgumentsFile [
 
 	^ self textArguments , '{ ''./pharoBig.png'' }
 '
 ]
 
-{ #category : 'text' }
+{ #category : #text }
 PyramidBackgroundImageModalPresenter >> textBitmap [
 
 	^ '"Use it like a Playground. Last object must be a Form."
 '
 ]
 
-{ #category : 'text' }
+{ #category : #text }
 PyramidBackgroundImageModalPresenter >> textBitmapBloc [
 
 	^ self textBitmap , 'BlElement new background: Color red; size: 25 @ 50; asForm
 '
 ]
 
-{ #category : 'text' }
+{ #category : #text }
 PyramidBackgroundImageModalPresenter >> textBitmapDefault [
 
 	^ self textBitmap, 'Object iconNamed: #pharoBig
 '
 ]
 
-{ #category : 'text' }
+{ #category : #text }
 PyramidBackgroundImageModalPresenter >> textBitmapFile [
 
 	^ self textBitmap
@@ -375,14 +373,14 @@ Form fromFileNamed: ''./pharoBig.png'' asFileReference.
 '
 ]
 
-{ #category : 'text' }
+{ #category : #text }
 PyramidBackgroundImageModalPresenter >> textReceiver [
 
 	^ '"Use it like a Playground. Last object will be the serialized receiver."
 '
 ]
 
-{ #category : 'text' }
+{ #category : #text }
 PyramidBackgroundImageModalPresenter >> textReceiverBloc [
 
 	^ self textReceiver , 'BlElement new
@@ -392,14 +390,14 @@ PyramidBackgroundImageModalPresenter >> textReceiverBloc [
 '
 ]
 
-{ #category : 'text' }
+{ #category : #text }
 PyramidBackgroundImageModalPresenter >> textReceiverDefault [
 
 	^ self textReceiver , 'Object 
 '
 ]
 
-{ #category : 'text' }
+{ #category : #text }
 PyramidBackgroundImageModalPresenter >> textReceiverFile [
 
 	^ self textReceiver , 'PyramidBackgroundImageModalPresenter ensurePharoBigFileExists.
@@ -407,40 +405,40 @@ Form
 '
 ]
 
-{ #category : 'text' }
+{ #category : #text }
 PyramidBackgroundImageModalPresenter >> textSelector [
 
 	^ '"Use it like a Playground. Last object must be a Symbol that will be performed on the receiver."
 '
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidBackgroundImageModalPresenter >> textSelectorBloc [
 	^ self textSelector, '#asForm'
 ]
 
-{ #category : 'text' }
+{ #category : #text }
 PyramidBackgroundImageModalPresenter >> textSelectorDefault [
 
 	^ self textSelector, '#iconNamed:
 '
 ]
 
-{ #category : 'text' }
+{ #category : #text }
 PyramidBackgroundImageModalPresenter >> textSelectorFile [
 
 	^ self textSelector , '#fromFileNamed:
 '
 ]
 
-{ #category : 'text' }
+{ #category : #text }
 PyramidBackgroundImageModalPresenter >> textSelectorbloc [
 
 	^ self textSelector , '#asForm
 '
 ]
 
-{ #category : 'update' }
+{ #category : #update }
 PyramidBackgroundImageModalPresenter >> updatePresenter [
 
 	self layout: self defaultLayout

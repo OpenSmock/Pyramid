@@ -9,7 +9,7 @@ PyramidSimpleExamples class >> imageProxy [
 	"This class has been generated using Pyramid.
 
 	By: YannLEGOFF
-	2024-07-22 17:50:11"
+	2024-07-23 09:32:34"
 
 	<pyStash>
 	^ [ {(BlElement new
@@ -17,7 +17,7 @@ PyramidSimpleExamples class >> imageProxy [
    background: (BlImageBackground new
          image: (PyramidExternalRessourceProxy new
                pyramidExternalRessourceSource: (PyramidExternalRessourceSource new
-                     target: Object class new;
+                     target: Object;
                      selector: #iconNamed:;
                      arguments: {#pharoBig};
                      yourself);

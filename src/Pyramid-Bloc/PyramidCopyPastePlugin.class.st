@@ -1,17 +1,15 @@
 Class {
-	#name : 'PyramidCopyPastePlugin',
-	#superclass : 'Object',
+	#name : #PyramidCopyPastePlugin,
+	#superclass : #Object,
 	#traits : 'TPyramidPlugin',
 	#classTraits : 'TPyramidPlugin classTrait',
 	#instVars : [
 		'projectModel'
 	],
-	#category : 'Pyramid-Bloc-plugin-copy-paste',
-	#package : 'Pyramid-Bloc',
-	#tag : 'plugin-copy-paste'
+	#category : #'Pyramid-Bloc-plugin-copy-paste'
 }
 
-{ #category : 'adding' }
+{ #category : #adding }
 PyramidCopyPastePlugin >> addPanelsOn: aPyramidSimpleWindow [
 
 	aPyramidSimpleWindow
@@ -19,19 +17,19 @@ PyramidCopyPastePlugin >> addPanelsOn: aPyramidSimpleWindow [
 		addItem: [ :builder | self copyAsStonMenu: builder ]
 ]
 
-{ #category : 'connecting' }
+{ #category : #connecting }
 PyramidCopyPastePlugin >> connectOn: aPyramidEditor [
 
 	self projectModel: aPyramidEditor projectModel
 ]
 
-{ #category : 'copying' }
+{ #category : #copying }
 PyramidCopyPastePlugin >> copyAsStonInClipboard: aCollection [
 
 	Clipboard clipboardText: (BlSerializer serialize: aCollection)
 ]
 
-{ #category : 'copying' }
+{ #category : #copying }
 PyramidCopyPastePlugin >> copyAsStonMenu: aBuilder [
 
 	aBuilder
@@ -89,7 +87,7 @@ PyramidCopyPastePlugin >> copyAsStonMenu: aBuilder [
 		order: 20
 ]
 
-{ #category : 'copying' }
+{ #category : #copying }
 PyramidCopyPastePlugin >> pasteAsStonInClipboard: aBlElement [
 
 	| copiedElement |
@@ -102,7 +100,7 @@ PyramidCopyPastePlugin >> pasteAsStonInClipboard: aBlElement [
 	self projectModel informElementsChanged
 ]
 
-{ #category : 'copying' }
+{ #category : #copying }
 PyramidCopyPastePlugin >> pasteAsStonInClipboardOnRoots [
 
 	| copiedElement |
@@ -115,13 +113,13 @@ PyramidCopyPastePlugin >> pasteAsStonInClipboardOnRoots [
 	self projectModel informFirstLevelElementsChanged
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidCopyPastePlugin >> projectModel [
 
 	^ projectModel
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidCopyPastePlugin >> projectModel: anObject [
 
 	projectModel := anObject

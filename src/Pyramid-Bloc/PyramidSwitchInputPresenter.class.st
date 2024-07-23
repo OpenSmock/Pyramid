@@ -3,19 +3,17 @@ i can show and edit boolean.
 i have a uncertain state. In uncertain state i can not be edited
 "
 Class {
-	#name : 'PyramidSwitchInputPresenter',
-	#superclass : 'PyramidInputPresenter',
+	#name : #PyramidSwitchInputPresenter,
+	#superclass : #PyramidInputPresenter,
 	#instVars : [
 		'button',
 		'state',
 		'whenValueChangedDo'
 	],
-	#category : 'Pyramid-Bloc-plugin-bloc',
-	#package : 'Pyramid-Bloc',
-	#tag : 'plugin-bloc'
+	#category : #'Pyramid-Bloc-plugin-bloc'
 }
 
-{ #category : 'pyramid-serialized-bloc' }
+{ #category : #'pyramid-serialized-bloc' }
 PyramidSwitchInputPresenter class >> blocToggleOff [
 <pyStash>
 	^ [ "BlStashSerializer"
@@ -56,7 +54,7 @@ PyramidSwitchInputPresenter class >> blocToggleOff [
 	] value
 ]
 
-{ #category : 'pyramid-serialized-bloc' }
+{ #category : #'pyramid-serialized-bloc' }
 PyramidSwitchInputPresenter class >> blocToggleOn [
 <pyStash>
 	^ [ "BlStashSerializer"
@@ -97,7 +95,7 @@ PyramidSwitchInputPresenter class >> blocToggleOn [
 	] value
 ]
 
-{ #category : 'pyramid-serialized-bloc' }
+{ #category : #'pyramid-serialized-bloc' }
 PyramidSwitchInputPresenter class >> blocToggleUncertain [
 <pyStash>
 	^ [ "BlStashSerializer"
@@ -138,7 +136,7 @@ PyramidSwitchInputPresenter class >> blocToggleUncertain [
 	] value
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidSwitchInputPresenter class >> formToggleOff [
 
 	^ (BlElement new
@@ -147,7 +145,7 @@ PyramidSwitchInputPresenter class >> formToggleOff [
 		  exportAsForm
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidSwitchInputPresenter class >> formToggleOn [
 
 	^ (BlElement new
@@ -156,7 +154,7 @@ PyramidSwitchInputPresenter class >> formToggleOn [
 		  exportAsForm
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidSwitchInputPresenter class >> formToggleUncertain [
 
 	^ (BlElement new
@@ -165,26 +163,26 @@ PyramidSwitchInputPresenter class >> formToggleUncertain [
 		  exportAsForm
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidSwitchInputPresenter class >> stringsClass [
 
 	^ PyramidSwitchInputStrings
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidSwitchInputPresenter >> applyStrings [
 
 	self button help: self strings help.
 	self button label: self strings offLabel
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidSwitchInputPresenter >> button [
 
 	^ button
 ]
 
-{ #category : 'layout' }
+{ #category : #layout }
 PyramidSwitchInputPresenter >> defaultLayout [
 
 	^ SpBoxLayout newHorizontal
@@ -192,7 +190,7 @@ PyramidSwitchInputPresenter >> defaultLayout [
 		  yourself
 ]
 
-{ #category : 'initialization' }
+{ #category : #initialization }
 PyramidSwitchInputPresenter >> initializePresenters [
 
 	whenValueChangedDo := [ :bool | ].
@@ -203,38 +201,38 @@ PyramidSwitchInputPresenter >> initializePresenters [
 		          yourself
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidSwitchInputPresenter >> label: aString [
 
 	self button label: aString
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidSwitchInputPresenter >> state [
 
 	^ state
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidSwitchInputPresenter >> state: anObject [
 
 	state := anObject
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidSwitchInputPresenter >> switchState [
 
 	self value: self state not.
 	self whenValueChangedDo value: self value
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidSwitchInputPresenter >> value [
 
 	^ self state
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidSwitchInputPresenter >> value: aBoolean [
 
 	self state = aBoolean ifTrue: [ ^ self ].
@@ -253,13 +251,13 @@ PyramidSwitchInputPresenter >> value: aBoolean [
 	self button action: [  ]
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidSwitchInputPresenter >> whenValueChangedDo [
 
 	^ whenValueChangedDo
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidSwitchInputPresenter >> whenValueChangedDo: aBlock [
 
 	whenValueChangedDo := aBlock

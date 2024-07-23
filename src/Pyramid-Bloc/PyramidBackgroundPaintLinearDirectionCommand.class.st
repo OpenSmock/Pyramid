@@ -1,12 +1,10 @@
 Class {
-	#name : 'PyramidBackgroundPaintLinearDirectionCommand',
-	#superclass : 'PyramidAbstractBlocCommand',
-	#category : 'Pyramid-Bloc-plugin-bloc-visuals',
-	#package : 'Pyramid-Bloc',
-	#tag : 'plugin-bloc-visuals'
+	#name : #PyramidBackgroundPaintLinearDirectionCommand,
+	#superclass : #PyramidAbstractBlocCommand,
+	#category : #'Pyramid-Bloc-plugin-bloc-visuals'
 }
 
-{ #category : 'testing' }
+{ #category : #testing }
 PyramidBackgroundPaintLinearDirectionCommand >> canBeUsedFor: anObject [
 
 	^ (super canBeUsedFor: anObject) and: [

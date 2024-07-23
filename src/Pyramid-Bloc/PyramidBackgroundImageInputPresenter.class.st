@@ -1,48 +1,46 @@
 Class {
-	#name : 'PyramidBackgroundImageInputPresenter',
-	#superclass : 'PyramidInputPresenter',
+	#name : #PyramidBackgroundImageInputPresenter,
+	#superclass : #PyramidInputPresenter,
 	#instVars : [
 		'buttonEdit',
 		'whenValueChangedDo',
 		'image'
 	],
-	#category : 'Pyramid-Bloc-plugin-bloc-visuals',
-	#package : 'Pyramid-Bloc',
-	#tag : 'plugin-bloc-visuals'
+	#category : #'Pyramid-Bloc-plugin-bloc-visuals'
 }
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidBackgroundImageInputPresenter >> buttonEdit [
 
 	^ buttonEdit
 ]
 
-{ #category : 'layout' }
+{ #category : #layout }
 PyramidBackgroundImageInputPresenter >> defaultLayout [
 
 	^ SpBoxLayout newVertical add: self buttonEdit; yourself.
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidBackgroundImageInputPresenter >> emptyValue [
 
 	self image: PyramidEmptyValue  new.
 	self buttonEdit label: 'Empty value'
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidBackgroundImageInputPresenter >> image [
 
 	^ image
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidBackgroundImageInputPresenter >> image: anObject [
 
 	image := anObject
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidBackgroundImageInputPresenter >> initializePresenters [
 
 	image := PyramidEmptyValue new.
@@ -52,14 +50,14 @@ PyramidBackgroundImageInputPresenter >> initializePresenters [
 		              yourself
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidBackgroundImageInputPresenter >> mixedValues [
 
 	self image: PyramidMixedValues new.
 	self buttonEdit label: 'Mixed values'
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidBackgroundImageInputPresenter >> openModalWindow [
 
 	| dialog window imageSelectorPresenter |
@@ -74,25 +72,25 @@ PyramidBackgroundImageInputPresenter >> openModalWindow [
 		self whenValueChangedDo value: imageSelectorPresenter currentObject ]
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidBackgroundImageInputPresenter >> value [
 
 	^ self image
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidBackgroundImageInputPresenter >> value: anObject [
 
 	self image: anObject
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidBackgroundImageInputPresenter >> whenValueChangedDo [
 
 	^ whenValueChangedDo
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidBackgroundImageInputPresenter >> whenValueChangedDo: anObject [
 
 	whenValueChangedDo := anObject

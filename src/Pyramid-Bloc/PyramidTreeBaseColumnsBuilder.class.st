@@ -1,18 +1,16 @@
 Class {
-	#name : 'PyramidTreeBaseColumnsBuilder',
-	#superclass : 'PyramidAbstractColumnsBuilder',
-	#category : 'Pyramid-Bloc-plugin-tree-library',
-	#package : 'Pyramid-Bloc',
-	#tag : 'plugin-tree-library'
+	#name : #PyramidTreeBaseColumnsBuilder,
+	#superclass : #PyramidAbstractColumnsBuilder,
+	#category : #'Pyramid-Bloc-plugin-tree-library'
 }
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidTreeBaseColumnsBuilder >> buildOn: aPyramidTreePlugin [
 
 	aPyramidTreePlugin addColumns: { self nameAndTypeColumn . self hashColumn . self zIndexColumn . self visibilityColumn  }
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidTreeBaseColumnsBuilder >> hashColumn [
 
 	^ SpStringTableColumn new
@@ -24,7 +22,7 @@ PyramidTreeBaseColumnsBuilder >> hashColumn [
 			              yourself
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidTreeBaseColumnsBuilder >> nameAndTypeColumn [
 
 	^ SpCompositeTableColumn new
@@ -47,7 +45,7 @@ PyramidTreeBaseColumnsBuilder >> nameAndTypeColumn [
 		  yourself
 ]
 
-{ #category : 'initialization' }
+{ #category : #initialization }
 PyramidTreeBaseColumnsBuilder >> setVisibility: aBlVisibility of: aBlElement onEditor: aPyramidEditor [
 
 	aPyramidEditor propertiesManager commandExecutor
@@ -56,7 +54,7 @@ PyramidTreeBaseColumnsBuilder >> setVisibility: aBlVisibility of: aBlElement onE
 		with: aBlVisibility
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidTreeBaseColumnsBuilder >> visibilityColumn [
 
 	^ SpCompositeTableColumn new
@@ -82,7 +80,7 @@ PyramidTreeBaseColumnsBuilder >> visibilityColumn [
 		  yourself
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidTreeBaseColumnsBuilder >> zIndexColumn [
 
 	^ SpStringTableColumn new

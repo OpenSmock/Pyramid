@@ -1,28 +1,26 @@
 Class {
-	#name : 'PyramidInsetsInputPresenter',
-	#superclass : 'PyramidInputPresenter',
+	#name : #PyramidInsetsInputPresenter,
+	#superclass : #PyramidInputPresenter,
 	#instVars : [
 		'inputArray',
 		'whenValueChangedDo'
 	],
-	#category : 'Pyramid-Bloc-plugin-bloc',
-	#package : 'Pyramid-Bloc',
-	#tag : 'plugin-bloc'
+	#category : #'Pyramid-Bloc-plugin-bloc'
 }
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidInsetsInputPresenter >> applyStrings [
 
 	self inputArray strings: self strings.
 ]
 
-{ #category : 'layout' }
+{ #category : #layout }
 PyramidInsetsInputPresenter >> defaultLayout [
 
 ^ SpBoxLayout newHorizontal add: self inputArray; yourself
 ]
 
-{ #category : 'initialization' }
+{ #category : #initialization }
 PyramidInsetsInputPresenter >> initializePresenters [
 
 	whenValueChangedDo := [ :insets | ].
@@ -32,13 +30,13 @@ PyramidInsetsInputPresenter >> initializePresenters [
 			              (self insetsFrom: array) ]
 ]
 
-{ #category : 'layout' }
+{ #category : #layout }
 PyramidInsetsInputPresenter >> inputArray [
 
 	^ inputArray
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidInsetsInputPresenter >> insetsFrom: anArray [
 
 	anArray isCollection ifFalse: [ ^ anArray ].
@@ -48,25 +46,25 @@ PyramidInsetsInputPresenter >> insetsFrom: anArray [
 	^ PyramidUnknowState new
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidInsetsInputPresenter >> value [
 
 	^ self insetsFrom: self inputArray value
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidInsetsInputPresenter >> value: aBlInsets [
 
 	aBlInsets setInsetsOn: self
 ]
 
-{ #category : 'initialization' }
+{ #category : #initialization }
 PyramidInsetsInputPresenter >> whenValueChangedDo [
 
 	^	whenValueChangedDo
 ]
 
-{ #category : 'initialization' }
+{ #category : #initialization }
 PyramidInsetsInputPresenter >> whenValueChangedDo: aBlock [
 
 	whenValueChangedDo := aBlock

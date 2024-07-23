@@ -1,33 +1,31 @@
 Trait {
-	#name : 'TPyramidEditorTransformation',
+	#name : #TPyramidEditorTransformation,
 	#instVars : [
 		'transformationObservers'
 	],
-	#category : 'Pyramid-Bloc-plugin-space-extensions',
-	#package : 'Pyramid-Bloc',
-	#tag : 'plugin-space-extensions'
+	#category : #'Pyramid-Bloc-plugin-space-extensions'
 }
 
-{ #category : 'adding' }
+{ #category : #adding }
 TPyramidEditorTransformation >> addTransformationObserver: anObject [
 
 	self transformationObservers add: anObject
 ]
 
-{ #category : 'adding' }
+{ #category : #adding }
 TPyramidEditorTransformation >> removeTransformationObserver: anObject [
 
 	self transformationObservers remove: anObject
 ]
 
-{ #category : 'signalling' }
+{ #category : #signalling }
 TPyramidEditorTransformation >> signalTransformationChanged [
 
 	self transformationObservers do: [ :each |
 		each informTransformationChanged ]
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 TPyramidEditorTransformation >> transformationObservers [
 
 	transformationObservers ifNil: [ transformationObservers := Set new ].

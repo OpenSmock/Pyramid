@@ -1,16 +1,14 @@
 Class {
-	#name : 'PyramidVisualPystonForCly',
-	#superclass : 'ClyBrowserToolMorph',
+	#name : #PyramidVisualPystonForCly,
+	#superclass : #ClyBrowserToolMorph,
 	#instVars : [
 		'method',
 		'imageMorph'
 	],
-	#category : 'Pyramid-Bloc-plugin-save',
-	#package : 'Pyramid-Bloc',
-	#tag : 'plugin-save'
+	#category : #'Pyramid-Bloc-plugin-save'
 }
 
-{ #category : 'activation' }
+{ #category : #activation }
 PyramidVisualPystonForCly class >> browserTabActivation [
 	"This declaration specifies that in any browser when methods are selected, a diff tool will be available in a tab."
 
@@ -18,26 +16,26 @@ PyramidVisualPystonForCly class >> browserTabActivation [
 	^ClyTabActivationStrategyAnnotation for: ClyMethod asCalypsoItemContext
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidVisualPystonForCly class >> shouldBeActivatedInContext: aBrowserContext [
 
 	^ aBrowserContext selectedMethods anySatisfy: [ :method |
 		  method pragmas anySatisfy: [ :pragma | pragma selector = #pySTON or: [ pragma selector = #pyStash ] ] ]
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidVisualPystonForCly class >> tabOrder [
 
 	^ 100
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidVisualPystonForCly >> activationPriority [
 
 	^ self tabOrder
 ]
 
-{ #category : 'converting' }
+{ #category : #converting }
 PyramidVisualPystonForCly >> asSaveModel [
 
 	| class model |
@@ -57,7 +55,7 @@ PyramidVisualPystonForCly >> asSaveModel [
 		  yourself
 ]
 
-{ #category : 'controlling' }
+{ #category : #controlling }
 PyramidVisualPystonForCly >> attachToSystem [
 
 	browser system
@@ -67,19 +65,19 @@ PyramidVisualPystonForCly >> attachToSystem [
 		to: self
 ]
 
-{ #category : 'testing' }
+{ #category : #testing }
 PyramidVisualPystonForCly >> belongsToCurrentBrowserContext [
 
 	^ browser isMethodSelected: self method
 ]
 
-{ #category : 'testing' }
+{ #category : #testing }
 PyramidVisualPystonForCly >> belongsToRemovedBrowserContext [
 
 	^ self method isInstalled
 ]
 
-{ #category : 'building' }
+{ #category : #building }
 PyramidVisualPystonForCly >> build [
 
 	| buttonEditor buttonOpen buttonCopy blElement |
@@ -100,7 +98,7 @@ PyramidVisualPystonForCly >> build [
 	self addMorph: buttonCopy
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidVisualPystonForCly >> buttonCopy [
 
 	^ self
@@ -109,7 +107,7 @@ PyramidVisualPystonForCly >> buttonCopy [
 		  action: [ self copyElement ]
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidVisualPystonForCly >> buttonEditor [
 
 	^ self
@@ -118,7 +116,7 @@ PyramidVisualPystonForCly >> buttonEditor [
 		  action: [ self openEditor ]
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidVisualPystonForCly >> buttonLabel: aLabel help: aString action: aBlock [
 
 	| button |
@@ -134,7 +132,7 @@ PyramidVisualPystonForCly >> buttonLabel: aLabel help: aString action: aBlock [
 	^ button
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidVisualPystonForCly >> buttonOpen [
 
 	^ self
@@ -143,7 +141,7 @@ PyramidVisualPystonForCly >> buttonOpen [
 		  action: [ self openInNewSpace ]
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidVisualPystonForCly >> copyElement [
 
 	| element |
@@ -151,45 +149,45 @@ PyramidVisualPystonForCly >> copyElement [
 	(Clipboard clipboardText: (BlSerializer serialize: element with: BlStashSerializer))
 ]
 
-{ #category : 'initialization' }
+{ #category : #initialization }
 PyramidVisualPystonForCly >> defaultIconName [
 
 	^ #smallPaint
 ]
 
-{ #category : 'initialization' }
+{ #category : #initialization }
 PyramidVisualPystonForCly >> defaultTitle [
 
 	^ 'Pyramid preview'
 ]
 
-{ #category : 'controlling' }
+{ #category : #controlling }
 PyramidVisualPystonForCly >> detachFromSystem [
 
 	browser system unsubscribe: self
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidVisualPystonForCly >> getStonFromMethod [
 
 	^ (method valueWithReceiver: self arguments: {  })
 
 ]
 
-{ #category : 'testing' }
+{ #category : #testing }
 PyramidVisualPystonForCly >> isSimilarTo: anotherBrowserTool [
 
 	(super isSimilarTo: anotherBrowserTool) ifFalse: [ ^ false ].
 	^ self method = anotherBrowserTool method
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidVisualPystonForCly >> method [
 
 	^ method
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidVisualPystonForCly >> openEditor [
 
 	| class elements |
@@ -206,7 +204,7 @@ PyramidVisualPystonForCly >> openEditor [
 	PyramidSavePlugin openOn: elements saveModel: self asSaveModel
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidVisualPystonForCly >> openInNewSpace [
 
 	| class elements space |
@@ -226,13 +224,13 @@ PyramidVisualPystonForCly >> openInNewSpace [
 	space root addChildren: elements allButFirst
 ]
 
-{ #category : 'initialization' }
+{ #category : #initialization }
 PyramidVisualPystonForCly >> setUpModelFromContext [
 
 	method := context firstSelectedMethod
 ]
 
-{ #category : 'updating' }
+{ #category : #updating }
 PyramidVisualPystonForCly >> update [
 
 	| blElement |

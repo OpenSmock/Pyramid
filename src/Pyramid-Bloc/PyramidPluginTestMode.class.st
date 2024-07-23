@@ -1,6 +1,6 @@
 Class {
-	#name : 'PyramidPluginTestMode',
-	#superclass : 'Object',
+	#name : #PyramidPluginTestMode,
+	#superclass : #Object,
 	#traits : 'TPyramidPlugin + TPyramidEditorExtension',
 	#classTraits : 'TPyramidPlugin classTrait + TPyramidEditorExtension classTrait',
 	#instVars : [
@@ -9,12 +9,10 @@ Class {
 		'isTestOnGoing',
 		'builder'
 	],
-	#category : 'Pyramid-Bloc-plugin-testmode',
-	#package : 'Pyramid-Bloc',
-	#tag : 'plugin-testmode'
+	#category : #'Pyramid-Bloc-plugin-testmode'
 }
 
-{ #category : 'adding' }
+{ #category : #adding }
 PyramidPluginTestMode >> addPanelsOn: aPyramidSimpleWindow [
 
 	aPyramidSimpleWindow
@@ -23,19 +21,19 @@ PyramidPluginTestMode >> addPanelsOn: aPyramidSimpleWindow [
 		builder makeButtonWithIcon: self button order: 0 ].
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidPluginTestMode >> builder [
 
 	^ builder
 ]
 
-{ #category : 'actions' }
+{ #category : #actions }
 PyramidPluginTestMode >> button [ 
 
 	^ button
 ]
 
-{ #category : 'connecting' }
+{ #category : #connecting }
 PyramidPluginTestMode >> connectOn: aPyramidEditor [
 
 	spacePlugin := aPyramidEditor plugins
@@ -46,7 +44,7 @@ PyramidPluginTestMode >> connectOn: aPyramidEditor [
 
 ]
 
-{ #category : 'actions' }
+{ #category : #actions }
 PyramidPluginTestMode >> initialize [
 
 	isTestOnGoing := false.
@@ -57,30 +55,30 @@ PyramidPluginTestMode >> initialize [
 		          yourself
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidPluginTestMode >> isTestOnGoing [
 	^ isTestOnGoing
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidPluginTestMode >> isTestOnGoing: aBoolean [
 
 	isTestOnGoing := aBoolean
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidPluginTestMode >> startTestIcon [
 
 	^ Smalltalk ui icons iconNamed: #smallDoIt
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidPluginTestMode >> stopTestIcon [
 
 	^ Smalltalk ui icons iconNamed: #stop
 ]
 
-{ #category : 'actions' }
+{ #category : #actions }
 PyramidPluginTestMode >> switchToTestMode [
 	"
 	if test ok

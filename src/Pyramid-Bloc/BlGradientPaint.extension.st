@@ -1,6 +1,6 @@
-Extension { #name : 'BlGradientPaint' }
+Extension { #name : #BlGradientPaint }
 
-{ #category : '*Pyramid-Bloc' }
+{ #category : #'*Pyramid-Bloc' }
 BlGradientPaint >> asForm [
 
 	^ (Morph new
@@ -13,13 +13,13 @@ BlGradientPaint >> asForm [
 		  yourself) asForm
 ]
 
-{ #category : '*Pyramid-Bloc' }
+{ #category : #'*Pyramid-Bloc' }
 BlGradientPaint >> selectOnBackgroundInput: aPyramidBackgroundInputPresenter [
 
 	aPyramidBackgroundInputPresenter selectPaintGradientWith: self
 ]
 
-{ #category : '*Pyramid-Bloc' }
+{ #category : #'*Pyramid-Bloc' }
 BlGradientPaint >> selectOnGradientPaintInput: aPyramidGradientPaintInputPresenter [
 
 	aPyramidGradientPaintInputPresenter stopsInput value:self stops.

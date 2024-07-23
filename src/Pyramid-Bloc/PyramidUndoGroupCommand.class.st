@@ -1,24 +1,22 @@
 Class {
-	#name : 'PyramidUndoGroupCommand',
-	#superclass : 'PyramidCommand',
-	#category : 'Pyramid-Bloc-plugin-bloc-group',
-	#package : 'Pyramid-Bloc',
-	#tag : 'plugin-bloc-group'
+	#name : #PyramidUndoGroupCommand,
+	#superclass : #PyramidCommand,
+	#category : #'Pyramid-Bloc-plugin-bloc-group'
 }
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidUndoGroupCommand >> commandInverse [
 
 	^ PyramidRedoGroupCommand new
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidUndoGroupCommand >> getValueFor: aBlElement [
 
 	^ nil
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidUndoGroupCommand >> positionChildrenOfGroupElement: groupElement [
 
 	| currentTop currentLeft |
@@ -29,7 +27,7 @@ PyramidUndoGroupCommand >> positionChildrenOfGroupElement: groupElement [
 			child constraints position + (currentLeft @ currentTop) ]
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidUndoGroupCommand >> setValueFor: aCollectionToGroup with: aGroupModel [
 	"Remove children of group.
 	Remove children of origin.
