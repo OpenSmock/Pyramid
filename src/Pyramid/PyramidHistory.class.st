@@ -1,53 +1,51 @@
 Class {
-	#name : 'PyramidHistory',
-	#superclass : 'Object',
+	#name : #PyramidHistory,
+	#superclass : #Object,
 	#instVars : [
 		'mementosStack',
 		'position'
 	],
-	#category : 'Pyramid-history',
-	#package : 'Pyramid',
-	#tag : 'history'
+	#category : #'Pyramid-history'
 }
 
-{ #category : 'testing' }
+{ #category : #testing }
 PyramidHistory >> canRedo [
 
 	^ self mementosStack size - self position > 0
 ]
 
-{ #category : 'testing' }
+{ #category : #testing }
 PyramidHistory >> canUndo [
 
  ^ self position >= 1
 ]
 
-{ #category : 'initialization' }
+{ #category : #initialization }
 PyramidHistory >> initialize [
 
 	mementosStack := OrderedCollection new.
 	position := 0
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidHistory >> mementosStack [
 
 	^ mementosStack
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidHistory >> mementosStack: anObject [
 
 	mementosStack := anObject
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidHistory >> position [
 
 	^ position
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidHistory >> previous: undoMemento current: redoMemento [
 
 	(self position ~= 0 and: [ self position ~= self mementosStack size ]) ifTrue: [ self mementosStack: (self mementosStack first: self position). ].
@@ -56,7 +54,7 @@ PyramidHistory >> previous: undoMemento current: redoMemento [
 	self mementosStack add: undoMemento -> redoMemento
 ]
 
-{ #category : 'menu messages' }
+{ #category : #'menu messages' }
 PyramidHistory >> redo [
 
 	self canRedo ifTrue: [
@@ -64,7 +62,7 @@ PyramidHistory >> redo [
 		position := position + 1 ]
 ]
 
-{ #category : 'menu messages' }
+{ #category : #'menu messages' }
 PyramidHistory >> undo [
 
 	self canUndo ifTrue: [

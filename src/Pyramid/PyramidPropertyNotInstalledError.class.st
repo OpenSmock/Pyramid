@@ -1,34 +1,32 @@
 Class {
-	#name : 'PyramidPropertyNotInstalledError',
-	#superclass : 'PyramidError',
+	#name : #PyramidPropertyNotInstalledError,
+	#superclass : #PyramidError,
 	#instVars : [
 		'manager',
 		'property'
 	],
-	#category : 'Pyramid-property',
-	#package : 'Pyramid',
-	#tag : 'property'
+	#category : #'Pyramid-property'
 }
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidPropertyNotInstalledError >> manager [
 
 	^ manager
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidPropertyNotInstalledError >> manager: anObject [
 
 	manager := anObject
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidPropertyNotInstalledError >> property [
 
 	^ property
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidPropertyNotInstalledError >> property: anObject [
 
 	property := anObject

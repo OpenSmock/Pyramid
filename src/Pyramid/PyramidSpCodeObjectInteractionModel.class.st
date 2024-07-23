@@ -1,15 +1,13 @@
 Class {
-	#name : 'PyramidSpCodeObjectInteractionModel',
-	#superclass : 'SpCodeScriptingInteractionModel',
+	#name : #PyramidSpCodeObjectInteractionModel,
+	#superclass : #SpCodeScriptingInteractionModel,
 	#instVars : [
 		'projectModel'
 	],
-	#category : 'Pyramid-plugin-playground',
-	#package : 'Pyramid',
-	#tag : 'plugin-playground'
+	#category : #'Pyramid-plugin-playground'
 }
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidSpCodeObjectInteractionModel >> doItReceiver [
 
 	self projectModel selection ifEmpty: [
@@ -19,7 +17,7 @@ PyramidSpCodeObjectInteractionModel >> doItReceiver [
 	^ self projectModel selection asArray
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidSpCodeObjectInteractionModel >> doItReceiverString [
 
 	self projectModel selection ifEmpty: [
@@ -30,19 +28,19 @@ PyramidSpCodeObjectInteractionModel >> doItReceiverString [
 		  self projectModel selection size
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidSpCodeObjectInteractionModel >> isScripting [
 
 	^ true
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidSpCodeObjectInteractionModel >> projectModel [
 
 	^ projectModel
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidSpCodeObjectInteractionModel >> projectModel: anObject [
 
 	projectModel := anObject

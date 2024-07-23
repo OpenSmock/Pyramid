@@ -5,14 +5,12 @@ I create a presenter with a main input to change property of all element at once
 
 "
 Class {
-	#name : 'PyramidPopingPresenterBuilder',
-	#superclass : 'PyramidPropertyPresenterBuilder',
-	#category : 'Pyramid-property',
-	#package : 'Pyramid',
-	#tag : 'property'
+	#name : #PyramidPopingPresenterBuilder,
+	#superclass : #PyramidPropertyPresenterBuilder,
+	#category : #'Pyramid-property'
 }
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidPopingPresenterBuilder >> build [
 
 	| presenterAll presentersGrouped presentersIndividual layout |
@@ -33,7 +31,7 @@ PyramidPopingPresenterBuilder >> build [
 		  yourself.
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidPopingPresenterBuilder >> buildLayoutAll: presenterAll grouped: presentersGrouped individual: presentersIndividual [
 
 	| presenterPopup buttonPopup |
@@ -56,7 +54,7 @@ PyramidPopingPresenterBuilder >> buildLayoutAll: presenterAll grouped: presenter
 	^ self layoutForAll: presenterAll buttonPopup: buttonPopup
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidPopingPresenterBuilder >> buildLayoutOnlyForAll: presenterAll [
 
 	| buttonPopup |
@@ -68,7 +66,7 @@ PyramidPopingPresenterBuilder >> buildLayoutOnlyForAll: presenterAll [
 	^ self layoutForAll: presenterAll buttonPopup: buttonPopup
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidPopingPresenterBuilder >> buildPresenterAll [
 
 	| input |
@@ -90,7 +88,7 @@ PyramidPopingPresenterBuilder >> buildPresenterAll [
 	^ input
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidPopingPresenterBuilder >> buildPresenterWithButtonsFor: anAssociation withLabel: aString [
 
 	| input buttonApplyToAll layout |
@@ -119,7 +117,7 @@ PyramidPopingPresenterBuilder >> buildPresenterWithButtonsFor: anAssociation wit
 		  yourself
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidPopingPresenterBuilder >> buildPresentersGrouped [
 
 	| size label |
@@ -132,7 +130,7 @@ PyramidPopingPresenterBuilder >> buildPresentersGrouped [
 		  self buildPresenterWithButtonsFor: each withLabel: label ]
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidPopingPresenterBuilder >> buildPresentersIndividual [
 
 	| label |
@@ -142,7 +140,7 @@ PyramidPopingPresenterBuilder >> buildPresentersIndividual [
 		  self buildPresenterWithButtonsFor: each withLabel: label ]
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidPopingPresenterBuilder >> layoutForAll: presenterAll buttonPopup: buttonPopup [
 
 	^ SpBoxLayout newVertical
@@ -161,7 +159,7 @@ PyramidPopingPresenterBuilder >> layoutForAll: presenterAll buttonPopup: buttonP
 		  yourself
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidPopingPresenterBuilder >> layoutForLabel: aString input: anInput button: aButton [
 
 	^ SpBoxLayout newHorizontal
@@ -173,7 +171,7 @@ PyramidPopingPresenterBuilder >> layoutForLabel: aString input: anInput button: 
 		  yourself
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidPopingPresenterBuilder >> makeNewInput [
 
 	^ self property pyramidInputPresenterClass new

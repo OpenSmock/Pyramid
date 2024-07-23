@@ -5,20 +5,18 @@ I do that with the message `#buildPresenterFromCollection:andManager:`
 
 "
 Class {
-	#name : 'PyramidPresenterPropertiesStrategy',
-	#superclass : 'Object',
-	#category : 'Pyramid-property',
-	#package : 'Pyramid',
-	#tag : 'property'
+	#name : #PyramidPresenterPropertiesStrategy,
+	#superclass : #Object,
+	#category : #'Pyramid-property'
 }
 
-{ #category : 'testing' }
+{ #category : #testing }
 PyramidPresenterPropertiesStrategy class >> isAbstract [
 
 	^ self == PyramidPresenterPropertiesStrategy
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidPresenterPropertiesStrategy >> buildPresenterFromCollection: aCollection andManager: aManager [
 
 	^ self shouldBeImplemented

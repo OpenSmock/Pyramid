@@ -1,47 +1,45 @@
 Class {
-	#name : 'PyramidProjectModel',
-	#superclass : 'Object',
+	#name : #PyramidProjectModel,
+	#superclass : #Object,
 	#instVars : [
 		'editor',
 		'firstLevelElements',
 		'selection'
 	],
-	#category : 'Pyramid-models',
-	#package : 'Pyramid',
-	#tag : 'models'
+	#category : #'Pyramid-models'
 }
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidProjectModel >> announce: anEvent [
 
 	self announcer announce: anEvent
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidProjectModel >> announcer [
 
 	^ self editor announcer
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidProjectModel >> editor [
 
 	^ editor
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidProjectModel >> editor: anObject [
 
 	editor := anObject
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidProjectModel >> firstLevelElements [
 
 	^ firstLevelElements
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidProjectModel >> informElementsChanged [
 
 	self announce: (PyramidElementsChangedEvent new
@@ -50,7 +48,7 @@ PyramidProjectModel >> informElementsChanged [
 			 yourself)
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidProjectModel >> informFirstLevelElementsChanged [
 
 	self announce: (PyramidFirstLevelElementsChangedEvent new
@@ -59,7 +57,7 @@ PyramidProjectModel >> informFirstLevelElementsChanged [
 			 yourself)
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidProjectModel >> informSelectionChanged [
 
 	self announce: (PyramidSelectionChangedEvent new
@@ -68,7 +66,7 @@ PyramidProjectModel >> informSelectionChanged [
 			 yourself)
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidProjectModel >> initialize [
 
 	selection := PyramidCollectionWithCallbacks new.
@@ -82,20 +80,20 @@ PyramidProjectModel >> initialize [
 		withCallback: [ self informFirstLevelElementsChanged ]
 ]
 
-{ #category : 'selection' }
+{ #category : #selection }
 PyramidProjectModel >> selection [
 
 	^ selection
 ]
 
-{ #category : 'selection' }
+{ #category : #selection }
 PyramidProjectModel >> setSelection: aBlElementCollection [
 	"Replace current selection by another one"
 	
 	self selection replaceAll: aBlElementCollection
 ]
 
-{ #category : 'selection' }
+{ #category : #selection }
 PyramidProjectModel >> updateSelection [
 	"Update the selection list regarding existing elements"
 	

@@ -10,69 +10,67 @@ I am a `SpPresenter` used to view and changed the property of a collection of ob
 
 "
 Class {
-	#name : 'PyramidInputPresenter',
-	#superclass : 'SpPresenter',
+	#name : #PyramidInputPresenter,
+	#superclass : #SpPresenter,
 	#instVars : [
 		'strings'
 	],
-	#category : 'Pyramid-specs-custom',
-	#package : 'Pyramid',
-	#tag : 'specs-custom'
+	#category : #'Pyramid-specs-custom'
 }
 
-{ #category : 'testing' }
+{ #category : #testing }
 PyramidInputPresenter class >> isAbstract [
 
 	^ self == PyramidInputPresenter
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidInputPresenter class >> stringsClass [
 
 	^ PyramidInputStrings
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidInputPresenter >> applyStrings [
 
 	
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidInputPresenter >> emptyValue [
 
 	self value: PyramidEmptyValue new
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidInputPresenter >> mixedValues [
 
 	self value: PyramidMixedValues new
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidInputPresenter >> strings [
 
 	^ strings
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidInputPresenter >> strings: anObject [
 
 	strings := anObject.
 	self applyStrings
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidInputPresenter >> value [
 
 	
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidInputPresenter >> value: anObject [
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidInputPresenter >> whenValueChangedDo: aBlock [
 ]

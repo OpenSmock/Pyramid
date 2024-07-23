@@ -1,46 +1,44 @@
 Class {
-	#name : 'PyramidSortedCollectionWithCallbacks',
-	#superclass : 'PyramidCollectionWithCallbacks',
+	#name : #PyramidSortedCollectionWithCallbacks,
+	#superclass : #PyramidCollectionWithCallbacks,
 	#instVars : [
 		'sortFunction'
 	],
-	#category : 'Pyramid-models',
-	#package : 'Pyramid',
-	#tag : 'models'
+	#category : #'Pyramid-models'
 }
 
-{ #category : 'signalling' }
+{ #category : #signalling }
 PyramidSortedCollectionWithCallbacks >> collection: aCollection [	
 
 	collection := aCollection	
 ]
 
-{ #category : 'initialization' }
+{ #category : #initialization }
 PyramidSortedCollectionWithCallbacks >> initialize [
 
 	super initialize.
 	sortFunction := [ :a :b | true ].
 ]
 
-{ #category : 'signalling' }
+{ #category : #signalling }
 PyramidSortedCollectionWithCallbacks >> signalChanged [
 
 	self sortCollection.
 	self subscriptions do: [ :callback | callback value ]
 ]
 
-{ #category : 'signalling' }
+{ #category : #signalling }
 PyramidSortedCollectionWithCallbacks >> sortCollection [.
 	self collection: (self collection sorted: self sortFunction).
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidSortedCollectionWithCallbacks >> sortFunction [
 
 	^ sortFunction
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidSortedCollectionWithCallbacks >> sortFunction: anObject [
 
 	sortFunction := anObject

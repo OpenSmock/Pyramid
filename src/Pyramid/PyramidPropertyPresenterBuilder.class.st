@@ -3,48 +3,46 @@ I transform a `PyramidCluster` and a `NeoPyramidProperty` into a `SpPresenter`.
 
 "
 Class {
-	#name : 'PyramidPropertyPresenterBuilder',
-	#superclass : 'Object',
+	#name : #PyramidPropertyPresenterBuilder,
+	#superclass : #Object,
 	#instVars : [
 		'cluster',
 		'property'
 	],
-	#category : 'Pyramid-property',
-	#package : 'Pyramid',
-	#tag : 'property'
+	#category : #'Pyramid-property'
 }
 
-{ #category : 'testing' }
+{ #category : #testing }
 PyramidPropertyPresenterBuilder class >> isAbstract [
 
 	^ self == PyramidPropertyPresenterBuilder
 ]
 
-{ #category : 'building' }
+{ #category : #building }
 PyramidPropertyPresenterBuilder >> build [
 
 	^ self shouldBeImplemented
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidPropertyPresenterBuilder >> cluster [
 
 	^ cluster
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidPropertyPresenterBuilder >> cluster: anObject [
 
 	cluster := anObject
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidPropertyPresenterBuilder >> property [
 
 	^ property
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidPropertyPresenterBuilder >> property: anObject [
 
 	property := anObject

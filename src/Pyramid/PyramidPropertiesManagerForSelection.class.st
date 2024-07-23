@@ -1,17 +1,15 @@
 Class {
-	#name : 'PyramidPropertiesManagerForSelection',
-	#superclass : 'PyramidPropertiesManager',
+	#name : #PyramidPropertiesManagerForSelection,
+	#superclass : #PyramidPropertiesManager,
 	#instVars : [
 		'presenter',
 		'shouldComputeProperties',
 		'projectModel'
 	],
-	#category : 'Pyramid-property',
-	#package : 'Pyramid',
-	#tag : 'property'
+	#category : #'Pyramid-property'
 }
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidPropertiesManagerForSelection >> computeProperties: aCollection [
 
 	self presenter layout child:
@@ -19,7 +17,7 @@ PyramidPropertiesManagerForSelection >> computeProperties: aCollection [
 	self shouldComputeProperties: false
 ]
 
-{ #category : 'initialization' }
+{ #category : #initialization }
 PyramidPropertiesManagerForSelection >> initialize [
 
 	super initialize.
@@ -35,19 +33,19 @@ PyramidPropertiesManagerForSelection >> initialize [
 	commandExecutor afterDo: [ self projectModel informElementsChanged ]
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidPropertiesManagerForSelection >> presenter [
 
 	^ presenter
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidPropertiesManagerForSelection >> projectModel [
 
 	^ projectModel
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidPropertiesManagerForSelection >> projectModel: aPyramidProjectModel [
 
 	projectModel := aPyramidProjectModel.
@@ -61,7 +59,7 @@ PyramidPropertiesManagerForSelection >> projectModel: aPyramidProjectModel [
 		for: self.
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidPropertiesManagerForSelection >> selectionOrElementsChanged: anEvent [
 
 	self shouldComputeProperties: true.
@@ -69,13 +67,13 @@ PyramidPropertiesManagerForSelection >> selectionOrElementsChanged: anEvent [
 	self computeProperties: anEvent selection
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidPropertiesManagerForSelection >> shouldComputeProperties [
 
 	^ shouldComputeProperties
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidPropertiesManagerForSelection >> shouldComputeProperties: aBoolean [
 
 	shouldComputeProperties:= aBoolean

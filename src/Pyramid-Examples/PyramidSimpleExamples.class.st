@@ -1,28 +1,35 @@
 Class {
-	#name : 'PyramidSimpleExamples',
-	#superclass : 'Object',
-	#category : 'Pyramid-Examples',
-	#package : 'Pyramid-Examples'
+	#name : #PyramidSimpleExamples,
+	#superclass : #Object,
+	#category : #'Pyramid-Examples'
 }
 
-{ #category : 'pyramid-serialized-bloc' }
+{ #category : #'pyramid-serialized-bloc' }
 PyramidSimpleExamples class >> imageProxy [
-<pyStash>
-	^ [ "BlStashSerializer"
-{(BlElement new
+	"This class has been generated using Pyramid.
+
+	By: YannLEGOFF
+	2024-07-22 17:50:11"
+
+	<pyStash>
+	^ [ {(BlElement new
    id: #A;
    background: (BlImageBackground new
+         image: (PyramidExternalRessourceProxy new
+               pyramidExternalRessourceSource: (PyramidExternalRessourceSource new
+                     target: Object class new;
+                     selector: #iconNamed:;
+                     arguments: {#pharoBig};
+                     yourself);
+               yourself);
          opacity: 1.0;
-         image: PyramidExternalRessourceProxy new;
          yourself);
-   layout: BlBasicLayout uniqueInstance;
-   constraintsDo: [:constraints |  constraints horizontal exact: 200.0.
-      constraints vertical exact: 200.0 ];
-   yourself)}
-	] value
+   constraintsDo: [:constraints |  constraints horizontal exact: 256.0.
+      constraints vertical exact: 256.0 ];
+   yourself)} ] value
 ]
 
-{ #category : 'pyramid-serialized-bloc' }
+{ #category : #'pyramid-serialized-bloc' }
 PyramidSimpleExamples class >> little_cat_in_black [
 <pyStash>
 	^ [ "BlStashSerializer"
@@ -173,7 +180,7 @@ blroundedrectanglegeometry7 := BlRoundedRectangleGeometry cornerRadius: 12.
 	] value
 ]
 
-{ #category : 'pyramid-serialized-bloc' }
+{ #category : #'pyramid-serialized-bloc' }
 PyramidSimpleExamples class >> marble [
 
 	<pyStash>
@@ -310,7 +317,7 @@ PyramidSimpleExamples class >> marble [
 			   yourself) } ] value
 ]
 
-{ #category : 'pyramid-serialized-bloc' }
+{ #category : #'pyramid-serialized-bloc' }
 PyramidSimpleExamples class >> marble2 [
 
 	<pyStash>
@@ -466,7 +473,7 @@ PyramidSimpleExamples class >> marble2 [
 			   yourself) } ] value
 ]
 
-{ #category : 'pyramid-serialized-bloc' }
+{ #category : #'pyramid-serialized-bloc' }
 PyramidSimpleExamples class >> marble3 [
 
 	<pyStash>
@@ -763,7 +770,7 @@ PyramidSimpleExamples class >> marble3 [
 			   yourself) } ] value
 ]
 
-{ #category : 'pyramid-serialized-bloc' }
+{ #category : #'pyramid-serialized-bloc' }
 PyramidSimpleExamples class >> signal [
 <pyStash>
 	^ [ "BlStashSerializer"
@@ -826,7 +833,7 @@ blellipsegeometry2 := BlEllipseGeometry new.
 	] value
 ]
 
-{ #category : 'pyramid-serialized-bloc' }
+{ #category : #'pyramid-serialized-bloc' }
 PyramidSimpleExamples class >> signal_green [
 <pyStash>
 	^ [ "BlStashSerializer"
@@ -889,7 +896,7 @@ blellipsegeometry2 := BlEllipseGeometry new.
 	] value
 ]
 
-{ #category : 'pyramid-serialized-bloc' }
+{ #category : #'pyramid-serialized-bloc' }
 PyramidSimpleExamples class >> simpleFlowLayout [
 <pyStash>
 	^ [ "BlStashSerializer"
@@ -988,6 +995,6 @@ blinsets1 := BlInsets all: 5.0.
 	] value
 ]
 
-{ #category : 'see class side' }
+{ #category : #'see class side' }
 PyramidSimpleExamples >> seeClassSide [ 
 ]

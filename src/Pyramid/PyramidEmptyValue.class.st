@@ -1,24 +1,22 @@
 Class {
-	#name : 'PyramidEmptyValue',
-	#superclass : 'PyramidUnknowState',
-	#category : 'Pyramid-specs-custom',
-	#package : 'Pyramid',
-	#tag : 'specs-custom'
+	#name : #PyramidEmptyValue,
+	#superclass : #PyramidUnknowState,
+	#category : #'Pyramid-specs-custom'
 }
 
-{ #category : 'converting' }
+{ #category : #converting }
 PyramidEmptyValue >> asString [
 
 	^ '@ Empty state'
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidEmptyValue >> selectOnBackgroundInput: aPyramidBackgroundInputPresenter [
 
 	aPyramidBackgroundInputPresenter selectEmptyValue
 ]
 
-{ #category : 'initialization' }
+{ #category : #initialization }
 PyramidEmptyValue >> setVisibilityOn: aPyramidVisibilityInputPresenter [
 
 	aPyramidVisibilityInputPresenter setVisibilityEmptyValue
