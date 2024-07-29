@@ -1,12 +1,10 @@
 Class {
-	#name : 'PyramidFakePluginThatShouldNotBeInstalled',
-	#superclass : 'PyramidFakePlugin',
-	#category : 'Pyramid-Tests-cases-core',
-	#package : 'Pyramid-Tests',
-	#tag : 'cases-core'
+	#name : #PyramidFakePluginThatShouldNotBeInstalled,
+	#superclass : #PyramidFakePlugin,
+	#category : #'Pyramid-Tests-cases-core'
 }
 
-{ #category : 'asserting' }
+{ #category : #asserting }
 PyramidFakePluginThatShouldNotBeInstalled class >> shouldInstall [
 
 	^ false

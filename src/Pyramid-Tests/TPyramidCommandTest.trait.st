@@ -1,55 +1,53 @@
 Trait {
-	#name : 'TPyramidCommandTest',
-	#category : 'Pyramid-Tests-cases-command',
-	#package : 'Pyramid-Tests',
-	#tag : 'cases-command'
+	#name : #TPyramidCommandTest,
+	#category : #'Pyramid-Tests-cases-command'
 }
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 TPyramidCommandTest >> argumentsForHistory [
 
 
 	^ self targetContainers collect: [ :each | each prop ]
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 TPyramidCommandTest >> command [
 
 	^ self shouldBeImplemented
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 TPyramidCommandTest >> targetContainers [
 
 	^ self shouldBeImplemented
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 TPyramidCommandTest >> targetsCanBeUsedFor [
 
 	^ self targetContainers flatCollect: [ :each | { each targetNoProp . each targetWithProp } ].
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 TPyramidCommandTest >> targetsCannotBeUsedFor [
 	"override if needed"
 	^ { nil . false . 0 . $a }
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 TPyramidCommandTest >> targetsWithValuesAndValues [
 
 	^ self targetContainers collect: [ :each |
 		  each targetWithProp -> each prop ]
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 TPyramidCommandTest >> targetsWithoutValuesAndValues [
 
 	^ self targetContainers collect: [ :each | each targetNoProp -> each prop ]
 ]
 
-{ #category : 'tests' }
+{ #category : #tests }
 TPyramidCommandTest >> testCanBeUsedFor [
 
 	self targetsCanBeUsedFor do: [ :each |
@@ -58,14 +56,14 @@ TPyramidCommandTest >> testCanBeUsedFor [
 		self deny: (self command canBeUsedFor: each) ].
 ]
 
-{ #category : 'tests' }
+{ #category : #tests }
 TPyramidCommandTest >> testGetValueFor [
 
 	self targetsWithValuesAndValues do: [ :each |
 		self assert: (self command getValueFor: each key) equals: each value ].
 ]
 
-{ #category : 'tests' }
+{ #category : #tests }
 TPyramidCommandTest >> testHistory [
 	"Do once.
 	undo
@@ -112,7 +110,7 @@ TPyramidCommandTest >> testHistory [
 			self assert: (self command getValueFor: target) equals: argument ] ]
 ]
 
-{ #category : 'tests' }
+{ #category : #tests }
 TPyramidCommandTest >> testSetValueForWith [
 
 	self targetsWithoutValuesAndValues do: [ :each |

@@ -2,17 +2,15 @@
 A PyramidPluginEditOnRunningTest is a test class for testing the behavior of PyramidPluginEditOnRunning
 "
 Class {
-	#name : 'PyramidPluginEditOnRunningTest',
-	#superclass : 'TestCase',
+	#name : #PyramidPluginEditOnRunningTest,
+	#superclass : #TestCase,
 	#instVars : [
 		'setting'
 	],
-	#category : 'Pyramid-Tests-cases-plugin-edit-on-running',
-	#package : 'Pyramid-Tests',
-	#tag : 'cases-plugin-edit-on-running'
+	#category : #'Pyramid-Tests-cases-plugin-edit-on-running'
 }
 
-{ #category : 'utils' }
+{ #category : #utils }
 PyramidPluginEditOnRunningTest >> closeSpace: aSpace [
 
 	aSpace when: BlSpaceShownEvent doOnce: [ :event |
@@ -20,7 +18,7 @@ PyramidPluginEditOnRunningTest >> closeSpace: aSpace [
 		aSpace close ].
 ]
 
-{ #category : 'tests' }
+{ #category : #tests }
 PyramidPluginEditOnRunningTest >> setUp [
 
 	super setUp.
@@ -35,14 +33,14 @@ PyramidPluginEditOnRunningTest >> setUp [
 	PyramidSpacePlugin initialize.
 ]
 
-{ #category : 'tests' }
+{ #category : #tests }
 PyramidPluginEditOnRunningTest >> tearDown [ 
 
 	PyramidPluginEditOnRunning editOnRunning: setting.
 	super tearDown.
 ]
 
-{ #category : 'tests' }
+{ #category : #tests }
 PyramidPluginEditOnRunningTest >> testBlSpaceShortcutAddAndRemove [
 	| space |
 
@@ -59,7 +57,7 @@ PyramidPluginEditOnRunningTest >> testBlSpaceShortcutAddAndRemove [
 	self closeSpace: space.
 ]
 
-{ #category : 'tests' }
+{ #category : #tests }
 PyramidPluginEditOnRunningTest >> testCannotEditTheEditor [
 	| space editor |
 
@@ -74,7 +72,7 @@ PyramidPluginEditOnRunningTest >> testCannotEditTheEditor [
 	self deny: (space root shortcuts includes: (PyramidPluginEditOnRunning shortcut)).
 ]
 
-{ #category : 'tests' }
+{ #category : #tests }
 PyramidPluginEditOnRunningTest >> testEditOnRunning [
 
 	PyramidPluginEditOnRunning editOnRunning: true.
@@ -84,28 +82,28 @@ PyramidPluginEditOnRunningTest >> testEditOnRunning [
 	self deny: PyramidPluginEditOnRunning editOnRunning.
 ]
 
-{ #category : 'tests' }
+{ #category : #tests }
 PyramidPluginEditOnRunningTest >> testInitializePlugin [
 	"Test if the plugin is installed because this is a core plugin that need to be installed"
 
 	self assert: (PyramidPluginManager uniqueInstance isPluginInstalled: PyramidPluginEditOnRunning)
 ]
 
-{ #category : 'tests' }
+{ #category : #tests }
 PyramidPluginEditOnRunningTest >> testKeyCombination [
 
 	self assert: (PyramidPluginEditOnRunning keyCombination isKindOf: BlKeyCombination) 
 
 ]
 
-{ #category : 'tests' }
+{ #category : #tests }
 PyramidPluginEditOnRunningTest >> testShortcut [
 
 	self assert: (PyramidPluginEditOnRunning shortcut isKindOf: BlShortcutWithAction).
 
 ]
 
-{ #category : 'tests' }
+{ #category : #tests }
 PyramidPluginEditOnRunningTest >> testSpaceIds [
 
 	self assert: PyramidPluginEditOnRunning spaceIds isEmpty.

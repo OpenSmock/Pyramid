@@ -1,12 +1,10 @@
 Class {
-	#name : 'PyramidCopyPastePluginTest',
-	#superclass : 'TestCase',
-	#category : 'Pyramid-Tests-cases-plugin-copy',
-	#package : 'Pyramid-Tests',
-	#tag : 'cases-plugin-copy'
+	#name : #PyramidCopyPastePluginTest,
+	#superclass : #TestCase,
+	#category : #'Pyramid-Tests-cases-plugin-copy'
 }
 
-{ #category : 'tests' }
+{ #category : #tests }
 PyramidCopyPastePluginTest >> testCopyAsStonMenu [
 
 	| menuBuilder menu materialize |

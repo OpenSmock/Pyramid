@@ -1,32 +1,30 @@
 Class {
-	#name : 'PyramidAddChildCommandTest',
-	#superclass : 'TestCase',
+	#name : #PyramidAddChildCommandTest,
+	#superclass : #TestCase,
 	#traits : 'TPyramidCommandTest',
 	#classTraits : 'TPyramidCommandTest classTrait',
-	#category : 'Pyramid-Tests-cases-plugin-bloc',
-	#package : 'Pyramid-Tests',
-	#tag : 'cases-plugin-bloc'
+	#category : #'Pyramid-Tests-cases-plugin-bloc'
 }
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidAddChildCommandTest >> command [
 
 	^ PyramidAddChildCommand new
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidAddChildCommandTest >> targetsCanBeUsedFor [
 
 	^ { BlElement new . BlElement new addChild: BlElement new; yourself }
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidAddChildCommandTest >> targetsWithoutValuesAndValues [
 
 	^ self targetsCanBeUsedFor collect: [ :each | each -> (BlElement new background: Color random; yourself) ]
 ]
 
-{ #category : 'tests' }
+{ #category : #tests }
 PyramidAddChildCommandTest >> testGetValueFor [
 	"ignore get return nothing"
 
@@ -34,7 +32,7 @@ PyramidAddChildCommandTest >> testGetValueFor [
 	
 ]
 
-{ #category : 'tests' }
+{ #category : #tests }
 PyramidAddChildCommandTest >> testHistory [
 	"Do once.
 	undo
@@ -97,7 +95,7 @@ PyramidAddChildCommandTest >> testHistory [
 			self assert: (target children includes: argument) ] ]
 ]
 
-{ #category : 'tests' }
+{ #category : #tests }
 PyramidAddChildCommandTest >> testSetValueForWith [
 
 	self targetsWithoutValuesAndValues do: [ :each |

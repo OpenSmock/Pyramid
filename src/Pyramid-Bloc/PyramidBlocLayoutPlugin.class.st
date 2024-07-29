@@ -128,6 +128,20 @@ PyramidBlocLayoutPlugin class >> constraintsPropV [
 ]
 
 { #category : #accessing }
+PyramidBlocLayoutPlugin class >> constraintsWeight [
+
+	| property |
+	property := PyramidProperty new
+		            name: 'Constraints - weight';
+		            command: PyramidWeightConstraintsCommand new;
+		            pyramidInputPresenterClass: PyramidNumberInputPresenter;
+		            yourself.
+	property pyramidInputPresenterStrings help:
+		'Define the weight of the element to compute its size. The constraints must be "matchParent" to have an effect.'.
+	^ property
+]
+
+{ #category : #accessing }
 PyramidBlocLayoutPlugin class >> flowLayoutOrientation [
 
 	| property |
@@ -296,30 +310,21 @@ PyramidBlocLayoutPlugin >> initialize [
 	propertiesManager addProperty: self class margin.
 
 	propertiesManager addProperty: self class layout.
-	propertiesManager addProperty:
-		self class flowLayoutOrientation.
-	propertiesManager addProperty:
-		self class linearLayoutOrientation.
+	propertiesManager addProperty: self class flowLayoutOrientation.
+	propertiesManager addProperty: self class linearLayoutOrientation.
+	propertiesManager addProperty: self class constraintsWeight.
 
 	"Constraints - horizontal"
-	propertiesManager addProperty:
-		self class constraintsFrameH.
-	propertiesManager addProperty:
-		self class constraintsPropH.
-	propertiesManager addProperty:
-		self class constraintsBasicH.
-	propertiesManager addProperty:
-		self class constraintsBasicHExact.
+	propertiesManager addProperty: self class constraintsFrameH.
+	propertiesManager addProperty: self class constraintsPropH.
+	propertiesManager addProperty: self class constraintsBasicH.
+	propertiesManager addProperty: self class constraintsBasicHExact.
 
 	"Constraints - vertical"
-	propertiesManager addProperty:
-		self class constraintsFrameV.
-	propertiesManager addProperty:
-		self class constraintsPropV.
-	propertiesManager addProperty:
-		self class constraintsBasicV.
-	propertiesManager addProperty:
-		self class constraintsBasicVExact.
+	propertiesManager addProperty: self class constraintsFrameV.
+	propertiesManager addProperty: self class constraintsPropV.
+	propertiesManager addProperty: self class constraintsBasicV.
+	propertiesManager addProperty: self class constraintsBasicVExact
 ]
 
 { #category : #adding }
