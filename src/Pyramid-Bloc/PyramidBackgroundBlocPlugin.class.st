@@ -1,17 +1,15 @@
 Class {
-	#name : 'PyramidBackgroundBlocPlugin',
-	#superclass : 'Object',
+	#name : #PyramidBackgroundBlocPlugin,
+	#superclass : #Object,
 	#traits : 'TPyramidPlugin',
 	#classTraits : 'TPyramidPlugin classTrait',
 	#instVars : [
 		'propertiesManager'
 	],
-	#category : 'Pyramid-Bloc-plugin-bloc-visuals',
-	#package : 'Pyramid-Bloc',
-	#tag : 'plugin-bloc-visuals'
+	#category : #'Pyramid-Bloc-plugin-bloc-visuals'
 }
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidBackgroundBlocPlugin class >> backgroundImageSelector [
 
 	| property |
@@ -24,7 +22,7 @@ PyramidBackgroundBlocPlugin class >> backgroundImageSelector [
 	^ property
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidBackgroundBlocPlugin class >> backgroundLinearEnd [
 
 	| property |
@@ -40,7 +38,7 @@ PyramidBackgroundBlocPlugin class >> backgroundLinearEnd [
 	^ property
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidBackgroundBlocPlugin class >> backgroundLinearGradientDirection [
 
 	| property |
@@ -57,7 +55,7 @@ PyramidBackgroundBlocPlugin class >> backgroundLinearGradientDirection [
 	^ property
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidBackgroundBlocPlugin class >> backgroundLinearStart [
 
 	| property |
@@ -74,7 +72,7 @@ PyramidBackgroundBlocPlugin class >> backgroundLinearStart [
 	^ property
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidBackgroundBlocPlugin class >> backgroundOpacity [
 
 	| property |
@@ -88,7 +86,7 @@ PyramidBackgroundBlocPlugin class >> backgroundOpacity [
 	^ property
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidBackgroundBlocPlugin class >> backgroundPaintColor [
 
 	| property |
@@ -101,7 +99,7 @@ PyramidBackgroundBlocPlugin class >> backgroundPaintColor [
 	^ property
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidBackgroundBlocPlugin class >> backgroundPaintStops [
 
 	| property |
@@ -114,7 +112,7 @@ PyramidBackgroundBlocPlugin class >> backgroundPaintStops [
 	^ property
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidBackgroundBlocPlugin class >> backgroundPaintType [
 
 	| property |
@@ -170,7 +168,7 @@ PyramidBackgroundBlocPlugin class >> backgroundPaintType [
 	^ property
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidBackgroundBlocPlugin class >> backgroundRadialInnerCenter [
 
 	| property |
@@ -186,7 +184,7 @@ PyramidBackgroundBlocPlugin class >> backgroundRadialInnerCenter [
 	^ property
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidBackgroundBlocPlugin class >> backgroundRadialInnerRadius [
 
 	| property |
@@ -201,7 +199,7 @@ PyramidBackgroundBlocPlugin class >> backgroundRadialInnerRadius [
 	^ property
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidBackgroundBlocPlugin class >> backgroundRadialOuterCenter [
 
 	| property |
@@ -218,7 +216,7 @@ PyramidBackgroundBlocPlugin class >> backgroundRadialOuterCenter [
 	^ property
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidBackgroundBlocPlugin class >> backgroundRadialOuterRadius [
 
 	| property |
@@ -233,7 +231,7 @@ PyramidBackgroundBlocPlugin class >> backgroundRadialOuterRadius [
 	^ property
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidBackgroundBlocPlugin class >> backgroundType [
 
 	| property |
@@ -273,7 +271,7 @@ PyramidBackgroundBlocPlugin class >> backgroundType [
 	^ property
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidBackgroundBlocPlugin class >> borderDashArray [
 
 	| property |
@@ -287,7 +285,7 @@ PyramidBackgroundBlocPlugin class >> borderDashArray [
 	^ property
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidBackgroundBlocPlugin class >> borderDashOffset [
 
 	| property |
@@ -301,7 +299,7 @@ PyramidBackgroundBlocPlugin class >> borderDashOffset [
 	^ property
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidBackgroundBlocPlugin class >> borderLineCap [
 
 	| property |
@@ -340,7 +338,7 @@ PyramidBackgroundBlocPlugin class >> borderLineCap [
 	^ property
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidBackgroundBlocPlugin class >> borderLineJoin [
 
 	| property |
@@ -379,7 +377,7 @@ PyramidBackgroundBlocPlugin class >> borderLineJoin [
 	^ property
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidBackgroundBlocPlugin class >> borderLinearEnd [
 
 	| property |
@@ -395,7 +393,7 @@ PyramidBackgroundBlocPlugin class >> borderLinearEnd [
 	^ property
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidBackgroundBlocPlugin class >> borderLinearGradientDirection [
 
 	| property |
@@ -412,7 +410,7 @@ PyramidBackgroundBlocPlugin class >> borderLinearGradientDirection [
 	^ property
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidBackgroundBlocPlugin class >> borderLinearStart [
 
 	| property |
@@ -428,7 +426,7 @@ PyramidBackgroundBlocPlugin class >> borderLinearStart [
 	^ property
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidBackgroundBlocPlugin class >> borderMiterLimit [
 
 	| property |
@@ -442,7 +440,7 @@ PyramidBackgroundBlocPlugin class >> borderMiterLimit [
 	^ property
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidBackgroundBlocPlugin class >> borderOpacity [
 
 	| property |
@@ -456,7 +454,7 @@ PyramidBackgroundBlocPlugin class >> borderOpacity [
 	^ property
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidBackgroundBlocPlugin class >> borderPaintColor [
 
 	| property |
@@ -469,7 +467,7 @@ PyramidBackgroundBlocPlugin class >> borderPaintColor [
 	^ property
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidBackgroundBlocPlugin class >> borderPaintStops [
 
 	| property |
@@ -482,7 +480,7 @@ PyramidBackgroundBlocPlugin class >> borderPaintStops [
 	^ property
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidBackgroundBlocPlugin class >> borderPaintType [
 
 	| property |
@@ -541,7 +539,7 @@ PyramidBackgroundBlocPlugin class >> borderPaintType [
 	^ property
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidBackgroundBlocPlugin class >> borderRadialInnerCenter [
 
 	| property |
@@ -558,7 +556,7 @@ PyramidBackgroundBlocPlugin class >> borderRadialInnerCenter [
 	^ property
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidBackgroundBlocPlugin class >> borderRadialInnerRadius [
 
 	| property |
@@ -573,7 +571,7 @@ PyramidBackgroundBlocPlugin class >> borderRadialInnerRadius [
 	^ property
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidBackgroundBlocPlugin class >> borderRadialOuterCenter [
 
 	| property |
@@ -590,7 +588,7 @@ PyramidBackgroundBlocPlugin class >> borderRadialOuterCenter [
 	^ property
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidBackgroundBlocPlugin class >> borderRadialOuterRadius [
 
 	| property |
@@ -605,7 +603,7 @@ PyramidBackgroundBlocPlugin class >> borderRadialOuterRadius [
 	^ property
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidBackgroundBlocPlugin class >> borderWidth [
 
 	| property |
@@ -620,7 +618,7 @@ PyramidBackgroundBlocPlugin class >> borderWidth [
 	^ property
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidBackgroundBlocPlugin class >> opacity [
 
 	| property |
@@ -634,7 +632,7 @@ PyramidBackgroundBlocPlugin class >> opacity [
 	^ property
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidBackgroundBlocPlugin class >> outskirts [
 
 	| property |
@@ -673,7 +671,7 @@ PyramidBackgroundBlocPlugin class >> outskirts [
 	^ property
 ]
 
-{ #category : 'adding' }
+{ #category : #adding }
 PyramidBackgroundBlocPlugin >> addPanelsOn: aPyramidSimpleWindow [
 
 	aPyramidSimpleWindow at: #tabRight addItem: [ :builder |
@@ -684,14 +682,14 @@ PyramidBackgroundBlocPlugin >> addPanelsOn: aPyramidSimpleWindow [
 			order: 2 ]
 ]
 
-{ #category : 'connecting' }
+{ #category : #connecting }
 PyramidBackgroundBlocPlugin >> connectOn: aPyramidEditor [
 
 	propertiesManager projectModel: aPyramidEditor projectModel.
 	propertiesManager commandExecutor: aPyramidEditor propertiesManager commandExecutor
 ]
 
-{ #category : 'initialization' }
+{ #category : #initialization }
 PyramidBackgroundBlocPlugin >> initialize [
 
 	propertiesManager := PyramidPropertiesManagerForSelection new.
@@ -751,7 +749,7 @@ PyramidBackgroundBlocPlugin >> initialize [
 	propertiesManager addProperty: self class borderRadialOuterRadius
 ]
 
-{ #category : 'adding' }
+{ #category : #adding }
 PyramidBackgroundBlocPlugin >> propertiesManager [
 
 	^ propertiesManager

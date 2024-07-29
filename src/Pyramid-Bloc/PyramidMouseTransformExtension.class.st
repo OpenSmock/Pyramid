@@ -1,25 +1,23 @@
 Class {
-	#name : 'PyramidMouseTransformExtension',
-	#superclass : 'Object',
+	#name : #PyramidMouseTransformExtension,
+	#superclass : #Object,
 	#traits : 'TPyramidSpaceExtension + TPyramidEditorExtension',
 	#classTraits : 'TPyramidSpaceExtension classTrait + TPyramidEditorExtension classTrait',
 	#instVars : [
 		'isDragging',
 		'origin'
 	],
-	#category : 'Pyramid-Bloc-plugin-space-extensions',
-	#package : 'Pyramid-Bloc',
-	#tag : 'plugin-space-extensions'
+	#category : #'Pyramid-Bloc-plugin-space-extensions'
 }
 
-{ #category : 'initialization' }
+{ #category : #initialization }
 PyramidMouseTransformExtension >> initialize [
 
 	isDragging:= false.
 	origin := 0 @ 0.
 ]
 
-{ #category : 'displaying' }
+{ #category : #displaying }
 PyramidMouseTransformExtension >> installOn: aBuilder [
 
 	self builder: aBuilder.
@@ -43,25 +41,25 @@ PyramidMouseTransformExtension >> installOn: aBuilder [
 			 do: [ :evt | self isDragging: false ])
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidMouseTransformExtension >> isDragging [
 
 	^ isDragging
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidMouseTransformExtension >> isDragging: anObject [
 
 	isDragging := anObject
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidMouseTransformExtension >> origin [
 
 	^ origin
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidMouseTransformExtension >> origin: anObject [
 
 	origin := anObject

@@ -1,6 +1,6 @@
-Extension { #name : 'PyramidProjectModel' }
+Extension { #name : #PyramidProjectModel }
 
-{ #category : '*Pyramid-Bloc' }
+{ #category : #'*Pyramid-Bloc' }
 PyramidProjectModel >> allElements [
 
 	^ PyramidElementsManipulationHelper flattenChildrenOfCollection:

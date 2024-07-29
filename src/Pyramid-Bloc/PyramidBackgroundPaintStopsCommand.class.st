@@ -1,12 +1,10 @@
 Class {
-	#name : 'PyramidBackgroundPaintStopsCommand',
-	#superclass : 'PyramidAbstractBlocCommand',
-	#category : 'Pyramid-Bloc-plugin-bloc-visuals',
-	#package : 'Pyramid-Bloc',
-	#tag : 'plugin-bloc-visuals'
+	#name : #PyramidBackgroundPaintStopsCommand,
+	#superclass : #PyramidAbstractBlocCommand,
+	#category : #'Pyramid-Bloc-plugin-bloc-visuals'
 }
 
-{ #category : 'testing' }
+{ #category : #testing }
 PyramidBackgroundPaintStopsCommand >> canBeUsedFor: anObject [
 
 	^ (super canBeUsedFor: anObject) and: [
@@ -14,7 +12,7 @@ PyramidBackgroundPaintStopsCommand >> canBeUsedFor: anObject [
 			  anObject background paint isKindOf: BlGradientPaint ] ]
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidBackgroundPaintStopsCommand >> getValueFor: aBlElement [
 	"We ensure that we are working with a copy of the associations."
 
@@ -22,7 +20,7 @@ PyramidBackgroundPaintStopsCommand >> getValueFor: aBlElement [
 		  asso key copy -> asso value copy ]
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidBackgroundPaintStopsCommand >> setValueFor: aBlElement with: anArgument [
 	"We ensure that we are working with a copy of the associations."
 

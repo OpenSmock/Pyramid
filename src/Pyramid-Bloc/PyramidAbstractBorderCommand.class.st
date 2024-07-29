@@ -1,12 +1,10 @@
 Class {
-	#name : 'PyramidAbstractBorderCommand',
-	#superclass : 'PyramidAbstractBlocCommand',
-	#category : 'Pyramid-Bloc-plugin-bloc-visuals',
-	#package : 'Pyramid-Bloc',
-	#tag : 'plugin-bloc-visuals'
+	#name : #PyramidAbstractBorderCommand,
+	#superclass : #PyramidAbstractBlocCommand,
+	#category : #'Pyramid-Bloc-plugin-bloc-visuals'
 }
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidAbstractBorderCommand >> borderBuilderOf: aBlElement [
 
 	| builder |
@@ -22,7 +20,7 @@ PyramidAbstractBorderCommand >> borderBuilderOf: aBlElement [
 	^ builder
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidAbstractBorderCommand >> setValueFor: aBlElement with: anArgument [
 
 	| builder |
@@ -31,7 +29,7 @@ PyramidAbstractBorderCommand >> setValueFor: aBlElement with: anArgument [
 	aBlElement border: builder build.
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidAbstractBorderCommand >> updateBuilder: aBuilder with: anArgument [
 
 	self shouldBeImplemented 

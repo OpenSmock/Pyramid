@@ -1,12 +1,10 @@
 Class {
-	#name : 'PyramidFrameConstraintsCommand',
-	#superclass : 'PyramidAbstractBlocCommand',
-	#category : 'Pyramid-Bloc-plugin-bloc-layout',
-	#package : 'Pyramid-Bloc',
-	#tag : 'plugin-bloc-layout'
+	#name : #PyramidFrameConstraintsCommand,
+	#superclass : #PyramidAbstractBlocCommand,
+	#category : #'Pyramid-Bloc-plugin-bloc-layout'
 }
 
-{ #category : 'testing' }
+{ #category : #testing }
 PyramidFrameConstraintsCommand >> canBeUsedFor: anObject [
 
 	^ (super canBeUsedFor: anObject) and: [

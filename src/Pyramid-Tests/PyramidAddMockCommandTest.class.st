@@ -1,12 +1,10 @@
 Class {
-	#name : 'PyramidAddMockCommandTest',
-	#superclass : 'TestCase',
-	#category : 'Pyramid-Tests-cases-command',
-	#package : 'Pyramid-Tests',
-	#tag : 'cases-command'
+	#name : #PyramidAddMockCommandTest,
+	#superclass : #TestCase,
+	#category : #'Pyramid-Tests-cases-command'
 }
 
-{ #category : 'tests' }
+{ #category : #tests }
 PyramidAddMockCommandTest >> testGetValueFor [
 
 	| mock |
@@ -17,7 +15,7 @@ PyramidAddMockCommandTest >> testGetValueFor [
 	self assert: (PyramidIncreaseMockCommand new getValueFor: mock) equals: nil.
 ]
 
-{ #category : 'tests' }
+{ #category : #tests }
 PyramidAddMockCommandTest >> testSetValueForWith [
 
 	| mock |

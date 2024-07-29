@@ -1,6 +1,6 @@
 Class {
-	#name : 'PyramidElementToAddFactoryPresenter',
-	#superclass : 'SpPresenter',
+	#name : #PyramidElementToAddFactoryPresenter,
+	#superclass : #SpPresenter,
 	#instVars : [
 		'categoryPresenter',
 		'factoryPresenter',
@@ -9,43 +9,41 @@ Class {
 		'selectedFactory',
 		'whenItemChangeDo'
 	],
-	#category : 'Pyramid-Bloc-plugin-tree-library',
-	#package : 'Pyramid-Bloc',
-	#tag : 'plugin-tree-library'
+	#category : #'Pyramid-Bloc-plugin-tree-library'
 }
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidElementToAddFactoryPresenter >> categories [
 
 	^ categories
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidElementToAddFactoryPresenter >> categories: anObject [
 
 	categories := anObject.
 	self categoryPresenter items: anObject
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidElementToAddFactoryPresenter >> categoryPresenter [
 
 	^ categoryPresenter
 ]
 
-{ #category : 'layout' }
+{ #category : #layout }
 PyramidElementToAddFactoryPresenter >> defaultLayout [
 
 	^ SpPanedLayout newHorizontal add: self categoryPresenter; add: self factoryPresenter ; yourself.
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidElementToAddFactoryPresenter >> factoryPresenter [
 
 	^ factoryPresenter
 ]
 
-{ #category : 'initialization - deprecated' }
+{ #category : #'initialization - deprecated' }
 PyramidElementToAddFactoryPresenter >> initialize [
 
 	super initialize.
@@ -53,7 +51,7 @@ PyramidElementToAddFactoryPresenter >> initialize [
 
 ]
 
-{ #category : 'initialization - deprecated' }
+{ #category : #'initialization - deprecated' }
 PyramidElementToAddFactoryPresenter >> initializePresenter [
 
 	whenItemChangeDo := [ :e |  ].
@@ -88,13 +86,13 @@ PyramidElementToAddFactoryPresenter >> initializePresenter [
 		                    yourself
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidElementToAddFactoryPresenter >> selectedCategory [
 
 	^ selectedCategory
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidElementToAddFactoryPresenter >> selectedCategory: anObject [
 
 	selectedCategory := anObject.
@@ -102,26 +100,26 @@ PyramidElementToAddFactoryPresenter >> selectedCategory: anObject [
 	self factoryPresenter items: anObject factories
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidElementToAddFactoryPresenter >> selectedFactory [
 
 	^ selectedFactory
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidElementToAddFactoryPresenter >> selectedFactory: anObject [
 
 	selectedFactory := anObject.
 	self whenItemChangeDo value: anObject
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidElementToAddFactoryPresenter >> whenItemChangeDo [
 
 	^ whenItemChangeDo
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidElementToAddFactoryPresenter >> whenItemChangeDo: anObject [
 
 	whenItemChangeDo := anObject

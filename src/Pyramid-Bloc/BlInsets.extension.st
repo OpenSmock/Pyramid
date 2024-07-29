@@ -1,6 +1,6 @@
-Extension { #name : 'BlInsets' }
+Extension { #name : #BlInsets }
 
-{ #category : '*Pyramid-Bloc' }
+{ #category : #'*Pyramid-Bloc' }
 BlInsets >> setInsetsOn: aPyramidInsetsInputPresenter [
 
 	self isUniform ifTrue: [

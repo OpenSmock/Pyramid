@@ -1,26 +1,24 @@
 Class {
-	#name : 'PyramidFontSizeCommandTest',
-	#superclass : 'TestCase',
+	#name : #PyramidFontSizeCommandTest,
+	#superclass : #TestCase,
 	#traits : 'TPyramidFontAttributeCommandTest',
 	#classTraits : 'TPyramidFontAttributeCommandTest classTrait',
-	#category : 'Pyramid-Tests-cases-plugin-bloc-text',
-	#package : 'Pyramid-Tests',
-	#tag : 'cases-plugin-bloc-text'
+	#category : #'Pyramid-Tests-cases-plugin-bloc-text'
 }
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidFontSizeCommandTest >> attributeClass [
 
 	^ BlFontSizeAttribute
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidFontSizeCommandTest >> command [
 
 	^ PyramidFontSizeCommand new
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidFontSizeCommandTest >> targetContainers [
 
 	^ {

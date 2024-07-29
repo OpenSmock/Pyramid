@@ -1,12 +1,10 @@
 Class {
-	#name : 'PyramidSelectionWidgetBorderBuilder',
-	#superclass : 'Object',
-	#category : 'Pyramid-Bloc-plugin-space-extensions',
-	#package : 'Pyramid-Bloc',
-	#tag : 'plugin-space-extensions'
+	#name : #PyramidSelectionWidgetBorderBuilder,
+	#superclass : #Object,
+	#category : #'Pyramid-Bloc-plugin-space-extensions'
 }
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidSelectionWidgetBorderBuilder >> borderElementWithMainColor: aMainColor andSecondaryColor: aSecondaryColor [
 
 	^ BlElement new
@@ -19,7 +17,7 @@ PyramidSelectionWidgetBorderBuilder >> borderElementWithMainColor: aMainColor an
 		  yourself
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidSelectionWidgetBorderBuilder >> bottomChild [
 
 	^ (self borderElementWithMainColor: self mainOtherColor  andSecondaryColor: self secondaryOtherColor)
@@ -29,7 +27,7 @@ PyramidSelectionWidgetBorderBuilder >> bottomChild [
 			  c frame vertical alignBottom ]
 ]
 
-{ #category : 'building' }
+{ #category : #building }
 PyramidSelectionWidgetBorderBuilder >> build [
 
 	^ BlElement new
@@ -46,19 +44,19 @@ PyramidSelectionWidgetBorderBuilder >> build [
 		  yourself
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidSelectionWidgetBorderBuilder >> defaultDashArray [
 
 	^ #( 3 7 )
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidSelectionWidgetBorderBuilder >> defaultWidth [
 
 	^ 2
 ]
 
-{ #category : 'user interface' }
+{ #category : #'user interface' }
 PyramidSelectionWidgetBorderBuilder >> labelWithColor: aColor [.
 
 	^ 	BlTextElement new
@@ -69,7 +67,7 @@ PyramidSelectionWidgetBorderBuilder >> labelWithColor: aColor [.
 		             yourself
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidSelectionWidgetBorderBuilder >> leftChild [
 
 	| leftChild |
@@ -85,7 +83,7 @@ PyramidSelectionWidgetBorderBuilder >> leftChild [
 	^ leftChild
 ]
 
-{ #category : 'user interface' }
+{ #category : #'user interface' }
 PyramidSelectionWidgetBorderBuilder >> leftLabelFor: aBlElement [
 
 	| label |
@@ -103,25 +101,25 @@ PyramidSelectionWidgetBorderBuilder >> leftLabelFor: aBlElement [
 	^ label
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidSelectionWidgetBorderBuilder >> mainLeftColor [
 
 	^ Color green
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidSelectionWidgetBorderBuilder >> mainOtherColor [
 
 	^ Color yellow
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidSelectionWidgetBorderBuilder >> mainTopColor [
 
 	^ Color red
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidSelectionWidgetBorderBuilder >> rightChild [
 
 	^ (self borderElementWithMainColor: self mainOtherColor andSecondaryColor: self secondaryOtherColor)
@@ -131,25 +129,25 @@ PyramidSelectionWidgetBorderBuilder >> rightChild [
 			  c frame horizontal alignRight ]
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidSelectionWidgetBorderBuilder >> secondaryLeftColor [
 
 	^ self mainLeftColor muchDarker
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidSelectionWidgetBorderBuilder >> secondaryOtherColor [
 
 	^ self mainOtherColor muchDarker
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidSelectionWidgetBorderBuilder >> secondaryTopColor [
 
 	^ self mainTopColor muchDarker
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidSelectionWidgetBorderBuilder >> topChild [
 
 	| topChild |
@@ -165,7 +163,7 @@ PyramidSelectionWidgetBorderBuilder >> topChild [
 	^ topChild
 ]
 
-{ #category : 'user interface' }
+{ #category : #'user interface' }
 PyramidSelectionWidgetBorderBuilder >> topLabelFor: aBlElement [
 
 	| label |

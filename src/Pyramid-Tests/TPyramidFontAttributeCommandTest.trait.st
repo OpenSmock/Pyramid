@@ -1,19 +1,17 @@
 Trait {
-	#name : 'TPyramidFontAttributeCommandTest',
+	#name : #TPyramidFontAttributeCommandTest,
 	#traits : 'TPyramidCommandTest',
 	#classTraits : 'TPyramidCommandTest classTrait',
-	#category : 'Pyramid-Tests-cases-plugin-bloc-text',
-	#package : 'Pyramid-Tests',
-	#tag : 'cases-plugin-bloc-text'
+	#category : #'Pyramid-Tests-cases-plugin-bloc-text'
 }
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 TPyramidFontAttributeCommandTest >> attributeClass [
 
 	^ self shouldBeImplemented
 ]
 
-{ #category : 'tests' }
+{ #category : #tests }
 TPyramidFontAttributeCommandTest >> testSetValueForWith [
 
 	| attributes |

@@ -1,26 +1,24 @@
 Class {
-	#name : 'PyramidFontWeightCommandTest',
-	#superclass : 'TestCase',
+	#name : #PyramidFontWeightCommandTest,
+	#superclass : #TestCase,
 	#traits : 'TPyramidFontAttributeCommandTest',
 	#classTraits : 'TPyramidFontAttributeCommandTest classTrait',
-	#category : 'Pyramid-Tests-cases-plugin-bloc-text',
-	#package : 'Pyramid-Tests',
-	#tag : 'cases-plugin-bloc-text'
+	#category : #'Pyramid-Tests-cases-plugin-bloc-text'
 }
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidFontWeightCommandTest >> attributeClass [
 
 	^ BlFontWeightAttribute
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidFontWeightCommandTest >> command [
 
 	^ PyramidFontWeightCommand new
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidFontWeightCommandTest >> targetContainers [
 
 	^ {

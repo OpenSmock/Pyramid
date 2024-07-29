@@ -1,12 +1,10 @@
 Class {
-	#name : 'PyramidTestWindow',
-	#superclass : 'PyramidWindow',
-	#category : 'Pyramid-Tests-cases-views',
-	#package : 'Pyramid-Tests',
-	#tag : 'cases-views'
+	#name : #PyramidTestWindow,
+	#superclass : #PyramidWindow,
+	#category : #'Pyramid-Tests-cases-views'
 }
 
-{ #category : 'initialization' }
+{ #category : #initialization }
 PyramidTestWindow >> initialize [
 
 	PyramidPanelModel toolbarHorizontal installOn: self at: #top.
@@ -14,7 +12,7 @@ PyramidTestWindow >> initialize [
 	PyramidPanelModel toolbarHorizontal installOn: self at: #bottom
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidTestWindow >> layout [
 
 	| mainLayout |

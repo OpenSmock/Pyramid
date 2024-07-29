@@ -1,18 +1,16 @@
 Class {
-	#name : 'PyramidVisibilityInputPresenter',
-	#superclass : 'PyramidInputPresenter',
+	#name : #PyramidVisibilityInputPresenter,
+	#superclass : #PyramidInputPresenter,
 	#instVars : [
 		'buttonVisible',
 		'whenValueChangedDo',
 		'value',
 		'buttonNotVisible'
 	],
-	#category : 'Pyramid-Bloc-plugin-bloc',
-	#package : 'Pyramid-Bloc',
-	#tag : 'plugin-bloc'
+	#category : #'Pyramid-Bloc-plugin-bloc'
 }
 
-{ #category : 'pyramid-serialized-bloc' }
+{ #category : #'pyramid-serialized-bloc' }
 PyramidVisibilityInputPresenter class >> blocGone [
 <pyStash>
 	^ [ "BlStashSerializer"
@@ -45,7 +43,7 @@ PyramidVisibilityInputPresenter class >> blocGone [
 	] value
 ]
 
-{ #category : 'pyramid-serialized-bloc' }
+{ #category : #'pyramid-serialized-bloc' }
 PyramidVisibilityInputPresenter class >> blocHidden [
 <pyStash>
 	^ [ "BlStashSerializer"
@@ -91,7 +89,7 @@ PyramidVisibilityInputPresenter class >> blocHidden [
 	] value
 ]
 
-{ #category : 'pyramid-serialized-bloc' }
+{ #category : #'pyramid-serialized-bloc' }
 PyramidVisibilityInputPresenter class >> blocVisibilityUnknow [
 <pyStash>
 	^ [ "BlStashSerializer"
@@ -132,7 +130,7 @@ blpaintbackground1 := BlPaintBackground new.
 	] value
 ]
 
-{ #category : 'pyramid-serialized-bloc' }
+{ #category : #'pyramid-serialized-bloc' }
 PyramidVisibilityInputPresenter class >> blocVisible [
 <pyStash>
 	^ [ "BlStashSerializer"
@@ -178,7 +176,7 @@ PyramidVisibilityInputPresenter class >> blocVisible [
 	] value
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidVisibilityInputPresenter class >> formGone [
 
 	^ (BlElement new
@@ -187,7 +185,7 @@ PyramidVisibilityInputPresenter class >> formGone [
 		  exportAsForm
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidVisibilityInputPresenter class >> formHidden [
 
 	^ (BlElement new
@@ -196,7 +194,7 @@ PyramidVisibilityInputPresenter class >> formHidden [
 		  exportAsForm
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidVisibilityInputPresenter class >> formVisibilityUnknow [
 
 	^ (BlElement new
@@ -205,7 +203,7 @@ PyramidVisibilityInputPresenter class >> formVisibilityUnknow [
 		  exportAsForm
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidVisibilityInputPresenter class >> formVisible [
 
 	^ (BlElement new
@@ -213,19 +211,19 @@ PyramidVisibilityInputPresenter class >> formVisible [
 		   addChildren: self blocVisible materializeAsBlElement) exportAsForm
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidVisibilityInputPresenter >> buttonNotVisible [
 
 	^ buttonNotVisible
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidVisibilityInputPresenter >> buttonVisible [
 
 	^ buttonVisible
 ]
 
-{ #category : 'layout' }
+{ #category : #layout }
 PyramidVisibilityInputPresenter >> defaultLayout [
 
 	^ SpBoxLayout newHorizontal
@@ -235,7 +233,7 @@ PyramidVisibilityInputPresenter >> defaultLayout [
 		  yourself
 ]
 
-{ #category : 'initialization' }
+{ #category : #initialization }
 PyramidVisibilityInputPresenter >> initializePresenters [
 
 	whenValueChangedDo := [ :visibility |  ].
@@ -254,7 +252,7 @@ PyramidVisibilityInputPresenter >> initializePresenters [
 		                    yourself
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidVisibilityInputPresenter >> setVisibilityEmptyValue [
 
 	self buttonNotVisible
@@ -268,7 +266,7 @@ PyramidVisibilityInputPresenter >> setVisibilityEmptyValue [
 		icon: self value asIcon
 ]
 
-{ #category : 'initialization' }
+{ #category : #initialization }
 PyramidVisibilityInputPresenter >> setVisibilityGone [
 
 	self buttonNotVisible
@@ -284,7 +282,7 @@ PyramidVisibilityInputPresenter >> setVisibilityGone [
 		icon: self value asIcon
 ]
 
-{ #category : 'initialization' }
+{ #category : #initialization }
 PyramidVisibilityInputPresenter >> setVisibilityHidden [
 
 	self buttonNotVisible
@@ -300,7 +298,7 @@ PyramidVisibilityInputPresenter >> setVisibilityHidden [
 		icon: self value asIcon
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidVisibilityInputPresenter >> setVisibilityMixedValues [
 
 	self buttonNotVisible
@@ -314,7 +312,7 @@ PyramidVisibilityInputPresenter >> setVisibilityMixedValues [
 		icon: self value asIcon
 ]
 
-{ #category : 'initialization' }
+{ #category : #initialization }
 PyramidVisibilityInputPresenter >> setVisibilityVisible [
 
 	self buttonNotVisible
@@ -331,26 +329,26 @@ PyramidVisibilityInputPresenter >> setVisibilityVisible [
 		icon: self value asIcon
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidVisibilityInputPresenter >> value [
 
 	^ value
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidVisibilityInputPresenter >> value: aBlVisibility [
 
 	value := aBlVisibility.
 	aBlVisibility setVisibilityOn: self
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidVisibilityInputPresenter >> whenValueChangedDo [
 
 	^ whenValueChangedDo
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidVisibilityInputPresenter >> whenValueChangedDo: anObject [
 
 	whenValueChangedDo := anObject

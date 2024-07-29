@@ -1,38 +1,36 @@
 Class {
-	#name : 'PyramidTextInputPresenterTest',
-	#superclass : 'TestCase',
+	#name : #PyramidTextInputPresenterTest,
+	#superclass : #TestCase,
 	#traits : 'TPyramidInputPresenterTest',
 	#classTraits : 'TPyramidInputPresenterTest classTrait',
-	#category : 'Pyramid-Tests-cases-specs-custom',
-	#package : 'Pyramid-Tests',
-	#tag : 'cases-specs-custom'
+	#category : #'Pyramid-Tests-cases-specs-custom'
 }
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidTextInputPresenterTest >> dummyValues [
 
 	^ { 'hello' . 'hello world' . '123' . '' }
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidTextInputPresenterTest >> expectedEmptyValue [
 
 	^ PyramidEmptyValue new asString
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidTextInputPresenterTest >> expectedMixedValues [
 
 	^ PyramidMixedValues new asString
 ]
 
-{ #category : 'tests' }
+{ #category : #tests }
 PyramidTextInputPresenterTest >> makeNewInput [
 
 	^ PyramidTextInputPresenter new
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidTextInputPresenterTest >> triggerValueChangedOf: anInput [
 
 	anInput textInput contextKeyBindings keymaps do: [ :bind |

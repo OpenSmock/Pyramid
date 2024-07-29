@@ -1,6 +1,6 @@
-Extension { #name : 'BlLayoutExactResizer' }
+Extension { #name : #BlLayoutExactResizer }
 
-{ #category : '*Pyramid-Bloc' }
+{ #category : #'*Pyramid-Bloc' }
 BlLayoutExactResizer >> asPyramidConstraintsArgument [
 
 	^ {
@@ -8,7 +8,7 @@ BlLayoutExactResizer >> asPyramidConstraintsArgument [
 		  self size }
 ]
 
-{ #category : '*Pyramid-Bloc' }
+{ #category : #'*Pyramid-Bloc' }
 BlLayoutExactResizer >> setResizerConstraintsOn: aPyramidBasicConstraintsInputPresenter [
 
 	aPyramidBasicConstraintsInputPresenter setExact

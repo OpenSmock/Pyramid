@@ -1,14 +1,12 @@
 Class {
-	#name : 'PyramidCornerRadiiInputPresenterTest',
-	#superclass : 'TestCase',
+	#name : #PyramidCornerRadiiInputPresenterTest,
+	#superclass : #TestCase,
 	#traits : 'TPyramidInputPresenterTest',
 	#classTraits : 'TPyramidInputPresenterTest classTrait',
-	#category : 'Pyramid-Tests-cases-plugin-bloc-geometry',
-	#package : 'Pyramid-Tests',
-	#tag : 'cases-plugin-bloc-geometry'
+	#category : #'Pyramid-Tests-cases-plugin-bloc-geometry'
 }
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidCornerRadiiInputPresenterTest >> dummyValues [
 
 	^ {
@@ -21,25 +19,25 @@ PyramidCornerRadiiInputPresenterTest >> dummyValues [
 			   bottomRight: 4; yourself) }
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidCornerRadiiInputPresenterTest >> expectedEmptyValue [
 
 	^ PyramidUnknowState new
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidCornerRadiiInputPresenterTest >> expectedMixedValues [
 
 	^ PyramidUnknowState new
 ]
 
-{ #category : 'tests' }
+{ #category : #tests }
 PyramidCornerRadiiInputPresenterTest >> makeNewInput [
 
 	^ PyramidCornerRadiiInputPresenter new
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidCornerRadiiInputPresenterTest >> triggerValueChangedOf: anInput [
 
 	anInput inputArray inputArray contextKeyBindings keymaps do: [ :bind |

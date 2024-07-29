@@ -1,18 +1,16 @@
 Class {
-	#name : 'PyramidBorderWidthCommand',
-	#superclass : 'PyramidAbstractBorderCommand',
-	#category : 'Pyramid-Bloc-plugin-bloc-visuals',
-	#package : 'Pyramid-Bloc',
-	#tag : 'plugin-bloc-visuals'
+	#name : #PyramidBorderWidthCommand,
+	#superclass : #PyramidAbstractBorderCommand,
+	#category : #'Pyramid-Bloc-plugin-bloc-visuals'
 }
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidBorderWidthCommand >> getValueFor: aBlElement [
 
 	^ aBlElement border width
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidBorderWidthCommand >> updateBuilder: aBuilder with: anArgument [
 
 	aBuilder width: anArgument

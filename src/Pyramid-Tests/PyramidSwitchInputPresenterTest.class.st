@@ -1,38 +1,36 @@
 Class {
-	#name : 'PyramidSwitchInputPresenterTest',
-	#superclass : 'TestCase',
+	#name : #PyramidSwitchInputPresenterTest,
+	#superclass : #TestCase,
 	#traits : 'TPyramidInputPresenterTest',
 	#classTraits : 'TPyramidInputPresenterTest classTrait',
-	#category : 'Pyramid-Tests-cases-specs-custom',
-	#package : 'Pyramid-Tests',
-	#tag : 'cases-specs-custom'
+	#category : #'Pyramid-Tests-cases-specs-custom'
 }
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidSwitchInputPresenterTest >> dummyValues [
 
 	^ { true . false . false . true . true }
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidSwitchInputPresenterTest >> expectedEmptyValue [
 
 	^ PyramidUnknowState new
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidSwitchInputPresenterTest >> expectedMixedValues [
 
 	^ PyramidUnknowState new
 ]
 
-{ #category : 'tests' }
+{ #category : #tests }
 PyramidSwitchInputPresenterTest >> makeNewInput [
 
 	^ PyramidSwitchInputPresenter new
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidSwitchInputPresenterTest >> triggerValueChangedOf: anInput [
 
 	anInput button click

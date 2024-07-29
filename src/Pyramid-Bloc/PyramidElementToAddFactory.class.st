@@ -1,72 +1,70 @@
 Class {
-	#name : 'PyramidElementToAddFactory',
-	#superclass : 'Object',
+	#name : #PyramidElementToAddFactory,
+	#superclass : #Object,
 	#instVars : [
 		'elementIcon',
 		'elementName',
 		'elementBlock'
 	],
-	#category : 'Pyramid-Bloc-plugin-tree-library',
-	#package : 'Pyramid-Bloc',
-	#tag : 'plugin-tree-library'
+	#category : #'Pyramid-Bloc-plugin-tree-library'
 }
 
-{ #category : 'comparing' }
+{ #category : #comparing }
 PyramidElementToAddFactory >> <= aPyramidLibraryCategory [
 
 	^ self elementName <= aPyramidLibraryCategory elementName
 ]
 
-{ #category : 'testing' }
+{ #category : #testing }
 PyramidElementToAddFactory >> canMakeNewElement [
 
 	[self elementBlock value] on: Error do: [ ^ false ].
 	^ true
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidElementToAddFactory >> elementBlock [
 
 	^ elementBlock
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidElementToAddFactory >> elementBlock: anObject [
 
 	elementBlock := anObject
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidElementToAddFactory >> elementIcon [
 
 	^ elementIcon
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidElementToAddFactory >> elementIcon: anObject [
 
 	elementIcon := anObject
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidElementToAddFactory >> elementName [
 
 	^ elementName
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidElementToAddFactory >> elementName: anObject [
 
 	elementName := anObject
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidElementToAddFactory >> makeElement [
 
 	^ self elementBlock value
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidElementToAddFactory >> makeForm [
 
 	| array |

@@ -1,6 +1,6 @@
-Extension { #name : 'BlLinearLayout' }
+Extension { #name : #BlLinearLayout }
 
-{ #category : '*Pyramid-Bloc' }
+{ #category : #'*Pyramid-Bloc' }
 BlLinearLayout >> asIcon [
 
 	^ self iconNamed: #smallLeftFlush
