@@ -1,7 +1,7 @@
 Class {
 	#name : #PyramidCopyPastePluginTest,
 	#superclass : #TestCase,
-	#category : #'Pyramid-Tests-cases-plugin-copy'
+	#category : 'Pyramid-Tests-cases-plugin-copy'
 }
 
 { #category : #tests }

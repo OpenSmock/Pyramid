@@ -4,7 +4,7 @@ A PyramidSaveModelVerifierTest is a test class for testing the behavior of Pyram
 Class {
 	#name : #PyramidSaveModelVerifierTest,
 	#superclass : #TestCase,
-	#category : #'Pyramid-Tests-cases-plugin-save'
+	#category : 'Pyramid-Tests-cases-plugin-save'
 }
 
 { #category : #test }

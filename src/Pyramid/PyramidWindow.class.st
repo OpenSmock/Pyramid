@@ -1,6 +1,6 @@
 Class {
-	#name : 'PyramidWindow',
-	#superclass : 'Object',
+	#name : #PyramidWindow,
+	#superclass : #Object,
 	#instVars : [
 		'presenter',
 		'services',
@@ -8,12 +8,10 @@ Class {
 		'spec',
 		'whenClosedDo'
 	],
-	#category : 'Pyramid-views',
-	#package : 'Pyramid',
-	#tag : 'views'
+	#category : #'Pyramid-views'
 }
 
-{ #category : 'window - properties' }
+{ #category : #'window - properties' }
 PyramidWindow class >> aboutText [
 
 	^ 'Pyramid is an User-Interface (UI) editor.
@@ -43,32 +41,32 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.'
 ]
 
-{ #category : 'window - properties' }
+{ #category : #'window - properties' }
 PyramidWindow class >> aboutTitle [
 
 	^ 'Pyramid'
 ]
 
-{ #category : 'window - properties' }
+{ #category : #'window - properties' }
 PyramidWindow class >> defaultTitle [
 
 	^ 'New project | ' , self aboutTitle
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidWindow >> at: aSymbol addItem: aBlock [
 
 	(self services at: aSymbol) addItem: aBlock
 ]
 
-{ #category : 'api - showing' }
+{ #category : #'api - showing' }
 PyramidWindow >> close [
 
 	self isOpen ifFalse: [ ^ self ].
 	self presenter owner close.
 ]
 
-{ #category : 'initialization' }
+{ #category : #initialization }
 PyramidWindow >> initialize [
 
 	title := self class defaultTitle.
@@ -83,7 +81,7 @@ PyramidWindow >> initialize [
 	PyramidPanelModel menu installOn: self at: #selectionMenu
 ]
 
-{ #category : 'initialization' }
+{ #category : #initialization }
 PyramidWindow >> initializePresenter [
 	"a Spec presenter using the services as an entry"
 
@@ -91,25 +89,25 @@ PyramidWindow >> initializePresenter [
 	^ presenter
 ]
 
-{ #category : 'api - showing' }
+{ #category : #'api - showing' }
 PyramidWindow >> isClosed [
 
 	^ self presenter owner ifNotNil: [ :w | w isClosed ] ifNil: [ true ]
 ]
 
-{ #category : 'api - showing' }
+{ #category : #'api - showing' }
 PyramidWindow >> isOpen [
 
 	^ self isClosed not
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidWindow >> layout [
 
 	^ self shouldBeImplemented
 ]
 
-{ #category : 'api - showing' }
+{ #category : #'api - showing' }
 PyramidWindow >> open [
 
 	spec := self presenter asWindow open.
@@ -120,13 +118,13 @@ PyramidWindow >> open [
 	^ spec
 ]
 
-{ #category : 'private' }
+{ #category : #private }
 PyramidWindow >> panelUpdated [
 
 	self presenter layout: self layout
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidWindow >> presenter [
 	"a Spec presenter using the services as an entry"
 
@@ -134,7 +132,7 @@ PyramidWindow >> presenter [
 	^ presenter
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidWindow >> services [
 	"Collection of key -> value
 	key : aSymbol
@@ -144,32 +142,32 @@ PyramidWindow >> services [
 	^ services
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidWindow >> spec [
 
 	^ spec
 ]
 
-{ #category : 'api - showing' }
+{ #category : #'api - showing' }
 PyramidWindow >> title [
 
 	^ title
 ]
 
-{ #category : 'api - showing' }
+{ #category : #'api - showing' }
 PyramidWindow >> title: aString [
 
 	title := aString.
 	self isOpen ifTrue: [ self presenter owner title: aString ]
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidWindow >> whenClosedDo [
 
 	^ whenClosedDo
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidWindow >> whenClosedDo: aBlock [
 
 	whenClosedDo:= aBlock

@@ -1,7 +1,7 @@
 Class {
 	#name : #PyramidDynamicLayoutStrategyTest,
 	#superclass : #TestCase,
-	#category : #'Pyramid-Tests-cases-plugin-dynamic-layout'
+	#category : 'Pyramid-Tests-cases-plugin-dynamic-layout'
 }
 
 { #category : #tests }

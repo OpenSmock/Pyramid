@@ -3,7 +3,7 @@ Class {
 	#superclass : #TestCase,
 	#traits : 'TPyramidCommandTest',
 	#classTraits : 'TPyramidCommandTest classTrait',
-	#category : #'Pyramid-Tests-cases-plugin-bloc-text'
+	#category : 'Pyramid-Tests-cases-plugin-bloc-text'
 }
 
 { #category : #accessing }

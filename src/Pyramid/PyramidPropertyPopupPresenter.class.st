@@ -1,6 +1,6 @@
 Class {
-	#name : 'PyramidPropertyPopupPresenter',
-	#superclass : 'SpPresenter',
+	#name : #PyramidPropertyPopupPresenter,
+	#superclass : #SpPresenter,
 	#instVars : [
 		'buttonIndividual',
 		'buttonGroup',
@@ -8,54 +8,52 @@ Class {
 		'groupedPresenters',
 		'name'
 	],
-	#category : 'Pyramid-property',
-	#package : 'Pyramid',
-	#tag : 'property'
+	#category : #'Pyramid-property'
 }
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidPropertyPopupPresenter >> buttonGroup [
 
 	^ buttonGroup
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidPropertyPopupPresenter >> buttonIndividual [
 
 	^ buttonIndividual
 ]
 
-{ #category : 'layout' }
+{ #category : #layout }
 PyramidPropertyPopupPresenter >> defaultLayout [
 
 	^ SpBoxLayout newVertical
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidPropertyPopupPresenter >> groupedPresenters [
 
 	^ groupedPresenters
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidPropertyPopupPresenter >> groupedPresenters: anObject [
 
 	groupedPresenters := anObject
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidPropertyPopupPresenter >> individualPresenters [
 
 	^ individualPresenters
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidPropertyPopupPresenter >> individualPresenters: anObject [
 
 	individualPresenters := anObject
 ]
 
-{ #category : 'initialization - deprecated' }
+{ #category : #'initialization - deprecated' }
 PyramidPropertyPopupPresenter >> initializePresenters [
 
 	individualPresenters := {  }.
@@ -75,7 +73,7 @@ PyramidPropertyPopupPresenter >> initializePresenters [
 	buttonGroup whenActivatedDo: [ self showGroupPresenter ]
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidPropertyPopupPresenter >> layoutWith: aCollection [
 
 	| inputsLayout scroll |
@@ -112,19 +110,19 @@ PyramidPropertyPopupPresenter >> layoutWith: aCollection [
 		  yourself
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidPropertyPopupPresenter >> name [
 
 	^ name
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidPropertyPopupPresenter >> name: anObject [
 
 	name := anObject
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidPropertyPopupPresenter >> name: aString grouped: groupedCollection individual: individualCollection [
 
 	self name: aString.
@@ -134,13 +132,13 @@ PyramidPropertyPopupPresenter >> name: aString grouped: groupedCollection indivi
 	self buttonGroup state ifTrue: [ self showGroupPresenter ] ifFalse: [ self showIndividualPresenter ].
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidPropertyPopupPresenter >> showGroupPresenter [
 
 	self layout: (self layoutWith: self groupedPresenters).
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidPropertyPopupPresenter >> showIndividualPresenter [
 
 	self layout: (self layoutWith: self individualPresenters)

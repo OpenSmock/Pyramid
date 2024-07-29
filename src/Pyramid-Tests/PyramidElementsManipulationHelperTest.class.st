@@ -1,7 +1,7 @@
 Class {
 	#name : #PyramidElementsManipulationHelperTest,
 	#superclass : #TestCase,
-	#category : #'Pyramid-Tests-cases-bloc-utils'
+	#category : 'Pyramid-Tests-cases-bloc-utils'
 }
 
 { #category : #'as yet unclassified' }

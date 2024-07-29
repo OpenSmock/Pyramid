@@ -2,7 +2,7 @@ Trait {
 	#name : #TPyramidFontAttributeCommandTest,
 	#traits : 'TPyramidCommandTest',
 	#classTraits : 'TPyramidCommandTest classTrait',
-	#category : #'Pyramid-Tests-cases-plugin-bloc-text'
+	#category : 'Pyramid-Tests-cases-plugin-bloc-text'
 }
 
 { #category : #'as yet unclassified' }

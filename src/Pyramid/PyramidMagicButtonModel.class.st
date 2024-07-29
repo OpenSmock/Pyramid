@@ -1,6 +1,6 @@
 Class {
-	#name : 'PyramidMagicButtonModel',
-	#superclass : 'Object',
+	#name : #PyramidMagicButtonModel,
+	#superclass : #Object,
 	#instVars : [
 		'icon',
 		'helpSelected',
@@ -9,78 +9,76 @@ Class {
 		'label',
 		'inputValidation'
 	],
-	#category : 'Pyramid-specs-custom',
-	#package : 'Pyramid',
-	#tag : 'specs-custom'
+	#category : #'Pyramid-specs-custom'
 }
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidMagicButtonModel >> helpNotSelected [
 
 	^ helpNotSelected
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidMagicButtonModel >> helpNotSelected: anObject [
 
 	helpNotSelected := anObject
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidMagicButtonModel >> helpSelected [
 
 	^ helpSelected
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidMagicButtonModel >> helpSelected: anObject [
 
 	helpSelected := anObject
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidMagicButtonModel >> icon [
 
 	^ icon
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidMagicButtonModel >> icon: anObject [
 
 	icon := anObject
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidMagicButtonModel >> inputValidation [
 
 	^ inputValidation
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidMagicButtonModel >> inputValidation: aFullBlockClosure [ 
 	
 	inputValidation := aFullBlockClosure
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidMagicButtonModel >> inputValue [
 
 	^ inputValue
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidMagicButtonModel >> inputValue: anObject [
 
 	inputValue := anObject
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidMagicButtonModel >> label [
 
 	^ label
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidMagicButtonModel >> label: anObject [
 
 	label := anObject

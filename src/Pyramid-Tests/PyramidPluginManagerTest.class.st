@@ -4,7 +4,7 @@ A PyramidPluginManagerTest is a test class for testing the behavior of PyramidPl
 Class {
 	#name : #PyramidPluginManagerTest,
 	#superclass : #TestCase,
-	#category : #'Pyramid-Tests-cases-core'
+	#category : 'Pyramid-Tests-cases-core'
 }
 
 { #category : #tests }

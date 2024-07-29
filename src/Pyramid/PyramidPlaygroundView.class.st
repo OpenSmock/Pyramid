@@ -1,24 +1,22 @@
 Class {
-	#name : 'PyramidPlaygroundView',
-	#superclass : 'SpPresenter',
+	#name : #PyramidPlaygroundView,
+	#superclass : #SpPresenter,
 	#instVars : [
 		'list',
 		'playground',
 		'codeObjectInteractionModel',
 		'contextLabel'
 	],
-	#category : 'Pyramid-plugin-playground',
-	#package : 'Pyramid',
-	#tag : 'plugin-playground'
+	#category : #'Pyramid-plugin-playground'
 }
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidPlaygroundView >> contextLabel [
 
 	^ contextLabel
 ]
 
-{ #category : 'layout' }
+{ #category : #layout }
 PyramidPlaygroundView >> defaultLayout [
 
 	^ SpPanedLayout newVertical
@@ -40,7 +38,7 @@ PyramidPlaygroundView >> defaultLayout [
 		  yourself
 ]
 
-{ #category : 'initialization' }
+{ #category : #initialization }
 PyramidPlaygroundView >> initializePresenters [
 
 	list := SpListPresenter new.
@@ -50,17 +48,17 @@ PyramidPlaygroundView >> initializePresenters [
 	playground interactionModel: PyramidSpCodeObjectInteractionModel new.
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidPlaygroundView >> list [
 ^ list
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidPlaygroundView >> playground [
 	^ playground
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidPlaygroundView >> projectModel: aPyramidActiveProject [
 
 	aPyramidActiveProject announcer
@@ -75,20 +73,20 @@ PyramidPlaygroundView >> projectModel: aPyramidActiveProject [
 	self updateSelectedElementsWith: {  }
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidPlaygroundView >> pyramidSelectionChanged: anEvent [
 
 	self updateSelectedElementsWith: anEvent selection.
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidPlaygroundView >> updateSelectedElementsWith: aCollection [
 
 	self list items: aCollection.
 	contextLabel label: self valueOfSelf
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidPlaygroundView >> valueOfSelf [
 
 	^ 'self is <1s>' expandMacrosWith:

@@ -1,6 +1,6 @@
 Trait {
 	#name : #TPyramidInputPresenterTest,
-	#category : #'Pyramid-Tests-cases-specs-custom'
+	#category : 'Pyramid-Tests-cases-specs-custom'
 }
 
 { #category : #accessing }

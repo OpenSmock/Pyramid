@@ -6,7 +6,7 @@ Class {
 		'pyramidFirstLevelElementsChangedAction',
 		'pyramidSelectionChangedAction'
 	],
-	#category : #'Pyramid-Tests-cases-models'
+	#category : 'Pyramid-Tests-cases-models'
 }
 
 { #category : #accessing }

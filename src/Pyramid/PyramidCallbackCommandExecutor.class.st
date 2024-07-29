@@ -1,47 +1,45 @@
 Class {
-	#name : 'PyramidCallbackCommandExecutor',
-	#superclass : 'PyramidCommandExecutorDecorator',
+	#name : #PyramidCallbackCommandExecutor,
+	#superclass : #PyramidCommandExecutorDecorator,
 	#instVars : [
 		'beforeDo',
 		'afterDo'
 	],
-	#category : 'Pyramid-commands',
-	#package : 'Pyramid',
-	#tag : 'commands'
+	#category : #'Pyramid-commands'
 }
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidCallbackCommandExecutor >> afterDo [
 
 	^ afterDo
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidCallbackCommandExecutor >> afterDo: anObject [
 
 	afterDo := anObject
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidCallbackCommandExecutor >> beforeDo [
 
 	^ beforeDo
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidCallbackCommandExecutor >> beforeDo: anObject [
 
 	beforeDo := anObject
 ]
 
-{ #category : 'initialization' }
+{ #category : #initialization }
 PyramidCallbackCommandExecutor >> initialize [
 
 	afterDo := [  ].
 	beforeDo := [  ]
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidCallbackCommandExecutor >> use: aCommand on: aCollection with: arguments [
 
 	self beforeDo value.

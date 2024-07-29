@@ -3,29 +3,27 @@ I‘m a decorator for the `PyramidMainCommandExecutor`. The wrappe is either the
 
 "
 Class {
-	#name : 'PyramidCommandExecutorDecorator',
-	#superclass : 'PyramidCommandExecutor',
+	#name : #PyramidCommandExecutorDecorator,
+	#superclass : #PyramidCommandExecutor,
 	#instVars : [
 		'wrappee'
 	],
-	#category : 'Pyramid-commands',
-	#package : 'Pyramid',
-	#tag : 'commands'
+	#category : #'Pyramid-commands'
 }
 
-{ #category : 'testing' }
+{ #category : #testing }
 PyramidCommandExecutorDecorator class >> isAbstract [
 
 	^ self == PyramidCommandExecutorDecorator
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidCommandExecutorDecorator >> wrappee [
 
 	^ wrappee
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidCommandExecutorDecorator >> wrappee: anObject [
 
 	wrappee := anObject

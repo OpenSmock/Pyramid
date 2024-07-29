@@ -3,29 +3,27 @@ I’m a decorator use to save the history of Pyramid.
 
 "
 Class {
-	#name : 'PyramidHistoryCommandExecutor',
-	#superclass : 'PyramidCommandExecutorDecorator',
+	#name : #PyramidHistoryCommandExecutor,
+	#superclass : #PyramidCommandExecutorDecorator,
 	#instVars : [
 		'history'
 	],
-	#category : 'Pyramid-commands',
-	#package : 'Pyramid',
-	#tag : 'commands'
+	#category : #'Pyramid-commands'
 }
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidHistoryCommandExecutor >> history [
 
 	^ history
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidHistoryCommandExecutor >> history: aPyramidHistory [
 
 	history := aPyramidHistory
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidHistoryCommandExecutor >> use: aCommand on: aCollection with: arguments [
 
 	| undoMemento redoMemento |

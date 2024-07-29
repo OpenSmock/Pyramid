@@ -1,7 +1,7 @@
 Class {
 	#name : #PyramidLibraryPresenterTest,
 	#superclass : #TestCase,
-	#category : #'Pyramid-Tests-cases-plugin-tree-library'
+	#category : 'Pyramid-Tests-cases-plugin-tree-library'
 }
 
 { #category : #tests }

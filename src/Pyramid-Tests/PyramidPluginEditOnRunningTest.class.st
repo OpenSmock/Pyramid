@@ -7,7 +7,7 @@ Class {
 	#instVars : [
 		'setting'
 	],
-	#category : #'Pyramid-Tests-cases-plugin-edit-on-running'
+	#category : 'Pyramid-Tests-cases-plugin-edit-on-running'
 }
 
 { #category : #utils }

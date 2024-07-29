@@ -6,7 +6,7 @@ Class {
 		'editor',
 		'projectModel'
 	],
-	#category : #'Pyramid-Tests-cases-plugin-space'
+	#category : 'Pyramid-Tests-cases-plugin-space'
 }
 
 { #category : #accessing }

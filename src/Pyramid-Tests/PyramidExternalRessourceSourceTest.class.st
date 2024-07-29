@@ -1,7 +1,7 @@
 Class {
 	#name : #PyramidExternalRessourceSourceTest,
 	#superclass : #TestCase,
-	#category : #'Pyramid-Tests-cases-external-ressources'
+	#category : 'Pyramid-Tests-cases-external-ressources'
 }
 
 { #category : #tests }

@@ -45,36 +45,46 @@ PyramidTreePlugin class >> addDefaultOnLibrary: library [
 PyramidTreePlugin class >> addOnLibrary: aLibrary [
 
 	self addDefaultOnLibrary: aLibrary.
-	self addPystonOnLibrary: aLibrary
+	self addPystonOnLibrary: aLibrary.
+	self addPystashOnLibrary: aLibrary
 ]
 
 { #category : #'as yet unclassified' }
-PyramidTreePlugin class >> addPystonOnLibrary: library [
+PyramidTreePlugin class >> addPragma: aSymbol onLibrary: aLibrary withIcon: anIcon [
 
 	| pragmas methods packages |
-	pragmas := Pragma allNamed: #pySTON.
+	pragmas := Pragma allNamed: aSymbol.
 	methods := (pragmas collect: #method) asSet.
 	packages := (methods collect: #package) asSet.
 
 	packages do: [ :package |
 		| factories |
-		factories := methods
-			             select: [ :method | method package = package ]
-			             thenCollect: [ :method |
-				             PyramidElementToAddFactory new
-					             elementIcon: (Smalltalk ui icons iconNamed:
-								              method methodClass soleInstance systemIconName);
-					             elementName: method selector;
-					             elementBlock: [
-						             (method methodClass soleInstance perform:
-								              method selector) materializeAsBlElement ];
-					             yourself ].
-		library
+		factories := self factoriesFromMethods: methods inPackage: package.
+		factories ifNotEmpty: [ aLibrary
 			addCategoryWithName: package name
-			withIcon: (Smalltalk ui icons iconNamed: #smallInfo)
-			withAllFactories: factories asArray sorted ].
+			withIcon: anIcon
+			withAllFactories: factories asArray sorted ]
+		 ].
 
-	^ library
+	^ aLibrary
+]
+
+{ #category : #'as yet unclassified' }
+PyramidTreePlugin class >> addPystashOnLibrary: library [
+
+	^ self
+		  addPragma: #pyStash
+		  onLibrary: library
+		  withIcon: (Smalltalk ui icons iconNamed: #smallSave).
+]
+
+{ #category : #'as yet unclassified' }
+PyramidTreePlugin class >> addPystonOnLibrary: library [
+
+	^ self
+		  addPragma: #pySTON
+		  onLibrary: library
+		  withIcon: (Smalltalk ui icons iconNamed: #smallSave)
 ]
 
 { #category : #accessing }
@@ -83,6 +93,26 @@ PyramidTreePlugin class >> columnsBuildersClasses [
 	ColumnsBuildersClasses ifNil: [
 		ColumnsBuildersClasses := Set new ].
 	^ ColumnsBuildersClasses
+]
+
+{ #category : #'as yet unclassified' }
+PyramidTreePlugin class >> factoriesFromMethods: methods inPackage: package [
+
+	package ifNil: [ ^ {  } ].
+
+	^ methods
+		  select: [ :method |
+			  method package = package and: [
+				  method methodClass isObsolete not ] ]
+		  thenCollect: [ :method |
+			  PyramidElementToAddFactory new
+				  elementIcon: (Smalltalk ui icons iconNamed:
+							   method methodClass soleInstance systemIconName);
+				  elementName: method selector;
+				  elementBlock: [
+					  (method methodClass soleInstance perform: method selector)
+						  materializeAsBlElement ];
+				  yourself ]
 ]
 
 { #category : #initialization }

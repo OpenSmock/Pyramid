@@ -1,7 +1,7 @@
 Class {
 	#name : #PyramidHistoryTest,
 	#superclass : #TestCase,
-	#category : #'Pyramid-Tests-cases-history'
+	#category : 'Pyramid-Tests-cases-history'
 }
 
 { #category : #tests }

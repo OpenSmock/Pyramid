@@ -1,6 +1,6 @@
 Class {
-	#name : 'PyramidMagicButtonsInputPresenter',
-	#superclass : 'PyramidInputPresenter',
+	#name : #PyramidMagicButtonsInputPresenter,
+	#superclass : #PyramidInputPresenter,
 	#instVars : [
 		'valueArray',
 		'buttonsSelected',
@@ -13,18 +13,16 @@ Class {
 	#classInstVars : [
 		'whenValueChangedDo'
 	],
-	#category : 'Pyramid-specs-custom',
-	#package : 'Pyramid',
-	#tag : 'specs-custom'
+	#category : #'Pyramid-specs-custom'
 }
 
-{ #category : 'deprecated' }
+{ #category : #deprecated }
 PyramidMagicButtonsInputPresenter class >> stringsClass [
 
 	^ PyramidMagicButtonsModel
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidMagicButtonsInputPresenter >> applyStrings [
 
 	self strings buttonsModel do: [ :each |
@@ -33,25 +31,25 @@ PyramidMagicButtonsInputPresenter >> applyStrings [
 	self setUnknowValue
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidMagicButtonsInputPresenter >> buttonUnknow [
 
 	^ buttonUnknow
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidMagicButtonsInputPresenter >> buttonsNotSelected [
 
 	^ buttonsNotSelected
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidMagicButtonsInputPresenter >> buttonsSelected [
 
 	^ buttonsSelected
 ]
 
-{ #category : 'layout' }
+{ #category : #layout }
 PyramidMagicButtonsInputPresenter >> defaultLayout [
 
 	^ SpBoxLayout newHorizontal
@@ -59,21 +57,21 @@ PyramidMagicButtonsInputPresenter >> defaultLayout [
 		  yourself
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidMagicButtonsInputPresenter >> emptyValue [
 
 	self selectedIndex: 0.
 	 self setUnknowValue
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidMagicButtonsInputPresenter >> indexOf: aValue [
 
 	(1 to: self validationArray size do: [ :i | ((self validationArray at: i) value: aValue) ifTrue: [ ^ i ] ]).
 	^ 0
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidMagicButtonsInputPresenter >> initializePresenters [
 
 	whenValueChangedDo := [ :val |  ].
@@ -87,7 +85,7 @@ PyramidMagicButtonsInputPresenter >> initializePresenters [
 		                yourself
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidMagicButtonsInputPresenter >> layoutFor: aButtonsCollection withSelectedIndex: index [
 
 	| buttonsLayout |
@@ -107,7 +105,7 @@ PyramidMagicButtonsInputPresenter >> layoutFor: aButtonsCollection withSelectedI
 		^ buttonsLayout
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidMagicButtonsInputPresenter >> makeAssociatedButtonFor: aButtonModel [
 
 	| buttonSelected buttonNotSelected |
@@ -134,26 +132,26 @@ PyramidMagicButtonsInputPresenter >> makeAssociatedButtonFor: aButtonModel [
 	self buttonsNotSelected add: buttonNotSelected
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidMagicButtonsInputPresenter >> mixedValues [
 
 	self selectedIndex: 0.
 	self setUnknowValue
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidMagicButtonsInputPresenter >> selectedIndex [
 
 	^ selectedIndex
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidMagicButtonsInputPresenter >> selectedIndex: anObject [
 
 	selectedIndex := anObject
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidMagicButtonsInputPresenter >> setUnknowValue [
 
 	| buttonsList |
@@ -163,20 +161,20 @@ PyramidMagicButtonsInputPresenter >> setUnknowValue [
 	self layout: (self layoutFor: buttonsList withSelectedIndex: 1)
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidMagicButtonsInputPresenter >> validationArray [
 
 	^ validationArray
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidMagicButtonsInputPresenter >> value [
 
 	self selectedIndex = 0 ifTrue: [ ^ PyramidUnknowState new ].
 	^ (self valueArray at: self selectedIndex)
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidMagicButtonsInputPresenter >> value: aValue [
 
 	| buttonsList |
@@ -192,19 +190,19 @@ PyramidMagicButtonsInputPresenter >> value: aValue [
 		(self layoutFor: buttonsList withSelectedIndex: self selectedIndex)
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidMagicButtonsInputPresenter >> valueArray [
 
 	^ valueArray
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidMagicButtonsInputPresenter >> whenValueChangedDo [
 
 	^ whenValueChangedDo
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidMagicButtonsInputPresenter >> whenValueChangedDo: aBlockClosure [
 
 	whenValueChangedDo := aBlockClosure

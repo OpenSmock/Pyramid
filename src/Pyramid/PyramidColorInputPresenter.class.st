@@ -1,30 +1,28 @@
 Class {
-	#name : 'PyramidColorInputPresenter',
-	#superclass : 'PyramidInputPresenter',
+	#name : #PyramidColorInputPresenter,
+	#superclass : #PyramidInputPresenter,
 	#instVars : [
 		'aMorph',
 		'hMorph',
 		'svMorph',
 		'whenValueChangedDo'
 	],
-	#category : 'Pyramid-specs-custom',
-	#package : 'Pyramid',
-	#tag : 'specs-custom'
+	#category : #'Pyramid-specs-custom'
 }
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidColorInputPresenter >> aMorph [
 
 	^ aMorph
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidColorInputPresenter >> alphaSelected: aScale [
 
 	self whenValueChangedDo value: self value.
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidColorInputPresenter >> colorSelected: aColor [
 	"A color has been selected. Make the hue match."
 
@@ -35,12 +33,12 @@ PyramidColorInputPresenter >> colorSelected: aColor [
 	self aMorph color: aColor
 ]
 
-{ #category : 'initialization' }
+{ #category : #initialization }
 PyramidColorInputPresenter >> defaultColor [
 ^ Color red
 ]
 
-{ #category : 'layout' }
+{ #category : #layout }
 PyramidColorInputPresenter >> defaultLayout [
 
 	^ SpBoxLayout newVertical spacing: 4;
@@ -50,13 +48,13 @@ PyramidColorInputPresenter >> defaultLayout [
 		  yourself
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidColorInputPresenter >> hMorph [
 
 	^ hMorph
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidColorInputPresenter >> hue: aFloat [
 	"Set the hue in the range 0.0 - 1.0. Update the SV morph and hMorph."
 
@@ -64,7 +62,7 @@ PyramidColorInputPresenter >> hue: aFloat [
 	self svMorph color: (Color h: aFloat * 359.9 s: 1.0 v: 1.0)
 ]
 
-{ #category : 'initialization - deprecated' }
+{ #category : #'initialization - deprecated' }
 PyramidColorInputPresenter >> initializePresenter [
 
 	whenValueChangedDo := [ :color | ].
@@ -82,20 +80,20 @@ PyramidColorInputPresenter >> initializePresenter [
 	self value: self defaultColor
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidColorInputPresenter >> svMorph [
 
 	^ svMorph
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidColorInputPresenter >> value [
 	"Answer the selected color."
 
 	^ self svMorph selectedColor alpha: self aMorph value
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidColorInputPresenter >> value: aColor [
 	"Set the hue and sv components."
 	| whenValueChangedDoTemp |
@@ -109,13 +107,13 @@ PyramidColorInputPresenter >> value: aColor [
 	self aMorph value: aColor alpha] ensure: [ self whenValueChangedDo: whenValueChangedDoTemp ]
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidColorInputPresenter >> whenValueChangedDo [
 
 	^ whenValueChangedDo
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidColorInputPresenter >> whenValueChangedDo: anObject [
 
 	whenValueChangedDo := anObject

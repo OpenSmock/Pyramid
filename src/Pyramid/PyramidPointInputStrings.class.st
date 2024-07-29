@@ -1,16 +1,14 @@
 Class {
-	#name : 'PyramidPointInputStrings',
-	#superclass : 'PyramidInputStrings',
+	#name : #PyramidPointInputStrings,
+	#superclass : #PyramidInputStrings,
 	#instVars : [
 		'labelX',
 		'labelY'
 	],
-	#category : 'Pyramid-specs-custom',
-	#package : 'Pyramid',
-	#tag : 'specs-custom'
+	#category : #'Pyramid-specs-custom'
 }
 
-{ #category : 'initialization' }
+{ #category : #initialization }
 PyramidPointInputStrings >> initialize [
 
 	super initialize.
@@ -18,25 +16,25 @@ PyramidPointInputStrings >> initialize [
 	labelY := 'y'
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidPointInputStrings >> labelX [
 
 	^ labelX
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidPointInputStrings >> labelX: anObject [
 
 	labelX := anObject
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidPointInputStrings >> labelY [
 
 	^ labelY
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidPointInputStrings >> labelY: anObject [
 
 	labelY := anObject

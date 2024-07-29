@@ -1,17 +1,15 @@
 Class {
-	#name : 'PyramidExternalRessourceSource',
-	#superclass : 'Object',
+	#name : #PyramidExternalRessourceSource,
+	#superclass : #Object,
 	#instVars : [
 		'target',
 		'selector',
 		'arguments'
 	],
-	#category : 'Pyramid-external-ressources',
-	#package : 'Pyramid',
-	#tag : 'external-ressources'
+	#category : #'Pyramid-external-ressources'
 }
 
-{ #category : 'initialization' }
+{ #category : #initialization }
 PyramidExternalRessourceSource class >> formFromFileNamed: aFileReference [
 
 	^ self new
@@ -21,7 +19,7 @@ PyramidExternalRessourceSource class >> formFromFileNamed: aFileReference [
 		  yourself
 ]
 
-{ #category : 'initialization' }
+{ #category : #initialization }
 PyramidExternalRessourceSource class >> target: aClass selector: aSelector [
 
 	^ self new
@@ -30,7 +28,7 @@ PyramidExternalRessourceSource class >> target: aClass selector: aSelector [
 		  yourself
 ]
 
-{ #category : 'initialization' }
+{ #category : #initialization }
 PyramidExternalRessourceSource class >> target: aClass selector: aSelector arguments: anArray [
 
 	^ self new
@@ -40,19 +38,19 @@ PyramidExternalRessourceSource class >> target: aClass selector: aSelector argum
 		  yourself
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidExternalRessourceSource >> arguments [
 
 	^ arguments
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidExternalRessourceSource >> arguments: anObject [
 
 	arguments := anObject
 ]
 
-{ #category : 'instance creation' }
+{ #category : #'instance creation' }
 PyramidExternalRessourceSource >> fromSton: stonReader [
 
 	stonReader parseMapDo: [ :key :value |
@@ -62,31 +60,38 @@ PyramidExternalRessourceSource >> fromSton: stonReader [
 		key = #arguments ifTrue: [ self arguments: value ] ]
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidExternalRessourceSource >> getRessource [
 
 	^ self target perform: self selector withArguments: self arguments
 ]
 
-{ #category : 'initialization' }
+{ #category : #initialization }
 PyramidExternalRessourceSource >> initialize [
 
 	arguments := {  }
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidExternalRessourceSource >> selector [
 
 	^ selector
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidExternalRessourceSource >> selector: anObject [
 
 	selector := anObject
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
+PyramidExternalRessourceSource >> stashAccessors [
+
+	<stashAccessors>
+	^ { #target . #selector . #arguments }
+]
+
+{ #category : #'as yet unclassified' }
 PyramidExternalRessourceSource >> stonOn: stonWriter [
 
 	stonWriter writeObject: self streamMap: [ :map |
@@ -95,13 +100,13 @@ PyramidExternalRessourceSource >> stonOn: stonWriter [
 		map at: #arguments put: self arguments ]
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidExternalRessourceSource >> target [
 
 	^ target
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidExternalRessourceSource >> target: anObject [
 
 	target := anObject

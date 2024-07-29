@@ -6,5 +6,5 @@ Class {
 		'spacePlugin',
 		'editor'
 	],
-	#category : #'Pyramid-Tests-cases-plugin-testmode'
+	#category : 'Pyramid-Tests-cases-plugin-testmode'
 }

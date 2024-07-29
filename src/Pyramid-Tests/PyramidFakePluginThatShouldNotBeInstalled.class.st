@@ -1,7 +1,7 @@
 Class {
 	#name : #PyramidFakePluginThatShouldNotBeInstalled,
 	#superclass : #PyramidFakePlugin,
-	#category : #'Pyramid-Tests-cases-core'
+	#category : 'Pyramid-Tests-cases-core'
 }
 
 { #category : #asserting }

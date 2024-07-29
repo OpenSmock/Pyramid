@@ -1,7 +1,7 @@
 Class {
 	#name : #PyramidTestWindow,
 	#superclass : #PyramidWindow,
-	#category : #'Pyramid-Tests-cases-views'
+	#category : 'Pyramid-Tests-cases-views'
 }
 
 { #category : #initialization }

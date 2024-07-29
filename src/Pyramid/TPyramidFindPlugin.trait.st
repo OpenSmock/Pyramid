@@ -1,11 +1,9 @@
 Trait {
-	#name : 'TPyramidFindPlugin',
-	#category : 'Pyramid-core',
-	#package : 'Pyramid',
-	#tag : 'core'
+	#name : #TPyramidFindPlugin,
+	#category : #'Pyramid-core'
 }
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 TPyramidFindPlugin >> findPlugin: aSymbolOrAClass [
 
 	| allPlugins |
@@ -28,7 +26,7 @@ TPyramidFindPlugin >> findPlugin: aSymbolOrAClass [
 	^ allPlugins asArray first
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 TPyramidFindPlugin >> plugins [
 	"Return a collection of TPyramidPlugin instances."
 

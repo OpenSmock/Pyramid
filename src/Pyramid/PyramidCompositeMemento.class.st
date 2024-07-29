@@ -1,39 +1,37 @@
 Class {
-	#name : 'PyramidCompositeMemento',
-	#superclass : 'PyramidAbstractMemento',
+	#name : #PyramidCompositeMemento,
+	#superclass : #PyramidAbstractMemento,
 	#instVars : [
 		'mementos'
 	],
-	#category : 'Pyramid-history',
-	#package : 'Pyramid',
-	#tag : 'history'
+	#category : #'Pyramid-history'
 }
 
-{ #category : 'visiting' }
+{ #category : #visiting }
 PyramidCompositeMemento >> accept: aVisitor [
 
 	^ aVisitor visitCompositeMemento: self
 ]
 
-{ #category : 'initialization' }
+{ #category : #initialization }
 PyramidCompositeMemento >> initialize [
 
 	mementos := OrderedCollection new.
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidCompositeMemento >> mementos [
 
 	^ mementos
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidCompositeMemento >> mementos: anObject [
 
 	mementos := anObject
 ]
 
-{ #category : 'window management' }
+{ #category : #'window management' }
 PyramidCompositeMemento >> restore [
 
 	self mementos do: [ :each | each restore ]
