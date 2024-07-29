@@ -1,12 +1,10 @@
 Class {
-	#name : 'PyramidSimpleMockCommandTest',
-	#superclass : 'TestCase',
-	#category : 'Pyramid-Tests-cases-command',
-	#package : 'Pyramid-Tests',
-	#tag : 'cases-command'
+	#name : #PyramidSimpleMockCommandTest,
+	#superclass : #TestCase,
+	#category : #'Pyramid-Tests-cases-command'
 }
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidSimpleMockCommandTest >> testGetValueFor [
 
 	| mock |
@@ -17,7 +15,7 @@ PyramidSimpleMockCommandTest >> testGetValueFor [
 	self assert: (PyramidSimpleMockCommand new getValueFor: mock) equals: 5.
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidSimpleMockCommandTest >> testSetValueForWith [
 
 	| mock |

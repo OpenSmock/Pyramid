@@ -1,12 +1,12 @@
-Extension { #name : 'BlElement' }
+Extension { #name : #BlElement }
 
-{ #category : '*Pyramid-Bloc' }
+{ #category : #'*Pyramid-Bloc' }
 BlElement >> asIcon [
 
 	^ self layout asIcon
 ]
 
-{ #category : '*Pyramid-Bloc' }
+{ #category : #'*Pyramid-Bloc' }
 BlElement >> editWithPyramid [
 
 	| editor oldParent |

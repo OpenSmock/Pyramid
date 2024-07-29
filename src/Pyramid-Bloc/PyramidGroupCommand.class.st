@@ -1,15 +1,13 @@
 Class {
-	#name : 'PyramidGroupCommand',
-	#superclass : 'PyramidCommand',
+	#name : #PyramidGroupCommand,
+	#superclass : #PyramidCommand,
 	#instVars : [
 		'historyCommandArguments'
 	],
-	#category : 'Pyramid-Bloc-plugin-bloc-group',
-	#package : 'Pyramid-Bloc',
-	#tag : 'plugin-bloc-group'
+	#category : #'Pyramid-Bloc-plugin-bloc-group'
 }
 
-{ #category : 'testing' }
+{ #category : #testing }
 PyramidGroupCommand >> canBeUsedFor: aCollectionOfBlElements [
 
 	| parent |
@@ -22,14 +20,14 @@ PyramidGroupCommand >> canBeUsedFor: aCollectionOfBlElements [
 				  each parent = parent ]
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidGroupCommand >> commandInverse [
 	"Command used to undo the group."
 
 	^ PyramidUndoGroupCommand new 
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidGroupCommand >> commandInverseArgumentsFor: aSelection and: aFirstLevelCollection [
 
 	historyCommandArguments := PyramidGroupCommandModel new.
@@ -44,7 +42,7 @@ PyramidGroupCommand >> commandInverseArgumentsFor: aSelection and: aFirstLevelCo
 	^ self historyCommandArguments
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidGroupCommand >> commandRestauration [
 	"Command used to redo the group."
 
@@ -52,14 +50,14 @@ PyramidGroupCommand >> commandRestauration [
 	
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidGroupCommand >> commandRestaurationArgumentsFor: aSelection and: aFirstLevelCollection [
 
 	self historyCommandArguments groupElement: aSelection first first parent.
 	^ self historyCommandArguments
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidGroupCommand >> createNewGroupElement: aCollectionOfBlElement [
 
 	^ BlElement new
@@ -69,19 +67,19 @@ PyramidGroupCommand >> createNewGroupElement: aCollectionOfBlElement [
 		  yourself.
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidGroupCommand >> getValueFor: aBlElement [
 
 	^ self historyCommandArguments
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidGroupCommand >> historyCommandArguments [
 
 	^ historyCommandArguments
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidGroupCommand >> orderGroup: aCollectionToGroup [
 
 	"The group order must be the same as their parent children order."
@@ -90,7 +88,7 @@ PyramidGroupCommand >> orderGroup: aCollectionToGroup [
 	^ aCollectionToGroup sorted: [ :e1 :e2 | (parent childIndexOf: e1) < (parent childIndexOf: e2) ]
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidGroupCommand >> positionGroupElement: groupElement [
 
 	| currentTop currentLeft |
@@ -108,7 +106,7 @@ PyramidGroupCommand >> positionGroupElement: groupElement [
 			child constraints position - (currentLeft @ currentTop) ]
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidGroupCommand >> saveStatesOf: aCollection with: arguments [
 
 	^ self
@@ -118,7 +116,7 @@ PyramidGroupCommand >> saveStatesOf: aCollection with: arguments [
 		  (self commandRestaurationArgumentsFor: aCollection and: arguments)
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidGroupCommand >> saveStatesWithCommandInverseOf: aCollection with: arguments [
 
 	^ self
@@ -128,7 +126,7 @@ PyramidGroupCommand >> saveStatesWithCommandInverseOf: aCollection with: argumen
 		  (self commandInverseArgumentsFor: aCollection and: arguments)
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidGroupCommand >> setValueFor: aCollectionToGroup with: aCollectionOfFirstLevelElements [
 
 	| groupInCorrectOrder parent groupElement removedElementFromFirstLevel |

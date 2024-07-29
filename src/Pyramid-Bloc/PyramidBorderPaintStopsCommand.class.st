@@ -1,19 +1,17 @@
 Class {
-	#name : 'PyramidBorderPaintStopsCommand',
-	#superclass : 'PyramidAbstractBorderCommand',
-	#category : 'Pyramid-Bloc-plugin-bloc-visuals',
-	#package : 'Pyramid-Bloc',
-	#tag : 'plugin-bloc-visuals'
+	#name : #PyramidBorderPaintStopsCommand,
+	#superclass : #PyramidAbstractBorderCommand,
+	#category : #'Pyramid-Bloc-plugin-bloc-visuals'
 }
 
-{ #category : 'testing' }
+{ #category : #testing }
 PyramidBorderPaintStopsCommand >> canBeUsedFor: anObject [
 
 	^ (super canBeUsedFor: anObject) and: [
 			  anObject border paint isKindOf: BlGradientPaint  ]
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidBorderPaintStopsCommand >> getValueFor: aBlElement [
 	"We ensure that we are working with a copy of the associations."
 
@@ -21,7 +19,7 @@ PyramidBorderPaintStopsCommand >> getValueFor: aBlElement [
 		  asso key copy -> asso value copy ]
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidBorderPaintStopsCommand >> updateBuilder: aBuilder with: anArgument [
 	"We ensure that we are working with a copy of the associations."
 

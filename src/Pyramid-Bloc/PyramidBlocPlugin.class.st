@@ -1,18 +1,16 @@
 Class {
-	#name : 'PyramidBlocPlugin',
-	#superclass : 'Object',
+	#name : #PyramidBlocPlugin,
+	#superclass : #Object,
 	#traits : 'TPyramidPlugin',
 	#classTraits : 'TPyramidPlugin classTrait',
 	#instVars : [
 		'editor',
 		'groupCommand'
 	],
-	#category : 'Pyramid-Bloc-plugin-bloc',
-	#package : 'Pyramid-Bloc',
-	#tag : 'plugin-bloc'
+	#category : #'Pyramid-Bloc-plugin-bloc'
 }
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidBlocPlugin class >> clipChildren [
 
 	| property |
@@ -29,7 +27,7 @@ PyramidBlocPlugin class >> clipChildren [
 	^ property
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidBlocPlugin class >> cornerRadii [
 
 	| property |
@@ -47,7 +45,7 @@ PyramidBlocPlugin class >> cornerRadii [
 	^ property
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidBlocPlugin class >> elementId [
 
 	| property |
@@ -60,7 +58,7 @@ PyramidBlocPlugin class >> elementId [
 	^ property
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidBlocPlugin class >> geometry [
 
 	| property |
@@ -73,7 +71,7 @@ PyramidBlocPlugin class >> geometry [
 	^ property
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidBlocPlugin class >> visibility [
 
 	| property |
@@ -85,7 +83,7 @@ PyramidBlocPlugin class >> visibility [
 	^ property
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidBlocPlugin class >> zIndex [
 
 	| property |
@@ -99,7 +97,7 @@ PyramidBlocPlugin class >> zIndex [
 	^ property
 ]
 
-{ #category : 'adding' }
+{ #category : #adding }
 PyramidBlocPlugin >> addPanelsOn: aPyramidSimpleWindow [
 
 	aPyramidSimpleWindow
@@ -110,7 +108,7 @@ PyramidBlocPlugin >> addPanelsOn: aPyramidSimpleWindow [
 		addItem: [ :builder | self menuChangeOrderOn: builder ]
 ]
 
-{ #category : 'connecting' }
+{ #category : #connecting }
 PyramidBlocPlugin >> connectOn: aPyramidEditor [
 
 	"Configure the sort function."
@@ -125,19 +123,19 @@ PyramidBlocPlugin >> connectOn: aPyramidEditor [
 	aPyramidEditor propertiesManager addProperty: self class cornerRadii
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidBlocPlugin >> editor [
 
 	^ editor
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidBlocPlugin >> editor: anObject [
 
 	editor := anObject
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidBlocPlugin >> groupCollection: aCollection [
 
 	self editor ifNil: [ ^ self ].
@@ -147,13 +145,13 @@ PyramidBlocPlugin >> groupCollection: aCollection [
 		with: self editor projectModel firstLevelElements
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidBlocPlugin >> groupCommand [
 
 	^ groupCommand
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidBlocPlugin >> groupMenuBlock: group for: aCollection [
 
 	group addItem: [ :item |
@@ -165,7 +163,7 @@ PyramidBlocPlugin >> groupMenuBlock: group for: aCollection [
 			yourself ]
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidBlocPlugin >> groupMenuBlockMulti [
 
 	^ [ :group :multi | | copy |
@@ -174,7 +172,7 @@ PyramidBlocPlugin >> groupMenuBlockMulti [
 		  self groupMenuBlock: group for: copy ] ]
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidBlocPlugin >> groupMenuBlockSingle [
 
 	^ [ :group :single | | copy |
@@ -183,13 +181,13 @@ PyramidBlocPlugin >> groupMenuBlockSingle [
 		  self groupMenuBlock: group for: copy ] ]
 ]
 
-{ #category : 'initialization' }
+{ #category : #initialization }
 PyramidBlocPlugin >> initialize [
 
 	groupCommand := PyramidGroupCommand new
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidBlocPlugin >> menuChangeOrderOn: aBuilder [
 
 	aBuilder
@@ -231,14 +229,14 @@ PyramidBlocPlugin >> menuChangeOrderOn: aBuilder [
 		order: 20
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidBlocPlugin >> menuGroupOn: aBuilder [
 
 	aBuilder addGroupSingleSelection: self groupMenuBlockSingle order: 20.
 	aBuilder addGroupMultiSelection: self groupMenuBlockMulti order: 20
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidBlocPlugin >> send: aCommand on: aCollection [
 
 	self editor ifNil: [ ^ self ].

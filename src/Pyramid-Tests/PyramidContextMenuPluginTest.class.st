@@ -1,12 +1,10 @@
 Class {
-	#name : 'PyramidContextMenuPluginTest',
-	#superclass : 'TestCase',
-	#category : 'Pyramid-Tests-cases-plugin-context-menu',
-	#package : 'Pyramid-Tests',
-	#tag : 'cases-plugin-context-menu'
+	#name : #PyramidContextMenuPluginTest,
+	#superclass : #TestCase,
+	#category : #'Pyramid-Tests-cases-plugin-context-menu'
 }
 
-{ #category : 'tests' }
+{ #category : #tests }
 PyramidContextMenuPluginTest >> testMenuBrowseAndInspectOn [
 
 	| builder menu |
@@ -29,7 +27,7 @@ PyramidContextMenuPluginTest >> testMenuBrowseAndInspectOn [
 	self assert: menu menuGroups first menuItems size equals: 2.
 ]
 
-{ #category : 'tests' }
+{ #category : #tests }
 PyramidContextMenuPluginTest >> testMenuContextOn [
 
 	| builder menu |

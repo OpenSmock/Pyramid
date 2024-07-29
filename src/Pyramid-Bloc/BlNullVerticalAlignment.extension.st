@@ -1,6 +1,6 @@
-Extension { #name : 'BlNullVerticalAlignment' }
+Extension { #name : #BlNullVerticalAlignment }
 
-{ #category : '*Pyramid-Bloc' }
+{ #category : #'*Pyramid-Bloc' }
 BlNullVerticalAlignment >> pyramidSelectOn: aFrameConstraintsPresenter [
 
 	aFrameConstraintsPresenter selectNull.

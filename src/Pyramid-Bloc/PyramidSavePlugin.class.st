@@ -1,6 +1,6 @@
 Class {
-	#name : 'PyramidSavePlugin',
-	#superclass : 'Object',
+	#name : #PyramidSavePlugin,
+	#superclass : #Object,
 	#traits : 'TPyramidPlugin',
 	#classTraits : 'TPyramidPlugin classTrait',
 	#instVars : [
@@ -12,12 +12,10 @@ Class {
 		'saveButton',
 		'projectModel'
 	],
-	#category : 'Pyramid-Bloc-plugin-save',
-	#package : 'Pyramid-Bloc',
-	#tag : 'plugin-save'
+	#category : #'Pyramid-Bloc-plugin-save'
 }
 
-{ #category : 'instance creation' }
+{ #category : #'instance creation' }
 PyramidSavePlugin class >> openOn: aCollectionOfBlElement saveModel: aSaveModel [
 
 	| editor savePlugin |
@@ -32,7 +30,7 @@ PyramidSavePlugin class >> openOn: aCollectionOfBlElement saveModel: aSaveModel 
 	editor open
 ]
 
-{ #category : 'adding' }
+{ #category : #adding }
 PyramidSavePlugin >> addPanelsOn: aPyramidSimpleWindow [
 
 	self inputsController editorWindow: aPyramidSimpleWindow.
@@ -47,7 +45,7 @@ PyramidSavePlugin >> addPanelsOn: aPyramidSimpleWindow [
 		builder makeButtonWithIcon: self inputsButton order: 2 ]
 ]
 
-{ #category : 'connecting' }
+{ #category : #connecting }
 PyramidSavePlugin >> connectOn: aPyramidEditor [
 
 	self projectModel: aPyramidEditor projectModel.
@@ -56,7 +54,7 @@ PyramidSavePlugin >> connectOn: aPyramidEditor [
 	
 ]
 
-{ #category : 'initialization' }
+{ #category : #initialization }
 PyramidSavePlugin >> initialize [
 
 	inputsController := PyramidSaveProjectConfigurationController new.
@@ -84,25 +82,25 @@ PyramidSavePlugin >> initialize [
 		              yourself
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidSavePlugin >> inputsButton [
 
 	^ inputsButton
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidSavePlugin >> inputsController [
 
 	^ inputsController
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidSavePlugin >> inputsView [
 
 	^ inputsView
 ]
 
-{ #category : 'instance creation' }
+{ #category : #'instance creation' }
 PyramidSavePlugin >> openOn: aSaveModel [
 	"self inputsView inputClass text: aSaveModel savingClassName.
 	self inputsView inputMethod text: aSaveModel savingMethodName.
@@ -118,20 +116,20 @@ PyramidSavePlugin >> openOn: aSaveModel [
 		ifFalse: [ self inputsView buttonInstance click ]
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidSavePlugin >> projectModel [
 
 	^ projectModel
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidSavePlugin >> projectModel: aPyramidProjectModel [
 
 	projectModel := aPyramidProjectModel.
 	self inputsController updateView
 ]
 
-{ #category : 'actions' }
+{ #category : #actions }
 PyramidSavePlugin >> saveAction [
 	"Action executed by a save button from UI, this method catch exceptions when needed to doesn't expose directly a debugger but an info window"
 
@@ -160,19 +158,19 @@ PyramidSavePlugin >> saveAction [
 	]
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidSavePlugin >> saveButton [
 
 	^ saveButton
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidSavePlugin >> saveModel [
 
 	^ saveModel
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidSavePlugin >> savingService [
 
 	^ savingService

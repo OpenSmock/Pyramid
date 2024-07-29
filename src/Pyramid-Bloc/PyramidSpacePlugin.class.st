@@ -1,6 +1,6 @@
 Class {
-	#name : 'PyramidSpacePlugin',
-	#superclass : 'Object',
+	#name : #PyramidSpacePlugin,
+	#superclass : #Object,
 	#traits : 'TPyramidPlugin',
 	#classTraits : 'TPyramidPlugin classTrait',
 	#instVars : [
@@ -8,12 +8,10 @@ Class {
 		'morphicPresenter',
 		'resetSpaceButton'
 	],
-	#category : 'Pyramid-Bloc-plugin-space',
-	#package : 'Pyramid-Bloc',
-	#tag : 'plugin-space'
+	#category : #'Pyramid-Bloc-plugin-space'
 }
 
-{ #category : 'adding' }
+{ #category : #adding }
 PyramidSpacePlugin >> addPanelsOn: aPyramidSimpleWindow [
 
 	aPyramidSimpleWindow
@@ -24,19 +22,19 @@ PyramidSpacePlugin >> addPanelsOn: aPyramidSimpleWindow [
 		panelMaker makeButtonWithIcon: self resetSpaceButton order: 5 ]
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidSpacePlugin >> builder [
 ^ builder
 ]
 
-{ #category : 'connecting' }
+{ #category : #connecting }
 PyramidSpacePlugin >> connectOn: aPyramidEditor [
 
 	builder editor: aPyramidEditor.
 	self resetSpace
 ]
 
-{ #category : 'initialization' }
+{ #category : #initialization }
 PyramidSpacePlugin >> initialize [
 
 	builder := PyramidSpaceBuilder defaultEditorBuilder.
@@ -48,7 +46,7 @@ PyramidSpacePlugin >> initialize [
 		                    yourself
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidSpacePlugin >> makePresenterWithBlSpace: aBlSpace [
 
 	| morph host |
@@ -71,12 +69,12 @@ PyramidSpacePlugin >> makePresenterWithBlSpace: aBlSpace [
 	self morphicPresenter whenDisplayDo: [ aBlSpace show ]
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidSpacePlugin >> morphicPresenter [
 ^ morphicPresenter
 ]
 
-{ #category : 'initialization' }
+{ #category : #initialization }
 PyramidSpacePlugin >> resetSpace [
 
 	| space |
@@ -85,12 +83,12 @@ PyramidSpacePlugin >> resetSpace [
 	space show
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidSpacePlugin >> resetSpaceButton [
 ^ resetSpaceButton
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidSpacePlugin >> updateMorphInCaseOfFaillure: aMorph [
 
 	aMorph addMorph:

@@ -1,6 +1,6 @@
-Extension { #name : 'BlSpace' }
+Extension { #name : #BlSpace }
 
-{ #category : '*Pyramid-Bloc' }
+{ #category : #'*Pyramid-Bloc' }
 BlSpace >> editWithPyramid [
 
 	| editor elements spacePlaceholder openFromSpacePlugin |

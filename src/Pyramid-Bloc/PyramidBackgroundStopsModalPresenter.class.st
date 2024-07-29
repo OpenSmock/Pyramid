@@ -1,6 +1,6 @@
 Class {
-	#name : 'PyramidBackgroundStopsModalPresenter',
-	#superclass : 'SpPresenter',
+	#name : #PyramidBackgroundStopsModalPresenter,
+	#superclass : #SpPresenter,
 	#instVars : [
 		'tableStops',
 		'buttonAddStops',
@@ -9,12 +9,10 @@ Class {
 		'colorInput',
 		'stopsArray'
 	],
-	#category : 'Pyramid-Bloc-plugin-bloc-visuals',
-	#package : 'Pyramid-Bloc',
-	#tag : 'plugin-bloc-visuals'
+	#category : #'Pyramid-Bloc-plugin-bloc-visuals'
 }
 
-{ #category : 'adding' }
+{ #category : #adding }
 PyramidBackgroundStopsModalPresenter >> addNewStop [
 
 	| association |
@@ -23,31 +21,31 @@ PyramidBackgroundStopsModalPresenter >> addNewStop [
 	self tableStops selectItem: association.
 ]
 
-{ #category : 'adding' }
+{ #category : #adding }
 PyramidBackgroundStopsModalPresenter >> addToStopsArray: association [
 
 	self stopsArray: (self stopsArray , {association }) sorted.
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidBackgroundStopsModalPresenter >> buttonAddStops [
 
 	^ buttonAddStops
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidBackgroundStopsModalPresenter >> buttonRemoveStops [
 
 	^ buttonRemoveStops
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidBackgroundStopsModalPresenter >> colorInput [
 
 	^ colorInput
 ]
 
-{ #category : 'layout' }
+{ #category : #layout }
 PyramidBackgroundStopsModalPresenter >> defaultLayout [
 
 	| inputPanelLayout |
@@ -80,7 +78,7 @@ PyramidBackgroundStopsModalPresenter >> defaultLayout [
 		  yourself
 ]
 
-{ #category : 'initialization' }
+{ #category : #initialization }
 PyramidBackgroundStopsModalPresenter >> initializePresenters [
 
 	stopsArray := {  }.
@@ -118,7 +116,7 @@ PyramidBackgroundStopsModalPresenter >> initializePresenters [
 	self updateCurrentStop: nil
 ]
 
-{ #category : 'adding' }
+{ #category : #adding }
 PyramidBackgroundStopsModalPresenter >> makeNewAssociation [
 
 	| position color index |
@@ -156,7 +154,7 @@ PyramidBackgroundStopsModalPresenter >> makeNewAssociation [
 	^ position -> color
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidBackgroundStopsModalPresenter >> orderStopsArray [
 
 	|currentSelection|
@@ -165,38 +163,38 @@ PyramidBackgroundStopsModalPresenter >> orderStopsArray [
 	self tableStops selectItem: currentSelection
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidBackgroundStopsModalPresenter >> positionInput [
 
 	^ positionInput
 ]
 
-{ #category : 'removing' }
+{ #category : #removing }
 PyramidBackgroundStopsModalPresenter >> removeStop: anAssociation [
 
 	self stopsArray: (self stopsArray copyWithout: anAssociation)
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidBackgroundStopsModalPresenter >> stopsArray [
 
 	^ stopsArray
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidBackgroundStopsModalPresenter >> stopsArray: anObject [
 
 	stopsArray := anObject.
 	self tableStops items: stopsArray.
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidBackgroundStopsModalPresenter >> tableStops [
 
 	^ tableStops
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidBackgroundStopsModalPresenter >> updateCurrentStop: anAssociation [
 
 	self positionInput enabled: anAssociation isNotNil.
@@ -228,7 +226,7 @@ PyramidBackgroundStopsModalPresenter >> updateCurrentStop: anAssociation [
 			self updatePresenter ]
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidBackgroundStopsModalPresenter >> updatePresenter [
 
 	self tableStops refresh.

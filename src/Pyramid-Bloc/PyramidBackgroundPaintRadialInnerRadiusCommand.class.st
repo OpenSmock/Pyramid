@@ -1,18 +1,16 @@
 Class {
-	#name : 'PyramidBackgroundPaintRadialInnerRadiusCommand',
-	#superclass : 'PyramidBackgroundPaintRadialCommand',
-	#category : 'Pyramid-Bloc-plugin-bloc-visuals',
-	#package : 'Pyramid-Bloc',
-	#tag : 'plugin-bloc-visuals'
+	#name : #PyramidBackgroundPaintRadialInnerRadiusCommand,
+	#superclass : #PyramidBackgroundPaintRadialCommand,
+	#category : #'Pyramid-Bloc-plugin-bloc-visuals'
 }
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidBackgroundPaintRadialInnerRadiusCommand >> getValueFor: aBlElement [
 
 	^ aBlElement background paint innerRadius
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidBackgroundPaintRadialInnerRadiusCommand >> setValueFor: aBlElement with: anArgument [
 
 	aBlElement background paint innerRadius: anArgument

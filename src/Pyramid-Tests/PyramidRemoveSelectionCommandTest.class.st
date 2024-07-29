@@ -1,14 +1,12 @@
 Class {
-	#name : 'PyramidRemoveSelectionCommandTest',
-	#superclass : 'TestCase',
+	#name : #PyramidRemoveSelectionCommandTest,
+	#superclass : #TestCase,
 	#traits : 'TPyramidCommandTest',
 	#classTraits : 'TPyramidCommandTest classTrait',
-	#category : 'Pyramid-Tests-cases-plugin-bloc',
-	#package : 'Pyramid-Tests',
-	#tag : 'cases-plugin-bloc'
+	#category : #'Pyramid-Tests-cases-plugin-bloc'
 }
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidRemoveSelectionCommandTest >> arrayNoRoots [
 
 	| items parents elements selection roots |
@@ -26,7 +24,7 @@ PyramidRemoveSelectionCommandTest >> arrayNoRoots [
 		  parents }
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidRemoveSelectionCommandTest >> arrayWithParents [
 
 	| items parents elements selection roots |
@@ -48,7 +46,7 @@ PyramidRemoveSelectionCommandTest >> arrayWithParents [
 		  parents }
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidRemoveSelectionCommandTest >> arrayWithRoots [
 
 	| items parents elements selection roots |
@@ -69,19 +67,19 @@ PyramidRemoveSelectionCommandTest >> arrayWithRoots [
 		  parents }
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidRemoveSelectionCommandTest >> arraysToTest [
 
 	^ { self arrayNoRoots . self arrayWithParents . self arrayWithRoots }
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidRemoveSelectionCommandTest >> command [
 
 	^ PyramidRemoveSelectedElementsCommand new
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidRemoveSelectionCommandTest >> parentsAndElements [
 
 	| p1 p2 p3 e1 e2 e3 e4 e5 e6 parents elements |
@@ -118,7 +116,7 @@ PyramidRemoveSelectionCommandTest >> parentsAndElements [
 	^ parents -> elements
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidRemoveSelectionCommandTest >> targetsCanBeUsedFor [
 
 	^ {
@@ -128,14 +126,14 @@ PyramidRemoveSelectionCommandTest >> targetsCanBeUsedFor [
 			   yourself) }
 ]
 
-{ #category : 'tests' }
+{ #category : #tests }
 PyramidRemoveSelectionCommandTest >> testGetValueFor [
 
 	self targetsCanBeUsedFor do: [ :each |
 		self assert: (self command getValueFor: each ) equals: nil ]
 ]
 
-{ #category : 'tests' }
+{ #category : #tests }
 PyramidRemoveSelectionCommandTest >> testHistory [
 	"Do once.
 	undo
@@ -197,7 +195,7 @@ PyramidRemoveSelectionCommandTest >> testHistory [
 	self deny: (roots includesAny: targets)
 ]
 
-{ #category : 'tests' }
+{ #category : #tests }
 PyramidRemoveSelectionCommandTest >> testSetValueForWith [
 
 	|selection roots parents|

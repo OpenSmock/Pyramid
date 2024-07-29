@@ -1,6 +1,6 @@
-Extension { #name : 'BlHorizontalCenterAlignment' }
+Extension { #name : #BlHorizontalCenterAlignment }
 
-{ #category : '*Pyramid-Bloc' }
+{ #category : #'*Pyramid-Bloc' }
 BlHorizontalCenterAlignment >> pyramidSelectOn: aFrameConstraintsPresenter [
 
 	aFrameConstraintsPresenter selectCenter.

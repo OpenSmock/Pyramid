@@ -1,12 +1,10 @@
 Class {
-	#name : 'PyramidRemoveMockCommandTest',
-	#superclass : 'TestCase',
-	#category : 'Pyramid-Tests-cases-command',
-	#package : 'Pyramid-Tests',
-	#tag : 'cases-command'
+	#name : #PyramidRemoveMockCommandTest,
+	#superclass : #TestCase,
+	#category : #'Pyramid-Tests-cases-command'
 }
 
-{ #category : 'tests' }
+{ #category : #tests }
 PyramidRemoveMockCommandTest >> testGetValueFor [
 
 	| mock |
@@ -17,7 +15,7 @@ PyramidRemoveMockCommandTest >> testGetValueFor [
 	self assert: (PyramidDecreaseMockCommand new getValueFor: mock) equals: nil.
 ]
 
-{ #category : 'tests' }
+{ #category : #tests }
 PyramidRemoveMockCommandTest >> testSetValueForWith [
 
 	| mock |

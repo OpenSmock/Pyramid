@@ -1,12 +1,10 @@
 Class {
-	#name : 'PyramidSpaceBuilderTest',
-	#superclass : 'TestCase',
-	#category : 'Pyramid-Tests-cases-plugin-space',
-	#package : 'Pyramid-Tests',
-	#tag : 'cases-plugin-space'
+	#name : #PyramidSpaceBuilderTest,
+	#superclass : #TestCase,
+	#category : #'Pyramid-Tests-cases-plugin-space'
 }
 
-{ #category : 'tests' }
+{ #category : #tests }
 PyramidSpaceBuilderTest >> testAddAllOverlaysNamed [
 
 	| collectionOfName builder element e1 e2 e3|
@@ -67,7 +65,7 @@ PyramidSpaceBuilderTest >> testAddAllOverlaysNamed [
 		
 ]
 
-{ #category : 'tests' }
+{ #category : #tests }
 PyramidSpaceBuilderTest >> testAddExtension [
 
 	| builder extension |
@@ -82,7 +80,7 @@ PyramidSpaceBuilderTest >> testAddExtension [
 	self assert: (builder extensions includes: extension).
 ]
 
-{ #category : 'tests' }
+{ #category : #tests }
 PyramidSpaceBuilderTest >> testAddOverlayNamed [
 
 	| builder overlay1 overlay2 anError |
@@ -112,7 +110,7 @@ PyramidSpaceBuilderTest >> testAddOverlayNamed [
 	self assert: (anError isKindOf: PyramidExistingOverlayError ).
 ]
 
-{ #category : 'tests' }
+{ #category : #tests }
 PyramidSpaceBuilderTest >> testEditor [
 
 	| builder extension |

@@ -1,19 +1,17 @@
 Class {
-	#name : 'PyramidBasicConstraintsCommand',
-	#superclass : 'PyramidAbstractBlocCommand',
-	#category : 'Pyramid-Bloc-plugin-bloc-layout',
-	#package : 'Pyramid-Bloc',
-	#tag : 'plugin-bloc-layout'
+	#name : #PyramidBasicConstraintsCommand,
+	#superclass : #PyramidAbstractBlocCommand,
+	#category : #'Pyramid-Bloc-plugin-bloc-layout'
 }
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidBasicConstraintsCommand >> authorizedLayouts [
 
 
 	^ { BlBasicLayout . BlFlowLayout . BlLinearLayout . BlFrameLayout }
 ]
 
-{ #category : 'testing' }
+{ #category : #testing }
 PyramidBasicConstraintsCommand >> canBeUsedFor: anObject [
 
 	^ (super canBeUsedFor: anObject) and: [

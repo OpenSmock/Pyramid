@@ -1,12 +1,10 @@
 Class {
-	#name : 'PyramidPropertiesManagerTest',
-	#superclass : 'TestCase',
-	#category : 'Pyramid-Tests-cases-property',
-	#package : 'Pyramid-Tests',
-	#tag : 'cases-property'
+	#name : #PyramidPropertiesManagerTest,
+	#superclass : #TestCase,
+	#category : #'Pyramid-Tests-cases-property'
 }
 
-{ #category : 'tests' }
+{ #category : #tests }
 PyramidPropertiesManagerTest >> testAddAllProperties [
 
 	| manager prop1 prop2 prop3 |
@@ -36,7 +34,7 @@ PyramidPropertiesManagerTest >> testAddAllProperties [
 	self assert: manager commandExecutor equals: prop3 commandExecutor.
 ]
 
-{ #category : 'tests' }
+{ #category : #tests }
 PyramidPropertiesManagerTest >> testAddProperty [
 
 	| manager prop1 prop2 prop3 |
@@ -69,7 +67,7 @@ PyramidPropertiesManagerTest >> testAddProperty [
 	self assert: manager commandExecutor equals: prop3 commandExecutor
 ]
 
-{ #category : 'tests' }
+{ #category : #tests }
 PyramidPropertiesManagerTest >> testBuildPresenterFromCollection [
 
 	| manager fakeStrategy prop1 prop2 prop3 targets |
@@ -99,7 +97,7 @@ PyramidMockObjectForTest new count: 4; yourself }.
 	self assert: (fakeStrategy properties includes: prop3).
 ]
 
-{ #category : 'tests' }
+{ #category : #tests }
 PyramidPropertiesManagerTest >> testCommandExecutor [
 
 	| manager prop1 prop2 prop3 fake1 fake2 |
@@ -135,7 +133,7 @@ PyramidPropertiesManagerTest >> testCommandExecutor [
 	self assert: prop3 commandExecutor equals: fake2
 ]
 
-{ #category : 'tests' }
+{ #category : #tests }
 PyramidPropertiesManagerTest >> testRemoveAllProperties [
 
 	| manager prop1 prop2 prop3 |
@@ -175,7 +173,7 @@ PyramidPropertiesManagerTest >> testRemoveAllProperties [
 
 ]
 
-{ #category : 'tests' }
+{ #category : #tests }
 PyramidPropertiesManagerTest >> testRemoveProperty [
 
 	| manager prop1 prop2 prop3 hasFailed |

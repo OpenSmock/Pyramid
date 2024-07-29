@@ -1,30 +1,28 @@
 Trait {
-	#name : 'TPyramidKeyboardExtension',
-	#category : 'Pyramid-Bloc-plugin-space-extensions',
-	#package : 'Pyramid-Bloc',
-	#tag : 'plugin-space-extensions'
+	#name : #TPyramidKeyboardExtension,
+	#category : #'Pyramid-Bloc-plugin-space-extensions'
 }
 
-{ #category : 'testing' }
+{ #category : #testing }
 TPyramidKeyboardExtension >> isAnyKeyPressed [
 
 	^ self builder keyboard isNotEmpty
 ]
 
-{ #category : 'testing' }
+{ #category : #testing }
 TPyramidKeyboardExtension >> isNoKeyPressed [
 
 	^ self isAnyKeyPressed not
 ]
 
-{ #category : 'testing' }
+{ #category : #testing }
 TPyramidKeyboardExtension >> isOnlyCtrlKeyPressed [
 
 	^ self builder keyboard isNotEmpty and: [
 		  self builder keyboard allSatisfy: [ :key | key = key class controlLeft or: [ key = key class controlRight ] ] ]
 ]
 
-{ #category : 'testing' }
+{ #category : #testing }
 TPyramidKeyboardExtension >> isOnlyShiftKeyPressed [
 
 	^  self builder keyboard isNotEmpty and: [ self builder keyboard allSatisfy: [ :key | key isShift ]]

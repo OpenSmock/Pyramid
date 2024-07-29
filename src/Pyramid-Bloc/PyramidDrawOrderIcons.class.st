@@ -1,12 +1,10 @@
 Class {
-	#name : 'PyramidDrawOrderIcons',
-	#superclass : 'Object',
-	#category : 'Pyramid-Bloc-plugin-bloc-order',
-	#package : 'Pyramid-Bloc',
-	#tag : 'plugin-bloc-order'
+	#name : #PyramidDrawOrderIcons,
+	#superclass : #Object,
+	#category : #'Pyramid-Bloc-plugin-bloc-order'
 }
 
-{ #category : 'pyramid-serialized-bloc' }
+{ #category : #'pyramid-serialized-bloc' }
 PyramidDrawOrderIcons class >> blocMoveBackward [
 <pyStash>
 	^ [ "BlStashSerializer"
@@ -54,7 +52,7 @@ PyramidDrawOrderIcons class >> blocMoveBackward [
 	] value
 ]
 
-{ #category : 'pyramid-serialized-bloc' }
+{ #category : #'pyramid-serialized-bloc' }
 PyramidDrawOrderIcons class >> blocMoveForward [
 <pyStash>
 	^ [ "BlStashSerializer"
@@ -102,7 +100,7 @@ PyramidDrawOrderIcons class >> blocMoveForward [
 	] value
 ]
 
-{ #category : 'pyramid-serialized-bloc' }
+{ #category : #'pyramid-serialized-bloc' }
 PyramidDrawOrderIcons class >> blocOnBackground [
 <pyStash>
 	^ [ "BlStashSerializer"
@@ -163,7 +161,7 @@ blpaintbackground2 := BlPaintBackground new.
 	] value
 ]
 
-{ #category : 'pyramid-serialized-bloc' }
+{ #category : #'pyramid-serialized-bloc' }
 PyramidDrawOrderIcons class >> blocOnForeground [
 <pyStash>
 	^ [ "BlStashSerializer"
@@ -222,7 +220,7 @@ blpaintbackground2 := BlPaintBackground new.
 	] value
 ]
 
-{ #category : 'pyramid-serialized-bloc' }
+{ #category : #'pyramid-serialized-bloc' }
 PyramidDrawOrderIcons class >> formMoveBackward [
 
 	^ (BlElement new
@@ -231,7 +229,7 @@ PyramidDrawOrderIcons class >> formMoveBackward [
 		  exportAsForm
 ]
 
-{ #category : 'pyramid-serialized-bloc' }
+{ #category : #'pyramid-serialized-bloc' }
 PyramidDrawOrderIcons class >> formMoveForward [
 
 	^ (BlElement new
@@ -240,7 +238,7 @@ PyramidDrawOrderIcons class >> formMoveForward [
 		  exportAsForm
 ]
 
-{ #category : 'pyramid-serialized-bloc' }
+{ #category : #'pyramid-serialized-bloc' }
 PyramidDrawOrderIcons class >> formOnBackground [
 
 	^ (BlElement new
@@ -249,7 +247,7 @@ PyramidDrawOrderIcons class >> formOnBackground [
 		  exportAsForm
 ]
 
-{ #category : 'pyramid-serialized-bloc' }
+{ #category : #'pyramid-serialized-bloc' }
 PyramidDrawOrderIcons class >> formOnForeground [
 
 	^ (BlElement new

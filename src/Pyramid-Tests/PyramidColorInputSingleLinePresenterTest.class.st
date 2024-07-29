@@ -1,14 +1,12 @@
 Class {
-	#name : 'PyramidColorInputSingleLinePresenterTest',
-	#superclass : 'TestCase',
+	#name : #PyramidColorInputSingleLinePresenterTest,
+	#superclass : #TestCase,
 	#traits : 'TPyramidInputPresenterTest',
 	#classTraits : 'TPyramidInputPresenterTest classTrait',
-	#category : 'Pyramid-Tests-cases-specs-custom',
-	#package : 'Pyramid-Tests',
-	#tag : 'cases-specs-custom'
+	#category : #'Pyramid-Tests-cases-specs-custom'
 }
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidColorInputSingleLinePresenterTest >> dummyValues [
 
 	^ {
@@ -18,25 +16,25 @@ PyramidColorInputSingleLinePresenterTest >> dummyValues [
 		 Color red translucent }
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidColorInputSingleLinePresenterTest >> expectedEmptyValue [
 
 	^ Color black alpha: 0
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidColorInputSingleLinePresenterTest >> expectedMixedValues [
 
 	^ Color black alpha: 0
 ]
 
-{ #category : 'tests' }
+{ #category : #tests }
 PyramidColorInputSingleLinePresenterTest >> makeNewInput [
 
 	^ PyramidColorInputSingleLinePresenter new
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidColorInputSingleLinePresenterTest >> triggerValueChangedOf: anInput [
 
 	anInput hexInput textInput contextKeyBindings keymaps do: [ :bind |

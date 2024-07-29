@@ -1,12 +1,12 @@
-Extension { #name : 'BlLinearLayoutHorizontalOrientation' }
+Extension { #name : #BlLinearLayoutHorizontalOrientation }
 
-{ #category : '*Pyramid-Bloc' }
+{ #category : #'*Pyramid-Bloc' }
 BlLinearLayoutHorizontalOrientation >> asBooleanForPyramid [
 
 	^ false
 ]
 
-{ #category : '*Pyramid-Bloc' }
+{ #category : #'*Pyramid-Bloc' }
 BlLinearLayoutHorizontalOrientation >> switchOrientation [
 
 	^ BlLinearLayoutVerticalOrientation new

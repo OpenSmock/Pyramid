@@ -1,20 +1,18 @@
 Class {
-	#name : 'PyramidMarginCommandTest',
-	#superclass : 'TestCase',
+	#name : #PyramidMarginCommandTest,
+	#superclass : #TestCase,
 	#traits : 'TPyramidCommandTest',
 	#classTraits : 'TPyramidCommandTest classTrait',
-	#category : 'Pyramid-Tests-cases-plugin-bloc',
-	#package : 'Pyramid-Tests',
-	#tag : 'cases-plugin-bloc'
+	#category : #'Pyramid-Tests-cases-plugin-bloc'
 }
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidMarginCommandTest >> command [
 
 	^ PyramidMarginCommand new
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidMarginCommandTest >> targetContainers [
 
 	^ {

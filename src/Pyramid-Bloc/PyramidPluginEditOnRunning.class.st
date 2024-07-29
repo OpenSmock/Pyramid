@@ -1,6 +1,6 @@
 Class {
-	#name : 'PyramidPluginEditOnRunning',
-	#superclass : 'Object',
+	#name : #PyramidPluginEditOnRunning,
+	#superclass : #Object,
 	#traits : 'TPyramidPlugin',
 	#classTraits : 'TPyramidPlugin classTrait',
 	#instVars : [
@@ -13,12 +13,10 @@ Class {
 		'shortcutFork',
 		'keyCombination'
 	],
-	#category : 'Pyramid-Bloc-plugin-edit-on-running',
-	#package : 'Pyramid-Bloc',
-	#tag : 'plugin-edit-on-running'
+	#category : #'Pyramid-Bloc-plugin-edit-on-running'
 }
 
-{ #category : 'private' }
+{ #category : #private }
 PyramidPluginEditOnRunning class >> addShortcutInSpace: aSpace [
 
 	(self canEditSpace: aSpace) ifFalse:[ ^ self ].
@@ -28,7 +26,7 @@ PyramidPluginEditOnRunning class >> addShortcutInSpace: aSpace [
 	aSpace root addShortcut: self shortcut 
 ]
 
-{ #category : 'testing' }
+{ #category : #testing }
 PyramidPluginEditOnRunning class >> canEditSpace: aSpace [
 
 	aSpace ifNil:[ ^ false ].
@@ -40,13 +38,13 @@ PyramidPluginEditOnRunning class >> canEditSpace: aSpace [
 	^ true
 ]
 
-{ #category : 'initialization' }
+{ #category : #initialization }
 PyramidPluginEditOnRunning class >> cleanUp: anObject [
 
 	"do nothing"
 ]
 
-{ #category : 'private' }
+{ #category : #private }
 PyramidPluginEditOnRunning class >> doShortcutAction: anEvent [
 
 	| space editor whenClosedDo |
@@ -66,19 +64,19 @@ PyramidPluginEditOnRunning class >> doShortcutAction: anEvent [
 		                named: 'Pyramid edit-on-running plugin shortcut'
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidPluginEditOnRunning class >> editOnRunning [
 
 	^ editOnRunning ifNil: [ editOnRunning := true ]
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidPluginEditOnRunning class >> editOnRunning: aBoolean [
 
 	editOnRunning := aBoolean
 ]
 
-{ #category : 'initialization' }
+{ #category : #initialization }
 PyramidPluginEditOnRunning class >> install [
 	"Do some stuff here when the plugin used class oriented behavior"
 	
@@ -86,7 +84,7 @@ PyramidPluginEditOnRunning class >> install [
 	
 ]
 
-{ #category : 'universe management' }
+{ #category : #'universe management' }
 PyramidPluginEditOnRunning class >> installBlUniverseListeners [
 
 	Beacon instance
@@ -95,20 +93,20 @@ PyramidPluginEditOnRunning class >> installBlUniverseListeners [
 		to: self
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidPluginEditOnRunning class >> keyCombination [
 
 	^ keyCombination ifNil: [
 		  keyCombination := (BlKeyCombination builder key: KeyboardKey F12) build ]
 ]
 
-{ #category : 'universe management' }
+{ #category : #'universe management' }
 PyramidPluginEditOnRunning class >> receiveBlParallelUniverseHostSpaceSignal: anEvent [
 
 	BlSpace spaceWithId: anEvent spaceId do: [ :e | self addShortcutInSpace: e ]
 ]
 
-{ #category : 'private' }
+{ #category : #private }
 PyramidPluginEditOnRunning class >> removeShortcutInSpace: aSpace [
 
 	aSpace ifNil: [ ^ self ].
@@ -117,7 +115,7 @@ PyramidPluginEditOnRunning class >> removeShortcutInSpace: aSpace [
 	self spaceIds remove: aSpace id.
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidPluginEditOnRunning class >> shortcut [
 
 	^ shortcut ifNil: [
@@ -127,13 +125,13 @@ PyramidPluginEditOnRunning class >> shortcut [
 			              action: [ :event | self doShortcutAction: event ] ]
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidPluginEditOnRunning class >> spaceIds [
 
 	^ spaceIds ifNil: [ spaceIds := Set new ]
 ]
 
-{ #category : 'initialization' }
+{ #category : #initialization }
 PyramidPluginEditOnRunning class >> uninstall [
 	"Undo some stuff here when the plugin used class oriented behavior"
 	
@@ -146,7 +144,7 @@ PyramidPluginEditOnRunning class >> uninstall [
 	keyCombination := nil.
 ]
 
-{ #category : 'universe management' }
+{ #category : #'universe management' }
 PyramidPluginEditOnRunning class >> uninstallBlUniverseListeners [
 
 	Beacon instance unsubscribe: self

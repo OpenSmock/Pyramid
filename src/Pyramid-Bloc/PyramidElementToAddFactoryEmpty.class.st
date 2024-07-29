@@ -1,18 +1,16 @@
 Class {
-	#name : 'PyramidElementToAddFactoryEmpty',
-	#superclass : 'PyramidElementToAddFactory',
-	#category : 'Pyramid-Bloc-plugin-tree-library',
-	#package : 'Pyramid-Bloc',
-	#tag : 'plugin-tree-library'
+	#name : #PyramidElementToAddFactoryEmpty,
+	#superclass : #PyramidElementToAddFactory,
+	#category : #'Pyramid-Bloc-plugin-tree-library'
 }
 
-{ #category : 'testing' }
+{ #category : #testing }
 PyramidElementToAddFactoryEmpty >> canMakeNewElement [
 
 	^ false
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidElementToAddFactoryEmpty >> makeForm [
 
 	^ BlElement new asForm

@@ -1,6 +1,6 @@
 Class {
-	#name : 'PyramidAbstractFrameConstraintsInputPresenter',
-	#superclass : 'PyramidInputPresenter',
+	#name : #PyramidAbstractFrameConstraintsInputPresenter,
+	#superclass : #PyramidInputPresenter,
 	#instVars : [
 		'buttonNull',
 		'buttonStart',
@@ -11,41 +11,39 @@ Class {
 		'whenValueChangedDo',
 		'shouldTrigger'
 	],
-	#category : 'Pyramid-Bloc-plugin-bloc-layout',
-	#package : 'Pyramid-Bloc',
-	#tag : 'plugin-bloc-layout'
+	#category : #'Pyramid-Bloc-plugin-bloc-layout'
 }
 
-{ #category : 'testing' }
+{ #category : #testing }
 PyramidAbstractFrameConstraintsInputPresenter class >> isAbstract [
 
 	^ self == PyramidAbstractFrameConstraintsInputPresenter
 ]
 
-{ #category : 'layout' }
+{ #category : #layout }
 PyramidAbstractFrameConstraintsInputPresenter >> buttonCenter [
 
 	^ buttonCenter
 ]
 
-{ #category : 'layout' }
+{ #category : #layout }
 PyramidAbstractFrameConstraintsInputPresenter >> buttonEnd [
 
 	^ buttonEnd
 ]
 
-{ #category : 'layout' }
+{ #category : #layout }
 PyramidAbstractFrameConstraintsInputPresenter >> buttonNull [
 
 	^ buttonNull
 ]
 
-{ #category : 'layout' }
+{ #category : #layout }
 PyramidAbstractFrameConstraintsInputPresenter >> buttonStart [
 	^ buttonStart
 ]
 
-{ #category : 'initialization' }
+{ #category : #initialization }
 PyramidAbstractFrameConstraintsInputPresenter >> connectPresenters [
 
 	self inputHasRelative whenChangedDo: [ :aBoolean |
@@ -67,13 +65,13 @@ PyramidAbstractFrameConstraintsInputPresenter >> connectPresenters [
 		self triggerValueChanged. ]
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidAbstractFrameConstraintsInputPresenter >> currentRelativeValue [
 
 	^ self inputRelative value isNumber ifTrue: [ ^ self inputRelative value ] ifFalse: [ ^ 0 ]
 ]
 
-{ #category : 'layout' }
+{ #category : #layout }
 PyramidAbstractFrameConstraintsInputPresenter >> defaultLayout [
 
 	^ SpBoxLayout newHorizontal
@@ -87,7 +85,7 @@ PyramidAbstractFrameConstraintsInputPresenter >> defaultLayout [
 		  yourself
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidAbstractFrameConstraintsInputPresenter >> doNotTriggerWhile: aBlock [
 
 	self shouldTrigger: false.
@@ -95,62 +93,62 @@ PyramidAbstractFrameConstraintsInputPresenter >> doNotTriggerWhile: aBlock [
 	self shouldTrigger: true.
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidAbstractFrameConstraintsInputPresenter >> helpCenter [
 
 	^ self shouldBeImplemented
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidAbstractFrameConstraintsInputPresenter >> helpEnd [
 
 	^ self shouldBeImplemented
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidAbstractFrameConstraintsInputPresenter >> helpNull [
 
 	^ self shouldBeImplemented
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidAbstractFrameConstraintsInputPresenter >> helpStart [
 
 	^ self shouldBeImplemented
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidAbstractFrameConstraintsInputPresenter >> iconCenter [
 
 	^ self shouldBeImplemented
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidAbstractFrameConstraintsInputPresenter >> iconEnd [
 
 	^ self shouldBeImplemented
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidAbstractFrameConstraintsInputPresenter >> iconNull [
 
 	^ self shouldBeImplemented 
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidAbstractFrameConstraintsInputPresenter >> iconStart [
 
 	^ self shouldBeImplemented
 ]
 
-{ #category : 'initialization' }
+{ #category : #initialization }
 PyramidAbstractFrameConstraintsInputPresenter >> initialize [
 
 	super initialize.
 	whenValueChangedDo := [ :newVal ]
 ]
 
-{ #category : 'initialization' }
+{ #category : #initialization }
 PyramidAbstractFrameConstraintsInputPresenter >> initializePresenters [
 
 	buttonNull := SpButtonPresenter new
@@ -176,19 +174,19 @@ PyramidAbstractFrameConstraintsInputPresenter >> initializePresenters [
 	inputRelative := PyramidNumberInputPresenter new value: 0; yourself
 ]
 
-{ #category : 'layout' }
+{ #category : #layout }
 PyramidAbstractFrameConstraintsInputPresenter >> inputHasRelative [
 
 	^ inputHasRelative
 ]
 
-{ #category : 'layout' }
+{ #category : #layout }
 PyramidAbstractFrameConstraintsInputPresenter >> inputRelative [
 
 	^ inputRelative
 ]
 
-{ #category : 'initialization' }
+{ #category : #initialization }
 PyramidAbstractFrameConstraintsInputPresenter >> selectCenter [
 		self buttonNull state: false.
 		self buttonStart state: false.
@@ -197,7 +195,7 @@ PyramidAbstractFrameConstraintsInputPresenter >> selectCenter [
 		
 ]
 
-{ #category : 'initialization' }
+{ #category : #initialization }
 PyramidAbstractFrameConstraintsInputPresenter >> selectEnd [
 		self buttonNull state: false.
 		self buttonStart state: false.
@@ -206,7 +204,7 @@ PyramidAbstractFrameConstraintsInputPresenter >> selectEnd [
 		
 ]
 
-{ #category : 'initialization' }
+{ #category : #initialization }
 PyramidAbstractFrameConstraintsInputPresenter >> selectNull [.
 		self buttonNull state: true.
 		self buttonStart state: false.
@@ -215,7 +213,7 @@ PyramidAbstractFrameConstraintsInputPresenter >> selectNull [.
 		
 ]
 
-{ #category : 'initialization' }
+{ #category : #initialization }
 PyramidAbstractFrameConstraintsInputPresenter >> selectStart [.
 		self buttonNull state: false.
 		self buttonStart state: true.
@@ -224,25 +222,25 @@ PyramidAbstractFrameConstraintsInputPresenter >> selectStart [.
 		
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidAbstractFrameConstraintsInputPresenter >> shouldTrigger [
 
 	^ shouldTrigger
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidAbstractFrameConstraintsInputPresenter >> shouldTrigger: aBoolean [
 shouldTrigger:=aBoolean
 ]
 
-{ #category : 'initialization' }
+{ #category : #initialization }
 PyramidAbstractFrameConstraintsInputPresenter >> triggerValueChanged [
 
 	self shouldTrigger ifFalse: [ ^ self ].
 	self whenValueChangedDo value: self value
 ]
 
-{ #category : 'initialization' }
+{ #category : #initialization }
 PyramidAbstractFrameConstraintsInputPresenter >> unselectAll [
 
 	self buttonNull state: false.
@@ -251,26 +249,26 @@ PyramidAbstractFrameConstraintsInputPresenter >> unselectAll [
 	self buttonEnd state: false
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidAbstractFrameConstraintsInputPresenter >> value [
 
 	^ self shouldBeImplemented
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidAbstractFrameConstraintsInputPresenter >> value: aValue [
 
 	self doNotTriggerWhile: [ aValue pyramidSelectOn: self ]
 	
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidAbstractFrameConstraintsInputPresenter >> whenValueChangedDo [
 
 	^ whenValueChangedDo
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidAbstractFrameConstraintsInputPresenter >> whenValueChangedDo: aBlock [
 
 	whenValueChangedDo := aBlock.
