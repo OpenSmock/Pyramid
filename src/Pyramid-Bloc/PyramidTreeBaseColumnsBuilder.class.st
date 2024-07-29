@@ -39,7 +39,10 @@ PyramidTreeBaseColumnsBuilder >> nameAndTypeColumn [
 		  addColumn: (SpStringTableColumn new
 				   title: 'Class';
 				   evaluated: [ :aBlElement | aBlElement class name ];
-				   displayColor: [ :aBlElement | Color gray ];
+				   displayColor: [ :aBlElement |
+					   aBlElement parentsShouldSerializeChildren
+						   ifTrue: [ Color gray ]
+						   ifFalse: [ Color red ] ];
 				   displayItalic: [ :aBlElement | true ];
 				   yourself);
 		  yourself
