@@ -98,12 +98,12 @@ PyramidTreePlugin class >> columnsBuildersClasses [
 { #category : #'as yet unclassified' }
 PyramidTreePlugin class >> factoriesFromMethods: methods inPackage: package [
 
-	self flag: #bug. "In the test-case of the save-plugin we use temporary classes. This classes have an impact on the tests of PyramidTreePlugin. We exclude the package that include the tests of the save plugins."
 	package ifNil: [ ^ {  } ].
-	package = PyramidSavingServiceTest package ifTrue: [ ^ {  } ].
 
 	^ methods
-		  select: [ :method | method package = package ]
+		  select: [ :method |
+			  method package = package and: [
+				  method methodClass isObsolete not ] ]
 		  thenCollect: [ :method |
 			  PyramidElementToAddFactory new
 				  elementIcon: (Smalltalk ui icons iconNamed:
