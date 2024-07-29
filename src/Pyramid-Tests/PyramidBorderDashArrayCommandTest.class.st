@@ -1,20 +1,18 @@
 Class {
-	#name : 'PyramidBorderDashArrayCommandTest',
-	#superclass : 'TestCase',
+	#name : #PyramidBorderDashArrayCommandTest,
+	#superclass : #TestCase,
 	#traits : 'TPyramidCommandTest',
 	#classTraits : 'TPyramidCommandTest classTrait',
-	#category : 'Pyramid-Tests-cases-plugin-bloc-visuals',
-	#package : 'Pyramid-Tests',
-	#tag : 'cases-plugin-bloc-visuals'
+	#category : 'Pyramid-Tests-cases-plugin-bloc-visuals'
 }
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidBorderDashArrayCommandTest >> command [
 
 	^ PyramidBorderDashArrayCommand new
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidBorderDashArrayCommandTest >> targetContainers [
 
 	^ {

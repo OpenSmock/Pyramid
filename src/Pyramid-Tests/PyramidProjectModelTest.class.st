@@ -1,6 +1,6 @@
 Class {
-	#name : 'PyramidProjectModelTest',
-	#superclass : 'TestCase',
+	#name : #PyramidProjectModelTest,
+	#superclass : #TestCase,
 	#instVars : [
 		'projectModel',
 		'observer',
@@ -8,12 +8,10 @@ Class {
 		'pyramidFirstLevelElementsChanged',
 		'pyramidSelectionChanged'
 	],
-	#category : 'Pyramid-Tests-cases-models',
-	#package : 'Pyramid-Tests',
-	#tag : 'cases-models'
+	#category : 'Pyramid-Tests-cases-models'
 }
 
-{ #category : 'running' }
+{ #category : #running }
 PyramidProjectModelTest >> assertEventProperties: anEvent [
 
 	self
@@ -22,55 +20,55 @@ PyramidProjectModelTest >> assertEventProperties: anEvent [
 	self assert: anEvent selection equals: projectModel selection.
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidProjectModelTest >> observer [
 
 	^ observer
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidProjectModelTest >> projectModel [
 
 	^ projectModel
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidProjectModelTest >> pyramidElementsChanged [
 
 	^ pyramidElementsChanged
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidProjectModelTest >> pyramidElementsChanged: anObject [
 
 	pyramidElementsChanged := anObject
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidProjectModelTest >> pyramidFirstLevelElementsChanged [
 
 	^ pyramidFirstLevelElementsChanged
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidProjectModelTest >> pyramidFirstLevelElementsChanged: anObject [
 
 	pyramidFirstLevelElementsChanged := anObject
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidProjectModelTest >> pyramidSelectionChanged [
 
 	^ pyramidSelectionChanged
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidProjectModelTest >> pyramidSelectionChanged: anObject [
 
 	pyramidSelectionChanged := anObject
 ]
 
-{ #category : 'running' }
+{ #category : #running }
 PyramidProjectModelTest >> setUp [
 
 	| editor |
@@ -107,7 +105,7 @@ PyramidProjectModelTest >> setUp [
 		pyramidSelectionChanged := true ]
 ]
 
-{ #category : 'tests' }
+{ #category : #tests }
 PyramidProjectModelTest >> testElementsChanged [
 
 	self projectModel informElementsChanged.
@@ -117,7 +115,7 @@ PyramidProjectModelTest >> testElementsChanged [
 	
 ]
 
-{ #category : 'tests' }
+{ #category : #tests }
 PyramidProjectModelTest >> testFirstLevelElementsChanged1 [
 
 	self projectModel firstLevelElements addAll: {
@@ -128,7 +126,7 @@ PyramidProjectModelTest >> testFirstLevelElementsChanged1 [
 	self deny: self pyramidSelectionChanged
 ]
 
-{ #category : 'tests' }
+{ #category : #tests }
 PyramidProjectModelTest >> testFirstLevelElementsChanged2 [
 
 	self projectModel firstLevelElements add: BlElement new.
@@ -137,7 +135,7 @@ PyramidProjectModelTest >> testFirstLevelElementsChanged2 [
 	self deny: self pyramidSelectionChanged
 ]
 
-{ #category : 'tests' }
+{ #category : #tests }
 PyramidProjectModelTest >> testFirstLevelElementsChanged3 [
 
 	self projectModel selection add: BlElement new.
@@ -146,7 +144,7 @@ PyramidProjectModelTest >> testFirstLevelElementsChanged3 [
 	self assert: self pyramidSelectionChanged
 ]
 
-{ #category : 'tests' }
+{ #category : #tests }
 PyramidProjectModelTest >> testSelectionChanged1 [
 
 	self projectModel selection add: BlElement new.
@@ -155,7 +153,7 @@ PyramidProjectModelTest >> testSelectionChanged1 [
 	self assert: self pyramidSelectionChanged
 ]
 
-{ #category : 'tests' }
+{ #category : #tests }
 PyramidProjectModelTest >> testSelectionChanged2 [
 
 	self projectModel selection addAll: {
@@ -166,7 +164,7 @@ PyramidProjectModelTest >> testSelectionChanged2 [
 	self assert: self pyramidSelectionChanged
 ]
 
-{ #category : 'tests' }
+{ #category : #tests }
 PyramidProjectModelTest >> testSelectionChanged3 [
 
 	self projectModel firstLevelElements add: BlElement new.

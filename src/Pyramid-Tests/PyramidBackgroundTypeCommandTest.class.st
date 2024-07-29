@@ -1,20 +1,18 @@
 Class {
-	#name : 'PyramidBackgroundTypeCommandTest',
-	#superclass : 'TestCase',
+	#name : #PyramidBackgroundTypeCommandTest,
+	#superclass : #TestCase,
 	#traits : 'TPyramidCommandTest',
 	#classTraits : 'TPyramidCommandTest classTrait',
-	#category : 'Pyramid-Tests-cases-plugin-bloc-visuals',
-	#package : 'Pyramid-Tests',
-	#tag : 'cases-plugin-bloc-visuals'
+	#category : 'Pyramid-Tests-cases-plugin-bloc-visuals'
 }
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidBackgroundTypeCommandTest >> command [
 
 	^ PyramidBackgroundTypeCommand new
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidBackgroundTypeCommandTest >> targetContainers [
 
 	^ {
@@ -54,7 +52,7 @@ PyramidBackgroundTypeCommandTest >> targetContainers [
 			   prop: [(BlBackground paint: Color red asBlPaint)]) }
 ]
 
-{ #category : 'tests' }
+{ #category : #tests }
 PyramidBackgroundTypeCommandTest >> testGetValueFor [
 
 	self targetsWithValuesAndValues do: [ :each |
@@ -63,7 +61,7 @@ PyramidBackgroundTypeCommandTest >> testGetValueFor [
 			equals: each value value class ]
 ]
 
-{ #category : 'tests' }
+{ #category : #tests }
 PyramidBackgroundTypeCommandTest >> testHistory [
 	"Do once.
 	undo
@@ -108,7 +106,7 @@ PyramidBackgroundTypeCommandTest >> testHistory [
 			self assert: (self command getValueFor: target) class equals: argument value class] ]
 ]
 
-{ #category : 'tests' }
+{ #category : #tests }
 PyramidBackgroundTypeCommandTest >> testSetValueForWith [
 
 	self targetsWithoutValuesAndValues do: [ :each |

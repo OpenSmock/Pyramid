@@ -2,14 +2,12 @@
 A PyramidSaveModelVerifierTest is a test class for testing the behavior of PyramidSaveModelVerifier
 "
 Class {
-	#name : 'PyramidSaveModelVerifierTest',
-	#superclass : 'TestCase',
-	#category : 'Pyramid-Tests-cases-plugin-save',
-	#package : 'Pyramid-Tests',
-	#tag : 'cases-plugin-save'
+	#name : #PyramidSaveModelVerifierTest,
+	#superclass : #TestCase,
+	#category : 'Pyramid-Tests-cases-plugin-save'
 }
 
-{ #category : 'test' }
+{ #category : #test }
 PyramidSaveModelVerifierTest >> testInitialize [
 
 	| verifier |
@@ -17,7 +15,7 @@ PyramidSaveModelVerifierTest >> testInitialize [
 	self assert: verifier nextVerifiers isCollection.
 ]
 
-{ #category : 'test' }
+{ #category : #test }
 PyramidSaveModelVerifierTest >> testModelNilError [
 	"Test an error"
 	
@@ -27,7 +25,7 @@ PyramidSaveModelVerifierTest >> testModelNilError [
 	verifier showOn: PyramidSaveProjectConfigurationView new.
 ]
 
-{ #category : 'test' }
+{ #category : #test }
 PyramidSaveModelVerifierTest >> testVerify [
 
 	| verifier model result |
@@ -41,7 +39,7 @@ PyramidSaveModelVerifierTest >> testVerify [
 	self assert: result.
 ]
 
-{ #category : 'test' }
+{ #category : #test }
 PyramidSaveModelVerifierTest >> testVerifyBlock [
 
 	| verifier |

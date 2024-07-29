@@ -1,20 +1,18 @@
 Class {
-	#name : 'PyramidProportionnalVerticalConstraintsCommandTest',
-	#superclass : 'TestCase',
+	#name : #PyramidProportionnalVerticalConstraintsCommandTest,
+	#superclass : #TestCase,
 	#traits : 'TPyramidCommandTest',
 	#classTraits : 'TPyramidCommandTest classTrait',
-	#category : 'Pyramid-Tests-cases-plugin-bloc-layout',
-	#package : 'Pyramid-Tests',
-	#tag : 'cases-plugin-bloc-layout'
+	#category : 'Pyramid-Tests-cases-plugin-bloc-layout'
 }
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidProportionnalVerticalConstraintsCommandTest >> command [
 
 	^ PyramidProportionnalVerticalConstraintsCommand new
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidProportionnalVerticalConstraintsCommandTest >> targetContainers [
 
 	| parent e1 e2 |
@@ -37,7 +35,7 @@ PyramidProportionnalVerticalConstraintsCommandTest >> targetContainers [
 	^ { (PyramidCommandTestContainer no: e1 with: e2 prop: 0.3 @ 0.6) }
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidProportionnalVerticalConstraintsCommandTest >> targetsCannotBeUsedFor [
 	"override if needed"
 

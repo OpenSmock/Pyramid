@@ -1,20 +1,18 @@
 Class {
-	#name : 'PyramidOnBackgroundOrderCommandTest',
-	#superclass : 'TestCase',
+	#name : #PyramidOnBackgroundOrderCommandTest,
+	#superclass : #TestCase,
 	#traits : 'TPyramidCommandTest',
 	#classTraits : 'TPyramidCommandTest classTrait',
-	#category : 'Pyramid-Tests-cases-plugin-bloc-order',
-	#package : 'Pyramid-Tests',
-	#tag : 'cases-plugin-bloc-order'
+	#category : 'Pyramid-Tests-cases-plugin-bloc-order'
 }
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidOnBackgroundOrderCommandTest >> command [
 
 	^ PyramidOnBackgroundOrderCommand new
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidOnBackgroundOrderCommandTest >> makeElementWithChildren [
 
 	| parent c1 c2 c3 |
@@ -37,7 +35,7 @@ PyramidOnBackgroundOrderCommandTest >> makeElementWithChildren [
 	^ parent
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidOnBackgroundOrderCommandTest >> targetContainers [
 
 	| test1 test2 test3 |
@@ -60,7 +58,7 @@ PyramidOnBackgroundOrderCommandTest >> targetContainers [
 			   prop: 1) }
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidOnBackgroundOrderCommandTest >> targetsCanBeUsedFor [
 
 	^ self targetContainers flatCollect: [ :each |
@@ -68,7 +66,7 @@ PyramidOnBackgroundOrderCommandTest >> targetsCanBeUsedFor [
 			  each targetNoProp } ]
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidOnBackgroundOrderCommandTest >> targetsWithValuesAndValues [
 
 	^ self targetContainers collect: [ :each |

@@ -1,20 +1,18 @@
 Class {
-	#name : 'PyramidBorderOpacityCommandTest',
-	#superclass : 'TestCase',
+	#name : #PyramidBorderOpacityCommandTest,
+	#superclass : #TestCase,
 	#traits : 'TPyramidCommandTest',
 	#classTraits : 'TPyramidCommandTest classTrait',
-	#category : 'Pyramid-Tests-cases-plugin-bloc-visuals',
-	#package : 'Pyramid-Tests',
-	#tag : 'cases-plugin-bloc-visuals'
+	#category : 'Pyramid-Tests-cases-plugin-bloc-visuals'
 }
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidBorderOpacityCommandTest >> command [
 
 	^ PyramidBorderOpacityCommand new
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidBorderOpacityCommandTest >> targetContainers [
 
 	^ {

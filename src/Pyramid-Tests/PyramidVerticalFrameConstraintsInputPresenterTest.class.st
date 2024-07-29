@@ -1,14 +1,12 @@
 Class {
-	#name : 'PyramidVerticalFrameConstraintsInputPresenterTest',
-	#superclass : 'TestCase',
+	#name : #PyramidVerticalFrameConstraintsInputPresenterTest,
+	#superclass : #TestCase,
 	#traits : 'TPyramidInputPresenterTest',
 	#classTraits : 'TPyramidInputPresenterTest classTrait',
-	#category : 'Pyramid-Tests-cases-specs-custom',
-	#package : 'Pyramid-Tests',
-	#tag : 'cases-specs-custom'
+	#category : 'Pyramid-Tests-cases-specs-custom'
 }
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidVerticalFrameConstraintsInputPresenterTest >> dummyValues [
 
 	^ {
@@ -35,25 +33,25 @@ PyramidVerticalFrameConstraintsInputPresenterTest >> dummyValues [
 			   alignment) }
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidVerticalFrameConstraintsInputPresenterTest >> expectedEmptyValue [
 
 	^ PyramidUnknowState new
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidVerticalFrameConstraintsInputPresenterTest >> expectedMixedValues [
 
 	^ PyramidUnknowState new
 ]
 
-{ #category : 'tests' }
+{ #category : #tests }
 PyramidVerticalFrameConstraintsInputPresenterTest >> makeNewInput [
 
 	^ PyramidVerticalFrameConstraintsInputPresenter new
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidVerticalFrameConstraintsInputPresenterTest >> triggerValueChangedOf: anInput [
 
 	anInput inputRelative inputNumber contextKeyBindings keymaps do: [ :bind |

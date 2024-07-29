@@ -1,20 +1,18 @@
 Class {
-	#name : 'PyramidBorderLineJoinCommandTest',
-	#superclass : 'TestCase',
+	#name : #PyramidBorderLineJoinCommandTest,
+	#superclass : #TestCase,
 	#traits : 'TPyramidCommandTest',
 	#classTraits : 'TPyramidCommandTest classTrait',
-	#category : 'Pyramid-Tests-cases-plugin-bloc-visuals',
-	#package : 'Pyramid-Tests',
-	#tag : 'cases-plugin-bloc-visuals'
+	#category : 'Pyramid-Tests-cases-plugin-bloc-visuals'
 }
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidBorderLineJoinCommandTest >> command [
 
 	^ PyramidBorderLineJoinCommand new
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidBorderLineJoinCommandTest >> targetContainers [
 
 	^ {

@@ -1,20 +1,18 @@
 Class {
-	#name : 'PyramidBorderTypeCommandTest',
-	#superclass : 'TestCase',
+	#name : #PyramidBorderTypeCommandTest,
+	#superclass : #TestCase,
 	#traits : 'TPyramidCommandTest',
 	#classTraits : 'TPyramidCommandTest classTrait',
-	#category : 'Pyramid-Tests-cases-plugin-bloc-visuals',
-	#package : 'Pyramid-Tests',
-	#tag : 'cases-plugin-bloc-visuals'
+	#category : 'Pyramid-Tests-cases-plugin-bloc-visuals'
 }
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidBorderTypeCommandTest >> command [
 
 	^ PyramidBorderPaintCommand new
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidBorderTypeCommandTest >> targetContainers [
 
 	^ {
@@ -51,7 +49,7 @@ PyramidBorderTypeCommandTest >> targetContainers [
 					    yourself)) }
 ]
 
-{ #category : 'tests' }
+{ #category : #tests }
 PyramidBorderTypeCommandTest >> testGetValueFor [
 
 	self targetsWithValuesAndValues do: [ :each |
@@ -60,7 +58,7 @@ PyramidBorderTypeCommandTest >> testGetValueFor [
 			equals: each value value class ]
 ]
 
-{ #category : 'tests' }
+{ #category : #tests }
 PyramidBorderTypeCommandTest >> testHistory [
 	"Do once.
 	undo
@@ -105,7 +103,7 @@ PyramidBorderTypeCommandTest >> testHistory [
 			self assert: (self command getValueFor: target) class equals: argument value class] ]
 ]
 
-{ #category : 'tests' }
+{ #category : #tests }
 PyramidBorderTypeCommandTest >> testSetValueForWith [
 
 	self targetsWithoutValuesAndValues do: [ :each |

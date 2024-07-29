@@ -1,12 +1,10 @@
 Class {
-	#name : 'PyramidHistoryTest',
-	#superclass : 'TestCase',
-	#category : 'Pyramid-Tests-cases-history',
-	#package : 'Pyramid-Tests',
-	#tag : 'cases-history'
+	#name : #PyramidHistoryTest,
+	#superclass : #TestCase,
+	#category : 'Pyramid-Tests-cases-history'
 }
 
-{ #category : 'tests' }
+{ #category : #tests }
 PyramidHistoryTest >> testCanRedo [
 
 	| commandExec dummyCommand dummyTarget dummyArguments |
@@ -29,7 +27,7 @@ PyramidHistoryTest >> testCanRedo [
 	self deny: commandExec history canRedo
 ]
 
-{ #category : 'tests' }
+{ #category : #tests }
 PyramidHistoryTest >> testCanUndo [
 
 	| commandExec dummyCommand dummyTarget dummyArguments |
@@ -50,7 +48,7 @@ PyramidHistoryTest >> testCanUndo [
 	self deny: commandExec history canUndo
 ]
 
-{ #category : 'tests' }
+{ #category : #tests }
 PyramidHistoryTest >> testCollectionHistory [
 	"
 	<collection>
@@ -109,7 +107,7 @@ PyramidHistoryTest >> testCollectionHistory [
 	1 to: 200 do: [ :i | self assert: (collection includes: i) ]
 ]
 
-{ #category : 'tests' }
+{ #category : #tests }
 PyramidHistoryTest >> testRedo [
 
 	| commandExec dummyTarget |
@@ -170,7 +168,7 @@ PyramidHistoryTest >> testRedo [
 	self assert: dummyTarget first count equals: 11
 ]
 
-{ #category : 'tests' }
+{ #category : #tests }
 PyramidHistoryTest >> testUndo [
 
 	| commandExec dummyCommand dummyTarget dummyArguments |

@@ -2,14 +2,12 @@
 A PyramidPluginManagerTest is a test class for testing the behavior of PyramidPluginManager
 "
 Class {
-	#name : 'PyramidPluginManagerTest',
-	#superclass : 'TestCase',
-	#category : 'Pyramid-Tests-cases-core',
-	#package : 'Pyramid-Tests',
-	#tag : 'cases-core'
+	#name : #PyramidPluginManagerTest,
+	#superclass : #TestCase,
+	#category : 'Pyramid-Tests-cases-core'
 }
 
-{ #category : 'tests' }
+{ #category : #tests }
 PyramidPluginManagerTest >> testIsPluginInstalled [
 	"Test incorrect values"
 
@@ -32,7 +30,7 @@ PyramidPluginManagerTest >> testIsPluginInstalled [
 			(PyramidPluginManager uniqueInstance isPluginInstalled: c) ]
 ]
 
-{ #category : 'tests' }
+{ #category : #tests }
 PyramidPluginManagerTest >> testUniqueInstance [
 
 	self assert: PyramidPluginManager uniqueInstance class equals: PyramidPluginManager.

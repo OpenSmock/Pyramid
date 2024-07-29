@@ -1,14 +1,12 @@
 Class {
-	#name : 'PyramidBasicConstraintsInputPresenterTest',
-	#superclass : 'TestCase',
+	#name : #PyramidBasicConstraintsInputPresenterTest,
+	#superclass : #TestCase,
 	#traits : 'TPyramidInputPresenterTest',
 	#classTraits : 'TPyramidInputPresenterTest classTrait',
-	#category : 'Pyramid-Tests-cases-specs-custom',
-	#package : 'Pyramid-Tests',
-	#tag : 'cases-specs-custom'
+	#category : 'Pyramid-Tests-cases-specs-custom'
 }
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidBasicConstraintsInputPresenterTest >> dummyValues [
 
 	^ {
@@ -18,13 +16,13 @@ PyramidBasicConstraintsInputPresenterTest >> dummyValues [
 		BlLayoutCommonConstraintsAxis new exact: 200. }
 ]
 
-{ #category : 'tests' }
+{ #category : #tests }
 PyramidBasicConstraintsInputPresenterTest >> makeNewInput [
 
 	^ PyramidBasicConstraintsInputPresenter new
 ]
 
-{ #category : 'tests' }
+{ #category : #tests }
 PyramidBasicConstraintsInputPresenterTest >> testValue [
 
 	| input hasTrigger |
@@ -36,7 +34,7 @@ PyramidBasicConstraintsInputPresenterTest >> testValue [
 		self assert: (self equalityTestFor: each asPyramidConstraintsArgument and: input value) ]
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidBasicConstraintsInputPresenterTest >> triggerValueChangedOf: anInput [
 
 	anInput buttonExact click

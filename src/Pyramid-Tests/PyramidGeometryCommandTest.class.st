@@ -1,20 +1,18 @@
 Class {
-	#name : 'PyramidGeometryCommandTest',
-	#superclass : 'TestCase',
+	#name : #PyramidGeometryCommandTest,
+	#superclass : #TestCase,
 	#traits : 'TPyramidCommandTest',
 	#classTraits : 'TPyramidCommandTest classTrait',
-	#category : 'Pyramid-Tests-cases-plugin-bloc-geometry',
-	#package : 'Pyramid-Tests',
-	#tag : 'cases-plugin-bloc-geometry'
+	#category : 'Pyramid-Tests-cases-plugin-bloc-geometry'
 }
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidGeometryCommandTest >> command [
 
 	^ PyramidGeometryCommand new
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidGeometryCommandTest >> targetContainers [
 
 	^ {

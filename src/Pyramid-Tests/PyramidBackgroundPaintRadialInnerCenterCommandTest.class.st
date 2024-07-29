@@ -1,20 +1,18 @@
 Class {
-	#name : 'PyramidBackgroundPaintRadialInnerCenterCommandTest',
-	#superclass : 'TestCase',
+	#name : #PyramidBackgroundPaintRadialInnerCenterCommandTest,
+	#superclass : #TestCase,
 	#traits : 'TPyramidCommandTest',
 	#classTraits : 'TPyramidCommandTest classTrait',
-	#category : 'Pyramid-Tests-cases-plugin-bloc-visuals',
-	#package : 'Pyramid-Tests',
-	#tag : 'cases-plugin-bloc-visuals'
+	#category : 'Pyramid-Tests-cases-plugin-bloc-visuals'
 }
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidBackgroundPaintRadialInnerCenterCommandTest >> command [
 
 	^ PyramidBackgroundPaintRadialInnerCenterCommand new
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidBackgroundPaintRadialInnerCenterCommandTest >> targetContainers [
 
 	^ {
@@ -68,7 +66,7 @@ PyramidBackgroundPaintRadialInnerCenterCommandTest >> targetContainers [
 			   prop: 500 asPoint) }
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidBackgroundPaintRadialInnerCenterCommandTest >> targetsCannotBeUsedFor [
 	"override if needed"
 

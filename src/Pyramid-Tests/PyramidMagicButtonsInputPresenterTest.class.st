@@ -1,32 +1,30 @@
 Class {
-	#name : 'PyramidMagicButtonsInputPresenterTest',
-	#superclass : 'TestCase',
+	#name : #PyramidMagicButtonsInputPresenterTest,
+	#superclass : #TestCase,
 	#traits : 'TPyramidInputPresenterTest',
 	#classTraits : 'TPyramidInputPresenterTest classTrait',
-	#category : 'Pyramid-Tests-cases-specs-custom',
-	#package : 'Pyramid-Tests',
-	#tag : 'cases-specs-custom'
+	#category : 'Pyramid-Tests-cases-specs-custom'
 }
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidMagicButtonsInputPresenterTest >> dummyValues [
 
 	^ { #ok . #cancel }
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidMagicButtonsInputPresenterTest >> expectedEmptyValue [
 
 	^ PyramidUnknowState new
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidMagicButtonsInputPresenterTest >> expectedMixedValues [
 
 	^ PyramidUnknowState new
 ]
 
-{ #category : 'tests' }
+{ #category : #tests }
 PyramidMagicButtonsInputPresenterTest >> makeNewInput [
 
 	^ PyramidMagicButtonsInputPresenter new
@@ -51,13 +49,13 @@ PyramidMagicButtonsInputPresenterTest >> makeNewInput [
 		  yourself
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidMagicButtonsInputPresenterTest >> makeNewInputWithModel [
 
 	^ self makeNewInput
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidMagicButtonsInputPresenterTest >> triggerValueChangedOf: anInput [
 
 	anInput whenValueChangedDo value: anInput value

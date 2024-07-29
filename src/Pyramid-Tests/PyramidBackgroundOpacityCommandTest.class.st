@@ -1,20 +1,18 @@
 Class {
-	#name : 'PyramidBackgroundOpacityCommandTest',
-	#superclass : 'TestCase',
+	#name : #PyramidBackgroundOpacityCommandTest,
+	#superclass : #TestCase,
 	#traits : 'TPyramidCommandTest',
 	#classTraits : 'TPyramidCommandTest classTrait',
-	#category : 'Pyramid-Tests-cases-plugin-bloc-visuals',
-	#package : 'Pyramid-Tests',
-	#tag : 'cases-plugin-bloc-visuals'
+	#category : 'Pyramid-Tests-cases-plugin-bloc-visuals'
 }
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidBackgroundOpacityCommandTest >> command [
 
 	^ PyramidBackgroundOpacityCommand new
 ]
 
-{ #category : 'testing' }
+{ #category : #testing }
 PyramidBackgroundOpacityCommandTest >> isBlBackgroundEqualityFix [
 
 	| e b1 b2 |
@@ -28,7 +26,7 @@ PyramidBackgroundOpacityCommandTest >> isBlBackgroundEqualityFix [
 	^ e background == b2
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidBackgroundOpacityCommandTest >> targetContainers [
 
 	^ {
@@ -53,7 +51,7 @@ PyramidBackgroundOpacityCommandTest >> targetContainers [
 			   prop: 0.3) }
 ]
 
-{ #category : 'tests' }
+{ #category : #tests }
 PyramidBackgroundOpacityCommandTest >> testHistory [
 	"Do once.
 	undo
@@ -100,7 +98,7 @@ PyramidBackgroundOpacityCommandTest >> testHistory [
 			self assert: (self command getValueFor: target) equals: argument ] ]
 ]
 
-{ #category : 'tests' }
+{ #category : #tests }
 PyramidBackgroundOpacityCommandTest >> testSetValueForWith [
 
 	self isBlBackgroundEqualityFix ifFalse: [ ^ self skip. ].

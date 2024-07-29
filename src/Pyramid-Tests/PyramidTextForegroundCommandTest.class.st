@@ -1,26 +1,24 @@
 Class {
-	#name : 'PyramidTextForegroundCommandTest',
-	#superclass : 'TestCase',
+	#name : #PyramidTextForegroundCommandTest,
+	#superclass : #TestCase,
 	#traits : 'TPyramidFontAttributeCommandTest',
 	#classTraits : 'TPyramidFontAttributeCommandTest classTrait',
-	#category : 'Pyramid-Tests-cases-plugin-bloc-text',
-	#package : 'Pyramid-Tests',
-	#tag : 'cases-plugin-bloc-text'
+	#category : 'Pyramid-Tests-cases-plugin-bloc-text'
 }
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidTextForegroundCommandTest >> attributeClass [
 
 	^ BlTextForegroundAttribute
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidTextForegroundCommandTest >> command [
 
 	^ PyramidTextForegroundCommand new
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidTextForegroundCommandTest >> targetContainers [
 
 	^ {

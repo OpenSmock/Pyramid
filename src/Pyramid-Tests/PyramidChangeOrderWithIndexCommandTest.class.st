@@ -1,20 +1,18 @@
 Class {
-	#name : 'PyramidChangeOrderWithIndexCommandTest',
-	#superclass : 'TestCase',
+	#name : #PyramidChangeOrderWithIndexCommandTest,
+	#superclass : #TestCase,
 	#traits : 'TPyramidCommandTest',
 	#classTraits : 'TPyramidCommandTest classTrait',
-	#category : 'Pyramid-Tests-cases-plugin-bloc-order',
-	#package : 'Pyramid-Tests',
-	#tag : 'cases-plugin-bloc-order'
+	#category : 'Pyramid-Tests-cases-plugin-bloc-order'
 }
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidChangeOrderWithIndexCommandTest >> command [
 
 	^ PyramidChangeOrderWithIndexCommand new
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidChangeOrderWithIndexCommandTest >> makeElementWithChildren [
 
 	| parent c1 c2 c3 |
@@ -37,7 +35,7 @@ PyramidChangeOrderWithIndexCommandTest >> makeElementWithChildren [
 	^ parent
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidChangeOrderWithIndexCommandTest >> targetContainers [
 
 	| test1 test2 test3 test4 test5 test6 |
@@ -75,7 +73,7 @@ PyramidChangeOrderWithIndexCommandTest >> targetContainers [
 			   prop: 1) }
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidChangeOrderWithIndexCommandTest >> targetsCanBeUsedFor [
 
 	^ self targetContainers flatCollect: [ :each |
@@ -83,14 +81,14 @@ PyramidChangeOrderWithIndexCommandTest >> targetsCanBeUsedFor [
 			  each targetNoProp } ]
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidChangeOrderWithIndexCommandTest >> targetsWithValuesAndValues [
 
 	^ self targetContainers collect: [ :each |
 		  each targetNoProp -> each targetWithProp ]
 ]
 
-{ #category : 'tests' }
+{ #category : #tests }
 PyramidChangeOrderWithIndexCommandTest >> testGetValueFor [
 
 	self targetsWithValuesAndValues do: [ :each |

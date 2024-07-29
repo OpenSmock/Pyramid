@@ -1,20 +1,18 @@
 Class {
-	#name : 'PyramidZIndexCommandTest',
-	#superclass : 'TestCase',
+	#name : #PyramidZIndexCommandTest,
+	#superclass : #TestCase,
 	#traits : 'TPyramidCommandTest',
 	#classTraits : 'TPyramidCommandTest classTrait',
-	#category : 'Pyramid-Tests-cases-plugin-bloc',
-	#package : 'Pyramid-Tests',
-	#tag : 'cases-plugin-bloc'
+	#category : 'Pyramid-Tests-cases-plugin-bloc'
 }
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidZIndexCommandTest >> command [
 
 	^ PyramidZIndexCommand new.
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidZIndexCommandTest >> targetContainers [
 
 	^ {

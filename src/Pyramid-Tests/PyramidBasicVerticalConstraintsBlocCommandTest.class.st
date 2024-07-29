@@ -1,20 +1,18 @@
 Class {
-	#name : 'PyramidBasicVerticalConstraintsBlocCommandTest',
-	#superclass : 'TestCase',
+	#name : #PyramidBasicVerticalConstraintsBlocCommandTest,
+	#superclass : #TestCase,
 	#traits : 'TPyramidCommandTest',
 	#classTraits : 'TPyramidCommandTest classTrait',
-	#category : 'Pyramid-Tests-cases-plugin-bloc-layout',
-	#package : 'Pyramid-Tests',
-	#tag : 'cases-plugin-bloc-layout'
+	#category : 'Pyramid-Tests-cases-plugin-bloc-layout'
 }
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidBasicVerticalConstraintsBlocCommandTest >> command [
 
 	^ PyramidBasicVerticalConstraintsBlocCommand new
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidBasicVerticalConstraintsBlocCommandTest >> targetContainers [
 
 	| p1 a1 b1 c1 d1 p2 a2 b2 c2 d2 |
@@ -58,7 +56,7 @@ PyramidBasicVerticalConstraintsBlocCommandTest >> targetContainers [
 		  (PyramidCommandTestContainer no: a2 with: d2 prop: #matchParent) }
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidBasicVerticalConstraintsBlocCommandTest >> targetsCannotBeUsedFor [
 	"override if needed"
 
@@ -71,14 +69,14 @@ PyramidBasicVerticalConstraintsBlocCommandTest >> targetsCannotBeUsedFor [
 		   }
 ]
 
-{ #category : 'tests' }
+{ #category : #tests }
 PyramidBasicVerticalConstraintsBlocCommandTest >> testGetValueFor [
 
 	self targetsWithValuesAndValues do: [ :each |
 		self assert: (self command getValueFor: each key) asPyramidConstraintsArgument equals: each value ].
 ]
 
-{ #category : 'tests' }
+{ #category : #tests }
 PyramidBasicVerticalConstraintsBlocCommandTest >> testHistory [
 	"Do once.
 	undo
@@ -135,7 +133,7 @@ PyramidBasicVerticalConstraintsBlocCommandTest >> testHistory [
 				equals: argument ] ]
 ]
 
-{ #category : 'tests' }
+{ #category : #tests }
 PyramidBasicVerticalConstraintsBlocCommandTest >> testSetValueForWith [
 
 	self targetsWithoutValuesAndValues do: [ :each |

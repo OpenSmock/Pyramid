@@ -1,38 +1,36 @@
 Class {
-	#name : 'PyramidFlowLayoutOrientationPresenterTest',
-	#superclass : 'TestCase',
+	#name : #PyramidFlowLayoutOrientationPresenterTest,
+	#superclass : #TestCase,
 	#traits : 'TPyramidInputPresenterTest',
 	#classTraits : 'TPyramidInputPresenterTest classTrait',
-	#category : 'Pyramid-Tests-cases-specs-custom',
-	#package : 'Pyramid-Tests',
-	#tag : 'cases-specs-custom'
+	#category : 'Pyramid-Tests-cases-specs-custom'
 }
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidFlowLayoutOrientationPresenterTest >> dummyValues [
 
 	^ { BlLayoutOrientation vertical. BlLayoutOrientation horizontal. BlLayoutOrientation horizontal. BlLayoutOrientation vertical. BlLayoutOrientation horizontal }
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidFlowLayoutOrientationPresenterTest >> expectedEmptyValue [
 
 	^ PyramidUnknowState new
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidFlowLayoutOrientationPresenterTest >> expectedMixedValues [
 
 	^ PyramidUnknowState new
 ]
 
-{ #category : 'tests' }
+{ #category : #tests }
 PyramidFlowLayoutOrientationPresenterTest >> makeNewInput [
 
 	^ PyramidFlowLayoutOrientationPresenter new
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidFlowLayoutOrientationPresenterTest >> triggerValueChangedOf: anInput [
 
 	anInput button click

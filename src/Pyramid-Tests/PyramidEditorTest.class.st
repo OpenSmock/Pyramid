@@ -1,12 +1,10 @@
 Class {
-	#name : 'PyramidEditorTest',
-	#superclass : 'TestCase',
-	#category : 'Pyramid-Tests-cases-core',
-	#package : 'Pyramid-Tests',
-	#tag : 'cases-core'
+	#name : #PyramidEditorTest,
+	#superclass : #TestCase,
+	#category : 'Pyramid-Tests-cases-core'
 }
 
-{ #category : 'tests' }
+{ #category : #tests }
 PyramidEditorTest >> openFromBlSpace [
 
 	| editor space element |
@@ -32,7 +30,7 @@ PyramidEditorTest >> openFromBlSpace [
 	self assert: (space root children includes: element)
 ]
 
-{ #category : 'tests' }
+{ #category : #tests }
 PyramidEditorTest >> openNewEditor [
 
 	| editor spec |
@@ -52,7 +50,7 @@ PyramidEditorTest >> openNewEditor [
 	self deny: spec window isInWorld
 ]
 
-{ #category : 'running' }
+{ #category : #running }
 PyramidEditorTest >> setUp [
 	super setUp.
 
@@ -60,7 +58,7 @@ PyramidEditorTest >> setUp [
 	PyramidPluginManager imagePluginClasses do: [ :each | each initialize ].
 ]
 
-{ #category : 'tests' }
+{ #category : #tests }
 PyramidEditorTest >> testOpenFromBlSpace [
 
 	Smalltalk isInteractiveGraphic ifFalse: [ ^ self skip ].
@@ -68,7 +66,7 @@ PyramidEditorTest >> testOpenFromBlSpace [
 	
 ]
 
-{ #category : 'tests' }
+{ #category : #tests }
 PyramidEditorTest >> testOpenFromBlSpaceWithSpacePluginUninstalled [
 
 	PyramidPluginManager uniqueInstance removePlugin: PyramidSpacePlugin.
@@ -76,7 +74,7 @@ PyramidEditorTest >> testOpenFromBlSpaceWithSpacePluginUninstalled [
 	PyramidPluginManager uniqueInstance addPlugin: PyramidSpacePlugin
 ]
 
-{ #category : 'tests' }
+{ #category : #tests }
 PyramidEditorTest >> testOpenNewEditor [
 	"This test does not work on a headless vm. The current CI use a headless vm."
 
@@ -84,7 +82,7 @@ PyramidEditorTest >> testOpenNewEditor [
 	self openNewEditor.
 ]
 
-{ #category : 'tests' }
+{ #category : #tests }
 PyramidEditorTest >> testOpenNewEditorWithSpacePluginUninstalled [
 	
 	PyramidPluginManager uniqueInstance removePlugin: PyramidSpacePlugin.

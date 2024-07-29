@@ -1,38 +1,36 @@
 Class {
-	#name : 'PyramidColorInputPresenterTest',
-	#superclass : 'TestCase',
+	#name : #PyramidColorInputPresenterTest,
+	#superclass : #TestCase,
 	#traits : 'TPyramidInputPresenterTest',
 	#classTraits : 'TPyramidInputPresenterTest classTrait',
-	#category : 'Pyramid-Tests-cases-specs-custom',
-	#package : 'Pyramid-Tests',
-	#tag : 'cases-specs-custom'
+	#category : 'Pyramid-Tests-cases-specs-custom'
 }
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidColorInputPresenterTest >> dummyValues [
 
 	^ { Color red . Color transparent . Color blue alpha: 0.5 . Color pink }
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidColorInputPresenterTest >> expectedEmptyValue [
 
 	^ PyramidColorInputPresenter new defaultColor
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidColorInputPresenterTest >> expectedMixedValues [
 
 	^ PyramidColorInputPresenter new defaultColor
 ]
 
-{ #category : 'tests' }
+{ #category : #tests }
 PyramidColorInputPresenterTest >> makeNewInput [
 
 	^ PyramidColorInputPresenter new
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidColorInputPresenterTest >> triggerValueChangedOf: anInput [
 
 	anInput svMorph selectedColor: anInput value

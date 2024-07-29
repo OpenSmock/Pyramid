@@ -1,14 +1,12 @@
 Class {
-	#name : 'PyramidHorizontalFrameConstraintsInputPresenterTest',
-	#superclass : 'TestCase',
+	#name : #PyramidHorizontalFrameConstraintsInputPresenterTest,
+	#superclass : #TestCase,
 	#traits : 'TPyramidInputPresenterTest',
 	#classTraits : 'TPyramidInputPresenterTest classTrait',
-	#category : 'Pyramid-Tests-cases-specs-custom',
-	#package : 'Pyramid-Tests',
-	#tag : 'cases-specs-custom'
+	#category : 'Pyramid-Tests-cases-specs-custom'
 }
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidHorizontalFrameConstraintsInputPresenterTest >> dummyValues [
 
 	^ {
@@ -21,25 +19,25 @@ PyramidHorizontalFrameConstraintsInputPresenterTest >> dummyValues [
 		  BlFrameLayoutConstraintsHorizontal new alignRightAt: 0.5; alignment }
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidHorizontalFrameConstraintsInputPresenterTest >> expectedEmptyValue [
 
 	^ PyramidUnknowState new
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidHorizontalFrameConstraintsInputPresenterTest >> expectedMixedValues [
 
 	^ PyramidUnknowState new
 ]
 
-{ #category : 'tests' }
+{ #category : #tests }
 PyramidHorizontalFrameConstraintsInputPresenterTest >> makeNewInput [
 
 	^ PyramidHorizontalFrameConstraintsInputPresenter new
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidHorizontalFrameConstraintsInputPresenterTest >> triggerValueChangedOf: anInput [
 
 	anInput inputRelative inputNumber contextKeyBindings keymaps do: [ :bind |

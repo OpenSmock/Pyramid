@@ -1,22 +1,20 @@
 Class {
-	#name : 'PyramidCollectionWithCallbacksTest',
-	#superclass : 'TestCase',
+	#name : #PyramidCollectionWithCallbacksTest,
+	#superclass : #TestCase,
 	#instVars : [
 		'valueToCheck',
 		'collection'
 	],
-	#category : 'Pyramid-Tests-cases-models',
-	#package : 'Pyramid-Tests',
-	#tag : 'cases-models'
+	#category : 'Pyramid-Tests-cases-models'
 }
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidCollectionWithCallbacksTest >> collection [
 
 	^ collection
 ]
 
-{ #category : 'running' }
+{ #category : #running }
 PyramidCollectionWithCallbacksTest >> setUp [
 	super setUp.
 
@@ -25,7 +23,7 @@ PyramidCollectionWithCallbacksTest >> setUp [
 	collection subscribe: self withCallback: [ valueToCheck := valueToCheck + 1 ]
 ]
 
-{ #category : 'tests' }
+{ #category : #tests }
 PyramidCollectionWithCallbacksTest >> testAdd [
 
 	self assert: self valueToCheck equals: 0.
@@ -40,7 +38,7 @@ PyramidCollectionWithCallbacksTest >> testAdd [
 	self assert: (self collection includes: #c)
 ]
 
-{ #category : 'tests' }
+{ #category : #tests }
 PyramidCollectionWithCallbacksTest >> testAddAll [
 
 	self assert: self valueToCheck equals: 0.
@@ -53,7 +51,7 @@ PyramidCollectionWithCallbacksTest >> testAddAll [
 	self assert: (self collection includes: #c)
 ]
 
-{ #category : 'tests' }
+{ #category : #tests }
 PyramidCollectionWithCallbacksTest >> testRemove [
 
 	self assert: self valueToCheck equals: 0.
@@ -69,7 +67,7 @@ PyramidCollectionWithCallbacksTest >> testRemove [
 	self assert: (self collection includes: #c)
 ]
 
-{ #category : 'tests' }
+{ #category : #tests }
 PyramidCollectionWithCallbacksTest >> testRemoveAll [
 
 	self assert: self valueToCheck equals: 0.
@@ -94,7 +92,7 @@ PyramidCollectionWithCallbacksTest >> testRemoveAll [
 	
 ]
 
-{ #category : 'tests' }
+{ #category : #tests }
 PyramidCollectionWithCallbacksTest >> testRemoveIfAbsent [
 
 	| secondValueToCheck |
@@ -119,7 +117,7 @@ PyramidCollectionWithCallbacksTest >> testRemoveIfAbsent [
 	self assert: (self collection includes: #c)
 ]
 
-{ #category : 'tests' }
+{ #category : #tests }
 PyramidCollectionWithCallbacksTest >> testReplaceAll [
 
 	self assert: self valueToCheck equals: 0.
@@ -135,7 +133,7 @@ PyramidCollectionWithCallbacksTest >> testReplaceAll [
 	self assert: self valueToCheck equals: 2.
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidCollectionWithCallbacksTest >> valueToCheck [
 ^ valueToCheck
 ]

@@ -1,20 +1,18 @@
 Class {
-	#name : 'PyramidBorderDashOffsetCommandTest',
-	#superclass : 'TestCase',
+	#name : #PyramidBorderDashOffsetCommandTest,
+	#superclass : #TestCase,
 	#traits : 'TPyramidCommandTest',
 	#classTraits : 'TPyramidCommandTest classTrait',
-	#category : 'Pyramid-Tests-cases-plugin-bloc-visuals',
-	#package : 'Pyramid-Tests',
-	#tag : 'cases-plugin-bloc-visuals'
+	#category : 'Pyramid-Tests-cases-plugin-bloc-visuals'
 }
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidBorderDashOffsetCommandTest >> command [
 
 	^ PyramidBorderDashOffsetCommand new
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidBorderDashOffsetCommandTest >> targetContainers [
 
 	^ {

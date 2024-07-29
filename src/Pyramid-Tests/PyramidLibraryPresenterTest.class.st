@@ -1,12 +1,10 @@
 Class {
-	#name : 'PyramidLibraryPresenterTest',
-	#superclass : 'TestCase',
-	#category : 'Pyramid-Tests-cases-plugin-tree-library',
-	#package : 'Pyramid-Tests',
-	#tag : 'cases-plugin-tree-library'
+	#name : #PyramidLibraryPresenterTest,
+	#superclass : #TestCase,
+	#category : 'Pyramid-Tests-cases-plugin-tree-library'
 }
 
-{ #category : 'tests' }
+{ #category : #tests }
 PyramidLibraryPresenterTest >> testIdGenerator [
 	"We generate a bunch of id and we verify that none are the same"
 

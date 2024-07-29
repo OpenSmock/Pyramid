@@ -1,12 +1,10 @@
 Class {
-	#name : 'PyramidTreePluginTest',
-	#superclass : 'TestCase',
-	#category : 'Pyramid-Tests-cases-plugin-tree-library',
-	#package : 'Pyramid-Tests',
-	#tag : 'cases-plugin-tree-library'
+	#name : #PyramidTreePluginTest,
+	#superclass : #TestCase,
+	#category : 'Pyramid-Tests-cases-plugin-tree-library'
 }
 
-{ #category : 'tests' }
+{ #category : #tests }
 PyramidTreePluginTest >> testAddColumns [
 
 	| plugin |
@@ -22,7 +20,7 @@ PyramidTreePluginTest >> testAddColumns [
 	self assert: plugin treePresenter columns size equals: 3.
 ]
 
-{ #category : 'tests' }
+{ #category : #tests }
 PyramidTreePluginTest >> testRemoveSelectedElements [
 
 	| plugin editor e1 e2 e3 |

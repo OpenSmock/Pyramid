@@ -1,29 +1,27 @@
 Class {
-	#name : 'PyramidFakeExtension',
-	#superclass : 'Object',
+	#name : #PyramidFakeExtension,
+	#superclass : #Object,
 	#instVars : [
 		'isInstalled',
 		'editor',
 		'projectModel'
 	],
-	#category : 'Pyramid-Tests-cases-plugin-space',
-	#package : 'Pyramid-Tests',
-	#tag : 'cases-plugin-space'
+	#category : 'Pyramid-Tests-cases-plugin-space'
 }
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidFakeExtension >> editor [
 
 	^ editor
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidFakeExtension >> editor: anObject [
 
 	editor := true.
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidFakeExtension >> initialize [
 
 	isInstalled := false.
@@ -31,25 +29,25 @@ PyramidFakeExtension >> initialize [
 	editor := false.
 ]
 
-{ #category : 'displaying' }
+{ #category : #displaying }
 PyramidFakeExtension >> installOn: anObject [
 
 	isInstalled := true
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidFakeExtension >> isInstalled [
 
 	^ isInstalled
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidFakeExtension >> projectModel [
 
 	^ projectModel
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidFakeExtension >> projectModel: anObject [
 
 	projectModel := true

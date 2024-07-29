@@ -1,14 +1,12 @@
 Class {
-	#name : 'PyramidBackgroundStopsInputPresenterTest',
-	#superclass : 'TestCase',
+	#name : #PyramidBackgroundStopsInputPresenterTest,
+	#superclass : #TestCase,
 	#traits : 'TPyramidInputPresenterTest',
 	#classTraits : 'TPyramidInputPresenterTest classTrait',
-	#category : 'Pyramid-Tests-cases-specs-custom',
-	#package : 'Pyramid-Tests',
-	#tag : 'cases-specs-custom'
+	#category : 'Pyramid-Tests-cases-specs-custom'
 }
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidBackgroundStopsInputPresenterTest >> dummyValues [
 
 	^ { {
@@ -24,25 +22,25 @@ PyramidBackgroundStopsInputPresenterTest >> dummyValues [
 		  (1 -> Color red) } }
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidBackgroundStopsInputPresenterTest >> expectedEmptyValue [
 
 	^ PyramidUnknowState new
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidBackgroundStopsInputPresenterTest >> expectedMixedValues [
 
 	^ PyramidUnknowState new
 ]
 
-{ #category : 'tests' }
+{ #category : #tests }
 PyramidBackgroundStopsInputPresenterTest >> makeNewInput [
 
 	^ PyramidBackgroundStopsInputPresenter new
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidBackgroundStopsInputPresenterTest >> triggerValueChangedOf: anInput [
 
 	anInput whenValueChangedDo value: anInput value
