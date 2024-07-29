@@ -50,16 +50,16 @@ PyramidTreePlugin class >> addOnLibrary: aLibrary [
 ]
 
 { #category : #'as yet unclassified' }
-PyramidTreePlugin class >> addPystashOnLibrary: library [
+PyramidTreePlugin class >> addPragma: aSymbol onLibrary: aLibrary withIcon: anIcon [
 
 	| pragmas methods packages |
-	pragmas := Pragma allNamed: #pyStash.
+	pragmas := Pragma allNamed: aSymbol.
 	methods := (pragmas collect: #method) asSet.
 	packages := (methods collect: #package) asSet.
 
 	packages do: [ :package |
 		| factories |
-		factories := methods
+		package ifNotNil: [ factories := methods
 			             select: [ :method | method package = package ]
 			             thenCollect: [ :method |
 				             PyramidElementToAddFactory new
@@ -70,41 +70,31 @@ PyramidTreePlugin class >> addPystashOnLibrary: library [
 						             (method methodClass soleInstance perform:
 								              method selector) materializeAsBlElement ];
 					             yourself ].
-		library
+		aLibrary
 			addCategoryWithName: package name
-			withIcon: (Smalltalk ui icons iconNamed: #smallInfo)
-			withAllFactories: factories asArray sorted ].
+			withIcon: anIcon
+			withAllFactories: factories asArray sorted ]
+		].
 
-	^ library
+	^ aLibrary
+]
+
+{ #category : #'as yet unclassified' }
+PyramidTreePlugin class >> addPystashOnLibrary: library [
+
+	^ self
+		  addPragma: #pyStash
+		  onLibrary: library
+		  withIcon: (Smalltalk ui icons iconNamed: #smallSave).
 ]
 
 { #category : #'as yet unclassified' }
 PyramidTreePlugin class >> addPystonOnLibrary: library [
 
-	| pragmas methods packages |
-	pragmas := Pragma allNamed: #pySTON.
-	methods := (pragmas collect: #method) asSet.
-	packages := (methods collect: #package) asSet.
-
-	packages do: [ :package |
-		| factories |
-		factories := methods
-			             select: [ :method | method package = package ]
-			             thenCollect: [ :method |
-				             PyramidElementToAddFactory new
-					             elementIcon: (Smalltalk ui icons iconNamed:
-								              method methodClass soleInstance systemIconName);
-					             elementName: method selector;
-					             elementBlock: [
-						             (method methodClass soleInstance perform:
-								              method selector) materializeAsBlElement ];
-					             yourself ].
-		library
-			addCategoryWithName: package name
-			withIcon: (Smalltalk ui icons iconNamed: #smallInfo)
-			withAllFactories: factories asArray sorted ].
-
-	^ library
+	^ self
+		  addPragma: #pySTON
+		  onLibrary: library
+		  withIcon: (Smalltalk ui icons iconNamed: #smallSave)
 ]
 
 { #category : #accessing }
