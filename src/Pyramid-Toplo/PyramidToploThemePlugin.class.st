@@ -49,11 +49,28 @@ PyramidToploThemePlugin class >> toploIconThemeCategoryFromClass: aClass [
 				              icon: (Smalltalk ui icons iconNamed: #blank);
 				              block: [
 					              | image |
-					              image := (PyramidExternalRessourceProxy fromTarget: ToImage selector: #inner: arguments: {  
-							                       (PyramidExternalRessourceProxy
-								                        fromTarget: aClass
-								                        selector: selector asSymbol
-								                        arguments: {  }) }).
+					              image := PyramidExternalRessourceProxy
+						                       fromTarget: ToImage new
+						                       selector: #innerImage:
+						                       arguments:
+							                       { (PyramidExternalRessourceProxy new
+								                        pyramidExternalRessourceSource:
+									                        (PyramidExternalRessourceSource new
+										                         target: BlSvgConverter;
+										                         selector: #convertFromString:;
+										                         arguments:
+											                         { (PyramidExternalRessourceProxy
+												                          new
+												                          pyramidExternalRessourceSource:
+													                          (PyramidExternalRessourceSource
+														                           new
+														                           target: aClass;
+														                           selector: selector asSymbol;
+														                           arguments: {  };
+														                           yourself);
+												                          yourself) };
+										                         yourself);
+								                        yourself) }.
 					              image size: 48 asPoint.
 					              { image } ];
 				              yourself ].

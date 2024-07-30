@@ -587,31 +587,63 @@ PyramidToploExamples class >> icons [
 	"This class has been generated using Pyramid.
 
 	By: YannLEGOFF
-	2024-07-30 17:40:45"
+	2024-07-30 18:05:02"
 
 	<pyStash>
-	^ [
-	  | toimage1 |
-	  toimage1 := ToImage new.
-	  { (PyramidExternalRessourceProxy new
-		   pyramidExternalRessourceSource:
-			   (PyramidExternalRessourceSource new
-				    target: (toimage1
-						     innerImage: (PyramidExternalRessourceProxy fromTarget: BlSvgConverter selector: #convertFromString: arguments: {(PyramidExternalRessourceProxy new
-						     pyramidExternalRessourceSource:
-							     (PyramidExternalRessourceSource new
-								      target: ToAntDesignIconProvider;
-								      selector: #twotone_like;
-								      arguments: {  };
-								      yourself);
-						     yourself)});
-						     constraintsDo: [ :constraints |
-							     constraints horizontal exact: 48.0.
-							     constraints vertical exact: 48.0 ];
-						     layout: BlFrameLayout new;
-						     yourself);
-				    selector: #yourself;
-				    arguments: {  };
-				    yourself);
-		   yourself) } ] value
+	^ [ | toimage1 blsvgconverterclass2 pyramidexternalressourceproxy3 toimage4 toantdesigniconproviderclass5 |
+toimage1 := ToImage new.
+blsvgconverterclass2 := BlSvgConverter.
+pyramidexternalressourceproxy3 := PyramidExternalRessourceProxy new.
+toimage4 := ToImage new.
+toantdesigniconproviderclass5 := ToAntDesignIconProvider.
+{(PyramidExternalRessourceProxy new
+   pyramidExternalRessourceSource: (PyramidExternalRessourceSource new
+         target: (toimage4
+               innerImage: (PyramidExternalRessourceProxy new
+                     pyramidExternalRessourceSource: (PyramidExternalRessourceSource new
+                           target: blsvgconverterclass2;
+                           selector: #convertFromString:;
+                           arguments: {(PyramidExternalRessourceProxy new
+                                 pyramidExternalRessourceSource: (PyramidExternalRessourceSource new
+                                       target: toantdesigniconproviderclass5;
+                                       selector: #twotone_like;
+                                       arguments: {};
+                                       yourself);
+                                 yourself)};
+                           yourself);
+                     yourself);
+               constraintsDo: [:constraints |  constraints horizontal exact: 48.0.
+                  constraints vertical exact: 48.0 ];
+               layout: BlFrameLayout new;
+               yourself);
+         selector: #yourself;
+         arguments: {};
+         yourself);
+   yourself) . 
+(PyramidExternalRessourceProxy new
+   pyramidExternalRessourceSource: (PyramidExternalRessourceSource new
+         target: (toimage1
+               innerImage: (pyramidexternalressourceproxy3
+                     pyramidExternalRessourceSource: (PyramidExternalRessourceSource new
+                           target: blsvgconverterclass2;
+                           selector: #convertFromString:;
+                           arguments: {(PyramidExternalRessourceProxy new
+                                 pyramidExternalRessourceSource: (PyramidExternalRessourceSource new
+                                       target: toantdesigniconproviderclass5;
+                                       selector: #twotone_switcher;
+                                       arguments: {};
+                                       yourself);
+                                 yourself)};
+                           yourself);
+                     yourself);
+               constraintsDo: [:constraints |  constraints horizontal exact: 64.0.
+                  constraints vertical exact: 64.0.
+                  constraints position: 52.0 @ 30.0 ];
+               layout: BlFrameLayout new;
+               id: #A;
+               yourself);
+         selector: #innerImage:;
+         arguments: {pyramidexternalressourceproxy3};
+         yourself);
+   yourself)} ] value
 ]
