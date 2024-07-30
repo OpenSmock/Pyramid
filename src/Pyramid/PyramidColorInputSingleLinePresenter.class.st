@@ -1,31 +1,29 @@
 Class {
-	#name : 'PyramidColorInputSingleLinePresenter',
-	#superclass : 'PyramidInputPresenter',
+	#name : #PyramidColorInputSingleLinePresenter,
+	#superclass : #PyramidInputPresenter,
 	#instVars : [
 		'hexInput',
 		'alphaInput',
 		'previewPresenter',
 		'whenValueChangedDo'
 	],
-	#category : 'Pyramid-specs-custom',
-	#package : 'Pyramid',
-	#tag : 'specs-custom'
+	#category : 'Pyramid-specs-custom'
 }
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidColorInputSingleLinePresenter >> alphaInput [
 
 	^ alphaInput
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidColorInputSingleLinePresenter >> applyStrings [
 
 	self alphaInput strings: self strings.
 	self hexInput strings: self strings
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidColorInputSingleLinePresenter >> cleanHexValue: aString [
 
 	| cleanString |
@@ -43,7 +41,7 @@ PyramidColorInputSingleLinePresenter >> cleanHexValue: aString [
 	^ cleanString
 ]
 
-{ #category : 'layout' }
+{ #category : #layout }
 PyramidColorInputSingleLinePresenter >> defaultLayout [
 
 	^ SpBoxLayout newHorizontal
@@ -54,13 +52,13 @@ PyramidColorInputSingleLinePresenter >> defaultLayout [
 		  yourself
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidColorInputSingleLinePresenter >> hexInput [
 
 	^ hexInput
 ]
 
-{ #category : 'initialization - deprecated' }
+{ #category : #'initialization - deprecated' }
 PyramidColorInputSingleLinePresenter >> initializePresenter [
 
 	whenValueChangedDo := [ :c |  ].
@@ -84,13 +82,13 @@ PyramidColorInputSingleLinePresenter >> initializePresenter [
 		self updatePreview ]
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidColorInputSingleLinePresenter >> previewPresenter [
 
 	^ previewPresenter
 ]
 
-{ #category : 'actions' }
+{ #category : #actions }
 PyramidColorInputSingleLinePresenter >> updatePreview [
 
 	| color |
@@ -99,7 +97,7 @@ PyramidColorInputSingleLinePresenter >> updatePreview [
 	self previewPresenter morph color: self value
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidColorInputSingleLinePresenter >> value [
 
 	| color alpha |
@@ -112,7 +110,7 @@ PyramidColorInputSingleLinePresenter >> value [
 	^ color alpha: (alpha / 100 min: 1 max: 0).
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidColorInputSingleLinePresenter >> value: aColor [
 
 	aColor isColor ifFalse: [
@@ -123,13 +121,13 @@ PyramidColorInputSingleLinePresenter >> value: aColor [
 	self updatePreview
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidColorInputSingleLinePresenter >> whenValueChangedDo [
 
 	^ whenValueChangedDo
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidColorInputSingleLinePresenter >> whenValueChangedDo: aBlock [
 
 	whenValueChangedDo := aBlock

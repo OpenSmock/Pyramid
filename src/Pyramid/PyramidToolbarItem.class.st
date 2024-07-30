@@ -1,59 +1,57 @@
 Class {
-	#name : 'PyramidToolbarItem',
-	#superclass : 'Object',
+	#name : #PyramidToolbarItem,
+	#superclass : #Object,
 	#instVars : [
 		'presenter',
 		'constraints',
 		'order'
 	],
-	#category : 'Pyramid-views',
-	#package : 'Pyramid',
-	#tag : 'views'
+	#category : 'Pyramid-views'
 }
 
-{ #category : 'comparing' }
+{ #category : #comparing }
 PyramidToolbarItem >> <= aPyramidToolbarItem [
 
 	^ self order <= aPyramidToolbarItem order
 ]
 
-{ #category : 'adding' }
+{ #category : #adding }
 PyramidToolbarItem >> addOnLayout: aLayout [
 
 	aLayout add: self presenter withConstraints: self constraints.
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidToolbarItem >> constraints [
 
 	^ constraints
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidToolbarItem >> constraints: anObject [
 
 	constraints := anObject
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidToolbarItem >> order [
 
 	^ order
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidToolbarItem >> order: anObject [
 
 	order := anObject
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidToolbarItem >> presenter [
 
 	^ presenter
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidToolbarItem >> presenter: anObject [
 
 	presenter := anObject

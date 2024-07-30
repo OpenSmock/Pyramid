@@ -1,6 +1,6 @@
 Class {
-	#name : 'PyramidHistoryPlugin',
-	#superclass : 'Object',
+	#name : #PyramidHistoryPlugin,
+	#superclass : #Object,
 	#traits : 'TPyramidPlugin',
 	#classTraits : 'TPyramidPlugin classTrait',
 	#instVars : [
@@ -9,12 +9,10 @@ Class {
 		'history',
 		'projectModel'
 	],
-	#category : 'Pyramid-history',
-	#package : 'Pyramid',
-	#tag : 'history'
+	#category : 'Pyramid-history'
 }
 
-{ #category : 'adding' }
+{ #category : #adding }
 PyramidHistoryPlugin >> addPanelsOn: aPyramidSimpleWindow [
 
 	aPyramidSimpleWindow
@@ -27,7 +25,7 @@ PyramidHistoryPlugin >> addPanelsOn: aPyramidSimpleWindow [
 		builder makeButtonWithIcon: self redoButton order: 20 ]
 ]
 
-{ #category : 'connecting' }
+{ #category : #connecting }
 PyramidHistoryPlugin >> connectOn: aPyramidEditor [
 
 	self history: aPyramidEditor propertiesManager history.
@@ -35,19 +33,19 @@ PyramidHistoryPlugin >> connectOn: aPyramidEditor [
 	self pyramidElementsChanged: nil.
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidHistoryPlugin >> history [
 
 	^ history
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidHistoryPlugin >> history: anObject [
 
 	history := anObject
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidHistoryPlugin >> initialize [
 
 	undoButton := SpButtonPresenter new
@@ -68,13 +66,13 @@ PyramidHistoryPlugin >> initialize [
 		              yourself
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidHistoryPlugin >> projectModel [
 
 	^ projectModel
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidHistoryPlugin >> projectModel: anObject [
 
 	projectModel := anObject.
@@ -84,20 +82,20 @@ PyramidHistoryPlugin >> projectModel: anObject [
 		for: self
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidHistoryPlugin >> pyramidElementsChanged: anEvent [
 
 	undoButton enabled: self history canUndo.
 	redoButton enabled: self history canRedo
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidHistoryPlugin >> redoButton [
 
 	^ redoButton
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidHistoryPlugin >> undoButton [
 
 	^ undoButton

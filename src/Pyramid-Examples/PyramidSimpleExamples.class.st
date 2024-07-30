@@ -1,179 +1,166 @@
 Class {
-	#name : 'PyramidSimpleExamples',
-	#superclass : 'Object',
-	#category : 'Pyramid-Examples',
-	#package : 'Pyramid-Examples'
+	#name : #PyramidSimpleExamples,
+	#superclass : #Object,
+	#category : #'Pyramid-Examples'
 }
 
-{ #category : 'pyramid-serialized-bloc' }
+{ #category : #'pyramid-serialized-bloc' }
 PyramidSimpleExamples class >> imageProxy [
-<pyStash>
-	^ [ "BlStashSerializer"
-{(BlElement new
+	"This class has been generated using Pyramid.
+
+	By: YannLEGOFF
+	2024-07-23 09:32:34"
+
+	<pyStash>
+	^ [ {(BlElement new
    id: #A;
    background: (BlImageBackground new
+         image: (PyramidExternalRessourceProxy new
+               pyramidExternalRessourceSource: (PyramidExternalRessourceSource new
+                     target: Object;
+                     selector: #iconNamed:;
+                     arguments: {#pharoBig};
+                     yourself);
+               yourself);
          opacity: 1.0;
-         image: PyramidExternalRessourceProxy new;
          yourself);
-   layout: BlBasicLayout uniqueInstance;
-   constraintsDo: [:constraints |  constraints horizontal exact: 200.0.
-      constraints vertical exact: 200.0 ];
-   yourself)}
-	] value
+   constraintsDo: [:constraints |  constraints horizontal exact: 256.0.
+      constraints vertical exact: 256.0 ];
+   yourself)} ] value
 ]
 
-{ #category : 'pyramid-serialized-bloc' }
+{ #category : #'pyramid-serialized-bloc' }
 PyramidSimpleExamples class >> little_cat_in_black [
-<pyStash>
-	^ [ "BlStashSerializer"
-| blellipsegeometry1 blpaintbackground2 bltransparentbackground3 point4 point5 blpaintbackground6 blroundedrectanglegeometry7 |
-blellipsegeometry1 := BlEllipseGeometry new.
+	"This class has been generated using Pyramid.
+
+	By: YannLEGOFF
+	2024-07-29 11:47:06"
+
+	<pyStash>
+	^ [ | blpaintbackground1 blpaintbackground2 |
+blpaintbackground1 := BlPaintBackground new.
 blpaintbackground2 := BlPaintBackground new.
-bltransparentbackground3 := BlTransparentBackground new.
-point4 := Point new.
-point5 := Point new.
-blpaintbackground6 := BlPaintBackground new.
-blroundedrectanglegeometry7 := BlRoundedRectangleGeometry cornerRadius: 12.
 {(BlElement new
-   addChildren: {(BlElement new
-         addChildren: {(BlElement new
-               addChildren: {(BlElement new
-                     id: #E;
-                     background: (blpaintbackground2
-                           opacity: 1.0;
-                           paint: (BlColorPaint new
-                                 color: (Color r: 0.0 g: 0.0 b: 0.0 alpha: 1.0);
-                                 yourself);
-                           yourself);
-                     geometry: blellipsegeometry1;
-                     layout: BlBasicLayout uniqueInstance;
-                     constraintsDo: [:constraints |  constraints horizontal exact: 10.0.
-                        constraints vertical exact: 100.0.
-                        constraints position: 43.0 @ 46.0 ];
-                     yourself)};
-               id: #C;
-               background: (blpaintbackground6
-                     opacity: 1.0;
-                     paint: (BlColorPaint new
-                           color: (Color r: 1.0 g: 1.0 b: 1.0 alpha: 1.0);
-                           yourself);
-                     yourself);
-               geometry: blroundedrectanglegeometry7;
-               layout: BlBasicLayout uniqueInstance;
-               constraintsDo: [:constraints |  constraints horizontal exact: 100.0.
-                  constraints vertical exact: 100.0.
-                  constraints position: -200 @ 0 ];
-               yourself) . 
-            (BlElement new
-               addChildren: {(BlElement new
-                     id: #E;
-                     background: blpaintbackground2;
-                     geometry: blellipsegeometry1;
-                     layout: BlBasicLayout uniqueInstance;
-                     constraintsDo: [:constraints |  constraints horizontal exact: 10.0.
-                        constraints vertical exact: 100.0.
-                        constraints position: 43.0 @ 46.0 ];
-                     yourself)};
-               id: #D;
-               background: blpaintbackground6;
-               geometry: blroundedrectanglegeometry7;
-               layout: BlBasicLayout uniqueInstance;
-               constraintsDo: [:constraints |  constraints horizontal exact: 100.0.
-                  constraints vertical exact: 100.0.
-                  constraints position: 150 @ 0 ];
-               yourself)};
-         id: #eyes;
-         background: (bltransparentbackground3
-               opacity: 1.0;
+   background: (blpaintbackground2
+         paint: (BlColorPaint new
+               color: (Color r: 0.0 g: 0.0 b: 0.0 alpha: 1.0);
                yourself);
+         opacity: 1.0;
+         yourself);
+   constraintsDo: [:constraints |  constraints horizontal matchParent.
+      constraints vertical matchParent ];
+   layout: BlFrameLayout new;
+   addChildren: {(BlElement new
          clipChildren: false;
-         layout: BlBasicLayout uniqueInstance;
          constraintsDo: [:constraints |  constraints frame horizontal alignCenter.
             constraints frame vertical alignTopAt: 0.3.
             constraints position: 373.0 @ 166.0 ];
-         yourself) . 
-      (BlElement new
          addChildren: {(BlElement new
-               id: #G;
-               background: blpaintbackground6;
-               geometry: blellipsegeometry1;
-               layout: BlBasicLayout uniqueInstance;
+               background: (blpaintbackground1
+                     paint: (BlColorPaint new
+                           color: (Color r: 1.0 g: 1.0 b: 1.0 alpha: 1.0);
+                           yourself);
+                     opacity: 1.0;
+                     yourself);
+               geometry: (BlRoundedRectangleGeometry cornerRadius: 12);
+               constraintsDo: [:constraints |  constraints horizontal exact: 100.0.
+                  constraints vertical exact: 100.0.
+                  constraints position: -200 @ 0 ];
+               addChildren: {(BlElement new
+                     background: blpaintbackground2;
+                     geometry: BlEllipseGeometry new;
+                     constraintsDo: [:constraints |  constraints horizontal exact: 10.0.
+                        constraints vertical exact: 100.0.
+                        constraints position: 43.0 @ 46.0 ];
+                     id: #E;
+                     yourself)};
+               id: #C;
                yourself) . 
             (BlElement new
-               id: #H;
-               background: blpaintbackground6;
+               background: blpaintbackground1;
+               geometry: (BlRoundedRectangleGeometry cornerRadius: 12);
+               constraintsDo: [:constraints |  constraints horizontal exact: 100.0.
+                  constraints vertical exact: 100.0.
+                  constraints position: 150 @ 0 ];
+               addChildren: {(BlElement new
+                     background: blpaintbackground2;
+                     geometry: BlEllipseGeometry new;
+                     constraintsDo: [:constraints |  constraints horizontal exact: 10.0.
+                        constraints vertical exact: 100.0.
+                        constraints position: 43.0 @ 46.0 ];
+                     id: #E;
+                     yourself)};
+               id: #D;
+               yourself)};
+         id: #eyes;
+         yourself) . 
+      (BlElement new
+         geometry: BlRectangleGeometry new;
+         constraintsDo: [:constraints |  constraints frame horizontal alignCenter.
+            constraints frame vertical alignCenter.
+            constraints position: 373.0 @ 263.0 ];
+         addChildren: {(BlElement new
+               background: blpaintbackground1;
+               geometry: BlEllipseGeometry new;
+               id: #G;
+               yourself) . 
+            (BlElement new
+               background: blpaintbackground1;
                geometry: (BlRoundedRectangleGeometry cornerRadii: (BlCornerRadii new
                            topLeft: 12;
                            topRight: 12;
                            bottomLeft: 0;
                            bottomRight: 0;
                            yourself));
-               layout: BlBasicLayout uniqueInstance;
                constraintsDo: [:constraints |  constraints vertical exact: 25.0 ];
+               id: #H;
                yourself)};
          id: #nose;
-         background: bltransparentbackground3;
-         geometry: BlRectangleGeometry new;
-         layout: BlBasicLayout uniqueInstance;
-         constraintsDo: [:constraints |  constraints frame horizontal alignCenter.
-            constraints frame vertical alignCenter.
-            constraints position: 373.0 @ 263.0 ];
          yourself) . 
       (BlElement new
-         addChildren: {(BlElement new
-               id: #J;
-               background: blpaintbackground6;
-               geometry: blellipsegeometry1;
-               layout: BlBasicLayout uniqueInstance;
-               constraintsDo: [:constraints |  constraints horizontal exact: 150.
-                  constraints vertical exact: 10.0.
-                  constraints position: 100.0 @ 0 ];
-               yourself) . 
-            (BlElement new
-               id: #K;
-               background: blpaintbackground6;
-               geometry: blellipsegeometry1;
-               layout: BlBasicLayout uniqueInstance;
-               constraintsDo: [:constraints |  constraints horizontal exact: 150.
-                  constraints vertical exact: 10.0.
-                  constraints position: 80 @ 30 ];
-               yourself) . 
-            (BlElement new
-               id: #L;
-               background: blpaintbackground6;
-               geometry: blellipsegeometry1;
-               layout: BlBasicLayout uniqueInstance;
-               constraintsDo: [:constraints |  constraints horizontal exact: 150.
-                  constraints vertical exact: 10.0.
-                  constraints position: -200 @ 0 ];
-               yourself) . 
-            (BlElement new
-               id: #M;
-               background: blpaintbackground6;
-               geometry: blellipsegeometry1;
-               layout: BlBasicLayout uniqueInstance;
-               constraintsDo: [:constraints |  constraints horizontal exact: 150.
-                  constraints vertical exact: 10.0.
-                  constraints position: -180 @ 30 ];
-               yourself)};
-         id: #mustach;
-         background: bltransparentbackground3;
          clipChildren: false;
-         layout: BlBasicLayout uniqueInstance;
          constraintsDo: [:constraints |  constraints frame horizontal alignCenter.
             constraints frame vertical alignTopAt: 0.6.
             constraints position: 373.0 @ 364.0 ];
+         addChildren: {(BlElement new
+               background: blpaintbackground1;
+               geometry: BlEllipseGeometry new;
+               constraintsDo: [:constraints |  constraints horizontal exact: 150.0.
+                  constraints vertical exact: 10.0.
+                  constraints position: 100.0 @ 0 ];
+               id: #J;
+               yourself) . 
+            (BlElement new
+               background: blpaintbackground1;
+               geometry: BlEllipseGeometry new;
+               constraintsDo: [:constraints |  constraints horizontal exact: 150.0.
+                  constraints vertical exact: 10.0.
+                  constraints position: 80 @ 30 ];
+               id: #K;
+               yourself) . 
+            (BlElement new
+               background: blpaintbackground1;
+               geometry: BlEllipseGeometry new;
+               constraintsDo: [:constraints |  constraints horizontal exact: 150.0.
+                  constraints vertical exact: 10.0.
+                  constraints position: -200 @ 0 ];
+               id: #L;
+               yourself) . 
+            (BlElement new
+               background: blpaintbackground1;
+               geometry: BlEllipseGeometry new;
+               constraintsDo: [:constraints |  constraints horizontal exact: 150.0.
+                  constraints vertical exact: 10.0.
+                  constraints position: -180 @ 30 ];
+               id: #M;
+               yourself)};
+         id: #mustach;
          yourself)};
    id: #background;
-   background: blpaintbackground2;
-   layout: BlFrameLayout new;
-   constraintsDo: [:constraints |  constraints horizontal matchParent.
-      constraints vertical matchParent ];
-   yourself)}
-	] value
+   yourself)} ] value
 ]
 
-{ #category : 'pyramid-serialized-bloc' }
+{ #category : #'pyramid-serialized-bloc' }
 PyramidSimpleExamples class >> marble [
 
 	<pyStash>
@@ -310,7 +297,7 @@ PyramidSimpleExamples class >> marble [
 			   yourself) } ] value
 ]
 
-{ #category : 'pyramid-serialized-bloc' }
+{ #category : #'pyramid-serialized-bloc' }
 PyramidSimpleExamples class >> marble2 [
 
 	<pyStash>
@@ -466,7 +453,7 @@ PyramidSimpleExamples class >> marble2 [
 			   yourself) } ] value
 ]
 
-{ #category : 'pyramid-serialized-bloc' }
+{ #category : #'pyramid-serialized-bloc' }
 PyramidSimpleExamples class >> marble3 [
 
 	<pyStash>
@@ -763,7 +750,7 @@ PyramidSimpleExamples class >> marble3 [
 			   yourself) } ] value
 ]
 
-{ #category : 'pyramid-serialized-bloc' }
+{ #category : #'pyramid-serialized-bloc' }
 PyramidSimpleExamples class >> signal [
 <pyStash>
 	^ [ "BlStashSerializer"
@@ -826,7 +813,7 @@ blellipsegeometry2 := BlEllipseGeometry new.
 	] value
 ]
 
-{ #category : 'pyramid-serialized-bloc' }
+{ #category : #'pyramid-serialized-bloc' }
 PyramidSimpleExamples class >> signal_green [
 <pyStash>
 	^ [ "BlStashSerializer"
@@ -889,7 +876,7 @@ blellipsegeometry2 := BlEllipseGeometry new.
 	] value
 ]
 
-{ #category : 'pyramid-serialized-bloc' }
+{ #category : #'pyramid-serialized-bloc' }
 PyramidSimpleExamples class >> simpleFlowLayout [
 <pyStash>
 	^ [ "BlStashSerializer"
@@ -988,6 +975,6 @@ blinsets1 := BlInsets all: 5.0.
 	] value
 ]
 
-{ #category : 'see class side' }
+{ #category : #'see class side' }
 PyramidSimpleExamples >> seeClassSide [ 
 ]

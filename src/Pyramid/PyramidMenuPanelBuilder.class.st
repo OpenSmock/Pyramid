@@ -1,36 +1,34 @@
 Class {
-	#name : 'PyramidMenuPanelBuilder',
-	#superclass : 'PyramidPanelBuilder',
+	#name : #PyramidMenuPanelBuilder,
+	#superclass : #PyramidPanelBuilder,
 	#instVars : [
 		'item',
 		'emptyGroups',
 		'multiGroups',
 		'singleGroups'
 	],
-	#category : 'Pyramid-views',
-	#package : 'Pyramid',
-	#tag : 'views'
+	#category : 'Pyramid-views'
 }
 
-{ #category : 'adding' }
+{ #category : #adding }
 PyramidMenuPanelBuilder >> addGroupEmptySelection: aGroupBlock order: aNumber [
 
 	self emptyGroups add: aNumber -> aGroupBlock
 ]
 
-{ #category : 'adding' }
+{ #category : #adding }
 PyramidMenuPanelBuilder >> addGroupMultiSelection: aGroupBlock order: aNumber [
 
 	self multiGroups add: aNumber -> aGroupBlock
 ]
 
-{ #category : 'adding' }
+{ #category : #adding }
 PyramidMenuPanelBuilder >> addGroupSingleSelection: aGroupBlock order: aNumber [
 
 	self singleGroups add: aNumber -> aGroupBlock
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidMenuPanelBuilder >> buildMenuFrom: aGroupOfBlocks with: aTarget [
 
 	| menu group |
@@ -43,13 +41,13 @@ PyramidMenuPanelBuilder >> buildMenuFrom: aGroupOfBlocks with: aTarget [
 	^ menu
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidMenuPanelBuilder >> emptyGroups [
 
 	^ emptyGroups
 ]
 
-{ #category : 'initialization' }
+{ #category : #initialization }
 PyramidMenuPanelBuilder >> initialize [
 
 	emptyGroups := OrderedCollection new.
@@ -57,11 +55,11 @@ PyramidMenuPanelBuilder >> initialize [
 	singleGroups := OrderedCollection new
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidMenuPanelBuilder >> item [
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidMenuPanelBuilder >> menuFor: aCollection [
 
 	aCollection ifEmpty: [ ^ self buildMenuFrom: self emptyGroups with: nil ].
@@ -70,23 +68,23 @@ PyramidMenuPanelBuilder >> menuFor: aCollection [
 	^ self buildMenuFrom: self multiGroups with: aCollection
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidMenuPanelBuilder >> multiGroups [
 
 	^ multiGroups
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidMenuPanelBuilder >> presenterOf: aCollectionOfItems [
 
 	^ SpNullPresenter new
 ]
 
-{ #category : 'initialization' }
+{ #category : #initialization }
 PyramidMenuPanelBuilder >> reset [
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidMenuPanelBuilder >> singleGroups [
 
 	^ singleGroups

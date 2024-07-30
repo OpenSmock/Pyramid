@@ -1,52 +1,50 @@
 Class {
-	#name : 'PyramidToolbarPanelBuilder',
-	#superclass : 'PyramidPanelBuilder',
+	#name : #PyramidToolbarPanelBuilder,
+	#superclass : #PyramidPanelBuilder,
 	#instVars : [
 		'item',
 		'isHorizontal'
 	],
-	#category : 'Pyramid-views',
-	#package : 'Pyramid',
-	#tag : 'views'
+	#category : 'Pyramid-views'
 }
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidToolbarPanelBuilder >> height [
 
 	^ 32
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidToolbarPanelBuilder >> isHorizontal [
 
 	isHorizontal ifNil: [ isHorizontal := true ].
 	^ isHorizontal
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidToolbarPanelBuilder >> isHorizontal: anObject [
 
 	isHorizontal := anObject
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidToolbarPanelBuilder >> item [
 
 	^ item
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidToolbarPanelBuilder >> item: anObject [
 
 	item := anObject
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidToolbarPanelBuilder >> layout [
 	self isHorizontal ifTrue: [ ^ SpBoxLayout newHorizontal spacing: 4; yourself ] ifFalse: [ ^ SpBoxLayout newVertical spacing: 4; yourself ]
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidToolbarPanelBuilder >> makeButtonWithIcon: anObject order: aNumber [
 
 	item := PyramidToolbarItem new
@@ -56,7 +54,7 @@ PyramidToolbarPanelBuilder >> makeButtonWithIcon: anObject order: aNumber [
 		        yourself
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidToolbarPanelBuilder >> makeEmptyWith: aConstraintsBlock order: aNumber [
 
 	item := PyramidToolbarItem new
@@ -66,7 +64,7 @@ PyramidToolbarPanelBuilder >> makeEmptyWith: aConstraintsBlock order: aNumber [
 		        yourself
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidToolbarPanelBuilder >> presenterOf: aCollectionOfItems [
 
 	| layout |
@@ -77,19 +75,19 @@ PyramidToolbarPanelBuilder >> presenterOf: aCollectionOfItems [
 		  yourself
 ]
 
-{ #category : 'initialization' }
+{ #category : #initialization }
 PyramidToolbarPanelBuilder >> reset [
 
 	item:= nil
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidToolbarPanelBuilder >> squareButtonConstraints [
 
 	^ [ :c | c width: self width. c height: self height ]
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidToolbarPanelBuilder >> width [
 	^ 32
 ]

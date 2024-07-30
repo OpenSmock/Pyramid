@@ -1,18 +1,16 @@
 Class {
-	#name : 'PyramidPanelModel',
-	#superclass : 'Object',
+	#name : #PyramidPanelModel,
+	#superclass : #Object,
 	#instVars : [
 		'builder',
 		'items',
 		'window',
 		'presenter'
 	],
-	#category : 'Pyramid-views',
-	#package : 'Pyramid',
-	#tag : 'views'
+	#category : 'Pyramid-views'
 }
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidPanelModel class >> menu [
 
 	^ self new
@@ -20,7 +18,7 @@ PyramidPanelModel class >> menu [
 		  yourself
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidPanelModel class >> presenter [
 
 	^ self new
@@ -28,7 +26,7 @@ PyramidPanelModel class >> presenter [
 		  yourself
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidPanelModel class >> tab [
 
 	^ self new
@@ -36,7 +34,7 @@ PyramidPanelModel class >> tab [
 		  yourself
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidPanelModel class >> toolbarHorizontal [
 
 ^ self new
@@ -44,7 +42,7 @@ PyramidPanelModel class >> toolbarHorizontal [
 		  yourself
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidPanelModel class >> toolbarVertical [
 
 	^ self new
@@ -54,7 +52,7 @@ PyramidPanelModel class >> toolbarVertical [
 		  yourself
 ]
 
-{ #category : 'adding' }
+{ #category : #adding }
 PyramidPanelModel >> addItem: aBlock [
 
 	self builder reset.
@@ -63,64 +61,64 @@ PyramidPanelModel >> addItem: aBlock [
 	self informItemsChanged.
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidPanelModel >> builder [
 
 	^ builder
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidPanelModel >> builder: anObject [
 
 	builder := anObject
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidPanelModel >> informItemsChanged [
 
 	presenter := self builder presenterOf: self items.
 	self window panelUpdated
 ]
 
-{ #category : 'adding' }
+{ #category : #adding }
 PyramidPanelModel >> initialize [
 
 	items := OrderedCollection new.
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidPanelModel >> installOn: aPyramidWindow at: aServiceName [
 	aPyramidWindow services at:aServiceName put: self.
 	self window: aPyramidWindow.
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidPanelModel >> items [
 
 	^ items
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidPanelModel >> presenter [
 
 	presenter ifNil: [ presenter := self builder presenterOf: self items ].
 	^ presenter
 ]
 
-{ #category : 'adding' }
+{ #category : #adding }
 PyramidPanelModel >> removeItem: anItem [
 
 	self items remove: anItem.
 	self informItemsChanged.
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidPanelModel >> window [
 
 	^ window
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidPanelModel >> window: anObject [
 
 	window := anObject

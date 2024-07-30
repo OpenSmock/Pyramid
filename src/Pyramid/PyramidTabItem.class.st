@@ -1,24 +1,22 @@
 Class {
-	#name : 'PyramidTabItem',
-	#superclass : 'Object',
+	#name : #PyramidTabItem,
+	#superclass : #Object,
 	#instVars : [
 		'presenter',
 		'order',
 		'label',
 		'icon'
 	],
-	#category : 'Pyramid-views',
-	#package : 'Pyramid',
-	#tag : 'views'
+	#category : 'Pyramid-views'
 }
 
-{ #category : 'comparing' }
+{ #category : #comparing }
 PyramidTabItem >> <= anObject [
 
 	^ self order <= anObject order
 ]
 
-{ #category : 'adding' }
+{ #category : #adding }
 PyramidTabItem >> addOnNotebook: aNotebook [
 
 	aNotebook addPage: (SpNotebookPage
@@ -27,49 +25,49 @@ PyramidTabItem >> addOnNotebook: aNotebook [
 			 provider:  self presenter )
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidTabItem >> icon [
 
 	^ icon
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidTabItem >> icon: anObject [
 
 	icon := anObject
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidTabItem >> label [
 
 	^ label
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidTabItem >> label: anObject [
 
 	label := anObject
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidTabItem >> order [
 
 	^ order
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidTabItem >> order: anObject [
 
 	order := anObject
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidTabItem >> presenter [
 
 	^ presenter
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidTabItem >> presenter: anObject [
 
 	presenter := anObject

@@ -1,22 +1,20 @@
 Class {
-	#name : 'PyramidDashArrayInputPresenter',
-	#superclass : 'PyramidInputPresenter',
+	#name : #PyramidDashArrayInputPresenter,
+	#superclass : #PyramidInputPresenter,
 	#instVars : [
 		'submitBlock',
 		'inputArray'
 	],
-	#category : 'Pyramid-specs-custom',
-	#package : 'Pyramid',
-	#tag : 'specs-custom'
+	#category : 'Pyramid-specs-custom'
 }
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidDashArrayInputPresenter >> applyStrings [
 
 	self inputArray help: self strings help
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidDashArrayInputPresenter >> defaultLayout [
 
 	^ SpBoxLayout newHorizontal
@@ -24,7 +22,7 @@ PyramidDashArrayInputPresenter >> defaultLayout [
 		  yourself
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidDashArrayInputPresenter >> getArrayFrom: aString [
 
 	| numbersAsString |
@@ -34,7 +32,7 @@ PyramidDashArrayInputPresenter >> getArrayFrom: aString [
 		  NumberParser parse: each onError: [ ^ PyramidUnknowState new ] ]
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidDashArrayInputPresenter >> initializePresenters [
 
 	inputArray := SpTextInputFieldPresenter new
@@ -43,26 +41,26 @@ PyramidDashArrayInputPresenter >> initializePresenters [
 		              yourself
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidDashArrayInputPresenter >> inputArray [
 
 	^ inputArray
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidDashArrayInputPresenter >> submitBlock [
 
 	submitBlock ifNil: [ submitBlock := [ :n |  ] ].
 	^ submitBlock
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidDashArrayInputPresenter >> value [
 
 	^ self getArrayFrom: self inputArray text
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidDashArrayInputPresenter >> value: aCollection [
 
 	aCollection isCollection ifFalse: [
@@ -73,7 +71,7 @@ PyramidDashArrayInputPresenter >> value: aCollection [
 				  number asFloat reduce printString ]))
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidDashArrayInputPresenter >> whenValueChangedDo: aBlock [
 
 	submitBlock := aBlock

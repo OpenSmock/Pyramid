@@ -1,34 +1,32 @@
 Class {
-	#name : 'PyramidProjectModelEvent',
-	#superclass : 'PyramidEvent',
+	#name : #PyramidProjectModelEvent,
+	#superclass : #PyramidEvent,
 	#instVars : [
 		'selection',
 		'firstLevelElements'
 	],
-	#category : 'Pyramid-core',
-	#package : 'Pyramid',
-	#tag : 'core'
+	#category : 'Pyramid-core'
 }
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidProjectModelEvent >> firstLevelElements [
 
 	^ firstLevelElements
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidProjectModelEvent >> firstLevelElements: anObject [
 
 	firstLevelElements := anObject
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidProjectModelEvent >> selection [
 
 	^ selection
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidProjectModelEvent >> selection: anObject [
 
 	selection := anObject

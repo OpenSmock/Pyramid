@@ -2,24 +2,22 @@
 I can show and edit numbers
 "
 Class {
-	#name : 'PyramidNumberInputPresenter',
-	#superclass : 'PyramidInputPresenter',
+	#name : #PyramidNumberInputPresenter,
+	#superclass : #PyramidInputPresenter,
 	#instVars : [
 		'inputNumber',
 		'submitBlock'
 	],
-	#category : 'Pyramid-specs-custom',
-	#package : 'Pyramid',
-	#tag : 'specs-custom'
+	#category : 'Pyramid-specs-custom'
 }
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidNumberInputPresenter >> applyStrings [
 
 	self inputNumber help: self strings help
 ]
 
-{ #category : 'layout' }
+{ #category : #layout }
 PyramidNumberInputPresenter >> defaultLayout [
 
 	^ SpBoxLayout newHorizontal
@@ -27,38 +25,38 @@ PyramidNumberInputPresenter >> defaultLayout [
 		  yourself
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidNumberInputPresenter >> getNumberFrom: aString [
 
 	^ NumberParser parse: aString onError: [ PyramidUnknowState new ]
 ]
 
-{ #category : 'initialization - deprecated' }
+{ #category : #'initialization - deprecated' }
 PyramidNumberInputPresenter >> initializePresenters [
 
 	inputNumber := SpTextInputFieldPresenter new whenSubmitDo: [ :text |
 			               self submitBlock value: (self getNumberFrom: text) ]; yourself
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidNumberInputPresenter >> inputNumber [
 ^ inputNumber
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidNumberInputPresenter >> submitBlock [
 
 	submitBlock ifNil: [ submitBlock := [ :n | ] ].
 ^ submitBlock
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidNumberInputPresenter >> value [
 
 	^ self getNumberFrom: self inputNumber text
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidNumberInputPresenter >> value: aNumber [
 
 	aNumber isNumber ifTrue: [
@@ -67,7 +65,7 @@ PyramidNumberInputPresenter >> value: aNumber [
 	self inputNumber text: '--'
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidNumberInputPresenter >> whenValueChangedDo: aBlock [
 
 	submitBlock := aBlock

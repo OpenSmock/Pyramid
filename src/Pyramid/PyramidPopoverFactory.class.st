@@ -1,12 +1,10 @@
 Class {
-	#name : 'PyramidPopoverFactory',
-	#superclass : 'Object',
-	#category : 'Pyramid-views',
-	#package : 'Pyramid',
-	#tag : 'views'
+	#name : #PyramidPopoverFactory,
+	#superclass : #Object,
+	#category : 'Pyramid-views'
 }
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidPopoverFactory class >> makeWithPresenter: aPresenter relativeTo: anInput position: aPopoverPosition [
 
 	| popover popupPresenter closeButton |

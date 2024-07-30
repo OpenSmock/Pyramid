@@ -1,6 +1,6 @@
 Class {
-	#name : 'PyramidPluginDynamicLayout',
-	#superclass : 'Object',
+	#name : #PyramidPluginDynamicLayout,
+	#superclass : #Object,
 	#traits : 'TPyramidPlugin',
 	#classTraits : 'TPyramidPlugin classTrait',
 	#instVars : [
@@ -10,12 +10,10 @@ Class {
 		'isRightOpened',
 		'editorWindow'
 	],
-	#category : 'Pyramid-plugin-dynamic-layout',
-	#package : 'Pyramid',
-	#tag : 'plugin-dynamic-layout'
+	#category : 'Pyramid-plugin-dynamic-layout'
 }
 
-{ #category : 'adding' }
+{ #category : #adding }
 PyramidPluginDynamicLayout >> addPanelsOn: aPyramidWindow [
 
 	aPyramidWindow
@@ -28,7 +26,7 @@ PyramidPluginDynamicLayout >> addPanelsOn: aPyramidWindow [
 		builder makeButtonWithIcon: self rightButton order: 9999 ]
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidPluginDynamicLayout >> changeEditorLayout [
 
 	| strategy |
@@ -44,7 +42,7 @@ PyramidPluginDynamicLayout >> changeEditorLayout [
 	self editorWindow layoutStrategy: strategy
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidPluginDynamicLayout >> changeLeftLayout [
 
 	self isLeftOpened: self isLeftOpened not.
@@ -52,7 +50,7 @@ PyramidPluginDynamicLayout >> changeLeftLayout [
 	self changeEditorLayout
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidPluginDynamicLayout >> changeRightLayout [
 
 	self isRightOpened: self isRightOpened not.
@@ -60,25 +58,25 @@ PyramidPluginDynamicLayout >> changeRightLayout [
 	self changeEditorLayout
 ]
 
-{ #category : 'actions' }
+{ #category : #actions }
 PyramidPluginDynamicLayout >> configureBuilder: aPyramidBuilder [
 
 	editorWindow := PyramidDynamicWindow new.
 	aPyramidBuilder window: editorWindow
 ]
 
-{ #category : 'connecting' }
+{ #category : #connecting }
 PyramidPluginDynamicLayout >> connectOn: aPyramidEditor [
 
 	self changeEditorLayout
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidPluginDynamicLayout >> editorWindow [
 	^ editorWindow
 ]
 
-{ #category : 'initialization' }
+{ #category : #initialization }
 PyramidPluginDynamicLayout >> initialize [
 
 	isLeftOpened := true.
@@ -96,48 +94,48 @@ PyramidPluginDynamicLayout >> initialize [
 		               yourself
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidPluginDynamicLayout >> isLeftOpened [
 
 	^ isLeftOpened
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidPluginDynamicLayout >> isLeftOpened: anObject [
 
 	isLeftOpened := anObject
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidPluginDynamicLayout >> isRightOpened [
 
 	^ isRightOpened
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidPluginDynamicLayout >> isRightOpened: anObject [
 
 	isRightOpened := anObject
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidPluginDynamicLayout >> leftButton [
 	^ leftButton
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidPluginDynamicLayout >> leftButtonHelp [
 
 	self isLeftOpened ifTrue: [ ^ 'Hide left panel' ] ifFalse: [ ^ 'Show left panel' ]
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidPluginDynamicLayout >> rightButton [
 
 	^ rightButton
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidPluginDynamicLayout >> rightButtonHelp [
 
 	self isRightOpened

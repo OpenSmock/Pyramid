@@ -1,36 +1,34 @@
 Class {
-	#name : 'PyramidDynamicLayoutStrategy',
-	#superclass : 'Object',
-	#category : 'Pyramid-plugin-dynamic-layout',
-	#package : 'Pyramid',
-	#tag : 'plugin-dynamic-layout'
+	#name : #PyramidDynamicLayoutStrategy,
+	#superclass : #Object,
+	#category : 'Pyramid-plugin-dynamic-layout'
 }
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidDynamicLayoutStrategy class >> proportion [
 
 	^ 1 / 4
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidDynamicLayoutStrategy class >> proportionRight [
 
 	^ 1 - self proportion
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidDynamicLayoutStrategy class >> proportionRightAndLeft [
 
 	^ (1 - (2 * self proportion)) / (1 - self proportion)
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidDynamicLayoutStrategy >> centerLayoutFor: aWindow [
 
 	^ self shouldBeImplemented 
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidDynamicLayoutStrategy >> layoutFor: aWindow [
 
 	| mainLayout |
@@ -42,7 +40,7 @@ PyramidDynamicLayoutStrategy >> layoutFor: aWindow [
 	^ mainLayout
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidDynamicLayoutStrategy >> spaceAndToolBarFor: aWindow [
 	"^ (aWindow services at: #space) presenter"
 
@@ -52,7 +50,7 @@ PyramidDynamicLayoutStrategy >> spaceAndToolBarFor: aWindow [
 		  yourself
 ]
 
-{ #category : 'specs' }
+{ #category : #specs }
 PyramidDynamicLayoutStrategy >> topLayoutFor: aWindow [
 
 	| layout |

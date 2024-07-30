@@ -1,23 +1,21 @@
 Class {
-	#name : 'PyramidColorInputMultiLinesPresenter',
-	#superclass : 'PyramidInputPresenter',
+	#name : #PyramidColorInputMultiLinesPresenter,
+	#superclass : #PyramidInputPresenter,
 	#instVars : [
 		'hexaInput',
 		'colorInput',
 		'whenValueChangedDo'
 	],
-	#category : 'Pyramid-specs-custom',
-	#package : 'Pyramid',
-	#tag : 'specs-custom'
+	#category : 'Pyramid-specs-custom'
 }
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidColorInputMultiLinesPresenter >> colorInput [
 
 	^ colorInput
 ]
 
-{ #category : 'layout' }
+{ #category : #layout }
 PyramidColorInputMultiLinesPresenter >> defaultLayout [
 
 	^ SpBoxLayout newVertical
@@ -27,13 +25,13 @@ PyramidColorInputMultiLinesPresenter >> defaultLayout [
 		  yourself
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidColorInputMultiLinesPresenter >> hexaInput [
 
 	^ hexaInput
 ]
 
-{ #category : 'initialization - deprecated' }
+{ #category : #'initialization - deprecated' }
 PyramidColorInputMultiLinesPresenter >> initializePresenters [
 
 	whenValueChangedDo := [ :color |  ].
@@ -50,26 +48,26 @@ PyramidColorInputMultiLinesPresenter >> initializePresenters [
 	self value: Color red
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidColorInputMultiLinesPresenter >> value [
 
 	^ self hexaInput value
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidColorInputMultiLinesPresenter >> value: aColor [
 
 	self colorInput value: aColor.
 	self hexaInput value: aColor
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidColorInputMultiLinesPresenter >> whenValueChangedDo [
 
 	^ whenValueChangedDo
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidColorInputMultiLinesPresenter >> whenValueChangedDo: anObject [
 
 	whenValueChangedDo := anObject

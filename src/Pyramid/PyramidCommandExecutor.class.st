@@ -5,20 +5,18 @@ I’m an abstract class use to define the API.
 
 "
 Class {
-	#name : 'PyramidCommandExecutor',
-	#superclass : 'Object',
-	#category : 'Pyramid-commands',
-	#package : 'Pyramid',
-	#tag : 'commands'
+	#name : #PyramidCommandExecutor,
+	#superclass : #Object,
+	#category : 'Pyramid-commands'
 }
 
-{ #category : 'testing' }
+{ #category : #testing }
 PyramidCommandExecutor class >> isAbstract [
 
 	^ self == PyramidCommandExecutor
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidCommandExecutor >> use: aCommand on: aCollection with: arguments [
 
 	self shouldBeImplemented
