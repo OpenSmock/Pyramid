@@ -20,28 +20,25 @@ PyramidToploThemePlugin class >> shouldInstall [
 PyramidToploThemePlugin class >> toploAntIconCategory [
 
 	<pyramidLibraryCategory: 11>
-	^ PyramidToploThemePlugin toploIconThemeCategoryFromClass: ToAntDesignIconProvider
+	^ PyramidToploThemePlugin
+		  toploIconThemeCategoryFromClass: ToAntDesignIconProvider
+		  withCategoryPrefix: 'Ant Design - '
 ]
 
 { #category : #adding }
-PyramidToploThemePlugin class >> toploIconThemeCategoryFromClass: aClass [
+PyramidToploThemePlugin class >> toploIconThemeCategoryFromClass: aClass withCategoryPrefix: aString [
 
 	| categoriesMethods |
-	categoriesMethods := aClass class methods select: [ :m |
-		                     m selector first = $_ and: [
-			                     ($_ split: m selector) last = 'loaded' ] ].
+	categoriesMethods := aClass class methods select: [ :method |
+		                     method selector first = $_ and: [
+			                     ($_ split: method selector) last = 'loaded' ] ].
 
 	^ categoriesMethods collect: [ :method |
-		  | libraryCategory elements elementSelectors |
-		  libraryCategory := PyramidLibraryCategory new
-			                     name: method selector allButFirst;
-			                     icon: (Smalltalk ui icons iconNamed: #image);
-			                     yourself.
+		  | prefix elementSelectors elements |
+		  prefix := ($_ split: method selector) second.
 
 		  elementSelectors := (aClass perform: method selector) collect: [
-			                      :suffix |
-			                      ($_ split: method selector) second , '_'
-			                      , suffix ].
+			                      :suffix | prefix , '_' , suffix ].
 
 		  elements := elementSelectors collect: [ :selector |
 			              PyramidLibraryElement new
@@ -49,11 +46,10 @@ PyramidToploThemePlugin class >> toploIconThemeCategoryFromClass: aClass [
 				              icon: (Smalltalk ui icons iconNamed: #blank);
 				              block: [
 					              | image |
-					              image := PyramidExternalRessourceProxy
-						                       fromTarget: ToImage new
-						                       selector: #innerImage:
-						                       arguments:
-							                       { (PyramidExternalRessourceProxy new
+					              image := ToImage new
+						                       size: 48 asPoint;
+						                       innerImage:
+							                       (PyramidExternalRessourceProxy new
 								                        pyramidExternalRessourceSource:
 									                        (PyramidExternalRessourceSource new
 										                         target: BlSvgConverter;
@@ -70,12 +66,14 @@ PyramidToploThemePlugin class >> toploIconThemeCategoryFromClass: aClass [
 														                           yourself);
 												                          yourself) };
 										                         yourself);
-								                        yourself) }.
-					              image size: 48 asPoint.
+								                        yourself).
 					              { image } ];
 				              yourself ].
-		  libraryCategory elements: elements.
-		  libraryCategory ]
+		  PyramidLibraryCategory new
+			  name: aString , prefix;
+			  icon: (Smalltalk ui icons iconNamed: #image);
+			  elements: elements;
+			  yourself ]
 ]
 
 { #category : #adding }
@@ -106,6 +104,15 @@ PyramidToploThemePlugin class >> toploLibraryCategory [
 		   icon: (Smalltalk ui icons iconNamed: #box);
 		   elements: (elements sorted: [ :a :b | a name < b name ]);
 		   yourself) }
+]
+
+{ #category : #adding }
+PyramidToploThemePlugin class >> toploMaterialIconCategory [
+
+	<pyramidLibraryCategory: 12>
+	^ PyramidToploThemePlugin
+		  toploIconThemeCategoryFromClass: ToMaterialDesignIconProvider
+		  withCategoryPrefix: 'Material Design - '
 ]
 
 { #category : #adding }

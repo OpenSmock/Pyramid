@@ -331,6 +331,12 @@ PyramidExternalRessourceProxy >> pyramidExternalRessourceSource: anObject [
 	source := anObject
 ]
 
+{ #category : #asserting }
+PyramidExternalRessourceProxy >> shouldSerializedChildren [ 
+
+	^ false
+]
+
 { #category : #accessing }
 PyramidExternalRessourceProxy >> size [
 

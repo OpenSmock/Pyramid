@@ -587,63 +587,77 @@ PyramidToploExamples class >> icons [
 	"This class has been generated using Pyramid.
 
 	By: YannLEGOFF
-	2024-07-30 18:05:02"
+	2024-07-30 18:24:19"
 
 	<pyStash>
-	^ [ | toimage1 blsvgconverterclass2 pyramidexternalressourceproxy3 toimage4 toantdesigniconproviderclass5 |
-toimage1 := ToImage new.
-blsvgconverterclass2 := BlSvgConverter.
-pyramidexternalressourceproxy3 := PyramidExternalRessourceProxy new.
-toimage4 := ToImage new.
-toantdesigniconproviderclass5 := ToAntDesignIconProvider.
-{(PyramidExternalRessourceProxy new
-   pyramidExternalRessourceSource: (PyramidExternalRessourceSource new
-         target: (toimage4
-               innerImage: (PyramidExternalRessourceProxy new
+	^ [ | blsvgconverterclass1 toantdesigniconproviderclass2 |
+blsvgconverterclass1 := BlSvgConverter.
+toantdesigniconproviderclass2 := ToAntDesignIconProvider.
+{(ToImage new
+   innerImage: (PyramidExternalRessourceProxy new
+         pyramidExternalRessourceSource: (PyramidExternalRessourceSource new
+               target: blsvgconverterclass1;
+               selector: #convertFromString:;
+               arguments: {(PyramidExternalRessourceProxy new
                      pyramidExternalRessourceSource: (PyramidExternalRessourceSource new
-                           target: blsvgconverterclass2;
-                           selector: #convertFromString:;
-                           arguments: {(PyramidExternalRessourceProxy new
-                                 pyramidExternalRessourceSource: (PyramidExternalRessourceSource new
-                                       target: toantdesigniconproviderclass5;
-                                       selector: #twotone_like;
-                                       arguments: {};
-                                       yourself);
-                                 yourself)};
+                           target: toantdesigniconproviderclass2;
+                           selector: #twotone_sound;
+                           arguments: {};
                            yourself);
-                     yourself);
-               constraintsDo: [:constraints |  constraints horizontal exact: 48.0.
-                  constraints vertical exact: 48.0 ];
-               layout: BlFrameLayout new;
+                     yourself)};
                yourself);
-         selector: #yourself;
-         arguments: {};
          yourself);
+   constraintsDo: [:constraints |  constraints horizontal exact: 200.0.
+      constraints vertical exact: 200.0 ];
+   layout: BlFrameLayout new;
+   id: #A;
    yourself) . 
-(PyramidExternalRessourceProxy new
-   pyramidExternalRessourceSource: (PyramidExternalRessourceSource new
-         target: (toimage1
-               innerImage: (pyramidexternalressourceproxy3
+(ToImage new
+   innerImage: (PyramidExternalRessourceProxy new
+         pyramidExternalRessourceSource: (PyramidExternalRessourceSource new
+               target: blsvgconverterclass1;
+               selector: #convertFromString:;
+               arguments: {(PyramidExternalRessourceProxy new
                      pyramidExternalRessourceSource: (PyramidExternalRessourceSource new
-                           target: blsvgconverterclass2;
-                           selector: #convertFromString:;
-                           arguments: {(PyramidExternalRessourceProxy new
-                                 pyramidExternalRessourceSource: (PyramidExternalRessourceSource new
-                                       target: toantdesigniconproviderclass5;
-                                       selector: #twotone_switcher;
-                                       arguments: {};
-                                       yourself);
-                                 yourself)};
+                           target: toantdesigniconproviderclass2;
+                           selector: #outlined_code;
+                           arguments: {};
                            yourself);
-                     yourself);
-               constraintsDo: [:constraints |  constraints horizontal exact: 64.0.
-                  constraints vertical exact: 64.0.
-                  constraints position: 52.0 @ 30.0 ];
-               layout: BlFrameLayout new;
-               id: #A;
+                     yourself)};
                yourself);
-         selector: #innerImage:;
-         arguments: {pyramidexternalressourceproxy3};
          yourself);
+   constraintsDo: [:constraints |  constraints horizontal exact: 48.0.
+      constraints vertical exact: 48.0 ];
+   layout: BlFrameLayout new;
+   id: #B;
+   yourself)} ] value
+]
+
+{ #category : #'pyramid-serialized-bloc' }
+PyramidToploExamples class >> icons2 [
+	"This class has been generated using Pyramid.
+
+	By: YannLEGOFF
+	2024-07-30 18:25:18"
+
+	<pyStash>
+	^ [ {(ToImage new
+   innerImage: (PyramidExternalRessourceProxy new
+         pyramidExternalRessourceSource: (PyramidExternalRessourceSource new
+               target: BlSvgConverter;
+               selector: #convertFromString:;
+               arguments: {(PyramidExternalRessourceProxy new
+                     pyramidExternalRessourceSource: (PyramidExternalRessourceSource new
+                           target: ToMaterialDesignIconProvider;
+                           selector: #round_timelapse;
+                           arguments: {};
+                           yourself);
+                     yourself)};
+               yourself);
+         yourself);
+   constraintsDo: [:constraints |  constraints horizontal exact: 200.0.
+      constraints vertical exact: 200.0 ];
+   layout: BlFrameLayout new;
+   id: #A;
    yourself)} ] value
 ]
