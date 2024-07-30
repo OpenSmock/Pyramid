@@ -2,9 +2,10 @@ Class {
 	#name : #PyramidNavigationPresenter,
 	#superclass : #SpPresenter,
 	#instVars : [
-		'libraryPanel',
+		'toolPanel',
 		'selectionPanel',
-		'navigationModel'
+		'navigationModel',
+		'library'
 	],
 	#category : #'Pyramid-Bloc-plugin-navigation'
 }
@@ -14,7 +15,7 @@ PyramidNavigationPresenter >> defaultLayout [
 
 	^ SpBoxLayout newVertical
 		  spacing: 4;
-		  add: self libraryPanel expand: false;
+		  add: self toolPanel expand: false;
 		  add: self selectionPanel expand: true;
 		  yourself
 ]
@@ -22,27 +23,30 @@ PyramidNavigationPresenter >> defaultLayout [
 { #category : #accessing }
 PyramidNavigationPresenter >> editor: aPyramidEditor [
 
-	self libraryPanel editor: aPyramidEditor.
-	self selectionPanel editor: aPyramidEditor
+	self toolPanel editor: aPyramidEditor.
+	self selectionPanel editor: aPyramidEditor.
+	self library libraryController editor: aPyramidEditor.
 ]
 
 { #category : #initialization }
 PyramidNavigationPresenter >> initializePresenters [
 
+	library := PyramidLibraryPresenter new.
+	library libraryController initializeCategories.
 	navigationModel := PyramidNavigationModel new.
-
-	libraryPanel := PyramidNavigationToolsPresenter new
-		                navigationModel: self navigationModel;
-		                yourself.
+	toolPanel := PyramidNavigationToolsPresenter new
+		             navigationModel: self navigationModel;
+		             library: self library;
+		             yourself.
 	selectionPanel := PyramidNavigationTreePresenter new
 		                  navigationModel: self navigationModel;
 		                  yourself
 ]
 
 { #category : #accessing }
-PyramidNavigationPresenter >> libraryPanel [
+PyramidNavigationPresenter >> library [
 
-	^ libraryPanel
+	^ library
 ]
 
 { #category : #accessing }
@@ -61,4 +65,10 @@ PyramidNavigationPresenter >> roots: aCollection [
 PyramidNavigationPresenter >> selectionPanel [
 
 	^ selectionPanel
+]
+
+{ #category : #accessing }
+PyramidNavigationPresenter >> toolPanel [
+
+	^ toolPanel
 ]

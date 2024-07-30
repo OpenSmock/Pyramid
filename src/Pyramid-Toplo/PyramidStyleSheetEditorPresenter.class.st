@@ -1,17 +1,15 @@
 Class {
-	#name : 'PyramidStyleSheetEditorPresenter',
-	#superclass : 'SpPresenter',
+	#name : #PyramidStyleSheetEditorPresenter,
+	#superclass : #SpPresenter,
 	#instVars : [
 		'themeSelector',
 		'styleSheetEditor',
 		'stampPresenter'
 	],
-	#category : 'Pyramid-Toplo-plugin-theme-management',
-	#package : 'Pyramid-Toplo',
-	#tag : 'plugin-theme-management'
+	#category : 'Pyramid-Toplo-plugin-theme-management'
 }
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidStyleSheetEditorPresenter >> defaultLayout [
 
 	^ SpBoxLayout new
@@ -24,19 +22,19 @@ PyramidStyleSheetEditorPresenter >> defaultLayout [
 		  yourself
 ]
 
-{ #category : 'initialization' }
+{ #category : #initialization }
 PyramidStyleSheetEditorPresenter >> initializePresenters [
 
 	stampPresenter := SpNullPresenter new
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidStyleSheetEditorPresenter >> stampPresenter [
 
 	^ stampPresenter
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidStyleSheetEditorPresenter >> stampPresenter: anObject [
 
 	stampPresenter := anObject

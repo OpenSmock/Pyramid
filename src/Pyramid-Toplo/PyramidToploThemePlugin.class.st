@@ -1,45 +1,97 @@
 Class {
-	#name : 'PyramidToploThemePlugin',
-	#superclass : 'Object',
-	#traits : 'TPyramidPlugin + TPyramidElementToAdd',
-	#classTraits : 'TPyramidPlugin classTrait + TPyramidElementToAdd classTrait',
+	#name : #PyramidToploThemePlugin,
+	#superclass : #Object,
+	#traits : 'TPyramidPlugin',
+	#classTraits : 'TPyramidPlugin classTrait',
 	#instVars : [
 		'themePresenter',
 		'themePropertyManager'
 	],
-	#category : 'Pyramid-Toplo-plugin-theme-management',
-	#package : 'Pyramid-Toplo',
-	#tag : 'plugin-theme-management'
+	#category : #'Pyramid-Toplo-plugin-theme-management'
 }
 
-{ #category : 'adding' }
-PyramidToploThemePlugin class >> addOnLibrary: aLibrary [
-
-	| classes factories |
-	classes := ToElement allSubclasses.
-	factories := classes
-		             reject: [ :each | each isAbstract ]
-		             thenCollect: [ :class |
-			             PyramidElementToAddFactory new
-				             elementIcon:
-					             (Smalltalk ui icons iconNamed: class systemIconName);
-				             elementName: class name;
-				             elementBlock: [ { class new } ];
-				             yourself ].
-
-	aLibrary
-		addCategoryWithName: 'Toplo'
-		withIcon: (Smalltalk ui icons iconNamed: #smallInfo)
-		withAllFactories: factories asArray sorted.
-]
-
-{ #category : 'asserting' }
+{ #category : #asserting }
 PyramidToploThemePlugin class >> shouldInstall [
 
 	^ false
 ]
 
-{ #category : 'adding' }
+{ #category : #adding }
+PyramidToploThemePlugin class >> toploAntIconCategory [
+
+	<pyramidLibraryCategory: 11>
+	^ PyramidToploThemePlugin toploIconThemeCategoryFromClass: ToAntDesignIconProvider
+]
+
+{ #category : #adding }
+PyramidToploThemePlugin class >> toploIconThemeCategoryFromClass: aClass [
+
+	| categoriesMethods |
+	categoriesMethods := aClass class methods select: [ :m |
+		                     m selector first = $_ and: [
+			                     ($_ split: m selector) last = 'loaded' ] ].
+
+	^ categoriesMethods collect: [ :method |
+		  | libraryCategory elements elementSelectors |
+		  libraryCategory := PyramidLibraryCategory new
+			                     name: method selector allButFirst;
+			                     icon: (Smalltalk ui icons iconNamed: #image);
+			                     yourself.
+
+		  elementSelectors := (aClass perform: method selector) collect: [
+			                      :suffix |
+			                      ($_ split: method selector) second , '_'
+			                      , suffix ].
+
+		  elements := elementSelectors collect: [ :selector |
+			              PyramidLibraryElement new
+				              name: selector;
+				              icon: (Smalltalk ui icons iconNamed: #blank);
+				              block: [
+					              | image |
+					              image := (PyramidExternalRessourceProxy fromTarget: ToImage selector: #inner: arguments: {  
+							                       (PyramidExternalRessourceProxy
+								                        fromTarget: aClass
+								                        selector: selector asSymbol
+								                        arguments: {  }) }).
+					              image size: 48 asPoint.
+					              { image } ];
+				              yourself ].
+		  libraryCategory elements: elements.
+		  libraryCategory ]
+]
+
+{ #category : #adding }
+PyramidToploThemePlugin class >> toploLibraryCategory [
+
+	<pyramidLibraryCategory: 1>
+	| classes elements |
+	classes := ToElement allSubclasses , { ToElement }.
+	elements := classes
+		            reject: [ :each |
+			            each isAbstract or: [
+				            (each name findString: 'Abstract') > 0 or: [
+					            [
+					            each new.
+					            false ]
+						            on: Error
+						            do: [ true ] ] ] ]
+		            thenCollect: [ :class |
+			            PyramidLibraryElement new
+				            icon:
+					            (Smalltalk ui icons iconNamed: class systemIconName);
+				            name: class name;
+				            block: [ { class new } ];
+				            yourself ].
+
+	^ { (PyramidLibraryCategory new
+		   name: 'Toplo';
+		   icon: (Smalltalk ui icons iconNamed: #box);
+		   elements: (elements sorted: [ :a :b | a name < b name ]);
+		   yourself) }
+]
+
+{ #category : #adding }
 PyramidToploThemePlugin >> addPanelsOn: aPyramidSimpleWindow [
 
 	aPyramidSimpleWindow at: #tabRight addItem: [ :builder |
@@ -50,7 +102,7 @@ PyramidToploThemePlugin >> addPanelsOn: aPyramidSimpleWindow [
 			order: 1 ]
 ]
 
-{ #category : 'actions' }
+{ #category : #actions }
 PyramidToploThemePlugin >> configureBuilder: aPyramidEditorBuilder [
 
 	| spacePlugin |
@@ -58,14 +110,14 @@ PyramidToploThemePlugin >> configureBuilder: aPyramidEditorBuilder [
 	self themePresenter pyramidSpaceBuilderConfigurationOn: spacePlugin builder
 ]
 
-{ #category : 'connecting' }
+{ #category : #connecting }
 PyramidToploThemePlugin >> connectOn: aPyramidEditor [
 
 	self themePresenter editor: aPyramidEditor.
 	self themePropertyManager projectModel: aPyramidEditor projectModel 
 ]
 
-{ #category : 'initialization' }
+{ #category : #initialization }
 PyramidToploThemePlugin >> initialize [
 
 	themePresenter := PyramidThemePresenter new.
@@ -76,13 +128,13 @@ PyramidToploThemePlugin >> initialize [
 	themePresenter styleSheetEditor stampPresenter: themePropertyManager presenter
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidToploThemePlugin >> themePresenter [
 
 	^ themePresenter
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidToploThemePlugin >> themePropertyManager [
 
 	^ themePropertyManager

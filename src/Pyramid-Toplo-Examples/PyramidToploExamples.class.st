@@ -57,7 +57,6 @@ blfontsizedefaultattribute21 := BlFontSizeDefaultAttribute new.
                icon: nil;
                iconContainerHeight: 0.0;
                iconContainerWidth: 0.0;
-               interspace: 0.0 @ 0.0;
                label: (ToLabel new
                      layout: blframelayout5;
                      constraintsDo: [:constraints |  constraints horizontal fitContent.
@@ -102,12 +101,10 @@ blfontsizedefaultattribute21 := BlFontSizeDefaultAttribute new.
                   constraints vertical exact: 32.0.
                   constraints padding: blinsets1 ];
                beHorizontal;
-               beIconFirst;
                flexible: false;
                icon: nil;
                iconContainerHeight: 0.0;
                iconContainerWidth: 0.0;
-               interspace: 0.0 @ 0.0;
                label: (ToLabel new
                      layout: blframelayout5;
                      constraintsDo: [:constraints |  constraints horizontal fitContent.
@@ -141,12 +138,10 @@ blfontsizedefaultattribute21 := BlFontSizeDefaultAttribute new.
                   constraints vertical exact: 32.0.
                   constraints padding: blinsets1 ];
                beHorizontal;
-               beIconFirst;
                flexible: false;
                icon: nil;
                iconContainerHeight: 0.0;
                iconContainerWidth: 0.0;
-               interspace: 0.0 @ 0.0;
                label: (ToLabel new
                      layout: blframelayout5;
                      constraintsDo: [:constraints |  constraints horizontal fitContent.
@@ -175,12 +170,10 @@ blfontsizedefaultattribute21 := BlFontSizeDefaultAttribute new.
                   constraints vertical exact: 32.0.
                   constraints padding: blinsets1 ];
                beHorizontal;
-               beIconFirst;
                flexible: false;
                icon: nil;
                iconContainerHeight: 0.0;
                iconContainerWidth: 0.0;
-               interspace: 0.0 @ 0.0;
                label: (ToLabel new
                      layout: blframelayout5;
                      constraintsDo: [:constraints |  constraints horizontal fitContent.
@@ -206,12 +199,10 @@ blfontsizedefaultattribute21 := BlFontSizeDefaultAttribute new.
                   constraints vertical exact: 32.0.
                   constraints padding: blinsets1 ];
                beHorizontal;
-               beIconFirst;
                flexible: false;
                icon: nil;
                iconContainerHeight: 0.0;
                iconContainerWidth: 0.0;
-               interspace: 0.0 @ 0.0;
                label: (ToLabel new
                      layout: blframelayout5;
                      constraintsDo: [:constraints |  constraints horizontal fitContent.
@@ -259,12 +250,10 @@ blfontsizedefaultattribute21 := BlFontSizeDefaultAttribute new.
                   constraints vertical exact: 32.0.
                   constraints padding: blinsets1 ];
                beHorizontal;
-               beIconFirst;
                flexible: false;
                icon: nil;
                iconContainerHeight: 0.0;
                iconContainerWidth: 0.0;
-               interspace: 0.0 @ 0.0;
                label: (ToLabel new
                      layout: blframelayout5;
                      constraintsDo: [:constraints |  constraints horizontal fitContent.
@@ -292,12 +281,10 @@ blfontsizedefaultattribute21 := BlFontSizeDefaultAttribute new.
                   constraints vertical exact: 32.0.
                   constraints padding: blinsets1 ];
                beHorizontal;
-               beIconFirst;
                flexible: false;
                icon: nil;
                iconContainerHeight: 0.0;
                iconContainerWidth: 0.0;
-               interspace: 0.0 @ 0.0;
                label: (ToLabel new
                      layout: blframelayout5;
                      constraintsDo: [:constraints |  constraints horizontal fitContent.
@@ -329,12 +316,10 @@ blfontsizedefaultattribute21 := BlFontSizeDefaultAttribute new.
                   constraints vertical exact: 32.0.
                   constraints padding: blinsets1 ];
                beHorizontal;
-               beIconFirst;
                flexible: false;
                icon: nil;
                iconContainerHeight: 0.0;
                iconContainerWidth: 0.0;
-               interspace: 0.0 @ 0.0;
                label: (ToLabel new
                      layout: blframelayout5;
                      constraintsDo: [:constraints |  constraints horizontal fitContent.
@@ -365,12 +350,10 @@ blfontsizedefaultattribute21 := BlFontSizeDefaultAttribute new.
                   constraints vertical exact: 32.0.
                   constraints padding: blinsets1 ];
                beHorizontal;
-               beIconFirst;
                flexible: false;
                icon: nil;
                iconContainerHeight: 0.0;
                iconContainerWidth: 0.0;
-               interspace: 0.0 @ 0.0;
                label: (ToLabel new
                      layout: blframelayout5;
                      constraintsDo: [:constraints |  constraints horizontal fitContent.
@@ -396,12 +379,10 @@ blfontsizedefaultattribute21 := BlFontSizeDefaultAttribute new.
                   constraints vertical exact: 32.0.
                   constraints padding: blinsets1 ];
                beHorizontal;
-               beIconFirst;
                flexible: false;
                icon: nil;
                iconContainerHeight: 0.0;
                iconContainerWidth: 0.0;
-               interspace: 0.0 @ 0.0;
                label: (ToLabel new
                      layout: blframelayout5;
                      constraintsDo: [:constraints |  constraints horizontal fitContent.
@@ -442,12 +423,10 @@ blfontsizedefaultattribute21 := BlFontSizeDefaultAttribute new.
                   constraints vertical exact: 32.0.
                   constraints padding: blinsets1 ];
                beHorizontal;
-               beIconFirst;
                flexible: false;
                icon: nil;
                iconContainerHeight: 0.0;
                iconContainerWidth: 0.0;
-               interspace: 0.0 @ 0.0;
                label: (ToLabel new
                      layout: blframelayout5;
                      constraintsDo: [:constraints |  constraints horizontal fitContent.
@@ -473,12 +452,10 @@ blfontsizedefaultattribute21 := BlFontSizeDefaultAttribute new.
                   constraints vertical exact: 32.0.
                   constraints padding: blinsets1 ];
                beHorizontal;
-               beIconFirst;
                flexible: false;
                icon: nil;
                iconContainerHeight: 0.0;
                iconContainerWidth: 0.0;
-               interspace: 0.0 @ 0.0;
                label: (ToLabel new
                      layout: blframelayout5;
                      constraintsDo: [:constraints |  constraints horizontal fitContent.
@@ -512,12 +489,10 @@ blfontsizedefaultattribute21 := BlFontSizeDefaultAttribute new.
                   constraints vertical exact: 32.0.
                   constraints padding: blinsets1 ];
                beHorizontal;
-               beIconFirst;
                flexible: false;
                icon: nil;
                iconContainerHeight: 0.0;
                iconContainerWidth: 0.0;
-               interspace: 0.0 @ 0.0;
                label: (ToLabel new
                      layout: blframelayout5;
                      constraintsDo: [:constraints |  constraints horizontal fitContent.
@@ -543,12 +518,10 @@ blfontsizedefaultattribute21 := BlFontSizeDefaultAttribute new.
                   constraints vertical exact: 32.0.
                   constraints padding: blinsets1 ];
                beHorizontal;
-               beIconFirst;
                flexible: false;
                icon: nil;
                iconContainerHeight: 0.0;
                iconContainerWidth: 0.0;
-               interspace: 0.0 @ 0.0;
                label: (ToLabel new
                      layout: blframelayout5;
                      constraintsDo: [:constraints |  constraints horizontal fitContent.
@@ -574,12 +547,10 @@ blfontsizedefaultattribute21 := BlFontSizeDefaultAttribute new.
                   constraints vertical exact: 32.0.
                   constraints padding: blinsets1 ];
                beHorizontal;
-               beIconFirst;
                flexible: false;
                icon: nil;
                iconContainerHeight: 0.0;
                iconContainerWidth: 0.0;
-               interspace: 0.0 @ 0.0;
                label: (ToLabel new
                      layout: blframelayout5;
                      constraintsDo: [:constraints |  constraints horizontal fitContent.
@@ -609,4 +580,38 @@ blfontsizedefaultattribute21 := BlFontSizeDefaultAttribute new.
       constraints padding: blinsets3 ];
    yourself)}
 	] value
+]
+
+{ #category : #'pyramid-serialized-bloc' }
+PyramidToploExamples class >> icons [
+	"This class has been generated using Pyramid.
+
+	By: YannLEGOFF
+	2024-07-30 17:40:45"
+
+	<pyStash>
+	^ [
+	  | toimage1 |
+	  toimage1 := ToImage new.
+	  { (PyramidExternalRessourceProxy new
+		   pyramidExternalRessourceSource:
+			   (PyramidExternalRessourceSource new
+				    target: (toimage1
+						     innerImage: (PyramidExternalRessourceProxy fromTarget: BlSvgConverter selector: #convertFromString: arguments: {(PyramidExternalRessourceProxy new
+						     pyramidExternalRessourceSource:
+							     (PyramidExternalRessourceSource new
+								      target: ToAntDesignIconProvider;
+								      selector: #twotone_like;
+								      arguments: {  };
+								      yourself);
+						     yourself)});
+						     constraintsDo: [ :constraints |
+							     constraints horizontal exact: 48.0.
+							     constraints vertical exact: 48.0 ];
+						     layout: BlFrameLayout new;
+						     yourself);
+				    selector: #yourself;
+				    arguments: {  };
+				    yourself);
+		   yourself) } ] value
 ]

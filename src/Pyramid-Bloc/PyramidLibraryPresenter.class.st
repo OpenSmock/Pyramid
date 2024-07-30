@@ -5,7 +5,8 @@ Class {
 		'categoryPresenter',
 		'elementPresenter',
 		'imagePresenter',
-		'addButtonPresenter'
+		'addButtonPresenter',
+		'libraryController'
 	],
 	#category : #'Pyramid-Bloc-plugin-navigation'
 }
@@ -14,15 +15,6 @@ Class {
 PyramidLibraryPresenter >> addButtonPresenter [
 
 	^ addButtonPresenter
-]
-
-{ #category : #adding }
-PyramidLibraryPresenter >> addCategories: aCollection [
-
-	self categoryPresenter items = aCollection ifTrue: [ ^ self ].
-	self categoryPresenter
-		items: aCollection;
-		selectIndex: 1
 ]
 
 { #category : #accessing }
@@ -38,13 +30,22 @@ PyramidLibraryPresenter >> connectPresenters [
 		transmitTo: elementPresenter
 		transform: [ :category |
 			category ifNil: [ #(  ) ] ifNotNil: [ category elements ] ]
-		postTransmission: [ :destination | destination selectIndex: 1 ]
+		postTransmission: [ :destination | destination selectIndex: 1 ].
+		
+	categoryPresenter items ifEmpty: [ ^ self ].
+	categoryPresenter selectFirst.
+]
+
+{ #category : #accessing }
+PyramidLibraryPresenter >> defaultExtent [
+
+	^ 600 @ 400
 ]
 
 { #category : #layout }
 PyramidLibraryPresenter >> defaultLayout [
 
-	| panedSelection imageAndButton |
+	| panedSelection imageAndButton panedLayout |
 	panedSelection := SpPanedLayout newHorizontal
 		                  add: self categoryPresenter;
 		                  add: self elementPresenter;
@@ -53,11 +54,14 @@ PyramidLibraryPresenter >> defaultLayout [
 		                  add: self imagePresenter expand: true;
 		                  add: self addButtonPresenter expand: false;
 		                  yourself.
-	^ SpPanedLayout newHorizontal
-		  positionOfSlider: 2/3;
-		  add: panedSelection;
-		  add: imageAndButton;
-		  yourself
+	panedLayout := SpPanedLayout newHorizontal
+		               positionOfSlider: 2 / 3;
+		               add: panedSelection;
+		               add: imageAndButton;
+		               yourself.
+	^ SpBoxLayout newVertical
+		  add: (SpBoxLayout newHorizontal add: panedLayout width: self defaultExtent x)
+		  height: self defaultExtent y
 ]
 
 { #category : #accessing }
@@ -73,22 +77,11 @@ PyramidLibraryPresenter >> imagePresenter [
 ]
 
 { #category : #initialization }
-PyramidLibraryPresenter >> initializeCategories [
-
-	| pragmas sorted |
-	pragmas := Pragma allNamed: #pyramidLibraryCategory:.
-	sorted := pragmas sorted: [ :a :b |
-		          a arguments first < b arguments first ].
-	self addCategories: (sorted flatCollect: [ :each |
-			 each method
-				 receiver: self
-				 withArguments: #(  )
-				 executeMethod: each method ])
-]
-
-{ #category : #initialization }
 PyramidLibraryPresenter >> initializePresenters [
 
+	libraryController := PyramidLibraryController new
+		                     library: self;
+		                     yourself.
 	categoryPresenter := SpTablePresenter new
 		                     hideColumnHeaders;
 		                     addColumn: ((SpImageTableColumn
@@ -109,7 +102,7 @@ PyramidLibraryPresenter >> initializePresenters [
 		                    whenSelectedItemChangedDo: [ :e |
 			                    self addButtonPresenter enabled: e isNotNil.
 			                    self addButtonPresenter action: [
-					                    self addNewElement: e ].
+					                    self libraryController addNewElement: e ].
 			                    e
 				                    ifNil: [
 					                    self imagePresenter image:
@@ -127,7 +120,18 @@ PyramidLibraryPresenter >> initializePresenters [
 	self focusOrder
 		add: categoryPresenter;
 		add: elementPresenter;
-		add: addButtonPresenter.
-	
-	self initializeCategories
+		add: addButtonPresenter
+]
+
+{ #category : #accessing }
+PyramidLibraryPresenter >> libraryController [
+
+	^ libraryController
+]
+
+{ #category : #accessing }
+PyramidLibraryPresenter >> libraryController: anObject [
+
+	libraryController := anObject.
+	libraryController library: self.
 ]

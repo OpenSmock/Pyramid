@@ -137,9 +137,16 @@ PyramidBackgroundImageModalPresenter >> defaultLayout [
 { #category : #action }
 PyramidBackgroundImageModalPresenter >> image: aForm [
 
+	| source |
 	self codeBitmap beForObject: aForm.
 	self codeBitmap text: self textBitmap , 'self 
-'
+'.
+	(aForm isPyramidProxy) ifFalse: [ ^ self ].
+	source := aForm pyramidExternalRessourceSource.
+	self inputReceiverProxy text: (Stash new serialize: source target).
+	self inputSelectorProxy text: (Stash new serialize: source selector).
+	self inputArgumentsProxy text:
+		(Stash new serialize: source arguments)
 ]
 
 { #category : #initialization }

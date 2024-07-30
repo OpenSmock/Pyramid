@@ -13,5 +13,5 @@ PyramidAbstractBlocCommand class >> isAbstract [
 { #category : #testing }
 PyramidAbstractBlocCommand >> canBeUsedFor: anObject [
 
-	^ anObject class = BlElement or: [anObject class inheritsFrom: BlElement]
+	^ anObject isKindOf: BlElement 
 ]

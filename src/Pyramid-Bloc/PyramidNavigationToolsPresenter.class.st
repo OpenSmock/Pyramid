@@ -2,6 +2,7 @@ Class {
 	#name : #PyramidNavigationToolsPresenter,
 	#superclass : #SpPresenter,
 	#instVars : [
+		'library',
 		'navigationModel',
 		'addRootButton',
 		'displayChildrenOptions',
@@ -9,6 +10,12 @@ Class {
 	],
 	#category : #'Pyramid-Bloc-plugin-navigation'
 }
+
+{ #category : #accessing }
+PyramidNavigationToolsPresenter >> actionAddToRoot [
+
+	self library libraryController openForRoot
+]
 
 { #category : #accessing }
 PyramidNavigationToolsPresenter >> addRootButton [
@@ -50,11 +57,24 @@ PyramidNavigationToolsPresenter >> initializePresenters [
 	addRootButton := SpButtonPresenter new
 		                 label: 'Add new root';
 		                 icon: (Smalltalk ui iconNamed: #add);
+							  action: [ self actionAddToRoot ];
 		                 yourself.
 	displayChildrenOptions := SpButtonPresenter new
 		                          help:
 			                          'Show / Hide not serializable children.';
 		                          yourself
+]
+
+{ #category : #accessing }
+PyramidNavigationToolsPresenter >> library [
+
+	^ library
+]
+
+{ #category : #accessing }
+PyramidNavigationToolsPresenter >> library: anObject [
+
+	library := anObject
 ]
 
 { #category : #accessing }
