@@ -638,7 +638,7 @@ PyramidToploExamples class >> icons2 [
 	"This class has been generated using Pyramid.
 
 	By: YannLEGOFF
-	2024-07-30 18:25:18"
+	2024-07-31 10:27:35"
 
 	<pyStash>
 	^ [ {(ToImage new
@@ -649,14 +649,16 @@ PyramidToploExamples class >> icons2 [
                arguments: {(PyramidExternalRessourceProxy new
                      pyramidExternalRessourceSource: (PyramidExternalRessourceSource new
                            target: ToMaterialDesignIconProvider;
-                           selector: #round_timelapse;
+                           selector: #twotone_mediation;
                            arguments: {};
                            yourself);
                      yourself)};
+               postConstructionBlock: [:obj |  obj constraints horizontal matchParent.
+                  obj constraints vertical matchParent ];
                yourself);
          yourself);
-   constraintsDo: [:constraints |  constraints horizontal exact: 200.0.
-      constraints vertical exact: 200.0 ];
+   constraintsDo: [:constraints |  constraints horizontal exact: 128.0.
+      constraints vertical exact: 128.0 ];
    layout: BlFrameLayout new;
    id: #A;
    yourself)} ] value

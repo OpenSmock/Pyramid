@@ -52,6 +52,11 @@ PyramidToploThemePlugin class >> toploIconThemeCategoryFromClass: aClass withCat
 							                       (PyramidExternalRessourceProxy new
 								                        pyramidExternalRessourceSource:
 									                        (PyramidExternalRessourceSource new
+										                         postConstructionBlock: [ :obj |
+											                         obj constraints horizontal
+												                         matchParent.
+											                         obj constraints vertical
+												                         matchParent ];
 										                         target: BlSvgConverter;
 										                         selector: #convertFromString:;
 										                         arguments:

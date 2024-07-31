@@ -4,7 +4,8 @@ Class {
 	#instVars : [
 		'target',
 		'selector',
-		'arguments'
+		'arguments',
+		'postConstructionBlock'
 	],
 	#category : #'Pyramid-external-ressources'
 }
@@ -63,13 +64,31 @@ PyramidExternalRessourceSource >> fromSton: stonReader [
 { #category : #'as yet unclassified' }
 PyramidExternalRessourceSource >> getRessource [
 
-	^ self target perform: self selector withArguments: self arguments
+	| ressource |
+	ressource := self target
+		             perform: self selector
+		             withArguments: self arguments.
+	self postConstructionBlock ifNotNil: [ :block | block value: ressource ].
+	^ ressource
 ]
 
 { #category : #initialization }
 PyramidExternalRessourceSource >> initialize [
 
-	arguments := {  }
+	arguments := {  }.
+	postConstructionBlock := nil.
+]
+
+{ #category : #accessing }
+PyramidExternalRessourceSource >> postConstructionBlock [
+
+	^ postConstructionBlock
+]
+
+{ #category : #accessing }
+PyramidExternalRessourceSource >> postConstructionBlock: anObject [
+
+	postConstructionBlock := anObject
 ]
 
 { #category : #accessing }
@@ -88,7 +107,12 @@ PyramidExternalRessourceSource >> selector: anObject [
 PyramidExternalRessourceSource >> stashAccessors [
 
 	<stashAccessors>
-	^ { #target . #selector . #arguments }
+	| accessors |
+	accessors := OrderedCollection new.
+	accessors addAll: { #target. #selector. #arguments }.
+	self postConstructionBlock ifNotNil: [
+		accessors add: #postConstructionBlock ].
+	^ accessors
 ]
 
 { #category : #'as yet unclassified' }
