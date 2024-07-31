@@ -29,7 +29,8 @@ PyramidLibraryElement >> asForm [
 		               background: Color white;
 		               yourself.
 	formElement forceLayout.
-	extent := formElement invalidationBoundsInParent extent.
+	extent := (formElement localBoundsToParent:
+		  (BlBounds fromRectangle: formElement invalidationBounds)) extent.
 	bound := BlBounds
 		         left: 0
 		         top: 0
