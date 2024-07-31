@@ -43,7 +43,9 @@ PyramidLibraryDefault >> pragmaCategory: aSymbol withIcon: anIcon [
 				               PyramidLibraryElement new
 					               icon: (Smalltalk ui icons iconNamed:
 								                method methodClass soleInstance systemIconName);
-					               name: method selector;
+					               name: ('<1s> (<2s>)'
+							                expandMacrosWith: method selector
+							                with: method methodClass name);
 					               block: [
 						               (method methodClass soleInstance perform:
 								                method selector) materializeAsBlElement ];

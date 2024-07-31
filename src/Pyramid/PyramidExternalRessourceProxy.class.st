@@ -20,7 +20,17 @@ PyramidExternalRessourceProxy class >> fromSource: aSource [
 { #category : #'instance creation' }
 PyramidExternalRessourceProxy class >> fromTarget: aTarget selector: aSelector arguments: aCollection [
 
-	^ self fromSource: (PyramidExternalRessourceSource target: aTarget selector: aSelector arguments: aCollection)
+	^ self fromTarget: aTarget selector: aSelector arguments: aCollection withPostConstructionBlock: nil
+]
+
+{ #category : #'instance creation' }
+PyramidExternalRessourceProxy class >> fromTarget: aTarget selector: aSelector arguments: aCollection withPostConstructionBlock: aBlock [
+
+	^ self fromSource: (PyramidExternalRessourceSource
+			   target: aTarget
+			   selector: aSelector
+			   arguments: aCollection
+			postConstructionBlock: aBlock)
 ]
 
 { #category : #converting }
@@ -31,15 +41,19 @@ PyramidExternalRessourceProxy >> asStashConstructor [
 
 { #category : #'as yet unclassified' }
 PyramidExternalRessourceProxy >> doesNotUnderstand: aMessage [
-	| returnValue |
-	 (self pyramidExternalRessourceObject respondsTo: aMessage selector) ifFalse: [ ^ super doesNotUnderstand: aMessage ].
-			  
-			  returnValue := self pyramidExternalRessourceObject
-				                 perform: aMessage selector
-				                 withEnoughArguments: aMessage arguments.
-			  returnValue == object
-				  ifTrue: [ ^ self ].
-				  ^ returnValue 
+
+	| returnValue target |
+	target := self pyramidExternalRessourceObject.
+	self pyramidExternalRessourceObject isPyramidProxy ifTrue: [ ^ target doesNotUnderstand: aMessage ].
+	
+	(target respondsTo: aMessage selector)
+		ifFalse: [ ^ super doesNotUnderstand: aMessage ].
+
+	returnValue := target
+		               perform: aMessage selector
+		               withEnoughArguments: aMessage arguments.
+	returnValue == object ifTrue: [ ^ self ].
+	^ returnValue
 ]
 
 { #category : #'instance creation' }

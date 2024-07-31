@@ -21,21 +21,33 @@ PyramidExternalRessourceSource class >> formFromFileNamed: aFileReference [
 ]
 
 { #category : #initialization }
-PyramidExternalRessourceSource class >> target: aClass selector: aSelector [
+PyramidExternalRessourceSource class >> target: anObject selector: aSelector [
 
-	^ self new
-		  target: aClass;
-		  selector: aSelector;
-		  yourself
+	^ self
+		  target: anObject
+		  selector: aSelector
+		  arguments: {  }
+		  postConstructionBlock: nil
 ]
 
 { #category : #initialization }
-PyramidExternalRessourceSource class >> target: aClass selector: aSelector arguments: anArray [
+PyramidExternalRessourceSource class >> target: anObject selector: aSelector arguments: anArray [
+
+	^ self
+		  target: anObject
+		  selector: aSelector
+		  arguments: anArray
+		  postConstructionBlock: nil
+]
+
+{ #category : #initialization }
+PyramidExternalRessourceSource class >> target: anObject selector: aSelector arguments: anArray postConstructionBlock: aBlock [
 
 	^ self new
-		  target: aClass;
+		  target: anObject;
 		  selector: aSelector;
 		  arguments: anArray;
+		  postConstructionBlock: aBlock;
 		  yourself
 ]
 
@@ -68,7 +80,8 @@ PyramidExternalRessourceSource >> getRessource [
 	ressource := self target
 		             perform: self selector
 		             withArguments: self arguments.
-	self postConstructionBlock ifNotNil: [ :block | block value: ressource ].
+	self postConstructionBlock ifNotNil: [ :block |
+		block value: ressource ].
 	^ ressource
 ]
 
