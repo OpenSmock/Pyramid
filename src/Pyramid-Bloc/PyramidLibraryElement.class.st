@@ -30,14 +30,16 @@ PyramidLibraryElement >> asForm [
 		               yourself.
 	formElement forceLayout.
 	extent := (formElement localBoundsToParent:
-		  (BlBounds fromRectangle: formElement invalidationBounds)) extent.
+		           (BlBounds fromRectangle: formElement invalidationBounds))
+		          extent.
 	bound := BlBounds
 		         left: 0
 		         top: 0
 		         right: 0
 		         bottom: 0.
 	formElement childrenDo: [ :each |
-		bound merge: each invalidationBoundsInParent ].
+		bound merge: (each localBoundsToParent:
+		           (BlBounds fromRectangle: each invalidationBounds)) ].
 	extent := bound extent.
 	possibleSizes := {
 		                 (50 @ 50).
