@@ -86,7 +86,7 @@ Then the project view appears in a new window.
 
 Use the create button to add graphical elements in your project view.
 
-https://github.com/OpenSmock/Pyramid/assets/49183340/a02db9ad-314a-4caf-884c-9da4da809293
+https://github.com/user-attachments/assets/44796af0-95d7-4e29-b28b-fdedfdbe7a85
 
 ### Test behavior in the editor
 
