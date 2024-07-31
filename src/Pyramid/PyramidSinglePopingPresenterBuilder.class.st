@@ -1,61 +1,52 @@
-"
-I transform a `PyramidCluster` and a `NeoPyramidProperty` into a `SpPresenter`.
-
-I create a presenter with a main input to change property of all element at once and a button to show a popup with properties in group and in individual.
-
-"
 Class {
-	#name : #PyramidPopingPresenterBuilder,
+	#name : #PyramidSinglePopingPresenterBuilder,
 	#superclass : #PyramidPropertyPresenterBuilder,
 	#instVars : [
-		'popupFactory'
+		'popupPanel'
 	],
 	#category : #'Pyramid-property'
 }
 
 { #category : #'as yet unclassified' }
-PyramidPopingPresenterBuilder >> build [
+PyramidSinglePopingPresenterBuilder >> build [
 
-	| presenterAll presentersGrouped presentersIndividual layout |
+	| presenterAll layout |
 	presenterAll := self buildPresenterAll.
 
 	self cluster size > 1
 		ifTrue: [
-			presentersGrouped := self buildPresentersGrouped.
-			presentersIndividual := self buildPresentersIndividual.
-			layout := self
-				          buildLayoutAll: presenterAll
-				          grouped: presentersGrouped
-				          individual: presentersIndividual ]
+		layout := self buildLayoutAllGroupedAndIndividual: presenterAll ]
 		ifFalse: [ layout := self buildLayoutOnlyForAll: presenterAll ].
 
 	^ SpPresenter new
 		  layout: layout;
-		  yourself.
+		  yourself
 ]
 
 { #category : #'as yet unclassified' }
-PyramidPopingPresenterBuilder >> buildLayoutAll: presenterAll grouped: presentersGrouped individual: presentersIndividual [
+PyramidSinglePopingPresenterBuilder >> buildLayoutAllGroupedAndIndividual: presenterAll [
 
-	| presenterPopup buttonPopup |
-	presenterPopup := PyramidPropertyPopupPresenter new
-		                  name: self property name
-		                  grouped: presentersGrouped
-		                  individual: presentersIndividual;
-		                  yourself.
-
+	| buttonPopup |
 	buttonPopup := SpButtonPresenter new
 		               icon: (Smalltalk ui icons iconNamed: #edit);
 		               help: 'Show groups and individuals values';
 		               yourself.
 
 	buttonPopup action: [
-		(self popupFactory value: presenterPopup value: buttonPopup) popup ].
+		self popupPanel lastPropertyShown: self property.
+		self popupPanel
+		name: self property name
+		grouped: self buildPresentersGrouped
+		individual: self buildPresentersIndividual.
+		self popupPanel popup ].
+
+	self updatePopupPanel.
+
 	^ self layoutForAll: presenterAll buttonPopup: buttonPopup
 ]
 
 { #category : #'as yet unclassified' }
-PyramidPopingPresenterBuilder >> buildLayoutOnlyForAll: presenterAll [
+PyramidSinglePopingPresenterBuilder >> buildLayoutOnlyForAll: presenterAll [
 
 	| buttonPopup |
 	buttonPopup := SpButtonPresenter new
@@ -67,7 +58,7 @@ PyramidPopingPresenterBuilder >> buildLayoutOnlyForAll: presenterAll [
 ]
 
 { #category : #'as yet unclassified' }
-PyramidPopingPresenterBuilder >> buildPresenterAll [
+PyramidSinglePopingPresenterBuilder >> buildPresenterAll [
 
 	| input |
 	input := self makeNewInput.
@@ -89,7 +80,7 @@ PyramidPopingPresenterBuilder >> buildPresenterAll [
 ]
 
 { #category : #'as yet unclassified' }
-PyramidPopingPresenterBuilder >> buildPresenterWithButtonsFor: anAssociation withLabel: aString [
+PyramidSinglePopingPresenterBuilder >> buildPresenterWithButtonsFor: anAssociation withLabel: aString [
 
 	| input buttonApplyToAll layout |
 	input := self makeNewInput.
@@ -118,7 +109,7 @@ PyramidPopingPresenterBuilder >> buildPresenterWithButtonsFor: anAssociation wit
 ]
 
 { #category : #'as yet unclassified' }
-PyramidPopingPresenterBuilder >> buildPresentersGrouped [
+PyramidSinglePopingPresenterBuilder >> buildPresentersGrouped [
 
 	| size label |
 	self cluster isEmpty ifTrue: [ ^ {  } ].
@@ -131,7 +122,7 @@ PyramidPopingPresenterBuilder >> buildPresentersGrouped [
 ]
 
 { #category : #'as yet unclassified' }
-PyramidPopingPresenterBuilder >> buildPresentersIndividual [
+PyramidSinglePopingPresenterBuilder >> buildPresentersIndividual [
 
 	| label |
 	self cluster isEmpty ifTrue: [ ^ {  } ].
@@ -141,7 +132,7 @@ PyramidPopingPresenterBuilder >> buildPresentersIndividual [
 ]
 
 { #category : #'as yet unclassified' }
-PyramidPopingPresenterBuilder >> layoutForAll: presenterAll buttonPopup: buttonPopup [
+PyramidSinglePopingPresenterBuilder >> layoutForAll: presenterAll buttonPopup: buttonPopup [
 
 	^ SpBoxLayout newVertical
 		  spacing: 4;
@@ -160,7 +151,7 @@ PyramidPopingPresenterBuilder >> layoutForAll: presenterAll buttonPopup: buttonP
 ]
 
 { #category : #'as yet unclassified' }
-PyramidPopingPresenterBuilder >> layoutForLabel: aString input: anInput button: aButton [
+PyramidSinglePopingPresenterBuilder >> layoutForLabel: aString input: anInput button: aButton [
 
 	^ SpBoxLayout newHorizontal
 		  spacing: 4;
@@ -172,7 +163,7 @@ PyramidPopingPresenterBuilder >> layoutForLabel: aString input: anInput button: 
 ]
 
 { #category : #'as yet unclassified' }
-PyramidPopingPresenterBuilder >> makeNewInput [
+PyramidSinglePopingPresenterBuilder >> makeNewInput [
 
 	^ self property pyramidInputPresenterClass new
 		  strings: self property pyramidInputPresenterStrings;
@@ -180,13 +171,23 @@ PyramidPopingPresenterBuilder >> makeNewInput [
 ]
 
 { #category : #'as yet unclassified' }
-PyramidPopingPresenterBuilder >> popupFactory [
+PyramidSinglePopingPresenterBuilder >> popupPanel [
 
-	^ popupFactory
+	^ popupPanel
 ]
 
 { #category : #'as yet unclassified' }
-PyramidPopingPresenterBuilder >> popupFactory: anObject [
+PyramidSinglePopingPresenterBuilder >> popupPanel: anObject [
 
-	popupFactory := anObject
+	popupPanel := anObject
+]
+
+{ #category : #'as yet unclassified' }
+PyramidSinglePopingPresenterBuilder >> updatePopupPanel [
+
+	self popupPanel lastPropertyShown = self property ifFalse: [ ^ self ].
+	self popupPanel
+		name: self property name
+		grouped: self buildPresentersGrouped
+		individual: self buildPresentersIndividual
 ]

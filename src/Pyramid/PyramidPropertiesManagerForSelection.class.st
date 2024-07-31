@@ -6,7 +6,7 @@ Class {
 		'shouldComputeProperties',
 		'projectModel'
 	],
-	#category : 'Pyramid-property'
+	#category : #'Pyramid-property'
 }
 
 { #category : #'as yet unclassified' }
@@ -31,6 +31,20 @@ PyramidPropertiesManagerForSelection >> initialize [
 		                   wrappee: commandExecutor;
 		                   yourself.
 	commandExecutor afterDo: [ self projectModel informElementsChanged ]
+]
+
+{ #category : #'as yet unclassified' }
+PyramidPropertiesManagerForSelection >> makePresenterBuilder [
+
+	| popupPanel |
+	popupPanel := PyramidSinglePropertyPopupPresenter new
+		              originPresenter: self presenter;
+		              popoverDirection: SpPopoverPosition left;
+		              yourself.
+
+	^ PyramidSinglePopingPresenterBuilder new
+		  popupPanel: popupPanel;
+		  yourself
 ]
 
 { #category : #accessing }

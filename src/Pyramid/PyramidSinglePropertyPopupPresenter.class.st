@@ -1,60 +1,63 @@
 Class {
-	#name : #PyramidPropertyPopupPresenter,
+	#name : #PyramidSinglePropertyPopupPresenter,
 	#superclass : #SpPresenter,
 	#instVars : [
 		'buttonIndividual',
 		'buttonGroup',
 		'individualPresenters',
 		'groupedPresenters',
-		'name'
+		'name',
+		'originPresenter',
+		'popoverDirection',
+		'lastPropertyShown'
 	],
 	#category : #'Pyramid-property'
 }
 
 { #category : #accessing }
-PyramidPropertyPopupPresenter >> buttonGroup [
+PyramidSinglePropertyPopupPresenter >> buttonGroup [
 
 	^ buttonGroup
 ]
 
 { #category : #accessing }
-PyramidPropertyPopupPresenter >> buttonIndividual [
+PyramidSinglePropertyPopupPresenter >> buttonIndividual [
 
 	^ buttonIndividual
 ]
 
 { #category : #layout }
-PyramidPropertyPopupPresenter >> defaultLayout [
+PyramidSinglePropertyPopupPresenter >> defaultLayout [
 
 	^ SpBoxLayout newVertical
 ]
 
 { #category : #accessing }
-PyramidPropertyPopupPresenter >> groupedPresenters [
+PyramidSinglePropertyPopupPresenter >> groupedPresenters [
 
 	^ groupedPresenters
 ]
 
 { #category : #accessing }
-PyramidPropertyPopupPresenter >> groupedPresenters: anObject [
+PyramidSinglePropertyPopupPresenter >> groupedPresenters: anObject [
 
 	groupedPresenters := anObject
 ]
 
 { #category : #accessing }
-PyramidPropertyPopupPresenter >> individualPresenters [
+PyramidSinglePropertyPopupPresenter >> individualPresenters [
 
 	^ individualPresenters
 ]
 
 { #category : #accessing }
-PyramidPropertyPopupPresenter >> individualPresenters: anObject [
+PyramidSinglePropertyPopupPresenter >> individualPresenters: anObject [
 
 	individualPresenters := anObject
 ]
 
 { #category : #'initialization - deprecated' }
-PyramidPropertyPopupPresenter >> initializePresenters [
+PyramidSinglePropertyPopupPresenter >> initializePresenters [
 
 	individualPresenters := {  }.
 	groupedPresenters := {  }.
@@ -73,8 +76,20 @@ PyramidPropertyPopupPresenter >> initializePresenters [
 	buttonGroup whenActivatedDo: [ self showGroupPresenter ]
 ]
 
+{ #category : #accessing }
+PyramidSinglePropertyPopupPresenter >> lastPropertyShown [
+
+	^ lastPropertyShown
+]
+
+{ #category : #accessing }
+PyramidSinglePropertyPopupPresenter >> lastPropertyShown: anObject [
+
+	lastPropertyShown := anObject
+]
+
 { #category : #'as yet unclassified' }
-PyramidPropertyPopupPresenter >> layoutWith: aCollection [
+PyramidSinglePropertyPopupPresenter >> layoutWith: aCollection [
 
 	| inputsLayout scroll |
 	inputsLayout := SpBoxLayout newVertical
@@ -111,19 +126,19 @@ PyramidPropertyPopupPresenter >> layoutWith: aCollection [
 ]
 
 { #category : #accessing }
-PyramidPropertyPopupPresenter >> name [
+PyramidSinglePropertyPopupPresenter >> name [
 
 	^ name
 ]
 
 { #category : #accessing }
-PyramidPropertyPopupPresenter >> name: anObject [
+PyramidSinglePropertyPopupPresenter >> name: anObject [
 
 	name := anObject
 ]
 
 { #category : #'as yet unclassified' }
-PyramidPropertyPopupPresenter >> name: aString grouped: groupedCollection individual: individualCollection [
+PyramidSinglePropertyPopupPresenter >> name: aString grouped: groupedCollection individual: individualCollection [
 
 	self name: aString.
 	self individualPresenters: individualCollection.
@@ -132,20 +147,53 @@ PyramidPropertyPopupPresenter >> name: aString grouped: groupedCollection indivi
 	self buttonGroup state ifTrue: [ self showGroupPresenter ] ifFalse: [ self showIndividualPresenter ].
 ]
 
+{ #category : #accessing }
+PyramidSinglePropertyPopupPresenter >> originPresenter [
+
+	^ originPresenter
+]
+
+{ #category : #accessing }
+PyramidSinglePropertyPopupPresenter >> originPresenter: anObject [
+
+	originPresenter := anObject
+]
+
+{ #category : #accessing }
+PyramidSinglePropertyPopupPresenter >> popoverDirection [
+
+	^ popoverDirection
+]
+
+{ #category : #accessing }
+PyramidSinglePropertyPopupPresenter >> popoverDirection: anObject [
+
+	popoverDirection := anObject
+]
+
+{ #category : #api }
+PyramidSinglePropertyPopupPresenter >> popup [
+
+	(PyramidPopoverFactory
+		 makeWithPresenter: self
+		 relativeTo: self originPresenter
+		 position: self popoverDirection) popup
+]
+
 { #category : #'as yet unclassified' }
-PyramidPropertyPopupPresenter >> popupExtent [
+PyramidSinglePropertyPopupPresenter >> popupExtent [
 
 	^ 250 @ 500
 ]
 
 { #category : #'as yet unclassified' }
-PyramidPropertyPopupPresenter >> showGroupPresenter [
+PyramidSinglePropertyPopupPresenter >> showGroupPresenter [
 
 	self layout: (self layoutWith: self groupedPresenters).
 ]
 
 { #category : #'as yet unclassified' }
-PyramidPropertyPopupPresenter >> showIndividualPresenter [
+PyramidSinglePropertyPopupPresenter >> showIndividualPresenter [
 
 	self layout: (self layoutWith: self individualPresenters)
 ]
