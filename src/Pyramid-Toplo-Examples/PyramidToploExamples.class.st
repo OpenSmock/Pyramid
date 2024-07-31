@@ -581,3 +581,85 @@ blfontsizedefaultattribute21 := BlFontSizeDefaultAttribute new.
    yourself)}
 	] value
 ]
+
+{ #category : #'pyramid-serialized-bloc' }
+PyramidToploExamples class >> icons [
+	"This class has been generated using Pyramid.
+
+	By: YannLEGOFF
+	2024-07-30 18:24:19"
+
+	<pyStash>
+	^ [ | blsvgconverterclass1 toantdesigniconproviderclass2 |
+blsvgconverterclass1 := BlSvgConverter.
+toantdesigniconproviderclass2 := ToAntDesignIconProvider.
+{(ToImage new
+   innerImage: (PyramidExternalRessourceProxy new
+         pyramidExternalRessourceSource: (PyramidExternalRessourceSource new
+               target: blsvgconverterclass1;
+               selector: #convertFromString:;
+               arguments: {(PyramidExternalRessourceProxy new
+                     pyramidExternalRessourceSource: (PyramidExternalRessourceSource new
+                           target: toantdesigniconproviderclass2;
+                           selector: #twotone_sound;
+                           arguments: {};
+                           yourself);
+                     yourself)};
+               yourself);
+         yourself);
+   constraintsDo: [:constraints |  constraints horizontal exact: 200.0.
+      constraints vertical exact: 200.0 ];
+   layout: BlFrameLayout new;
+   id: #A;
+   yourself) . 
+(ToImage new
+   innerImage: (PyramidExternalRessourceProxy new
+         pyramidExternalRessourceSource: (PyramidExternalRessourceSource new
+               target: blsvgconverterclass1;
+               selector: #convertFromString:;
+               arguments: {(PyramidExternalRessourceProxy new
+                     pyramidExternalRessourceSource: (PyramidExternalRessourceSource new
+                           target: toantdesigniconproviderclass2;
+                           selector: #outlined_code;
+                           arguments: {};
+                           yourself);
+                     yourself)};
+               yourself);
+         yourself);
+   constraintsDo: [:constraints |  constraints horizontal exact: 48.0.
+      constraints vertical exact: 48.0 ];
+   layout: BlFrameLayout new;
+   id: #B;
+   yourself)} ] value
+]
+
+{ #category : #'pyramid-serialized-bloc' }
+PyramidToploExamples class >> icons2 [
+	"This class has been generated using Pyramid.
+
+	By: YannLEGOFF
+	2024-07-31 10:27:35"
+
+	<pyStash>
+	^ [ {(ToImage new
+   innerImage: (PyramidExternalRessourceProxy new
+         pyramidExternalRessourceSource: (PyramidExternalRessourceSource new
+               target: BlSvgConverter;
+               selector: #convertFromString:;
+               arguments: {(PyramidExternalRessourceProxy new
+                     pyramidExternalRessourceSource: (PyramidExternalRessourceSource new
+                           target: ToMaterialDesignIconProvider;
+                           selector: #twotone_mediation;
+                           arguments: {};
+                           yourself);
+                     yourself)};
+               postConstructionBlock: [:obj |  obj constraints horizontal matchParent.
+                  obj constraints vertical matchParent ];
+               yourself);
+         yourself);
+   constraintsDo: [:constraints |  constraints horizontal exact: 128.0.
+      constraints vertical exact: 128.0 ];
+   layout: BlFrameLayout new;
+   id: #A;
+   yourself)} ] value
+]

@@ -8,7 +8,7 @@ Class {
 	#instVars : [
 		'textInput'
 	],
-	#category : #'Pyramid-specs-custom'
+	#category : 'Pyramid-specs-custom'
 }
 
 { #category : #'as yet unclassified' }

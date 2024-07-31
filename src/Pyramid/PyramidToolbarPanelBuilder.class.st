@@ -5,7 +5,7 @@ Class {
 		'item',
 		'isHorizontal'
 	],
-	#category : #'Pyramid-views'
+	#category : 'Pyramid-views'
 }
 
 { #category : #accessing }

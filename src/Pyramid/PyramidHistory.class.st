@@ -5,7 +5,7 @@ Class {
 		'mementosStack',
 		'position'
 	],
-	#category : #'Pyramid-history'
+	#category : 'Pyramid-history'
 }
 
 { #category : #testing }

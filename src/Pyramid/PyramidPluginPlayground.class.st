@@ -7,7 +7,7 @@ Class {
 		'activeProject',
 		'view'
 	],
-	#category : #'Pyramid-plugin-playground'
+	#category : 'Pyramid-plugin-playground'
 }
 
 { #category : #adding }

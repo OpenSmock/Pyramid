@@ -4,7 +4,7 @@ Class {
 	#instVars : [
 		'count'
 	],
-	#category : 'Pyramid-Tests-cases-command'
+	#category : #'Pyramid-Tests-cases-command'
 }
 
 { #category : #accessing }

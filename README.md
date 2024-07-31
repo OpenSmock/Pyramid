@@ -84,9 +84,9 @@ Then the project view appears in a new window.
 
 ### Add and setup graphical elements
 
-Use the create button to add graphical elements in your project view.
+Use the add button to add graphical elements in your project view and edit them with the properties panel.
 
-https://github.com/OpenSmock/Pyramid/assets/49183340/a02db9ad-314a-4caf-884c-9da4da809293
+https://github.com/user-attachments/assets/44796af0-95d7-4e29-b28b-fdedfdbe7a85
 
 ### Test behavior in the editor
 
@@ -94,19 +94,17 @@ Use the test/edit button to switch between the edit mode and the test mode.
 
 https://github.com/OpenSmock/Pyramid/assets/49183340/a85d8c01-89dd-472c-ab4e-41d51a8629dd
 
-### Save a project
+### Save and Edit a project
 
 Setup the project to store your view into a Class.
 
 When your project is saved into a method, you can see the preview on the `Pyramid preview` tab.
-
-https://github.com/OpenSmock/Pyramid/assets/49183340/eb70004b-cfb4-43a0-8759-27d3bac75fd0
-
-### Edit a saved project
+By default the element will be saved as source code.
 
 Use the `Pyramid preview` tab to edit an existing project.
+You can edit your project with Pyramid or use the code browser.
 
-https://github.com/OpenSmock/Pyramid/assets/49183340/c4a18e51-5fb5-412c-90d4-0638cadb6bff
+https://github.com/user-attachments/assets/14711a00-b31a-4915-a634-3685bfe141f7
 
 ### Test a project
 
@@ -136,13 +134,14 @@ https://github.com/OpenSmock/Pyramid/assets/49183340/0c66a3ac-7bea-48c1-b1e8-0b0
 
 ## <img src="/assets/PyramidPinPtah.svg" width="75" height="75" align="bottom"> Dependencies
 
-![image](https://github.com/OpenSmock/Pyramid/assets/34318678/099f25fc-74bd-477f-bef0-2ad7d47db10d)
+![image](https://github.com/user-attachments/assets/192ff62a-ce48-4801-a437-c9c83720eb5f)
 
-- [Toplo](https://github.com/pharo-graphics/Toplo)
-- [Toplo-Serialization](https://github.com/OpenSmock/Toplo-Serialization)
-- [Bloc](https://github.com/pharo-graphics/Bloc)
-- [Bloc-Serialization](https://github.com/OpenSmock/Bloc-Serialization)
-- [Alexandrie](https://github.com/pharo-graphics/Alexandrie)
+- [Bloc-Serialization](https://github.com/OpenSmock/Bloc-Serialization) - serializer project for Bloc (this project define the Bloc version of Pyramid).
+- [Bloc](https://github.com/pharo-graphics/Bloc) - low-level UI infrastructure & framework for Pharo.
+- [Toplo-Serialization](https://github.com/OpenSmock/Toplo-Serialization) - serializer project for Toplo (this project define the Toplo version of Pyramid).
+- [Toplo](https://github.com/pharo-graphics/Toplo) - a widget framework on top of Bloc.
+- [STON](https://github.com/svenvc/ston) - serializer for Pharo objects to Smalltalk Object Notation format.
+- [Stash](https://github.com/Nyan11/Stash) - serializer for Pharo objects to source code format.
 
 ## <img src="/assets/PyramidPinPtah.svg" width="75" height="75" align="bottom"> License
 

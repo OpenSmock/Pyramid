@@ -1,7 +1,7 @@
 Class {
 	#name : #PyramidPopoverFactory,
 	#superclass : #Object,
-	#category : #'Pyramid-views'
+	#category : 'Pyramid-views'
 }
 
 { #category : #'as yet unclassified' }

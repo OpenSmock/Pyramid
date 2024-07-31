@@ -5,7 +5,7 @@ I execute the command on the given targets with the given arguments.
 Class {
 	#name : #PyramidMainCommandExecutor,
 	#superclass : #PyramidCommandExecutor,
-	#category : #'Pyramid-commands'
+	#category : 'Pyramid-commands'
 }
 
 { #category : #'as yet unclassified' }

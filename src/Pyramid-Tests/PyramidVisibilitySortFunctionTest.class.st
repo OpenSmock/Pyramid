@@ -1,7 +1,7 @@
 Class {
 	#name : #PyramidVisibilitySortFunctionTest,
 	#superclass : #TestCase,
-	#category : 'Pyramid-Tests-cases-bloc-utils'
+	#category : #'Pyramid-Tests-cases-bloc-utils'
 }
 
 { #category : #tests }

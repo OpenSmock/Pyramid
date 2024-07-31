@@ -4,7 +4,7 @@ Class {
 	#instVars : [
 		'window'
 	],
-	#category : 'Pyramid-Tests-cases-views'
+	#category : #'Pyramid-Tests-cases-views'
 }
 
 { #category : #running }

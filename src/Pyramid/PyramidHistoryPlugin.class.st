@@ -9,7 +9,7 @@ Class {
 		'history',
 		'projectModel'
 	],
-	#category : #'Pyramid-history'
+	#category : 'Pyramid-history'
 }
 
 { #category : #adding }

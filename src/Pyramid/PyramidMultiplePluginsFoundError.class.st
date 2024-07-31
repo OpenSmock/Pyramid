@@ -4,7 +4,7 @@ Class {
 	#instVars : [
 		'plugins'
 	],
-	#category : #'Pyramid-core'
+	#category : 'Pyramid-core'
 }
 
 { #category : #accessing }

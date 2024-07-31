@@ -13,8 +13,7 @@ PyramidBlocTextCommand class >> isAbstract [
 { #category : #testing }
 PyramidBlocTextCommand >> canBeUsedFor: anObject [
 
-	^ anObject class = BlTextElement or: [
-		  anObject class inheritsFrom: BlTextElement ]
+	^ anObject isKindOf: BlTextElement
 ]
 
 { #category : #'as yet unclassified' }

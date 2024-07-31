@@ -1,7 +1,7 @@
 Class {
 	#name : #PyramidSimpleWindow,
 	#superclass : #PyramidWindow,
-	#category : #'Pyramid-views'
+	#category : 'Pyramid-views'
 }
 
 { #category : #specs }

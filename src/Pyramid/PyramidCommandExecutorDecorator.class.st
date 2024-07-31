@@ -8,7 +8,7 @@ Class {
 	#instVars : [
 		'wrappee'
 	],
-	#category : #'Pyramid-commands'
+	#category : 'Pyramid-commands'
 }
 
 { #category : #testing }

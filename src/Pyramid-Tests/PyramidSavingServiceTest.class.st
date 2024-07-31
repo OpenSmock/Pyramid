@@ -6,7 +6,7 @@ Class {
 		'savingService',
 		'savingClass'
 	],
-	#category : 'Pyramid-Tests-cases-plugin-save'
+	#category : #'Pyramid-Tests-cases-plugin-save'
 }
 
 { #category : #running }

@@ -7,7 +7,7 @@ Class {
 		'presenterStrategy',
 		'history'
 	],
-	#category : #'Pyramid-property'
+	#category : 'Pyramid-property'
 }
 
 { #category : #removing }

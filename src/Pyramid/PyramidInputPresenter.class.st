@@ -15,7 +15,7 @@ Class {
 	#instVars : [
 		'strings'
 	],
-	#category : #'Pyramid-specs-custom'
+	#category : 'Pyramid-specs-custom'
 }
 
 { #category : #testing }

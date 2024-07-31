@@ -6,7 +6,7 @@ Class {
 		'configureBuilder',
 		'connectOn'
 	],
-	#category : 'Pyramid-Tests-cases-core'
+	#category : #'Pyramid-Tests-cases-core'
 }
 
 { #category : #asserting }

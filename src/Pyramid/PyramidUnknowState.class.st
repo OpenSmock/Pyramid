@@ -1,7 +1,7 @@
 Class {
 	#name : #PyramidUnknowState,
 	#superclass : #Object,
-	#category : #'Pyramid-specs-custom'
+	#category : 'Pyramid-specs-custom'
 }
 
 { #category : #comparing }

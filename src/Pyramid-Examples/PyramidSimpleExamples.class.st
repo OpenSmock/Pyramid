@@ -9,15 +9,16 @@ PyramidSimpleExamples class >> imageProxy [
 	"This class has been generated using Pyramid.
 
 	By: YannLEGOFF
-	2024-07-23 09:32:34"
+	2024-07-30 11:33:02"
 
 	<pyStash>
-	^ [ {(BlElement new
-   id: #A;
+	^ [ | objectclass1 |
+objectclass1 := Object.
+{(BlElement new
    background: (BlImageBackground new
          image: (PyramidExternalRessourceProxy new
                pyramidExternalRessourceSource: (PyramidExternalRessourceSource new
-                     target: Object;
+                     target: objectclass1;
                      selector: #iconNamed:;
                      arguments: {#pharoBig};
                      yourself);
@@ -26,6 +27,22 @@ PyramidSimpleExamples class >> imageProxy [
          yourself);
    constraintsDo: [:constraints |  constraints horizontal exact: 256.0.
       constraints vertical exact: 256.0 ];
+   id: #A;
+   yourself) . 
+(BlElement new
+   background: (BlImageBackground new
+         image: (PyramidExternalRessourceProxy new
+               pyramidExternalRessourceSource: (PyramidExternalRessourceSource new
+                     target: objectclass1;
+                     selector: #iconNamed:;
+                     arguments: {#abstract};
+                     yourself);
+               yourself);
+         opacity: 1.0;
+         yourself);
+   constraintsDo: [:constraints |  constraints horizontal exact: 16.0.
+      constraints vertical exact: 16.0 ];
+   id: #A;
    yourself)} ] value
 ]
 

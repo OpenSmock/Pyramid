@@ -5,7 +5,7 @@ Class {
 		'beforeDo',
 		'afterDo'
 	],
-	#category : #'Pyramid-commands'
+	#category : 'Pyramid-commands'
 }
 
 { #category : #accessing }

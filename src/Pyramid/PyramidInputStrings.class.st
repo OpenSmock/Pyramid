@@ -4,7 +4,7 @@ Class {
 	#instVars : [
 		'help'
 	],
-	#category : #'Pyramid-specs-custom'
+	#category : 'Pyramid-specs-custom'
 }
 
 { #category : #accessing }

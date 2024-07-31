@@ -4,7 +4,7 @@ Class {
 	#instVars : [
 		'windowTitle'
 	],
-	#category : #'Pyramid-specs-custom'
+	#category : 'Pyramid-specs-custom'
 }
 
 { #category : #initialization }

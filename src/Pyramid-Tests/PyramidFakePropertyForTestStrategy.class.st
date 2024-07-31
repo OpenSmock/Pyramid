@@ -4,7 +4,7 @@ Class {
 	#instVars : [
 		'properties'
 	],
-	#category : 'Pyramid-Tests-cases-property'
+	#category : #'Pyramid-Tests-cases-property'
 }
 
 { #category : #'as yet unclassified' }

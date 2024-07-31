@@ -1,6 +1,6 @@
 Class {
-	#name : 'PyramidThemeFromSpaceExtension',
-	#superclass : 'Object',
+	#name : #PyramidThemeFromSpaceExtension,
+	#superclass : #Object,
 	#traits : 'TPyramidPlugin + TPyramidSpaceExtension + TPyramidEditorSpaceIsReadyObserver + TPyramidOpenFromSpacePluginExtension',
 	#classTraits : 'TPyramidPlugin classTrait + TPyramidSpaceExtension classTrait + TPyramidEditorSpaceIsReadyObserver classTrait + TPyramidOpenFromSpacePluginExtension classTrait',
 	#instVars : [
@@ -8,18 +8,16 @@ Class {
 		'themeSpaceSelector',
 		'spaceIsReady'
 	],
-	#category : 'Pyramid-Toplo-plugin-theme-management',
-	#package : 'Pyramid-Toplo',
-	#tag : 'plugin-theme-management'
+	#category : 'Pyramid-Toplo-plugin-theme-management'
 }
 
-{ #category : 'asserting' }
+{ #category : #asserting }
 PyramidThemeFromSpaceExtension class >> shouldInstall [
 
 	^ false
 ]
 
-{ #category : 'actions' }
+{ #category : #actions }
 PyramidThemeFromSpaceExtension >> configureBuilder: aPyramidEditorBuilder [
 
 	(aPyramidEditorBuilder findPlugin: PyramidOpenFromSpacePlugin)
@@ -30,14 +28,14 @@ PyramidThemeFromSpaceExtension >> configureBuilder: aPyramidEditorBuilder [
 		themePresenter themeSpaceSelector
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidThemeFromSpaceExtension >> configureCloseOnSpace: aSpace [
 
 	aSpace toTheme: themeSpaceSelector currentTheme.
 	aSpace root skinManager postponeRequestSkinIn: aSpace root
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidThemeFromSpaceExtension >> configureOpenFromSpace: aSpace [
 	"Do something with the space"
 
@@ -45,13 +43,13 @@ PyramidThemeFromSpaceExtension >> configureOpenFromSpace: aSpace [
 	aSpace root skinManager postponeRequestSkinIn: aSpace root
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidThemeFromSpaceExtension >> defaultToTheme [
 
 	^ defaultToTheme
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidThemeFromSpaceExtension >> defaultToTheme: anObject [
 
 	defaultToTheme := anObject.
@@ -59,45 +57,45 @@ PyramidThemeFromSpaceExtension >> defaultToTheme: anObject [
 	self spaceIsReady ifTrue: [ self informSpaceIsReady  ].
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidThemeFromSpaceExtension >> informSpaceIsReady [
 
 	self defaultToTheme ifNil: [ self spaceIsReady: true. ^ self ].
 	self builder space toTheme: self defaultToTheme
 ]
 
-{ #category : 'initialization' }
+{ #category : #initialization }
 PyramidThemeFromSpaceExtension >> initialize [
 
 	spaceIsReady := false.
 ]
 
-{ #category : 'displaying' }
+{ #category : #displaying }
 PyramidThemeFromSpaceExtension >> installOn: aBuilder [
 
 	self builder: aBuilder.
 	aBuilder addSpaceIsReadyObserver: self.
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidThemeFromSpaceExtension >> spaceIsReady [
 
 	^ spaceIsReady
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidThemeFromSpaceExtension >> spaceIsReady: anObject [
 
 	spaceIsReady := anObject
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidThemeFromSpaceExtension >> themeSpaceSelector [
 
 	^ themeSpaceSelector
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidThemeFromSpaceExtension >> themeSpaceSelector: anObject [
 
 	themeSpaceSelector := anObject

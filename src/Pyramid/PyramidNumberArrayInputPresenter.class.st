@@ -5,7 +5,7 @@ Class {
 		'submitBlock',
 		'inputArray'
 	],
-	#category : #'Pyramid-specs-custom'
+	#category : 'Pyramid-specs-custom'
 }
 
 { #category : #'as yet unclassified' }

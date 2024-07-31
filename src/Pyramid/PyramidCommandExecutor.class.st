@@ -7,7 +7,7 @@ I’m an abstract class use to define the API.
 Class {
 	#name : #PyramidCommandExecutor,
 	#superclass : #Object,
-	#category : #'Pyramid-commands'
+	#category : 'Pyramid-commands'
 }
 
 { #category : #testing }

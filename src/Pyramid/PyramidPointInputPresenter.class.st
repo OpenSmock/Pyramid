@@ -8,7 +8,7 @@ Class {
 		'labelX',
 		'labelY'
 	],
-	#category : #'Pyramid-specs-custom'
+	#category : 'Pyramid-specs-custom'
 }
 
 { #category : #accessing }

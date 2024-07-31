@@ -1,5 +1,5 @@
 Class {
 	#name : #PyramidError,
 	#superclass : #Error,
-	#category : #'Pyramid-core'
+	#category : 'Pyramid-core'
 }

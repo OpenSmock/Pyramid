@@ -1,7 +1,7 @@
 Class {
 	#name : #PyramidRemoveAllFromCollectionCommand,
 	#superclass : #PyramidCollectionCommand,
-	#category : #'Pyramid-commands'
+	#category : 'Pyramid-commands'
 }
 
 { #category : #'as yet unclassified' }

@@ -7,7 +7,7 @@ Class {
 		'label',
 		'icon'
 	],
-	#category : #'Pyramid-views'
+	#category : 'Pyramid-views'
 }
 
 { #category : #comparing }

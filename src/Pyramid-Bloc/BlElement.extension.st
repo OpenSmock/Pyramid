@@ -24,3 +24,11 @@ BlElement >> editWithPyramid [
 	editor window open.
 	^ editor
 ]
+
+{ #category : #'*Pyramid-Bloc' }
+BlElement >> parentsShouldSerializeChildren [
+
+	self parent ifNil: [ ^ true ].
+	self parent shouldSerializedChildren ifFalse: [ ^ false ].
+	^ self parent parentsShouldSerializeChildren
+]

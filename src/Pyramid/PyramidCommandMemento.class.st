@@ -6,7 +6,7 @@ Class {
 		'target',
 		'arguments'
 	],
-	#category : #'Pyramid-history'
+	#category : 'Pyramid-history'
 }
 
 { #category : #visiting }

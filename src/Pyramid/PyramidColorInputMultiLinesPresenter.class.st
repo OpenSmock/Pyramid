@@ -6,7 +6,7 @@ Class {
 		'colorInput',
 		'whenValueChangedDo'
 	],
-	#category : #'Pyramid-specs-custom'
+	#category : 'Pyramid-specs-custom'
 }
 
 { #category : #accessing }

@@ -1,7 +1,7 @@
 Class {
 	#name : #PyramidContextMenuPluginTest,
 	#superclass : #TestCase,
-	#category : 'Pyramid-Tests-cases-plugin-context-menu'
+	#category : #'Pyramid-Tests-cases-plugin-context-menu'
 }
 
 { #category : #tests }

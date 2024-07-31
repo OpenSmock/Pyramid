@@ -7,7 +7,7 @@ Class {
 		'groupedAssociations',
 		'individualAssociations'
 	],
-	#category : #'Pyramid-commands'
+	#category : 'Pyramid-commands'
 }
 
 { #category : #'as yet unclassified' }

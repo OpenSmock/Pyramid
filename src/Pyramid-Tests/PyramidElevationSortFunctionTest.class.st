@@ -1,7 +1,7 @@
 Class {
 	#name : #PyramidElevationSortFunctionTest,
 	#superclass : #TestCase,
-	#category : 'Pyramid-Tests-cases-bloc-utils'
+	#category : #'Pyramid-Tests-cases-bloc-utils'
 }
 
 { #category : #tests }

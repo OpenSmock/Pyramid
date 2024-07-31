@@ -5,7 +5,7 @@ Class {
 		'selection',
 		'firstLevelElements'
 	],
-	#category : #'Pyramid-core'
+	#category : 'Pyramid-core'
 }
 
 { #category : #accessing }

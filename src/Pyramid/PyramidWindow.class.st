@@ -8,7 +8,7 @@ Class {
 		'spec',
 		'whenClosedDo'
 	],
-	#category : #'Pyramid-views'
+	#category : 'Pyramid-views'
 }
 
 { #category : #'window - properties' }

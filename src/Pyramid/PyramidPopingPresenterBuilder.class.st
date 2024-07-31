@@ -7,7 +7,7 @@ I create a presenter with a main input to change property of all element at once
 Class {
 	#name : #PyramidPopingPresenterBuilder,
 	#superclass : #PyramidPropertyPresenterBuilder,
-	#category : #'Pyramid-property'
+	#category : 'Pyramid-property'
 }
 
 { #category : #'as yet unclassified' }

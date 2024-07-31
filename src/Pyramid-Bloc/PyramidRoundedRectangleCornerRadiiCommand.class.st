@@ -7,8 +7,8 @@ Class {
 { #category : #testing }
 PyramidRoundedRectangleCornerRadiiCommand >> canBeUsedFor: anObject [
 
-	^ (anObject class = BlElement or: [
-		  anObject class inheritsFrom: BlElement ]) and: [ anObject geometry class = BlRoundedRectangleGeometry ]
+	^ (super canBeUsedFor: anObject) and: [
+		  anObject geometry class = BlRoundedRectangleGeometry ]
 ]
 
 { #category : #'as yet unclassified' }

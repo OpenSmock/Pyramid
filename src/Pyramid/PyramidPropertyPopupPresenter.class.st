@@ -8,7 +8,7 @@ Class {
 		'groupedPresenters',
 		'name'
 	],
-	#category : #'Pyramid-property'
+	#category : 'Pyramid-property'
 }
 
 { #category : #accessing }

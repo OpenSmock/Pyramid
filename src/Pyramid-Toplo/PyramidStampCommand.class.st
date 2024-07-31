@@ -1,21 +1,19 @@
 Class {
-	#name : 'PyramidStampCommand',
-	#superclass : 'PyramidAbstractBlocCommand',
+	#name : #PyramidStampCommand,
+	#superclass : #PyramidAbstractBlocCommand,
 	#instVars : [
 		'stamp'
 	],
-	#category : 'Pyramid-Toplo-plugin-theme-management',
-	#package : 'Pyramid-Toplo',
-	#tag : 'plugin-theme-management'
+	#category : 'Pyramid-Toplo-plugin-theme-management'
 }
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidStampCommand >> getValueFor: anObject [
 
 	^ anObject hasStamp:  self stamp
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidStampCommand >> setValueFor: anObject with: aBoolean [
 
 	aBoolean
@@ -23,13 +21,13 @@ PyramidStampCommand >> setValueFor: anObject with: aBoolean [
 		ifFalse: [ anObject removeStamp: self stamp ]
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidStampCommand >> stamp [
 
 	^ stamp
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidStampCommand >> stamp: anObject [
 
 	stamp := anObject

@@ -1,15 +1,13 @@
 Class {
-	#name : 'PyramidSelectorPossibleStamps',
-	#superclass : 'Object',
+	#name : #PyramidSelectorPossibleStamps,
+	#superclass : #Object,
 	#instVars : [
 		'theme'
 	],
-	#category : 'Pyramid-Toplo-plugin-theme-management',
-	#package : 'Pyramid-Toplo',
-	#tag : 'plugin-theme-management'
+	#category : 'Pyramid-Toplo-plugin-theme-management'
 }
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidSelectorPossibleStamps >> findAllSelectorFor: aBlElement [
 
 	^ self theme styleSheet styleRules flatCollect: [
@@ -17,7 +15,7 @@ PyramidSelectorPossibleStamps >> findAllSelectorFor: aBlElement [
 		                     self findAllSelectorFor: aBlElement on: rule ].
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidSelectorPossibleStamps >> findAllSelectorFor: aBlElement on: aToStyleRule [
 
 	| interpreter |
@@ -31,7 +29,7 @@ PyramidSelectorPossibleStamps >> findAllSelectorFor: aBlElement on: aToStyleRule
 		ifFalse: [ ^ {  } ]
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidSelectorPossibleStamps >> findAllStampsFor: aBlElement [
 
 	| allValidSelectors allStampsSelectors |
@@ -42,13 +40,13 @@ PyramidSelectorPossibleStamps >> findAllStampsFor: aBlElement [
 		  sorted
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidSelectorPossibleStamps >> theme [
 
 	^ theme
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidSelectorPossibleStamps >> theme: anObject [
 
 	theme := anObject

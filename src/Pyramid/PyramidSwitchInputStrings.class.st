@@ -6,7 +6,7 @@ Class {
 		'offLabel',
 		'uncertainLabel'
 	],
-	#category : #'Pyramid-specs-custom'
+	#category : 'Pyramid-specs-custom'
 }
 
 { #category : #initialization }

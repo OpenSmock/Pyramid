@@ -4,7 +4,7 @@ Class {
 	#instVars : [
 		'buttonsModel'
 	],
-	#category : #'Pyramid-specs-custom'
+	#category : 'Pyramid-specs-custom'
 }
 
 { #category : #adding }

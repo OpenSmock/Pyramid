@@ -1,7 +1,7 @@
 Class {
 	#name : #PyramidMementoInverser,
 	#superclass : #PyramidMementoVisitor,
-	#category : #'Pyramid-history'
+	#category : 'Pyramid-history'
 }
 
 { #category : #visiting }

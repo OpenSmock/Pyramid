@@ -7,7 +7,7 @@ Class {
 		'svMorph',
 		'whenValueChangedDo'
 	],
-	#category : #'Pyramid-specs-custom'
+	#category : 'Pyramid-specs-custom'
 }
 
 { #category : #accessing }

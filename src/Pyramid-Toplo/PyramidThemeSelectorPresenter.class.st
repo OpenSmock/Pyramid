@@ -1,35 +1,33 @@
 Class {
-	#name : 'PyramidThemeSelectorPresenter',
-	#superclass : 'SpPresenter',
+	#name : #PyramidThemeSelectorPresenter,
+	#superclass : #SpPresenter,
 	#instVars : [
 		'themeSelector',
 		'buttonRefreshTheme',
 		'triggerThemeChangement'
 	],
-	#category : 'Pyramid-Toplo-plugin-theme-management',
-	#package : 'Pyramid-Toplo',
-	#tag : 'plugin-theme-management'
+	#category : 'Pyramid-Toplo-plugin-theme-management'
 }
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidThemeSelectorPresenter >> applyTheme [
 
  self shouldBeImplemented
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidThemeSelectorPresenter >> buttonRefreshTheme [
 
 	^ buttonRefreshTheme
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidThemeSelectorPresenter >> currentTheme [
 
 	^ self themeSelector selectedItem
 ]
 
-{ #category : 'layout' }
+{ #category : #layout }
 PyramidThemeSelectorPresenter >> defaultLayout [
 
 	^ SpBoxLayout newVertical
@@ -52,7 +50,7 @@ PyramidThemeSelectorPresenter >> defaultLayout [
 		  yourself
 ]
 
-{ #category : 'initialization' }
+{ #category : #initialization }
 PyramidThemeSelectorPresenter >> initializeAllPossibleThemes [
 
 	| allThemes previousTheme |
@@ -72,7 +70,7 @@ PyramidThemeSelectorPresenter >> initializeAllPossibleThemes [
 	self triggerThemeChangement: true.
 ]
 
-{ #category : 'initialization' }
+{ #category : #initialization }
 PyramidThemeSelectorPresenter >> initializePresenters [
 
 	triggerThemeChangement := false.
@@ -88,13 +86,13 @@ PyramidThemeSelectorPresenter >> initializePresenters [
 	self initializeAllPossibleThemes
 ]
 
-{ #category : 'initialization' }
+{ #category : #initialization }
 PyramidThemeSelectorPresenter >> labelPresenter [
 
 	^ self shouldBeImplemented
 ]
 
-{ #category : 'private' }
+{ #category : #private }
 PyramidThemeSelectorPresenter >> selectTheme: aToTheme [
 
 	self triggerThemeChangement: false.
@@ -103,7 +101,7 @@ PyramidThemeSelectorPresenter >> selectTheme: aToTheme [
 	
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidThemeSelectorPresenter >> themeSelectionChanged: aThemeClass [
 
 	aThemeClass ifNil: [ ^ self ].
@@ -111,25 +109,25 @@ PyramidThemeSelectorPresenter >> themeSelectionChanged: aThemeClass [
 	
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidThemeSelectorPresenter >> themeSelector [
 
 	^ themeSelector
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidThemeSelectorPresenter >> triggerThemeChangement [
 
 	^ triggerThemeChangement
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidThemeSelectorPresenter >> triggerThemeChangement: anObject [
 
 	triggerThemeChangement := anObject
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidThemeSelectorPresenter >> variantSelectionChanged: aVariantClass [
 
 	aVariantClass ifNil: [ ^ self ].

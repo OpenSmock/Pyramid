@@ -10,7 +10,7 @@ Class {
 		'isRightOpened',
 		'editorWindow'
 	],
-	#category : #'Pyramid-plugin-dynamic-layout'
+	#category : 'Pyramid-plugin-dynamic-layout'
 }
 
 { #category : #adding }

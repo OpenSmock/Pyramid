@@ -10,7 +10,7 @@ Class {
 		'propertiesManager',
 		'announcer'
 	],
-	#category : #'Pyramid-core'
+	#category : 'Pyramid-core'
 }
 
 { #category : #private }

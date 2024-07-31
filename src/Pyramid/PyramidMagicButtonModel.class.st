@@ -9,7 +9,7 @@ Class {
 		'label',
 		'inputValidation'
 	],
-	#category : #'Pyramid-specs-custom'
+	#category : 'Pyramid-specs-custom'
 }
 
 { #category : #accessing }

@@ -3,7 +3,7 @@ Class {
 	#superclass : #TestCase,
 	#traits : 'TPyramidFontAttributeCommandTest',
 	#classTraits : 'TPyramidFontAttributeCommandTest classTrait',
-	#category : 'Pyramid-Tests-cases-plugin-bloc-text'
+	#category : #'Pyramid-Tests-cases-plugin-bloc-text'
 }
 
 { #category : #'as yet unclassified' }

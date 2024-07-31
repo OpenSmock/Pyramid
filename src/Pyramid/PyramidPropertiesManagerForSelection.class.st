@@ -6,7 +6,7 @@ Class {
 		'shouldComputeProperties',
 		'projectModel'
 	],
-	#category : #'Pyramid-property'
+	#category : 'Pyramid-property'
 }
 
 { #category : #'as yet unclassified' }

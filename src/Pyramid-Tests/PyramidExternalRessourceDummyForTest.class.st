@@ -4,7 +4,7 @@ Class {
 	#instVars : [
 		'dummyValue'
 	],
-	#category : 'Pyramid-Tests-cases-external-ressources'
+	#category : #'Pyramid-Tests-cases-external-ressources'
 }
 
 { #category : #'tests - other' }

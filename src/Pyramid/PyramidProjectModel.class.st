@@ -6,7 +6,7 @@ Class {
 		'firstLevelElements',
 		'selection'
 	],
-	#category : #'Pyramid-models'
+	#category : 'Pyramid-models'
 }
 
 { #category : #'as yet unclassified' }

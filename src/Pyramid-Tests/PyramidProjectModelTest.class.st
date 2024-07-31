@@ -8,7 +8,7 @@ Class {
 		'pyramidFirstLevelElementsChanged',
 		'pyramidSelectionChanged'
 	],
-	#category : 'Pyramid-Tests-cases-models'
+	#category : #'Pyramid-Tests-cases-models'
 }
 
 { #category : #running }

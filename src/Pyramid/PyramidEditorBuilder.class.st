@@ -8,7 +8,7 @@ Class {
 		'editor',
 		'window'
 	],
-	#category : #'Pyramid-core'
+	#category : 'Pyramid-core'
 }
 
 { #category : #building }
