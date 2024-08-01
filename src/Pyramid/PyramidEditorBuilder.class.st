@@ -92,6 +92,7 @@ PyramidEditorBuilder >> editor: anObject [
 { #category : #accessing }
 PyramidEditorBuilder >> plugins [
 
+	plugins ifNil: [ plugins := {  } ].
 	^ plugins
 ]
 
