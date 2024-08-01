@@ -154,10 +154,14 @@ PyramidNavigationTreePresenter >> treeTable [
 { #category : #'as yet unclassified' }
 PyramidNavigationTreePresenter >> updateRoots [
 
-	| roots parent shouldOrder |
+	| currentTreeRoots roots parent shouldOrder |
 	self shouldUpdateSelection: false.
 
 	roots := self editor projectModel firstLevelElements asArray.
+	currentTreeRoots := self treeTable roots.
+	
+	(roots size = currentTreeRoots size and: [ roots includesAll: currentTreeRoots ] )ifTrue: [ self shouldUpdateSelection: true. ^ self ].
+	
 	parent := nil.
 
 	"If roots all have the same parent then it should be ordered by the parent children order."
@@ -179,8 +183,15 @@ PyramidNavigationTreePresenter >> updateSelection [
 	self shouldUpdateSelection ifFalse: [ ^ self ].
 	self shouldUpdateSelection: false.
 	[
-	self treeTable unselectAll.
-	self editor projectModel selection ifNotEmpty: [ :e |
-		self treeTable selectItems: e ] ] ensure: [
+	| currentTreeSelection requestedSelection |
+	currentTreeSelection := self treeTable selectedItems.
+	requestedSelection := self editor projectModel selection asArray.
+	requestedSelection
+		ifEmpty: [ self treeTable unselectAll ]
+		ifNotEmpty: [
+			(currentTreeSelection size = requestedSelection size and: [
+				 currentTreeSelection includesAll: requestedSelection ]) ifTrue: [  self treeTable refresh ] ifFalse: [
+				self treeTable unselectAll.
+				self treeTable selectItems: requestedSelection ] ] ] ensure: [
 		self shouldUpdateSelection: true ]
 ]

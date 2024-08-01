@@ -102,7 +102,7 @@ PyramidNavigationPlugin >> navigation [
 { #category : #removing }
 PyramidNavigationPlugin >> removeSelectedElements [
 
-	self editor propertiesManager commandExecutor
+	self editor commandExecutor
 		use: PyramidRemoveSelectedElementsCommand new
 		on: self editor projectModel selection
 		with: self editor projectModel firstLevelElements.

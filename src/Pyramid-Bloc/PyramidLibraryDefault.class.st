@@ -51,7 +51,7 @@ PyramidLibraryDefault >> pragmaCategory: aSymbol withIcon: anIcon [
 								                method selector) materializeAsBlElement ];
 					               yourself ].
 		   PyramidLibraryCategory new
-			   name: package name;
+			   name: (package ifNil: [ '(nil)' ] ifNotNil: [ :p | p name ]);
 			   icon: anIcon;
 			   elements: (elements sorted: [ :a :b | a name < b name ]);
 			   yourself ]) sorted: [ :a :b | a name < b name ]

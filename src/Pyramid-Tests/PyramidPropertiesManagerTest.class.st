@@ -1,14 +1,65 @@
 Class {
 	#name : #PyramidPropertiesManagerTest,
 	#superclass : #TestCase,
+	#instVars : [
+		'commandExecutor',
+		'presenterBuilder',
+		'manager',
+		'presenterStrategy',
+		'prop1',
+		'prop2',
+		'prop3'
+	],
 	#category : #'Pyramid-Tests-cases-property'
 }
 
-{ #category : #tests }
-PyramidPropertiesManagerTest >> testAddAllProperties [
+{ #category : #accessing }
+PyramidPropertiesManagerTest >> commandExecutor [
 
-	| manager prop1 prop2 prop3 |
-	manager := PyramidPropertiesManager new commandExecutor: Object new; yourself.
+	^ commandExecutor
+]
+
+{ #category : #accessing }
+PyramidPropertiesManagerTest >> manager [
+
+	^ manager
+]
+
+{ #category : #accessing }
+PyramidPropertiesManagerTest >> presenterBuilder [
+
+	^ presenterBuilder
+]
+
+{ #category : #accessing }
+PyramidPropertiesManagerTest >> presenterStrategy [
+
+	^ presenterStrategy
+]
+
+{ #category : #accessing }
+PyramidPropertiesManagerTest >> prop1 [
+
+	^ prop1
+]
+
+{ #category : #accessing }
+PyramidPropertiesManagerTest >> prop2 [
+
+	^ prop2
+]
+
+{ #category : #accessing }
+PyramidPropertiesManagerTest >> prop3 [
+
+	^ prop3
+]
+
+{ #category : #running }
+PyramidPropertiesManagerTest >> setUp [
+
+	super setUp.
+	
 	prop1 := PyramidProperty new
 		         name: 'Porp1';
 		         command: PyramidSimpleMockCommand new;
@@ -24,109 +75,103 @@ PyramidPropertiesManagerTest >> testAddAllProperties [
 		         command: PyramidSimpleMockCommand new;
 		         pyramidInputPresenterClass: PyramidNumberInputPresenter;
 		         yourself.
+	
+	presenterStrategy := PyramidFakePropertyForTestStrategy new.
+	commandExecutor := PyramidMainCommandExecutor new.
+	presenterBuilder := PyramidFakePresenterBuilder new.
+	manager := PyramidPropertiesManagerForTest new
+		           commandExecutor: commandExecutor;
+		           presenterBuilder: presenterBuilder;
+		           presenterStrategy: presenterStrategy;
+		           yourself
+]
 
-	manager addAllProperties: { prop1. prop2 . prop3 }.
+{ #category : #tests }
+PyramidPropertiesManagerTest >> testAddAllProperties [
+
+	self manager addAllProperties: {
+			prop1.
+			prop2.
+			prop3 }.
+	self assert: (self manager properties includes: prop1).
+	self assert: (self manager properties includes: prop2).
+	self assert: (self manager properties includes: prop3).
+	self
+		assert: self manager commandExecutor
+		equals: prop1 commandExecutor.
+	self
+		assert: self manager commandExecutor
+		equals: prop2 commandExecutor.
+	self
+		assert: self manager commandExecutor
+		equals: prop3 commandExecutor.
+	self assert: self presenterBuilder equals: prop1 presenterBuilder.
+	self assert: self presenterBuilder equals: prop2 presenterBuilder.
+	self assert: self presenterBuilder equals: prop3 presenterBuilder
+]
+
+{ #category : #tests }
+PyramidPropertiesManagerTest >> testAddProperty [
+
+	manager addProperty: prop1.
+	manager addProperty: prop2.
+	manager addProperty: prop3.
 	self assert: (manager properties includes: prop1).
 	self assert: (manager properties includes: prop2).
 	self assert: (manager properties includes: prop3).
 	self assert: manager commandExecutor equals: prop1 commandExecutor.
 	self assert: manager commandExecutor equals: prop2 commandExecutor.
 	self assert: manager commandExecutor equals: prop3 commandExecutor.
-]
-
-{ #category : #tests }
-PyramidPropertiesManagerTest >> testAddProperty [
-
-	| manager prop1 prop2 prop3 |
-	manager := PyramidPropertiesManager new commandExecutor: Object new;
-		           yourself.
-	prop1 := PyramidProperty new
-		         name: 'Porp1';
-		         command: PyramidSimpleMockCommand new;
-		         pyramidInputPresenterClass: PyramidNumberInputPresenter;
-		         yourself.
-	prop2 := PyramidProperty new
-		         name: 'Porp2';
-		         command: PyramidSimpleMockCommand new;
-		         pyramidInputPresenterClass: PyramidNumberInputPresenter;
-		         yourself.
-	prop3 := PyramidProperty new
-		         name: 'Porp3';
-		         command: PyramidSimpleMockCommand new;
-		         pyramidInputPresenterClass: PyramidNumberInputPresenter;
-		         yourself.
-
-	manager addProperty: prop1.
-	manager addProperty: prop2.
-	manager addProperty: prop3.
-	self assert: (manager properties includes: prop1).
-	self assert: (manager properties includes: prop2).
-	self assert: (manager properties includes: prop3).
-	self assert: manager commandExecutor equals: prop1 commandExecutor.
-	self assert: manager commandExecutor equals: prop2 commandExecutor.
-	self assert: manager commandExecutor equals: prop3 commandExecutor
+	self assert: self presenterBuilder equals: prop1 presenterBuilder.
+	self assert: self presenterBuilder equals: prop2 presenterBuilder.
+	self assert: self presenterBuilder equals: prop3 presenterBuilder
 ]
 
 { #category : #tests }
 PyramidPropertiesManagerTest >> testBuildPresenterFromCollection [
 
-	| manager fakeStrategy prop1 prop2 prop3 targets |
-	targets := { 
-PyramidMockObjectForTest new count: 1; yourself.
-PyramidMockObjectForTest new count: 2; yourself.
-PyramidMockObjectForTest new count: 3; yourself.
-PyramidMockObjectForTest new count: 4; yourself }.
-	fakeStrategy := PyramidFakePropertyForTestStrategy new.
-	manager := PyramidPropertiesManager new
-		           presenterStrategy: fakeStrategy;
-		           yourself.
-	
-	prop1 := PyramidProperty new name: 'Porp1'; command: PyramidSimpleMockCommand new ; pyramidInputPresenterClass: PyramidNumberInputPresenter ; yourself.
-	prop2 := PyramidProperty new name: 'Porp2'; command: PyramidSimpleMockCommand new ; pyramidInputPresenterClass: PyramidNumberInputPresenter ; yourself.
-	prop3 := PyramidProperty new name: 'Porp3'; command: PyramidSimpleMockCommand new ; pyramidInputPresenterClass: PyramidNumberInputPresenter ; yourself.
-	
+	| targets |
+	targets := {
+		           (PyramidMockObjectForTest new
+			            count: 1;
+			            yourself).
+		           (PyramidMockObjectForTest new
+			            count: 2;
+			            yourself).
+		           (PyramidMockObjectForTest new
+			            count: 3;
+			            yourself).
+		           (PyramidMockObjectForTest new
+			            count: 4;
+			            yourself) }.
+
 	manager addProperty: prop1.
 	manager addProperty: prop2.
 	manager addProperty: prop3.
-	
+
 	manager buildPresenterFromCollection: targets.
-	
-	self assert: fakeStrategy properties size equals: 3.
-	self assert: (fakeStrategy properties includes: prop1).
-	self assert: (fakeStrategy properties includes: prop2).
-	self assert: (fakeStrategy properties includes: prop3).
+
+	self assert: self presenterStrategy properties size equals: 3.
+	self assert: (self presenterStrategy properties includes: prop1).
+	self assert: (self presenterStrategy properties includes: prop2).
+	self assert: (self presenterStrategy properties includes: prop3)
 ]
 
 { #category : #tests }
 PyramidPropertiesManagerTest >> testCommandExecutor [
 
-	| manager prop1 prop2 prop3 fake1 fake2 |
-	fake1 := Object new.
-	manager := PyramidPropertiesManager new.
-	prop1 := PyramidProperty new
-		         name: 'Porp1';
-		         command: PyramidSimpleMockCommand new;
-		         pyramidInputPresenterClass: PyramidNumberInputPresenter;
-		         yourself.
-	prop2 := PyramidProperty new
-		         name: 'Porp2';
-		         command: PyramidSimpleMockCommand new;
-		         pyramidInputPresenterClass: PyramidNumberInputPresenter;
-		         yourself.
+	| fake1 fake2 |
+	fake1 := PyramidMainCommandExecutor new.
+	
 	manager addProperty: prop1.
 	manager addProperty: prop2.
 	manager commandExecutor: fake1.
 	self assert: prop1 commandExecutor equals: fake1.
 	self assert: prop2 commandExecutor equals: fake1.
-	prop3 := PyramidProperty new
-		         name: 'Porp3';
-		         command: PyramidSimpleMockCommand new;
-		         pyramidInputPresenterClass: PyramidNumberInputPresenter;
-		         yourself.
 	manager addProperty: prop3.
 	self assert: prop3 commandExecutor equals: fake1.
 
-	fake2 := Object new.
+	fake2 := PyramidMainCommandExecutor new.
 	manager commandExecutor: fake2.
 	self assert: prop1 commandExecutor equals: fake2.
 	self assert: prop2 commandExecutor equals: fake2.
@@ -136,25 +181,6 @@ PyramidPropertiesManagerTest >> testCommandExecutor [
 { #category : #tests }
 PyramidPropertiesManagerTest >> testRemoveAllProperties [
 
-	| manager prop1 prop2 prop3 |
-	manager := PyramidPropertiesManager new
-		           commandExecutor: Object new;
-		           yourself.
-	prop1 := PyramidProperty new
-		         name: 'Porp1';
-		         command: PyramidSimpleMockCommand new;
-		         pyramidInputPresenterClass: PyramidNumberInputPresenter;
-		         yourself.
-	prop2 := PyramidProperty new
-		         name: 'Porp2';
-		         command: PyramidSimpleMockCommand new;
-		         pyramidInputPresenterClass: PyramidNumberInputPresenter;
-		         yourself.
-	prop3 := PyramidProperty new
-		         name: 'Porp3';
-		         command: PyramidSimpleMockCommand new;
-		         pyramidInputPresenterClass: PyramidNumberInputPresenter;
-		         yourself.
 
 	manager addAllProperties: {
 			prop1.
@@ -169,32 +195,13 @@ PyramidPropertiesManagerTest >> testRemoveAllProperties [
 	manager removeAllProperties.
 	self deny: (manager properties includes: prop1).
 	self deny: (manager properties includes: prop2).
-	self deny: (manager properties includes: prop3).
-
+	self deny: (manager properties includes: prop3)
 ]
 
 { #category : #tests }
 PyramidPropertiesManagerTest >> testRemoveProperty [
 
-	| manager prop1 prop2 prop3 hasFailed |
-	manager := PyramidPropertiesManager new
-		           commandExecutor: Object new;
-		           yourself.
-	prop1 := PyramidProperty new
-		         name: 'Porp1';
-		         command: PyramidSimpleMockCommand new;
-		         pyramidInputPresenterClass: PyramidNumberInputPresenter;
-		         yourself.
-	prop2 := PyramidProperty new
-		         name: 'Porp2';
-		         command: PyramidSimpleMockCommand new;
-		         pyramidInputPresenterClass: PyramidNumberInputPresenter;
-		         yourself.
-	prop3 := PyramidProperty new
-		         name: 'Porp3';
-		         command: PyramidSimpleMockCommand new;
-		         pyramidInputPresenterClass: PyramidNumberInputPresenter;
-		         yourself.
+	| hasFailed |
 
 	manager addAllProperties: {
 			prop1.

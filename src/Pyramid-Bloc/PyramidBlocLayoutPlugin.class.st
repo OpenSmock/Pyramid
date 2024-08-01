@@ -285,7 +285,7 @@ PyramidBlocLayoutPlugin >> addPanelsOn: aPyramidSimpleWindow [
 
 	aPyramidSimpleWindow at: #tabRight addItem: [ :builder |
 		builder
-			makeTab: self propertiesManager presenter
+			makeTab: self propertiesManager mainPresenter
 			label: 'Layout'
 			icon: (Smalltalk ui icons iconNamed: #box)
 			order: 3 ]
@@ -296,7 +296,7 @@ PyramidBlocLayoutPlugin >> connectOn: aPyramidEditor [
 
 	propertiesManager projectModel: aPyramidEditor projectModel.
 	propertiesManager commandExecutor:
-		aPyramidEditor propertiesManager commandExecutor
+		aPyramidEditor commandExecutor
 ]
 
 { #category : #initialization }

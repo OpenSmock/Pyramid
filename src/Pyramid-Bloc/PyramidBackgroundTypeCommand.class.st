@@ -20,5 +20,5 @@ PyramidBackgroundTypeCommand >> getValueFor: aBlElement [
 PyramidBackgroundTypeCommand >> setValueFor: aBlElement with: anArgument [
 	"Must be a blockClosure to ensure no background are created."
 
-	aBlElement background: anArgument value
+	aBlElement background: anArgument value value
 ]

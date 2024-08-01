@@ -676,7 +676,7 @@ PyramidBackgroundBlocPlugin >> addPanelsOn: aPyramidSimpleWindow [
 
 	aPyramidSimpleWindow at: #tabRight addItem: [ :builder |
 		builder
-			makeTab: self propertiesManager presenter
+			makeTab: self propertiesManager mainPresenter
 			label: 'Visuals'
 			icon: (Smalltalk ui icons iconNamed: #box)
 			order: 2 ]
@@ -686,7 +686,8 @@ PyramidBackgroundBlocPlugin >> addPanelsOn: aPyramidSimpleWindow [
 PyramidBackgroundBlocPlugin >> connectOn: aPyramidEditor [
 
 	propertiesManager projectModel: aPyramidEditor projectModel.
-	propertiesManager commandExecutor: aPyramidEditor propertiesManager commandExecutor
+	propertiesManager commandExecutor:
+		aPyramidEditor commandExecutor
 ]
 
 { #category : #initialization }

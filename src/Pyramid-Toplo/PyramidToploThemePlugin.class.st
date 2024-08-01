@@ -154,7 +154,7 @@ PyramidToploThemePlugin >> initialize [
 		                        presenterStrategy:
 			                        PyramidThemePropertyStrategy new;
 		                        yourself.
-	themePresenter styleSheetEditor stampPresenter: themePropertyManager presenter
+	themePresenter styleSheetEditor stampPresenter: themePropertyManager mainPresenter
 ]
 
 { #category : #accessing }

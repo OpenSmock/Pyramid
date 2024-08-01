@@ -83,7 +83,8 @@ PyramidSelectionWidgetExtension >> dragOrigin: anObject [
 { #category : #accessing }
 PyramidSelectionWidgetExtension >> editor: aPyramidEditor [
 
-	self commandExecutor: aPyramidEditor propertiesManager commandExecutor
+	self commandExecutor:
+		aPyramidEditor commandExecutor
 ]
 
 { #category : #events }

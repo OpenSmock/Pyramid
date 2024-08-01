@@ -64,8 +64,11 @@ PyramidBlocTextPlugin class >> textForeground [
 { #category : #connecting }
 PyramidBlocTextPlugin >> connectOn: aPyramidEditor [
 
-	aPyramidEditor propertiesManager addProperty: self class changeText.
-	aPyramidEditor propertiesManager addProperty: self class fontSize.
-	aPyramidEditor propertiesManager addProperty: self class fontWeight.
-	aPyramidEditor propertiesManager addProperty: self class textForeground
+	| propertiesManager |
+	propertiesManager := (aPyramidEditor findPlugin: PyramidBlocPlugin)propertiesManager.
+	propertiesManager addProperty: self class changeText.
+	propertiesManager addProperty: self class fontSize.
+	propertiesManager addProperty: self class fontWeight.
+	propertiesManager addProperty:
+		self class textForeground
 ]

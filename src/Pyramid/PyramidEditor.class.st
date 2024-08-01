@@ -7,10 +7,10 @@ Class {
 		'plugins',
 		'projectModel',
 		'window',
-		'propertiesManager',
+		'commandExecutor',
 		'announcer'
 	],
-	#category : 'Pyramid-core'
+	#category : #'Pyramid-core'
 }
 
 { #category : #private }
@@ -40,10 +40,16 @@ PyramidEditor >> close [
 	self window close
 ]
 
-{ #category : #plugins }
-PyramidEditor >> getPlugin: aPluginClass [
+{ #category : #accessing }
+PyramidEditor >> commandExecutor [
 
-	^ self plugins detect:[ :p | p class = aPluginClass ] ifNone:[ ]
+	^ commandExecutor
+]
+
+{ #category : #accessing }
+PyramidEditor >> commandExecutor: anObject [
+
+	commandExecutor := anObject
 ]
 
 { #category : #initialization }
@@ -51,12 +57,14 @@ PyramidEditor >> initialize [
 
 	announcer := Announcer new.
 	plugins := {  }.
-	projectModel := PyramidProjectModel new editor: self; yourself.
-	propertiesManager := PyramidPropertiesManagerForSelection new
-		                     projectModel: projectModel;
-		                     yourself.
-	
-	
+	projectModel := PyramidProjectModel new
+		                editor: self;
+		                yourself.
+	commandExecutor := PyramidCallbackCommandExecutor new
+		                   afterDo: [
+			                   self projectModel informElementsChanged ];
+		                   wrappee: PyramidMainCommandExecutor new;
+		                   yourself
 ]
 
 { #category : #'open/close' }
@@ -86,9 +94,10 @@ PyramidEditor >> projectModel [
 ]
 
 { #category : #accessing }
-PyramidEditor >> propertiesManager [
+PyramidEditor >> projectModel: anObject [
 
-	^ propertiesManager
+	projectModel := anObject.
+	projectModel editor: self.
 ]
 
 { #category : #accessing }
@@ -107,10 +116,5 @@ PyramidEditor >> window [
 PyramidEditor >> window: anObject [
 
 	window := anObject.
-	window at: #tabRight addItem: [ :builder |
-		builder
-			makeTab: self propertiesManager presenter
-			label: 'Properties'
-			icon: (Smalltalk ui icons iconNamed: #box)
-			order: 1 ]
+
 ]

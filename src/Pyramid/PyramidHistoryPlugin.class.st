@@ -9,7 +9,7 @@ Class {
 		'history',
 		'projectModel'
 	],
-	#category : 'Pyramid-history'
+	#category : #'Pyramid-history'
 }
 
 { #category : #adding }
@@ -25,12 +25,26 @@ PyramidHistoryPlugin >> addPanelsOn: aPyramidSimpleWindow [
 		builder makeButtonWithIcon: self redoButton order: 20 ]
 ]
 
+{ #category : #actions }
+PyramidHistoryPlugin >> configureBuilder: aPyramidEditorBuilder [
+
+	| historyExecutor executor mainExecutor |
+	historyExecutor := PyramidHistoryCommandExecutor new
+		                   history: self history;
+		                   yourself.
+		
+	executor := aPyramidEditorBuilder commandExecutor.
+	mainExecutor := executor wrappee.
+	
+	executor wrappee: historyExecutor.
+	historyExecutor wrappee: mainExecutor
+]
+
 { #category : #connecting }
 PyramidHistoryPlugin >> connectOn: aPyramidEditor [
 
-	self history: aPyramidEditor propertiesManager history.
 	self projectModel: aPyramidEditor projectModel.
-	self pyramidElementsChanged: nil.
+	self pyramidElementsChanged: nil
 ]
 
 { #category : #accessing }
@@ -48,12 +62,13 @@ PyramidHistoryPlugin >> history: anObject [
 { #category : #'as yet unclassified' }
 PyramidHistoryPlugin >> initialize [
 
+	history := PyramidHistory new.
 	undoButton := SpButtonPresenter new
 		              icon: (Smalltalk ui icons iconNamed: #smallUndo);
 		              action: [
 			              self history undo.
 			              self projectModel informElementsChanged ];
-						 enabled: false;
+		              enabled: false;
 		              help: 'Undo';
 		              yourself.
 	redoButton := SpButtonPresenter new
@@ -61,7 +76,7 @@ PyramidHistoryPlugin >> initialize [
 		              action: [
 			              self history redo.
 			              self projectModel informElementsChanged ];
-						 enabled: false;
+		              enabled: false;
 		              help: 'Redo';
 		              yourself
 ]

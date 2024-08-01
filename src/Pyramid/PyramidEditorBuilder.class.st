@@ -6,9 +6,11 @@ Class {
 	#instVars : [
 		'plugins',
 		'editor',
-		'window'
+		'window',
+		'projectModel',
+		'commandExecutor'
 	],
-	#category : 'Pyramid-core'
+	#category : #'Pyramid-core'
 }
 
 { #category : #building }
@@ -21,6 +23,8 @@ PyramidEditorBuilder >> build [
 
 	self editor window: self window.
 	self editor plugins: self plugins.
+	self editor projectModel: self projectModel.
+	self editor commandExecutor: self commandExecutor.
 
 	self plugins do: [ :each | each addPanelsOn: self window ].
 	self plugins do: [ :each | each connectOn: self editor ].
@@ -28,10 +32,61 @@ PyramidEditorBuilder >> build [
 ]
 
 { #category : #accessing }
-PyramidEditorBuilder >> editor [
-editor ifNil: [ editor := PyramidEditor new ].
- ^ editor
+PyramidEditorBuilder >> commandExecutor [
 
+	commandExecutor ifNil: [ commandExecutor := self defaultCommandExecutor ].
+	^ commandExecutor
+]
+
+{ #category : #accessing }
+PyramidEditorBuilder >> commandExecutor: anObject [
+
+	commandExecutor ifNotNil: [
+		PyramidBuilderAlreadyConfiguredError signal:
+			'The commandExecutor is already set by another plugin.' ].
+	commandExecutor := anObject
+]
+
+{ #category : #default }
+PyramidEditorBuilder >> defaultCommandExecutor [
+
+	^ PyramidCallbackCommandExecutor new
+		  afterDo: [ self projectModel informElementsChanged ];
+		  wrappee: PyramidMainCommandExecutor new; yourself
+]
+
+{ #category : #default }
+PyramidEditorBuilder >> defaultEditor [
+
+	^ PyramidEditor new
+]
+
+{ #category : #default }
+PyramidEditorBuilder >> defaultProjectModel [
+
+	^ PyramidProjectModel new
+]
+
+{ #category : #default }
+PyramidEditorBuilder >> defaultWindow [
+
+	^ PyramidSimpleWindow new
+]
+
+{ #category : #accessing }
+PyramidEditorBuilder >> editor [
+
+	editor ifNil: [ editor := self defaultEditor ].
+	^ editor
+]
+
+{ #category : #accessing }
+PyramidEditorBuilder >> editor: anObject [
+
+	editor ifNotNil: [
+		PyramidBuilderAlreadyConfiguredError signal:
+			'The editor is already set by another plugin.' ].
+	editor := anObject
 ]
 
 { #category : #accessing }
@@ -46,19 +101,33 @@ PyramidEditorBuilder >> plugins: anObject [
 	plugins := anObject
 ]
 
-{ #category : #building }
-PyramidEditorBuilder >> window [
+{ #category : #accessing }
+PyramidEditorBuilder >> projectModel [
 
-window ifNil: [ window := PyramidSimpleWindow new ].
-^ window
-
-	
+	projectModel ifNil: [ projectModel := self defaultProjectModel ].
+	^ projectModel
 ]
 
-{ #category : #building }
+{ #category : #accessing }
+PyramidEditorBuilder >> projectModel: aPyramidWindow [
+
+	projectModel ifNotNil: [
+		PyramidBuilderAlreadyConfiguredError signal:
+			'The projectModel is already set by another plugin !' ].
+	projectModel := aPyramidWindow
+]
+
+{ #category : #accessing }
+PyramidEditorBuilder >> window [
+
+	window ifNil: [ window := self defaultWindow ].
+	^ window
+]
+
+{ #category : #accessing }
 PyramidEditorBuilder >> window: aPyramidWindow [
 
 	window ifNotNil: [
-		Error signal: 'The window is already set by another plugin !' ].
+		PyramidBuilderAlreadyConfiguredError signal: 'The window is already set by another plugin !' ].
 	window := aPyramidWindow
 ]

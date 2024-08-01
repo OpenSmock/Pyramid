@@ -60,7 +60,7 @@ PyramidSavingServiceTest >> testCanSave [
 
 	| model |
 	"Skip it if VM 11 because of bugs when deleting classes."
-	SystemVersion current major = 11 ifTrue: [ ^ self skip. ].
+	SystemVersion current major = 11 ifTrue: [ ^ self skip ].
 	self deny: self savingService canSave.
 
 	model := PyramidSaveModel new.

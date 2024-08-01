@@ -20,7 +20,7 @@ PyramidPropertiesManager >> addAllProperties: aCollection [
 PyramidPropertiesManager >> addProperty: aPyramidProperty [
 
 	aPyramidProperty commandExecutor: self commandExecutor.
-	aPyramidProperty presenterBuilder: self makePresenterBuilder.
+	aPyramidProperty presenterBuilder: self presenterBuilder.
 	self properties add: aPyramidProperty
 ]
 
@@ -63,7 +63,7 @@ PyramidPropertiesManager >> initialize [
 ]
 
 { #category : #'as yet unclassified' }
-PyramidPropertiesManager >> makePresenterBuilder [
+PyramidPropertiesManager >> presenterBuilder [
 
 	^ self shouldBeImplemented
 ]

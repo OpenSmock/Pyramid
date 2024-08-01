@@ -2,9 +2,10 @@ Class {
 	#name : #PyramidPropertiesManagerForSelection,
 	#superclass : #PyramidPropertiesManager,
 	#instVars : [
-		'presenter',
+		'mainPresenter',
 		'shouldComputeProperties',
-		'projectModel'
+		'projectModel',
+		'popupPresenter'
 	],
 	#category : #'Pyramid-property'
 }
@@ -12,7 +13,7 @@ Class {
 { #category : #'as yet unclassified' }
 PyramidPropertiesManagerForSelection >> computeProperties: aCollection [
 
-	self presenter layout child:
+	self mainPresenter layout child:
 		(self buildPresenterFromCollection: aCollection).
 	self shouldComputeProperties: false
 ]
@@ -22,35 +23,37 @@ PyramidPropertiesManagerForSelection >> initialize [
 
 	super initialize.
 	shouldComputeProperties := false.
-	presenter := SpPresenter new
-		             layout: SpScrollableLayout new;
-		             whenVisibleChangedDo: [ :isVisible |
-			             isVisible ifTrue: [ self computeProperties: self projectModel selection ] ];
-		             yourself.
-	commandExecutor := PyramidCallbackCommandExecutor new
-		                   wrappee: commandExecutor;
-		                   yourself.
-	commandExecutor afterDo: [ self projectModel informElementsChanged ]
-]
-
-{ #category : #'as yet unclassified' }
-PyramidPropertiesManagerForSelection >> makePresenterBuilder [
-
-	| popupPanel |
-	popupPanel := PyramidSinglePropertyPopupPresenter new
-		              originPresenter: self presenter;
-		              popoverDirection: SpPopoverPosition left;
-		              yourself.
-
-	^ PyramidSinglePopingPresenterBuilder new
-		  popupPanel: popupPanel;
-		  yourself
+	mainPresenter := SpPresenter new
+		                 layout: SpScrollableLayout new;
+		                 whenVisibleChangedDo: [ :isVisible |
+			                 isVisible ifTrue: [
+					                 self computeProperties:
+							                 self projectModel selection ] ];
+		                 yourself.
+	popupPresenter := PyramidSinglePropertyPopupPresenter new
+		                  originPresenter: mainPresenter;
+		                  popoverDirection: SpPopoverPosition left;
+		                  yourself.
 ]
 
 { #category : #accessing }
-PyramidPropertiesManagerForSelection >> presenter [
+PyramidPropertiesManagerForSelection >> mainPresenter [
 
-	^ presenter
+	^ mainPresenter 
+]
+
+{ #category : #accessing }
+PyramidPropertiesManagerForSelection >> popupPresenter [
+
+	^ popupPresenter
+]
+
+{ #category : #'as yet unclassified' }
+PyramidPropertiesManagerForSelection >> presenterBuilder [
+
+	^ PyramidSinglePopingPresenterBuilder new
+		  popupPanel: self popupPresenter;
+		  yourself
 ]
 
 { #category : #accessing }
@@ -77,7 +80,7 @@ PyramidPropertiesManagerForSelection >> projectModel: aPyramidProjectModel [
 PyramidPropertiesManagerForSelection >> selectionOrElementsChanged: anEvent [
 
 	self shouldComputeProperties: true.
-	self presenter isVisible ifFalse: [ ^ self ].
+	self mainPresenter isVisible ifFalse: [ ^ self ].
 	self computeProperties: anEvent selection
 ]
 
