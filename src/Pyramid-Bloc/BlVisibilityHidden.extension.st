@@ -3,7 +3,9 @@ Extension { #name : #BlVisibilityHidden }
 { #category : #'*Pyramid-Bloc' }
 BlVisibilityHidden >> asIcon [
 
-	^ self iconNamed: #haloDrag
+	^ PyramidBlocPlugin
+		  iconOf: PyramidBlocPlugin blocVisibilityHidden
+		  maxHeight: 12
 ]
 
 { #category : #'*Pyramid-Bloc' }

@@ -67,13 +67,14 @@ PyramidNavigationDefaultColumns >> columnVisibility [
 	<pyramidNavigationColumn: 4>
 	^ SpCompositeTableColumn new
 		  title: 'Visibility';
-		  width: 80;
-		  addColumn: (SpImageTableColumn evaluated: [ :aBlElement |
-					   aBlElement
-						   allParentsDetect: [ :parent | parent isVisible not ]
-						   ifFound: [ :parent |
-							   Smalltalk ui icons iconNamed: #uncommentedClass ]
-						   ifNone: [ Smalltalk ui icons iconNamed: #blank16 ] ]);
+		  width: 90;
+		  addColumn: ((SpImageTableColumn evaluated: [ :aBlElement |
+					    aBlElement
+						    allParentsDetect: [ :parent | parent isVisible not ]
+						    ifFound: [ :parent |
+							    Smalltalk ui icons iconNamed: #uncommentedClass ]
+						    ifNone: [ Smalltalk ui icons iconNamed: #blank16 ] ])
+				   width: 10);
 		  addColumn: (SpImageTableColumn evaluated: [ :aBlElement |
 					   aBlElement visibility asIcon ]);
 		  addColumn: (SpLinkTableColumn new

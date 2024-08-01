@@ -11,6 +11,233 @@ Class {
 	#category : #'Pyramid-Bloc-plugin-bloc'
 }
 
+{ #category : #'pyramid-serialized-bloc' }
+PyramidBlocPlugin class >> blocVisibilityGone [
+	"This class has been generated using Pyramid.
+
+	By: YannLEGOFF
+	2024-08-01 18:23:58"
+
+	<pyStash>
+	^ [ {(BlElement new
+   clipChildren: false;
+   constraintsDo: [:constraints |  constraints horizontal fitContent.
+      constraints vertical fitContent.
+      constraints padding: (BlInsets top: 0.0 right: 35.0 bottom: 0.0 left: 0.0) ];
+   layout: BlFrameLayout new;
+   addChildren: {(BlElement new
+         background: (BlPaintBackground new
+               paint: (BlColorPaint new
+                     color: (Color r: 0.823069403714565 g: 0.823069403714565 b: 0.823069403714565 alpha: 1.0);
+                     yourself);
+               opacity: 1.0;
+               yourself);
+         border: (BlBorderBuilder new
+               paint: (BlColorPaint new
+                     color: (Color r: 0.0 g: 0.0 b: 0.0 alpha: 1.0);
+                     yourself);
+               width: 3;
+               dashArray: {6};
+               build);
+         geometry: BlRectangleGeometry new;
+         constraintsDo: [:constraints |  constraints vertical exact: 40.0.
+            constraints frame horizontal alignCenter.
+            constraints frame vertical alignCenter ];
+         id: #C;
+         yourself) . 
+      (BlElement new
+         geometry: BlRectangleGeometry new;
+         constraintsDo: [:constraints |  constraints horizontal fitContent.
+            constraints vertical fitContent.
+            constraints frame horizontal alignCenter.
+            constraints frame vertical alignCenter ];
+         layout: BlLinearLayout horizontal;
+         addChildren: {(BlElement new
+               background: (BlPaintBackground new
+                     paint: (BlColorPaint new
+                           color: (Color r: 0.5728250244379277 g: 0.8191593352883676 b: 1.0 alpha: 1.0);
+                           yourself);
+                     opacity: 1.0;
+                     yourself);
+               border: (BlBorderBuilder new
+                     paint: (BlColorPaint new
+                           color: (Color r: 0.0 g: 0.0 b: 0.0 alpha: 1.0);
+                           yourself);
+                     width: 3;
+                     build);
+               geometry: BlRectangleGeometry new;
+               constraintsDo: [:constraints |  constraints horizontal exact: 25.0 ];
+               id: #B;
+               yourself) . 
+            (BlElement new
+               background: (BlPaintBackground new
+                     paint: (BlColorPaint new
+                           color: (Color r: 0.5728250244379277 g: 0.8191593352883676 b: 1.0 alpha: 1.0);
+                           yourself);
+                     opacity: 1.0;
+                     yourself);
+               border: (BlBorderBuilder new
+                     paint: (BlColorPaint new
+                           color: (Color r: 0.0 g: 0.0 b: 0.0 alpha: 1.0);
+                           yourself);
+                     width: 3;
+                     build);
+               geometry: BlRectangleGeometry new;
+               constraintsDo: [:constraints |  constraints horizontal exact: 25.0.
+                  constraints margin: (BlInsets top: 0.0 right: 0.0 bottom: 0.0 left: 10.0) ];
+               id: #D;
+               yourself)};
+         id: #A;
+         yourself)};
+   id: #group;
+   yourself)} ] value
+]
+
+{ #category : #'pyramid-serialized-bloc' }
+PyramidBlocPlugin class >> blocVisibilityHidden [
+	"This class has been generated using Pyramid.
+
+	By: YannLEGOFF
+	2024-08-01 18:17:49"
+
+	<pyStash>
+	^ [ | blinsets1 |
+blinsets1 := BlInsets top: 0.0 right: 10.0 bottom: 0.0 left: 0.0.
+{(BlElement new
+   geometry: BlRectangleGeometry new;
+   constraintsDo: [:constraints |  constraints horizontal fitContent.
+      constraints vertical fitContent ];
+   layout: BlLinearLayout horizontal;
+   addChildren: {(BlElement new
+         background: (BlPaintBackground new
+               paint: (BlColorPaint new
+                     color: (Color r: 0.5728250244379277 g: 0.8191593352883676 b: 1.0 alpha: 1.0);
+                     yourself);
+               opacity: 1.0;
+               yourself);
+         border: (BlBorderBuilder new
+               paint: (BlColorPaint new
+                     color: (Color r: 0.0 g: 0.0 b: 0.0 alpha: 1.0);
+                     yourself);
+               width: 3;
+               build);
+         geometry: BlRectangleGeometry new;
+         constraintsDo: [:constraints |  constraints horizontal exact: 25.0.
+            constraints margin: blinsets1 ];
+         id: #B;
+         yourself) . 
+      (BlElement new
+         background: (BlPaintBackground new
+               paint: (BlColorPaint new
+                     color: (Color r: 0.823069403714565 g: 0.823069403714565 b: 0.823069403714565 alpha: 1.0);
+                     yourself);
+               opacity: 1.0;
+               yourself);
+         border: (BlBorderBuilder new
+               paint: (BlColorPaint new
+                     color: (Color r: 0.0 g: 0.0 b: 0.0 alpha: 1.0);
+                     yourself);
+               width: 3;
+               dashArray: {6};
+               build);
+         geometry: BlRectangleGeometry new;
+         constraintsDo: [:constraints |  constraints horizontal exact: 25.0.
+            constraints margin: blinsets1 ];
+         id: #C;
+         yourself) . 
+      (BlElement new
+         background: (BlPaintBackground new
+               paint: (BlColorPaint new
+                     color: (Color r: 0.5728250244379277 g: 0.8191593352883676 b: 1.0 alpha: 1.0);
+                     yourself);
+               opacity: 1.0;
+               yourself);
+         border: (BlBorderBuilder new
+               paint: (BlColorPaint new
+                     color: (Color r: 0.0 g: 0.0 b: 0.0 alpha: 1.0);
+                     yourself);
+               width: 3;
+               build);
+         geometry: BlRectangleGeometry new;
+         constraintsDo: [:constraints |  constraints horizontal exact: 25.0 ];
+         id: #D;
+         yourself)};
+   id: #A;
+   yourself)} ] value
+]
+
+{ #category : #'pyramid-serialized-bloc' }
+PyramidBlocPlugin class >> blocVisibilityVisible [
+	"This class has been generated using Pyramid.
+
+	By: YannLEGOFF
+	2024-08-01 18:18:10"
+
+	<pyStash>
+	^ [ | blinsets1 |
+blinsets1 := BlInsets top: 0.0 right: 10.0 bottom: 0.0 left: 0.0.
+{(BlElement new
+   geometry: BlRectangleGeometry new;
+   constraintsDo: [:constraints |  constraints horizontal fitContent.
+      constraints vertical fitContent ];
+   layout: BlLinearLayout horizontal;
+   addChildren: {(BlElement new
+         background: (BlPaintBackground new
+               paint: (BlColorPaint new
+                     color: (Color r: 0.5728250244379277 g: 0.8191593352883676 b: 1.0 alpha: 1.0);
+                     yourself);
+               opacity: 1.0;
+               yourself);
+         border: (BlBorderBuilder new
+               paint: (BlColorPaint new
+                     color: (Color r: 0.0 g: 0.0 b: 0.0 alpha: 1.0);
+                     yourself);
+               width: 3;
+               build);
+         geometry: BlRectangleGeometry new;
+         constraintsDo: [:constraints |  constraints horizontal exact: 25.0.
+            constraints margin: blinsets1 ];
+         id: #B;
+         yourself) . 
+      (BlElement new
+         background: (BlPaintBackground new
+               paint: (BlColorPaint new
+                     color: (Color r: 0.5728250244379277 g: 0.8191593352883676 b: 1.0 alpha: 1.0);
+                     yourself);
+               opacity: 1.0;
+               yourself);
+         border: (BlBorderBuilder new
+               paint: (BlColorPaint new
+                     color: (Color r: 0.0 g: 0.0 b: 0.0 alpha: 1.0);
+                     yourself);
+               width: 3;
+               build);
+         geometry: BlRectangleGeometry new;
+         constraintsDo: [:constraints |  constraints horizontal exact: 25.0.
+            constraints margin: blinsets1 ];
+         id: #C;
+         yourself) . 
+      (BlElement new
+         background: (BlPaintBackground new
+               paint: (BlColorPaint new
+                     color: (Color r: 0.5728250244379277 g: 0.8191593352883676 b: 1.0 alpha: 1.0);
+                     yourself);
+               opacity: 1.0;
+               yourself);
+         border: (BlBorderBuilder new
+               paint: (BlColorPaint new
+                     color: (Color r: 0.0 g: 0.0 b: 0.0 alpha: 1.0);
+                     yourself);
+               width: 3;
+               build);
+         geometry: BlRectangleGeometry new;
+         constraintsDo: [:constraints |  constraints horizontal exact: 25.0 ];
+         id: #D;
+         yourself)};
+   id: #A;
+   yourself)} ] value
+]
+
 { #category : #accessing }
 PyramidBlocPlugin class >> clipChildren [
 
@@ -72,20 +299,22 @@ PyramidBlocPlugin class >> geometry [
 	^ property
 ]
 
-{ #category : #accessing }
-PyramidBlocPlugin class >> visibility [
+{ #category : #'as yet unclassified' }
+PyramidBlocPlugin class >> iconOf: aBlElement maxHeight: aNumber [
 
-	| property |
-	property := PyramidProperty new
-		            name: 'Visibility';
-		            command: PyramidVisibilityCommand new;
-		            inputPresenterClass: PyramidVisibilityInputPresenter;
-		            yourself.
-	^ property
+	| form scale |
+	aBlElement isCollection ifTrue: [
+		^ self
+			  iconOf: aBlElement first
+			  maxHeight: aNumber ].
+	form := aBlElement exportAsForm.
+	form height = 0 ifTrue: [ ^ form ].
+	scale := aNumber / form height.
+	^ form magnifyBy: scale
 ]
 
 { #category : #accessing }
-PyramidBlocPlugin class >> visibility2 [
+PyramidBlocPlugin class >> visibility [
 
 	| property |
 	property := PyramidProperty new
@@ -94,32 +323,33 @@ PyramidBlocPlugin class >> visibility2 [
 		            inputPresenterClass: PyramidMagicButtonsInputPresenter;
 		            yourself.
 	property inputPresenterModel
+		buttonExtent: 64 @ 24;
 		addButtonModel: (PyramidMagicButtonModel new
-				 icon: (Smalltalk ui icons iconNamed: #windowMaximize);
+				 icon: BlVisibility visible asIcon;
 				 helpSelected: 'The object is visible.';
 				 helpNotSelected: 'Set the value to visible.';
 				 label: 'Visible';
-				 inputValue: [ BlVisibility visible ];
+				 inputValue: BlVisibility visible;
 				 inputValidation: [ :value | value isVisible ];
 				 yourself);
 		addButtonModel: (PyramidMagicButtonModel new
-				 icon: (Smalltalk ui icons iconNamed: #windowMaximize);
+				 icon: BlVisibility hidden asIcon;
 				 helpSelected:
 					 'The object is hidden. (Still computed for the layout)';
 				 helpNotSelected:
 					 'Set the value to hidden. (Still computed for the layout)';
 				 label: 'Hidden';
-				 inputValue: [ BlVisibility hidden ];
+				 inputValue: BlVisibility hidden;
 				 inputValidation: [ :value |
 					 value isHidden and: [ value isGone not ] ];
 				 yourself);
 		addButtonModel: (PyramidMagicButtonModel new
-				 icon: (Smalltalk ui icons iconNamed: #windowMaximize);
+				 icon: BlVisibility gone asIcon;
 				 helpSelected: 'The object is gone. (Not computed for the layout)';
 				 helpNotSelected:
 					 'Set the value to gone. (Not computed for the layout)';
 				 label: 'Gone';
-				 inputValue: [ BlVisibility gone ];
+				 inputValue: BlVisibility gone;
 				 inputValidation: [ :value | value isGone ];
 				 yourself).
 	^ property
@@ -240,7 +470,6 @@ PyramidBlocPlugin >> initialize [
 
 	propertiesManager addProperty: self class elementId.
 	propertiesManager addProperty: self class visibility.
-	propertiesManager addProperty: self class visibility2.
 	propertiesManager addProperty: self class zIndex.
 	propertiesManager addProperty: self class clipChildren.
 	propertiesManager addProperty: self class geometry.

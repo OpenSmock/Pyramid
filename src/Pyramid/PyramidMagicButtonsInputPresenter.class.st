@@ -31,6 +31,12 @@ PyramidMagicButtonsInputPresenter >> applyInputModel [
 	self setUnknowValue
 ]
 
+{ #category : #private }
+PyramidMagicButtonsInputPresenter >> buttonExtent [
+
+	^ self inputModel buttonExtent
+]
+
 { #category : #accessing }
 PyramidMagicButtonsInputPresenter >> buttonUnknow [
 
@@ -100,9 +106,9 @@ PyramidMagicButtonsInputPresenter >> layoutFor: aButtonsCollection withSelectedI
 				buttonsLayout
 					add: (aButtonsCollection at: i)
 					withConstraints: [ :c |
-						c width: 24.
-						c height: 24 ] ] ].
-		^ buttonsLayout
+						c width: self buttonExtent x.
+						c height: self buttonExtent y ] ] ].
+	^ buttonsLayout
 ]
 
 { #category : #'as yet unclassified' }
