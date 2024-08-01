@@ -85,6 +85,47 @@ PyramidBlocPlugin class >> visibility [
 ]
 
 { #category : #accessing }
+PyramidBlocPlugin class >> visibility2 [
+
+	| property |
+	property := PyramidProperty new
+		            name: 'Visibility2';
+		            command: PyramidVisibilityCommand new;
+		            inputPresenterClass: PyramidMagicButtonsInputPresenter;
+		            yourself.
+	property inputPresenterModel
+		addButtonModel: (PyramidMagicButtonModel new
+				 icon: (Smalltalk ui icons iconNamed: #windowMaximize);
+				 helpSelected: 'The object is visible.';
+				 helpNotSelected: 'Set the value to visible.';
+				 label: 'Visible';
+				 inputValue: [ BlVisibility visible ];
+				 inputValidation: [ :value | value isVisible ];
+				 yourself);
+		addButtonModel: (PyramidMagicButtonModel new
+				 icon: (Smalltalk ui icons iconNamed: #windowMaximize);
+				 helpSelected:
+					 'The object is hidden. (Still computed for the layout)';
+				 helpNotSelected:
+					 'Set the value to hidden. (Still computed for the layout)';
+				 label: 'Hidden';
+				 inputValue: [ BlVisibility hidden ];
+				 inputValidation: [ :value |
+					 value isHidden and: [ value isGone not ] ];
+				 yourself);
+		addButtonModel: (PyramidMagicButtonModel new
+				 icon: (Smalltalk ui icons iconNamed: #windowMaximize);
+				 helpSelected: 'The object is gone. (Not computed for the layout)';
+				 helpNotSelected:
+					 'Set the value to gone. (Not computed for the layout)';
+				 label: 'Gone';
+				 inputValue: [ BlVisibility gone ];
+				 inputValidation: [ :value | value isGone ];
+				 yourself).
+	^ property
+]
+
+{ #category : #accessing }
 PyramidBlocPlugin class >> zIndex [
 
 	| property |
@@ -192,13 +233,14 @@ PyramidBlocPlugin >> groupMenuBlockSingle [
 PyramidBlocPlugin >> initialize [
 
 	super initialize.
-	
+
 	groupCommand := PyramidGroupCommand new.
-	
+
 	propertiesManager := PyramidPropertiesManagerForSelection new.
 
 	propertiesManager addProperty: self class elementId.
 	propertiesManager addProperty: self class visibility.
+	propertiesManager addProperty: self class visibility2.
 	propertiesManager addProperty: self class zIndex.
 	propertiesManager addProperty: self class clipChildren.
 	propertiesManager addProperty: self class geometry.

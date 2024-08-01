@@ -37,6 +37,17 @@ PyramidElementsManipulationHelper class >> accumulateParentsOf: aCollectionOfBlE
 ]
 
 { #category : #'as yet unclassified' }
+PyramidElementsManipulationHelper class >> countElementsIn: aCollection [
+
+	| result |
+	aCollection ifEmpty: [ ^ 0 ].
+	result := aCollection size.
+	aCollection do: [ :each |
+		result := result + (self recursiveCountElementsIn: each) ].
+	^ result
+]
+
+{ #category : #'as yet unclassified' }
 PyramidElementsManipulationHelper class >> flattenChildrenOfCollection: aCollection [
 	"Consider:
 A1->A2-A3.
@@ -78,4 +89,14 @@ PyramidElementsManipulationHelper class >> onlyParents: aCollectionOfBlElement [
 	result := OrderedCollection new.
 	self accumulateParentsOf: aCollectionOfBlElement in: result.
 	^ result asArray
+]
+
+{ #category : #'as yet unclassified' }
+PyramidElementsManipulationHelper class >> recursiveCountElementsIn: aBlElement [
+
+	| result |
+	aBlElement childrenCount = 0 ifTrue: [ ^ 0 ].
+	result := aBlElement childrenCount.
+	aBlElement childrenDo: [ :each | result := result + (self recursiveCountElementsIn: each) ].
+	^ result
 ]

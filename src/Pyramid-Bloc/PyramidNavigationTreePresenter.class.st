@@ -5,7 +5,8 @@ Class {
 		'navigationModel',
 		'treeTable',
 		'editor',
-		'shouldUpdateSelection'
+		'shouldUpdateSelection',
+		'previousNumberOfElement'
 	],
 	#category : #'Pyramid-Bloc-plugin-navigation'
 }
@@ -127,6 +128,18 @@ PyramidNavigationTreePresenter >> navigationModel: anObject [
 		self treeTable expandAll ]
 ]
 
+{ #category : #accessing }
+PyramidNavigationTreePresenter >> previousNumberOfElement [
+
+	^ previousNumberOfElement
+]
+
+{ #category : #accessing }
+PyramidNavigationTreePresenter >> previousNumberOfElement: anObject [
+
+	previousNumberOfElement := anObject
+]
+
 { #category : #api }
 PyramidNavigationTreePresenter >> roots: aCollection [
 
@@ -154,14 +167,23 @@ PyramidNavigationTreePresenter >> treeTable [
 { #category : #'as yet unclassified' }
 PyramidNavigationTreePresenter >> updateRoots [
 
-	| currentTreeRoots roots parent shouldOrder |
+	| currentTreeRoots roots parent shouldOrder calculatedNumberOfElement |
 	self shouldUpdateSelection: false.
 
 	roots := self editor projectModel firstLevelElements asArray.
 	currentTreeRoots := self treeTable roots.
-	
-	(roots size = currentTreeRoots size and: [ roots includesAll: currentTreeRoots ] )ifTrue: [ self shouldUpdateSelection: true. ^ self ].
-	
+
+	(roots size = currentTreeRoots size and: [
+		 (roots includesAll: currentTreeRoots) and: [
+			 calculatedNumberOfElement := self editor projectModel
+				                              numberOfElements.
+			 calculatedNumberOfElement = self previousNumberOfElement ] ])
+		ifTrue: [
+			self shouldUpdateSelection: true.
+			^ self ].
+
+	self previousNumberOfElement: calculatedNumberOfElement.
+
 	parent := nil.
 
 	"If roots all have the same parent then it should be ordered by the parent children order."
