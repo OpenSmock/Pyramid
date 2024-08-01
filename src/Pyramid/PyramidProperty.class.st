@@ -9,7 +9,7 @@ Class {
 		'name',
 		'pyramidInputPresenterStrings'
 	],
-	#category : 'Pyramid-property'
+	#category : #'Pyramid-property'
 }
 
 { #category : #'as yet unclassified' }
@@ -48,7 +48,6 @@ PyramidProperty >> commandExecutor: anObject [
 { #category : #initialization }
 PyramidProperty >> initialize [
 
-	presenterBuilder := PyramidPopingPresenterBuilder new.
 	name := 'Default property name'
 ]
 
