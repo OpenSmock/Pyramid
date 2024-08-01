@@ -9,9 +9,9 @@ Class {
 }
 
 { #category : #'as yet unclassified' }
-PyramidInsetsInputPresenter >> applyStrings [
+PyramidInsetsInputPresenter >> applyInputModel [
 
-	self inputArray strings: self strings.
+	self inputArray inputModel: self inputModel
 ]
 
 { #category : #layout }

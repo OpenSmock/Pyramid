@@ -18,13 +18,13 @@ PyramidBlocPlugin class >> clipChildren [
 	property := PyramidProperty new
 		            name: 'Clip Children';
 		            command: PyramidClipChildrenCommand new;
-		            pyramidInputPresenterClass: PyramidSwitchInputPresenter;
+		            inputPresenterClass: PyramidSwitchInputPresenter;
 		            yourself.
-	property pyramidInputPresenterStrings help:
+	property inputPresenterModel help:
 		'If clipChildren is true, the children will not display outside the geometry of the parent element. If clipChildren is false, the children will display outside the geometry of the parent element.'.
-	property pyramidInputPresenterStrings onLabel: 'True'.
-	property pyramidInputPresenterStrings offLabel: 'False'.
-	property pyramidInputPresenterStrings uncertainLabel: 'Uncertain'.
+	property inputPresenterModel onLabel: 'True'.
+	property inputPresenterModel offLabel: 'False'.
+	property inputPresenterModel uncertainLabel: 'Uncertain'.
 	^ property
 ]
 
@@ -35,10 +35,10 @@ PyramidBlocPlugin class >> cornerRadii [
 	property := PyramidProperty new
 		            name: 'Corner radius';
 		            command: PyramidRoundedRectangleCornerRadiiCommand new;
-		            pyramidInputPresenterClass:
+		            inputPresenterClass:
 			            PyramidCornerRadiiInputPresenter;
 		            yourself.
-	property pyramidInputPresenterStrings help:
+	property inputPresenterModel help:
 		'Change the corner radius of the geometry. For example:
 	- "10" to set a radius of 10 px on each corner.
 	- "10 20" to set a radius of 10 px on the top-left and bottom-right corner and 20 px on the top-right and bottom-left corner.
@@ -53,9 +53,9 @@ PyramidBlocPlugin class >> elementId [
 	property := PyramidProperty new
 		            name: 'Element ID';
 		            command: PyramidElementIdCommand new;
-		            pyramidInputPresenterClass: PyramidTextInputPresenter;
+		            inputPresenterClass: PyramidTextInputPresenter;
 		            yourself.
-	property pyramidInputPresenterStrings help: 'Change the id.'.
+	property inputPresenterModel help: 'Change the id.'.
 	^ property
 ]
 
@@ -66,7 +66,7 @@ PyramidBlocPlugin class >> geometry [
 	property := PyramidProperty new
 		            name: 'Geometry';
 		            command: PyramidGeometryCommand new;
-		            pyramidInputPresenterClass:
+		            inputPresenterClass:
 			            PyramidGeometryInputPresenter;
 		            yourself.
 	^ property
@@ -79,7 +79,7 @@ PyramidBlocPlugin class >> visibility [
 	property := PyramidProperty new
 		            name: 'Visibility';
 		            command: PyramidVisibilityCommand new;
-		            pyramidInputPresenterClass: PyramidVisibilityInputPresenter;
+		            inputPresenterClass: PyramidVisibilityInputPresenter;
 		            yourself.
 	^ property
 ]
@@ -91,9 +91,9 @@ PyramidBlocPlugin class >> zIndex [
 	property := PyramidProperty new
 		            name: 'Elevation';
 		            command: PyramidZIndexCommand new;
-		            pyramidInputPresenterClass: PyramidNumberInputPresenter;
+		            inputPresenterClass: PyramidNumberInputPresenter;
 		            yourself.
-	property pyramidInputPresenterStrings help:
+	property inputPresenterModel help:
 		'Change the elevation (#zIndex:). Bloc will used the elevation to determine wich of two sibling must be draw on top. The higher zIndex will be drawn on top of the lesser one.'.
 	^ property
 ]

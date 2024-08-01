@@ -4,10 +4,10 @@ Class {
 	#instVars : [
 		'command',
 		'commandExecutor',
-		'pyramidInputPresenterClass',
+		'inputPresenterClass',
 		'presenterBuilder',
 		'name',
-		'pyramidInputPresenterStrings'
+		'inputPresenterModel'
 	],
 	#category : #'Pyramid-property'
 }
@@ -52,6 +52,25 @@ PyramidProperty >> initialize [
 ]
 
 { #category : #accessing }
+PyramidProperty >> inputPresenterClass [
+
+	^ inputPresenterClass
+]
+
+{ #category : #accessing }
+PyramidProperty >> inputPresenterClass: anObject [
+
+	inputPresenterClass := anObject.
+	inputPresenterModel := anObject inputModelClass new
+]
+
+{ #category : #accessing }
+PyramidProperty >> inputPresenterModel [
+
+	^ inputPresenterModel
+]
+
+{ #category : #accessing }
 PyramidProperty >> name [
 
 	^ name
@@ -73,29 +92,4 @@ PyramidProperty >> presenterBuilder [
 PyramidProperty >> presenterBuilder: anObject [
 
 	presenterBuilder := anObject
-]
-
-{ #category : #accessing }
-PyramidProperty >> pyramidInputPresenterClass [
-
-	^ pyramidInputPresenterClass
-]
-
-{ #category : #accessing }
-PyramidProperty >> pyramidInputPresenterClass: anObject [
-
-	pyramidInputPresenterClass := anObject.
-	self pyramidInputPresenterStrings: anObject stringsClass new
-]
-
-{ #category : #accessing }
-PyramidProperty >> pyramidInputPresenterStrings [
-
-	^ pyramidInputPresenterStrings
-]
-
-{ #category : #accessing }
-PyramidProperty >> pyramidInputPresenterStrings: anObject [
-
-	pyramidInputPresenterStrings := anObject
 ]

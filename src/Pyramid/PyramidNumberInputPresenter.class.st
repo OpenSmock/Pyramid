@@ -8,13 +8,13 @@ Class {
 		'inputNumber',
 		'submitBlock'
 	],
-	#category : 'Pyramid-specs-custom'
+	#category : #'Pyramid-specs-custom'
 }
 
 { #category : #'as yet unclassified' }
-PyramidNumberInputPresenter >> applyStrings [
+PyramidNumberInputPresenter >> applyInputModel [
 
-	self inputNumber help: self strings help
+	self inputNumber help: self inputModel help
 ]
 
 { #category : #layout }

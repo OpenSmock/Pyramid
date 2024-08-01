@@ -165,8 +165,8 @@ PyramidSinglePopingPresenterBuilder >> layoutForLabel: aString input: anInput bu
 { #category : #'as yet unclassified' }
 PyramidSinglePopingPresenterBuilder >> makeNewInput [
 
-	^ self property pyramidInputPresenterClass new
-		  strings: self property pyramidInputPresenterStrings;
+	^ self property inputPresenterClass new
+		  inputModel: self property inputPresenterModel;
 		  yourself
 ]
 

@@ -84,7 +84,7 @@ PyramidNavigationDefaultColumns >> columnVisibility [
 					   "self editor is present on the class that will recover the pragma <pyramidNavigationColumn:>.
 					This class should be: PyramidNavigationTreePresenter."
 					   self editor ifNotNil: [ :e |
-							   e propertiesManager commandExecutor
+							   e commandExecutor
 								   use: PyramidVisibilityCommand new
 								   on: { aBlElement }
 								   with: aBlElement visibility nextVisibilityForTree ] ];

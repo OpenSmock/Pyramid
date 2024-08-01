@@ -13,19 +13,19 @@ Class {
 	#classInstVars : [
 		'whenValueChangedDo'
 	],
-	#category : 'Pyramid-specs-custom'
+	#category : #'Pyramid-specs-custom'
 }
 
 { #category : #deprecated }
-PyramidMagicButtonsInputPresenter class >> stringsClass [
+PyramidMagicButtonsInputPresenter class >> inputModelClass [
 
 	^ PyramidMagicButtonsModel
 ]
 
 { #category : #'as yet unclassified' }
-PyramidMagicButtonsInputPresenter >> applyStrings [
+PyramidMagicButtonsInputPresenter >> applyInputModel [
 
-	self strings buttonsModel do: [ :each |
+	self inputModel buttonsModel do: [ :each |
 		self makeAssociatedButtonFor: each ].
 	self selectedIndex: 0.
 	self setUnknowValue

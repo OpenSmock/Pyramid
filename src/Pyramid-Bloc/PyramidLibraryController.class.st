@@ -116,7 +116,7 @@ PyramidLibraryController >> openForRoot [
 PyramidLibraryController >> openForSelection [
 
 	self addElementsBlock: [ :arrayOfElement |
-		self editor propertiesManager commandExecutor
+		self editor commandExecutor
 			use: PyramidAddChildrenCommand new
 			on: self editor projectModel selection
 			with: arrayOfElement ].

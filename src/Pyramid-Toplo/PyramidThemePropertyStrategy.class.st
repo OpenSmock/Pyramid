@@ -1,7 +1,7 @@
 Class {
 	#name : #PyramidThemePropertyStrategy,
 	#superclass : #PyramidHideEmptyPropertyStrategy,
-	#category : 'Pyramid-Toplo-plugin-theme-management'
+	#category : #'Pyramid-Toplo-plugin-theme-management'
 }
 
 { #category : #'as yet unclassified' }
@@ -37,9 +37,9 @@ PyramidThemePropertyStrategy >> propertiesFor: aCollectionOfElements [
 PyramidThemePropertyStrategy >> propertyForStamp: aStamp [
 
 	| property |
-	property := PyramidProperty new name: aStamp; command: (PyramidStampCommand new stamp: aStamp; yourself); pyramidInputPresenterClass: PyramidSwitchInputPresenter ; yourself.
-	property pyramidInputPresenterStrings onLabel: 'Has stamp'.
-	property pyramidInputPresenterStrings offLabel: 'Has not stamp'.
-	property pyramidInputPresenterStrings uncertainLabel: 'Uncertain'.
+	property := PyramidProperty new name: aStamp; command: (PyramidStampCommand new stamp: aStamp; yourself); inputPresenterClass: PyramidSwitchInputPresenter ; yourself.
+	property inputPresenterModel onLabel: 'Has stamp'.
+	property inputPresenterModel offLabel: 'Has not stamp'.
+	property inputPresenterModel uncertainLabel: 'Uncertain'.
 	^ property
 ]

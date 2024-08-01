@@ -93,8 +93,8 @@ PyramidBackgroundStopsModalPresenter >> initializePresenters [
 		                     yourself.
 	colorInput := PyramidColorInputSingleLineWithPickupButtonPresenter
 		              new.
-	positionInput := PyramidNumberInputPresenter new strings:
-		                 (PyramidInputStrings new help:
+	positionInput := PyramidNumberInputPresenter new inputModel:
+		                 (PyramidInputModel new help:
 			                  'Set the position of the color in the gradiant (generally between 0 and 1).').
 	tableStops := SpTablePresenter new
 		              whenSelectedItemChangedDo: [ :stop |

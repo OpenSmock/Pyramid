@@ -8,22 +8,22 @@ Class {
 		'labelX',
 		'labelY'
 	],
-	#category : 'Pyramid-specs-custom'
+	#category : #'Pyramid-specs-custom'
 }
 
 { #category : #accessing }
-PyramidPointInputPresenter class >> stringsClass [
+PyramidPointInputPresenter class >> inputModelClass [
 
-	^ PyramidPointInputStrings
+	^ PyramidPointInputModel
 ]
 
 { #category : #'as yet unclassified' }
-PyramidPointInputPresenter >> applyStrings [
+PyramidPointInputPresenter >> applyInputModel [
 
-	self inputX inputNumber help: self strings help.
-	self inputY inputNumber help: self strings help.
-	self labelX label: self strings labelX.
-	self labelY label: self strings labelY
+	self inputX inputNumber help: self inputModel help.
+	self inputY inputNumber help: self inputModel help.
+	self labelX label: self inputModel labelX.
+	self labelY label: self inputModel labelY
 ]
 
 { #category : #layout }

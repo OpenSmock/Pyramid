@@ -40,7 +40,7 @@ TPyramidInputPresenterTest >> makeNewInputWithModel [
 
 	| input |
 	input := self makeNewInput.
-	input strings: input class stringsClass new.
+	input inputModel: input class inputModelClass new.
 	^ input
 ]
 
