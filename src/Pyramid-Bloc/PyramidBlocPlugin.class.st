@@ -290,6 +290,16 @@ PyramidBlocPlugin class >> geometry [
 ]
 
 { #category : #'as yet unclassified' }
+PyramidBlocPlugin class >> iconOf: anObject [
+
+	| target |
+	target := anObject isCollection ifTrue: [ 
+		 BlElement new constraintsDo: [ :c | c horizontal fitContent . c vertical fitContent ]; addChildren: anObject; yourself.
+		 ] ifFalse: [anObject ].
+	^ target exportAsForm
+]
+
+{ #category : #'as yet unclassified' }
 PyramidBlocPlugin class >> iconOf: aBlElement maxHeight: aNumber [
 
 	| form scale |
