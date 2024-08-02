@@ -16,97 +16,15 @@ PyramidBlocPlugin class >> blocVisibilityGone [
 	"This class has been generated using Pyramid.
 
 	By: YannLEGOFF
-	2024-08-01 18:23:58"
-
-	<pyStash>
-	^ [ {(BlElement new
-   clipChildren: false;
-   constraintsDo: [:constraints |  constraints horizontal fitContent.
-      constraints vertical fitContent.
-      constraints padding: (BlInsets top: 0.0 right: 35.0 bottom: 0.0 left: 0.0) ];
-   layout: BlFrameLayout new;
-   addChildren: {(BlElement new
-         background: (BlPaintBackground new
-               paint: (BlColorPaint new
-                     color: (Color r: 0.823069403714565 g: 0.823069403714565 b: 0.823069403714565 alpha: 1.0);
-                     yourself);
-               opacity: 1.0;
-               yourself);
-         border: (BlBorderBuilder new
-               paint: (BlColorPaint new
-                     color: (Color r: 0.0 g: 0.0 b: 0.0 alpha: 1.0);
-                     yourself);
-               width: 3;
-               dashArray: {6};
-               build);
-         geometry: BlRectangleGeometry new;
-         constraintsDo: [:constraints |  constraints vertical exact: 40.0.
-            constraints frame horizontal alignCenter.
-            constraints frame vertical alignCenter ];
-         id: #C;
-         yourself) . 
-      (BlElement new
-         geometry: BlRectangleGeometry new;
-         constraintsDo: [:constraints |  constraints horizontal fitContent.
-            constraints vertical fitContent.
-            constraints frame horizontal alignCenter.
-            constraints frame vertical alignCenter ];
-         layout: BlLinearLayout horizontal;
-         addChildren: {(BlElement new
-               background: (BlPaintBackground new
-                     paint: (BlColorPaint new
-                           color: (Color r: 0.5728250244379277 g: 0.8191593352883676 b: 1.0 alpha: 1.0);
-                           yourself);
-                     opacity: 1.0;
-                     yourself);
-               border: (BlBorderBuilder new
-                     paint: (BlColorPaint new
-                           color: (Color r: 0.0 g: 0.0 b: 0.0 alpha: 1.0);
-                           yourself);
-                     width: 3;
-                     build);
-               geometry: BlRectangleGeometry new;
-               constraintsDo: [:constraints |  constraints horizontal exact: 25.0 ];
-               id: #B;
-               yourself) . 
-            (BlElement new
-               background: (BlPaintBackground new
-                     paint: (BlColorPaint new
-                           color: (Color r: 0.5728250244379277 g: 0.8191593352883676 b: 1.0 alpha: 1.0);
-                           yourself);
-                     opacity: 1.0;
-                     yourself);
-               border: (BlBorderBuilder new
-                     paint: (BlColorPaint new
-                           color: (Color r: 0.0 g: 0.0 b: 0.0 alpha: 1.0);
-                           yourself);
-                     width: 3;
-                     build);
-               geometry: BlRectangleGeometry new;
-               constraintsDo: [:constraints |  constraints horizontal exact: 25.0.
-                  constraints margin: (BlInsets top: 0.0 right: 0.0 bottom: 0.0 left: 10.0) ];
-               id: #D;
-               yourself)};
-         id: #A;
-         yourself)};
-   id: #group;
-   yourself)} ] value
-]
-
-{ #category : #'pyramid-serialized-bloc' }
-PyramidBlocPlugin class >> blocVisibilityHidden [
-	"This class has been generated using Pyramid.
-
-	By: YannLEGOFF
-	2024-08-01 18:17:49"
+	2024-08-02 09:26:40"
 
 	<pyStash>
 	^ [ | blinsets1 |
-blinsets1 := BlInsets top: 0.0 right: 10.0 bottom: 0.0 left: 0.0.
+blinsets1 := BlInsets top: 0.0 right: 2.0 bottom: 0.0 left: 0.0.
 {(BlElement new
    geometry: BlRectangleGeometry new;
-   constraintsDo: [:constraints |  constraints horizontal fitContent.
-      constraints vertical fitContent ];
+   constraintsDo: [:constraints |  constraints horizontal exact: 24.0.
+      constraints vertical exact: 12.0 ];
    layout: BlLinearLayout horizontal;
    addChildren: {(BlElement new
          background: (BlPaintBackground new
@@ -119,17 +37,17 @@ blinsets1 := BlInsets top: 0.0 right: 10.0 bottom: 0.0 left: 0.0.
                paint: (BlColorPaint new
                      color: (Color r: 0.0 g: 0.0 b: 0.0 alpha: 1.0);
                      yourself);
-               width: 3;
                build);
          geometry: BlRectangleGeometry new;
-         constraintsDo: [:constraints |  constraints horizontal exact: 25.0.
+         constraintsDo: [:constraints |  constraints horizontal matchParent.
+            constraints vertical matchParent.
             constraints margin: blinsets1 ];
          id: #B;
          yourself) . 
       (BlElement new
          background: (BlPaintBackground new
                paint: (BlColorPaint new
-                     color: (Color r: 0.823069403714565 g: 0.823069403714565 b: 0.823069403714565 alpha: 1.0);
+                     color: (Color r: 0.5728250244379277 g: 0.8191593352883676 b: 1.0 alpha: 1.0);
                      yourself);
                opacity: 1.0;
                yourself);
@@ -137,11 +55,10 @@ blinsets1 := BlInsets top: 0.0 right: 10.0 bottom: 0.0 left: 0.0.
                paint: (BlColorPaint new
                      color: (Color r: 0.0 g: 0.0 b: 0.0 alpha: 1.0);
                      yourself);
-               width: 3;
-               dashArray: {6};
                build);
          geometry: BlRectangleGeometry new;
-         constraintsDo: [:constraints |  constraints horizontal exact: 25.0.
+         constraintsDo: [:constraints |  constraints horizontal matchParent.
+            constraints vertical matchParent.
             constraints margin: blinsets1 ];
          id: #C;
          yourself) . 
@@ -156,10 +73,83 @@ blinsets1 := BlInsets top: 0.0 right: 10.0 bottom: 0.0 left: 0.0.
                paint: (BlColorPaint new
                      color: (Color r: 0.0 g: 0.0 b: 0.0 alpha: 1.0);
                      yourself);
-               width: 3;
                build);
          geometry: BlRectangleGeometry new;
-         constraintsDo: [:constraints |  constraints horizontal exact: 25.0 ];
+         visibility: BlVisibility hidden;
+         constraintsDo: [:constraints |  constraints horizontal matchParent.
+            constraints vertical matchParent ];
+         id: #D;
+         yourself)};
+   id: #A;
+   yourself)} ] value
+]
+
+{ #category : #'pyramid-serialized-bloc' }
+PyramidBlocPlugin class >> blocVisibilityHidden [
+	"This class has been generated using Pyramid.
+
+	By: YannLEGOFF
+	2024-08-02 09:25:56"
+
+	<pyStash>
+	^ [ | blinsets1 |
+blinsets1 := BlInsets top: 0.0 right: 2.0 bottom: 0.0 left: 0.0.
+{(BlElement new
+   geometry: BlRectangleGeometry new;
+   constraintsDo: [:constraints |  constraints horizontal exact: 24.0.
+      constraints vertical exact: 12.0 ];
+   layout: BlLinearLayout horizontal;
+   addChildren: {(BlElement new
+         background: (BlPaintBackground new
+               paint: (BlColorPaint new
+                     color: (Color r: 0.5728250244379277 g: 0.8191593352883676 b: 1.0 alpha: 1.0);
+                     yourself);
+               opacity: 1.0;
+               yourself);
+         border: (BlBorderBuilder new
+               paint: (BlColorPaint new
+                     color: (Color r: 0.0 g: 0.0 b: 0.0 alpha: 1.0);
+                     yourself);
+               build);
+         geometry: BlRectangleGeometry new;
+         constraintsDo: [:constraints |  constraints horizontal matchParent.
+            constraints vertical matchParent.
+            constraints margin: blinsets1 ];
+         id: #B;
+         yourself) . 
+      (BlElement new
+         background: (BlPaintBackground new
+               paint: (BlColorPaint new
+                     color: (Color r: 0.863147605083089 g: 0.863147605083089 b: 0.863147605083089 alpha: 1.0);
+                     yourself);
+               opacity: 1.0;
+               yourself);
+         border: (BlBorderBuilder new
+               paint: (BlColorPaint new
+                     color: (Color r: 0.0 g: 0.0 b: 0.0 alpha: 1.0);
+                     yourself);
+               build);
+         geometry: BlRectangleGeometry new;
+         constraintsDo: [:constraints |  constraints horizontal matchParent.
+            constraints vertical matchParent.
+            constraints margin: blinsets1 ];
+         id: #C;
+         yourself) . 
+      (BlElement new
+         background: (BlPaintBackground new
+               paint: (BlColorPaint new
+                     color: (Color r: 0.5728250244379277 g: 0.8191593352883676 b: 1.0 alpha: 1.0);
+                     yourself);
+               opacity: 1.0;
+               yourself);
+         border: (BlBorderBuilder new
+               paint: (BlColorPaint new
+                     color: (Color r: 0.0 g: 0.0 b: 0.0 alpha: 1.0);
+                     yourself);
+               build);
+         geometry: BlRectangleGeometry new;
+         constraintsDo: [:constraints |  constraints horizontal matchParent.
+            constraints vertical matchParent ];
          id: #D;
          yourself)};
    id: #A;
@@ -171,15 +161,15 @@ PyramidBlocPlugin class >> blocVisibilityVisible [
 	"This class has been generated using Pyramid.
 
 	By: YannLEGOFF
-	2024-08-01 18:18:10"
+	2024-08-02 09:24:49"
 
 	<pyStash>
 	^ [ | blinsets1 |
-blinsets1 := BlInsets top: 0.0 right: 10.0 bottom: 0.0 left: 0.0.
+blinsets1 := BlInsets top: 0.0 right: 2.0 bottom: 0.0 left: 0.0.
 {(BlElement new
    geometry: BlRectangleGeometry new;
-   constraintsDo: [:constraints |  constraints horizontal fitContent.
-      constraints vertical fitContent ];
+   constraintsDo: [:constraints |  constraints horizontal exact: 24.0.
+      constraints vertical exact: 12.0 ];
    layout: BlLinearLayout horizontal;
    addChildren: {(BlElement new
          background: (BlPaintBackground new
@@ -192,10 +182,10 @@ blinsets1 := BlInsets top: 0.0 right: 10.0 bottom: 0.0 left: 0.0.
                paint: (BlColorPaint new
                      color: (Color r: 0.0 g: 0.0 b: 0.0 alpha: 1.0);
                      yourself);
-               width: 3;
                build);
          geometry: BlRectangleGeometry new;
-         constraintsDo: [:constraints |  constraints horizontal exact: 25.0.
+         constraintsDo: [:constraints |  constraints horizontal matchParent.
+            constraints vertical matchParent.
             constraints margin: blinsets1 ];
          id: #B;
          yourself) . 
@@ -210,10 +200,10 @@ blinsets1 := BlInsets top: 0.0 right: 10.0 bottom: 0.0 left: 0.0.
                paint: (BlColorPaint new
                      color: (Color r: 0.0 g: 0.0 b: 0.0 alpha: 1.0);
                      yourself);
-               width: 3;
                build);
          geometry: BlRectangleGeometry new;
-         constraintsDo: [:constraints |  constraints horizontal exact: 25.0.
+         constraintsDo: [:constraints |  constraints horizontal matchParent.
+            constraints vertical matchParent.
             constraints margin: blinsets1 ];
          id: #C;
          yourself) . 
@@ -228,10 +218,10 @@ blinsets1 := BlInsets top: 0.0 right: 10.0 bottom: 0.0 left: 0.0.
                paint: (BlColorPaint new
                      color: (Color r: 0.0 g: 0.0 b: 0.0 alpha: 1.0);
                      yourself);
-               width: 3;
                build);
          geometry: BlRectangleGeometry new;
-         constraintsDo: [:constraints |  constraints horizontal exact: 25.0 ];
+         constraintsDo: [:constraints |  constraints horizontal matchParent.
+            constraints vertical matchParent ];
          id: #D;
          yourself)};
    id: #A;
