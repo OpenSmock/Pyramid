@@ -59,17 +59,18 @@ PyramidPluginEditOnRunningTest >> testBlSpaceShortcutAddAndRemove [
 
 { #category : #tests }
 PyramidPluginEditOnRunningTest >> testCannotEditTheEditor [
-	| space editor |
 
+	| space editor |
 	PyramidPluginEditOnRunning editOnRunning: true.
 
 	editor := PyramidEditor buildEditor.
 	"get the space of the editor"
-	space := (editor getPlugin: PyramidSpacePlugin) builder space.
-	
-	"check than the shortcut is not installed" 
+	space := (editor findPlugin: PyramidSpacePlugin) builder space.
+
+	"check than the shortcut is not installed"
 	self deny: (PyramidPluginEditOnRunning spaceIds includes: space id).
-	self deny: (space root shortcuts includes: (PyramidPluginEditOnRunning shortcut)).
+	self deny:
+		(space root shortcuts includes: PyramidPluginEditOnRunning shortcut)
 ]
 
 { #category : #tests }

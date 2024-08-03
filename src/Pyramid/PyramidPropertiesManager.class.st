@@ -7,7 +7,7 @@ Class {
 		'presenterStrategy',
 		'history'
 	],
-	#category : 'Pyramid-property'
+	#category : #'Pyramid-property'
 }
 
 { #category : #removing }
@@ -20,6 +20,7 @@ PyramidPropertiesManager >> addAllProperties: aCollection [
 PyramidPropertiesManager >> addProperty: aPyramidProperty [
 
 	aPyramidProperty commandExecutor: self commandExecutor.
+	aPyramidProperty presenterBuilder: self presenterBuilder.
 	self properties add: aPyramidProperty
 ]
 
@@ -59,6 +60,12 @@ PyramidPropertiesManager >> initialize [
 		                   yourself.
 
 	presenterStrategy := PyramidHideEmptyPropertyStrategy new
+]
+
+{ #category : #'as yet unclassified' }
+PyramidPropertiesManager >> presenterBuilder [
+
+	^ self shouldBeImplemented
 ]
 
 { #category : #accessing }

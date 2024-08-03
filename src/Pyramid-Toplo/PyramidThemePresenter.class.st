@@ -6,7 +6,7 @@ Class {
 		'themeSpaceSelector',
 		'themeElementSelector'
 	],
-	#category : 'Pyramid-Toplo-plugin-theme-management'
+	#category : #'Pyramid-Toplo-plugin-theme-management'
 }
 
 { #category : #layout }
@@ -25,7 +25,8 @@ PyramidThemePresenter >> editor: aPyramidEditor [
 
 	self themeSpaceSelector projectModel: aPyramidEditor projectModel.
 	self themeElementSelector projectModel: aPyramidEditor projectModel.
-	self themeElementSelector commandExecutor: aPyramidEditor propertiesManager commandExecutor 
+	self themeElementSelector commandExecutor:
+		aPyramidEditor commandExecutor
 ]
 
 { #category : #layout }

@@ -5,7 +5,8 @@ Class {
 	#classTraits : 'TPyramidPlugin classTrait',
 	#instVars : [
 		'editor',
-		'groupCommand'
+		'groupCommand',
+		'propertiesManager'
 	],
 	#category : #'Pyramid-Bloc-plugin-bloc'
 }
@@ -100,6 +101,14 @@ PyramidBlocPlugin class >> zIndex [
 { #category : #adding }
 PyramidBlocPlugin >> addPanelsOn: aPyramidSimpleWindow [
 
+	
+	aPyramidSimpleWindow at: #tabRight addItem: [ :builder |
+		builder
+			makeTab: self propertiesManager mainPresenter
+			label: 'Properties'
+			icon: (Smalltalk ui icons iconNamed: #box)
+			order: 1 ].
+
 	aPyramidSimpleWindow
 		at: #selectionMenu
 		addItem: [ :builder | self menuGroupOn: builder ].
@@ -111,16 +120,14 @@ PyramidBlocPlugin >> addPanelsOn: aPyramidSimpleWindow [
 { #category : #connecting }
 PyramidBlocPlugin >> connectOn: aPyramidEditor [
 
-	"Configure the sort function."
-	aPyramidEditor projectModel firstLevelElements sortFunction: PyramidElevationSortFunction new.
-
 	self editor: aPyramidEditor.
-	aPyramidEditor propertiesManager addProperty: self class elementId.
-	aPyramidEditor propertiesManager addProperty: self class visibility.
-	aPyramidEditor propertiesManager addProperty: self class zIndex.
-	aPyramidEditor propertiesManager addProperty: self class clipChildren.
-	aPyramidEditor propertiesManager addProperty: self class geometry.
-	aPyramidEditor propertiesManager addProperty: self class cornerRadii
+	
+	"Configure the sort function."
+	aPyramidEditor projectModel firstLevelElements sortFunction:
+		PyramidElevationSortFunction new.
+	
+	propertiesManager projectModel: aPyramidEditor projectModel.
+	propertiesManager commandExecutor: aPyramidEditor commandExecutor
 ]
 
 { #category : #accessing }
@@ -139,7 +146,7 @@ PyramidBlocPlugin >> editor: anObject [
 PyramidBlocPlugin >> groupCollection: aCollection [
 
 	self editor ifNil: [ ^ self ].
-	self editor propertiesManager commandExecutor
+	self editor commandExecutor
 		use: self groupCommand
 		on: { aCollection }
 		with: self editor projectModel firstLevelElements
@@ -184,7 +191,18 @@ PyramidBlocPlugin >> groupMenuBlockSingle [
 { #category : #initialization }
 PyramidBlocPlugin >> initialize [
 
-	groupCommand := PyramidGroupCommand new
+	super initialize.
+	
+	groupCommand := PyramidGroupCommand new.
+	
+	propertiesManager := PyramidPropertiesManagerForSelection new.
+
+	propertiesManager addProperty: self class elementId.
+	propertiesManager addProperty: self class visibility.
+	propertiesManager addProperty: self class zIndex.
+	propertiesManager addProperty: self class clipChildren.
+	propertiesManager addProperty: self class geometry.
+	propertiesManager addProperty: self class cornerRadii
 ]
 
 { #category : #'as yet unclassified' }
@@ -236,11 +254,17 @@ PyramidBlocPlugin >> menuGroupOn: aBuilder [
 	aBuilder addGroupMultiSelection: self groupMenuBlockMulti order: 20
 ]
 
+{ #category : #accessing }
+PyramidBlocPlugin >> propertiesManager [
+
+	^ propertiesManager
+]
+
 { #category : #'as yet unclassified' }
 PyramidBlocPlugin >> send: aCommand on: aCollection [
 
 	self editor ifNil: [ ^ self ].
-	self editor propertiesManager commandExecutor
+	self editor commandExecutor
 		use: aCommand
 		on: aCollection
 		with: nil

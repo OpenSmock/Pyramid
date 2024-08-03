@@ -105,7 +105,7 @@ PyramidLibraryController >> openForRoot [
 
 	self addElementsBlock: [ :arrayOfElement |
 		self renameElements: arrayOfElement.
-		self editor propertiesManager commandExecutor
+		self editor commandExecutor
 			use: PyramidAddAllToCollectionCommand new
 			on: { self editor projectModel firstLevelElements }
 			with: arrayOfElement ].
