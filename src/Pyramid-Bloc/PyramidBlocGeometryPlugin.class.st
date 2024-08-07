@@ -35,6 +35,7 @@ PyramidBlocGeometryPlugin class >> geometryClasses [
 		  BlCircleGeometry.
 		  BlAnnulusSectorGeometry.
 		  BlTriangleGeometry.
+		  BlLineGeometry .
 		  BlPolylineGeometry.
 		  BlBezierCurveGeometry.
 		  BlPolygonGeometry }
