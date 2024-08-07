@@ -4,7 +4,7 @@ Class {
 	#traits : 'TPyramidPlugin',
 	#classTraits : 'TPyramidPlugin classTrait',
 	#instVars : [
-		'projectModel'
+		'editor'
 	],
 	#category : #'Pyramid-Bloc-plugin-copy-paste'
 }
@@ -20,7 +20,7 @@ PyramidCopyPastePlugin >> addPanelsOn: aPyramidSimpleWindow [
 { #category : #connecting }
 PyramidCopyPastePlugin >> connectOn: aPyramidEditor [
 
-	self projectModel: aPyramidEditor projectModel
+	self editor: aPyramidEditor.
 ]
 
 { #category : #copying }
@@ -45,7 +45,7 @@ PyramidCopyPastePlugin >> copyAsStonMenu: aBuilder [
 					item
 						icon: (Smalltalk ui icons iconNamed: #smallPaste);
 						name: 'Paste';
-						action: [ self pasteAsStonInClipboardOnRoots ];
+						action: [ self pasteFromClipboardOnFirstLevelElements ];
 						yourself ];
 				yourself ]
 		order: 20.
@@ -57,13 +57,13 @@ PyramidCopyPastePlugin >> copyAsStonMenu: aBuilder [
 					item
 						icon: (Smalltalk ui icons iconNamed: #smallCopy);
 						name: 'Copy';
-						action: [ self copyAsStonInClipboard: { single } ];
+						action: [ self copyAsStonInClipboard: single ];
 						yourself ];
 				addItem: [ :item |
 					item
 						icon: (Smalltalk ui icons iconNamed: #smallPaste);
 						name: 'Paste';
-						action: [ self pasteAsStonInClipboard: single ];
+						action: [ self pasteFromClipboardOnSelection: single ];
 						yourself ];
 				yourself ]
 		order: 20.
@@ -87,40 +87,53 @@ PyramidCopyPastePlugin >> copyAsStonMenu: aBuilder [
 		order: 20
 ]
 
-{ #category : #copying }
-PyramidCopyPastePlugin >> pasteAsStonInClipboard: aBlElement [
+{ #category : #accessing }
+PyramidCopyPastePlugin >> editor [
 
-	| copiedElement |
-	[ copiedElement := BlSerializer materialize: Clipboard clipboardText ]
-		on: BlocMaterializationError
-		do: [
-			UIManager default inform: 'Cannot paste the clipboard.'.
-			^ self ].
-	aBlElement addChildren: copiedElement.
-	self projectModel informElementsChanged
-]
-
-{ #category : #copying }
-PyramidCopyPastePlugin >> pasteAsStonInClipboardOnRoots [
-
-	| copiedElement |
-	[ copiedElement := BlSerializer materialize: Clipboard clipboardText ]
-		on: BlocMaterializationError
-		do: [
-			UIManager default inform: 'Cannot paste the clipboard.'.
-			^ self ].
-	self projectModel firstLevelElements addAll: copiedElement.
-	self projectModel informFirstLevelElementsChanged
+	^ editor
 ]
 
 { #category : #accessing }
-PyramidCopyPastePlugin >> projectModel [
+PyramidCopyPastePlugin >> editor: anObject [
 
-	^ projectModel
+	editor := anObject
 ]
 
-{ #category : #accessing }
-PyramidCopyPastePlugin >> projectModel: anObject [
+{ #category : #copying }
+PyramidCopyPastePlugin >> pasteFromClipboard: aBlock [
 
-	projectModel := anObject
+	| copiedElement |
+	[
+	copiedElement := BlSerializer materialize: Clipboard clipboardText.
+	copiedElement isCollection ifFalse: [
+		copiedElement := { copiedElement } ] ]
+		on: BlocMaterializationError
+		do: [
+			UIManager default inform: 'Cannot materialize the clipboard.'.
+			^ self ].
+
+	[TBlSerializer verifyCollection: copiedElement] on: BlocSerializationError do: [ UIManager default inform: 'No BlElements in the clipboard.'.
+			^ self ].
+
+	aBlock value: copiedElement
+]
+
+{ #category : #copying }
+PyramidCopyPastePlugin >> pasteFromClipboardOnFirstLevelElements [
+
+	self pasteFromClipboard: [ :copiedElement | self editor commandExecutor
+		use: PyramidAddAllToCollectionCommand new
+		on: { self editor projectModel firstLevelElements }
+		with: copiedElement ]
+	
+]
+
+{ #category : #copying }
+PyramidCopyPastePlugin >> pasteFromClipboardOnSelection: aBlElement [
+
+	self pasteFromClipboard: [ :copiedElement |
+	self editor commandExecutor
+		use: PyramidAddChildrenCommand new
+		on: self editor projectModel selection
+		with: copiedElement ]
 ]

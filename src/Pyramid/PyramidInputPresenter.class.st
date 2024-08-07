@@ -15,8 +15,14 @@ Class {
 	#instVars : [
 		'strings'
 	],
-	#category : 'Pyramid-specs-custom'
+	#category : #'Pyramid-specs-custom'
 }
+
+{ #category : #accessing }
+PyramidInputPresenter class >> inputModelClass [
+
+	^ PyramidInputModel
+]
 
 { #category : #testing }
 PyramidInputPresenter class >> isAbstract [
@@ -24,14 +30,8 @@ PyramidInputPresenter class >> isAbstract [
 	^ self == PyramidInputPresenter
 ]
 
-{ #category : #accessing }
-PyramidInputPresenter class >> stringsClass [
-
-	^ PyramidInputStrings
-]
-
 { #category : #'as yet unclassified' }
-PyramidInputPresenter >> applyStrings [
+PyramidInputPresenter >> applyInputModel [
 
 	
 ]
@@ -42,23 +42,23 @@ PyramidInputPresenter >> emptyValue [
 	self value: PyramidEmptyValue new
 ]
 
-{ #category : #'as yet unclassified' }
-PyramidInputPresenter >> mixedValues [
-
-	self value: PyramidMixedValues new
-]
-
 { #category : #accessing }
-PyramidInputPresenter >> strings [
+PyramidInputPresenter >> inputModel [
 
 	^ strings
 ]
 
 { #category : #accessing }
-PyramidInputPresenter >> strings: anObject [
+PyramidInputPresenter >> inputModel: anObject [
 
 	strings := anObject.
-	self applyStrings
+	self applyInputModel
+]
+
+{ #category : #'as yet unclassified' }
+PyramidInputPresenter >> mixedValues [
+
+	self value: PyramidMixedValues new
 ]
 
 { #category : #'as yet unclassified' }

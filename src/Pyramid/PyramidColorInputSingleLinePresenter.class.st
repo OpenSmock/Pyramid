@@ -7,7 +7,7 @@ Class {
 		'previewPresenter',
 		'whenValueChangedDo'
 	],
-	#category : 'Pyramid-specs-custom'
+	#category : #'Pyramid-specs-custom'
 }
 
 { #category : #accessing }
@@ -17,10 +17,10 @@ PyramidColorInputSingleLinePresenter >> alphaInput [
 ]
 
 { #category : #'as yet unclassified' }
-PyramidColorInputSingleLinePresenter >> applyStrings [
+PyramidColorInputSingleLinePresenter >> applyInputModel [
 
-	self alphaInput strings: self strings.
-	self hexInput strings: self strings
+	self alphaInput inputModel: self inputModel.
+	self hexInput inputModel: self inputModel
 ]
 
 { #category : #'as yet unclassified' }
@@ -64,11 +64,15 @@ PyramidColorInputSingleLinePresenter >> initializePresenter [
 	whenValueChangedDo := [ :c |  ].
 	hexInput := PyramidTextInputPresenter new
 		            value: 'FF0000';
-		            strings: (PyramidInputStrings new help: 'Set the color value as an hex.');
+		            inputModel:
+			            (PyramidInputModel new help:
+					             'Set the color value as an hex.');
 		            yourself.
 	alphaInput := PyramidNumberInputPresenter new
 		              value: 100;
-		              strings: (PyramidInputStrings new help:'Set the alpha value as a %.');
+		              inputModel:
+			              (PyramidInputModel new help:
+					               'Set the alpha value as a %.');
 		              yourself.
 	previewPresenter := SpMorphPresenter new
 		                    morph: Morph new;

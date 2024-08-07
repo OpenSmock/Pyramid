@@ -17,7 +17,7 @@ PyramidBlocLayoutPlugin class >> constraintsBasicH [
 		            name: 'Constraints - horizontal';
 		            command:
 			            PyramidBasicHorizontalConstraintsBlocCommand new;
-		            pyramidInputPresenterClass:
+		            inputPresenterClass:
 			            PyramidBasicConstraintsInputPresenter;
 		            yourself.
 	^ property
@@ -31,9 +31,9 @@ PyramidBlocLayoutPlugin class >> constraintsBasicHExact [
 		            name: 'Constraints - width';
 		            command:
 			            PyramidBasicExactHorizontalConstraintsBlocCommand new;
-		            pyramidInputPresenterClass: PyramidNumberInputPresenter;
+		            inputPresenterClass: PyramidNumberInputPresenter;
 		            yourself.
-	property pyramidInputPresenterStrings help:
+	property inputPresenterModel help:
 		'Change the width of the object'.
 	^ property
 ]
@@ -46,7 +46,7 @@ PyramidBlocLayoutPlugin class >> constraintsBasicV [
 		            name: 'Constraints - vertical';
 		            command:
 			            PyramidBasicVerticalConstraintsBlocCommand new;
-		            pyramidInputPresenterClass:
+		            inputPresenterClass:
 			            PyramidBasicConstraintsInputPresenter;
 		            yourself.
 	^ property
@@ -60,9 +60,9 @@ PyramidBlocLayoutPlugin class >> constraintsBasicVExact [
 		            name: 'Constraints - height';
 		            command:
 			            PyramidBasicExactVerticalConstraintsBlocCommand new;
-		            pyramidInputPresenterClass: PyramidNumberInputPresenter;
+		            inputPresenterClass: PyramidNumberInputPresenter;
 		            yourself.
-	property pyramidInputPresenterStrings help:
+	property inputPresenterModel help:
 		'Change the height of the object'.
 	^ property
 ]
@@ -74,7 +74,7 @@ PyramidBlocLayoutPlugin class >> constraintsFrameH [
 	property := PyramidProperty new
 		            name: 'Constraints - Frame - horizontal';
 		            command: PyramidFrameHorizontalConstraintsCommand new;
-		            pyramidInputPresenterClass:
+		            inputPresenterClass:
 			            PyramidHorizontalFrameConstraintsInputPresenter;
 		            yourself.
 	^ property
@@ -87,7 +87,7 @@ PyramidBlocLayoutPlugin class >> constraintsFrameV [
 	property := PyramidProperty new
 		            name: 'Constraints - Frame - vertical';
 		            command: PyramidFrameVerticalConstraintsCommand new;
-		            pyramidInputPresenterClass:
+		            inputPresenterClass:
 			            PyramidVerticalFrameConstraintsInputPresenter;
 		            yourself.
 	^ property
@@ -101,9 +101,9 @@ PyramidBlocLayoutPlugin class >> constraintsPropH [
 		            name: 'Constraints - horizontal';
 		            command:
 			            PyramidProportionnalHorizontalConstraintsCommand new;
-		            pyramidInputPresenterClass: PyramidPointInputPresenter;
+		            inputPresenterClass: PyramidPointInputPresenter;
 		            yourself.
-	property pyramidInputPresenterStrings
+	property inputPresenterModel
 		help: 'Define the proportion of the horizontal component.';
 		labelX: 'Left';
 		labelY: 'Right'.
@@ -118,9 +118,9 @@ PyramidBlocLayoutPlugin class >> constraintsPropV [
 		            name: 'Constraints - vertical';
 		            command:
 			            PyramidProportionnalVerticalConstraintsCommand new;
-		            pyramidInputPresenterClass: PyramidPointInputPresenter;
+		            inputPresenterClass: PyramidPointInputPresenter;
 		            yourself.
-	property pyramidInputPresenterStrings
+	property inputPresenterModel
 		help: 'Define the proportion of the vertical component.';
 		labelX: 'Top';
 		labelY: 'Bottom'.
@@ -134,9 +134,9 @@ PyramidBlocLayoutPlugin class >> constraintsWeight [
 	property := PyramidProperty new
 		            name: 'Constraints - weight';
 		            command: PyramidWeightConstraintsCommand new;
-		            pyramidInputPresenterClass: PyramidNumberInputPresenter;
+		            inputPresenterClass: PyramidNumberInputPresenter;
 		            yourself.
-	property pyramidInputPresenterStrings help:
+	property inputPresenterModel help:
 		'Define the weight of the element to compute its size. The constraints must be "matchParent" to have an effect.'.
 	^ property
 ]
@@ -149,14 +149,14 @@ PyramidBlocLayoutPlugin class >> flowLayoutOrientation [
 		            name: 'Flow - Orientation';
 		            command:
 			            PyramidLayoutChangeOrientationForFlowCommand new;
-		            pyramidInputPresenterClass:
+		            inputPresenterClass:
 			            PyramidFlowLayoutOrientationPresenter;
 		            yourself.
-	property pyramidInputPresenterStrings help:
+	property inputPresenterModel help:
 		'Change the orientation of the flow layout.'.
-	property pyramidInputPresenterStrings onLabel: 'Vertical'.
-	property pyramidInputPresenterStrings offLabel: 'Horizontal'.
-	property pyramidInputPresenterStrings uncertainLabel: 'Uncertain'.
+	property inputPresenterModel onLabel: 'Vertical'.
+	property inputPresenterModel offLabel: 'Horizontal'.
+	property inputPresenterModel uncertainLabel: 'Uncertain'.
 	^ property
 ]
 
@@ -167,10 +167,10 @@ PyramidBlocLayoutPlugin class >> layout [
 	property := PyramidProperty new
 		            name: 'Layout Type';
 		            command: PyramidLayoutBlocCommand new;
-		            pyramidInputPresenterClass:
+		            inputPresenterClass:
 			            PyramidMagicButtonsInputPresenter;
 		            yourself.
-	property pyramidInputPresenterStrings
+	property inputPresenterModel
 		addButtonModel: (PyramidMagicButtonModel new
 				 icon: (Smalltalk ui icons iconNamed: #radioButtonUnselected);
 				 helpSelected: 'The element have no layout.';
@@ -222,14 +222,14 @@ PyramidBlocLayoutPlugin class >> linearLayoutOrientation [
 		            name: 'Linear - Orientation';
 		            command:
 			            PyramidLayoutChangeOrientationForLinearCommand new;
-		            pyramidInputPresenterClass:
+		            inputPresenterClass:
 			            PyramidLinearLayoutOrientationPresenter;
 		            yourself.
-	property pyramidInputPresenterStrings help:
+	property inputPresenterModel help:
 		'Change the orientation of the linear layout.'.
-	property pyramidInputPresenterStrings onLabel: 'Vertical'.
-	property pyramidInputPresenterStrings offLabel: 'Horizontal'.
-	property pyramidInputPresenterStrings uncertainLabel: 'Uncertain'.
+	property inputPresenterModel onLabel: 'Vertical'.
+	property inputPresenterModel offLabel: 'Horizontal'.
+	property inputPresenterModel uncertainLabel: 'Uncertain'.
 	^ property
 ]
 
@@ -240,9 +240,9 @@ PyramidBlocLayoutPlugin class >> margin [
 	property := PyramidProperty new
 		            name: 'Margin';
 		            command: PyramidMarginCommand new;
-		            pyramidInputPresenterClass: PyramidInsetsInputPresenter;
+		            inputPresenterClass: PyramidInsetsInputPresenter;
 		            yourself.
-	property pyramidInputPresenterStrings help: 		'Change the margin. The margin will affect the space between the border and the elements outside. For example:
+	property inputPresenterModel help: 		'Change the margin. The margin will affect the space between the border and the elements outside. For example:
 	- "10" to set a margin of 10 px on each size.
 	- "10 20" to set a margin of 10 px on the top and bottom and 20 px on the right and left.
 	- "10 20 30 40" to set a margin of 10 px on top, 20 px on left, 30 px on bottom and 40 px on right.'..
@@ -256,9 +256,9 @@ PyramidBlocLayoutPlugin class >> padding [
 	property := PyramidProperty new
 		            name: 'Padding';
 		            command: PyramidPaddingCommand new;
-		            pyramidInputPresenterClass: PyramidInsetsInputPresenter;
+		            inputPresenterClass: PyramidInsetsInputPresenter;
 		            yourself.
-	property pyramidInputPresenterStrings help:
+	property inputPresenterModel help:
 		'Change the padding. The padding will affect the space between the border and the elements inside. For example:
 	- "10" to set a padding of 10 px on each size.
 	- "10 20" to set a padding of 10 px on the top and bottom and 20 px on the right and left.
@@ -273,9 +273,9 @@ PyramidBlocLayoutPlugin class >> position [
 	property := PyramidProperty new
 		            name: 'Position';
 		            command: PyramidPositionCommand new;
-		            pyramidInputPresenterClass: PyramidPointInputPresenter;
+		            inputPresenterClass: PyramidPointInputPresenter;
 		            yourself.
-	property pyramidInputPresenterStrings help:
+	property inputPresenterModel help:
 		'Set the position x and y of the element inside his parent.'.
 	^ property
 ]

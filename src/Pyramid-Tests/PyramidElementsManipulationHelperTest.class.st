@@ -38,6 +38,42 @@ D1 -> D2 -> D3.
 
 ]
 
+{ #category : #'as yet unclassified' }
+PyramidElementsManipulationHelperTest >> makeNestedElement: aNumber [
+
+	| origin current |
+	origin := current := BlElement new.
+	2 to: aNumber do: [ :i |
+		| temp |
+		temp := BlElement new.
+		current addChild: temp.
+		current := temp ].
+	^ origin
+]
+
+{ #category : #tests }
+PyramidElementsManipulationHelperTest >> testCountElement [
+	"selection := {A1 . B1 . B2 . C1 . C3}.
+	PyramidElementsManipulationHelper onlyParents: selection
+	returns: { A1 . B1 . C1 }"
+
+	self
+		assert: (PyramidElementsManipulationHelper countElementsIn: {  })
+		equals: 0.
+	self
+		assert: (PyramidElementsManipulationHelper countElementsIn:
+				 { (self makeNestedElement: 1) })
+		equals: 1.
+	self
+		assert: (PyramidElementsManipulationHelper countElementsIn:
+				 { (self makeNestedElement: 10) })
+		equals: 10.
+	self
+		assert: (PyramidElementsManipulationHelper countElementsIn:
+				 { (self makeNestedElement: 10) . (self makeNestedElement: 10) . (self makeNestedElement: 10) })
+		equals: 30
+]
+
 { #category : #tests }
 PyramidElementsManipulationHelperTest >> testFlattenChildrenOfCollection [
 

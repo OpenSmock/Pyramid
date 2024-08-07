@@ -25,8 +25,8 @@ PyramidAbstractBorderCommand >> setValueFor: aBlElement with: anArgument [
 
 	| builder |
 	builder := self borderBuilderOf: aBlElement.
-	self updateBuilder: builder with: anArgument.
-	aBlElement border: builder build.
+	self updateBuilder: builder with: anArgument value.
+	aBlElement border: builder build
 ]
 
 { #category : #'as yet unclassified' }

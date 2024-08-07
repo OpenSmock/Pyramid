@@ -7,13 +7,13 @@ Class {
 		'multiLinesInput',
 		'whenValueChangedDo'
 	],
-	#category : 'Pyramid-specs-custom'
+	#category : #'Pyramid-specs-custom'
 }
 
 { #category : #'as yet unclassified' }
 PyramidColorInputSingleLineWithPickupButtonPresenter >> applytStrings [
 
-	self singleLineInput strings: self strings.
+	self singleLineInput inputModel: self inputModel
 ]
 
 { #category : #accessing }

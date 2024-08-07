@@ -63,17 +63,17 @@ PyramidPropertiesManagerTest >> setUp [
 	prop1 := PyramidProperty new
 		         name: 'Porp1';
 		         command: PyramidSimpleMockCommand new;
-		         pyramidInputPresenterClass: PyramidNumberInputPresenter;
+		         inputPresenterClass: PyramidNumberInputPresenter;
 		         yourself.
 	prop2 := PyramidProperty new
 		         name: 'Porp2';
 		         command: PyramidSimpleMockCommand new;
-		         pyramidInputPresenterClass: PyramidNumberInputPresenter;
+		         inputPresenterClass: PyramidNumberInputPresenter;
 		         yourself.
 	prop3 := PyramidProperty new
 		         name: 'Porp3';
 		         command: PyramidSimpleMockCommand new;
-		         pyramidInputPresenterClass: PyramidNumberInputPresenter;
+		         inputPresenterClass: PyramidNumberInputPresenter;
 		         yourself.
 	
 	presenterStrategy := PyramidFakePropertyForTestStrategy new.

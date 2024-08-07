@@ -13,5 +13,5 @@ PyramidRemoveChildrenCommand >> commandInverse [
 { #category : #'as yet unclassified' }
 PyramidRemoveChildrenCommand >> setValueFor: aBlElement with: aChildrenToAdd [
 
-	aBlElement addChildren: aChildrenToAdd
+	aBlElement removeChildren: aChildrenToAdd
 ]

@@ -1,16 +1,16 @@
 Class {
-	#name : #PyramidSwitchInputStrings,
-	#superclass : #PyramidInputStrings,
+	#name : #PyramidSwitchInputModel,
+	#superclass : #PyramidInputModel,
 	#instVars : [
 		'onLabel',
 		'offLabel',
 		'uncertainLabel'
 	],
-	#category : 'Pyramid-specs-custom'
+	#category : #'Pyramid-specs-custom'
 }
 
 { #category : #initialization }
-PyramidSwitchInputStrings >> initialize [
+PyramidSwitchInputModel >> initialize [
 
 	super initialize.
 	onLabel := ''.
@@ -19,37 +19,37 @@ PyramidSwitchInputStrings >> initialize [
 ]
 
 { #category : #accessing }
-PyramidSwitchInputStrings >> offLabel [
+PyramidSwitchInputModel >> offLabel [
 
 	^ offLabel
 ]
 
 { #category : #accessing }
-PyramidSwitchInputStrings >> offLabel: anObject [
+PyramidSwitchInputModel >> offLabel: anObject [
 
 	offLabel := anObject
 ]
 
 { #category : #accessing }
-PyramidSwitchInputStrings >> onLabel [
+PyramidSwitchInputModel >> onLabel [
 
 	^ onLabel
 ]
 
 { #category : #accessing }
-PyramidSwitchInputStrings >> onLabel: anObject [
+PyramidSwitchInputModel >> onLabel: anObject [
 
 	onLabel := anObject
 ]
 
 { #category : #accessing }
-PyramidSwitchInputStrings >> uncertainLabel [
+PyramidSwitchInputModel >> uncertainLabel [
 
 	^ uncertainLabel
 ]
 
 { #category : #accessing }
-PyramidSwitchInputStrings >> uncertainLabel: anObject [
+PyramidSwitchInputModel >> uncertainLabel: anObject [
 
 	uncertainLabel := anObject
 ]

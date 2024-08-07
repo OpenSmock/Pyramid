@@ -145,7 +145,7 @@ PyramidVisualPystonForCly >> buttonOpen [
 PyramidVisualPystonForCly >> copyElement [
 
 	| element |
-	element := BlSerializer materialize: self getStonFromMethod.
+	element := self getStonFromMethod materializeAsBlElement.
 	(Clipboard clipboardText: (BlSerializer serialize: element with: BlStashSerializer))
 ]
 

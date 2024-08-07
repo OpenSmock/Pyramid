@@ -9,9 +9,9 @@ Class {
 }
 
 { #category : #'as yet unclassified' }
-PyramidCornerRadiiInputPresenter >> applyStrings [
+PyramidCornerRadiiInputPresenter >> applyInputModel [
 
-	self inputArray strings: self strings
+	self inputArray inputModel: self inputModel
 ]
 
 { #category : #'as yet unclassified' }

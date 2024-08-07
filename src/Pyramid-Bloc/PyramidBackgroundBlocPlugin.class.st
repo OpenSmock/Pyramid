@@ -16,7 +16,7 @@ PyramidBackgroundBlocPlugin class >> backgroundImageSelector [
 	property := PyramidProperty new
 		            name: 'Background Image Selector';
 		            command: PyramidBackgroundImageCommand new;
-		            pyramidInputPresenterClass:
+		            inputPresenterClass:
 			            PyramidBackgroundImageInputPresenter;
 		            yourself.
 	^ property
@@ -29,9 +29,9 @@ PyramidBackgroundBlocPlugin class >> backgroundLinearEnd [
 	property := PyramidProperty new
 		            name: 'Background Linear End';
 		            command: PyramidBackgroundPaintLinearEndCommand new;
-		            pyramidInputPresenterClass: PyramidPointInputPresenter;
+		            inputPresenterClass: PyramidPointInputPresenter;
 		            yourself.
-	property pyramidInputPresenterStrings
+	property inputPresenterModel
 		help: 'Define the end of the linear gradient.';
 		labelX: 'x';
 		labelY: 'y'.
@@ -45,10 +45,10 @@ PyramidBackgroundBlocPlugin class >> backgroundLinearGradientDirection [
 	property := PyramidProperty new
 		            name: 'Background Linear Direction';
 		            command: PyramidBackgroundPaintLinearDirectionCommand new;
-		            pyramidInputPresenterClass:
+		            inputPresenterClass:
 			            PyramidPointInputPresenter;
 		            yourself.
-	property pyramidInputPresenterStrings
+	property inputPresenterModel
 		help: 'Define the direction of the linear gradient.';
 		labelX: 'Start';
 		labelY: 'End'.
@@ -63,9 +63,9 @@ PyramidBackgroundBlocPlugin class >> backgroundLinearStart [
 		            name: 'Background Linear Start';
 		            command:
 			            PyramidBackgroundPaintLinearStartCommand new;
-		            pyramidInputPresenterClass: PyramidPointInputPresenter;
+		            inputPresenterClass: PyramidPointInputPresenter;
 		            yourself.
-	property pyramidInputPresenterStrings
+	property inputPresenterModel
 		help: 'Define the start of the linear gradient.';
 		labelX: 'x';
 		labelY: 'y'.
@@ -79,9 +79,9 @@ PyramidBackgroundBlocPlugin class >> backgroundOpacity [
 	property := PyramidProperty new
 		            name: 'Background Opacity';
 		            command: PyramidBackgroundOpacityCommand new;
-		            pyramidInputPresenterClass: PyramidNumberInputPresenter;
+		            inputPresenterClass: PyramidNumberInputPresenter;
 		            yourself.
-	property pyramidInputPresenterStrings help:
+	property inputPresenterModel help:
 		'Define the opacity of the background.'.
 	^ property
 ]
@@ -93,7 +93,7 @@ PyramidBackgroundBlocPlugin class >> backgroundPaintColor [
 	property := PyramidProperty new
 		            name: 'Background Paint Color';
 		            command: PyramidBackgroundPaintColorCommand new;
-		            pyramidInputPresenterClass:
+		            inputPresenterClass:
 			            PyramidColorInputSingleLineWithPickupButtonPresenter;
 		            yourself.
 	^ property
@@ -106,7 +106,7 @@ PyramidBackgroundBlocPlugin class >> backgroundPaintStops [
 	property := PyramidProperty new
 		            name: 'Background Paint Stops';
 		            command: PyramidBackgroundPaintStopsCommand new;
-		            pyramidInputPresenterClass:
+		            inputPresenterClass:
 			            PyramidBackgroundStopsInputPresenter;
 		            yourself.
 	^ property
@@ -119,10 +119,10 @@ PyramidBackgroundBlocPlugin class >> backgroundPaintType [
 	property := PyramidProperty new
 		            name: 'Background Paint Type';
 		            command: PyramidBackgroundPaintCommand new;
-		            pyramidInputPresenterClass:
+		            inputPresenterClass:
 			            PyramidMagicButtonsInputPresenter;
 		            yourself.
-	property pyramidInputPresenterStrings
+	property inputPresenterModel
 		addButtonModel: (PyramidMagicButtonModel new
 				 icon: (Smalltalk ui icons iconNamed: #windowMaximize);
 				 helpSelected: 'The value is Solid.';
@@ -175,9 +175,9 @@ PyramidBackgroundBlocPlugin class >> backgroundRadialInnerCenter [
 	property := PyramidProperty new
 		            name: 'Background Radial Center In';
 		            command: PyramidBackgroundPaintRadialInnerCenterCommand new;
-		            pyramidInputPresenterClass: PyramidPointInputPresenter;
+		            inputPresenterClass: PyramidPointInputPresenter;
 		            yourself.
-	property pyramidInputPresenterStrings
+	property inputPresenterModel
 		help: 'Define the center of the inner radial gradient.';
 		labelX: 'x';
 		labelY: 'y'.
@@ -192,9 +192,9 @@ PyramidBackgroundBlocPlugin class >> backgroundRadialInnerRadius [
 		            name: 'Background Radial Radius In';
 		            command:
 			            PyramidBackgroundPaintRadialInnerRadiusCommand new;
-		            pyramidInputPresenterClass: PyramidNumberInputPresenter;
+		            inputPresenterClass: PyramidNumberInputPresenter;
 		            yourself.
-	property pyramidInputPresenterStrings
+	property inputPresenterModel
 		help: 'Define the center of the inner radius gradient.'.
 	^ property
 ]
@@ -207,9 +207,9 @@ PyramidBackgroundBlocPlugin class >> backgroundRadialOuterCenter [
 		            name: 'Background Radial Center Out';
 		            command:
 			            PyramidBackgroundPaintRadialOuterCenterCommand new;
-		            pyramidInputPresenterClass: PyramidPointInputPresenter;
+		            inputPresenterClass: PyramidPointInputPresenter;
 		            yourself.
-	property pyramidInputPresenterStrings
+	property inputPresenterModel
 		help: 'Define the center of the outer radial gradient.';
 		labelX: 'x';
 		labelY: 'y'.
@@ -224,9 +224,9 @@ PyramidBackgroundBlocPlugin class >> backgroundRadialOuterRadius [
 		            name: 'Background Radial Radius Out';
 		            command:
 			            PyramidBackgroundPaintRadialOuterRadiusCommand new;
-		            pyramidInputPresenterClass: PyramidNumberInputPresenter;
+		            inputPresenterClass: PyramidNumberInputPresenter;
 		            yourself.
-	property pyramidInputPresenterStrings help:
+	property inputPresenterModel help:
 		'Define the center of the outer radius gradient.'.
 	^ property
 ]
@@ -238,10 +238,10 @@ PyramidBackgroundBlocPlugin class >> backgroundType [
 	property := PyramidProperty new
 		            name: 'Background Type';
 		            command: PyramidBackgroundTypeCommand new;
-		            pyramidInputPresenterClass:
+		            inputPresenterClass:
 			            PyramidMagicButtonsInputPresenter;
 		            yourself.
-	property pyramidInputPresenterStrings
+	property inputPresenterModel
 		addButtonModel: (PyramidMagicButtonModel new
 				 icon: (Smalltalk ui icons iconNamed: #uncheckedBox);
 				 helpSelected: 'The value is Transparent.';
@@ -278,9 +278,9 @@ PyramidBackgroundBlocPlugin class >> borderDashArray [
 	property := PyramidProperty new
 		            name: 'Border Dash Array';
 		            command: PyramidBorderDashArrayCommand new;
-		            pyramidInputPresenterClass: PyramidDashArrayInputPresenter;
+		            inputPresenterClass: PyramidDashArrayInputPresenter;
 		            yourself.
-	property pyramidInputPresenterStrings help:
+	property inputPresenterModel help:
 		'Define the dash array.'.
 	^ property
 ]
@@ -292,9 +292,9 @@ PyramidBackgroundBlocPlugin class >> borderDashOffset [
 	property := PyramidProperty new
 		            name: 'Border Dash Offset';
 		            command: PyramidBorderDashOffsetCommand new;
-		            pyramidInputPresenterClass: PyramidNumberInputPresenter;
+		            inputPresenterClass: PyramidNumberInputPresenter;
 		            yourself.
-	property pyramidInputPresenterStrings help:
+	property inputPresenterModel help:
 		'Define the offset of the dash.'.
 	^ property
 ]
@@ -306,10 +306,10 @@ PyramidBackgroundBlocPlugin class >> borderLineCap [
 	property := PyramidProperty new
 		            name: 'Border Line Cap';
 		            command: PyramidBorderLineCapCommand new;
-		            pyramidInputPresenterClass:
+		            inputPresenterClass:
 			            PyramidMagicButtonsInputPresenter;
 		            yourself.
-	property pyramidInputPresenterStrings
+	property inputPresenterModel
 		addButtonModel: (PyramidMagicButtonModel new
 				 icon: ((Smalltalk ui icons iconNamed: #windowMenu) rotateBy: -45);
 				 helpSelected: 'The value is Butt.';
@@ -345,10 +345,10 @@ PyramidBackgroundBlocPlugin class >> borderLineJoin [
 	property := PyramidProperty new
 		            name: 'Border Line Join';
 		            command: PyramidBorderLineJoinCommand new;
-		            pyramidInputPresenterClass:
+		            inputPresenterClass:
 			            PyramidMagicButtonsInputPresenter;
 		            yourself.
-	property pyramidInputPresenterStrings
+	property inputPresenterModel
 		addButtonModel: (PyramidMagicButtonModel new
 				 icon: ((Smalltalk ui icons iconNamed: #windowMenu) rotateBy: -45);
 				 helpSelected: 'The value is Bevel.';
@@ -384,9 +384,9 @@ PyramidBackgroundBlocPlugin class >> borderLinearEnd [
 	property := PyramidProperty new
 		            name: 'Border Linear End';
 		            command: PyramidBorderPaintLinearDirectionEndCommand new;
-		            pyramidInputPresenterClass: PyramidPointInputPresenter;
+		            inputPresenterClass: PyramidPointInputPresenter;
 		            yourself.
-	property pyramidInputPresenterStrings
+	property inputPresenterModel
 		help: 'Define the end of the linear gradient.';
 		labelX: 'x';
 		labelY: 'y'.
@@ -401,9 +401,9 @@ PyramidBackgroundBlocPlugin class >> borderLinearGradientDirection [
 		            name: 'Border Linear Direction';
 		            command:
 			            PyramidBorderPaintLinearDirectionCommand new;
-		            pyramidInputPresenterClass: PyramidPointInputPresenter;
+		            inputPresenterClass: PyramidPointInputPresenter;
 		            yourself.
-	property pyramidInputPresenterStrings
+	property inputPresenterModel
 		help: 'Define the direction of the linear gradient.';
 		labelX: 'Start';
 		labelY: 'End'.
@@ -417,9 +417,9 @@ PyramidBackgroundBlocPlugin class >> borderLinearStart [
 	property := PyramidProperty new
 		            name: 'Border Linear Start';
 		            command: PyramidBorderPaintLinearDirectionStartCommand new;
-		            pyramidInputPresenterClass: PyramidPointInputPresenter;
+		            inputPresenterClass: PyramidPointInputPresenter;
 		            yourself.
-	property pyramidInputPresenterStrings
+	property inputPresenterModel
 		help: 'Define the start of the linear gradient.';
 		labelX: 'x';
 		labelY: 'y'.
@@ -433,9 +433,9 @@ PyramidBackgroundBlocPlugin class >> borderMiterLimit [
 	property := PyramidProperty new
 		            name: 'Border Miter Limit';
 		            command: PyramidBorderMiterLimitCommand new;
-		            pyramidInputPresenterClass: PyramidNumberInputPresenter;
+		            inputPresenterClass: PyramidNumberInputPresenter;
 		            yourself.
-	property pyramidInputPresenterStrings help:
+	property inputPresenterModel help:
 		'Define the miter limit of the border.'.
 	^ property
 ]
@@ -447,9 +447,9 @@ PyramidBackgroundBlocPlugin class >> borderOpacity [
 	property := PyramidProperty new
 		            name: 'Border Opacity';
 		            command: PyramidBorderOpacityCommand new;
-		            pyramidInputPresenterClass: PyramidNumberInputPresenter;
+		            inputPresenterClass: PyramidNumberInputPresenter;
 		            yourself.
-	property pyramidInputPresenterStrings help:
+	property inputPresenterModel help:
 		'Define the opacity of the border.'.
 	^ property
 ]
@@ -461,7 +461,7 @@ PyramidBackgroundBlocPlugin class >> borderPaintColor [
 	property := PyramidProperty new
 		            name: 'Border Paint Color';
 		            command: PyramidBorderPaintColorCommand new;
-		            pyramidInputPresenterClass:
+		            inputPresenterClass:
 			            PyramidColorInputSingleLineWithPickupButtonPresenter;
 		            yourself.
 	^ property
@@ -474,7 +474,7 @@ PyramidBackgroundBlocPlugin class >> borderPaintStops [
 	property := PyramidProperty new
 		            name: 'Border Paint Stops';
 		            command: PyramidBorderPaintStopsCommand new;
-		            pyramidInputPresenterClass:
+		            inputPresenterClass:
 			            PyramidBackgroundStopsInputPresenter;
 		            yourself.
 	^ property
@@ -487,10 +487,10 @@ PyramidBackgroundBlocPlugin class >> borderPaintType [
 	property := PyramidProperty new
 		            name: 'Border Paint Type';
 		            command: PyramidBorderPaintCommand new;
-		            pyramidInputPresenterClass:
+		            inputPresenterClass:
 			            PyramidMagicButtonsInputPresenter;
 		            yourself.
-	property pyramidInputPresenterStrings
+	property inputPresenterModel
 		addButtonModel: (PyramidMagicButtonModel new
 				 icon: (Smalltalk ui icons iconNamed: #windowMaximize);
 				 helpSelected: 'The value is Solid.';
@@ -547,9 +547,9 @@ PyramidBackgroundBlocPlugin class >> borderRadialInnerCenter [
 		            name: 'Border Radial Center In';
 		            command:
 			            PyramidBorderPaintRadialInnerCenterCommand new;
-		            pyramidInputPresenterClass: PyramidPointInputPresenter;
+		            inputPresenterClass: PyramidPointInputPresenter;
 		            yourself.
-	property pyramidInputPresenterStrings
+	property inputPresenterModel
 		help: 'Define the center of the inner radial gradient.';
 		labelX: 'x';
 		labelY: 'y'.
@@ -564,9 +564,9 @@ PyramidBackgroundBlocPlugin class >> borderRadialInnerRadius [
 		            name: 'Border Radial Radius In';
 		            command:
 			            PyramidBorderPaintRadialInnerRadiusCommand new;
-		            pyramidInputPresenterClass: PyramidNumberInputPresenter;
+		            inputPresenterClass: PyramidNumberInputPresenter;
 		            yourself.
-	property pyramidInputPresenterStrings help:
+	property inputPresenterModel help:
 		'Define the center of the inner radius gradient.'.
 	^ property
 ]
@@ -579,9 +579,9 @@ PyramidBackgroundBlocPlugin class >> borderRadialOuterCenter [
 		            name: 'Border Radial Center Out';
 		            command:
 			            PyramidBorderPaintRadialOuterCenterCommand new;
-		            pyramidInputPresenterClass: PyramidPointInputPresenter;
+		            inputPresenterClass: PyramidPointInputPresenter;
 		            yourself.
-	property pyramidInputPresenterStrings
+	property inputPresenterModel
 		help: 'Define the center of the outer radial gradient.';
 		labelX: 'x';
 		labelY: 'y'.
@@ -596,9 +596,9 @@ PyramidBackgroundBlocPlugin class >> borderRadialOuterRadius [
 		            name: 'Border Radial Radius Out';
 		            command:
 			            PyramidBorderPaintRadialOuterRadiusCommand new;
-		            pyramidInputPresenterClass: PyramidNumberInputPresenter;
+		            inputPresenterClass: PyramidNumberInputPresenter;
 		            yourself.
-	property pyramidInputPresenterStrings help:
+	property inputPresenterModel help:
 		'Define the center of the outer radius gradient.'.
 	^ property
 ]
@@ -610,10 +610,10 @@ PyramidBackgroundBlocPlugin class >> borderWidth [
 	property := PyramidProperty new
 		            name: 'Border Width';
 		            command: PyramidBorderWidthCommand new;
-		            pyramidInputPresenterClass:
+		            inputPresenterClass:
 			            PyramidNumberInputPresenter;
 		            yourself.
-		property pyramidInputPresenterStrings help:
+		property inputPresenterModel help:
 		'Define the width of the border.'.
 	^ property
 ]
@@ -625,9 +625,9 @@ PyramidBackgroundBlocPlugin class >> opacity [
 	property := PyramidProperty new
 		            name: 'Element Opacity';
 		            command: PyramidOpacityCommand new;
-		            pyramidInputPresenterClass: PyramidNumberInputPresenter;
+		            inputPresenterClass: PyramidNumberInputPresenter;
 		            yourself.
-	property pyramidInputPresenterStrings help:
+	property inputPresenterModel help:
 		'Define the opacity of the element.'.
 	^ property
 ]
@@ -639,10 +639,10 @@ PyramidBackgroundBlocPlugin class >> outskirts [
 	property := PyramidProperty new
 		            name: 'Element Outskirts';
 		            command: PyramidOutskirtsCommand new;
-		            pyramidInputPresenterClass:
+		            inputPresenterClass:
 			            PyramidMagicButtonsInputPresenter;
 		            yourself.
-	property pyramidInputPresenterStrings
+	property inputPresenterModel
 		addButtonModel: (PyramidMagicButtonModel new
 				 icon: (Smalltalk ui icons iconNamed: #menuPin);
 				 helpSelected: 'The value is Inside.';

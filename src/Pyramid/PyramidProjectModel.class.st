@@ -42,10 +42,10 @@ PyramidProjectModel >> firstLevelElements [
 { #category : #'as yet unclassified' }
 PyramidProjectModel >> informElementsChanged [
 
-		self announce: (PyramidElementsChangedEvent new
-				 firstLevelElements: self firstLevelElements;
-				 selection: self selection;
-				 yourself)
+	self announce: (PyramidElementsChangedEvent new
+			 firstLevelElements: self firstLevelElements;
+			 selection: self selection;
+			 yourself)
 ]
 
 { #category : #'as yet unclassified' }

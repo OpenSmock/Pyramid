@@ -13,9 +13,9 @@ PyramidBlocTextPlugin class >> changeText [
 	property := PyramidProperty new
 		            name: 'Text';
 		            command: PyramidChangeTextCommand new;
-		            pyramidInputPresenterClass: PyramidTextInputPresenter;
+		            inputPresenterClass: PyramidTextInputPresenter;
 		            yourself.
-	property pyramidInputPresenterStrings help:
+	property inputPresenterModel help:
 		'Change the value of the text'.
 	^ property
 ]
@@ -27,9 +27,9 @@ PyramidBlocTextPlugin class >> fontSize [
 	property := PyramidProperty new
 		            name: 'Font size';
 		            command: PyramidFontSizeCommand new;
-		            pyramidInputPresenterClass: PyramidNumberInputPresenter;
+		            inputPresenterClass: PyramidNumberInputPresenter;
 		            yourself.
-	property pyramidInputPresenterStrings help: 'Change the font size.'.
+	property inputPresenterModel help: 'Change the font size.'.
 	^ property
 ]
 
@@ -40,9 +40,9 @@ PyramidBlocTextPlugin class >> fontWeight [
 	property := PyramidProperty new
 		            name: 'Font weight';
 		            command: PyramidFontWeightCommand new;
-		            pyramidInputPresenterClass: PyramidNumberInputPresenter;
+		            inputPresenterClass: PyramidNumberInputPresenter;
 		            yourself.
-	property pyramidInputPresenterStrings help: 'Change the font weight.'.
+	property inputPresenterModel help: 'Change the font weight.'.
 	^ property
 ]
 
@@ -53,10 +53,10 @@ PyramidBlocTextPlugin class >> textForeground [
 	property := PyramidProperty new
 		            name: 'Text foreground';
 		            command: PyramidTextForegroundCommand new;
-		            pyramidInputPresenterClass:
+		            inputPresenterClass:
 			            PyramidColorInputSingleLineWithPickupButtonPresenter;
 		            yourself.
-	property pyramidInputPresenterStrings help:
+	property inputPresenterModel help:
 		'Change the color of the text'.
 	^ property
 ]

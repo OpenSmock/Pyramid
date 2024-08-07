@@ -8,13 +8,13 @@ Class {
 	#instVars : [
 		'textInput'
 	],
-	#category : 'Pyramid-specs-custom'
+	#category : #'Pyramid-specs-custom'
 }
 
 { #category : #'as yet unclassified' }
-PyramidTextInputPresenter >> applyStrings [
+PyramidTextInputPresenter >> applyInputModel [
 
-	self textInput help: self strings help
+	self textInput help: self inputModel help
 ]
 
 { #category : #layout }

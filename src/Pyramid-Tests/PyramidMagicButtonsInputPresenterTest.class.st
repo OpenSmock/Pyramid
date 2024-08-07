@@ -28,14 +28,14 @@ PyramidMagicButtonsInputPresenterTest >> expectedMixedValues [
 PyramidMagicButtonsInputPresenterTest >> makeNewInput [
 
 	^ PyramidMagicButtonsInputPresenter new
-		  strings: (PyramidMagicButtonsModel new
+		  inputModel: (PyramidMagicButtonsModel new
 				   addButtonModel: (PyramidMagicButtonModel new
 						    icon: (Smalltalk ui icons iconNamed: #smallOk);
 						    helpSelected: 'The value is ok.';
 						    helpNotSelected: 'Set the value to ok.';
 						    label: 'ok';
 						    inputValue: #ok;
-						inputValidation: [ :val | val = #ok ];
+						    inputValidation: [ :val | val = #ok ];
 						    yourself);
 				   addButtonModel: (PyramidMagicButtonModel new
 						    icon: (Smalltalk ui icons iconNamed: #smallCancel);
@@ -43,7 +43,7 @@ PyramidMagicButtonsInputPresenterTest >> makeNewInput [
 						    helpNotSelected: 'Set the value to cancel.';
 						    label: 'cancel';
 						    inputValue: #cancel;
-						inputValidation: [ :val | val = #cancel ];
+						    inputValidation: [ :val | val = #cancel ];
 						    yourself);
 				   yourself);
 		  yourself
