@@ -55,8 +55,6 @@ blfontsizedefaultattribute21 := BlFontSizeDefaultAttribute new.
                beHorizontal;
                flexible: false;
                icon: nil;
-               iconContainerHeight: 0.0;
-               iconContainerWidth: 0.0;
                label: (ToLabel new
                      layout: blframelayout5;
                      constraintsDo: [:constraints |  constraints horizontal fitContent.
@@ -103,8 +101,6 @@ blfontsizedefaultattribute21 := BlFontSizeDefaultAttribute new.
                beHorizontal;
                flexible: false;
                icon: nil;
-               iconContainerHeight: 0.0;
-               iconContainerWidth: 0.0;
                label: (ToLabel new
                      layout: blframelayout5;
                      constraintsDo: [:constraints |  constraints horizontal fitContent.
@@ -140,8 +136,6 @@ blfontsizedefaultattribute21 := BlFontSizeDefaultAttribute new.
                beHorizontal;
                flexible: false;
                icon: nil;
-               iconContainerHeight: 0.0;
-               iconContainerWidth: 0.0;
                label: (ToLabel new
                      layout: blframelayout5;
                      constraintsDo: [:constraints |  constraints horizontal fitContent.
@@ -172,8 +166,6 @@ blfontsizedefaultattribute21 := BlFontSizeDefaultAttribute new.
                beHorizontal;
                flexible: false;
                icon: nil;
-               iconContainerHeight: 0.0;
-               iconContainerWidth: 0.0;
                label: (ToLabel new
                      layout: blframelayout5;
                      constraintsDo: [:constraints |  constraints horizontal fitContent.
@@ -201,8 +193,6 @@ blfontsizedefaultattribute21 := BlFontSizeDefaultAttribute new.
                beHorizontal;
                flexible: false;
                icon: nil;
-               iconContainerHeight: 0.0;
-               iconContainerWidth: 0.0;
                label: (ToLabel new
                      layout: blframelayout5;
                      constraintsDo: [:constraints |  constraints horizontal fitContent.
@@ -252,8 +242,6 @@ blfontsizedefaultattribute21 := BlFontSizeDefaultAttribute new.
                beHorizontal;
                flexible: false;
                icon: nil;
-               iconContainerHeight: 0.0;
-               iconContainerWidth: 0.0;
                label: (ToLabel new
                      layout: blframelayout5;
                      constraintsDo: [:constraints |  constraints horizontal fitContent.
@@ -283,8 +271,6 @@ blfontsizedefaultattribute21 := BlFontSizeDefaultAttribute new.
                beHorizontal;
                flexible: false;
                icon: nil;
-               iconContainerHeight: 0.0;
-               iconContainerWidth: 0.0;
                label: (ToLabel new
                      layout: blframelayout5;
                      constraintsDo: [:constraints |  constraints horizontal fitContent.
@@ -318,8 +304,6 @@ blfontsizedefaultattribute21 := BlFontSizeDefaultAttribute new.
                beHorizontal;
                flexible: false;
                icon: nil;
-               iconContainerHeight: 0.0;
-               iconContainerWidth: 0.0;
                label: (ToLabel new
                      layout: blframelayout5;
                      constraintsDo: [:constraints |  constraints horizontal fitContent.
@@ -352,8 +336,6 @@ blfontsizedefaultattribute21 := BlFontSizeDefaultAttribute new.
                beHorizontal;
                flexible: false;
                icon: nil;
-               iconContainerHeight: 0.0;
-               iconContainerWidth: 0.0;
                label: (ToLabel new
                      layout: blframelayout5;
                      constraintsDo: [:constraints |  constraints horizontal fitContent.
@@ -381,8 +363,6 @@ blfontsizedefaultattribute21 := BlFontSizeDefaultAttribute new.
                beHorizontal;
                flexible: false;
                icon: nil;
-               iconContainerHeight: 0.0;
-               iconContainerWidth: 0.0;
                label: (ToLabel new
                      layout: blframelayout5;
                      constraintsDo: [:constraints |  constraints horizontal fitContent.
@@ -425,8 +405,6 @@ blfontsizedefaultattribute21 := BlFontSizeDefaultAttribute new.
                beHorizontal;
                flexible: false;
                icon: nil;
-               iconContainerHeight: 0.0;
-               iconContainerWidth: 0.0;
                label: (ToLabel new
                      layout: blframelayout5;
                      constraintsDo: [:constraints |  constraints horizontal fitContent.
@@ -454,8 +432,6 @@ blfontsizedefaultattribute21 := BlFontSizeDefaultAttribute new.
                beHorizontal;
                flexible: false;
                icon: nil;
-               iconContainerHeight: 0.0;
-               iconContainerWidth: 0.0;
                label: (ToLabel new
                      layout: blframelayout5;
                      constraintsDo: [:constraints |  constraints horizontal fitContent.
@@ -491,8 +467,6 @@ blfontsizedefaultattribute21 := BlFontSizeDefaultAttribute new.
                beHorizontal;
                flexible: false;
                icon: nil;
-               iconContainerHeight: 0.0;
-               iconContainerWidth: 0.0;
                label: (ToLabel new
                      layout: blframelayout5;
                      constraintsDo: [:constraints |  constraints horizontal fitContent.
@@ -520,8 +494,6 @@ blfontsizedefaultattribute21 := BlFontSizeDefaultAttribute new.
                beHorizontal;
                flexible: false;
                icon: nil;
-               iconContainerHeight: 0.0;
-               iconContainerWidth: 0.0;
                label: (ToLabel new
                      layout: blframelayout5;
                      constraintsDo: [:constraints |  constraints horizontal fitContent.
@@ -549,8 +521,6 @@ blfontsizedefaultattribute21 := BlFontSizeDefaultAttribute new.
                beHorizontal;
                flexible: false;
                icon: nil;
-               iconContainerHeight: 0.0;
-               iconContainerWidth: 0.0;
                label: (ToLabel new
                      layout: blframelayout5;
                      constraintsDo: [:constraints |  constraints horizontal fitContent.
