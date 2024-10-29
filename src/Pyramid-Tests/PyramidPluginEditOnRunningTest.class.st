@@ -13,9 +13,9 @@ Class {
 { #category : #utils }
 PyramidPluginEditOnRunningTest >> closeSpace: aSpace [
 
-	aSpace when: BlSpaceShownEvent doOnce: [ :event |
+	aSpace addEventHandlerOn: BlSpaceShownEvent doOnce: [ :event |
 		BlSpace pulseUntilEmptyTaskQueue: aSpace timeout: 200 milliSeconds.
-		aSpace close ].
+		aSpace close ]
 ]
 
 { #category : #tests }
@@ -42,19 +42,19 @@ PyramidPluginEditOnRunningTest >> tearDown [
 
 { #category : #tests }
 PyramidPluginEditOnRunningTest >> testBlSpaceShortcutAddAndRemove [
-	| space |
 
+	| space |
 	PyramidPluginEditOnRunning editOnRunning: true.
-	
+
 	space := BlSpace new.
-	self deny: (PyramidPluginEditOnRunning spaceIds includes: space id).
-	self deny: (space root shortcuts includes: (PyramidPluginEditOnRunning shortcut)).
-	
-	space show.	
-	self assert: (PyramidPluginEditOnRunning spaceIds includes: space id).
-	self assert: (space root shortcuts includes: (PyramidPluginEditOnRunning shortcut)).
-	
-	self closeSpace: space.
+	self deny:
+		(space root shortcuts includes: PyramidPluginEditOnRunning shortcut).
+
+	space show.
+	self assert:
+		(space root shortcuts includes: PyramidPluginEditOnRunning shortcut).
+
+	self closeSpace: space
 ]
 
 { #category : #tests }
@@ -68,7 +68,6 @@ PyramidPluginEditOnRunningTest >> testCannotEditTheEditor [
 	space := (editor findPlugin: PyramidSpacePlugin) builder space.
 
 	"check than the shortcut is not installed"
-	self deny: (PyramidPluginEditOnRunning spaceIds includes: space id).
 	self deny:
 		(space root shortcuts includes: PyramidPluginEditOnRunning shortcut)
 ]
@@ -101,12 +100,5 @@ PyramidPluginEditOnRunningTest >> testKeyCombination [
 PyramidPluginEditOnRunningTest >> testShortcut [
 
 	self assert: (PyramidPluginEditOnRunning shortcut isKindOf: BlShortcutWithAction).
-
-]
-
-{ #category : #tests }
-PyramidPluginEditOnRunningTest >> testSpaceIds [
-
-	self assert: PyramidPluginEditOnRunning spaceIds isEmpty.
 
 ]

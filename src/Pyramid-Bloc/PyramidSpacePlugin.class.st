@@ -40,7 +40,8 @@ PyramidSpacePlugin >> initialize [
 	builder := PyramidSpaceBuilder defaultEditorBuilder.
 	morphicPresenter := SpMorphPresenter new.
 	resetSpaceButton := SpButtonPresenter new
-		                    icon: (Smalltalk ui icons iconNamed: #smallUpdate);
+		                    icon:
+			                    (Smalltalk ui icons iconNamed: #smallUpdate);
 		                    action: [ self resetSpace ];
 		                    help: 'Refresh space in case of an issue';
 		                    yourself
@@ -61,9 +62,8 @@ PyramidSpacePlugin >> makePresenterWithBlSpace: aBlSpace [
 
 	aBlSpace host: host.
 	aBlSpace addEventHandler: (BlEventHandler
-			 on: BlSpaceDestroyedEvent
-			 do: [ :evt |
-				 self updateMorphInCaseOfFaillure: morph ]).
+			 on: BlSpaceClosedEvent
+			 do: [ :evt | self updateMorphInCaseOfFaillure: morph ]).
 
 	self morphicPresenter morph: morph.
 	self morphicPresenter whenDisplayDo: [ aBlSpace show ]
