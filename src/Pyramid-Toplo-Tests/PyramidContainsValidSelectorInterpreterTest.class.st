@@ -1,28 +1,26 @@
 Class {
-	#name : 'PyramidContainsValidSelectorInterpreterTest',
-	#superclass : 'TestCase',
+	#name : #PyramidContainsValidSelectorInterpreterTest,
+	#superclass : #TestCase,
 	#instVars : [
 		'interpreter'
 	],
-	#category : 'Pyramid-Toplo-Tests-cases-plugin-theme-management',
-	#package : 'Pyramid-Toplo-Tests',
-	#tag : 'cases-plugin-theme-management'
+	#category : #'Pyramid-Toplo-Tests-cases-plugin-theme-management'
 }
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidContainsValidSelectorInterpreterTest >> initialize [
 
 	super initialize.
 	interpreter := PyramidContainsValidSelectorInterpreter new.
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidContainsValidSelectorInterpreterTest >> interpreter [
 
 	^ interpreter
 ]
 
-{ #category : 'tests' }
+{ #category : #tests }
 PyramidContainsValidSelectorInterpreterTest >> testVisitActionSelector [
 
 	| selector element |
@@ -37,7 +35,7 @@ PyramidContainsValidSelectorInterpreterTest >> testVisitActionSelector [
 	self deny: self interpreter result
 ]
 
-{ #category : 'tests' }
+{ #category : #tests }
 PyramidContainsValidSelectorInterpreterTest >> testVisitAndSelector [
 	"
 	left ok + right ok -> true
@@ -63,7 +61,7 @@ PyramidContainsValidSelectorInterpreterTest >> testVisitAndSelector [
 	self assert: self interpreter result.
 ]
 
-{ #category : 'tests' }
+{ #category : #tests }
 PyramidContainsValidSelectorInterpreterTest >> testVisitChildSelector [
 	"
 	child ok + parent ok -> true
@@ -97,7 +95,7 @@ PyramidContainsValidSelectorInterpreterTest >> testVisitChildSelector [
 	self deny: self interpreter result
 ]
 
-{ #category : 'tests' }
+{ #category : #tests }
 PyramidContainsValidSelectorInterpreterTest >> testVisitIdSelector [
 	"
 	id ok -> true
@@ -116,7 +114,7 @@ element := ToElement new.
 	self deny: self interpreter result.
 ]
 
-{ #category : 'tests' }
+{ #category : #tests }
 PyramidContainsValidSelectorInterpreterTest >> testVisitNotSelector [
 
 	| selector element |
@@ -171,7 +169,7 @@ PyramidContainsValidSelectorInterpreterTest >> testVisitNotSelector [
 	self assert: self interpreter result.
 ]
 
-{ #category : 'tests' }
+{ #category : #tests }
 PyramidContainsValidSelectorInterpreterTest >> testVisitOrSelector [
 	"
 	left ok + right ok -> true
@@ -206,7 +204,7 @@ PyramidContainsValidSelectorInterpreterTest >> testVisitOrSelector [
 	self assert: self interpreter result
 ]
 
-{ #category : 'tests' }
+{ #category : #tests }
 PyramidContainsValidSelectorInterpreterTest >> testVisitParentSelector [
 	"
 	child ok + parent ok -> true
@@ -258,7 +256,7 @@ PyramidContainsValidSelectorInterpreterTest >> testVisitParentSelector [
 	self deny: self interpreter result
 ]
 
-{ #category : 'tests' }
+{ #category : #tests }
 PyramidContainsValidSelectorInterpreterTest >> testVisitSiblingSelector [
 	"
 	child ok + sibling1 ok + sibling2 ok -> true
@@ -320,7 +318,7 @@ PyramidContainsValidSelectorInterpreterTest >> testVisitSiblingSelector [
 	self deny: self interpreter result
 ]
 
-{ #category : 'tests' }
+{ #category : #tests }
 PyramidContainsValidSelectorInterpreterTest >> testVisitStyleStampSelector [
 "Test is true because stamps is authorized"
 	| element |
@@ -332,7 +330,7 @@ PyramidContainsValidSelectorInterpreterTest >> testVisitStyleStampSelector [
 	self assert: self interpreter result
 ]
 
-{ #category : 'tests' }
+{ #category : #tests }
 PyramidContainsValidSelectorInterpreterTest >> testVisitTypeSelector [
 	"
 	Return true if type is ok.
@@ -348,7 +346,7 @@ PyramidContainsValidSelectorInterpreterTest >> testVisitTypeSelector [
 	self assert: self interpreter result
 ]
 
-{ #category : 'tests' }
+{ #category : #tests }
 PyramidContainsValidSelectorInterpreterTest >> testVisitUniversalSelector [
 	"Test is true universal is authorized"
 

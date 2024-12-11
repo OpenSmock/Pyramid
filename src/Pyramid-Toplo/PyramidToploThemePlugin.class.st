@@ -7,7 +7,7 @@ Class {
 		'themePresenter',
 		'themePropertyManager'
 	],
-	#category : #'Pyramid-Toplo-plugin-theme-management'
+	#category : #'Pyramid-Toplo-EXPERIMENTAL-plugin-theme-management'
 }
 
 { #category : #asserting }

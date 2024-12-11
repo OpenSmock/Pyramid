@@ -1,20 +1,18 @@
 Class {
-	#name : 'PyramidStampCommandTest',
-	#superclass : 'TestCase',
+	#name : #PyramidStampCommandTest,
+	#superclass : #TestCase,
 	#traits : 'TPyramidCommandTest',
 	#classTraits : 'TPyramidCommandTest classTrait',
-	#category : 'Pyramid-Toplo-Tests-cases-plugin-theme-management',
-	#package : 'Pyramid-Toplo-Tests',
-	#tag : 'cases-plugin-theme-management'
+	#category : #'Pyramid-Toplo-Tests-cases-plugin-theme-management'
 }
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PyramidStampCommandTest >> command [
 
 	^ PyramidStampCommand new stamp: #test; yourself
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PyramidStampCommandTest >> targetContainers [
 
 	^ {
