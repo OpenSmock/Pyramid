@@ -90,7 +90,7 @@ PyramidSpaceBuilder >> addOverlayNamed: aString [
 PyramidSpaceBuilder >> build [
 
 	self space: (BlSpace new
-			 extent: 2000 asPoint;
+			 extent: 4000 @ 2000;
 			 yourself).
 	self space userData at: #pyramid_isEditor put: true.
 
