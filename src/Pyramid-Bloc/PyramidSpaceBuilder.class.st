@@ -89,7 +89,9 @@ PyramidSpaceBuilder >> addOverlayNamed: aString [
 { #category : #'as yet unclassified' }
 PyramidSpaceBuilder >> build [
 
-	self space: BlSpace new.
+	self space: (BlSpace new
+			 extent: 2000 asPoint;
+			 yourself).
 	self space userData at: #pyramid_isEditor put: true.
 
 	self overlays ifEmpty: [ ^ self space ].
