@@ -38,7 +38,7 @@ To install a version of Pyramid, use one of the following scripts inside a playg
 ```st
 Metacello new
 	baseline: 'Pyramid';
-	repository: 'github://OpenSmock/Pyramid:main/src';
+	repository: 'github://OpenSmock/Pyramid:sandbox/src';
 	load
 ```
 
@@ -47,7 +47,7 @@ Only with Bloc (without Toplo features):
 ```st
 Metacello new
 	baseline: 'Pyramid';
-	repository: 'github://OpenSmock/Pyramid:main/src';
+	repository: 'github://OpenSmock/Pyramid:sandbox/src';
   load: 'BlocUI';
 	load
 ```
