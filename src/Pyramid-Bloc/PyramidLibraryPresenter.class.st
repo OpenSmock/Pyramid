@@ -91,6 +91,7 @@ PyramidLibraryPresenter >> initializePresenters [
 				                      title: 'Category-Name'
 				                      evaluated: [ :each | each name ]);
 		                     yourself.
+
 	elementPresenter := SpTablePresenter new
 		                    hideColumnHeaders;
 		                    addColumn: ((SpImageTableColumn

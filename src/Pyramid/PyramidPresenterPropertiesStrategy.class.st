@@ -7,7 +7,7 @@ I do that with the message `#buildPresenterFromCollection:andManager:`
 Class {
 	#name : #PyramidPresenterPropertiesStrategy,
 	#superclass : #Object,
-	#category : 'Pyramid-property'
+	#category : #'Pyramid-property'
 }
 
 { #category : #testing }

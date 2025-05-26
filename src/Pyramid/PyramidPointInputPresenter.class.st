@@ -34,7 +34,7 @@ PyramidPointInputPresenter >> defaultLayout [
 		  vAlignCenter;
 		  add: self labelX expand: false;
 		  add: self inputX expand: true;
-		  add: '|' expand: false;
+		  add: ' | ' expand: false;
 		  add: self labelY expand: false;
 		  add: self inputY expand: true;
 		  yourself
@@ -51,8 +51,8 @@ PyramidPointInputPresenter >> initializePresenters [
 		          whenValueChangedDo: [ :n |
 			          self whenValueChangedDo value: self value ];
 		          yourself.
-	labelX := SpLabelPresenter new.
-	labelY := SpLabelPresenter new
+	labelX := SpLabelPresenter new label:'W'; yourself.
+	labelY := SpLabelPresenter new label:'H'; yourself
 ]
 
 { #category : #accessing }

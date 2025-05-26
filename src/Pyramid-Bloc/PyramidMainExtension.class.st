@@ -7,9 +7,14 @@ Class {
 		'containerElement',
 		'borderElement',
 		'sizeElement',
-		'extentButton',
-		'extentView',
-		'extentPopover'
+		'workplacePropertiesButton',
+		'workplacePropertiesView',
+		'workplacePropertiesPopover',
+		'gridWindowSize',
+		'gridElement',
+		'gridVisibility',
+		'gridSpacing',
+		'gridColor'
 	],
 	#category : #'Pyramid-Bloc-plugin-space-extensions'
 }
@@ -26,6 +31,23 @@ PyramidMainExtension >> containerElement [
 	^ containerElement
 ]
 
+{ #category : #'as yet unclassified' }
+PyramidMainExtension >> createGrid [
+	
+	self gridElement removeChildWithId: #gridHorizontal.
+	self gridElement removeChildWithId: #gridVertical.
+	
+	gridVisibility ifTrue: [ self grid: gridElement 
+									cellSpacing: gridSpacing 
+									color: gridColor 
+									width: (gridWindowSize x) 
+									height: (gridWindowSize y).
+								].
+				
+	
+	 
+]
+
 { #category : #accessing }
 PyramidMainExtension >> defaultBorder [
 
@@ -38,24 +60,124 @@ PyramidMainExtension >> defaultExtent [
 	^ 800 @ 600
 ]
 
+{ #category : #'as yet unclassified' }
+PyramidMainExtension >> defaultGridColor [
+	^ Color black
+]
+
+{ #category : #'as yet unclassified' }
+PyramidMainExtension >> defaultGridSpacing [
+	^ 10
+]
+
+{ #category : #'as yet unclassified' }
+PyramidMainExtension >> defaultGridVisibility [
+	^ false
+]
+
 { #category : #accessing }
 PyramidMainExtension >> editor: aPyramidEditor [
 
 	aPyramidEditor window at: #topRight addItem: [ :buttonBuilder |
-		buttonBuilder makeButtonWithIcon: self extentButton order: 10 ]
+		buttonBuilder makeButtonWithIcon: self windowPropertiesButton order: 10 ]
 ]
 
 { #category : #geometry }
 PyramidMainExtension >> extent: aPoint [
 
 	self elementAtWidgets size: aPoint.
-	self sizeElement size: aPoint
+	self sizeElement size: aPoint.
+	self gridWindowSize: aPoint.
+	
+	self createGrid.
+	
+
+]
+
+{ #category : #'as yet unclassified' }
+PyramidMainExtension >> grid: aParent cellSpacing: aNumber color: aColor width: aWidth height: aHeight [
+
+	| elementGridHorizontal elementGridVertical nbLineGridHorizontal nbLineGridVertical lineGridModWidth lineGridModHeight |
+	elementGridHorizontal := BlElement new id: #gridHorizontal.
+	elementGridHorizontal layout: BlLinearLayout vertical.
+	elementGridHorizontal layout cellSpacing: aNumber - 1.
+	elementGridHorizontal constraints horizontal matchParent.
+	elementGridHorizontal constraints vertical matchParent.
+
+	elementGridVertical := BlElement new id: #gridVertical.
+	elementGridVertical layout: BlLinearLayout horizontal.
+	elementGridVertical layout cellSpacing: aNumber - 1.
+	elementGridVertical constraints horizontal matchParent.
+	elementGridVertical constraints vertical matchParent.
+
+	"Number of line Horizontal"
+	lineGridModHeight := aHeight / aNumber.
+	nbLineGridHorizontal := lineGridModHeight isInteger
+		                      ifTrue: [ aHeight / aNumber - 1 ]
+		                      ifFalse: [ aHeight / aNumber ].
+
+	1 to: nbLineGridHorizontal do: [ :i |
+		| e |
+		e := BlElement new.
+		e background: aColor.
+		e border: aColor.
+		e height: 1.
+		e constraints horizontal matchParent.
+		elementGridHorizontal addChild: e ].
+
+	"Number of line Vertical"
+	lineGridModWidth := aWidth / aNumber.
+	nbLineGridVertical := lineGridModWidth isInteger
+		                      ifTrue: [ aWidth / aNumber - 1 ]
+		                      ifFalse: [ aWidth / aNumber ].
+
+
+	1 to: nbLineGridVertical do: [ :i |
+		| e |
+		e := BlElement new.
+		e background: aColor.
+		e border: aColor.
+		e width: 1.
+		e constraints vertical matchParent.
+		elementGridVertical addChild: e ].
+
+	aParent addChildren: {
+			elementGridHorizontal.
+			elementGridVertical }
+]
+
+{ #category : #'as yet unclassified' }
+PyramidMainExtension >> gridDefaultValueInitializer [
+	
+	gridWindowSize := self defaultExtent.
+	gridVisibility := self defaultGridVisibility.
+	gridSpacing := self defaultGridSpacing.
+	gridColor := self defaultGridColor.
 ]
 
 { #category : #accessing }
-PyramidMainExtension >> extentButton [
+PyramidMainExtension >> gridElement [ 
+	^ gridElement 
+]
 
-	^ extentButton
+{ #category : #accessing }
+PyramidMainExtension >> gridSpacing [
+	^ gridSpacing
+]
+
+{ #category : #accessing }
+PyramidMainExtension >> gridVisibility [
+	^ gridVisibility 
+]
+
+{ #category : #accessing }
+PyramidMainExtension >> gridWindowSize [
+	^ gridWindowSize
+]
+
+{ #category : #accessing }
+PyramidMainExtension >> gridWindowSize: aPoint [
+	gridWindowSize := aPoint
 ]
 
 { #category : #'as yet unclassified' }
@@ -68,31 +190,35 @@ PyramidMainExtension >> informTransformationChanged [
 { #category : #initialization }
 PyramidMainExtension >> initialize [
 
-	extentView := SpPresenter new
-		              layout: (SpBoxLayout newVertical
-				               spacing: 4;
-				               add: (SpLabelPresenter new
-						                displayBold: [ true ];
-						                label: 'Window extent';
-						                yourself);
-				               add: (PyramidPointInputPresenter new
-						                value: self defaultExtent;
-						                whenValueChangedDo: [ :point |
-							                self extent: point ];
-						                yourself);
-				               yourself);
-		              yourself.
-
-	extentButton := SpButtonPresenter new
+	gridWindowSize := self defaultExtent.
+	gridVisibility := self defaultGridVisibility.
+	gridSpacing := self defaultGridSpacing.
+	gridColor := self defaultGridColor.
+	
+	workplacePropertiesView := PyramidWorkplacePropertiesPresenter new
+									workplaceSizeValue: self defaultExtent;
+									whenWorkplaceValuesChangedDo: [ :point | 
+																		self extent: point ];	
+									whenVisibilityChangedDo: [ gridVisibility := self gridVisibility not. 
+																		self createGrid ];
+									spacingTextValue: self defaultGridSpacing;
+									whenSpacingTextChangedDo: [ :value | 
+																		gridSpacing := value. self createGrid ];
+									gridColorValue: self defaultGridColor;
+									whenColorValuesChangedDo: [ :color | 
+																		gridColor := color. self createGrid ];
+									yourself.
+	
+	workplacePropertiesButton := SpButtonPresenter new
 		                icon: (Smalltalk ui icons iconNamed: #window);
-		                help: 'Project configuration';
-		                action: [ extentPopover popup ];
+		                help: 'Edit the properties of the workplace';
+		                action: [ workplacePropertiesPopover popup. self refreshPopupWorkplaceProperties ];
 		                yourself.
-	extentPopover := PyramidPopoverFactory
-		                 makeWithPresenter: extentView
-		                 relativeTo: extentButton
+	
+	workplacePropertiesPopover := PyramidPopoverFactory
+		                 makeWithPresenter: workplacePropertiesView
+		                 relativeTo: workplacePropertiesButton
 		                 position: SpPopoverPosition left.
-
 
 	containerElement := BlElement new
 		                    id: #MainExtension_containerElement;
@@ -102,6 +228,7 @@ PyramidMainExtension >> initialize [
 		                    clipChildren: false;
 		                    zIndex: 0;
 		                    yourself.
+	
 	borderElement := BlElement new
 		                 id: #MainExtension_borderElement;
 		                 border: self defaultBorder;
@@ -112,14 +239,25 @@ PyramidMainExtension >> initialize [
 		                 clipChildren: false;
 		                 zIndex: 1;
 								preventMeAndChildrenMouseEvents;
-		                 yourself.
+		                 yourself. 
+	
+	gridElement := BlElement new
+							id: #MainExtension_gridElement;
+							constraintsDo: [ :c |
+								c vertical matchParent.
+								c horizontal matchParent ];
+							zIndex: 0.
+	
 	sizeElement := BlElement new
 		               id: #MainExtension_sizeElement;
 		               size: self defaultExtent;
 		               clipChildren: false;
 		               addChildren: {
 				               containerElement.
-				               borderElement } yourself
+				               borderElement.
+									gridElement
+											 } yourself.
+	
 ]
 
 { #category : #displaying }
@@ -159,8 +297,23 @@ PyramidMainExtension >> pyramidFirstLevelElementsChanged: anEvent [
 		self containerElement addChild: each ]
 ]
 
+{ #category : #refresh }
+PyramidMainExtension >> refreshPopupWorkplaceProperties [
+
+	workplacePropertiesPopover := PyramidPopoverFactory
+		                 makeWithPresenter: workplacePropertiesView
+		                 relativeTo: workplacePropertiesButton
+		                 position: SpPopoverPosition left.
+]
+
 { #category : #accessing }
 PyramidMainExtension >> sizeElement [
 
 	^ sizeElement
+]
+
+{ #category : #accessing }
+PyramidMainExtension >> windowPropertiesButton [
+
+	^ workplacePropertiesButton
 ]

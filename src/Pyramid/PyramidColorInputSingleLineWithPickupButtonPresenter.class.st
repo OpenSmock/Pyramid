@@ -63,6 +63,8 @@ PyramidColorInputSingleLineWithPickupButtonPresenter >> openMultiLinesModal [
 	| dialog color window |
 	window := self multiLinesInput asModalWindow.
 	window title: 'Pickup a Color'.
+	"To center the window when open"
+	window centered.
 	dialog := window open.
 	dialog isOk
 		ifTrue: [
