@@ -34,9 +34,11 @@ PyramidMainExtension >> containerElement [
 { #category : #'as yet unclassified' }
 PyramidMainExtension >> createGrid [
 	
+	"Remove the current all the line of the grid"
 	self gridElement removeChildWithId: #gridHorizontal.
 	self gridElement removeChildWithId: #gridVertical.
 	
+	"Create the grid if gridVisibility is true"
 	gridVisibility ifTrue: [ self grid: gridElement 
 									cellSpacing: gridSpacing 
 									color: gridColor 
@@ -62,16 +64,19 @@ PyramidMainExtension >> defaultExtent [
 
 { #category : #'as yet unclassified' }
 PyramidMainExtension >> defaultGridColor [
+	"Default color value of the grid"
 	^ Color black
 ]
 
 { #category : #'as yet unclassified' }
 PyramidMainExtension >> defaultGridSpacing [
+	"Default spacing value of the grid"
 	^ 10
 ]
 
 { #category : #'as yet unclassified' }
 PyramidMainExtension >> defaultGridVisibility [
+	"Default visibility value of the grid"
 	^ false
 ]
 
@@ -96,7 +101,8 @@ PyramidMainExtension >> extent: aPoint [
 
 { #category : #'as yet unclassified' }
 PyramidMainExtension >> grid: aParent cellSpacing: aNumber color: aColor width: aWidth height: aHeight [
-
+	
+	"Creation of the grid used by createGrid"
 	| elementGridHorizontal elementGridVertical nbLineGridHorizontal nbLineGridVertical lineGridModWidth lineGridModHeight |
 	elementGridHorizontal := BlElement new id: #gridHorizontal.
 	elementGridHorizontal layout: BlLinearLayout vertical.
@@ -149,10 +155,12 @@ PyramidMainExtension >> grid: aParent cellSpacing: aNumber color: aColor width: 
 { #category : #'as yet unclassified' }
 PyramidMainExtension >> gridDefaultValueInitializer [
 	
+	"Set the default parameter values of the grid"
 	gridWindowSize := self defaultExtent.
 	gridVisibility := self defaultGridVisibility.
 	gridSpacing := self defaultGridSpacing.
 	gridColor := self defaultGridColor.
+	self createGrid.
 ]
 
 { #category : #accessing }
@@ -189,12 +197,14 @@ PyramidMainExtension >> informTransformationChanged [
 
 { #category : #initialization }
 PyramidMainExtension >> initialize [
-
+	
+	"Set the default parameter value of the grid"
 	gridWindowSize := self defaultExtent.
 	gridVisibility := self defaultGridVisibility.
 	gridSpacing := self defaultGridSpacing.
 	gridColor := self defaultGridColor.
 	
+	"Set up the graphical parameter windows of the grid and the space extension"
 	workplacePropertiesView := PyramidWorkplacePropertiesPresenter new
 									workplaceSizeValue: self defaultExtent;
 									whenWorkplaceValuesChangedDo: [ :point | 
@@ -209,12 +219,14 @@ PyramidMainExtension >> initialize [
 																		gridColor := color. self createGrid ];
 									yourself.
 	
+	"Button of the pop-up windows properties who call the creation of the pop-up"
 	workplacePropertiesButton := SpButtonPresenter new
 		                icon: (Smalltalk ui icons iconNamed: #window);
 		                help: 'Edit the properties of the workplace';
 		                action: [ workplacePropertiesPopover popup. self refreshPopupWorkplaceProperties ];
 		                yourself.
 	
+	"Creation of the pop-up"
 	workplacePropertiesPopover := PyramidPopoverFactory
 		                 makeWithPresenter: workplacePropertiesView
 		                 relativeTo: workplacePropertiesButton
@@ -229,6 +241,7 @@ PyramidMainExtension >> initialize [
 		                    zIndex: 0;
 		                    yourself.
 	
+	"Blue frame in the space"
 	borderElement := BlElement new
 		                 id: #MainExtension_borderElement;
 		                 border: self defaultBorder;
@@ -241,6 +254,7 @@ PyramidMainExtension >> initialize [
 								preventMeAndChildrenMouseEvents;
 		                 yourself. 
 	
+	"The BlElement contain the grid"
 	gridElement := BlElement new
 							id: #MainExtension_gridElement;
 							constraintsDo: [ :c |
