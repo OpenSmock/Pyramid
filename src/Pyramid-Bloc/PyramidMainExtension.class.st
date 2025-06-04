@@ -104,9 +104,10 @@ PyramidMainExtension >> grid: aParent cellSpacing: aNumber color: aColor width: 
 	
 	"Creation of the grid used by createGrid"
 	| elementGridHorizontal elementGridVertical nbLineGridHorizontal nbLineGridVertical lineGridModWidth lineGridModHeight |
+	
 	elementGridHorizontal := BlElement new id: #gridHorizontal.
 	elementGridHorizontal layout: BlLinearLayout vertical.
-	elementGridHorizontal layout cellSpacing: aNumber - 1.
+	elementGridHorizontal layout cellSpacing: (aNumber - 1).
 	elementGridHorizontal constraints horizontal matchParent.
 	elementGridHorizontal constraints vertical matchParent.
 
@@ -314,6 +315,7 @@ PyramidMainExtension >> pyramidFirstLevelElementsChanged: anEvent [
 { #category : #refresh }
 PyramidMainExtension >> refreshPopupWorkplaceProperties [
 
+	"Fix the current bug of the pop-up grow after each opening by recreating the component pop-up each time"
 	workplacePropertiesPopover := PyramidPopoverFactory
 		                 makeWithPresenter: workplacePropertiesView
 		                 relativeTo: workplacePropertiesButton
