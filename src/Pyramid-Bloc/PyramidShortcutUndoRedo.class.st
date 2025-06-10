@@ -1,3 +1,6 @@
+"
+Class use to define shortcut undo / redo
+"
 Class {
 	#name : #PyramidShortcutUndoRedo,
 	#superclass : #PyramidPluginShortcutManager,
@@ -29,7 +32,7 @@ PyramidShortcutUndoRedo >> initialize [
 
 { #category : #accessing }
 PyramidShortcutUndoRedo >> keyCombinationRedo [
-	"Primary == CRLT (left or right) or CMD Key"
+	"CTRL + Y to activate this shortcut"
 	^ keyCombinationRedo ifNil: [
 		  keyCombinationRedo := ((BlKeyCombination builder key: KeyboardKey controlLeft; key: KeyboardKey Y) build)]
 ]
@@ -42,7 +45,7 @@ PyramidShortcutUndoRedo >> keyCombinationRedo: aNewKeyCombination [
 
 { #category : #accessing }
 PyramidShortcutUndoRedo >> keyCombinationUndo [
-	"Primary == CRLT (left or right) or CMD Key"
+	"CTRL + Z to activate this shortcut"
 	^ keyCombinationUndo ifNil: [
 		  keyCombinationUndo := ((BlKeyCombination builder key: KeyboardKey controlLeft; key: KeyboardKey Z) build) ]
 ]

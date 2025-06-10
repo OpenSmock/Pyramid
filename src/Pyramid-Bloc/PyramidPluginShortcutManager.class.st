@@ -1,3 +1,6 @@
+"
+This class is use to add shortcut to the space in pyramid to use feature, you can check the PyramidShortcutUndoRedo as exemple.
+"
 Class {
 	#name : #PyramidPluginShortcutManager,
 	#superclass : #Object,
@@ -5,7 +8,6 @@ Class {
 	#classTraits : 'TPyramidPlugin classTrait',
 	#instVars : [
 		'editor',
-		'builder',
 		'shortcutUndoRedo',
 		'spacePlugin',
 		'historyPlugin'
@@ -20,18 +22,7 @@ PyramidPluginShortcutManager >> addShortcutInSpace: aSpace [
 	aSpace root addShortcut: shortcutUndoRedo shortcutActionUndo.
 	aSpace root addShortcut: shortcutUndoRedo shortcutActionRedo. 
 	
-	"New shortcut to add"
-]
-
-{ #category : #accessing }
-PyramidPluginShortcutManager >> builder [ 
-	^ builder
-]
-
-{ #category : #accessing }
-PyramidPluginShortcutManager >> builder: aPyramidBuilder [
-	
-	builder := aPyramidBuilder 
+	"New shortcut to add under this comment keep the same patern as before"
 ]
 
 { #category : #connecting }

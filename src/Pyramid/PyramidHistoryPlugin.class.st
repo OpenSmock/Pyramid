@@ -69,7 +69,7 @@ PyramidHistoryPlugin >> initialize [
 			              self history undo.
 			              self projectModel informElementsChanged ];
 		              enabled: false;
-		              help: 'Undo';
+		              help: 'Undo - click or ctrl + z';
 		              yourself.
 	redoButton := SpButtonPresenter new
 		              icon: (Smalltalk ui icons iconNamed: #smallRedo);
@@ -77,7 +77,7 @@ PyramidHistoryPlugin >> initialize [
 			              self history redo.
 			              self projectModel informElementsChanged ];
 		              enabled: false;
-		              help: 'Redo';
+		              help: 'Redo - clic or ctrl + y';
 		              yourself
 ]
 
