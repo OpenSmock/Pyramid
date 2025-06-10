@@ -6,7 +6,8 @@ Class {
 	#instVars : [
 		'builder',
 		'morphicPresenter',
-		'resetSpaceButton'
+		'resetSpaceButton',
+		'resetBloc'
 	],
 	#category : #'Pyramid-Bloc-plugin-space'
 }
@@ -31,12 +32,13 @@ PyramidSpacePlugin >> builder [
 PyramidSpacePlugin >> connectOn: aPyramidEditor [
 
 	builder editor: aPyramidEditor.
-	self resetSpace
+	self resetSpace.
 ]
 
 { #category : #initialization }
 PyramidSpacePlugin >> initialize [
 
+	resetBloc := [ :space | ].
 	builder := PyramidSpaceBuilder defaultEditorBuilder.
 	morphicPresenter := SpMorphPresenter new.
 	resetSpaceButton := SpButtonPresenter new
@@ -44,7 +46,7 @@ PyramidSpacePlugin >> initialize [
 			                    (Smalltalk ui icons iconNamed: #smallUpdate);
 		                    action: [ self resetSpace ];
 		                    help: 'Refresh space in case of an issue';
-		                    yourself
+		                    yourself.
 ]
 
 { #category : #'as yet unclassified' }
@@ -75,11 +77,24 @@ PyramidSpacePlugin >> morphicPresenter [
 ]
 
 { #category : #initialization }
+PyramidSpacePlugin >> resetBloc [
+
+	^ resetBloc
+]
+
+{ #category : #initialization }
+PyramidSpacePlugin >> resetBloc: aBlock [
+
+	resetBloc := aBlock
+]
+
+{ #category : #initialization }
 PyramidSpacePlugin >> resetSpace [
 
 	| space |
 	space := self builder build.
 	self makePresenterWithBlSpace: space.
+	self resetBloc value: space.
 	space show
 ]
 
