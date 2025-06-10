@@ -13,7 +13,7 @@ Class {
 { #category : #asserting }
 PyramidToploThemePlugin class >> shouldInstall [
 
-	^ false
+	^ true
 ]
 
 { #category : #adding }
@@ -128,7 +128,7 @@ PyramidToploThemePlugin >> addPanelsOn: aPyramidSimpleWindow [
 			makeTab: self themePresenter
 			label: 'Toplo-Theme'
 			icon: (Smalltalk ui icons iconNamed: #smallPushpin)
-			order: 1 ]
+			order: 5 ]
 ]
 
 { #category : #actions }

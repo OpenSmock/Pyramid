@@ -20,12 +20,12 @@ PyramidThemePropertyStrategy >> propertiesFor: aCollectionOfElements [
 		                               asOrderedCollection select: [
 		                               :element |
 		                               element isAttachedToSceneGraph and: [
-			                               element toTheme isKindOf:
+			                               element localTheme isKindOf:
 				                               ToStyleSheetTheme ] ].
 	elementsWithStyleSheetTheme ifEmpty: [ ^ {  } ].
 	allPossibleStamps := elementsWithStyleSheetTheme collect: [ :each |
 		                     PyramidSelectorPossibleStamps new
-			                     theme: each toTheme;
+			                     theme: each localTheme;
 			                     findAllStampsFor: each ].
 	allCommonStamps := allPossibleStamps first.
 	allPossibleStamps do: [ :each |

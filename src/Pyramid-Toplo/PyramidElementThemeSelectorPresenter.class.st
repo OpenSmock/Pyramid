@@ -83,7 +83,7 @@ PyramidElementThemeSelectorPresenter >> initializePresenters [
 	themeCommand := PyramidThemeCommand new.
 	inheritSelector := SpCheckBoxPresenter new
 		                   label: 'Inherits from parents';
-		                   whenChangedDo: [ :aBoolean | self applyTheme ];
+		                   whenChangedDo: [ :aBoolean | self applyTheme. self themeSelector enabled: (aBoolean not) ];
 		                   yourself.
 	labelPresenter := SpLabelPresenter new
 		                  label: 'Element Theme (empty select)';
@@ -110,11 +110,11 @@ PyramidElementThemeSelectorPresenter >> projectModel [
 PyramidElementThemeSelectorPresenter >> projectModel: aPyramidProjectModel [
 
 	projectModel := aPyramidProjectModel.
-	projectModel
+	projectModel announcer
 		when: PyramidElementsChangedEvent
 		do: [ :evt | self elementsOrSelectionChanged: evt ]
 		for: self.
-	projectModel
+	projectModel announcer
 		when: PyramidSelectionChangedEvent
 		do: [ :evt | self elementsOrSelectionChanged: evt ]
 		for: self.
