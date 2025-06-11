@@ -80,7 +80,7 @@ PyramidShortcutCopyPaste >> keyCombinationCopy: aKeyCombination [
 
 { #category : #accessing }
 PyramidShortcutCopyPaste >> keyCombinationPaste [
-	"CTRL + C to activate this shortcut"
+	"CTRL + V to activate this shortcut"
 	^ keyCombinationPaste ifNil: [
 		  keyCombinationPaste := ((BlKeyCombination builder key: KeyboardKey controlLeft; key: KeyboardKey V) build) ]
 ]

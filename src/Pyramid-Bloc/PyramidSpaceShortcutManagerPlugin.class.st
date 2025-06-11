@@ -1,5 +1,15 @@
 "
 This class is use to add shortcut to the space in pyramid to use feature, you can check the PyramidShortcutUndoRedo as exemple.
+
+Shortcut only works when the space of Pyramid have the focus.
+
+List of current active shortcut :
+- Save -> ctrl + S
+- Undo -> ctrl + Z
+- Redo -> ctrl + Y
+- Copy -> ctrl + C
+- Paste -> ctrl + V
+- Grid visibility switch -> ctrl + G
 "
 Class {
 	#name : #PyramidSpaceShortcutManagerPlugin,
