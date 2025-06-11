@@ -210,7 +210,7 @@ PyramidMainExtension >> initialize [
 									workplaceSizeValue: self defaultExtent;
 									whenWorkplaceValuesChangedDo: [ :point | 
 																		self extent: point ];	
-									whenVisibilityChangedDo: [ gridVisibility := self gridVisibility not. 
+									whenVisibilityChangedDo: [ self switchGridvisibility. 
 																		self createGrid ];
 									spacingTextValue: self defaultGridSpacing;
 									whenSpacingTextChangedDo: [ :value | 
@@ -328,8 +328,21 @@ PyramidMainExtension >> sizeElement [
 	^ sizeElement
 ]
 
+{ #category : #'as yet unclassified' }
+PyramidMainExtension >> switchGridvisibility [
+
+	gridVisibility := self gridVisibility not.
+	^ self gridVisibility
+]
+
 { #category : #accessing }
 PyramidMainExtension >> windowPropertiesButton [
 
 	^ workplacePropertiesButton
+]
+
+{ #category : #accessing }
+PyramidMainExtension >> workplacePropertiesView [
+
+	^ workplacePropertiesView
 ]

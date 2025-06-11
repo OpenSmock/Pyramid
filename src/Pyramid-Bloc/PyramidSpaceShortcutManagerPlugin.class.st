@@ -11,11 +11,13 @@ Class {
 		'shortcutUndoRedo',
 		'shortcutCopyPaste',
 		'shortcutSaveAction',
+		'shortcutGrid',
 		'spacePlugin',
 		'historyPlugin',
 		'copyPastePlugin',
 		'copyPasteMenuPanelBuilder',
-		'savePlugin'
+		'savePlugin',
+		'gridFeature'
 	],
 	#category : #'Pyramid-Bloc-plugin-shortcut-manager'
 }
@@ -34,6 +36,9 @@ PyramidSpaceShortcutManagerPlugin >> addShortcutInSpace: aSpace [
 	"Shortcut Save (ctrl + S)"
 	aSpace root addShortcut: shortcutSaveAction shortcutActionSave.
 	
+	"Shortcut grid"
+	"Grid visibility (ctrl + G)"
+	aSpace root addShortcut: shortcutGrid shortcutActionGridVisibility.
 	
 	"New shortcut to add under this comment keep the same patern as before"
 ]
@@ -58,6 +63,9 @@ PyramidSpaceShortcutManagerPlugin >> connectOn: aPyramidEditor [
 	"Get Save plugin"
 	shortcutSaveAction savePluginFromPyramid: editor.
 	
+	"Get space MainExtension"
+	shortcutGrid gridFeatureFromSpacePlugin: editor.
+	
 	
 	"Adding shortcut to Pyramid"
 	spacePlugin resetBloc: [ :aSpace | self addShortcutInSpace: aSpace ].
@@ -71,4 +79,5 @@ PyramidSpaceShortcutManagerPlugin >> initialize [
 	shortcutUndoRedo := PyramidShortcutUndoRedo new.
 	shortcutCopyPaste := PyramidShortcutCopyPaste new.
 	shortcutSaveAction := PyramidShortcutSave new.
+	shortcutGrid := PyramidShortcutGrid new.
 ]
