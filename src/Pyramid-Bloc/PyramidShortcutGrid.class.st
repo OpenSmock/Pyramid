@@ -50,7 +50,7 @@ PyramidShortcutGrid >> shortcutActionGridVisibility [
 
 	^ shortcutGridVisibility ifNil: [
 		  shortcutGridVisibility := BlShortcutWithAction new
-			              name: 'Pyramid edition shortcut Paste';
+			              name: 'Pyramid edition shortcut grid visibility';
 			              combination: self keyCombinationGridVisibility;
 			              action: [ :event | 	gridFeature workplacePropertiesView visibilityButton toggleState ] ]
 ]

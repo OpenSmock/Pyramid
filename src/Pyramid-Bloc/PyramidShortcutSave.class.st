@@ -47,7 +47,7 @@ PyramidShortcutSave >> shortcutActionSave [
 
 	^ shortcutSave ifNil: [
 		  shortcutSave := BlShortcutWithAction new
-			              name: 'Pyramid edition shortcut Paste';
+			              name: 'Pyramid edition shortcut Save';
 			              combination: self keyCombinationSave;
 			              action: [ :event | savePlugin saveAction. ] ]
 ]

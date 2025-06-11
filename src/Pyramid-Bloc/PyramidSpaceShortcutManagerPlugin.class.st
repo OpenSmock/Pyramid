@@ -12,12 +12,14 @@ Class {
 		'shortcutCopyPaste',
 		'shortcutSaveAction',
 		'shortcutGrid',
+		'shortcutRemoveElement',
 		'spacePlugin',
 		'historyPlugin',
 		'copyPastePlugin',
 		'copyPasteMenuPanelBuilder',
 		'savePlugin',
-		'gridFeature'
+		'gridFeature',
+		'navigationPlugin'
 	],
 	#category : #'Pyramid-Bloc-plugin-shortcut-manager'
 }
@@ -39,6 +41,9 @@ PyramidSpaceShortcutManagerPlugin >> addShortcutInSpace: aSpace [
 	"Shortcut grid"
 	"Grid visibility (ctrl + G)"
 	aSpace root addShortcut: shortcutGrid shortcutActionGridVisibility.
+	
+	"Shortcut Remove Element (suppr / del)"
+	aSpace root addShortcut: shortcutRemoveElement shortcutActionRemoveElement.
 	
 	"New shortcut to add under this comment keep the same patern as before"
 ]
@@ -66,6 +71,10 @@ PyramidSpaceShortcutManagerPlugin >> connectOn: aPyramidEditor [
 	"Get space MainExtension"
 	shortcutGrid gridFeatureFromSpacePlugin: editor.
 	
+	"Get Navigation Plugin for shortcut remove element"
+	shortcutRemoveElement navigationPluginForRemoveElementFromPyramid: editor.
+	
+	
 	
 	"Adding shortcut to Pyramid"
 	spacePlugin resetBloc: [ :aSpace | self addShortcutInSpace: aSpace ].
@@ -80,4 +89,5 @@ PyramidSpaceShortcutManagerPlugin >> initialize [
 	shortcutCopyPaste := PyramidShortcutCopyPaste new.
 	shortcutSaveAction := PyramidShortcutSave new.
 	shortcutGrid := PyramidShortcutGrid new.
+	shortcutRemoveElement := PyramidShortcutRemoveElement new.
 ]
