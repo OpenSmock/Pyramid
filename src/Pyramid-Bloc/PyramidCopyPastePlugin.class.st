@@ -14,7 +14,7 @@ PyramidCopyPastePlugin >> addPanelsOn: aPyramidSimpleWindow [
 
 	aPyramidSimpleWindow
 		at: #selectionMenu
-		addItem: [ :builder | self copyAsStonMenu: builder ]
+		addItem: [ :builder | self copyAsStonMenu: builder ].
 ]
 
 { #category : #connecting }

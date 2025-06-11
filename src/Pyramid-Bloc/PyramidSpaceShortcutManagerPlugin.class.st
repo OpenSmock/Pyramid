@@ -2,31 +2,44 @@
 This class is use to add shortcut to the space in pyramid to use feature, you can check the PyramidShortcutUndoRedo as exemple.
 "
 Class {
-	#name : #PyramidPluginShortcutManager,
+	#name : #PyramidSpaceShortcutManagerPlugin,
 	#superclass : #Object,
 	#traits : 'TPyramidPlugin',
 	#classTraits : 'TPyramidPlugin classTrait',
 	#instVars : [
 		'editor',
 		'shortcutUndoRedo',
+		'shortcutCopyPaste',
+		'shortcutSaveAction',
 		'spacePlugin',
-		'historyPlugin'
+		'historyPlugin',
+		'copyPastePlugin',
+		'copyPasteMenuPanelBuilder',
+		'savePlugin'
 	],
 	#category : #'Pyramid-Bloc-plugin-shortcut-manager'
 }
 
 { #category : #accessing }
-PyramidPluginShortcutManager >> addShortcutInSpace: aSpace [
+PyramidSpaceShortcutManagerPlugin >> addShortcutInSpace: aSpace [
 	
-	"Shortcut Undo / Redo"
+	"Shortcut Undo (ctrl + Z) / Redo (ctrl + Y) "
 	aSpace root addShortcut: shortcutUndoRedo shortcutActionUndo.
 	aSpace root addShortcut: shortcutUndoRedo shortcutActionRedo. 
+	
+	"Shortcut Copy (ctrl + C) / Paste (ctrl + V)"
+	aSpace root addShortcut: shortcutCopyPaste shortcutActionCopy.
+	aSpace root addShortcut: shortcutCopyPaste shortcutActionPaste.
+	
+	"Shortcut Save (ctrl + S)"
+	aSpace root addShortcut: shortcutSaveAction shortcutActionSave.
+	
 	
 	"New shortcut to add under this comment keep the same patern as before"
 ]
 
 { #category : #connecting }
-PyramidPluginShortcutManager >> connectOn: aPyramidEditor [
+PyramidSpaceShortcutManagerPlugin >> connectOn: aPyramidEditor [
 
 	| spacePluginList |
 	editor := aPyramidEditor.
@@ -36,8 +49,15 @@ PyramidPluginShortcutManager >> connectOn: aPyramidEditor [
 	ifFalse: [^ self].
 	spacePluginList do: [ :plug | spacePlugin := plug ].
 	
-	"Get History plugin"
+	"Get History plugin for Undo / Redo shortcut"
 	shortcutUndoRedo historyPluginFromPyramid: editor.
+	
+	"Get Copy Paste plugin"
+	shortcutCopyPaste copyPastePluginFromPyramid: editor.
+	
+	"Get Save plugin"
+	shortcutSaveAction savePluginFromPyramid: editor.
+	
 	
 	"Adding shortcut to Pyramid"
 	spacePlugin resetBloc: [ :aSpace | self addShortcutInSpace: aSpace ].
@@ -46,7 +66,9 @@ PyramidPluginShortcutManager >> connectOn: aPyramidEditor [
 ]
 
 { #category : #initialization }
-PyramidPluginShortcutManager >> initialize [ 
+PyramidSpaceShortcutManagerPlugin >> initialize [ 
 
 	shortcutUndoRedo := PyramidShortcutUndoRedo new.
+	shortcutCopyPaste := PyramidShortcutCopyPaste new.
+	shortcutSaveAction := PyramidShortcutSave new.
 ]

@@ -1,9 +1,11 @@
 "
-Class use to define shortcut undo / redo
+Class use to create the shortcut undo / redo.
+
+Use the history feature from the package Pyramid.
 "
 Class {
 	#name : #PyramidShortcutUndoRedo,
-	#superclass : #PyramidPluginShortcutManager,
+	#superclass : #PyramidSpaceShortcutManagerPlugin,
 	#instVars : [
 		'shortcutUndo',
 		'keyCombinationUndo',
@@ -21,13 +23,12 @@ PyramidShortcutUndoRedo >> historyPluginFromPyramid: aPyramidEditor [
 	historyPluginList size = 1
 	ifFalse: [^ self].
 	historyPluginList do: [ :plug | historyPlugin := plug ].
-	^ historyPlugin 
 ]
 
 { #category : #initialization }
 PyramidShortcutUndoRedo >> initialize [ 
 	
-	"Nothing"
+	"Do nothing"
 ]
 
 { #category : #accessing }
