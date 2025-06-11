@@ -44,5 +44,5 @@ PyramidShortcutRemoveElement >> shortcutActionRemoveElement [
 		  shortcutActionRemoveElement := BlShortcutWithAction new
 			              name: 'Pyramid edition shortcut Paste';
 			              combination: self keyCombinationRemoveElement;
-			              action: [ :event | 	navigationPlugin removeSelectedElements. self inform:'del shortcut' ] ]
+			              action: [ :event | 	navigationPlugin removeSelectedElements ] ]
 ]
