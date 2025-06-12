@@ -93,19 +93,17 @@ PyramidShortcutCopyPaste >> keyCombinationPaste: aKeyCombination [
 { #category : #accessing }
 PyramidShortcutCopyPaste >> shortcutActionCopy [
 
-	^ shortcutCopy ifNil: [
-		  shortcutCopy := BlShortcutWithAction new
+	^ shortcutCopy := BlShortcutWithAction new
 			              name: 'Pyramid edition shortcut copy';
 			              combination: keyCombinationCopy;
-			              action: [ :event | self canCopyElement ] ]
+			              action: [ :event | self canCopyElement ]
 ]
 
 { #category : #accessing }
 PyramidShortcutCopyPaste >> shortcutActionPaste [
 
-	^ shortcutPaste ifNil: [
-		  shortcutPaste := BlShortcutWithAction new
+	^ shortcutPaste := BlShortcutWithAction new
 			              name: 'Pyramid edition shortcut Paste';
 			              combination: keyCombinationPaste;
-			              action: [ :event | self canPasteElement ] ]
+			              action: [ :event | self canPasteElement ]
 ]

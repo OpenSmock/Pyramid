@@ -42,9 +42,8 @@ PyramidShortcutRemoveElement >> navigationPluginForRemoveElementFromPyramid: aPy
 { #category : #accessing }
 PyramidShortcutRemoveElement >> shortcutActionRemoveElement [
 
-	^ shortcutActionRemoveElement ifNil: [
-		  shortcutActionRemoveElement := BlShortcutWithAction new
+	^ shortcutActionRemoveElement := BlShortcutWithAction new
 			              name: 'Pyramid edition shortcut Paste';
 			              combination: keyCombinationRemoveElement;
-			              action: [ :event | 	navigationPlugin removeSelectedElements ] ]
+			              action: [ :event | 	navigationPlugin removeSelectedElements ]
 ]

@@ -18,7 +18,7 @@ Class {
 	#classTraits : 'TPyramidPlugin classTrait',
 	#instVars : [
 		'editor',
-		'listOfShortcut',
+		'shortcutCollection',
 		'shortcutUndoRedo',
 		'shortcutCopyPaste',
 		'shortcutSaveAction',
@@ -35,35 +35,39 @@ Class {
 	#category : #'Pyramid-Bloc-plugin-shortcut-manager'
 }
 
-{ #category : #accessing }
-PyramidSpaceShortcutManagerPlugin >> addAllShortcutInSpace: aSpace [
+{ #category : #adding }
+PyramidSpaceShortcutManagerPlugin >> addAllShortcutInCollection [
+	"Default values of the different shortcut"
 	
 	"Shortcut Undo (ctrl + Z) / Redo (ctrl + Y) "
-	self addingNewShortcutInSpace: aSpace shortcut: shortcutUndoRedo shortcutActionUndo. 
-	self addingNewShortcutInSpace: aSpace shortcut: shortcutUndoRedo shortcutActionRedo.
+	shortcutCollection add: shortcutUndoRedo shortcutActionUndo. 
+	shortcutCollection add: shortcutUndoRedo shortcutActionRedo.
 	
 	"Shortcut Copy (ctrl + C) / Paste (ctrl + V)"
-	self addingNewShortcutInSpace: aSpace shortcut: shortcutCopyPaste shortcutActionCopy.
-	self addingNewShortcutInSpace: aSpace shortcut: shortcutCopyPaste shortcutActionPaste.
+	shortcutCollection add: shortcutCopyPaste shortcutActionCopy.
+	shortcutCollection add: shortcutCopyPaste shortcutActionPaste.
 	
 	"Shortcut Save (ctrl + S)"
-	self addingNewShortcutInSpace: aSpace shortcut: shortcutSaveAction shortcutActionSave.
+	shortcutCollection add: shortcutSaveAction shortcutActionSave.
 	
 	"Shortcut grid"
 	"Grid visibility (ctrl + G)"
-	self addingNewShortcutInSpace: aSpace shortcut: shortcutGrid shortcutActionGridVisibility.
+	shortcutCollection add: shortcutGrid shortcutActionGridVisibility.
 	
 	"Shortcut Remove Element (suppr / del)"
-	self addingNewShortcutInSpace: aSpace shortcut: shortcutRemoveElement shortcutActionRemoveElement.
+	shortcutCollection add: shortcutRemoveElement shortcutActionRemoveElement.
 	
-	"New shortcut to add under this comment keep the same patern as before"
+	"New shortcut to add under this comment, keep the same patern as before"
+	
 ]
 
-{ #category : #'as yet unclassified' }
-PyramidSpaceShortcutManagerPlugin >> addingNewShortcutInSpace: aSpace shortcut: aShortcut [
+{ #category : #accessing }
+PyramidSpaceShortcutManagerPlugin >> addAllShortcutInSpace: aSpace [
+	
+	self addAllShortcutInCollection.
+	shortcutCollection do: [ :shortcut | aSpace root addShortcut: shortcut ].
 
-	listOfShortcut add: aShortcut.
-	aSpace root addShortcut: aShortcut
+	
 ]
 
 { #category : #connecting }
@@ -103,7 +107,7 @@ PyramidSpaceShortcutManagerPlugin >> connectOn: aPyramidEditor [
 { #category : #initialization }
 PyramidSpaceShortcutManagerPlugin >> initialize [ 
 	
-	listOfShortcut := OrderedCollection new.
+	shortcutCollection := OrderedCollection new.
 	
 	shortcutUndoRedo := PyramidShortcutUndoRedo new.
 	shortcutCopyPaste := PyramidShortcutCopyPaste new.
@@ -124,6 +128,6 @@ PyramidSpaceShortcutManagerPlugin >> refreshAllShortcutInSpace: aSpace [
 { #category : #removing }
 PyramidSpaceShortcutManagerPlugin >> removeAllShortcutInSpace: aSpace [
 
-	listOfShortcut do: [ :shortcut | aSpace root removeShortcut: shortcut ].
-	listOfShortcut removeAll.
+	shortcutCollection do: [ :shortcut | aSpace root removeShortcut: shortcut ].
+	shortcutCollection removeAll.
 ]

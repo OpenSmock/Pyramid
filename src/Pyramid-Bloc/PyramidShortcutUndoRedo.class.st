@@ -59,21 +59,19 @@ PyramidShortcutUndoRedo >> keyCombinationUndo: aNewKeyCombination [
 { #category : #accessing }
 PyramidShortcutUndoRedo >> shortcutActionRedo [
 
-	^ shortcutRedo ifNil: [
-		  shortcutRedo := BlShortcutWithAction new
+	^ shortcutRedo := BlShortcutWithAction new
 			              name: 'Pyramid edition shortcut redo';
 			              combination: keyCombinationRedo;
 			              action: [ :event | historyPlugin history redo. 
-														historyPlugin projectModel informElementsChanged ] ]
+														historyPlugin projectModel informElementsChanged ]
 ]
 
 { #category : #accessing }
 PyramidShortcutUndoRedo >> shortcutActionUndo [
 
-	^ shortcutUndo ifNil: [
-		  shortcutUndo := BlShortcutWithAction new
+	^ shortcutUndo := BlShortcutWithAction new
 			              name: 'Pyramid edition shortcut undo';
 			              combination: keyCombinationUndo;
 			              action: [ :event | historyPlugin history undo. 
-														historyPlugin projectModel informElementsChanged ] ]
+														historyPlugin projectModel informElementsChanged ]
 ]

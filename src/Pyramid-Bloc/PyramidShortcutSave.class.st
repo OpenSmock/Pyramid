@@ -44,9 +44,8 @@ PyramidShortcutSave >> savePluginFromPyramid: aPyramidEditor [
 { #category : #accessing }
 PyramidShortcutSave >> shortcutActionSave [
 
-	^ shortcutSave ifNil: [
-		  shortcutSave := BlShortcutWithAction new
+	^ shortcutSave := BlShortcutWithAction new
 			              name: 'Pyramid edition shortcut Save';
 			              combination: keyCombinationSave;
-			              action: [ :event | savePlugin saveAction. ] ]
+			              action: [ :event | savePlugin saveAction. ]
 ]
