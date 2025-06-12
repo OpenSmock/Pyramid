@@ -1,3 +1,6 @@
+"
+This class define the shortcut to show or hide the grid on the space.
+"
 Class {
 	#name : #PyramidShortcutGrid,
 	#superclass : #PyramidSpaceShortcutManagerPlugin,
@@ -8,6 +11,12 @@ Class {
 	#category : #'Pyramid-Bloc-plugin-shortcut-manager'
 }
 
+{ #category : #accessing }
+PyramidShortcutGrid >> defaultKeyCombinationGridVisibility [
+	"CTRL + G to activate this shortcut"
+	keyCombinationGridVisibility := ((BlKeyCombination builder key: KeyboardKey controlLeft; key: KeyboardKey G) build)
+]
+
 { #category : #'as yet unclassified' }
 PyramidShortcutGrid >> gridFeatureFromSpacePlugin: aPyramidEditor [
 
@@ -16,11 +25,13 @@ PyramidShortcutGrid >> gridFeatureFromSpacePlugin: aPyramidEditor [
 	spacePluginList := aPyramidEditor plugins select: [ :plugin | plugin isKindOf: PyramidSpacePlugin ].
 	spacePluginList size = 1
 	ifFalse: [^ self].
+	
 	spacePluginList do: [ :plug | spacePlugin := plug ].
 	listOfSpaceExtension := spacePlugin builder extensions.
 	pyramidMainExtensionSet := listOfSpaceExtension select: [ :extensions | extensions isKindOf: PyramidMainExtension ].
 	pyramidMainExtensionSet size = 1
 	ifFalse: [^ self].
+	
 	pyramidMainExtensionSet do: [ :extension | pyramidMainExtension := extension ].
 	gridFeature := pyramidMainExtension.
 	
@@ -29,14 +40,7 @@ PyramidShortcutGrid >> gridFeatureFromSpacePlugin: aPyramidEditor [
 { #category : #initialization }
 PyramidShortcutGrid >> initialize [ 
 	
-	"Do nothing"
-]
-
-{ #category : #accessing }
-PyramidShortcutGrid >> keyCombinationGridVisibility [
-	"CTRL + G to activate this shortcut"
-	^ keyCombinationGridVisibility ifNil: [
-		  keyCombinationGridVisibility := ((BlKeyCombination builder key: KeyboardKey controlLeft; key: KeyboardKey G) build) ]
+	self defaultKeyCombinationGridVisibility 
 ]
 
 { #category : #accessing }
@@ -48,9 +52,8 @@ PyramidShortcutGrid >> keyCombinationGridVisibility: aKeyCombination [
 { #category : #accessing }
 PyramidShortcutGrid >> shortcutActionGridVisibility [
 
-	^ shortcutGridVisibility ifNil: [
-		  shortcutGridVisibility := BlShortcutWithAction new
+	^ shortcutGridVisibility := BlShortcutWithAction new
 			              name: 'Pyramid edition shortcut grid visibility';
-			              combination: self keyCombinationGridVisibility;
-			              action: [ :event | 	gridFeature workplacePropertiesView visibilityButton toggleState ] ]
+			              combination: keyCombinationGridVisibility;
+			              action: [ :event | 	gridFeature workplacePropertiesView visibilityButton toggleState ]
 ]

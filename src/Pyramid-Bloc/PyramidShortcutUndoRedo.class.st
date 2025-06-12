@@ -15,6 +15,18 @@ Class {
 	#category : #'Pyramid-Bloc-plugin-shortcut-manager'
 }
 
+{ #category : #accessing }
+PyramidShortcutUndoRedo >> defaultKeyCombinationRedo [
+	"CTRL + Y to activate this shortcut"
+	keyCombinationRedo := ((BlKeyCombination builder key: KeyboardKey controlLeft; key: KeyboardKey Y) build)
+]
+
+{ #category : #accessing }
+PyramidShortcutUndoRedo >> defaultKeyCombinationUndo [
+	"CTRL + Z to activate this shortcut"
+	keyCombinationUndo := ((BlKeyCombination builder key: KeyboardKey controlLeft; key: KeyboardKey Z) build)
+]
+
 { #category : #'as yet unclassified' }
 PyramidShortcutUndoRedo >> historyPluginFromPyramid: aPyramidEditor [
 
@@ -28,27 +40,14 @@ PyramidShortcutUndoRedo >> historyPluginFromPyramid: aPyramidEditor [
 { #category : #initialization }
 PyramidShortcutUndoRedo >> initialize [ 
 	
-	"Do nothing"
-]
-
-{ #category : #accessing }
-PyramidShortcutUndoRedo >> keyCombinationRedo [
-	"CTRL + Y to activate this shortcut"
-	^ keyCombinationRedo ifNil: [
-		  keyCombinationRedo := ((BlKeyCombination builder key: KeyboardKey controlLeft; key: KeyboardKey Y) build)]
+	self defaultKeyCombinationRedo.
+	self defaultKeyCombinationUndo.
 ]
 
 { #category : #accessing }
 PyramidShortcutUndoRedo >> keyCombinationRedo: aNewKeyCombination [
 
 	^ keyCombinationRedo := aNewKeyCombination
-]
-
-{ #category : #accessing }
-PyramidShortcutUndoRedo >> keyCombinationUndo [
-	"CTRL + Z to activate this shortcut"
-	^ keyCombinationUndo ifNil: [
-		  keyCombinationUndo := ((BlKeyCombination builder key: KeyboardKey controlLeft; key: KeyboardKey Z) build) ]
 ]
 
 { #category : #accessing }
@@ -63,7 +62,7 @@ PyramidShortcutUndoRedo >> shortcutActionRedo [
 	^ shortcutRedo ifNil: [
 		  shortcutRedo := BlShortcutWithAction new
 			              name: 'Pyramid edition shortcut redo';
-			              combination: self keyCombinationRedo;
+			              combination: keyCombinationRedo;
 			              action: [ :event | historyPlugin history redo. 
 														historyPlugin projectModel informElementsChanged ] ]
 ]
@@ -74,7 +73,7 @@ PyramidShortcutUndoRedo >> shortcutActionUndo [
 	^ shortcutUndo ifNil: [
 		  shortcutUndo := BlShortcutWithAction new
 			              name: 'Pyramid edition shortcut undo';
-			              combination: self keyCombinationUndo;
+			              combination: keyCombinationUndo;
 			              action: [ :event | historyPlugin history undo. 
 														historyPlugin projectModel informElementsChanged ] ]
 ]

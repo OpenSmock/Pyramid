@@ -1,3 +1,6 @@
+"
+This class define the shortcut to delete a selected element in the space.
+"
 Class {
 	#name : #PyramidShortcutRemoveElement,
 	#superclass : #PyramidSpaceShortcutManagerPlugin,
@@ -8,17 +11,16 @@ Class {
 	#category : #'Pyramid-Bloc-plugin-shortcut-manager'
 }
 
+{ #category : #accessing }
+PyramidShortcutRemoveElement >> defaultKeyCombinationRemoveElement [
+	"suppr / del to activate this shortcut"
+	keyCombinationRemoveElement := ((BlKeyCombination builder key: KeyboardKey delete) build)
+]
+
 { #category : #initialization }
 PyramidShortcutRemoveElement >> initialize [ 
 	
-	"Do nothing"PyramidNavigationPlugin
-]
-
-{ #category : #accessing }
-PyramidShortcutRemoveElement >> keyCombinationRemoveElement [
-	"suppr / del to activate this shortcut"
-	^ keyCombinationRemoveElement ifNil: [
-		  keyCombinationRemoveElement := ((BlKeyCombination builder key: KeyboardKey delete) build) ]
+	self defaultKeyCombinationRemoveElement 
 ]
 
 { #category : #accessing }
@@ -43,6 +45,6 @@ PyramidShortcutRemoveElement >> shortcutActionRemoveElement [
 	^ shortcutActionRemoveElement ifNil: [
 		  shortcutActionRemoveElement := BlShortcutWithAction new
 			              name: 'Pyramid edition shortcut Paste';
-			              combination: self keyCombinationRemoveElement;
+			              combination: keyCombinationRemoveElement;
 			              action: [ :event | 	navigationPlugin removeSelectedElements ] ]
 ]

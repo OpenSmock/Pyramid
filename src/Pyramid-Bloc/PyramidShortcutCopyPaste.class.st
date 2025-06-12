@@ -54,6 +54,18 @@ PyramidShortcutCopyPaste >> copyPastePluginFromPyramid: aPyramidEditor [
 ]
 
 { #category : #accessing }
+PyramidShortcutCopyPaste >> defaultKeyCombinationCopy [
+	"CTRL + C to activate this shortcut"
+	keyCombinationCopy := ((BlKeyCombination builder key: KeyboardKey controlLeft; key: KeyboardKey C) build)
+]
+
+{ #category : #accessing }
+PyramidShortcutCopyPaste >> defaultKeyCombinationPaste [
+	"CTRL + V to activate this shortcut"
+	keyCombinationPaste := ((BlKeyCombination builder key: KeyboardKey controlLeft; key: KeyboardKey V) build)
+]
+
+{ #category : #accessing }
 PyramidShortcutCopyPaste >> elementCollection: aPyramidEditor [
 
 	elementCollectionSelected := (aPyramidEditor projectModel selection) collection.
@@ -62,27 +74,14 @@ PyramidShortcutCopyPaste >> elementCollection: aPyramidEditor [
 { #category : #initialization }
 PyramidShortcutCopyPaste >> initialize [ 
 
-	"Do nothing"
-]
-
-{ #category : #accessing }
-PyramidShortcutCopyPaste >> keyCombinationCopy [
-	"CTRL + C to activate this shortcut"
-	^ keyCombinationCopy ifNil: [
-		  keyCombinationCopy := ((BlKeyCombination builder key: KeyboardKey controlLeft; key: KeyboardKey C) build) ]
+	self defaultKeyCombinationCopy.
+	self defaultKeyCombinationPaste.
 ]
 
 { #category : #accessing }
 PyramidShortcutCopyPaste >> keyCombinationCopy: aKeyCombination [
 	
 	^ keyCombinationCopy := aKeyCombination
-]
-
-{ #category : #accessing }
-PyramidShortcutCopyPaste >> keyCombinationPaste [
-	"CTRL + V to activate this shortcut"
-	^ keyCombinationPaste ifNil: [
-		  keyCombinationPaste := ((BlKeyCombination builder key: KeyboardKey controlLeft; key: KeyboardKey V) build) ]
 ]
 
 { #category : #accessing }
@@ -97,7 +96,7 @@ PyramidShortcutCopyPaste >> shortcutActionCopy [
 	^ shortcutCopy ifNil: [
 		  shortcutCopy := BlShortcutWithAction new
 			              name: 'Pyramid edition shortcut copy';
-			              combination: self keyCombinationCopy;
+			              combination: keyCombinationCopy;
 			              action: [ :event | self canCopyElement ] ]
 ]
 
@@ -107,6 +106,6 @@ PyramidShortcutCopyPaste >> shortcutActionPaste [
 	^ shortcutPaste ifNil: [
 		  shortcutPaste := BlShortcutWithAction new
 			              name: 'Pyramid edition shortcut Paste';
-			              combination: self keyCombinationPaste;
+			              combination: keyCombinationPaste;
 			              action: [ :event | self canPasteElement ] ]
 ]
