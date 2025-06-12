@@ -5,6 +5,7 @@ Class {
 	#name : #PyramidShortcutRemoveElement,
 	#superclass : #PyramidSpaceShortcutManagerPlugin,
 	#instVars : [
+		'navigationPlugin',
 		'shortcutActionRemoveElement',
 		'keyCombinationRemoveElement'
 	],

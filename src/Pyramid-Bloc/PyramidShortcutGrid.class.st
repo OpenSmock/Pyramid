@@ -5,6 +5,7 @@ Class {
 	#name : #PyramidShortcutGrid,
 	#superclass : #PyramidSpaceShortcutManagerPlugin,
 	#instVars : [
+		'gridFeature',
 		'shortcutGridVisibility',
 		'keyCombinationGridVisibility'
 	],

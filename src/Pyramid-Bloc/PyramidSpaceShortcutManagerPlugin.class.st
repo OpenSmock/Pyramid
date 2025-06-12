@@ -24,13 +24,7 @@ Class {
 		'shortcutSaveAction',
 		'shortcutGrid',
 		'shortcutRemoveElement',
-		'spacePlugin',
-		'historyPlugin',
-		'copyPastePlugin',
-		'copyPasteMenuPanelBuilder',
-		'savePlugin',
-		'gridFeature',
-		'navigationPlugin'
+		'spacePlugin'
 	],
 	#category : #'Pyramid-Bloc-plugin-shortcut-manager'
 }

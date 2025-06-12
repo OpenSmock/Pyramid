@@ -7,6 +7,7 @@ Class {
 	#name : #PyramidShortcutCopyPaste,
 	#superclass : #PyramidSpaceShortcutManagerPlugin,
 	#instVars : [
+		'copyPastePlugin',
 		'shortcutCopy',
 		'shortcutPaste',
 		'keyCombinationCopy',

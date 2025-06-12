@@ -7,6 +7,7 @@ Class {
 	#name : #PyramidShortcutSave,
 	#superclass : #PyramidSpaceShortcutManagerPlugin,
 	#instVars : [
+		'savePlugin',
 		'shortcutSave',
 		'keyCombinationSave'
 	],

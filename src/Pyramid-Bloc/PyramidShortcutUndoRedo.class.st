@@ -7,6 +7,7 @@ Class {
 	#name : #PyramidShortcutUndoRedo,
 	#superclass : #PyramidSpaceShortcutManagerPlugin,
 	#instVars : [
+		'historyPlugin',
 		'shortcutUndo',
 		'keyCombinationUndo',
 		'shortcutRedo',
