@@ -1,5 +1,7 @@
 "
 This class define the shortcut to show or hide the grid on the space.
+
+the grid is define in the plugin-space-extension -> PyramidMainExtension
 "
 Class {
 	#name : #PyramidShortcutGrid,
@@ -7,7 +9,9 @@ Class {
 	#instVars : [
 		'gridFeature',
 		'shortcutGridVisibility',
-		'keyCombinationGridVisibility'
+		'keyCombinationGridVisibility',
+		'keyCombinationTest',
+		'shortcutTest'
 	],
 	#category : #'Pyramid-Bloc-plugin-shortcut-manager'
 }
@@ -41,7 +45,7 @@ PyramidShortcutGrid >> gridFeatureFromSpacePlugin: aPyramidEditor [
 { #category : #initialization }
 PyramidShortcutGrid >> initialize [ 
 	
-	self defaultKeyCombinationGridVisibility 
+	self defaultKeyCombinationGridVisibility.
 ]
 
 { #category : #accessing }

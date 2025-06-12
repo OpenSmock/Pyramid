@@ -1,5 +1,5 @@
 "
-This class is used to create the shortcut for copy and paste.
+This class is used to create the shortcut for copy and paste -> use the plugin-copy-paste from this package.
 
 It use the editor to get the collection of selected object from project model in Pyramid space.
 "

@@ -1,5 +1,7 @@
 "
 This class define the shortcut to delete a selected element in the space.
+
+it use the plugin-navigation in this package.
 "
 Class {
 	#name : #PyramidShortcutRemoveElement,
