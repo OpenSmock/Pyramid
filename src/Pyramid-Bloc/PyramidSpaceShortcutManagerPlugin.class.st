@@ -51,12 +51,12 @@ PyramidSpaceShortcutManagerPlugin class >> pyramidSettingOn: aBuilder [
 PyramidSpaceShortcutManagerPlugin class >> shortcutCopySettingOn: aBuilder [
 	<systemsettings>
 
-	(aBuilder setting: #nothing)
+	"(aBuilder setting: #nothing)
 		parent: #pyramidShortcut;
 		label: 'Copy';
 		target: self;
 		dialog: [ self copyShortcutButton: aBuilder ];
-		description: 'Salut'
+		description: 'Salut'"
 ]
 
 { #category : #accessing }

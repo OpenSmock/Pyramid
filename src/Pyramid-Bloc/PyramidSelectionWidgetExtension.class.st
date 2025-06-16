@@ -255,6 +255,7 @@ PyramidSelectionWidgetExtension >> projectModel: aProjectModel [
 		do: [ :evt | self pyramidSelectionChanged: evt ]
 		for: self.
 	self makeNewSelection
+	
 ]
 
 { #category : #events }
