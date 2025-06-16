@@ -10,8 +10,7 @@ Class {
 		'isDragging',
 		'dragOrigin',
 		'movingLap',
-		'childCurrentTranslation',
-		'childPositionDragStart'
+		'childCurrentTranslation'
 	],
 	#category : #'Pyramid-Bloc-plugin-space-extensions'
 }
@@ -47,7 +46,9 @@ PyramidSelectionWidgetExtension >> centerDragEnd: anEvent [
 	movingLap = 1
 	ifTrue: [ self usePositionOffsetCommand: anEvent position - self dragOrigin ]
 	ifFalse: [ (PyramidElementsManipulationHelper onlyParents: self projectModel selection asArray) do: [ :selectedElement | 
-			selectedElement position: (self additionPoint: childPositionDragStart with: self childCurrentTranslation) ] ].
+			selectedElement position: (self additionPoint: (((selectedElement position/movingLap) rounded) * movingLap) 
+																 with: self childCurrentTranslation) ]
+	].
 	
 	anEvent consumed: true.
 	self widgetElement transformDo: [ :t | t translateBy: 0 @ 0 ].
@@ -64,10 +65,10 @@ PyramidSelectionWidgetExtension >> centerDragEvent: anEvent [
 	anEvent primaryButtonPressed ifFalse: [
 		self centerDragEnd: anEvent.
 		^ self ].
+	self childCurrentTranslation: ((((anEvent position - self dragOrigin)/movingLap)rounded) * movingLap).
 	self widgetElement transformDo: [ :t |
 		"Move the dragged and selected element with the lap of the grid spacing"
-		t translateBy: ((((anEvent position - self dragOrigin)/movingLap)rounded) * movingLap).
-		self childCurrentTranslation: ((((anEvent position - self dragOrigin)/movingLap)rounded) * movingLap) ].
+		t translateBy: self childCurrentTranslation ].
 	anEvent consumed: true
 ]
 
@@ -80,10 +81,9 @@ PyramidSelectionWidgetExtension >> centerDragStart: anEvent [
 	self widgetElement childrenDo: [ :child |
 		"Put the position of the begin dragged selected element on the grid if active"
 		child position: (((child position/movingLap)rounded)*movingLap).
-		self childPositionDragStart: (((child position/movingLap)rounded)*movingLap).
 		child
 			childWithId: #drag_ghost
-			ifFound: [ :ghost | ghost visibility: BlVisibility visible ] ]
+			ifFound: [ :ghost | ghost visibility: BlVisibility visible ] ].
 ]
 
 { #category : #accessing }
@@ -96,12 +96,6 @@ PyramidSelectionWidgetExtension >> childCurrentTranslation [
 PyramidSelectionWidgetExtension >> childCurrentTranslation: aPoint [
 
 	childCurrentTranslation := aPoint
-]
-
-{ #category : #accessing }
-PyramidSelectionWidgetExtension >> childPositionDragStart: aPoint [
-
-	childPositionDragStart := aPoint
 ]
 
 { #category : #accessing }
