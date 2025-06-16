@@ -48,7 +48,7 @@ PyramidSelectionWidgetExtension >> centerDragEnd: anEvent [
 	ifTrue: [ self usePositionOffsetCommand: self childCurrentTranslation "anEvent position - self dragOrigin" ]
 	ifFalse: [ (PyramidElementsManipulationHelper onlyParents: self projectModel selection asArray) do: [ :selectedElement | 
 			selectedElement position: (self additionPoint: (("("selectedElement position - movingForGrid )"/movingLap) rounded) * movingLap") 
-																 with: self childCurrentTranslation).self inform: selectedElement bounds asString ]
+																 with: self childCurrentTranslation) ]
 	].
 	
 	anEvent consumed: true.
