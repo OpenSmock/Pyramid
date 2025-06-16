@@ -11,7 +11,7 @@ Class {
 		'dragOrigin',
 		'movingLap',
 		'childCurrentTranslation',
-		'childPositionStart'
+		'childPositionDragStart'
 	],
 	#category : #'Pyramid-Bloc-plugin-space-extensions'
 }
@@ -47,7 +47,7 @@ PyramidSelectionWidgetExtension >> centerDragEnd: anEvent [
 	movingLap = 1
 	ifTrue: [ self usePositionOffsetCommand: anEvent position - self dragOrigin ]
 	ifFalse: [ (PyramidElementsManipulationHelper onlyParents: self projectModel selection asArray) do: [ :selectedElement | 
-			selectedElement position: (self additionPoint: childPositionStart with: self childCurrentTranslation) ] ].
+			selectedElement position: (self additionPoint: childPositionDragStart with: self childCurrentTranslation) ] ].
 	
 	anEvent consumed: true.
 	self widgetElement transformDo: [ :t | t translateBy: 0 @ 0 ].
@@ -80,7 +80,7 @@ PyramidSelectionWidgetExtension >> centerDragStart: anEvent [
 	self widgetElement childrenDo: [ :child |
 		"Put the position of the begin dragged selected element on the grid if active"
 		child position: (((child position/movingLap)rounded)*movingLap).
-		self childPositionStart: (((child position/movingLap)rounded)*movingLap).
+		self childPositionDragStart: (((child position/movingLap)rounded)*movingLap).
 		child
 			childWithId: #drag_ghost
 			ifFound: [ :ghost | ghost visibility: BlVisibility visible ] ]
@@ -99,9 +99,9 @@ PyramidSelectionWidgetExtension >> childCurrentTranslation: aPoint [
 ]
 
 { #category : #accessing }
-PyramidSelectionWidgetExtension >> childPositionStart: aPoint [
+PyramidSelectionWidgetExtension >> childPositionDragStart: aPoint [
 
-	childPositionStart := aPoint
+	childPositionDragStart := aPoint
 ]
 
 { #category : #accessing }
