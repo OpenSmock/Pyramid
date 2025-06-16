@@ -8,10 +8,30 @@ Class {
 		'widgetElement',
 		'commandExecutor',
 		'isDragging',
-		'dragOrigin'
+		'dragOrigin',
+		'movingLap',
+		'childCurrentTranslation',
+		'childPositionStart'
 	],
 	#category : #'Pyramid-Bloc-plugin-space-extensions'
 }
+
+{ #category : #'as yet unclassified' }
+PyramidSelectionWidgetExtension >> additionPoint: aPoint1 with: aPoint2 [
+
+	| x1 x2 y1 y2 x y |
+	x1 := aPoint1 x.
+	y1 := aPoint1 y.
+	
+	x2 := aPoint2 x.
+	y2 := aPoint2 y.
+	
+	x := x1 + x2.
+	y := y1 + y2.
+	
+	^x@y
+	
+]
 
 { #category : #'as yet unclassified' }
 PyramidSelectionWidgetExtension >> alphaFactor [
@@ -22,14 +42,19 @@ PyramidSelectionWidgetExtension >> alphaFactor [
 { #category : #'as yet unclassified' }
 PyramidSelectionWidgetExtension >> centerDragEnd: anEvent [
 
-	anEvent consumed: true.
+	
 	self isDragging: false.
-	self usePositionOffsetCommand: anEvent position - self dragOrigin.
+	movingLap = 1
+	ifTrue: [ self usePositionOffsetCommand: anEvent position - self dragOrigin ]
+	ifFalse: [ (PyramidElementsManipulationHelper onlyParents: self projectModel selection asArray) do: [ :selectedElement | 
+			selectedElement position: (self additionPoint: childPositionStart with: self childCurrentTranslation) ] ].
+	
+	anEvent consumed: true.
 	self widgetElement transformDo: [ :t | t translateBy: 0 @ 0 ].
 	self widgetElement childrenDo: [ :child |
-		child
+		child 
 			childWithId: #drag_ghost
-			ifFound: [ :ghost | ghost visibility: BlVisibility hidden ] ]
+			ifFound: [ :ghost | ghost visibility: BlVisibility hidden. ] ]
 ]
 
 { #category : #'as yet unclassified' }
@@ -40,20 +65,43 @@ PyramidSelectionWidgetExtension >> centerDragEvent: anEvent [
 		self centerDragEnd: anEvent.
 		^ self ].
 	self widgetElement transformDo: [ :t |
-		t translateBy: anEvent position - self dragOrigin ].
+		"Move the dragged and selected element with the lap of the grid spacing"
+		t translateBy: ((((anEvent position - self dragOrigin)/movingLap)rounded) * movingLap).
+		self childCurrentTranslation: ((((anEvent position - self dragOrigin)/movingLap)rounded) * movingLap) ].
 	anEvent consumed: true
 ]
 
 { #category : #'as yet unclassified' }
 PyramidSelectionWidgetExtension >> centerDragStart: anEvent [
-
+	
 	self isDragging: true.
 	self dragOrigin: anEvent position.
 	anEvent consumed: true.
 	self widgetElement childrenDo: [ :child |
+		"Put the position of the begin dragged selected element on the grid if active"
+		child position: (((child position/movingLap)rounded)*movingLap).
+		self childPositionStart: (((child position/movingLap)rounded)*movingLap).
 		child
 			childWithId: #drag_ghost
 			ifFound: [ :ghost | ghost visibility: BlVisibility visible ] ]
+]
+
+{ #category : #accessing }
+PyramidSelectionWidgetExtension >> childCurrentTranslation [
+
+	^ childCurrentTranslation
+]
+
+{ #category : #accessing }
+PyramidSelectionWidgetExtension >> childCurrentTranslation: aPoint [
+
+	childCurrentTranslation := aPoint
+]
+
+{ #category : #accessing }
+PyramidSelectionWidgetExtension >> childPositionStart: aPoint [
+
+	childPositionStart := aPoint
 ]
 
 { #category : #accessing }
@@ -101,7 +149,8 @@ PyramidSelectionWidgetExtension >> initialize [
 		                 zIndex: 1;
 		                 yourself.
 	dragOrigin := 0 @ 0.
-	isDragging := false
+	isDragging := false.
+	movingLap := 1.
 ]
 
 { #category : #displaying }
@@ -175,6 +224,12 @@ PyramidSelectionWidgetExtension >> makeNewSelection [
 		overlayElement id: ('overlay', nb asString) asSymbol.
 		self widgetElement addChild: overlayElement. 
 	]
+]
+
+{ #category : #accessing }
+PyramidSelectionWidgetExtension >> movingLap: aLap [
+
+	movingLap := aLap.
 ]
 
 { #category : #'as yet unclassified' }

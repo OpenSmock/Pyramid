@@ -14,7 +14,8 @@ Class {
 		'gridElement',
 		'gridVisibility',
 		'gridSpacing',
-		'gridColor'
+		'gridColor',
+		'selectionWidgetExtensionPlugin'
 	],
 	#category : #'Pyramid-Bloc-plugin-space-extensions'
 }
@@ -44,8 +45,9 @@ PyramidMainExtension >> createGrid [
 									color: gridColor 
 									width: (gridWindowSize x) 
 									height: (gridWindowSize y).
-								].
-				
+									selectionWidgetExtensionPlugin movingLap: self gridSpacing
+								]
+						ifFalse: [ selectionWidgetExtensionPlugin movingLap: 1 ].
 	
 	 
 ]
@@ -84,7 +86,9 @@ PyramidMainExtension >> defaultGridVisibility [
 PyramidMainExtension >> editor: aPyramidEditor [
 
 	aPyramidEditor window at: #topRight addItem: [ :buttonBuilder |
-		buttonBuilder makeButtonWithIcon: self windowPropertiesButton order: 10 ]
+		buttonBuilder makeButtonWithIcon: self workplacePropertiesButton order: 10 ].
+	
+	self getSelectionWidgetExtension: aPyramidEditor.
 ]
 
 { #category : #geometry }
@@ -97,6 +101,25 @@ PyramidMainExtension >> extent: aPoint [
 	self createGrid.
 	
 
+]
+
+{ #category : #'as yet unclassified' }
+PyramidMainExtension >> getSelectionWidgetExtension: aPyramidEditor [
+
+	| spacePlugin spacePluginList listOfSpaceExtension selectionWidgetExtensionSet selectionWidgetExtension |
+	
+	spacePluginList := aPyramidEditor plugins select: [ :plugin | plugin isKindOf: PyramidSpacePlugin ].
+	spacePluginList size = 1
+	ifFalse: [^ self].
+	spacePluginList do: [ :plug | spacePlugin := plug ].
+	
+	listOfSpaceExtension := spacePlugin builder extensions.
+	selectionWidgetExtensionSet := listOfSpaceExtension select: [ :extensions | extensions isKindOf: PyramidSelectionWidgetExtension ].
+	selectionWidgetExtensionSet size = 1
+	ifFalse: [^ self].
+	selectionWidgetExtensionSet do: [ :extension | selectionWidgetExtension := extension ].
+	
+	selectionWidgetExtensionPlugin := selectionWidgetExtension.
 ]
 
 { #category : #'as yet unclassified' }
@@ -330,13 +353,14 @@ PyramidMainExtension >> sizeElement [
 
 { #category : #'as yet unclassified' }
 PyramidMainExtension >> switchGridvisibility [
-
+	"Switch the visibility from true to false or false to true"
 	gridVisibility := self gridVisibility not.
+	
 	^ self gridVisibility
 ]
 
 { #category : #accessing }
-PyramidMainExtension >> windowPropertiesButton [
+PyramidMainExtension >> workplacePropertiesButton [
 
 	^ workplacePropertiesButton
 ]

@@ -30,8 +30,8 @@ PyramidShortcutGrid >> gridFeatureFromSpacePlugin: aPyramidEditor [
 	spacePluginList := aPyramidEditor plugins select: [ :plugin | plugin isKindOf: PyramidSpacePlugin ].
 	spacePluginList size = 1
 	ifFalse: [^ self].
-	
 	spacePluginList do: [ :plug | spacePlugin := plug ].
+	
 	listOfSpaceExtension := spacePlugin builder extensions.
 	pyramidMainExtensionSet := listOfSpaceExtension select: [ :extensions | extensions isKindOf: PyramidMainExtension ].
 	pyramidMainExtensionSet size = 1

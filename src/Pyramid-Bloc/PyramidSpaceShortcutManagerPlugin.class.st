@@ -29,6 +29,42 @@ Class {
 	#category : #'Pyramid-Bloc-plugin-shortcut-manager'
 }
 
+{ #category : #copying }
+PyramidSpaceShortcutManagerPlugin class >> copyShortcutButton: aBuilder [
+
+	^ self theme newRowIn: self for: {
+		"Default shortcut is F12 because it is usually use to enter dev mode in webbrowsers"
+		self theme buttonLabelForText: 'Bonjour' translated.
+	}
+]
+
+{ #category : #settings }
+PyramidSpaceShortcutManagerPlugin class >> pyramidSettingOn: aBuilder [
+	<systemsettings>
+
+	(aBuilder group: #pyramidShortcut)
+		label: 'Pyramid Shortcut';
+		description: 'Settings related to Pyramid shortcut editor'.
+]
+
+{ #category : #settings }
+PyramidSpaceShortcutManagerPlugin class >> shortcutCopySettingOn: aBuilder [
+	<systemsettings>
+
+	(aBuilder setting: #nothing)
+		parent: #pyramidShortcut;
+		label: 'Copy';
+		target: self;
+		dialog: [ self copyShortcutButton: aBuilder ];
+		description: 'Salut'
+]
+
+{ #category : #accessing }
+PyramidSpaceShortcutManagerPlugin class >> theme [
+
+	^ Smalltalk ui theme
+]
+
 { #category : #adding }
 PyramidSpaceShortcutManagerPlugin >> addAllShortcutInCollection [
 	"Default values of the different shortcut"
@@ -100,7 +136,7 @@ PyramidSpaceShortcutManagerPlugin >> connectOn: aPyramidEditor [
 
 { #category : #initialization }
 PyramidSpaceShortcutManagerPlugin >> initialize [ 
-	
+
 	shortcutCollection := OrderedCollection new.
 	
 	shortcutUndoRedo := PyramidShortcutUndoRedo new.

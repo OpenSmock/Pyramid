@@ -24,7 +24,7 @@ PyramidShortcutCopyPaste >> canCopyElement [
 	ifTrue: [ ^ self ].
 	elementCollectionSelected size = 1
 	ifTrue: [ elementCollectionSelected do: [ :element | copyPastePlugin copyAsStonInClipboard: element ]. ]
-	ifFalse: [ ^ self ]
+	ifFalse: [ self inform: 'Can not copy multiple element' ]
 	
 	
 	
@@ -37,7 +37,7 @@ PyramidShortcutCopyPaste >> canPasteElement [
 	ifTrue: [ copyPastePlugin pasteFromClipboardOnFirstLevelElements ].
 	elementCollectionSelected size = 1
 	ifTrue: [ elementCollectionSelected do: [ :element | copyPastePlugin pasteFromClipboardOnSelection: element ]. ]
-	ifFalse: [ ^ self ]
+	ifFalse: [ ^ self inform: 'You can only paste in one or no selected element' ]
 	
 	
 	
@@ -104,7 +104,7 @@ PyramidShortcutCopyPaste >> shortcutActionCopy [
 PyramidShortcutCopyPaste >> shortcutActionPaste [
 
 	^ shortcutPaste := BlShortcutWithAction new
-			              name: 'Pyramid edition shortcut Paste';
+			              name: 'Pyramid edition shortcut paste';
 			              combination: keyCombinationPaste;
 			              action: [ :event | self canPasteElement ]
 ]
