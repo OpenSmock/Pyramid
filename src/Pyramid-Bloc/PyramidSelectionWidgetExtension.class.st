@@ -44,13 +44,7 @@ PyramidSelectionWidgetExtension >> centerDragEnd: anEvent [
 
 	
 	self isDragging: false.
-	movingLap = 1
-	ifTrue: [ self usePositionOffsetCommand: self childCurrentTranslation "anEvent position - self dragOrigin" ]
-	ifFalse: [ (PyramidElementsManipulationHelper onlyParents: self projectModel selection asArray) do: [ :selectedElement | 
-			selectedElement position: (self additionPoint: (("("selectedElement position - movingForGrid )"/movingLap) rounded) * movingLap") 
-																 with: self childCurrentTranslation) ]
-	].
-	
+	self usePositionOffsetCommand: self childCurrentTranslation - movingForGrid.
 	anEvent consumed: true.
 	self widgetElement transformDo: [ :t | t translateBy: 0 @ 0 ].
 	self widgetElement childrenDo: [ :child |
@@ -81,14 +75,15 @@ PyramidSelectionWidgetExtension >> centerDragStart: anEvent [
 	self isDragging: true.
 	self dragOrigin: anEvent position.
 	anEvent consumed: true.
-	"Get the repositionning of the selected element when the grid is active"
+	
+	"Get the repositionning of the first selected element when the grid is active"
 	firstSelected := self widgetElement children at:1.
 	currentPos := firstSelected position.
 	self movingForGrid: (currentPos - (((firstSelected position/movingLap)rounded)*movingLap)).
 
 	self widgetElement childrenDo: [ :child |
-		"Put the position of the begin dragged selected ghost element on the grid if active"
-		child position: "(((child position/movingLap)rounded)*movingLap)"(child position - movingForGrid).
+		"Put the reposition of the first selected element to all selected element"
+		child position: (child position - movingForGrid).
 		child
 			childWithId: #drag_ghost
 			ifFound: [ :ghost | ghost visibility: BlVisibility visible ] ].
