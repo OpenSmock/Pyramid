@@ -1,7 +1,7 @@
 Class {
 	#name : #PyramidAddToCollectionCommand,
 	#superclass : #PyramidCollectionCommand,
-	#category : 'Pyramid-commands'
+	#category : #'Pyramid-commands'
 }
 
 { #category : #'as yet unclassified' }

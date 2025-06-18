@@ -9,7 +9,7 @@ Class {
 		'cluster',
 		'property'
 	],
-	#category : 'Pyramid-property'
+	#category : #'Pyramid-property'
 }
 
 { #category : #testing }

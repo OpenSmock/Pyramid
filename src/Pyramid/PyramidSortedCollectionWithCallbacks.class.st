@@ -4,7 +4,7 @@ Class {
 	#instVars : [
 		'sortFunction'
 	],
-	#category : 'Pyramid-models'
+	#category : #'Pyramid-models'
 }
 
 { #category : #signalling }

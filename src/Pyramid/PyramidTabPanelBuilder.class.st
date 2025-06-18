@@ -5,7 +5,7 @@ Class {
 		'presenter',
 		'item'
 	],
-	#category : 'Pyramid-views'
+	#category : #'Pyramid-views'
 }
 
 { #category : #accessing }

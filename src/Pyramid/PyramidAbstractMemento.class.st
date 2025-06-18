@@ -1,7 +1,7 @@
 Class {
 	#name : #PyramidAbstractMemento,
 	#superclass : #Object,
-	#category : 'Pyramid-history'
+	#category : #'Pyramid-history'
 }
 
 { #category : #testing }

@@ -4,7 +4,7 @@ Class {
 	#instVars : [
 		'projectModel'
 	],
-	#category : 'Pyramid-plugin-playground'
+	#category : #'Pyramid-plugin-playground'
 }
 
 { #category : #accessing }

@@ -7,7 +7,7 @@ Class {
 		'multiGroups',
 		'singleGroups'
 	],
-	#category : 'Pyramid-views'
+	#category : #'Pyramid-views'
 }
 
 { #category : #adding }

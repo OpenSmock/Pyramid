@@ -1,7 +1,7 @@
 Class {
 	#name : #PyramidMixedValues,
 	#superclass : #PyramidUnknowState,
-	#category : 'Pyramid-specs-custom'
+	#category : #'Pyramid-specs-custom'
 }
 
 { #category : #converting }
