@@ -18,18 +18,8 @@ Class {
 
 { #category : #'as yet unclassified' }
 PyramidSelectionWidgetExtension >> additionPoint: aPoint1 with: aPoint2 [
-
-	| x1 x2 y1 y2 x y |
-	x1 := aPoint1 x.
-	y1 := aPoint1 y.
 	
-	x2 := aPoint2 x.
-	y2 := aPoint2 y.
-	
-	x := x1 + x2.
-	y := y1 + y2.
-	
-	^x@y
+	^ (aPoint1 x + aPoint2 x) @ (aPoint1 y + aPoint2 y)
 	
 ]
 
