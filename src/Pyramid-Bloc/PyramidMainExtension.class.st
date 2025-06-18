@@ -15,7 +15,7 @@ Class {
 		'gridVisibility',
 		'gridSpacing',
 		'gridColor',
-		'selectionWidgetExtensionPlugin'
+		'selectionWidgetExtension'
 	],
 	#category : #'Pyramid-Bloc-plugin-space-extensions'
 }
@@ -45,9 +45,9 @@ PyramidMainExtension >> createGrid [
 									color: gridColor 
 									width: (gridWindowSize x) 
 									height: (gridWindowSize y).
-									selectionWidgetExtensionPlugin movingLap: self gridSpacing
+									selectionWidgetExtension movingLap: self gridSpacing
 								]
-						ifFalse: [ selectionWidgetExtensionPlugin movingLap: 1 ].
+						ifFalse: [ selectionWidgetExtension movingLap: 1 ].
 	
 	 
 ]
@@ -106,20 +106,19 @@ PyramidMainExtension >> extent: aPoint [
 { #category : #'as yet unclassified' }
 PyramidMainExtension >> getSelectionWidgetExtension: aPyramidEditor [
 
-	| spacePlugin spacePluginList listOfSpaceExtension selectionWidgetExtensionSet selectionWidgetExtension |
+	| spacePlugin spacePluginList listOfSpaceExtension selectionWidgetExtensionSet |
 	
 	spacePluginList := aPyramidEditor plugins select: [ :plugin | plugin isKindOf: PyramidSpacePlugin ].
 	spacePluginList size = 1
 	ifFalse: [^ self].
-	spacePluginList do: [ :plug | spacePlugin := plug ].
+	spacePlugin := spacePluginList asArray first.
 	
 	listOfSpaceExtension := spacePlugin builder extensions.
 	selectionWidgetExtensionSet := listOfSpaceExtension select: [ :extensions | extensions isKindOf: PyramidSelectionWidgetExtension ].
 	selectionWidgetExtensionSet size = 1
 	ifFalse: [^ self].
-	selectionWidgetExtensionSet do: [ :extension | selectionWidgetExtension := extension ].
 	
-	selectionWidgetExtensionPlugin := selectionWidgetExtension.
+	selectionWidgetExtension := (selectionWidgetExtensionSet asArray) first
 ]
 
 { #category : #'as yet unclassified' }
