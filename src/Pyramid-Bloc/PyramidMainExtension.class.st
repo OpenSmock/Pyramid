@@ -26,6 +26,12 @@ PyramidMainExtension >> borderElement [
 	^ borderElement
 ]
 
+{ #category : #'as yet unclassified' }
+PyramidMainExtension >> checkZeroOrSubZeroGridSpacingValue: aValue [
+
+	^ aValue < 1
+]
+
 { #category : #accessing }
 PyramidMainExtension >> containerElement [
 
@@ -40,14 +46,14 @@ PyramidMainExtension >> createGrid [
 	self gridElement removeChildWithId: #gridVertical.
 	
 	"Create the grid if gridVisibility is true"
-	gridVisibility ifTrue: [ self grid: gridElement 
-									cellSpacing: gridSpacing 
-									color: gridColor 
-									width: (gridWindowSize x) 
-									height: (gridWindowSize y).
-									selectionWidgetExtension movingLap: self gridSpacing
+	gridVisibility ifTrue: [	self grid: self gridElement 
+									cellSpacing: self gridSpacing 
+									color: self gridColor 
+									width: (self gridWindowSize x) 
+									height: (self gridWindowSize y).
+									self selectionWidgetExtension movingLap: self gridSpacing
 								]
-						ifFalse: [ selectionWidgetExtension movingLap: 1 ].
+						ifFalse: [ self selectionWidgetExtension movingLap: 1 ].
 	
 	 
 ]
@@ -175,6 +181,12 @@ PyramidMainExtension >> grid: aParent cellSpacing: aNumber color: aColor width: 
 			elementGridVertical }
 ]
 
+{ #category : #accessing }
+PyramidMainExtension >> gridColor [
+
+	^ gridColor
+]
+
 { #category : #'as yet unclassified' }
 PyramidMainExtension >> gridDefaultValueInitializer [
 	
@@ -220,40 +232,51 @@ PyramidMainExtension >> informTransformationChanged [
 
 { #category : #initialization }
 PyramidMainExtension >> initialize [
-	
 	"Set the default parameter value of the grid"
+
 	gridWindowSize := self defaultExtent.
 	gridVisibility := self defaultGridVisibility.
 	gridSpacing := self defaultGridSpacing.
 	gridColor := self defaultGridColor.
-	
+
 	"Set up the graphical parameter windows of the grid and the space extension"
 	workplacePropertiesView := PyramidWorkplacePropertiesPresenter new
-									workplaceSizeValue: self defaultExtent;
-									whenWorkplaceValuesChangedDo: [ :point | 
-																		self extent: point ];	
-									whenVisibilityChangedDo: [ self switchGridvisibility. 
-																		self createGrid ];
-									spacingTextValue: self defaultGridSpacing;
-									whenSpacingTextChangedDo: [ :value | 
-																		gridSpacing := value. self createGrid ];
-									gridColorValue: self defaultGridColor;
-									whenColorValuesChangedDo: [ :color | 
-																		gridColor := color. self createGrid ];
-									yourself.
-	
+		                           workplaceSizeValue: self defaultExtent;
+		                           whenWorkplaceValuesChangedDo: [ :point |
+												self extent: point ];
+		                           whenVisibilityChangedDo: [
+												self switchGridvisibility.
+												self createGrid ];
+		                           spacingTextValue: self defaultGridSpacing;
+		                           whenSpacingTextChangedDo: [ :value | 
+												(self checkZeroOrSubZeroGridSpacingValue: value)
+												ifTrue: [ gridSpacing := 1. self workplacePropertiesView spacingTextValue: 1 ]
+												ifFalse: [ gridSpacing := value ].
+												self createGrid ];
+		                           gridColorValue: self defaultGridColor;
+		                           whenColorValuesChangedDo: [ :color |
+												gridColor := color.
+												self createGrid ];
+		                           yourself.
+
 	"Button of the pop-up windows properties who call the creation of the pop-up"
 	workplacePropertiesButton := SpButtonPresenter new
-		                icon: (Smalltalk ui icons iconNamed: #window);
-		                help: 'Edit the properties of the workplace';
-		                action: [ workplacePropertiesPopover popup. self refreshPopupWorkplaceProperties ];
-		                yourself.
-	
+		                             icon:
+			                             (Smalltalk ui icons iconNamed: #window);
+		                             help:
+			                             'Edit the properties of the workplace';
+		                             action: [
+			                             self workplacePropertiesPopover popup.
+			                             self refreshPopupWorkplaceProperties ];
+		                             yourself.
+
 	"Creation of the pop-up"
 	workplacePropertiesPopover := PyramidPopoverFactory
-		                 makeWithPresenter: workplacePropertiesView
-		                 relativeTo: workplacePropertiesButton
-		                 position: SpPopoverPosition left.
+		                              makeWithPresenter:
+		                              self workplacePropertiesView
+		                              relativeTo:
+		                              self workplacePropertiesButton
+		                              position: SpPopoverPosition left.
 
 	containerElement := BlElement new
 		                    id: #MainExtension_containerElement;
@@ -263,7 +286,7 @@ PyramidMainExtension >> initialize [
 		                    clipChildren: false;
 		                    zIndex: 0;
 		                    yourself.
-	
+
 	"Blue frame in the space"
 	borderElement := BlElement new
 		                 id: #MainExtension_borderElement;
@@ -274,17 +297,17 @@ PyramidMainExtension >> initialize [
 			                 c horizontal matchParent ];
 		                 clipChildren: false;
 		                 zIndex: 1;
-								preventMeAndChildrenMouseEvents;
-		                 yourself. 
-	
+		                 preventMeAndChildrenMouseEvents;
+		                 yourself.
+
 	"The BlElement contain the grid"
 	gridElement := BlElement new
-							id: #MainExtension_gridElement;
-							constraintsDo: [ :c |
-								c vertical matchParent.
-								c horizontal matchParent ];
-							zIndex: 0.
-	
+		               id: #MainExtension_gridElement;
+		               constraintsDo: [ :c |
+			               c vertical matchParent.
+			               c horizontal matchParent ];
+		               zIndex: 0.
+
 	sizeElement := BlElement new
 		               id: #MainExtension_sizeElement;
 		               size: self defaultExtent;
@@ -292,9 +315,7 @@ PyramidMainExtension >> initialize [
 		               addChildren: {
 				               containerElement.
 				               borderElement.
-									gridElement
-											 } yourself.
-	
+				               gridElement } yourself
 ]
 
 { #category : #displaying }
@@ -345,6 +366,12 @@ PyramidMainExtension >> refreshPopupWorkplaceProperties [
 ]
 
 { #category : #accessing }
+PyramidMainExtension >> selectionWidgetExtension [
+
+	^ selectionWidgetExtension
+]
+
+{ #category : #accessing }
 PyramidMainExtension >> sizeElement [
 
 	^ sizeElement
@@ -362,6 +389,12 @@ PyramidMainExtension >> switchGridvisibility [
 PyramidMainExtension >> workplacePropertiesButton [
 
 	^ workplacePropertiesButton
+]
+
+{ #category : #accessing }
+PyramidMainExtension >> workplacePropertiesPopover [
+
+	^ workplacePropertiesPopover
 ]
 
 { #category : #accessing }

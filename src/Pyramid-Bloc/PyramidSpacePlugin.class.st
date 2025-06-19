@@ -36,7 +36,7 @@ PyramidSpacePlugin >> connectOn: aPyramidEditor [
 
 { #category : #initialization }
 PyramidSpacePlugin >> initialize [
-
+	
 	builder := PyramidSpaceBuilder defaultEditorBuilder.
 	morphicPresenter := SpMorphPresenter new.
 	resetSpaceButton := SpButtonPresenter new
