@@ -250,7 +250,7 @@ PyramidMainExtension >> initialize [
 		                           spacingTextValue: self defaultGridSpacing;
 		                           whenSpacingTextChangedDo: [ :value | 
 												(self checkZeroOrSubZeroGridSpacingValue: value)
-												ifTrue: [ gridSpacing := 1. self workplacePropertiesView spacingTextValue: 1 ]
+												ifTrue: [ gridSpacing := self defaultGridSpacing ]
 												ifFalse: [ gridSpacing := value ].
 												self createGrid ];
 		                           gridColorValue: self defaultGridColor;

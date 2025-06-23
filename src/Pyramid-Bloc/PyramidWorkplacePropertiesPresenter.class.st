@@ -115,7 +115,7 @@ PyramidWorkplacePropertiesPresenter >> initializePresenter [
 						yourself.
 	
 	spacingLabel := (SpLabelPresenter new label: 'Spacing :'; yourself).
-	spacingText := PyramidNumberInputPresenter new.
+	spacingText := "PyramidNumberInputPresenter"PyramidNumberFilterOnlyDigitsInputPresenter new.
 						
 	gridColorLabel := (SpLabelPresenter new label: 'Color :'; yourself).
 	gridColor := PyramidColorInputSingleLineWithPickupButtonPresenter new.
@@ -137,7 +137,8 @@ PyramidWorkplacePropertiesPresenter >> spacingTextValue [
 { #category : #'as yet unclassified' }
 PyramidWorkplacePropertiesPresenter >> spacingTextValue: aValue [
 	
-	spacingText value: aValue
+	self spacingText value: aValue.
+	self spacingText defaultValue: aValue
 ]
 
 { #category : #accessing }

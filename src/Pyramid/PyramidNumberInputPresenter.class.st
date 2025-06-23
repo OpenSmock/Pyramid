@@ -34,7 +34,8 @@ PyramidNumberInputPresenter >> getNumberFrom: aString [
 { #category : #'initialization - deprecated' }
 PyramidNumberInputPresenter >> initializePresenters [
 
-	inputNumber := SpTextInputFieldPresenter new whenSubmitDo: [ :text | 
+	inputNumber := SpTextInputFieldPresenter new
+							whenSubmitDo: [ :text | 
 								self submitBlock value: (self getNumberFrom: text); yourself ]
 ]
 
