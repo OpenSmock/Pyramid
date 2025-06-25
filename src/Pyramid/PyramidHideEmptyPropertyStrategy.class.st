@@ -11,7 +11,7 @@ In other terms, any property who is not linked to any object in the collection w
 Class {
 	#name : #PyramidHideEmptyPropertyStrategy,
 	#superclass : #PyramidPresenterPropertiesStrategy,
-	#category : 'Pyramid-property'
+	#category : #'Pyramid-property'
 }
 
 { #category : #'as yet unclassified' }

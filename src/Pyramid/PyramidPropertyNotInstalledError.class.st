@@ -5,7 +5,7 @@ Class {
 		'manager',
 		'property'
 	],
-	#category : 'Pyramid-property'
+	#category : #'Pyramid-property'
 }
 
 { #category : #accessing }

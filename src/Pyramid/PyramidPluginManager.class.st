@@ -7,7 +7,7 @@ Class {
 	#classInstVars : [
 		'uniqueInstance'
 	],
-	#category : 'Pyramid-core'
+	#category : #'Pyramid-core'
 }
 
 { #category : #'instance creation' }

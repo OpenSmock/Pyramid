@@ -5,7 +5,7 @@ Class {
 		'collection',
 		'subscriptions'
 	],
-	#category : 'Pyramid-models'
+	#category : #'Pyramid-models'
 }
 
 { #category : #adding }

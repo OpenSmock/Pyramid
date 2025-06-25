@@ -7,7 +7,7 @@ Class {
 		'window',
 		'presenter'
 	],
-	#category : 'Pyramid-views'
+	#category : #'Pyramid-views'
 }
 
 { #category : #accessing }

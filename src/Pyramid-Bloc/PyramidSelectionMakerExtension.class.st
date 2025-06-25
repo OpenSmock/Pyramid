@@ -66,7 +66,7 @@ PyramidSelectionMakerExtension >> dragEnd: anEvent [
 { #category : #'event handling' }
 PyramidSelectionMakerExtension >> dragEvent: anEvent [
 
-	| xmin ymin |
+	| xmin ymin "newY newX" |
 	self isDragging ifFalse: [ ^ self ].
 	(anEvent primaryButtonPressed or: [ anEvent secondaryButtonPressed ])
 		ifFalse: [
@@ -75,6 +75,7 @@ PyramidSelectionMakerExtension >> dragEvent: anEvent [
 
 	xmin := self dragOrigin x min: anEvent position x.
 	ymin := self dragOrigin y min: anEvent position y.
+	
 	self selectionGhost
 		position: xmin @ ymin;
 		size: (anEvent position - self dragOrigin) abs

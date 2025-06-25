@@ -1,7 +1,7 @@
 Class {
 	#name : #PyramidCollectionCommand,
 	#superclass : #PyramidCommand,
-	#category : 'Pyramid-commands'
+	#category : #'Pyramid-commands'
 }
 
 { #category : #testing }

@@ -6,7 +6,7 @@ Class {
 		'constraints',
 		'order'
 	],
-	#category : 'Pyramid-views'
+	#category : #'Pyramid-views'
 }
 
 { #category : #comparing }
