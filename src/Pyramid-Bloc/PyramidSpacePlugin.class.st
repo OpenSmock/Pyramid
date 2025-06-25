@@ -6,7 +6,8 @@ Class {
 	#instVars : [
 		'builder',
 		'morphicPresenter',
-		'resetSpaceButton'
+		'resetSpaceButton',
+		'resetBloc'
 	],
 	#category : #'Pyramid-Bloc-plugin-space'
 }
@@ -37,6 +38,7 @@ PyramidSpacePlugin >> connectOn: aPyramidEditor [
 { #category : #initialization }
 PyramidSpacePlugin >> initialize [
 	
+	resetBloc := [ :aSpace | ].
 	builder := PyramidSpaceBuilder defaultEditorBuilder.
 	morphicPresenter := SpMorphPresenter new.
 	resetSpaceButton := SpButtonPresenter new
@@ -74,12 +76,25 @@ PyramidSpacePlugin >> morphicPresenter [
 ^ morphicPresenter
 ]
 
+{ #category : #accessing }
+PyramidSpacePlugin >> resetBloc [
+
+	^ resetBloc
+]
+
+{ #category : #accessing }
+PyramidSpacePlugin >> resetBloc: aBlock [
+
+	resetBloc := aBlock
+]
+
 { #category : #initialization }
 PyramidSpacePlugin >> resetSpace [
 
 	| space |
 	space := self builder build.
 	self makePresenterWithBlSpace: space.
+	resetBloc value: space.
 	space show
 ]
 
