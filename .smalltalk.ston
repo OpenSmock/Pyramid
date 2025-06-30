@@ -6,6 +6,9 @@ SmalltalkCISpec {
     SCIMetacelloLoadSpec {
       #baseline : 'Pyramid',
       #directory : 'src',
+      #onConflict : #useLoaded,
+      #onUpgrade : #useLoaded,
+      #onWarningLog : true,
       #platforms : [ #pharo ]
     }
   ],
