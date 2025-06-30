@@ -13,6 +13,7 @@ List of current active shortcut (default value) :
 - Grid visibility switch -> ctrl left + G
 - Select all element -> ctrl left + A
 - Delete selected element -> delete or suppr
+- Inspect one selected element -> ctrl left + I
 "
 Class {
 	#name : #PyramidSpaceShortcutManagerPlugin,
@@ -26,7 +27,8 @@ Class {
 		'shortcutSaveAction',
 		'shortcutGrid',
 		'shortcutRemoveElement',
-		'shortcutSelectAllElement'
+		'shortcutSelectAllElement',
+		'shortcutInspectSelectedElement'
 	],
 	#category : #'Pyramid-Bloc-plugin-shortcut-manager'
 }
@@ -56,6 +58,9 @@ PyramidSpaceShortcutManagerPlugin >> addAllShortcutInCollection [
 	
 	"Shortcut Select all element in space (ctrl + A)"
 	shortcutCollection add: shortcutSelectAllElement shortcutActionSelectAll.
+	
+	"Shortcut inspect selected element (ctrl + I)"
+	shortcutCollection add: shortcutInspectSelectedElement shortcutActionInspect.
 	
 	"New shortcut to add under this comment, keep the same patern as before"
 	
@@ -99,6 +104,9 @@ PyramidSpaceShortcutManagerPlugin >> connectOn: aPyramidEditor [
 	
 	shortcutSelectAllElement projectModelFromPyramid: aPyramidEditor.
 	
+	"Get projectModelFromPyramid for Inspect selected element"
+	shortcutInspectSelectedElement projectModelFromPyramid: aPyramidEditor.
+	
 	"Adding shortcut to Pyramid"
 	spacePlugin resetBloc: [ :aSpace | self refreshAllShortcutInSpace: aSpace ].
 	spacePlugin resetSpace.
@@ -115,6 +123,7 @@ PyramidSpaceShortcutManagerPlugin >> initialize [
 	shortcutGrid := PyramidShortcutGrid new.
 	shortcutRemoveElement := PyramidShortcutRemoveElement new.
 	shortcutSelectAllElement := PyramidShortcutSelectAllElement new.
+	shortcutInspectSelectedElement := PyramidShortcutInspectSelectedElement new.
 ]
 
 { #category : #'as yet unclassified' }
