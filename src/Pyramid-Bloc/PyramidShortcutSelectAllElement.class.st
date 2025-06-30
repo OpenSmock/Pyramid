@@ -15,7 +15,7 @@ Class {
 { #category : #'as yet unclassified' }
 PyramidShortcutSelectAllElement >> defaultKeyCombinationSelectAll [
 	"CTRL + A to activate this shortcut"
-	keyCombinationSelectAll := ((BlKeyCombination builder key: KeyboardKey controlLeft; key: KeyboardKey A) build)
+	keyCombinationSelectAll := ((BlKeyCombination builder primary key: KeyboardKey A) build)
 ]
 
 { #category : #initialization }

@@ -19,13 +19,13 @@ Class {
 { #category : #accessing }
 PyramidShortcutUndoRedo >> defaultKeyCombinationRedo [
 	"CTRL + Y to activate this shortcut"
-	keyCombinationRedo := ((BlKeyCombination builder key: KeyboardKey controlLeft; key: KeyboardKey Y) build)
+	keyCombinationRedo := ((BlKeyCombination builder primary key: KeyboardKey Y) build)
 ]
 
 { #category : #accessing }
 PyramidShortcutUndoRedo >> defaultKeyCombinationUndo [
 	"CTRL + Z to activate this shortcut"
-	keyCombinationUndo := ((BlKeyCombination builder key: KeyboardKey controlLeft; key: KeyboardKey Z) build)
+	keyCombinationUndo := ((BlKeyCombination builder primary key: KeyboardKey Z) build)
 ]
 
 { #category : #'as yet unclassified' }

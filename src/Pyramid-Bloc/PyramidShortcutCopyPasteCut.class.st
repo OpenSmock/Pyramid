@@ -60,19 +60,19 @@ PyramidShortcutCopyPasteCut >> copySelectedElementInSpace [
 { #category : #accessing }
 PyramidShortcutCopyPasteCut >> defaultKeyCombinationCopy [
 	"CTRL + C to activate this shortcut"
-	keyCombinationCopy := ((BlKeyCombination builder key: KeyboardKey controlLeft; key: KeyboardKey C) build)
+	keyCombinationCopy := ((BlKeyCombination builder primary key: KeyboardKey C) build)
 ]
 
 { #category : #accessing }
 PyramidShortcutCopyPasteCut >> defaultKeyCombinationCut [
 	"CTRL + X to activate this shortcut"
-	keyCombinationCut := ((BlKeyCombination builder key: KeyboardKey controlLeft; key: KeyboardKey X) build)
+	keyCombinationCut := ((BlKeyCombination builder primary key: KeyboardKey X) build)
 ]
 
 { #category : #accessing }
 PyramidShortcutCopyPasteCut >> defaultKeyCombinationPaste [
 	"CTRL + V to activate this shortcut"
-	keyCombinationPaste := ((BlKeyCombination builder key: KeyboardKey controlLeft; key: KeyboardKey V) build)
+	keyCombinationPaste := ((BlKeyCombination builder primary key: KeyboardKey V) build)
 ]
 
 { #category : #accessing }

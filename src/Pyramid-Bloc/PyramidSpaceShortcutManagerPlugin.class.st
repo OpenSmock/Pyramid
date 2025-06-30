@@ -4,16 +4,16 @@ This class is use to add shortcut to the space in pyramid to use feature, you ca
 Shortcut only works when the space of Pyramid have the focus.
 
 List of current active shortcut (default value) :
-- Save -> ctrl left + S
-- Undo -> ctrl left + Z
-- Redo -> ctrl left + Y
-- Copy -> ctrl left + C
-- Paste -> ctrl left + V
-- Cut -> ctrl left + X
-- Grid visibility switch -> ctrl left + G
-- Select all element -> ctrl left + A
+- Save -> ctrl + S
+- Undo -> ctrl + Z
+- Redo -> ctrl + Y
+- Copy -> ctrl + C
+- Paste -> ctrl + V
+- Cut -> ctrl + X
+- Grid visibility switch -> ctrl + G
+- Select all element -> ctrl + A
 - Delete selected element -> delete or suppr
-- Inspect one selected element -> ctrl left + I
+- Inspect one selected element -> ctrl + I
 "
 Class {
 	#name : #PyramidSpaceShortcutManagerPlugin,

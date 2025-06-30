@@ -12,7 +12,7 @@ Class {
 { #category : #'as yet unclassified' }
 PyramidShortcutInspectSelectedElement >> defaultKeyCombinationInspect [
 	"CTRL + S to activate this shortcut"
-	keyCombinationInspect := ((BlKeyCombination builder key: KeyboardKey controlLeft; key: KeyboardKey I) build)
+	keyCombinationInspect := ((BlKeyCombination builder primary key: KeyboardKey I) build)
 ]
 
 { #category : #initialization }

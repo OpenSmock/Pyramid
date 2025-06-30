@@ -19,7 +19,7 @@ Class {
 { #category : #accessing }
 PyramidShortcutGrid >> defaultKeyCombinationGridVisibility [
 	"CTRL + G to activate this shortcut"
-	keyCombinationGridVisibility := ((BlKeyCombination builder key: KeyboardKey controlLeft; key: KeyboardKey G) build)
+	keyCombinationGridVisibility := ((BlKeyCombination builder primary key: KeyboardKey G) build)
 ]
 
 { #category : #'as yet unclassified' }

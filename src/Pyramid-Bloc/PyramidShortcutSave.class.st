@@ -17,7 +17,7 @@ Class {
 { #category : #accessing }
 PyramidShortcutSave >> defaultKeyCombinationSave [
 	"CTRL + S to activate this shortcut"
-	keyCombinationSave := ((BlKeyCombination builder key: KeyboardKey controlLeft; key: KeyboardKey S) build)
+	keyCombinationSave := ((BlKeyCombination builder primary key: KeyboardKey S) build)
 ]
 
 { #category : #initialization }
