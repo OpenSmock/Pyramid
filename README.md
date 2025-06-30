@@ -36,20 +36,32 @@ To install a version of Pyramid, use one of the following scripts inside a playg
 ### Latest development version
 
 ```st
-Metacello new
+[[
+	Metacello new
 	baseline: 'Pyramid';
-	repository: 'github://OpenSmock/Pyramid:main/src';
-	load
+	repository: 'github://OpenSmock/Pyramid:stage-dev-shortcuts/src';
+	onConflict: [ :ex :loaded :incoming | ex useLoaded ];
+	onUpgrade: [ :ex :loaded :incoming | ex useLoaded ];
+	ignoreImage;
+	load.
+	] on: MCMergeOrLoadWarning do: [ :warning | warning load ]
+] on: Warning do: [ :w | w resume ].
 ```
 
 Only with Bloc (without Toplo features):
 
 ```st
-Metacello new
+[[
+	Metacello new
 	baseline: 'Pyramid';
-	repository: 'github://OpenSmock/Pyramid:main/src';
-  load: 'BlocUI';
-	load
+	repository: 'github://OpenSmock/Pyramid:stage-dev-shortcuts/src';
+	onConflict: [ :ex :loaded :incoming | ex useLoaded ];
+	onUpgrade: [ :ex :loaded :incoming | ex useLoaded ];
+	ignoreImage;
+	load: 'BlocUI';
+	load.
+	] on: MCMergeOrLoadWarning do: [ :warning | warning load ]
+] on: Warning do: [ :w | w resume ].
 ```
 
 ### Release version
