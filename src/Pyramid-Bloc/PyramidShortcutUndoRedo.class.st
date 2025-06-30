@@ -28,7 +28,7 @@ PyramidShortcutUndoRedo >> defaultKeyCombinationUndo [
 	keyCombinationUndo := ((BlKeyCombination builder primary key: KeyboardKey Z) build)
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #'accessing - classes' }
 PyramidShortcutUndoRedo >> historyPluginFromPyramid: aPyramidEditor [
 
 	| historyPluginList |

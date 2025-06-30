@@ -108,7 +108,7 @@ PyramidSpaceShortcutManagerPlugin >> connectOn: aPyramidEditor [
 	shortcutInspectSelectedElement projectModelFromPyramid: aPyramidEditor.
 	
 	"Adding shortcut to Pyramid"
-	spacePlugin resetBloc: [ :aSpace | self refreshAllShortcutInSpace: aSpace ].
+	spacePlugin resetShortcutBlock: [ :aSpace | self refreshAllShortcutInSpace: aSpace ].
 	spacePlugin resetSpace.
 ]
 
@@ -126,7 +126,7 @@ PyramidSpaceShortcutManagerPlugin >> initialize [
 	shortcutInspectSelectedElement := PyramidShortcutInspectSelectedElement new.
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #action }
 PyramidSpaceShortcutManagerPlugin >> refreshAllShortcutInSpace: aSpace [
 	
 	self removeAllShortcutInSpace: aSpace.

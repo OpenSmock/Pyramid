@@ -32,7 +32,7 @@ PyramidShortcutSave >> keyCombinationSave: aKeyCombination [
 	^ keyCombinationSave := aKeyCombination
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #'accessing - classes' }
 PyramidShortcutSave >> savePluginFromPyramid: aPyramidEditor [
 
 	| savePluginList |

@@ -12,7 +12,7 @@ Class {
 	#category : #'Pyramid-Bloc-plugin-shortcut-manager'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 PyramidShortcutSelectAllElement >> defaultKeyCombinationSelectAll [
 	"CTRL + A to activate this shortcut"
 	keyCombinationSelectAll := ((BlKeyCombination builder primary key: KeyboardKey A) build)
@@ -24,13 +24,13 @@ PyramidShortcutSelectAllElement >> initialize [
 	self defaultKeyCombinationSelectAll 
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #'accessing - classes' }
 PyramidShortcutSelectAllElement >> projectModelFromPyramid: aPyramidEditor [
 
 	projectModel := aPyramidEditor projectModel.
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #action }
 PyramidShortcutSelectAllElement >> selectAll [
 
 	projectModel selection asArray isEmpty
@@ -39,7 +39,7 @@ PyramidShortcutSelectAllElement >> selectAll [
 		ifTrue: [ self selectAllChildrenOfSelectedElement ].
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #action }
 PyramidShortcutSelectAllElement >> selectAllChildrenOfSelectedElement [
 	
 	(projectModel selection collection asArray first) children isEmpty
@@ -48,7 +48,7 @@ PyramidShortcutSelectAllElement >> selectAllChildrenOfSelectedElement [
 	
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #action }
 PyramidShortcutSelectAllElement >> selectAllElementInSpace [
 
 	projectModel setSelection: projectModel firstLevelElements collection

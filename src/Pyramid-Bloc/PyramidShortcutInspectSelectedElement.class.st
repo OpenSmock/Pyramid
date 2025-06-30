@@ -9,7 +9,7 @@ Class {
 	#category : #'Pyramid-Bloc-plugin-shortcut-manager'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 PyramidShortcutInspectSelectedElement >> defaultKeyCombinationInspect [
 	"CTRL + S to activate this shortcut"
 	keyCombinationInspect := ((BlKeyCombination builder primary key: KeyboardKey I) build)
@@ -27,13 +27,13 @@ PyramidShortcutInspectSelectedElement >> keyCombinationInspect: aKeyCombination 
 	^ keyCombinationInspect := aKeyCombination
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #'accessing - classes' }
 PyramidShortcutInspectSelectedElement >> projectModelFromPyramid: aPyramidEditor [
 
 	projectModel := aPyramidEditor projectModel
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 PyramidShortcutInspectSelectedElement >> shortcutActionInspect [
 
 	^ shortcutInspect := BlShortcutWithAction new

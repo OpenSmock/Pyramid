@@ -22,7 +22,7 @@ PyramidShortcutGrid >> defaultKeyCombinationGridVisibility [
 	keyCombinationGridVisibility := ((BlKeyCombination builder primary key: KeyboardKey G) build)
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #'accessing - classes' }
 PyramidShortcutGrid >> gridFeatureFromSpacePlugin: aPyramidEditor [
 
 	| spacePlugin spacePluginSet listOfSpaceExtension pyramidMainExtensionSet |

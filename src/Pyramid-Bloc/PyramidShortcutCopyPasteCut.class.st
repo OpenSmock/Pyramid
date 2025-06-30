@@ -20,7 +20,7 @@ Class {
 	#category : #'Pyramid-Bloc-plugin-shortcut-manager'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : #'accessing - classes' }
 PyramidShortcutCopyPasteCut >> copyPasteCutPluginFromPyramid: aPyramidEditor [
 
 	| copyPastePluginList navigationPluginList |
@@ -44,7 +44,7 @@ PyramidShortcutCopyPasteCut >> copyPastePlugin: aPlugin [
 	copyPastePlugin := aPlugin
 ]
 
-{ #category : #testing }
+{ #category : #action }
 PyramidShortcutCopyPasteCut >> copySelectedElementInSpace [
 
 	elementCollectionSelected isEmpty
@@ -107,7 +107,7 @@ PyramidShortcutCopyPasteCut >> keyCombinationPaste: aKeyCombination [
 	^ keyCombinationPaste := aKeyCombination
 ]
 
-{ #category : #testing }
+{ #category : #action }
 PyramidShortcutCopyPasteCut >> pasteElement [
 
 	elementCollectionSelected isEmpty
