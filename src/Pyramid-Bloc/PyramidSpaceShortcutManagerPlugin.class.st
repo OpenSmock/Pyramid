@@ -4,13 +4,14 @@ This class is use to add shortcut to the space in pyramid to use feature, you ca
 Shortcut only works when the space of Pyramid have the focus.
 
 List of current active shortcut (default value) :
-- Save -> ctrl + S
-- Undo -> ctrl + Z
-- Redo -> ctrl + Y
-- Copy -> ctrl + C
-- Paste -> ctrl + V
-- Grid visibility switch -> ctrl + G
-- Select all element -> ctrl + A
+- Save -> ctrl left + S
+- Undo -> ctrl left + Z
+- Redo -> ctrl left + Y
+- Copy -> ctrl left + C
+- Paste -> ctrl left + V
+- Cut -> ctrl left + X
+- Grid visibility switch -> ctrl left + G
+- Select all element -> ctrl left + A
 - Delete selected element -> delete or suppr
 "
 Class {
@@ -41,6 +42,7 @@ PyramidSpaceShortcutManagerPlugin >> addAllShortcutInCollection [
 	"Shortcut Copy (ctrl + C) / Paste (ctrl + V)"
 	shortcutCollection add: shortcutCopyPaste shortcutActionCopy.
 	shortcutCollection add: shortcutCopyPaste shortcutActionPaste.
+	shortcutCollection add: shortcutCopyPaste shortcutActionCut.
 	
 	"Shortcut Save (ctrl + S)"
 	shortcutCollection add: shortcutSaveAction shortcutActionSave.
@@ -84,7 +86,7 @@ PyramidSpaceShortcutManagerPlugin >> connectOn: aPyramidEditor [
 	shortcutUndoRedo historyPluginFromPyramid: aPyramidEditor.
 	
 	"Get Copy Paste plugin"
-	shortcutCopyPaste copyPastePluginFromPyramid: aPyramidEditor.
+	shortcutCopyPaste copyPasteCutPluginFromPyramid: aPyramidEditor.
 	
 	"Get Save plugin"
 	shortcutSaveAction savePluginFromPyramid: aPyramidEditor.
@@ -108,7 +110,7 @@ PyramidSpaceShortcutManagerPlugin >> initialize [
 	shortcutCollection := OrderedCollection new.
 	
 	shortcutUndoRedo := PyramidShortcutUndoRedo new.
-	shortcutCopyPaste := PyramidShortcutCopyPaste new.
+	shortcutCopyPaste := PyramidShortcutCopyPasteCut new.
 	shortcutSaveAction := PyramidShortcutSave new.
 	shortcutGrid := PyramidShortcutGrid new.
 	shortcutRemoveElement := PyramidShortcutRemoveElement new.

@@ -4,43 +4,53 @@ This class is used to create the shortcut for copy and paste -> use the plugin-c
 It use the editor to get the collection of selected object from project model in Pyramid space.
 "
 Class {
-	#name : #PyramidShortcutCopyPaste,
+	#name : #PyramidShortcutCopyPasteCut,
 	#superclass : #PyramidSpaceShortcutManagerPlugin,
 	#instVars : [
 		'copyPastePlugin',
+		'navigationPlugin',
 		'shortcutCopy',
 		'shortcutPaste',
 		'keyCombinationCopy',
 		'keyCombinationPaste',
-		'elementCollectionSelected'
+		'elementCollectionSelected',
+		'keyCombinationCut',
+		'shortcutCut'
 	],
 	#category : #'Pyramid-Bloc-plugin-shortcut-manager'
 }
 
-{ #category : #accessing }
-PyramidShortcutCopyPaste >> copyPastePlugin: aPlugin [
-
-	copyPastePlugin := aPlugin
-]
-
 { #category : #'as yet unclassified' }
-PyramidShortcutCopyPaste >> copyPastePluginFromPyramid: aPyramidEditor [
+PyramidShortcutCopyPasteCut >> copyPasteCutPluginFromPyramid: aPyramidEditor [
 
-	| copyPastePluginList |
+	| copyPastePluginList navigationPluginList |
+	"get copyPastePlugin"
 	self elementCollectionSelected: aPyramidEditor.
 	copyPastePluginList := aPyramidEditor plugins select: [ :plugin | plugin isKindOf: PyramidCopyPastePlugin ].
 	copyPastePluginList size = 1
 	ifFalse: [^ self].
-	copyPastePlugin := copyPastePluginList asArray first
+	copyPastePlugin := copyPastePluginList asArray first.
+	
+	"Get navigationPlugin"
+	navigationPluginList := aPyramidEditor plugins select: [ :plugin | plugin isKindOf: PyramidNavigationPlugin ].
+	navigationPluginList size = 1
+	ifFalse: [^ self].
+	navigationPlugin := navigationPluginList asArray first
+]
+
+{ #category : #accessing }
+PyramidShortcutCopyPasteCut >> copyPastePlugin: aPlugin [
+
+	copyPastePlugin := aPlugin
 ]
 
 { #category : #testing }
-PyramidShortcutCopyPaste >> copySelectedElementInSpace [
+PyramidShortcutCopyPasteCut >> copySelectedElementInSpace [
 
 	elementCollectionSelected isEmpty
 	ifTrue: [ ^ self ].
 	elementCollectionSelected size = 1
-	ifTrue: [ elementCollectionSelected do: [ :element | copyPastePlugin copyAsStonInClipboard: element ]. ]
+	ifTrue: [ elementCollectionSelected do: [ :element | copyPastePlugin copyAsStonInClipboard: element ]. ^ 1 ]
 	ifFalse: [ self inform: 'Can not copy multiple element' ]
 	
 	
@@ -48,44 +58,57 @@ PyramidShortcutCopyPaste >> copySelectedElementInSpace [
 ]
 
 { #category : #accessing }
-PyramidShortcutCopyPaste >> defaultKeyCombinationCopy [
+PyramidShortcutCopyPasteCut >> defaultKeyCombinationCopy [
 	"CTRL + C to activate this shortcut"
 	keyCombinationCopy := ((BlKeyCombination builder key: KeyboardKey controlLeft; key: KeyboardKey C) build)
 ]
 
 { #category : #accessing }
-PyramidShortcutCopyPaste >> defaultKeyCombinationPaste [
+PyramidShortcutCopyPasteCut >> defaultKeyCombinationCut [
+	"CTRL + X to activate this shortcut"
+	keyCombinationCut := ((BlKeyCombination builder key: KeyboardKey controlLeft; key: KeyboardKey X) build)
+]
+
+{ #category : #accessing }
+PyramidShortcutCopyPasteCut >> defaultKeyCombinationPaste [
 	"CTRL + V to activate this shortcut"
 	keyCombinationPaste := ((BlKeyCombination builder key: KeyboardKey controlLeft; key: KeyboardKey V) build)
 ]
 
 { #category : #accessing }
-PyramidShortcutCopyPaste >> elementCollectionSelected: aPyramidEditor [
+PyramidShortcutCopyPasteCut >> elementCollectionSelected: aPyramidEditor [
 
 	elementCollectionSelected := (aPyramidEditor projectModel selection) collection.
 ]
 
 { #category : #initialization }
-PyramidShortcutCopyPaste >> initialize [ 
+PyramidShortcutCopyPasteCut >> initialize [ 
 
 	self defaultKeyCombinationCopy.
 	self defaultKeyCombinationPaste.
+	self defaultKeyCombinationCut.
 ]
 
 { #category : #accessing }
-PyramidShortcutCopyPaste >> keyCombinationCopy: aKeyCombination [
+PyramidShortcutCopyPasteCut >> keyCombinationCopy: aKeyCombination [
 	
 	^ keyCombinationCopy := aKeyCombination
 ]
 
 { #category : #accessing }
-PyramidShortcutCopyPaste >> keyCombinationPaste: aKeyCombination [
+PyramidShortcutCopyPasteCut >> keyCombinationCut: aKeyCombination [
+
+	^ keyCombinationCut := aKeyCombination
+]
+
+{ #category : #accessing }
+PyramidShortcutCopyPasteCut >> keyCombinationPaste: aKeyCombination [
 
 	^ keyCombinationPaste := aKeyCombination
 ]
 
 { #category : #testing }
-PyramidShortcutCopyPaste >> pasteElement [
+PyramidShortcutCopyPasteCut >> pasteElement [
 
 	elementCollectionSelected isEmpty
 	ifTrue: [ copyPastePlugin pasteFromClipboardOnFirstLevelElements ].
@@ -97,7 +120,7 @@ PyramidShortcutCopyPaste >> pasteElement [
 ]
 
 { #category : #accessing }
-PyramidShortcutCopyPaste >> shortcutActionCopy [
+PyramidShortcutCopyPasteCut >> shortcutActionCopy [
 
 	^ shortcutCopy := BlShortcutWithAction new
 			              name: 'Pyramid edition shortcut copy';
@@ -108,7 +131,19 @@ PyramidShortcutCopyPaste >> shortcutActionCopy [
 ]
 
 { #category : #accessing }
-PyramidShortcutCopyPaste >> shortcutActionPaste [
+PyramidShortcutCopyPasteCut >> shortcutActionCut [
+
+	^ shortcutCut := BlShortcutWithAction new
+			              name: 'Pyramid edition shortcut paste';
+			              combination: keyCombinationCut;
+			              action: [ :event | copyPastePlugin
+														ifNil: [ self inform: 'Plugin Copy/Paste is not installed' ]
+														ifNotNil: [ self copySelectedElementInSpace = 1
+																		ifTrue: [ navigationPlugin removeSelectedElements ] ] ]
+]
+
+{ #category : #accessing }
+PyramidShortcutCopyPasteCut >> shortcutActionPaste [
 
 	^ shortcutPaste := BlShortcutWithAction new
 			              name: 'Pyramid edition shortcut paste';
