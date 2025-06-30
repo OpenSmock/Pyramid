@@ -32,8 +32,8 @@ PyramidShortcutRemoveElement >> keyCombinationRemoveElement: aKeyCombination [
 	keyCombinationRemoveElement := aKeyCombination
 ]
 
-{ #category : #removing }
-PyramidShortcutRemoveElement >> navigationPluginForRemoveElementFromPyramid: aPyramidEditor [
+{ #category : #'accessing - classes' }
+PyramidShortcutRemoveElement >> navigationPluginFromPyramid: aPyramidEditor [
 
 	| removeElementPluginList |
 	removeElementPluginList := aPyramidEditor plugins select: [ :plugin | plugin isKindOf: PyramidNavigationPlugin ].

@@ -100,7 +100,7 @@ PyramidSpaceShortcutManagerPlugin >> connectOn: aPyramidEditor [
 	shortcutGrid gridFeatureFromSpacePlugin: aPyramidEditor.
 	
 	"Get Navigation Plugin for shortcut remove element"
-	shortcutRemoveElement navigationPluginForRemoveElementFromPyramid: aPyramidEditor.
+	shortcutRemoveElement navigationPluginFromPyramid: aPyramidEditor.
 	
 	shortcutSelectAllElement projectModelFromPyramid: aPyramidEditor.
 	
