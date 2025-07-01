@@ -50,7 +50,7 @@ PyramidShortcutCopyPasteCut >> copySelectedElementInSpace [
 	elementCollectionSelected isEmpty
 	ifTrue: [ ^ self ].
 	elementCollectionSelected size = 1
-	ifTrue: [ elementCollectionSelected do: [ :element | copyPastePlugin copyAsStonInClipboard: element ]. ^ 1 ]
+	ifTrue: [ copyPastePlugin copyAsStonInClipboard: (elementCollectionSelected first). ^ 1 ]
 	ifFalse: [ self inform: 'Can not copy multiple element' ]
 	
 	
@@ -113,7 +113,7 @@ PyramidShortcutCopyPasteCut >> pasteElement [
 	elementCollectionSelected isEmpty
 	ifTrue: [ copyPastePlugin pasteFromClipboardOnFirstLevelElements ].
 	elementCollectionSelected size = 1
-	ifTrue: [ elementCollectionSelected do: [ :element | copyPastePlugin pasteFromClipboardOnSelection: element ]. ]
+	ifTrue: [ copyPastePlugin pasteFromClipboardOnSelection: (elementCollectionSelected first) ]
 	
 	
 	
@@ -134,7 +134,7 @@ PyramidShortcutCopyPasteCut >> shortcutActionCopy [
 PyramidShortcutCopyPasteCut >> shortcutActionCut [
 
 	^ shortcutCut := BlShortcutWithAction new
-			              name: 'Pyramid edition shortcut paste';
+			              name: 'Pyramid edition shortcut cut';
 			              combination: keyCombinationCut;
 			              action: [ :event | copyPastePlugin
 														ifNil: [ self inform: 'Plugin Copy/Paste is not installed' ]
