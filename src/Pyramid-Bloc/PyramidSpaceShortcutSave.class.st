@@ -4,7 +4,7 @@ This class used to create shortcut for saving in Pyramid space.
 Used the plugin-save in this package.
 "
 Class {
-	#name : #PyramidShortcutSave,
+	#name : #PyramidSpaceShortcutSave,
 	#superclass : #PyramidSpaceShortcutManagerPlugin,
 	#instVars : [
 		'savePlugin',
@@ -15,35 +15,31 @@ Class {
 }
 
 { #category : #accessing }
-PyramidShortcutSave >> defaultKeyCombinationSave [
+PyramidSpaceShortcutSave >> defaultKeyCombinationSave [
 	"CTRL + S to activate this shortcut"
 	keyCombinationSave := ((BlKeyCombination builder primary key: KeyboardKey S) build)
 ]
 
 { #category : #initialization }
-PyramidShortcutSave >> initialize [ 
+PyramidSpaceShortcutSave >> initialize [ 
 	
 	self defaultKeyCombinationSave
 ]
 
 { #category : #accessing }
-PyramidShortcutSave >> keyCombinationSave: aKeyCombination [
+PyramidSpaceShortcutSave >> keyCombinationSave: aKeyCombination [
 	
 	^ keyCombinationSave := aKeyCombination
 ]
 
 { #category : #'accessing - classes' }
-PyramidShortcutSave >> savePluginFromPyramid: aPyramidEditor [
+PyramidSpaceShortcutSave >> savePluginFromPyramid: aPyramidEditor [
 
-	| savePluginList |
-	savePluginList := aPyramidEditor plugins select: [ :plugin | plugin isKindOf: PyramidSavePlugin ].
-	savePluginList size = 1
-	ifFalse: [^ self].
-	savePlugin := savePluginList asArray first
+	savePlugin := aPyramidEditor findPlugin: PyramidSavePlugin.
 ]
 
 { #category : #accessing }
-PyramidShortcutSave >> shortcutActionSave [
+PyramidSpaceShortcutSave >> shortcutActionSave [
 
 	^ shortcutSave := BlShortcutWithAction new
 			              name: 'Pyramid edition shortcut save';

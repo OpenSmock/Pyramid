@@ -4,7 +4,7 @@ This class define the shortcut to show or hide the grid on the space.
 the grid is define in the plugin-space-extension -> PyramidMainExtension
 "
 Class {
-	#name : #PyramidShortcutGrid,
+	#name : #PyramidSpaceShortcutGrid,
 	#superclass : #PyramidSpaceShortcutManagerPlugin,
 	#instVars : [
 		'gridFeature',
@@ -17,20 +17,17 @@ Class {
 }
 
 { #category : #accessing }
-PyramidShortcutGrid >> defaultKeyCombinationGridVisibility [
+PyramidSpaceShortcutGrid >> defaultKeyCombinationGridVisibility [
 	"CTRL + G to activate this shortcut"
 	keyCombinationGridVisibility := ((BlKeyCombination builder primary key: KeyboardKey G) build)
 ]
 
 { #category : #'accessing - classes' }
-PyramidShortcutGrid >> gridFeatureFromSpacePlugin: aPyramidEditor [
+PyramidSpaceShortcutGrid >> gridFeatureFromSpacePlugin: aPyramidEditor [
 
-	| spacePlugin spacePluginSet listOfSpaceExtension pyramidMainExtensionSet |
+	| spacePlugin listOfSpaceExtension pyramidMainExtensionSet |
 	
-	spacePluginSet := aPyramidEditor plugins select: [ :plugin | plugin isKindOf: PyramidSpacePlugin ].
-	spacePluginSet size = 1
-	ifFalse: [^ self].
-	spacePlugin := spacePluginSet asArray first.
+	spacePlugin := aPyramidEditor findPlugin: PyramidSpacePlugin.
 	
 	listOfSpaceExtension := spacePlugin builder extensions.
 	
@@ -42,19 +39,19 @@ PyramidShortcutGrid >> gridFeatureFromSpacePlugin: aPyramidEditor [
 ]
 
 { #category : #initialization }
-PyramidShortcutGrid >> initialize [ 
+PyramidSpaceShortcutGrid >> initialize [ 
 	
 	self defaultKeyCombinationGridVisibility.
 ]
 
 { #category : #accessing }
-PyramidShortcutGrid >> keyCombinationGridVisibility: aKeyCombination [
+PyramidSpaceShortcutGrid >> keyCombinationGridVisibility: aKeyCombination [
 	
 	keyCombinationGridVisibility := aKeyCombination
 ]
 
 { #category : #accessing }
-PyramidShortcutGrid >> shortcutActionGridVisibility [
+PyramidSpaceShortcutGrid >> shortcutActionGridVisibility [
 
 	^ shortcutGridVisibility := BlShortcutWithAction new
 			              name: 'Pyramid edition shortcut grid visibility';

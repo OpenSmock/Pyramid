@@ -4,7 +4,7 @@ Class use to create the shortcut undo / redo.
 Use the history feature from the package Pyramid.
 "
 Class {
-	#name : #PyramidShortcutUndoRedo,
+	#name : #PyramidSpaceShortcutUndoRedo,
 	#superclass : #PyramidSpaceShortcutManagerPlugin,
 	#instVars : [
 		'historyPlugin',
@@ -17,48 +17,44 @@ Class {
 }
 
 { #category : #accessing }
-PyramidShortcutUndoRedo >> defaultKeyCombinationRedo [
+PyramidSpaceShortcutUndoRedo >> defaultKeyCombinationRedo [
 	"CTRL + Y to activate this shortcut"
 	keyCombinationRedo := ((BlKeyCombination builder primary key: KeyboardKey Y) build)
 ]
 
 { #category : #accessing }
-PyramidShortcutUndoRedo >> defaultKeyCombinationUndo [
+PyramidSpaceShortcutUndoRedo >> defaultKeyCombinationUndo [
 	"CTRL + Z to activate this shortcut"
 	keyCombinationUndo := ((BlKeyCombination builder primary key: KeyboardKey Z) build)
 ]
 
 { #category : #'accessing - classes' }
-PyramidShortcutUndoRedo >> historyPluginFromPyramid: aPyramidEditor [
+PyramidSpaceShortcutUndoRedo >> historyPluginFromPyramid: aPyramidEditor [
 
-	| historyPluginList |
-	historyPluginList := aPyramidEditor plugins select: [ :plugin | plugin isKindOf: PyramidHistoryPlugin ].
-	historyPluginList size = 1
-	ifFalse: [^ self].
-	historyPlugin := historyPluginList asArray first. 
+	historyPlugin := aPyramidEditor findPlugin: PyramidHistoryPlugin.
 ]
 
 { #category : #initialization }
-PyramidShortcutUndoRedo >> initialize [ 
+PyramidSpaceShortcutUndoRedo >> initialize [ 
 	
 	self defaultKeyCombinationRedo.
 	self defaultKeyCombinationUndo.
 ]
 
 { #category : #accessing }
-PyramidShortcutUndoRedo >> keyCombinationRedo: aNewKeyCombination [
+PyramidSpaceShortcutUndoRedo >> keyCombinationRedo: aNewKeyCombination [
 
 	^ keyCombinationRedo := aNewKeyCombination
 ]
 
 { #category : #accessing }
-PyramidShortcutUndoRedo >> keyCombinationUndo: aNewKeyCombination [
+PyramidSpaceShortcutUndoRedo >> keyCombinationUndo: aNewKeyCombination [
 
 	^ keyCombinationUndo := aNewKeyCombination
 ]
 
 { #category : #accessing }
-PyramidShortcutUndoRedo >> shortcutActionRedo [
+PyramidSpaceShortcutUndoRedo >> shortcutActionRedo [
 
 	^ shortcutRedo := BlShortcutWithAction new
 			              name: 'Pyramid edition shortcut redo';
@@ -70,7 +66,7 @@ PyramidShortcutUndoRedo >> shortcutActionRedo [
 ]
 
 { #category : #accessing }
-PyramidShortcutUndoRedo >> shortcutActionUndo [
+PyramidSpaceShortcutUndoRedo >> shortcutActionUndo [
 
 	^ shortcutUndo := BlShortcutWithAction new
 			              name: 'Pyramid edition shortcut undo';

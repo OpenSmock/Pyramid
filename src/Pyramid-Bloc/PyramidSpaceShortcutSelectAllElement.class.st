@@ -2,7 +2,7 @@
 This class used to create shortcut for select all element or all children from one selected element in Pyramid space.
 "
 Class {
-	#name : #PyramidShortcutSelectAllElement,
+	#name : #PyramidSpaceShortcutSelectAllElement,
 	#superclass : #PyramidSpaceShortcutManagerPlugin,
 	#instVars : [
 		'keyCombinationSelectAll',
@@ -13,25 +13,25 @@ Class {
 }
 
 { #category : #accessing }
-PyramidShortcutSelectAllElement >> defaultKeyCombinationSelectAll [
+PyramidSpaceShortcutSelectAllElement >> defaultKeyCombinationSelectAll [
 	"CTRL + A to activate this shortcut"
 	keyCombinationSelectAll := ((BlKeyCombination builder primary key: KeyboardKey A) build)
 ]
 
 { #category : #initialization }
-PyramidShortcutSelectAllElement >> initialize [
+PyramidSpaceShortcutSelectAllElement >> initialize [
 
 	self defaultKeyCombinationSelectAll 
 ]
 
 { #category : #'accessing - classes' }
-PyramidShortcutSelectAllElement >> projectModelFromPyramid: aPyramidEditor [
+PyramidSpaceShortcutSelectAllElement >> projectModelFromPyramid: aPyramidEditor [
 
 	projectModel := aPyramidEditor projectModel.
 ]
 
 { #category : #action }
-PyramidShortcutSelectAllElement >> selectAll [
+PyramidSpaceShortcutSelectAllElement >> selectAll [
 
 	projectModel selection asArray isEmpty
 		ifTrue: [ self selectAllElementInSpace ].
@@ -40,7 +40,7 @@ PyramidShortcutSelectAllElement >> selectAll [
 ]
 
 { #category : #action }
-PyramidShortcutSelectAllElement >> selectAllChildrenOfSelectedElement [
+PyramidSpaceShortcutSelectAllElement >> selectAllChildrenOfSelectedElement [
 	
 	(projectModel selection collection asArray first) children isEmpty
 	ifTrue: [ self inform: 'No children to select in the selected element' ]
@@ -49,13 +49,13 @@ PyramidShortcutSelectAllElement >> selectAllChildrenOfSelectedElement [
 ]
 
 { #category : #action }
-PyramidShortcutSelectAllElement >> selectAllElementInSpace [
+PyramidSpaceShortcutSelectAllElement >> selectAllElementInSpace [
 
 	projectModel setSelection: projectModel firstLevelElements collection
 ]
 
 { #category : #accessing }
-PyramidShortcutSelectAllElement >> shortcutActionSelectAll [
+PyramidSpaceShortcutSelectAllElement >> shortcutActionSelectAll [
 
 	^ shortcutSelectAll := BlShortcutWithAction new
 			              name: 'Pyramid edition shortcut to select all element in space';

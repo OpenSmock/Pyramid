@@ -1,5 +1,5 @@
 Class {
-	#name : #PyramidShortcutInspectSelectedElement,
+	#name : #PyramidSpaceShortcutInspectSelectedElement,
 	#superclass : #PyramidSpaceShortcutManagerPlugin,
 	#instVars : [
 		'projectModel',
@@ -10,31 +10,31 @@ Class {
 }
 
 { #category : #accessing }
-PyramidShortcutInspectSelectedElement >> defaultKeyCombinationInspect [
+PyramidSpaceShortcutInspectSelectedElement >> defaultKeyCombinationInspect [
 	"CTRL + S to activate this shortcut"
 	keyCombinationInspect := ((BlKeyCombination builder primary key: KeyboardKey I) build)
 ]
 
 { #category : #initialization }
-PyramidShortcutInspectSelectedElement >> initialize [ 
+PyramidSpaceShortcutInspectSelectedElement >> initialize [ 
 
 	self defaultKeyCombinationInspect.
 ]
 
 { #category : #accessing }
-PyramidShortcutInspectSelectedElement >> keyCombinationInspect: aKeyCombination [
+PyramidSpaceShortcutInspectSelectedElement >> keyCombinationInspect: aKeyCombination [
 	
 	^ keyCombinationInspect := aKeyCombination
 ]
 
 { #category : #'accessing - classes' }
-PyramidShortcutInspectSelectedElement >> projectModelFromPyramid: aPyramidEditor [
+PyramidSpaceShortcutInspectSelectedElement >> projectModelFromPyramid: aPyramidEditor [
 
 	projectModel := aPyramidEditor projectModel
 ]
 
 { #category : #accessing }
-PyramidShortcutInspectSelectedElement >> shortcutActionInspect [
+PyramidSpaceShortcutInspectSelectedElement >> shortcutActionInspect [
 
 	^ shortcutInspect := BlShortcutWithAction new
 			              name: 'Pyramid edition shortcut save';

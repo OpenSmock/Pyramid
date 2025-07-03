@@ -117,13 +117,13 @@ PyramidSpaceShortcutManagerPlugin >> initialize [
 
 	shortcutCollection := OrderedCollection new.
 	
-	shortcutUndoRedo := PyramidShortcutUndoRedo new.
-	shortcutCopyPaste := PyramidShortcutCopyPasteCut new.
-	shortcutSaveAction := PyramidShortcutSave new.
-	shortcutGrid := PyramidShortcutGrid new.
-	shortcutRemoveElement := PyramidShortcutRemoveElement new.
-	shortcutSelectAllElement := PyramidShortcutSelectAllElement new.
-	shortcutInspectSelectedElement := PyramidShortcutInspectSelectedElement new.
+	shortcutUndoRedo := PyramidSpaceShortcutUndoRedo new.
+	shortcutCopyPaste := PyramidSpaceShortcutCopyPasteCut new.
+	shortcutSaveAction := PyramidSpaceShortcutSave new.
+	shortcutGrid := PyramidSpaceShortcutGrid new.
+	shortcutRemoveElement := PyramidSpaceShortcutRemoveElement new.
+	shortcutSelectAllElement := PyramidSpaceShortcutSelectAllElement new.
+	shortcutInspectSelectedElement := PyramidSpaceShortcutInspectSelectedElement new.
 ]
 
 { #category : #action }

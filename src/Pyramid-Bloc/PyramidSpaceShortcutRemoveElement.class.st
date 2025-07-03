@@ -4,7 +4,7 @@ This class define the shortcut to delete a selected element in the space.
 it use the plugin-navigation in this package.
 "
 Class {
-	#name : #PyramidShortcutRemoveElement,
+	#name : #PyramidSpaceShortcutRemoveElement,
 	#superclass : #PyramidSpaceShortcutManagerPlugin,
 	#instVars : [
 		'navigationPlugin',
@@ -15,35 +15,31 @@ Class {
 }
 
 { #category : #accessing }
-PyramidShortcutRemoveElement >> defaultKeyCombinationRemoveElement [
+PyramidSpaceShortcutRemoveElement >> defaultKeyCombinationRemoveElement [
 	"suppr / del to activate this shortcut"
 	keyCombinationRemoveElement := ((BlKeyCombination builder key: KeyboardKey delete) build)
 ]
 
 { #category : #initialization }
-PyramidShortcutRemoveElement >> initialize [ 
+PyramidSpaceShortcutRemoveElement >> initialize [ 
 	
 	self defaultKeyCombinationRemoveElement 
 ]
 
 { #category : #accessing }
-PyramidShortcutRemoveElement >> keyCombinationRemoveElement: aKeyCombination [
+PyramidSpaceShortcutRemoveElement >> keyCombinationRemoveElement: aKeyCombination [
 	
 	keyCombinationRemoveElement := aKeyCombination
 ]
 
 { #category : #'accessing - classes' }
-PyramidShortcutRemoveElement >> navigationPluginFromPyramid: aPyramidEditor [
+PyramidSpaceShortcutRemoveElement >> navigationPluginFromPyramid: aPyramidEditor [
 
-	| removeElementPluginList |
-	removeElementPluginList := aPyramidEditor plugins select: [ :plugin | plugin isKindOf: PyramidNavigationPlugin ].
-	removeElementPluginList size = 1
-	ifFalse: [^ self].
-	navigationPlugin := removeElementPluginList asArray first
+	navigationPlugin := aPyramidEditor findPlugin: PyramidNavigationPlugin.
 ]
 
 { #category : #accessing }
-PyramidShortcutRemoveElement >> shortcutActionRemoveElement [
+PyramidSpaceShortcutRemoveElement >> shortcutActionRemoveElement [
 
 	^ shortcutActionRemoveElement := BlShortcutWithAction new
 			              name: 'Pyramid edition shortcut remove selected element';
