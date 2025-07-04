@@ -1,6 +1,9 @@
-[![License](https://img.shields.io/github/license/openSmock/Pyramid.svg)](./LICENSE)
-[![Pharo 11 CI](https://github.com/OpenSmock/Pyramid/actions/workflows/Pharo11CI.yml/badge.svg)](https://github.com/OpenSmock/Pyramid/actions/workflows/Pharo11CI.yml)
-[![Pharo 12 CI](https://github.com/OpenSmock/Pyramid/actions/workflows/Pharo12CI.yml/badge.svg)](https://github.com/OpenSmock/Pyramid/actions/workflows/Pharo12CI.yml)
+[![Pharo 11](https://img.shields.io/badge/Pharo-11-%23aac9ff.svg)](https://pharo.org/download)
+[![Pharo 12](https://img.shields.io/badge/Pharo-12-%23aac9ff.svg)](https://pharo.org/download)
+[![Pharo 13](https://img.shields.io/badge/Pharo-13-%23aac9ff.svg)](https://pharo.org/download)
+
+[![License](https://img.shields.io/github/license/OpenSmock/Pyramid.svg)](./LICENSE)
+[![Unit tests](https://github.com/OpenSmock/Pyramid/actions/workflows/CI.yml/badge.svg)](https://github.com/OpenSmock/Pyramid/actions/workflows/CI.yml)
 
 # Pyramid
 
@@ -59,7 +62,7 @@ We advise you to use dependencies committed at the date of the Pyramid release (
 ```st
 Metacello new
 	baseline: 'Pyramid';
-	repository: 'github://OpenSmock/Pyramid:alpha4';
+	repository: 'github://OpenSmock/Pyramid:alpha7';
 	load
 ```
 
