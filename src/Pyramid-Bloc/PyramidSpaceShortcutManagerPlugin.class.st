@@ -14,6 +14,8 @@ List of current active shortcut (default value) :
 - Select all element -> ctrl + A
 - Delete selected element -> delete or suppr
 - Inspect one selected element -> ctrl + I
+- Move up child (ctrl + Arrow Up)
+- Move down child (ctrl + Arrow Down)
 "
 Class {
 	#name : #PyramidSpaceShortcutManagerPlugin,
@@ -28,7 +30,8 @@ Class {
 		'shortcutGrid',
 		'shortcutRemoveElement',
 		'shortcutSelectAllElement',
-		'shortcutInspectSelectedElement'
+		'shortcutInspectSelectedElement',
+		'shortcutMoveChildInParent'
 	],
 	#category : #'Pyramid-Bloc-plugin-shortcut-manager'
 }
@@ -61,6 +64,12 @@ PyramidSpaceShortcutManagerPlugin >> addAllShortcutInCollection [
 	
 	"Shortcut inspect selected element (ctrl + I)"
 	shortcutCollection add: shortcutInspectSelectedElement shortcutActionInspect.
+	
+	"Shortcut Move child in parent"
+	"Move up (ctrl + Arrow up)"
+	shortcutCollection add: shortcutMoveChildInParent shortcutActionMoveUp.
+	"Move down (ctrl + Arrow down)"
+	shortcutCollection add: shortcutMoveChildInParent shortcutActionMoveDown.
 	
 	"New shortcut to add under this comment, keep the same patern as before"
 	
@@ -107,6 +116,9 @@ PyramidSpaceShortcutManagerPlugin >> connectOn: aPyramidEditor [
 	"Get projectModelFromPyramid for Inspect selected element"
 	shortcutInspectSelectedElement projectModelFromPyramid: aPyramidEditor.
 	
+	"Get navigation plugin for MoveChildInParentPlugin"
+	shortcutMoveChildInParent moveChildInParentPluginFromPyramid: aPyramidEditor.
+	
 	"Adding shortcut to Pyramid"
 	spacePlugin resetShortcutBlock: [ :aSpace | self refreshAllShortcutInSpace: aSpace ].
 	spacePlugin resetSpace.
@@ -124,6 +136,7 @@ PyramidSpaceShortcutManagerPlugin >> initialize [
 	shortcutRemoveElement := PyramidSpaceShortcutRemoveElement new.
 	shortcutSelectAllElement := PyramidSpaceShortcutSelectAllElement new.
 	shortcutInspectSelectedElement := PyramidSpaceShortcutInspectSelectedElement new.
+	shortcutMoveChildInParent := PyramidSpaceShortcutMoveChildInParent new.
 ]
 
 { #category : #action }
