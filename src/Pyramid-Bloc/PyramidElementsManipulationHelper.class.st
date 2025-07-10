@@ -28,10 +28,10 @@ PyramidElementsManipulationHelper class >> accumulateParentsOf: aCollectionOfBlE
 	nextCollection := OrderedCollection new.
 
 	onCollection do: [ :each |
-		(each hasParent: elementToTest) ifFalse: [
+		(each allParentsInclude: elementToTest) ifFalse: [
 			nextCollection add: each ].
-		(shouldKeepIt and: [ elementToTest hasParent: each ]) ifTrue: [
-			shouldKeepIt := false ] ].
+		(shouldKeepIt and: [ elementToTest allParentsInclude: each ])
+			ifTrue: [ shouldKeepIt := false ] ].
 	shouldKeepIt ifTrue: [ result add: elementToTest ].
 	self accumulateParentsOf: nextCollection in: result
 ]
