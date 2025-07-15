@@ -14,7 +14,7 @@ Pyramid is an User-Interface (UI) editor.
 
 ![image](https://github.com/OpenSmock/Pyramid/assets/49183340/d5b6957d-1015-4726-94b5-58ad1e62cfc9)
 
-Pyramid is a WYSIWYG application (What You See Is What You Get) in other terms it allows you to visually design the expected outcome.
+Pyramid is a WYSIWYG application (What You See Is What You Get), in other terms it allows you to visually design the expected outcome.
 
 Pyramid helps you to produce final UI in Bloc and Toplo libraries.
 
