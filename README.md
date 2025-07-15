@@ -10,7 +10,7 @@
   <img width="400" src="/assets/PyramidLogotype.svg">
 </picture>
 
-Pyramid is an User-Interface (UI) editor. 
+Pyramid is an User-Interface (UI) editor.
 
 ![image](https://github.com/OpenSmock/Pyramid/assets/49183340/d5b6957d-1015-4726-94b5-58ad1e62cfc9)
 
