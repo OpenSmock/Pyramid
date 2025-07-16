@@ -10,8 +10,7 @@ Class {
 		'editor',
 		'navigationPlugin',
 		'navigationSelectionPanel',
-		'navigationPresenter',
-		'canMoveCollection'
+		'navigationPresenter'
 	],
 	#category : #'Pyramid-Bloc-plugin-edit-element-tree'
 }
@@ -44,33 +43,18 @@ PyramidEditElementTreeDragAndDropPlugin >> addEditElementTreeDragAndDrop [
 
 { #category : #testing }
 PyramidEditElementTreeDragAndDropPlugin >> canMoveSelectedElement: anArrayOfElementDragged target: aElementTarget [
+	"
+	anArrayOfElementDragged = Tous les élements en train d'être drag (candidat déplacement)
+	aElementTarget = l'élément cible qui recevra les auters (cible)
+	
+	Conditions pour valider le déplacement:
+	1) Aucun candidat dépacement n'est la cible (on ne se rajoute pas sur sois même)
+	2) La cible n'est l'enfant d'aucun candidat déplacement. ()
+	"
 
-	| canMove |
-	canMove := true.
-	
-	canMoveCollection removeAll.
-	
-	anArrayOfElementDragged do: [ :element |
-		aElementTarget = element ifTrue: [ ^ canMove := false ] ].
-	
-	self checkParentOfTarget: aElementTarget
-		  draggedBlElement: anArrayOfElementDragged.
-		
-	canMoveCollection do: [ :boolean | boolean ifFalse: [ canMove := false ] ].
-
-	^ canMove 
-]
-
-{ #category : #testing }
-PyramidEditElementTreeDragAndDropPlugin >> checkParentOfTarget: aElementTarget draggedBlElement: anArrayOfElementDragged [
-	 
-	aElementTarget hasParent
-	ifTrue: [ anArrayOfElementDragged do: [ :element | (aElementTarget parent = element)
-																		ifTrue: [ canMoveCollection add: false ]
-																		ifFalse: [ self checkParentOfTarget: (aElementTarget parent) 
-																							draggedBlElement: anArrayOfElementDragged ] ] ]
-	ifFalse: [ canMoveCollection add: true ]
-	
+	^ anArrayOfElementDragged allSatisfy: [ :elementDrag |
+		  elementDrag ~= aElementTarget and: [
+			  (aElementTarget allParentsInclude: elementDrag) not ] ]
 ]
 
 { #category : #connecting }
@@ -89,12 +73,6 @@ PyramidEditElementTreeDragAndDropPlugin >> connectOn: aPyramidEditor [
 PyramidEditElementTreeDragAndDropPlugin >> editor [ 
 
 	^ editor
-]
-
-{ #category : #initialization }
-PyramidEditElementTreeDragAndDropPlugin >> initialize [ 
-	
-	canMoveCollection := OrderedCollection new
 ]
 
 { #category : #actions }
