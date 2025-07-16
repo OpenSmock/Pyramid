@@ -7,10 +7,24 @@ Class {
 	#category : #'Pyramid-Bloc-plugin-edit-on-running'
 }
 
-{ #category : #accessing }
-PyramidBreakpoint class >> removeBreakpoint: aBreakpoint [
+{ #category : #removing }
+PyramidBreakpoint class >> removeAllPyramidBreakpoint [
 
-	"Do nothing"
+	<script: 'self removeAllPyramidBreakpoint'>
+	| pyramidBreakpoints |
+	pyramidBreakpoints := self all select: [ :each | each class = self ].
+	pyramidBreakpoints ifEmpty: [ ^ self ].
+	pyramidBreakpoints do: [ :each | each remove ]
+]
+
+{ #category : #removing }
+PyramidBreakpoint class >> removeAllPyramidBreakpointExceptOne [
+
+	<script: 'self removeAllPyramidBreakpointExceptOne'>
+	| pyramidBreakpoints |
+	pyramidBreakpoints := self all select: [ :each | each class = self ].
+	pyramidBreakpoints ifEmpty: [ ^ self ].
+	pyramidBreakpoints allButFirstDo: [ :each | each remove ]
 ]
 
 { #category : #api }
