@@ -1,7 +1,7 @@
 Class {
 	#name : #PyramidEditElementTreeDragAndDropPluginTest,
 	#superclass : #TestCase,
-	#category : #'Pyramid-Bloc-plugin-edit-element-tree'
+	#category : #'Pyramid-Tests-cases-plugin-edit-element-tree'
 }
 
 { #category : #tests }
