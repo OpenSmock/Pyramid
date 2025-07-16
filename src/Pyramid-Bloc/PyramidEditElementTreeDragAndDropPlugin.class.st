@@ -10,7 +10,8 @@ Class {
 		'editor',
 		'navigationPlugin',
 		'navigationSelectionPanel',
-		'navigationPresenter'
+		'navigationPresenter',
+		'canMoveCollection'
 	],
 	#category : #'Pyramid-Bloc-plugin-edit-element-tree'
 }
@@ -47,24 +48,28 @@ PyramidEditElementTreeDragAndDropPlugin >> canMoveSelectedElement: anArrayOfElem
 	| canMove |
 	canMove := true.
 	
+	canMoveCollection removeAll.
+	
 	anArrayOfElementDragged do: [ :element |
 		aElementTarget = element ifTrue: [ ^ canMove := false ] ].
 	
-	canMove := (self checkParentOfTarget: aElementTarget
-		  draggedBlElement: anArrayOfElementDragged).
+	self checkParentOfTarget: aElementTarget
+		  draggedBlElement: anArrayOfElementDragged.
+		
+	canMoveCollection do: [ :boolean | boolean ifFalse: [ canMove := false ] ].
 
-	^ canMove
+	^ canMove 
 ]
 
 { #category : #testing }
 PyramidEditElementTreeDragAndDropPlugin >> checkParentOfTarget: aElementTarget draggedBlElement: anArrayOfElementDragged [
-	
-	aElementTarget hasParent 
+	 
+	aElementTarget hasParent
 	ifTrue: [ anArrayOfElementDragged do: [ :element | (aElementTarget parent = element)
-																		ifTrue: [ ^ false ]
-																		ifFalse: [ ^ (self checkParentOfTarget: (aElementTarget parent) 
-																							draggedBlElement: anArrayOfElementDragged). ] ] ]
-	ifFalse: [ ^ true ]
+																		ifTrue: [ canMoveCollection add: false ]
+																		ifFalse: [ self checkParentOfTarget: (aElementTarget parent) 
+																							draggedBlElement: anArrayOfElementDragged ] ] ]
+	ifFalse: [ canMoveCollection add: true ]
 	
 ]
 
@@ -89,7 +94,7 @@ PyramidEditElementTreeDragAndDropPlugin >> editor [
 { #category : #initialization }
 PyramidEditElementTreeDragAndDropPlugin >> initialize [ 
 	
-	"Do nothing"
+	canMoveCollection := OrderedCollection new
 ]
 
 { #category : #actions }
