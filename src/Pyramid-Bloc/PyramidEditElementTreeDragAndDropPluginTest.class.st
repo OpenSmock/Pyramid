@@ -5,6 +5,25 @@ Class {
 }
 
 { #category : #tests }
+PyramidEditElementTreeDragAndDropPluginTest >> testCanMoveSelectedElementTargetOnNil [
+
+	| plugin |
+	plugin := PyramidEditElementTreeDragAndDropPlugin new.
+	self assert:
+		(plugin canMoveSelectedElement: {  } target: nil)
+]
+
+{ #category : #tests }
+PyramidEditElementTreeDragAndDropPluginTest >> testCanMoveSelectedElementTargetOnNilAlternative [
+
+	| plugin a |
+	plugin := PyramidEditElementTreeDragAndDropPlugin new.
+	a := BlElement new.
+	self assert:
+		(plugin canMoveSelectedElement: { a } target: nil)
+]
+
+{ #category : #tests }
 PyramidEditElementTreeDragAndDropPluginTest >> testCanMoveSelectedElementTargetSimpleCase [
 
 	| plugin |

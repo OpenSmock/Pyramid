@@ -51,7 +51,7 @@ PyramidEditElementTreeDragAndDropPlugin >> canMoveSelectedElement: anArrayOfElem
 	1) Aucun candidat dépacement n'est la cible (on ne se rajoute pas sur sois même)
 	2) La cible n'est l'enfant d'aucun candidat déplacement. ()
 	"
-
+	aElementTarget ifNil: [ ^ true ].
 	^ anArrayOfElementDragged allSatisfy: [ :elementDrag |
 		  elementDrag ~= aElementTarget and: [
 			  (aElementTarget allParentsInclude: elementDrag) not ] ]
