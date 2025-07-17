@@ -61,7 +61,7 @@ PyramidSpaceShortcutMoveChildInParent >> shortcutActionMoveDown [
 			              combination: keyCombinationMoveDown;
 			              action: [ :event | moveChildInParentPlugin 
 														ifNil: [ self inform: 'Plugin MoveChildInParentPlugin is not installed' ]
-														ifNotNil: [ moveChildInParentPlugin moveDownChildIndexInParent ] ]
+														ifNotNil: [ moveChildInParentPlugin moveChildIndexDownInParent ] ]
 ]
 
 { #category : #accessing }
@@ -72,5 +72,5 @@ PyramidSpaceShortcutMoveChildInParent >> shortcutActionMoveUp [
 			              combination: keyCombinationMoveUp;
 			              action: [ :event | moveChildInParentPlugin 
 														ifNil: [ self inform: 'Plugin MoveChildInParentPlugin is not installed' ]
-														ifNotNil: [ moveChildInParentPlugin moveUpChildIndexInParent ] ]
+														ifNotNil: [ moveChildInParentPlugin moveChildIndexUpInParent ] ]
 ]
