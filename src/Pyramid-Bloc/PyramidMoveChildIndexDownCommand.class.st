@@ -1,6 +1,6 @@
 Class {
 	#name : #PyramidMoveChildIndexDownCommand,
-	#superclass : #PyramidChildrenCommand,
+	#superclass : #PyramidMoveChildInParentCommand,
 	#category : #'Pyramid-Bloc-plugin-bloc'
 }
 
