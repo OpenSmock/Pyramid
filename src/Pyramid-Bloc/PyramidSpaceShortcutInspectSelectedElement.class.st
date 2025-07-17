@@ -1,3 +1,6 @@
+"
+This class is use to inspect the current selected element
+"
 Class {
 	#name : #PyramidSpaceShortcutInspectSelectedElement,
 	#superclass : #PyramidSpaceShortcutManagerPlugin,
