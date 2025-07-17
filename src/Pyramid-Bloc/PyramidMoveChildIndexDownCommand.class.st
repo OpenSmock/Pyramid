@@ -19,7 +19,4 @@ PyramidMoveChildIndexDownCommand >> setValueFor: aBlElementParent with: aBlEleme
 	aBlElementParent
 		swapChildAt: childIndexToMove
 		with: childIndexToMove - 1
-	
-	
-	"(aBlElementParent ""first"") swapChildAt: indexOfChildToMove with: (indexOfChildToMove - 1)"
 ]
