@@ -97,7 +97,7 @@ PyramidMoveChildInParentPlugin >> moveChildIndexDownInParent [
 	
 	childIndexToMove > 1
 		ifTrue: [ self moveChildIndexDownCommand: parentChild with: childToMove.
-			self refreshTreeTable: childToMove ]
+			self refreshTreeTable ]
 		ifFalse: [ self inform: 'Cannot move down' ].
 
 			
@@ -135,7 +135,7 @@ PyramidMoveChildInParentPlugin >> moveChildIndexUpInParent [
 	
 	childIndexToMove < (parentChild children size)
 		ifTrue: [ self moveChildIndexUpCommand: parentChild with: childToMove.
-			self refreshTreeTable: childToMove ]
+			self refreshTreeTable ]
 		ifFalse: [ self inform: 'Cannot move up' ].
 			
 	
@@ -149,14 +149,15 @@ PyramidMoveChildInParentPlugin >> navigationFromPyramid: aPyramidEditor [
 ]
 
 { #category : #'as yet unclassified' }
-PyramidMoveChildInParentPlugin >> refreshTreeTable: aBlElementToMove [
+PyramidMoveChildInParentPlugin >> refreshTreeTable [
 	
-	| navigationSelectionPanel |
+	| navigationSelectionPanel selectedItems |
 	
 	navigationSelectionPanel := navigationPlugin navigation selectionPanel.
 	"Keep the selection on the movedChild from here"
+	selectedItems := navigationSelectionPanel treeTable selectedItems first.
 	navigationSelectionPanel treeTable unselectAll.
 	"Refresh the treeTable"
 	navigationSelectionPanel treeTable roots: navigationSelectionPanel treeTable roots.
-	navigationSelectionPanel treeTable selectItem: aBlElementToMove
+	navigationSelectionPanel treeTable selectItem: selectedItems
 ]

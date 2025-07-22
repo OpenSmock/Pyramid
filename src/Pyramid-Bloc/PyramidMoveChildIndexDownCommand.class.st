@@ -14,6 +14,7 @@ PyramidMoveChildIndexDownCommand >> commandInverse [
 PyramidMoveChildIndexDownCommand >> setValueFor: aBlElementParent with: aBlElementToMove [
 
 	| childIndexToMove |
+
 	childIndexToMove := aBlElementParent childIndexOf: aBlElementToMove.
 
 	aBlElementParent
