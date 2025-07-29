@@ -9,18 +9,20 @@ BaselineOfPyramid >> baseline: spec [
 
 	<baseline>
 	"Common baseline for all Pharo versions"
-	spec for: #common do: [ 
-		self baselineForCommon: spec.
+	spec 
+		for: #common 
+		do: [ 
+			self baselineForCommon: spec.
 
-		"Pharo backward compatibility: to preserve running from Pharo 12"
-		spec 
-			for: #'pharo12.x'
-			do:[
-			    spec
-    				baseline: 'PharoBackwardCompatibility'
-    				with: [ spec repository: 'github://jecisc/PharoBackwardCompatibility:v1.12.0/src' ]
-			]. 
-	]
+			"Pharo backward compatibility: to preserve running from Pharo 12"
+			spec 
+				for: #(#'pharo11.x' #'pharo12.x')
+				do:[
+			    	spec
+    					baseline: 'PharoBackwardCompatibility'
+    					with: [ spec repository: 'github://jecisc/PharoBackwardCompatibility:master/src' ]
+				]. 
+		]	
 ]
 
 { #category : #baselines }
