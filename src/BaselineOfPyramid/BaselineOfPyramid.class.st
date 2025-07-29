@@ -9,7 +9,7 @@ BaselineOfPyramid >> baseline: spec [
 
 	<baseline>
 	"Common baseline for all Pharo versions"
-	spec for: #common do: [ self baselineForCommon: spec]	
+	spec for: #common do: [ self baselineForCommon: spec ]	
 ]
 
 { #category : #baselines }
@@ -19,15 +19,11 @@ BaselineOfPyramid >> baselineForCommon: spec [
 	spec preLoadDoIt: #preload:package:.
 	spec postLoadDoIt: #postload:package:.
 
-	"Pharo backward compatibility: to preserve running from Pharo 12"
-	spec 
-		for: #(#'pharo11.x' #'pharo12.x')
-		do:[
-	    	spec
-    			baseline: 'PharoBackwardCompatibility'
-    			with: [ spec repository: 'github://jecisc/PharoBackwardCompatibility:master/src' ]
-		]. 
-
+	"Pharo backward compatibility: to preserve running from previous versions of Pharo"
+	spec
+    	baseline: 'PharoBackwardCompatibility'
+    	with: [ spec repository: 'github://jecisc/PharoBackwardCompatibility:master/src' ].
+	
 	"Dependencies"
 	self blocDependencies: spec.
 	self toploDependencies: spec.
@@ -88,7 +84,9 @@ BaselineOfPyramid >> preload: loader package: packageSpec [
 { #category : #packages }
 BaselineOfPyramid >> pyramidPackages: spec [
 
-	spec package: 'Pyramid'.
+	spec 
+		package: 'Pyramid' 
+		with:[ spec requires: #( 'PharoBackwardCompatibility' ) ].
 	spec
 		package: 'Pyramid-IDE'
 		with: [ spec requires: #( 'Pyramid' ) ].
