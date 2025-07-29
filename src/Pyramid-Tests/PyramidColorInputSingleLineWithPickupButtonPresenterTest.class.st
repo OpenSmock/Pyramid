@@ -37,6 +37,6 @@ PyramidColorInputSingleLineWithPickupButtonPresenterTest >> makeNewInput [
 { #category : #'as yet unclassified' }
 PyramidColorInputSingleLineWithPickupButtonPresenterTest >> triggerValueChangedOf: anInput [
 
-	anInput singleLineInput hexInput textInput contextKeyBindings keymaps do: [ :bind |
-		bind action value ]
+	anInput singleLineInput hexInput textInput ensureInternalActions
+		decoratedGroup entries do: [ :bind | bind execute ]
 ]

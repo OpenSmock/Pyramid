@@ -39,6 +39,6 @@ PyramidPointInputPresenterTest >> makeNewInput [
 { #category : #'as yet unclassified' }
 PyramidPointInputPresenterTest >> triggerValueChangedOf: anInput [
 
-	anInput inputX inputNumber contextKeyBindings keymaps do: [ :bind |
-		bind action value ]
+	anInput inputX inputNumber ensureInternalActions decoratedGroup
+		entries do: [ :bind | bind execute ]
 ]

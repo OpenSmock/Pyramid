@@ -40,6 +40,6 @@ PyramidHorizontalFrameConstraintsInputPresenterTest >> makeNewInput [
 { #category : #'as yet unclassified' }
 PyramidHorizontalFrameConstraintsInputPresenterTest >> triggerValueChangedOf: anInput [
 
-	anInput inputRelative inputNumber contextKeyBindings keymaps do: [ :bind |
-		bind action value ]
+	anInput inputRelative inputNumber ensureInternalActions
+		decoratedGroup entries do: [ :bind | bind execute ]
 ]
