@@ -1,0 +1,17 @@
+SmalltalkCISpec {
+
+  #preLoading: '.github/ci/preLoading.st',
+
+  #loading : [
+    SCIMetacelloLoadSpec {
+      #baseline : 'Pyramid',
+      #directory : 'src',
+      #onConflict : #useLoaded,
+      #platforms : [ #pharo ]
+    }
+  ],
+  #testing : {
+    #categories : [ 'Pyramid*' ],
+    #packages : [ 'Bloc-Serialization.*' ]
+  }
+}

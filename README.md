@@ -62,7 +62,7 @@ We advise you to use dependencies committed at the date of the Pyramid release (
 ```st
 Metacello new
 	baseline: 'Pyramid';
-	repository: 'github://OpenSmock/Pyramid:alpha7';
+	repository: 'github://OpenSmock/Pyramid:alpha4';
 	onConflictUseLoaded;
 	load
 ```
