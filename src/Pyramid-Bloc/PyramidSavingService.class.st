@@ -63,7 +63,7 @@ PyramidSavingService class >> stash [
 		         classifier: #'pyramid-serialized-bloc';
 		         comment: [
 			         'This class has been generated using Pyramid.<r><r><t>By: <1s><r><t><2s> <3s>'
-				         expandMacrosWith: Author uniqueInstance fullName
+				         expandMacrosWith: ''
 				         with: Date today yyyymmdd
 				         with: Time now print24 ];
 		         pragma: 'pyStash';
@@ -81,9 +81,9 @@ PyramidSavingService class >> ston [
 		        classifier: #'pyramid-serialized-bloc';
 		        comment: [
 			        'This class has been generated using Pyramid.<r><r><t>By: <1s><r><t><2s> <3s>'
-				        expandMacrosWith: Author uniqueInstance fullName
-				        with: Date today yyyymmdd
-				        with: Time now print24 ];
+				        expandMacrosWith: ''
+				         with: Date today yyyymmdd
+				         with: Time now print24 ];
 		        pragma: 'pySTON';
 		        serializeBlock: [ :collection |
 			        '<1p>' expandMacrosWith:
