@@ -148,6 +148,8 @@ https://github.com/OpenSmock/Pyramid/assets/49183340/0c66a3ac-7bea-48c1-b1e8-0b0
 - [STON](https://github.com/svenvc/ston) - serializer for Pharo objects to Smalltalk Object Notation format.
 - [Stash](https://github.com/Nyan11/Stash) - serializer for Pharo objects to source code format.
 
+**Pharo 12 compatibility:** On Pharo 12, [PharoBackwardCompatibility](https://github.com/jecisc/PharoBackwardCompatibility) is automatically loaded via the baseline to ensure compatibility.
+
 ## <img src="/assets/PyramidPinPtah.svg" width="75" height="75" align="bottom"> License
 
 <picture>
