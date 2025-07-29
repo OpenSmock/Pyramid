@@ -9,20 +9,7 @@ BaselineOfPyramid >> baseline: spec [
 
 	<baseline>
 	"Common baseline for all Pharo versions"
-	spec 
-		for: #common 
-		do: [ 
-			self baselineForCommon: spec.
-
-			"Pharo backward compatibility: to preserve running from Pharo 12"
-			spec 
-				for: #(#'pharo11.x' #'pharo12.x')
-				do:[
-			    	spec
-    					baseline: 'PharoBackwardCompatibility'
-    					with: [ spec repository: 'github://jecisc/PharoBackwardCompatibility:master/src' ]
-				]. 
-		]	
+	spec for: #common do: [ self baselineForCommon: spec]	
 ]
 
 { #category : #baselines }
@@ -31,6 +18,15 @@ BaselineOfPyramid >> baselineForCommon: spec [
 	<baseline>
 	spec preLoadDoIt: #preload:package:.
 	spec postLoadDoIt: #postload:package:.
+
+	"Pharo backward compatibility: to preserve running from Pharo 12"
+	spec 
+		for: #(#'pharo11.x' #'pharo12.x')
+		do:[
+	    	spec
+    			baseline: 'PharoBackwardCompatibility'
+    			with: [ spec repository: 'github://jecisc/PharoBackwardCompatibility:master/src' ]
+		]. 
 
 	"Dependencies"
 	self blocDependencies: spec.
@@ -113,7 +109,7 @@ BaselineOfPyramid >> toploPackages: spec [
 
 	spec
 		package: 'Pyramid-Toplo'
-		with: [ spec requires: #( 'ToploSerialization') ].
+		with: [ spec requires: #( 'ToploSerialization' ) ].
 		
 	spec
 		package: 'Pyramid-Toplo-Tests'
