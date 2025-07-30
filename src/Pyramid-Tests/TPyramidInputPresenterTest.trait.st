@@ -87,7 +87,7 @@ TPyramidInputPresenterTest >> testTrigger [
 	self dummyValues do: [ :each |
 		current := Object new.
 		self putValue: each onInput: input.
-		self triggerValueChangedOf: input.
+		self triggerValueChangedOfWithVersion: input.
 		self assert: input value equals: current ].
 	self assert: self dummyValues size equals: count
 ]
@@ -108,4 +108,18 @@ TPyramidInputPresenterTest >> testValue [
 TPyramidInputPresenterTest >> triggerValueChangedOf: anInput [
 
 	self shouldBeImplemented
+]
+
+{ #category : #'as yet unclassified' }
+TPyramidInputPresenterTest >> triggerValueChangedOfForPharo12AndBelow: anInput [
+
+	self triggerValueChangedOf: anInput
+]
+
+{ #category : #'as yet unclassified' }
+TPyramidInputPresenterTest >> triggerValueChangedOfWithVersion: anInput [
+
+	SystemVersion current major >= 13
+		ifTrue: [ self triggerValueChangedOf: anInput ]
+		ifFalse: [ self triggerValueChangedOfForPharo12AndBelow: anInput ]
 ]

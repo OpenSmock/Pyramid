@@ -8,7 +8,7 @@ Class {
 	#instVars : [
 		'history'
 	],
-	#category : 'Pyramid-commands'
+	#category : #'Pyramid-commands'
 }
 
 { #category : #accessing }

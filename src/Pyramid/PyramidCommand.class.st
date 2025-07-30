@@ -12,7 +12,7 @@ In some rare case, the method saveStatesOf: aCollection withCommand: aCommand wi
 Class {
 	#name : #PyramidCommand,
 	#superclass : #Object,
-	#category : 'Pyramid-commands'
+	#category : #'Pyramid-commands'
 }
 
 { #category : #testing }

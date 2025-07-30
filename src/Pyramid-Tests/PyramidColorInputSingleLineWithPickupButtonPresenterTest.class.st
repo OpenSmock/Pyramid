@@ -40,3 +40,10 @@ PyramidColorInputSingleLineWithPickupButtonPresenterTest >> triggerValueChangedO
 	anInput singleLineInput hexInput textInput ensureInternalActions
 		decoratedGroup entries do: [ :bind | bind execute ]
 ]
+
+{ #category : #'as yet unclassified' }
+PyramidColorInputSingleLineWithPickupButtonPresenterTest >> triggerValueChangedOfForPharo12AndBelow: anInput [
+
+	anInput singleLineInput hexInput textInput contextKeyBindings keymaps do: [ :bind |
+		bind action value ]
+]

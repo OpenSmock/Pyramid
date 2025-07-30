@@ -7,7 +7,7 @@ Class {
 		'codeObjectInteractionModel',
 		'contextLabel'
 	],
-	#category : 'Pyramid-plugin-playground'
+	#category : #'Pyramid-plugin-playground'
 }
 
 { #category : #accessing }

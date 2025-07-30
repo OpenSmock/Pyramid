@@ -4,7 +4,7 @@ Class {
 	#instVars : [
 		'mementos'
 	],
-	#category : 'Pyramid-history'
+	#category : #'Pyramid-history'
 }
 
 { #category : #visiting }

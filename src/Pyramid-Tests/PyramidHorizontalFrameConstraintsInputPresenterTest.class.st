@@ -43,3 +43,10 @@ PyramidHorizontalFrameConstraintsInputPresenterTest >> triggerValueChangedOf: an
 	anInput inputRelative inputNumber ensureInternalActions
 		decoratedGroup entries do: [ :bind | bind execute ]
 ]
+
+{ #category : #'as yet unclassified' }
+PyramidHorizontalFrameConstraintsInputPresenterTest >> triggerValueChangedOfForPharo12AndBelow: anInput [
+
+	anInput inputRelative inputNumber contextKeyBindings keymaps do: [ :bind |
+		bind action value ]
+]

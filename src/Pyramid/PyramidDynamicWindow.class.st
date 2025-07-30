@@ -4,7 +4,7 @@ Class {
 	#instVars : [
 		'layoutStrategy'
 	],
-	#category : 'Pyramid-plugin-dynamic-layout'
+	#category : #'Pyramid-plugin-dynamic-layout'
 }
 
 { #category : #accessing }

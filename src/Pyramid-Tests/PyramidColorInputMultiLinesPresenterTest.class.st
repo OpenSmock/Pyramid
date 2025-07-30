@@ -40,3 +40,10 @@ PyramidColorInputMultiLinesPresenterTest >> triggerValueChangedOf: anInput [
 	anInput hexaInput hexInput textInput ensureInternalActions
 		decoratedGroup entries do: [ :bind | bind execute ]
 ]
+
+{ #category : #'as yet unclassified' }
+PyramidColorInputMultiLinesPresenterTest >> triggerValueChangedOfForPharo12AndBelow: anInput [
+
+	anInput hexaInput hexInput textInput contextKeyBindings keymaps do: [ :bind |
+		bind action value ]
+]
