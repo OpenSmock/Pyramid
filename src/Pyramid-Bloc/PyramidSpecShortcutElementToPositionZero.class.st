@@ -13,7 +13,7 @@ Class {
 
 { #category : #accessing }
 PyramidSpecShortcutElementToPositionZero >> defaultKeyCombination [
-	"CTRL + G to activate this shortcut"
+	"CTRL + Space to activate this shortcut"
 	
 	keyCombination := Character space command mac | Character space control unix | Character space control win
 ]
