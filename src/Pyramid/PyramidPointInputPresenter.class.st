@@ -51,8 +51,12 @@ PyramidPointInputPresenter >> initializePresenters [
 		          whenValueChangedDo: [ :n |
 			          self whenValueChangedDo value: self value ];
 		          yourself.
-	labelX := SpLabelPresenter new.
-	labelY := SpLabelPresenter new
+	labelX := SpLabelPresenter new 
+				label: 'W';
+				yourself.
+	labelY := SpLabelPresenter new 
+				label: 'H';
+				yourself.
 ]
 
 { #category : #accessing }
