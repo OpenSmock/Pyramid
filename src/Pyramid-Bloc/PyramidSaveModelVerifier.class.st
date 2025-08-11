@@ -48,7 +48,7 @@ PyramidSaveModelVerifier class >> methodIsValid [
 
 	^ self new
 		  verifyBlock: [ :model |
-			  OCScanner isSelector: model savingMethodName ];
+			  model savingMethodName isValidSelector ];
 		  showBlock: [ :view | view showMethodIsNotValidError ];
 		  yourself
 ]
