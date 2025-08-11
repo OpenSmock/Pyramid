@@ -52,7 +52,7 @@ PyramidGeometryInputPresenter >> initializeGeometryButtons [
 				 help: 'Change the geometry to a rectangle.';
 				 defaultGeometry: BlRectangleGeometry new;
 				 blocIcon: (BlElement new
-						  size: 16 asPoint;
+						  extent: 16 asPoint;
 						  geometry: BlRectangleGeometry new;
 						  yourself);
 				 yourself).
@@ -64,11 +64,11 @@ PyramidGeometryInputPresenter >> initializeGeometryButtons [
 				 help: 'Change the geometry to an ellipse.';
 				 defaultGeometry: BlEllipseGeometry new;
 				 blocIcon: (BlElement new
-						  size: 16 asPoint;
+						  extent: 16 asPoint;
 						  geometry: BlEllipseGeometry new;
 						  yourself);
 				 yourself).
-	
+
 	geometryDictionary
 		at: BlRoundedRectangleGeometry
 		put: (PyramidGeometryInputModel new
@@ -76,11 +76,11 @@ PyramidGeometryInputPresenter >> initializeGeometryButtons [
 				 help: 'Change the geometry to an ellipse.';
 				 defaultGeometry: (BlRoundedRectangleGeometry cornerRadius: 12);
 				 blocIcon: (BlElement new
-						  size: 16 asPoint;
+						  extent: 16 asPoint;
 						  geometry: (BlRoundedRectangleGeometry cornerRadius: 5);
 						  yourself);
 				 yourself).
-	
+
 	geometryDictionary
 		at: BlPolygonGeometry
 		put: (PyramidGeometryInputModel new
@@ -93,7 +93,7 @@ PyramidGeometryInputPresenter >> initializeGeometryButtons [
 								  (16 @ 6).
 								  (3 @ 16) } * 3);
 				 blocIcon: (BlElement new
-						  size: 16 asPoint;
+						  extent: 16 asPoint;
 						  geometry: (BlPolygonGeometry vertices: {
 										   (8 @ 0).
 										   (13 @ 16).

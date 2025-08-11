@@ -72,7 +72,8 @@ PyramidEditor >> open [
 
 	self window ifNil: [ ^ self ].
 	self window isOpen ifTrue:[ ^ self ].
-	self window open
+	self window open.
+	self plugins do: [ :plugin | plugin windowOpenBy: self ]
 ]
 
 { #category : #plugins }

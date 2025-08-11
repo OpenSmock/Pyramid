@@ -243,20 +243,23 @@ PyramidMainExtension >> initialize [
 	workplacePropertiesView := PyramidWorkplacePropertiesPresenter new
 		                           workplaceSizeValue: self defaultExtent;
 		                           whenWorkplaceValuesChangedDo: [ :point |
-												self extent: point ];
+			                           self extent: point ];
 		                           whenVisibilityChangedDo: [
-												self switchGridvisibility.
-												self createGrid ];
+			                           self switchGridvisibility.
+			                           self createGrid ];
 		                           spacingTextValue: self defaultGridSpacing;
-		                           whenSpacingTextChangedDo: [ :value | 
-												(self checkZeroOrSubZeroGridSpacingValue: value)
-												ifTrue: [ gridSpacing := self defaultGridSpacing ]
-												ifFalse: [ gridSpacing := value ].
-												self createGrid ];
+		                           whenSpacingTextChangedDo: [ :value |
+			                           (self
+				                            checkZeroOrSubZeroGridSpacingValue:
+					                            value)
+				                           ifTrue: [
+					                           gridSpacing := self defaultGridSpacing ]
+				                           ifFalse: [ gridSpacing := value ].
+			                           self createGrid ];
 		                           gridColorValue: self defaultGridColor;
 		                           whenColorValuesChangedDo: [ :color |
-												gridColor := color.
-												self createGrid ];
+			                           gridColor := color.
+			                           self createGrid ];
 		                           yourself.
 
 	"Button of the pop-up windows properties who call the creation of the pop-up"
@@ -310,7 +313,7 @@ PyramidMainExtension >> initialize [
 
 	sizeElement := BlElement new
 		               id: #MainExtension_sizeElement;
-		               size: self defaultExtent;
+		               extent: self defaultExtent;
 		               clipChildren: false;
 		               addChildren: {
 				               containerElement.
@@ -327,7 +330,7 @@ PyramidMainExtension >> installOn: aBuilder [
 	self elementAtTransforms transformDo: [ :t |
 		t translateBy: self offsetTranslation ].
 	self builder signalTransformationChanged.
-	self elementAtWidgets size: self defaultExtent
+	self elementAtWidgets extent: self defaultExtent
 ]
 
 { #category : #'as yet unclassified' }

@@ -48,3 +48,7 @@ TPyramidPlugin >> configureBuilder: aPyramidEditorBuilder [
 { #category : #connecting }
 TPyramidPlugin >> connectOn: aPyramidEditor [
 ]
+
+{ #category : #connecting }
+TPyramidPlugin >> windowOpenBy: aPyramidEditor [
+]

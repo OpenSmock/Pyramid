@@ -6,45 +6,43 @@ Used the plugin-save in this package.
 Class {
 	#name : #PyramidSpaceShortcutSave,
 	#superclass : #PyramidSpaceShortcutManagerPlugin,
+	#traits : 'TPyramidShortcutSpace',
+	#classTraits : 'TPyramidShortcutSpace classTrait',
 	#instVars : [
-		'savePlugin',
-		'shortcutSave',
-		'keyCombinationSave'
+		'plugin',
+		'shortcut',
+		'keyCombination'
 	],
 	#category : #'Pyramid-Bloc-plugin-shortcut-manager'
 }
 
 { #category : #accessing }
-PyramidSpaceShortcutSave >> defaultKeyCombinationSave [
+PyramidSpaceShortcutSave >> defaultKeyCombination [
 	"CTRL + S to activate this shortcut"
-	keyCombinationSave := ((BlKeyCombination builder primary key: KeyboardKey S) build)
-]
 
-{ #category : #initialization }
-PyramidSpaceShortcutSave >> initialize [ 
-	
-	self defaultKeyCombinationSave
-]
-
-{ #category : #accessing }
-PyramidSpaceShortcutSave >> keyCombinationSave: aKeyCombination [
-	
-	^ keyCombinationSave := aKeyCombination
+	keyCombination := (BlKeyCombination builder primary key:
+		                   KeyboardKey S) build
 ]
 
 { #category : #'accessing - classes' }
-PyramidSpaceShortcutSave >> savePluginFromPyramid: aPyramidEditor [
+PyramidSpaceShortcutSave >> pluginFromPyramid: aPyramidEditor [
 
-	savePlugin := aPyramidEditor findPlugin: PyramidSavePlugin.
+	| listOfPlugins pluginSorted |
+	listOfPlugins := aPyramidEditor plugins.
+	pluginSorted := listOfPlugins select: [ :extensions | extensions isKindOf: PyramidSavePlugin ].
+	pluginSorted size = 1 ifFalse: [ ^ self ].
+	plugin := pluginSorted asArray first
 ]
 
 { #category : #accessing }
-PyramidSpaceShortcutSave >> shortcutActionSave [
+PyramidSpaceShortcutSave >> shortcutAction [
 
-	^ shortcutSave := BlShortcutWithAction new
-			              name: 'Pyramid edition shortcut save';
-			              combination: keyCombinationSave;
-			              action: [ :event | savePlugin
-														ifNil: [ self inform: 'Plugin save is not installed' ]
-														ifNotNil: [ savePlugin saveAction ] ]
+	^ shortcutAction := BlShortcutWithAction new
+		                    name: 'Pyramid edition shortcut save';
+		                    combination: keyCombination;
+		                    action: [ :event |
+			                    plugin
+				                    ifNil: [
+					                    self inform: 'Plugin save is not installed' ]
+				                    ifNotNil: [ plugin saveAction ] ]
 ]
