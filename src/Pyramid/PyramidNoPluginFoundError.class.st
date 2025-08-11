@@ -4,7 +4,7 @@ Class {
 	#instVars : [
 		'query'
 	],
-	#category : 'Pyramid-core'
+	#category : #'Pyramid-core'
 }
 
 { #category : #accessing }

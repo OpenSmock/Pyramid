@@ -14,28 +14,33 @@ PyramidLayoutBlocCommandTest >> command [
 
 { #category : #'as yet unclassified' }
 PyramidLayoutBlocCommandTest >> targetContainers [
-
+	| flowLayoutVertical basicLayout proportionalLayout  |
+	
+	flowLayoutVertical := BlFlowLayout vertical.
+	basicLayout := BlBasicLayout new.
+	proportionalLayout := BlProportionalLayout new.
+	
 	^ {
 		  (PyramidCommandTestContainer
 			   no: BlElement new
 			   with: (BlElement new
-					    layout: BlFlowLayout vertical;
+					    layout: flowLayoutVertical;
 					    yourself)
-			   prop: BlFlowLayout vertical).
+			   prop: flowLayoutVertical).
 		  (PyramidCommandTestContainer
 			   no: (BlElement new
-					    layout: BlFlowLayout vertical;
+					    layout: flowLayoutVertical;
 					    yourself)
 			   with: (BlElement new
-					    layout: BlBasicLayout new;
+					    layout: basicLayout;
 					    yourself)
-			   prop: BlBasicLayout new).
+			   prop: basicLayout).
 		  (PyramidCommandTestContainer
 			   no: BlElement new
 			   with: (BlElement new
-					    layout: BlProportionalLayout new;
+					    layout: proportionalLayout;
 					    yourself)
-			   prop: BlProportionalLayout new) }
+			   prop: proportionalLayout) }
 ]
 
 { #category : #tests }
@@ -77,12 +82,12 @@ PyramidLayoutBlocCommandTest >> testHistory [
 	self argumentsForHistory do: [ :argument |
 		history canRedo ifTrue: [ history redo ].
 		targets do: [ :target |
-			self assert: (self command getValueFor: target) class equals: argument class ] ].
+			self assert: (self command getValueFor: target) class equals: argument class] ].
 
 	"Undo all"
 	self argumentsForHistory reverseDo: [ :argument |
 		targets do: [ :target |
-			self assert: (self command getValueFor: target) class equals: argument class ].
+			self assert: (self command getValueFor: target) class equals: argument class].
 		history canUndo ifTrue: [ history undo ] ].
 
 	"Redo all"

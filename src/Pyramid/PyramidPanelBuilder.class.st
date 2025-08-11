@@ -1,7 +1,7 @@
 Class {
 	#name : #PyramidPanelBuilder,
 	#superclass : #Object,
-	#category : 'Pyramid-views'
+	#category : #'Pyramid-views'
 }
 
 { #category : #accessing }

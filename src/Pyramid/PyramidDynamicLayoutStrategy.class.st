@@ -1,7 +1,7 @@
 Class {
 	#name : #PyramidDynamicLayoutStrategy,
 	#superclass : #Object,
-	#category : 'Pyramid-plugin-dynamic-layout'
+	#category : #'Pyramid-plugin-dynamic-layout'
 }
 
 { #category : #'as yet unclassified' }

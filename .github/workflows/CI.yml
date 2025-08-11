@@ -1,0 +1,33 @@
+name: 'CI'
+
+env: 
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+on:
+  push:
+    branches:
+      - 'main'
+  pull_request:
+    types: [assigned, opened, synchronize, reopened]
+
+jobs:
+  test:
+    strategy:
+      matrix:
+        os: [ ubuntu-latest, macos-latest, windows-latest ]
+        smalltalk: [ Pharo64-11, Pharo64-12, Pharo64-13 ]
+        ston: [ .smalltalkci.default.ston ]
+    runs-on: ${{ matrix.os }}
+    name: >
+      ${{ matrix.smalltalk }} • ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v3
+
+      - uses: hpi-swa/setup-smalltalkCI@v1
+        with:
+          smalltalk-image: ${{ matrix.smalltalk }}
+
+      - name: Run ${{ matrix.ston == '.smalltalkci.default.ston' && 'Full' || 'Core' }} tests
+        run: smalltalkci -s ${{ matrix.smalltalk }} ${{ matrix.ston }}
+        shell: bash
+        timeout-minutes: 30

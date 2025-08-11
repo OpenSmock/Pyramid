@@ -1,6 +1,6 @@
 Trait {
 	#name : #TPyramidPlugin,
-	#category : 'Pyramid-core'
+	#category : #'Pyramid-core'
 }
 
 { #category : #initialization }

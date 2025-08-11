@@ -7,11 +7,14 @@ SmalltalkCISpec {
       #baseline : 'Pyramid',
       #directory : 'src',
       #onConflict : #useLoaded,
+      #onUpgrade : #useLoaded,
+      #onWarningLog : true,
       #platforms : [ #pharo ]
     }
   ],
   #testing : {
     #categories : [ 'Pyramid*' ],
-    #packages : [ 'Bloc-Serialization.*' ]
+    #packages : [ 'Bloc-Serialization.*' ],
+    #packages : [ 'Toplo-Serialization.*' ]
   }
 }

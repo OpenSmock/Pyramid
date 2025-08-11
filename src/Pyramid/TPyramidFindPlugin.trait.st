@@ -1,6 +1,6 @@
 Trait {
 	#name : #TPyramidFindPlugin,
-	#category : 'Pyramid-core'
+	#category : #'Pyramid-core'
 }
 
 { #category : #'as yet unclassified' }
