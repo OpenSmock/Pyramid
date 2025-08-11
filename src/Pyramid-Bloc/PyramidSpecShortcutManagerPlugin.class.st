@@ -43,25 +43,8 @@ PyramidSpecShortcutManagerPlugin >> addAllShortcutToSpecWindow [
 
 { #category : #initialization }
 PyramidSpecShortcutManagerPlugin >> initialize [
-	"Here to Apply new shortcut, just need to add to the collectionOfShortcutClass if you have follow the TPyramidShortcutSpec trait just like the PyramidSpecShortcutSave"
 
-	collectionOfShortcutClass := OrderedCollection new.
-
-	collectionOfShortcutClass add: PyramidSpecShortcutCopy new.
-	collectionOfShortcutClass add: PyramidSpecShortcutCut new.
-	collectionOfShortcutClass add: PyramidSpecShortcutPaste new.
-	collectionOfShortcutClass add: PyramidSpecShortcutGrid new.
-	collectionOfShortcutClass add: PyramidSpecShortcutInspectSelectedElement new.
-	collectionOfShortcutClass add: PyramidSpecShortcutMoveChildUpInParent new.
-	collectionOfShortcutClass add: PyramidSpecShortcutMoveChildDownInParent new.
-	collectionOfShortcutClass add: PyramidSpecShortcutUndo new.
-	collectionOfShortcutClass add: PyramidSpecShortcutRedo new.
-	collectionOfShortcutClass add: PyramidSpecShortcutRemoveElement new.
-	collectionOfShortcutClass add: PyramidSpecShortcutSave new.
-	collectionOfShortcutClass add: PyramidSpecShortcutSelectAllElement new.
-	collectionOfShortcutClass add: PyramidSpecShortcutUnselectedElement new.
-	collectionOfShortcutClass add: PyramidSpecShortcutDefaultViewPosition new.
-	collectionOfShortcutClass add: PyramidSpecShortcutElementToPositionZero new.
+	collectionOfShortcutClass := self class allSubclasses collect: [ :class | class new ].
 ]
 
 { #category : #accessing }

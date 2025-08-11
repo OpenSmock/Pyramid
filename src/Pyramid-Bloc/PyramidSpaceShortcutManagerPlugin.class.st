@@ -65,9 +65,7 @@ PyramidSpaceShortcutManagerPlugin >> connectOn: aPyramidEditor [
 PyramidSpaceShortcutManagerPlugin >> initialize [
 
 	shortcutCollection := OrderedCollection new.
-	collectionOfSpaceShortcutClass := OrderedCollection new.
-	
-	collectionOfSpaceShortcutClass add: PyramidSpaceShortcutSave new.
+	collectionOfSpaceShortcutClass := self class allSubclasses collect: [ :class | class new ].
 ]
 
 { #category : #action }
