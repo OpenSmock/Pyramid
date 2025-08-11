@@ -1,8 +1,9 @@
 "
-This class is use to add shortcut to the space in pyramid to use feature.
+This class is use to add shortcut to the spec in pyramid to use different feature.
 
-To add new shortcut the best exemple is the PyramidSpecShortcutSave, you can see how it is implement and check this current class (here) to initialize the shortcut in the message :
-- initialize (add the shortcut class to the collectionOfShortcutClass)
+To add new shortcut you just need to put the shortcut class to the subclasses of this current class with the trait (TPyramidShortcutSpec) and fill the different message.
+
+You can take the PyramidSpecShortcutSave as example to do a new shortcut.
 
 List of current active shortcut (default value) :
 - Save -> ctrl + S
