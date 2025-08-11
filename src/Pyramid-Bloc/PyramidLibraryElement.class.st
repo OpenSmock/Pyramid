@@ -24,7 +24,7 @@ PyramidLibraryElement >> asForm [
 
 	formElement := BlElement new
 		               clipChildren: false;
-		               size: 800 @ 600;
+		               extent: 800 @ 600;
 		               addChildren: self asArray;
 		               background: Color white;
 		               yourself.
@@ -39,13 +39,13 @@ PyramidLibraryElement >> asForm [
 		         bottom: 0.
 	formElement childrenDo: [ :each |
 		bound merge: (each localBoundsToParent:
-		           (BlBounds fromRectangle: each invalidationBounds)) ].
+				 (BlBounds fromRectangle: each invalidationBounds)) ].
 	extent := bound extent.
 	possibleSizes := {
 		                 (50 @ 50).
 		                 (240 @ 240).
 		                 (480 @ 480) } select: [ :each | each >= extent ].
-	possibleSizes ifNotEmpty: [ formElement size: possibleSizes first ].
+	possibleSizes ifNotEmpty: [ formElement extent: possibleSizes first ].
 
 	^ formElement exportAsForm
 ]
