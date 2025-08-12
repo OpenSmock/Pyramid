@@ -87,7 +87,7 @@ PyramidLibraryDefault >> smalltalkIconsCategory [
 			            name: each key;
 			            block: [
 				            { (BlElement new
-					             size: each value extent;
+					             extent: each value extent;
 					             background:
 						             (BlImageBackground image:
 								              (PyramidExternalRessourceProxy fromSource:

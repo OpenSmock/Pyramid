@@ -1,7 +1,7 @@
 Class {
 	#name : #PyramidThemePropertyStrategy,
 	#superclass : #PyramidHideEmptyPropertyStrategy,
-	#category : #'Pyramid-Toplo-EXPERIMENTAL-plugin-theme-management'
+	#category : #'Pyramid-Toplo-plugin-theme-management'
 }
 
 { #category : #'as yet unclassified' }
@@ -13,6 +13,35 @@ PyramidThemePropertyStrategy >> buildPresenterFromCollection: aCollection andMan
 ]
 
 { #category : #'as yet unclassified' }
+PyramidThemePropertyStrategy >> newPropertiesFor: aCollectionOfElements [
+
+	| elementsWithStyleSheetTheme allPossibleStamps allCommonStamps |
+	elementsWithStyleSheetTheme := aCollectionOfElements
+		                               asOrderedCollection select: [
+		                               :element |
+		                               element isAttachedToSceneGraph and: [
+			                               element lookupTheme isKindOf:
+				                               ToStyleSheetTheme ] ].
+	elementsWithStyleSheetTheme ifEmpty: [ ^ {  } ].
+	allPossibleStamps := elementsWithStyleSheetTheme collect: [ :each |
+		                     PyramidSelectorPossibleStamps new
+			                     theme: each lookupTheme;
+			                     findAllStampsFor: each ].
+	allCommonStamps := allPossibleStamps first.
+	allPossibleStamps do: [ :each |
+		allCommonStamps := allCommonStamps & each ].
+	^ allCommonStamps collect: [ :each | self newPropertyForStamp: each ].
+]
+
+{ #category : #'as yet unclassified' }
+PyramidThemePropertyStrategy >> newPropertyForStamp: aStamp [
+
+	| property |
+	property := PyramidProperty new name: aStamp; command: (PyramidStampCommand new stamp: aStamp; yourself).
+	^ property
+]
+
+{ #category : #'as yet unclassified' }
 PyramidThemePropertyStrategy >> propertiesFor: aCollectionOfElements [
 
 	| elementsWithStyleSheetTheme allPossibleStamps allCommonStamps |
@@ -20,12 +49,12 @@ PyramidThemePropertyStrategy >> propertiesFor: aCollectionOfElements [
 		                               asOrderedCollection select: [
 		                               :element |
 		                               element isAttachedToSceneGraph and: [
-			                               element toTheme isKindOf:
+			                               element lookupTheme isKindOf:
 				                               ToStyleSheetTheme ] ].
 	elementsWithStyleSheetTheme ifEmpty: [ ^ {  } ].
 	allPossibleStamps := elementsWithStyleSheetTheme collect: [ :each |
 		                     PyramidSelectorPossibleStamps new
-			                     theme: each toTheme;
+			                     theme: each lookupTheme;
 			                     findAllStampsFor: each ].
 	allCommonStamps := allPossibleStamps first.
 	allPossibleStamps do: [ :each |
