@@ -1,4 +1,4 @@
-name: 'Pharo 11 CI'
+name: 'CI'
 
 env: 
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -11,19 +11,23 @@ on:
     types: [assigned, opened, synchronize, reopened]
 
 jobs:
-  build:
+  test:
     strategy:
       matrix:
         os: [ ubuntu-latest, macos-latest, windows-latest ]
-        smalltalk: [ Pharo64-11 ]
+        smalltalk: [ Pharo64-11, Pharo64-12, Pharo64-13 ]
+        ston: [ .smalltalkci.default.ston ]
     runs-on: ${{ matrix.os }}
-    name: ${{ matrix.smalltalk }} on ${{ matrix.os }}
+    name: >
+      ${{ matrix.smalltalk }} • ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v3
+
       - uses: hpi-swa/setup-smalltalkCI@v1
         with:
           smalltalk-image: ${{ matrix.smalltalk }}
-      - name: Load in New Image and Run Tests
+
+      - name: Run ${{ matrix.ston == '.smalltalkci.default.ston' && 'Full' || 'Core' }} tests
         run: smalltalkci -s ${{ matrix.smalltalk }} ${{ matrix.ston }}
         shell: bash
-        timeout-minutes: 15
+        timeout-minutes: 30

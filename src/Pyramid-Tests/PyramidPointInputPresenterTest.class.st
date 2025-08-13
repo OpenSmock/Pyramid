@@ -39,6 +39,13 @@ PyramidPointInputPresenterTest >> makeNewInput [
 { #category : #'as yet unclassified' }
 PyramidPointInputPresenterTest >> triggerValueChangedOf: anInput [
 
+	anInput inputX inputNumber ensureInternalActions decoratedGroup entries
+		do: [ :bind | bind execute ]
+]
+
+{ #category : #'as yet unclassified' }
+PyramidPointInputPresenterTest >> triggerValueChangedOfForPharo12AndBelow: anInput [
+
 	anInput inputX inputNumber contextKeyBindings keymaps do: [ :bind |
 		bind action value ]
 ]

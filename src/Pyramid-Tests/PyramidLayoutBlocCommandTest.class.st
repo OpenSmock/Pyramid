@@ -51,6 +51,13 @@ PyramidLayoutBlocCommandTest >> targetsCanBeUsedFor [
 ]
 
 { #category : #tests }
+PyramidLayoutBlocCommandTest >> testGetValueFor [
+
+	self targetsWithValuesAndValues do: [ :each |
+		self assert: (self command getValueFor: each key) class equals: each value class ].
+]
+
+{ #category : #tests }
 PyramidLayoutBlocCommandTest >> testHistory [
 	"Do once.
 	undo
