@@ -224,7 +224,7 @@ blpaintbackground2 := BlPaintBackground new.
 PyramidDrawOrderIcons class >> formMoveBackward [
 
 	^ (BlElement new
-		   size: 16 @ 16;
+		   extent: 16 @ 16;
 		   addChildren: self blocMoveBackward materializeAsBlElement)
 		  exportAsForm
 ]
@@ -233,7 +233,7 @@ PyramidDrawOrderIcons class >> formMoveBackward [
 PyramidDrawOrderIcons class >> formMoveForward [
 
 	^ (BlElement new
-		   size: 16 @ 16;
+		   extent: 16 @ 16;
 		   addChildren: self blocMoveForward materializeAsBlElement)
 		  exportAsForm
 ]
@@ -242,7 +242,7 @@ PyramidDrawOrderIcons class >> formMoveForward [
 PyramidDrawOrderIcons class >> formOnBackground [
 
 	^ (BlElement new
-		   size: 16 @ 16;
+		   extent: 16 @ 16;
 		   addChildren: self blocOnBackground materializeAsBlElement)
 		  exportAsForm
 ]
@@ -251,7 +251,7 @@ PyramidDrawOrderIcons class >> formOnBackground [
 PyramidDrawOrderIcons class >> formOnForeground [
 
 	^ (BlElement new
-		   size: 16 @ 16;
+		   extent: 16 @ 16;
 		   addChildren: self blocOnForeground materializeAsBlElement)
 		  exportAsForm
 ]

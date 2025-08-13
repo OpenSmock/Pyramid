@@ -75,10 +75,10 @@ PyramidSelectionMakerExtension >> dragEvent: anEvent [
 
 	xmin := self dragOrigin x min: anEvent position x.
 	ymin := self dragOrigin y min: anEvent position y.
-	
+
 	self selectionGhost
 		position: xmin @ ymin;
-		size: (anEvent position - self dragOrigin) abs
+		extent: (anEvent position - self dragOrigin) abs
 ]
 
 { #category : #accessing }
@@ -100,7 +100,7 @@ PyramidSelectionMakerExtension >> dragStart: anEvent [
 	self dragOrigin: anEvent position.
 
 	self selectionGhost
-		size: 0 @ 0;
+		extent: 0 @ 0;
 		position: self dragOrigin;
 		visibility: BlVisibility visible
 ]
