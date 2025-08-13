@@ -161,7 +161,6 @@ PyramidElementThemeSelectorPresenter >> updatePresenterFor: aCollectionOfElement
 	collectionOfLocalThemes := (aCollectionOfElement asArray collect: [
 		                            :each | each localTheme ]) asSet asArray.
 	collectionOfLocalThemes size > 1 ifTrue: [
-		self inform: 'here'.
 		self labelPresenter label: 'Elements Theme (differents)'.
 		^ self ].
 
@@ -172,7 +171,5 @@ PyramidElementThemeSelectorPresenter >> updatePresenterFor: aCollectionOfElement
 	collectionOfLocalThemes first ifNotNil: [
 		self inheritSelector state: false.
 		self themeSelector enabled: true.
-		self selectTheme: collectionOfLocalThemes first ].
-
-	"self layout: self defaultLayout"
+		self selectTheme: collectionOfLocalThemes first ]
 ]

@@ -5,43 +5,6 @@ Class {
 }
 
 { #category : #'as yet unclassified' }
-PyramidThemePropertyStrategy >> buildPresenterFromCollection: aCollection andManager: aManager [
-
-	aManager removeAllProperties.
-	aManager addAllProperties: (self propertiesFor: aCollection).
-	^ super buildPresenterFromCollection: aCollection andManager: aManager
-]
-
-{ #category : #'as yet unclassified' }
-PyramidThemePropertyStrategy >> newPropertiesFor: aCollectionOfElements [
-
-	| elementsWithStyleSheetTheme allPossibleStamps allCommonStamps |
-	elementsWithStyleSheetTheme := aCollectionOfElements
-		                               asOrderedCollection select: [
-		                               :element |
-		                               element isAttachedToSceneGraph and: [
-			                               element lookupTheme isKindOf:
-				                               ToStyleSheetTheme ] ].
-	elementsWithStyleSheetTheme ifEmpty: [ ^ {  } ].
-	allPossibleStamps := elementsWithStyleSheetTheme collect: [ :each |
-		                     PyramidSelectorPossibleStamps new
-			                     theme: each lookupTheme;
-			                     findAllStampsFor: each ].
-	allCommonStamps := allPossibleStamps first.
-	allPossibleStamps do: [ :each |
-		allCommonStamps := allCommonStamps & each ].
-	^ allCommonStamps collect: [ :each | self newPropertyForStamp: each ].
-]
-
-{ #category : #'as yet unclassified' }
-PyramidThemePropertyStrategy >> newPropertyForStamp: aStamp [
-
-	| property |
-	property := PyramidProperty new name: aStamp; command: (PyramidStampCommand new stamp: aStamp; yourself).
-	^ property
-]
-
-{ #category : #'as yet unclassified' }
 PyramidThemePropertyStrategy >> propertiesFor: aCollectionOfElements [
 
 	| elementsWithStyleSheetTheme allPossibleStamps allCommonStamps |
@@ -66,9 +29,6 @@ PyramidThemePropertyStrategy >> propertiesFor: aCollectionOfElements [
 PyramidThemePropertyStrategy >> propertyForStamp: aStamp [
 
 	| property |
-	property := PyramidProperty new name: aStamp; command: (PyramidStampCommand new stamp: aStamp; yourself); inputPresenterClass: PyramidSwitchInputPresenter ; yourself.
-	property inputPresenterModel onLabel: 'Has stamp'.
-	property inputPresenterModel offLabel: 'Has not stamp'.
-	property inputPresenterModel uncertainLabel: 'Uncertain'.
+	property := PyramidProperty new name: aStamp; command: (PyramidStampCommand new stamp: aStamp; yourself).
 	^ property
 ]

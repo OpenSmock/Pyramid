@@ -19,7 +19,6 @@ PyramidThemePresenter >> defaultLayout [
 		  add: self themeSpaceSelector expand: false;
 		  add: self themeElementSelector expand: false;
 		  add: self treeTableStampPresenter;
-		  "add: self styleSheetEditor expand: true;"
 		  yourself
 ]
 
@@ -37,7 +36,6 @@ PyramidThemePresenter >> initializePresenters [
 
 	themeSpaceSelector := PyramidSpaceThemeSelectorPresenter new.
 	themeElementSelector := PyramidElementThemeSelectorPresenter new.
-	styleSheetEditor := PyramidStyleSheetEditorPresenter new.
 	
 	treeTableStampPresenter := PyramidStampManagerPresenter new.
 ]

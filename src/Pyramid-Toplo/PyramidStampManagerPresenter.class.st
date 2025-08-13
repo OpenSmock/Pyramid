@@ -23,7 +23,7 @@ PyramidStampManagerPresenter >> addRootsStampAddTreeTable: aElement [
 
 	| collectionOfStamps |
 	
-	collectionOfStamps := pyramidPropertiesStrategy newPropertiesFor: aElement.
+	collectionOfStamps := pyramidPropertiesStrategy propertiesFor: aElement.
 	
 	^ collectionOfStamps.
 ]
@@ -46,14 +46,6 @@ PyramidStampManagerPresenter >> allStampFromElement: aElement [
 		treeTableStamp roots: {  }.
 		^ self ].
 
-	"classStampToRemove := (aElement class asString withoutPrefix: 'To')
-		                      asLowercase.
-
-	stampsCollection do: [ :aPyramidProperty |
-		aPyramidProperty name = classStampToRemove asSymbol ifFalse: [
-			collectionOfStamps add: aPyramidProperty ] ]."
-
-	"treeTableStamp roots: collectionOfStamps asArray"
 	treeTableStamp roots: stampsCollection asArray
 ]
 
@@ -108,14 +100,10 @@ PyramidStampManagerPresenter >> defaultLayout [
 { #category : #'as yet unclassified' }
 PyramidStampManagerPresenter >> elementsOrSelectionChanged: anEvent [
 	
-	anEvent selection isEmpty
-	ifTrue: [ treeTableStamp roots: {  }. addStampButton disable. ^ self ].
-	anEvent selection size > 1
+	(anEvent selection isEmpty or:[ anEvent selection size > 1 ])
 	ifTrue: [ treeTableStamp roots: {  }. addStampButton disable. ^ self ].
 	
 	currentSelectedElement := anEvent selection first.
-	"currentSelectedElement allStamps inspect.
-	currentSelectedElement inspect."
 	self allStampFromElement: currentSelectedElement.
 	addStampButton enable.
 ]

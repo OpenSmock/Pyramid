@@ -161,7 +161,6 @@ PyramidToploThemePlugin >> initialize [
 		                        presenterStrategy:
 			                        PyramidThemePropertyStrategy new;
 		                        yourself.
-	themePresenter styleSheetEditor stampPresenter: themePropertyManager mainPresenter.
 	
 	themePresenter treeTableStampPresenter pyramidPropertiesStrategy: PyramidThemePropertyStrategy new.
 ]
