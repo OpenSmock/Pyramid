@@ -3,7 +3,6 @@ Class {
 	#superclass : #SpPresenter,
 	#instVars : [
 		'projectModel',
-		'styleSheetEditor',
 		'themeSpaceSelector',
 		'themeElementSelector',
 		'treeTableStampPresenter'
@@ -56,12 +55,6 @@ PyramidThemePresenter >> projectModel: aProjectModel [
 PyramidThemePresenter >> pyramidSpaceBuilderConfigurationOn: aSpaceBuilder [
 
 	aSpaceBuilder addExtension: self themeSpaceSelector
-]
-
-{ #category : #layout }
-PyramidThemePresenter >> styleSheetEditor [
-
-	^ styleSheetEditor
 ]
 
 { #category : #layout }

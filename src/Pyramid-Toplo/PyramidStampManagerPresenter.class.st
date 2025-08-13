@@ -31,7 +31,7 @@ PyramidStampManagerPresenter >> addRootsStampAddTreeTable: aElement [
 { #category : #'as yet unclassified' }
 PyramidStampManagerPresenter >> allStampFromElement: aElement [
 
-	| stampsCollection collectionOfStamps classStampToRemove |
+	| stampsCollection collectionOfStamps |
 	stampsCollection := OrderedCollection new.
 	collectionOfStamps := OrderedCollection new.
 
@@ -133,6 +133,7 @@ PyramidStampManagerPresenter >> initializePresenter [
 										selectedStampEquipped 
 										ifNil: [ removeStampButton disable ] 
 										ifNotNil: [ removeStampButton enable ] ].
+									
 	treeTableStamp addColumn: (SpCompositeTableColumn new
 			title: 'Stamp';
 			addColumn: (SpStringTableColumn evaluated: #name);
@@ -154,10 +155,10 @@ PyramidStampManagerPresenter >> openModalAddStampTreeTable [
 	ifTrue: [ ^ self ].
 	
 	window := treeTableAddStampPresenter asModalWindow.
+	
 	treeTableAddStampPresenter treeTableAddStamp roots: (self addRootsStampAddTreeTable: currentSelectedElement).
+	
 	window title: 'Add stamp to the selected element'.
-	"To center the window when open"
-	"window centered."
 	dialog := window open.
 ]
 
