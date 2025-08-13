@@ -149,8 +149,6 @@ PyramidToploThemePlugin >> connectOn: aPyramidEditor [
 	self themePresenter projectModel: aPyramidEditor projectModel.
 	
 	self themePresenter treeTableStampPresenter projectModel: aPyramidEditor projectModel.
-	
-	self themePresenter treeTableStampPresenter styleSheetEditor: self themePresenter styleSheetEditor.
 ]
 
 { #category : #initialization }
