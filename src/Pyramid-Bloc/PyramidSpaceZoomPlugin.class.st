@@ -228,7 +228,7 @@ PyramidSpaceZoomPlugin >> initialize [
 
 	self scaleLap: 0.1.
 	self currentScaleFactor: 1.
-	self maxScaleValue: 10.0.
+	self maxScaleValue: 6.0.
 	
 	imagePixel := self class imagePixelGrid2000x2000BlackDot4x4.
 	pixelGridEnable := false.
