@@ -3,7 +3,7 @@ Extension { #name : #BlSpace }
 { #category : #'*Pyramid-Bloc' }
 BlSpace >> editWithPyramid [
 
-	| editor elements spacePlaceholder openFromSpacePlugin |
+	| editor elements spacePlaceholder openFromSpacePlugin spacePlugin |
 	"Prepare image to replace the application view"
 	spacePlaceholder := (self root exportAsForm dimmed: 0.5) asElement.
 	spacePlaceholder addChildren:
@@ -43,6 +43,11 @@ BlSpace >> editWithPyramid [
 		self userData removeKey: #pyramid_isOnEdition.
 		openFromSpacePlugin extensions do: [ :each |
 		each configureCloseOnSpace: self ]. ].
+
+	spacePlugin := editor plugins
+		               detect: [ :p | p isKindOf: PyramidSpacePlugin ]
+		               ifNone: [  ].
+	spacePlugin ifNotNil: [ spacePlugin resetSpace ].
 
 	^ editor
 ]
