@@ -248,7 +248,11 @@ PyramidMainExtension >> initialize [
 		                           spacingTextValue: self defaultGridSpacing;
 		                           whenSpacingTextChangedDo: [ :value |
 			                           (self checkZeroOrSubZeroGridSpacingValue: value)
-				                           ifTrue: [ gridSpacing := self defaultGridSpacing ]
+				                           ifTrue: [
+					                           self defaultGridSpacing <= 0 ifTrue: [
+							                           gridSpacing := 1.
+							                           ^ self ].
+					                           gridSpacing := self defaultGridSpacing ]
 				                           ifFalse: [ gridSpacing := value ].
 			                           self createGrid ];
 		                           gridColorValue: self defaultGridColor;
@@ -256,6 +260,9 @@ PyramidMainExtension >> initialize [
 			                           gridColor := color.
 			                           self createGrid ];
 		                           yourself.
+		
+	self defaultGridSpacing <= 0 ifTrue: [ gridSpacing := 1 ].
+	workplacePropertiesView spacingText value: gridSpacing.
 
 	"Button of the pop-up windows properties who call the creation of the pop-up"
 	workplacePropertiesButton := SpButtonPresenter new
