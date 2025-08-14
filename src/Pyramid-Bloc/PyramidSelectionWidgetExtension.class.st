@@ -256,7 +256,6 @@ PyramidSelectionWidgetExtension >> projectModel: aProjectModel [
 		when: PyramidSelectionChangedEvent
 		do: [ :evt | self pyramidSelectionChanged: evt ]
 		for: self.
-	"pyramidDynamicResizer projectModel: aProjectModel."
 	self makeNewSelection
 	
 ]
