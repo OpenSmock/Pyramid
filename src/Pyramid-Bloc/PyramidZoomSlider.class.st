@@ -19,16 +19,16 @@ Class {
 		'dragSlider',
 		'sliderPaddingWidth',
 		'sliderMinimumValue',
-		'blText',
-		'blElementBlText'
+		'blTextScaleValue',
+		'blTextScaleValueContainer'
 	],
 	#category : #'Pyramid-Bloc-plugin-space-zoom-move'
 }
 
 { #category : #accessing }
-PyramidZoomSlider >> blText: aScaleValue [
+PyramidZoomSlider >> blTextScaleValue: aScaleValue [
 
-	blText text: ((aScaleValue*100) rounded asString , '%') asRopedText.
+	blTextScaleValue text: ((aScaleValue*100) rounded asString , '%') asRopedText.
 ]
 
 { #category : #accessing }
@@ -38,7 +38,7 @@ PyramidZoomSlider >> blocToMoveZoomPosition: aScaleValue [
 	value := ((aScaleValue -1) * 100.0).
 	
 	blocToMove transformDo: [ :t | t translateBy: value@0 ].
-	self blText: aScaleValue.
+	self blTextScaleValue: aScaleValue.
 ]
 
 { #category : #helpers }
@@ -82,14 +82,14 @@ PyramidZoomSlider >> initialize [
 	sliderPaddingWidth := 40.
 	sliderLap := 10.
 
-	blElementBlText := BlElement new layout: BlFrameLayout new.
-	blText := BlTextElement new.
-	blText constraintsDo: [ :c |
+	blTextScaleValueContainer := BlElement new layout: BlFrameLayout new.
+	blTextScaleValue := BlTextElement new.
+	blTextScaleValue constraintsDo: [ :c |
 		c frame horizontal alignCenter.
 		c frame vertical alignCenter ].
-	blText text: (sliderDefaultValue rounded asString , '%') asRopedText.
+	blTextScaleValue text: (sliderDefaultValue rounded asString , '%') asRopedText.
 	
-	blElementBlText addChild: blText.
+	blTextScaleValueContainer addChild: blTextScaleValue.
 ]
 
 { #category : #accessing }
@@ -136,7 +136,7 @@ PyramidZoomSlider >> moveBlocSliderEvent [
 						  t translateBy: self maxBlocMoveSliderLength.
 						  scaleValue := self sliderMaxScale ].
 				  blockAction value: scaleValue.
-				  blText text: ((scaleValue *100)rounded asString, '%') asRopedText. ].
+				  blTextScaleValue text: ((scaleValue *100)rounded asString, '%') asRopedText. ].
 			  evt consumed: true ]
 ]
 
@@ -244,13 +244,13 @@ PyramidZoomSlider >> refreshSlider [
 					 moveEvent := self moveBlocSliderEvent.
 					 sliderContainer addEventHandler: moveEvent ] ]).
 			
-	blElementBlText position: (sliderContainerWidth - 57)@7.5.
-	blElementBlText extent: 50@20.
-	blElementBlText border: (BlBorder paint: Color black).
+	blTextScaleValueContainer position: (sliderContainerWidth - 57)@7.5.
+	blTextScaleValueContainer extent: 50@20.
+	blTextScaleValueContainer border: (BlBorder paint: Color black).
 
 	sliderContainer addChild: lineSlider.
 	sliderContainer addChild: blocToMove.
-	sliderContainer addChild: blElementBlText.
+	sliderContainer addChild: blTextScaleValueContainer.
 
 	^ sliderContainer
 ]
