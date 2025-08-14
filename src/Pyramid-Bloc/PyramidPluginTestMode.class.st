@@ -1,8 +1,8 @@
 Class {
 	#name : #PyramidPluginTestMode,
 	#superclass : #Object,
-	#traits : 'TPyramidPlugin + TPyramidEditorExtension',
-	#classTraits : 'TPyramidPlugin classTrait + TPyramidEditorExtension classTrait',
+	#traits : 'TPyramidPlugin',
+	#classTraits : 'TPyramidPlugin classTrait',
 	#instVars : [
 		'button',
 		'spacePlugin',

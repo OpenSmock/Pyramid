@@ -44,6 +44,7 @@ PyramidMainExtension >> createGrid [
 	"Remove the current all the line of the grid"
 	self gridElement removeChildWithId: #gridHorizontal.
 	self gridElement removeChildWithId: #gridVertical.
+	self gridElement removeChildWithId: #pixelGrid.
 	
 	"Create the grid if gridVisibility is true"
 	gridVisibility ifTrue: [	self grid: self gridElement 
@@ -100,13 +101,11 @@ PyramidMainExtension >> editor: aPyramidEditor [
 { #category : #geometry }
 PyramidMainExtension >> extent: aPoint [
 
-	self elementAtWidgets size: aPoint.
-	self sizeElement size: aPoint.
+	self elementAtWidgets extent: aPoint.
+	self sizeElement extent: aPoint.
 	self gridWindowSize: aPoint.
-	
-	self createGrid.
-	
 
+	self createGrid
 ]
 
 { #category : #'as yet unclassified' }
@@ -129,34 +128,29 @@ PyramidMainExtension >> getSelectionWidgetExtension: aPyramidEditor [
 
 { #category : #'as yet unclassified' }
 PyramidMainExtension >> grid: aParent cellSpacing: aNumber color: aColor width: aWidth height: aHeight [
-	
 	"Creation of the grid used by createGrid"
+
 	| elementGridHorizontal elementGridVertical nbLineGridHorizontal nbLineGridVertical lineGridModWidth lineGridModHeight |
-	
 	elementGridHorizontal := BlElement new id: #gridHorizontal.
-	elementGridHorizontal layout: BlLinearLayout vertical.
-	elementGridHorizontal layout cellSpacing: (aNumber - 1).
 	elementGridHorizontal constraints horizontal matchParent.
 	elementGridHorizontal constraints vertical matchParent.
 
 	elementGridVertical := BlElement new id: #gridVertical.
-	elementGridVertical layout: BlLinearLayout horizontal.
-	elementGridVertical layout cellSpacing: aNumber - 1.
 	elementGridVertical constraints horizontal matchParent.
 	elementGridVertical constraints vertical matchParent.
 
 	"Number of line Horizontal"
 	lineGridModHeight := aHeight / aNumber.
 	nbLineGridHorizontal := lineGridModHeight isInteger
-		                      ifTrue: [ aHeight / aNumber - 1 ]
-		                      ifFalse: [ aHeight / aNumber ].
+		                        ifTrue: [ aHeight / aNumber - 1 ]
+		                        ifFalse: [ aHeight / aNumber ].
 
 	1 to: nbLineGridHorizontal do: [ :i |
 		| e |
 		e := BlElement new.
 		e background: aColor.
-		e border: aColor.
-		e height: 1.
+		e height: 0.5.
+		e position: 0@(i*aNumber)-0.25.
 		e constraints horizontal matchParent.
 		elementGridHorizontal addChild: e ].
 
@@ -166,13 +160,12 @@ PyramidMainExtension >> grid: aParent cellSpacing: aNumber color: aColor width: 
 		                      ifTrue: [ aWidth / aNumber - 1 ]
 		                      ifFalse: [ aWidth / aNumber ].
 
-
 	1 to: nbLineGridVertical do: [ :i |
 		| e |
 		e := BlElement new.
 		e background: aColor.
-		e border: aColor.
-		e width: 1.
+		e width: 0.5.
+		e position: (i*aNumber)-0.25@0.
 		e constraints vertical matchParent.
 		elementGridVertical addChild: e ].
 
