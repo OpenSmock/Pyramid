@@ -97,6 +97,18 @@ PyramidPluginEditOnRunningTest >> testKeyCombination [
 ]
 
 { #category : #tests }
+PyramidPluginEditOnRunningTest >> testOnlyOnePyramidBreakpoint [
+
+	PyramidPluginEditOnRunning install.
+	PyramidPluginEditOnRunning install.
+	PyramidPluginEditOnRunning install.
+	Smalltalk image garbageCollect.
+	Smalltalk image garbageCollect.
+	Smalltalk image garbageCollect.
+	self assert: PyramidBreakpoint allInstances size equals: 1.
+]
+
+{ #category : #tests }
 PyramidPluginEditOnRunningTest >> testShortcut [
 
 	self assert: (PyramidPluginEditOnRunning shortcut isKindOf: BlShortcutWithAction).

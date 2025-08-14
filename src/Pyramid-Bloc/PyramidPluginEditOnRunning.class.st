@@ -90,11 +90,13 @@ PyramidPluginEditOnRunning class >> install [
 PyramidPluginEditOnRunning class >> installBreakpoint [
 
 	| node |
+	PyramidBreakpoint removeAllPyramidBreakpoint.
 	node := (BlParallelUniverse methodNamed: #openSpace:) ast.
 
 	breakpoint := PyramidBreakpoint new.
 	breakpoint node: node.
-	breakpoint whenHitDo: [ :context | self addShortcutInSpace: context arguments first ].
+	breakpoint whenHitDo: [ :context |
+		self addShortcutInSpace: context arguments first ].
 	breakpoint install
 ]
 
