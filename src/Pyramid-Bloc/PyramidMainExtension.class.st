@@ -127,7 +127,7 @@ PyramidMainExtension >> getSelectionWidgetExtension: aPyramidEditor [
 ]
 
 { #category : #'as yet unclassified' }
-PyramidMainExtension >> grid: aParent cellSpacing: aCellSpacing color: aColor width: aWidth height: aHeight [
+PyramidMainExtension >> grid: aParent cellSpacing: aCellSpacing color: aGridColor width: aWidth height: aHeight [
 	"Creation of the grid used by createGrid"
 
 	| elementGridHorizontal elementGridVertical nbLineGridHorizontal nbLineGridVertical lineGridModWidth lineGridModHeight cellSpacingSafe |
@@ -153,7 +153,7 @@ PyramidMainExtension >> grid: aParent cellSpacing: aCellSpacing color: aColor wi
 	1 to: nbLineGridHorizontal do: [ :i |
 		| e |
 		e := BlElement new.
-		e background: aColor.
+		e background: aGridColor.
 		e height: 0.5.
 		e position: 0 @ (i * cellSpacingSafe) - 0.25.
 		e constraints horizontal matchParent.
@@ -168,7 +168,7 @@ PyramidMainExtension >> grid: aParent cellSpacing: aCellSpacing color: aColor wi
 	1 to: nbLineGridVertical do: [ :i |
 		| e |
 		e := BlElement new.
-		e background: aColor.
+		e background: aGridColor.
 		e width: 0.5.
 		e position: ((i * cellSpacingSafe) - 0.25) @ 0.
 		e constraints vertical matchParent.
