@@ -38,8 +38,9 @@ PyramidPositionExtension >> installOn: aBuilder [
 	self elementAtEvents addEventHandler: (BlEventHandler
 			 on: BlMouseMoveEvent
 			 do: [ :evt |
-				 position := (evt position - self currentTransformTranslation / scaleFactor) rounded.
-				 self display text: position asRopedText ]).
+				 self scaleFactor <= 0.1 ifTrue: [ self scaleFactor: 0.10000000000000003 ].
+				 position := (evt position - self currentTransformTranslation / self scaleFactor) rounded.
+				 self display text: self position asRopedText ]).
 	self elementAtDisplaysAddons addChild: self display
 ]
 

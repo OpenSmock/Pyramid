@@ -62,6 +62,7 @@ PyramidSpaceZoomPlugin class >> imagePixelGrid2000x2000WhiteDot4x4 [
 PyramidSpaceZoomPlugin >> EditScaleDisplayElement: aBlElement scaleValue: aValue [
 
 	self currentScaleFactor: aValue.
+	self currentScaleFactor <= 0.1 ifTrue: [ self currentScaleFactor: 0.10000000000000003 ].
 	pyramidSelectionWidgetExtension scaleFactor: self currentScaleFactor.
 	pyramidPositionExtension scaleFactor: self currentScaleFactor.
 
@@ -126,7 +127,7 @@ PyramidSpaceZoomPlugin >> createPixelGrid: aPoint [
 			pixelElement := imagePixel asElement.
 			pixelElement extent: 2010 @ 2010.
 			pixelElement transformDo: [ :t | t scaleBy: 0.1 ].
-			pixelElement position: x * 200 @ (y * 200) - 904.5.
+			pixelElement position: x * 200 @ (y * 200) - 905.
 			pixelElement clipChildren: false.
 			pixelGrid addChild: pixelElement ] ].
 	
@@ -155,7 +156,7 @@ PyramidSpaceZoomPlugin >> currentScaleFactor [
 
 { #category : #accessing }
 PyramidSpaceZoomPlugin >> currentScaleFactor: aValue [
-
+	
 	currentScaleFactor := aValue.
 ]
 

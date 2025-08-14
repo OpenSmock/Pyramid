@@ -115,7 +115,7 @@ PyramidWorkplacePropertiesPresenter >> initializePresenter [
 						yourself.
 	
 	spacingLabel := (SpLabelPresenter new label: 'Spacing :'; yourself).
-	spacingText := "PyramidNumberInputPresenter"PyramidNumberFilterOnlyDigitsInputPresenter new.
+	spacingText := PyramidNumberFilterOnlyDigitsInputPresenter new.
 						
 	gridColorLabel := (SpLabelPresenter new label: 'Color :'; yourself).
 	gridColor := PyramidColorInputSingleLineWithPickupButtonPresenter new.

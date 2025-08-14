@@ -127,10 +127,15 @@ PyramidMainExtension >> getSelectionWidgetExtension: aPyramidEditor [
 ]
 
 { #category : #'as yet unclassified' }
-PyramidMainExtension >> grid: aParent cellSpacing: aNumber color: aColor width: aWidth height: aHeight [
+PyramidMainExtension >> grid: aParent cellSpacing: aCellSpacing color: aColor width: aWidth height: aHeight [
 	"Creation of the grid used by createGrid"
 
-	| elementGridHorizontal elementGridVertical nbLineGridHorizontal nbLineGridVertical lineGridModWidth lineGridModHeight |
+	| elementGridHorizontal elementGridVertical nbLineGridHorizontal nbLineGridVertical lineGridModWidth lineGridModHeight cellSpacingSafe |
+	
+	cellSpacingSafe := aCellSpacing <= 0
+		                   ifTrue: [ 1 ]
+		                   ifFalse: [ aCellSpacing ].
+
 	elementGridHorizontal := BlElement new id: #gridHorizontal.
 	elementGridHorizontal constraints horizontal matchParent.
 	elementGridHorizontal constraints vertical matchParent.
@@ -140,32 +145,32 @@ PyramidMainExtension >> grid: aParent cellSpacing: aNumber color: aColor width: 
 	elementGridVertical constraints vertical matchParent.
 
 	"Number of line Horizontal"
-	lineGridModHeight := aHeight / aNumber.
+	lineGridModHeight := aHeight / cellSpacingSafe.
 	nbLineGridHorizontal := lineGridModHeight isInteger
-		                        ifTrue: [ aHeight / aNumber - 1 ]
-		                        ifFalse: [ aHeight / aNumber ].
+		                        ifTrue: [ (aHeight / cellSpacingSafe) - 1 ]
+		                        ifFalse: [ aHeight / cellSpacingSafe ].
 
 	1 to: nbLineGridHorizontal do: [ :i |
 		| e |
 		e := BlElement new.
 		e background: aColor.
 		e height: 0.5.
-		e position: 0@(i*aNumber)-0.25.
+		e position: 0 @ (i * cellSpacingSafe) - 0.25.
 		e constraints horizontal matchParent.
 		elementGridHorizontal addChild: e ].
 
 	"Number of line Vertical"
-	lineGridModWidth := aWidth / aNumber.
+	lineGridModWidth := aWidth / cellSpacingSafe.
 	nbLineGridVertical := lineGridModWidth isInteger
-		                      ifTrue: [ aWidth / aNumber - 1 ]
-		                      ifFalse: [ aWidth / aNumber ].
+		                      ifTrue: [ (aWidth / cellSpacingSafe) - 1 ]
+		                      ifFalse: [ aWidth / cellSpacingSafe ].
 
 	1 to: nbLineGridVertical do: [ :i |
 		| e |
 		e := BlElement new.
 		e background: aColor.
 		e width: 0.5.
-		e position: (i*aNumber)-0.25@0.
+		e position: ((i * cellSpacingSafe) - 0.25) @ 0.
 		e constraints vertical matchParent.
 		elementGridVertical addChild: e ].
 
@@ -242,11 +247,8 @@ PyramidMainExtension >> initialize [
 			                           self createGrid ];
 		                           spacingTextValue: self defaultGridSpacing;
 		                           whenSpacingTextChangedDo: [ :value |
-			                           (self
-				                            checkZeroOrSubZeroGridSpacingValue:
-					                            value)
-				                           ifTrue: [
-					                           gridSpacing := self defaultGridSpacing ]
+			                           (self checkZeroOrSubZeroGridSpacingValue: value)
+				                           ifTrue: [ gridSpacing := self defaultGridSpacing ]
 				                           ifFalse: [ gridSpacing := value ].
 			                           self createGrid ];
 		                           gridColorValue: self defaultGridColor;
