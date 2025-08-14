@@ -18,7 +18,7 @@ BlSpace >> editWithPyramid [
 		each configureOpenFromSpace: self ].
 
 	"Open editor"
-	editor window open.
+	editor open.
 
 	self flag:
 		'labordep: the code below is too complicated, we need to have a more simple API to edit a BlSpace, for example editSpace:'.
