@@ -117,7 +117,7 @@ PyramidZoomSlider >> moveBlocSliderEvent [
 
 			  self currentBlocSliderTranslation:
 				  (evt position x - sliderContainer position x
-				   - blocToMove position x / sliderLap) rounded * sliderLap @ 0.
+				   - (blocToMove position x + (blocToMove extent x/2)) / sliderLap) rounded * sliderLap @ 0.
 			  blocToMove transformDo: [ :t | "Intervalle si inférieur à la taille max du slider (ligne) 
 														et si supérieur à la taille minimum
 				  Interval if less than slider max size (line) and if greater than minimum size"
@@ -125,7 +125,6 @@ PyramidZoomSlider >> moveBlocSliderEvent [
 					  ifTrue: [
 						  self currentBlocSliderTranslation x > ((sliderDefaultValue - sliderMinimumValue + 1) * -1)
 							  ifTrue: [
-								
 								  t translateBy: self currentBlocSliderTranslation.
 								  scaleValue := 1 + (self currentBlocSliderTranslation x / 100.0).
 								  scaleValue < 0.1 ifTrue: [ scaleValue := self sliderMinScale ] ]
@@ -141,22 +140,23 @@ PyramidZoomSlider >> moveBlocSliderEvent [
 ]
 
 { #category : #'as yet unclassified' }
-PyramidZoomSlider >> pourcentTextElement: aValue [
+PyramidZoomSlider >> pourcentTextElement: aPositionX text: aValueOfText [
 
 	^ (BlTextElement new
 					 text:
-						 ((aValue * sliderLap + sliderMinimumValue) asString , '%')
+						 (aValueOfText asString , '%')
 							 asRopedText;
-					 position: aValue * sliderLap + (sliderPaddingWidth / 4) @ 20)
+					 position: aPositionX * sliderLap + (sliderPaddingWidth / 4) @ 20)
 ]
 
 { #category : #'as yet unclassified' }
 PyramidZoomSlider >> refreshSlider [
 
-	| sliderContainerWidth nbLap cornerRadius nbLapUnderDefaultValue |
+	| sliderContainerWidth nbLap cornerRadius nbLapUnderDefaultValue scaleValue |
 	nbLapUnderDefaultValue := sliderDefaultValue - sliderMinimumValue / 10.
 	lineSliderWidth := sliderWidth - sliderMinimumValue.
-	sliderContainerWidth := sliderWidth + sliderPaddingWidth + 62.
+	sliderContainerWidth := sliderWidth + sliderPaddingWidth - sliderMinimumValue + 62.
+	scaleValue := sliderMinimumValue.
 
 	sliderContainer := BlElement new.
 	sliderContainer
@@ -174,51 +174,37 @@ PyramidZoomSlider >> refreshSlider [
 		extent: lineSliderWidth @ 2;
 		position: sliderPaddingWidth / 2 @ 9;
 		background: Color black.
-	
-	0 to: nbLapUnderDefaultValue - 1 do: [ :i |
-		| e |
-		e := BlElement new.
-		e
-			background: Color gray;
-			extent: 1 @ 10;
-			position: i * sliderLap + (sliderPaddingWidth / 2) @ 5.
-
-		i = 0 ifTrue: [
-			sliderContainer addChild: (BlTextElement new
-					 text: (sliderMinimumValue asString , '%') asRopedText;
-					 position: sliderPaddingWidth / 4 @ 20).
-			e
-				background: Color blue;
-				extent: 2 @ 10 ].
-
-		((i + 1) * sliderLap / 50) isInteger ifTrue: [
-			sliderContainer addChild: (self pourcentTextElement: i).
-			e
-				background: Color blue;
-				extent: 2 @ 10 ].
-		sliderContainer addChild: e ].
-
+		
 	nbLap := lineSliderWidth / sliderLap.
-	nbLapUnderDefaultValue to: nbLap do: [ :i |
+	
+	0 to: nbLap do: [ :i |
 		| e |
 		e := BlElement new.
 		e
 			background: Color gray;
 			extent: 1 @ 10;
 			position: i * sliderLap + (sliderPaddingWidth / 2) @ 5.
-
-		i = nbLap
-			ifTrue: [
-				sliderContainer addChild: (self pourcentTextElement: i).
+			
+		i = 0
+		ifTrue: [ sliderContainer addChild: (self pourcentTextElement: i text: (scaleValue)rounded).
+			e
+				background: Color blue;
+				extent: 2 @ 10. ].
+			
+		scaleValue = 100 
+		ifTrue: [ 
+			sliderContainer addChild: (self pourcentTextElement: i text: (scaleValue)rounded).
+			e
+				background: Color blue;
+				extent: 2 @ 10 ]
+		ifFalse: [  
+			(scaleValue / 50) isInteger ifTrue: [
+				sliderContainer addChild: (self pourcentTextElement: i text: (scaleValue)rounded).
 				e
 					background: Color blue;
-					extent: 2 @ 10 ]
-			ifFalse: [
-				((i + 1) * sliderLap / 50) isInteger ifTrue: [
-					sliderContainer addChild: (self pourcentTextElement: i).
-					e
-						background: Color blue;
-						extent: 2 @ 10 ] ].
+					extent: 2 @ 10 ] ].
+		scaleValue := scaleValue + sliderLap.
+		
 		sliderContainer addChild: e ].
 
 	cornerRadius := BlRoundedRectangleGeometry cornerRadii:
@@ -284,6 +270,18 @@ PyramidZoomSlider >> sliderMinScale [
 	
 	sliderMinimumValue <= 10 ifTrue: [ ^ 0.10000000000000003 ].
 	^ ((sliderMinimumValue)/100)
+]
+
+{ #category : #accessing }
+PyramidZoomSlider >> sliderMinimumValue [
+
+	^ sliderMinimumValue
+]
+
+{ #category : #accessing }
+PyramidZoomSlider >> sliderMinimumValue: aScaleValue [
+
+	sliderMinimumValue := (aScaleValue*100)rounded
 ]
 
 { #category : #enumerating }

@@ -22,7 +22,8 @@ Class {
 		'pixelGridEnable',
 		'sizeElementExtent',
 		'pyramidMainExtension',
-		'valueOfPixelGridToShow'
+		'valueOfPixelGridToShow',
+		'minScaleValue'
 	],
 	#category : #'Pyramid-Bloc-plugin-space-zoom-move'
 }
@@ -190,6 +191,7 @@ PyramidSpaceZoomPlugin >> createZoomSlider [
 		self EditScaleDisplayElement: pyramidSelectionWidgetExtension elementAtMain scaleValue: scaleValue ].
 	
 	slider scaledZoomValue: self maxScaleValue.
+	slider sliderMinimumValue: self minScaleValue.
 	slider sliderLapScale: self scaleLap.
 	
 	^ slider createSlider.
@@ -277,6 +279,7 @@ PyramidSpaceZoomPlugin >> initialize [
 
 	self scaleLap: 0.1.
 	self currentScaleFactor: 1.
+	self minScaleValue: 0.1.
 	self maxScaleValue: 6.0.
 	self valueOfPixelGridToShow: 5.5.
 	
@@ -333,6 +336,19 @@ PyramidSpaceZoomPlugin >> maxScaleValue [
 PyramidSpaceZoomPlugin >> maxScaleValue: aScaleValue [
 
 	maxScaleValue := aScaleValue 
+]
+
+{ #category : #accessing }
+PyramidSpaceZoomPlugin >> minScaleValue [
+
+	^ minScaleValue
+]
+
+{ #category : #accessing }
+PyramidSpaceZoomPlugin >> minScaleValue: aScaleValue [
+
+	aScaleValue <= 0.1 ifTrue: [ minScaleValue := 0.10000000000000003. ^ self ].
+	minScaleValue := aScaleValue
 ]
 
 { #category : #'accessing - classes' }
@@ -477,7 +493,7 @@ PyramidSpaceZoomPlugin >> windowOpenBy: aPyramidEditor [
 { #category : #'as yet unclassified' }
 PyramidSpaceZoomPlugin >> zoomIn [
 
-	self currentScaleFactor >= (slider sliderMaxScale - 0.05) ifTrue: [
+	self currentScaleFactor >= (self minScaleValue - 0.05) ifTrue: [
 		^ self ].
 
 	self
@@ -489,7 +505,7 @@ PyramidSpaceZoomPlugin >> zoomIn [
 { #category : #'as yet unclassified' }
 PyramidSpaceZoomPlugin >> zoomOut [
 
-	self currentScaleFactor <= (scaleLap + slider sliderMinScale)
+	self currentScaleFactor < (self minScaleValue)
 		ifTrue: [ ^ self ].
 
 	self
