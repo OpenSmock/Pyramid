@@ -279,7 +279,7 @@ PyramidSpaceZoomPlugin >> initialize [
 
 	self scaleLap: 0.1.
 	self currentScaleFactor: 1.
-	self minScaleValue: 0.1.
+	self minScaleValue: 0.2.
 	self maxScaleValue: 6.0.
 	self valueOfPixelGridToShow: 5.5.
 	
@@ -346,8 +346,11 @@ PyramidSpaceZoomPlugin >> minScaleValue [
 
 { #category : #accessing }
 PyramidSpaceZoomPlugin >> minScaleValue: aScaleValue [
+	"if the value is under 0.101 an display problem occured and the blue border of the workplace visually disapear"
 
-	aScaleValue <= 0.1 ifTrue: [ minScaleValue := 0.10000000000000003. ^ self ].
+	aScaleValue <= 0.1 ifTrue: [
+		minScaleValue := 0.101.
+		^ self ].
 	minScaleValue := aScaleValue
 ]
 

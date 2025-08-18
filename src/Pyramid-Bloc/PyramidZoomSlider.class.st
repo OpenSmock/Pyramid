@@ -9,8 +9,8 @@ Class {
 		'lineSlider',
 		'blocToMove',
 		'moveEvent',
-		'currentBlocSliderTranslation',
 		'scaleValue',
+		'currentBlocSliderTranslation',
 		'blockAction',
 		'sliderLap',
 		'sliderDefaultValue',
@@ -152,11 +152,11 @@ PyramidZoomSlider >> pourcentTextElement: aPositionX text: aValueOfText [
 { #category : #'as yet unclassified' }
 PyramidZoomSlider >> refreshSlider [
 
-	| sliderContainerWidth nbLap cornerRadius nbLapUnderDefaultValue scaleValue |
+	| sliderContainerWidth nbLap cornerRadius nbLapUnderDefaultValue scaleValueForText |
 	nbLapUnderDefaultValue := sliderDefaultValue - sliderMinimumValue / 10.
 	lineSliderWidth := sliderWidth - sliderMinimumValue.
 	sliderContainerWidth := sliderWidth + sliderPaddingWidth - sliderMinimumValue + 62.
-	scaleValue := sliderMinimumValue.
+	scaleValueForText := sliderMinimumValue.
 
 	sliderContainer := BlElement new.
 	sliderContainer
@@ -186,24 +186,24 @@ PyramidZoomSlider >> refreshSlider [
 			position: i * sliderLap + (sliderPaddingWidth / 2) @ 5.
 			
 		i = 0
-		ifTrue: [ sliderContainer addChild: (self pourcentTextElement: i text: (scaleValue)rounded).
+		ifTrue: [ sliderContainer addChild: (self pourcentTextElement: i text: (scaleValueForText)rounded).
 			e
 				background: Color blue;
 				extent: 2 @ 10. ].
 			
-		scaleValue = 100 
+		scaleValueForText = 100 
 		ifTrue: [ 
-			sliderContainer addChild: (self pourcentTextElement: i text: (scaleValue)rounded).
+			sliderContainer addChild: (self pourcentTextElement: i text: (scaleValueForText)rounded).
 			e
 				background: Color blue;
 				extent: 2 @ 10 ]
 		ifFalse: [  
-			(scaleValue / 50) isInteger ifTrue: [
-				sliderContainer addChild: (self pourcentTextElement: i text: (scaleValue)rounded).
+			(scaleValueForText / 50) isInteger ifTrue: [
+				sliderContainer addChild: (self pourcentTextElement: i text: (scaleValueForText)rounded).
 				e
 					background: Color blue;
 					extent: 2 @ 10 ] ].
-		scaleValue := scaleValue + sliderLap.
+		scaleValueForText := scaleValueForText + sliderLap.
 		
 		sliderContainer addChild: e ].
 
@@ -267,9 +267,10 @@ PyramidZoomSlider >> sliderMaxScale [
 
 { #category : #'as yet unclassified' }
 PyramidZoomSlider >> sliderMinScale [
-	
-	sliderMinimumValue <= 10 ifTrue: [ ^ 0.10000000000000003 ].
-	^ ((sliderMinimumValue)/100)
+	"if the value is under 0.101 an display problem occured and the blue border of the workplace visually disapear"
+
+	sliderMinimumValue <= 10 ifTrue: [ ^ 0.101 ].
+	^ (sliderMinimumValue / 100)
 ]
 
 { #category : #accessing }
