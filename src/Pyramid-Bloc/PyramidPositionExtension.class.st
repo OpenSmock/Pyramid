@@ -39,7 +39,7 @@ PyramidPositionExtension >> installOn: aBuilder [
 			 on: BlMouseMoveEvent
 			 do: [ :evt |
 				"if the value is under 0.101 an display problem occured and the blue border of the workplace visually disapear"
-				 self scaleFactor <= 0.1 ifTrue: [ self scaleFactor: 0.10000000000000003 ].
+				 self scaleFactor <= 0.1 ifTrue: [ self scaleFactor: 0.101 ].
 				 position := (evt position - self currentTransformTranslation / self scaleFactor) rounded.
 				 self display text: self position asRopedText ]).
 	self elementAtDisplaysAddons addChild: self display
