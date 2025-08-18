@@ -21,7 +21,8 @@ Class {
 		'imagePixel',
 		'pixelGridEnable',
 		'sizeElementExtent',
-		'pyramidMainExtension'
+		'pyramidMainExtension',
+		'valueOfPixelGridToShow'
 	],
 	#category : #'Pyramid-Bloc-plugin-space-zoom-move'
 }
@@ -277,8 +278,10 @@ PyramidSpaceZoomPlugin >> initialize [
 	self scaleLap: 0.1.
 	self currentScaleFactor: 1.
 	self maxScaleValue: 25.0.
+	self valueOfPixelGridToShow: 5.5.
 	
 	imagePixel := self class imagePixelGrid2000x2000BlackLine1x.
+	self flag: 'To add in the user settings of Pyramid'.
 	"imagePixel := self class imagePixelGrid2000x2000WhiteLine1x."
 	"imagePixel := self class imagePixelGrid2000x2000BlackDot4x4."
 	"imagePixel := self class imagePixelGrid2000x2000WhiteDot4x4."
@@ -294,7 +297,7 @@ PyramidSpaceZoomPlugin >> installOnPixelGrid [
 	
 	sizeElementExtent := sizeElement extent.
 	
-	(self currentScaleFactor roundTo: 0.1) >= 5.5
+	(self currentScaleFactor roundTo: 0.1) >= (self valueOfPixelGridToShow)
 		ifTrue: [ self createPixelGrid: sizeElementExtent ]
 		ifFalse: [
 			pixelGridEnable ifTrue: [
@@ -384,7 +387,7 @@ PyramidSpaceZoomPlugin >> refreshPixelGrid: aPoint [
 	pixelGridEnable := false.
 	sizeElement removeChildWithId: #pixelGrid.
 	
-	(self currentScaleFactor roundTo: 0.1) >= 5.5
+	(self currentScaleFactor roundTo: 0.1) >= (self valueOfPixelGridToShow)
 		ifTrue: [ self createPixelGrid: aPoint ]
 ]
 
@@ -415,6 +418,18 @@ PyramidSpaceZoomPlugin >> scaleLap: aValue [
 PyramidSpaceZoomPlugin >> scaledZoom [
 
 	^ scaledZoom
+]
+
+{ #category : #accessing }
+PyramidSpaceZoomPlugin >> valueOfPixelGridToShow [
+
+	^ valueOfPixelGridToShow
+]
+
+{ #category : #accessing }
+PyramidSpaceZoomPlugin >> valueOfPixelGridToShow: aScaleValue [
+
+	valueOfPixelGridToShow := aScaleValue
 ]
 
 { #category : #connecting }
