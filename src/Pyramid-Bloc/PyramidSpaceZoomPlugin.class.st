@@ -493,7 +493,7 @@ PyramidSpaceZoomPlugin >> windowOpenBy: aPyramidEditor [
 { #category : #'as yet unclassified' }
 PyramidSpaceZoomPlugin >> zoomIn [
 
-	self currentScaleFactor >= (self minScaleValue - 0.05) ifTrue: [
+	self currentScaleFactor >= (self maxScaleValue - 0.05) ifTrue: [
 		^ self ].
 
 	self
@@ -505,7 +505,7 @@ PyramidSpaceZoomPlugin >> zoomIn [
 { #category : #'as yet unclassified' }
 PyramidSpaceZoomPlugin >> zoomOut [
 
-	self currentScaleFactor < (self minScaleValue)
+	self currentScaleFactor <= (self minScaleValue + scaleLap)
 		ifTrue: [ ^ self ].
 
 	self
