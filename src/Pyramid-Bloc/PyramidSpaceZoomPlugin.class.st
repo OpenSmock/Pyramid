@@ -284,7 +284,7 @@ PyramidSpaceZoomPlugin >> initialize [
 	self valueOfPixelGridToShow: 5.5.
 	
 	imagePixel := self class imagePixelGrid2000x2000BlackLine1x.
-	self flag: 'To add in the user settings of Pyramid'.
+	self flag: 'To add in the user settings of Pyramid, Check in class side to see all the pixel grid image'.
 	"imagePixel := self class imagePixelGrid2000x2000WhiteLine1x."
 	"imagePixel := self class imagePixelGrid2000x2000BlackDot4x4."
 	"imagePixel := self class imagePixelGrid2000x2000WhiteDot4x4."
