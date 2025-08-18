@@ -23,11 +23,11 @@ PyramidSpecShortcutDefaultViewPosition >> pluginFromPyramid: aPyramidEditor [
 	
 	| listOfPlugins pluginSorted |
 	
-	"listOfPlugins := aPyramidEditor plugins.
+	listOfPlugins := aPyramidEditor plugins.
 	pluginSorted := listOfPlugins select: [ :extensions | extensions isKindOf: PyramidSpaceMovePlugin ].
 	pluginSorted size = 1
 	ifFalse: [^ self].
-	plugin := pluginSorted asArray first"
+	plugin := pluginSorted asArray first
 ]
 
 { #category : #accessing }
@@ -39,5 +39,5 @@ PyramidSpecShortcutDefaultViewPosition >> shortcutAction [
 		  action: [
 			  plugin
 				  ifNil: [ self inform: 'problem with the plugin' ]
-				  ifNotNil: [ "plugin defaultViewPosition" ] ]
+				  ifNotNil: [ plugin defaultViewPosition ] ]
 ]
