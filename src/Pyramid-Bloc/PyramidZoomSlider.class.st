@@ -140,6 +140,16 @@ PyramidZoomSlider >> moveBlocSliderEvent [
 ]
 
 { #category : #'as yet unclassified' }
+PyramidZoomSlider >> pourcentTextElement: aValue [
+
+	^ (BlTextElement new
+					 text:
+						 ((aValue * sliderLap + sliderMinimumValue) asString , '%')
+							 asRopedText;
+					 position: aValue * sliderLap + (sliderPaddingWidth / 4) @ 20)
+]
+
+{ #category : #'as yet unclassified' }
 PyramidZoomSlider >> pourcentTextElement: aPositionX text: aValueOfText [
 
 	^ (BlTextElement new
@@ -155,7 +165,7 @@ PyramidZoomSlider >> refreshSlider [
 	| sliderContainerWidth nbLap cornerRadius nbLapUnderDefaultValue scaleValueForText |
 	nbLapUnderDefaultValue := sliderDefaultValue - sliderMinimumValue / 10.
 	lineSliderWidth := sliderWidth - sliderMinimumValue.
-	sliderContainerWidth := sliderWidth + sliderPaddingWidth - sliderMinimumValue + 62.
+	sliderContainerWidth := sliderWidth + sliderPaddingWidth - sliderMinimumValue + 70.
 	scaleValueForText := sliderMinimumValue.
 
 	sliderContainer := BlElement new.
@@ -267,9 +277,7 @@ PyramidZoomSlider >> sliderMaxScale [
 
 { #category : #'as yet unclassified' }
 PyramidZoomSlider >> sliderMinScale [
-	"if the value is under 0.101 an display problem occured and the blue border of the workplace visually disapear"
 
-	sliderMinimumValue <= 10 ifTrue: [ ^ 0.101 ].
 	^ (sliderMinimumValue / 100)
 ]
 
@@ -282,7 +290,8 @@ PyramidZoomSlider >> sliderMinimumValue [
 { #category : #accessing }
 PyramidZoomSlider >> sliderMinimumValue: aScaleValue [
 
-	sliderMinimumValue := (aScaleValue*100)rounded
+	sliderMinimumValue := (aScaleValue * 100) rounded.
+	sliderMinimumValue < 10 ifTrue: [ sliderMinimumValue := 10 ]
 ]
 
 { #category : #enumerating }

@@ -108,24 +108,6 @@ PyramidSpaceZoomPlugin class >> imagePixelGrid2000x2000WhiteLine1x [
 	^ Form fromBinaryStream: base64 base64Decoded readStream.
 ]
 
-{ #category : #'as yet unclassified' }
-PyramidSpaceZoomPlugin >> EditScaleDisplayElement: aBlElement scaleValue: aValue [
-
-	self currentScaleFactor: aValue.
-	pyramidSelectionWidgetExtension scaleFactor: self currentScaleFactor.
-	pyramidPositionExtension scaleFactor: self currentScaleFactor.
-
-	self refreshScaledZoom.
-
-	self installOnPixelGrid.
-
-	aBlElement transformDo: [ :t |
-		t scaleBy: self currentScaleFactor.
-		t translateBy: self scaledZoom ].
-	
-	slider blocToMoveZoomPosition: self currentScaleFactor
-]
-
 { #category : #connecting }
 PyramidSpaceZoomPlugin >> connectOn: aPyramidEditor [
 
@@ -188,7 +170,9 @@ PyramidSpaceZoomPlugin >> createZoomSlider [
 
 	slider := PyramidZoomSlider new.
 	slider whenValueChangedDo: [ :scaleValue | 
-		self EditScaleDisplayElement: pyramidSelectionWidgetExtension elementAtMain scaleValue: scaleValue ].
+		self editScaleDisplayElement: pyramidSelectionWidgetExtension elementAtMain scaleValue: scaleValue.
+		self editSizeOfMainExtensionSizeBorderElement: scaleValue ].
+	
 	
 	slider scaledZoomValue: self maxScaleValue.
 	slider sliderMinimumValue: self minScaleValue.
@@ -215,7 +199,7 @@ PyramidSpaceZoomPlugin >> defaultScale [
 
 	self currentScaleFactor: 1.
 	pyramidSelectionWidgetExtension ifNotNil: [
-		self EditScaleDisplayElement: pyramidSelectionWidgetExtension elementAtMain scaleValue: 1 ]
+		self editScaleDisplayElement: pyramidSelectionWidgetExtension elementAtMain scaleValue: self currentScaleFactor ]
 ]
 
 { #category : #'as yet unclassified' }
@@ -274,14 +258,40 @@ PyramidSpaceZoomPlugin >> display: aDisplay [
 	display := aDisplay
 ]
 
+{ #category : #'as yet unclassified' }
+PyramidSpaceZoomPlugin >> editScaleDisplayElement: aBlElement scaleValue: aValue [
+
+	self currentScaleFactor: aValue.
+	pyramidSelectionWidgetExtension scaleFactor: self currentScaleFactor.
+	pyramidPositionExtension scaleFactor: self currentScaleFactor.
+
+	self refreshScaledZoom.
+
+	self installOnPixelGrid.
+
+	aBlElement transformDo: [ :t |
+		t scaleBy: self currentScaleFactor.
+		t translateBy: self scaledZoom ].
+	
+	slider blocToMoveZoomPosition: self currentScaleFactor.
+	self editSizeOfMainExtensionSizeBorderElement: self currentScaleFactor
+	
+]
+
+{ #category : #'as yet unclassified' }
+PyramidSpaceZoomPlugin >> editSizeOfMainExtensionSizeBorderElement: aScaleValue [
+
+	((pyramidSelectionWidgetExtension elementAtMain childWithId: #MainExtension_sizeElement)childWithId: #MainExtension_borderElement) border: (BlBorder paint: Color blue width: (1/aScaleValue))
+]
+
 { #category : #initialization }
 PyramidSpaceZoomPlugin >> initialize [
 
 	self scaleLap: 0.1.
 	self currentScaleFactor: 1.
-	self minScaleValue: 0.2.
-	self maxScaleValue: 6.0.
-	self valueOfPixelGridToShow: 5.5.
+	self minScaleValue: 0.1.
+	self maxScaleValue: 5.5.
+	self valueOfPixelGridToShow: 5.0.
 	
 	imagePixel := self class imagePixelGrid2000x2000BlackLine1x.
 	self flag: 'To add in the user settings of Pyramid, Check in class side to see all the pixel grid image'.
@@ -346,10 +356,9 @@ PyramidSpaceZoomPlugin >> minScaleValue [
 
 { #category : #accessing }
 PyramidSpaceZoomPlugin >> minScaleValue: aScaleValue [
-	"if the value is under 0.101 an display problem occured and the blue border of the workplace visually disapear"
 
 	aScaleValue <= 0.1 ifTrue: [
-		minScaleValue := 0.101.
+		minScaleValue := 0.1.
 		^ self ].
 	minScaleValue := aScaleValue
 ]
@@ -500,7 +509,7 @@ PyramidSpaceZoomPlugin >> zoomIn [
 		^ self ].
 
 	self
-		EditScaleDisplayElement:
+		editScaleDisplayElement:
 		pyramidSelectionWidgetExtension elementAtMain
 		scaleValue: self currentScaleFactor + scaleLap
 ]
@@ -512,7 +521,7 @@ PyramidSpaceZoomPlugin >> zoomOut [
 		ifTrue: [ ^ self ].
 
 	self
-		EditScaleDisplayElement:
+		editScaleDisplayElement:
 		pyramidSelectionWidgetExtension elementAtMain
 		scaleValue: self currentScaleFactor - scaleLap
 ]
