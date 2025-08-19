@@ -15,11 +15,15 @@ List of current active shortcut (default value) :
 - Grid visibility switch -> ctrl + G
 - Select all element -> ctrl + A
 - Unselect all element -> Escape
-- Delete selected element -> ctrl + D
+- Delete selected element -> Delete (ENG) / SUPPR (FR)
 - Inspect one selected element -> ctrl + I
 - Move child index Up -> Page Up
 - Move child index Down -> Page Down
-- Move element to position zero -> ctrl + Space
+- Move a selected element to position zero -> ctrl + Space
+- Move a selected element to the right -> arrow Right
+- Move a selected element to the left -> arrow Left
+- Move a selected element to the up -> arrow Up
+- Move a selected element to the down -> arrow Down
 "
 Class {
 	#name : #PyramidSpecShortcutManagerPlugin,
