@@ -44,6 +44,7 @@ PyramidMainExtension >> createGrid [
 	"Remove the current all the line of the grid"
 	self gridElement removeChildWithId: #gridHorizontal.
 	self gridElement removeChildWithId: #gridVertical.
+	self gridElement removeChildWithId: #pixelGrid.
 	
 	"Create the grid if gridVisibility is true"
 	gridVisibility ifTrue: [	self grid: self gridElement 
@@ -100,13 +101,11 @@ PyramidMainExtension >> editor: aPyramidEditor [
 { #category : #geometry }
 PyramidMainExtension >> extent: aPoint [
 
-	self elementAtWidgets size: aPoint.
-	self sizeElement size: aPoint.
+	self elementAtWidgets extent: aPoint.
+	self sizeElement extent: aPoint.
 	self gridWindowSize: aPoint.
-	
-	self createGrid.
-	
 
+	self createGrid
 ]
 
 { #category : #'as yet unclassified' }
@@ -128,51 +127,50 @@ PyramidMainExtension >> getSelectionWidgetExtension: aPyramidEditor [
 ]
 
 { #category : #'as yet unclassified' }
-PyramidMainExtension >> grid: aParent cellSpacing: aNumber color: aColor width: aWidth height: aHeight [
-	
+PyramidMainExtension >> grid: aParent cellSpacing: aCellSpacing color: aGridColor width: aWidth height: aHeight [
 	"Creation of the grid used by createGrid"
-	| elementGridHorizontal elementGridVertical nbLineGridHorizontal nbLineGridVertical lineGridModWidth lineGridModHeight |
+
+	| elementGridHorizontal elementGridVertical nbLineGridHorizontal nbLineGridVertical lineGridModWidth lineGridModHeight cellSpacingSafe |
 	
+	cellSpacingSafe := aCellSpacing <= 0
+		                   ifTrue: [ 1 ]
+		                   ifFalse: [ aCellSpacing ].
+
 	elementGridHorizontal := BlElement new id: #gridHorizontal.
-	elementGridHorizontal layout: BlLinearLayout vertical.
-	elementGridHorizontal layout cellSpacing: (aNumber - 1).
 	elementGridHorizontal constraints horizontal matchParent.
 	elementGridHorizontal constraints vertical matchParent.
 
 	elementGridVertical := BlElement new id: #gridVertical.
-	elementGridVertical layout: BlLinearLayout horizontal.
-	elementGridVertical layout cellSpacing: aNumber - 1.
 	elementGridVertical constraints horizontal matchParent.
 	elementGridVertical constraints vertical matchParent.
 
 	"Number of line Horizontal"
-	lineGridModHeight := aHeight / aNumber.
+	lineGridModHeight := aHeight / cellSpacingSafe.
 	nbLineGridHorizontal := lineGridModHeight isInteger
-		                      ifTrue: [ aHeight / aNumber - 1 ]
-		                      ifFalse: [ aHeight / aNumber ].
+		                        ifTrue: [ (aHeight / cellSpacingSafe) - 1 ]
+		                        ifFalse: [ aHeight / cellSpacingSafe ].
 
 	1 to: nbLineGridHorizontal do: [ :i |
 		| e |
 		e := BlElement new.
-		e background: aColor.
-		e border: aColor.
-		e height: 1.
+		e background: aGridColor.
+		e height: 0.5.
+		e position: 0 @ (i * cellSpacingSafe) - 0.25.
 		e constraints horizontal matchParent.
 		elementGridHorizontal addChild: e ].
 
 	"Number of line Vertical"
-	lineGridModWidth := aWidth / aNumber.
+	lineGridModWidth := aWidth / cellSpacingSafe.
 	nbLineGridVertical := lineGridModWidth isInteger
-		                      ifTrue: [ aWidth / aNumber - 1 ]
-		                      ifFalse: [ aWidth / aNumber ].
-
+		                      ifTrue: [ (aWidth / cellSpacingSafe) - 1 ]
+		                      ifFalse: [ aWidth / cellSpacingSafe ].
 
 	1 to: nbLineGridVertical do: [ :i |
 		| e |
 		e := BlElement new.
-		e background: aColor.
-		e border: aColor.
-		e width: 1.
+		e background: aGridColor.
+		e width: 0.5.
+		e position: ((i * cellSpacingSafe) - 0.25) @ 0.
 		e constraints vertical matchParent.
 		elementGridVertical addChild: e ].
 
@@ -249,10 +247,11 @@ PyramidMainExtension >> initialize [
 			                           self createGrid ];
 		                           spacingTextValue: self defaultGridSpacing;
 		                           whenSpacingTextChangedDo: [ :value |
-			                           (self
-				                            checkZeroOrSubZeroGridSpacingValue:
-					                            value)
+			                           (self checkZeroOrSubZeroGridSpacingValue: value)
 				                           ifTrue: [
+					                           self defaultGridSpacing <= 0 ifTrue: [
+							                           gridSpacing := 1.
+							                           ^ self ].
 					                           gridSpacing := self defaultGridSpacing ]
 				                           ifFalse: [ gridSpacing := value ].
 			                           self createGrid ];
@@ -261,6 +260,9 @@ PyramidMainExtension >> initialize [
 			                           gridColor := color.
 			                           self createGrid ];
 		                           yourself.
+		
+	self defaultGridSpacing <= 0 ifTrue: [ gridSpacing := 1 ].
+	workplacePropertiesView spacingText value: gridSpacing.
 
 	"Button of the pop-up windows properties who call the creation of the pop-up"
 	workplacePropertiesButton := SpButtonPresenter new

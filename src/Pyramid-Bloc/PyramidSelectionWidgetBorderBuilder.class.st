@@ -74,7 +74,7 @@ PyramidSelectionWidgetBorderBuilder >> leftChild [
 	leftChild := (self
 		   borderElementWithMainColor: self mainLeftColor
 		   andSecondaryColor: self secondaryLeftColor).
-	leftChild 
+	leftChild
 		             constraintsDo: [ :c |
 			             c horizontal exact: self defaultWidth.
 			             c vertical matchParent.
@@ -95,7 +95,7 @@ PyramidSelectionWidgetBorderBuilder >> leftLabelFor: aBlElement [
 			 do: [ :evt |
 				 label text: (aBlElement height < 50
 						  ifTrue: [ '' asRopedText ]
-						  ifFalse: [ aBlElement height printString asRopedText ]).
+						  ifFalse: [ ((aBlElement height) roundTo:0.01) printString asRopedText ]).
 				 label requestLayout.
 				 label position: -22 @ (aBlElement height - 20 / 2) ]).
 	^ label
@@ -174,7 +174,7 @@ PyramidSelectionWidgetBorderBuilder >> topLabelFor: aBlElement [
 			 do: [ :evt |
 				 label text: (aBlElement width < 50
 						  ifTrue: [ '' asRopedText ]
-						  ifFalse: [ aBlElement width printString asRopedText ]).
+						  ifFalse: [ ((aBlElement width) roundTo:0.01) printString asRopedText ]).
 				 label requestLayout.
 				 label position: aBlElement width - 20 / 2 @ -13 ]).
 	^ label

@@ -1,8 +1,8 @@
 Class {
 	#name : #PyramidSelectionWidgetExtension,
 	#superclass : #Object,
-	#traits : 'TPyramidSpaceExtension + TPyramidEditorExtension + TPyramidEditorTransformationObserver',
-	#classTraits : 'TPyramidSpaceExtension classTrait + TPyramidEditorExtension classTrait + TPyramidEditorTransformationObserver classTrait',
+	#traits : 'TPyramidSpaceExtension + TPyramidEditorExtension + TPyramidEditorTransformationObserver + TPyramidKeyboardExtension',
+	#classTraits : 'TPyramidSpaceExtension classTrait + TPyramidEditorExtension classTrait + TPyramidEditorTransformationObserver classTrait + TPyramidKeyboardExtension classTrait',
 	#instVars : [
 		'projectModel',
 		'widgetElement',
@@ -11,17 +11,11 @@ Class {
 		'dragOrigin',
 		'movingLap',
 		'childCurrentTranslation',
-		'movingForGrid'
+		'movingForGrid',
+		'scaleFactor'
 	],
 	#category : #'Pyramid-Bloc-plugin-space-extensions'
 }
-
-{ #category : #'as yet unclassified' }
-PyramidSelectionWidgetExtension >> additionPoint: aPoint1 with: aPoint2 [
-	
-	^ (aPoint1 x + aPoint2 x) @ (aPoint1 y + aPoint2 y)
-	
-]
 
 { #category : #'as yet unclassified' }
 PyramidSelectionWidgetExtension >> alphaFactor [
@@ -32,15 +26,15 @@ PyramidSelectionWidgetExtension >> alphaFactor [
 { #category : #'as yet unclassified' }
 PyramidSelectionWidgetExtension >> centerDragEnd: anEvent [
 
-	
 	self isDragging: false.
-	self usePositionOffsetCommand: self childCurrentTranslation - movingForGrid.
+	self usePositionOffsetCommand:
+		self childCurrentTranslation - movingForGrid.
 	anEvent consumed: true.
 	self widgetElement transformDo: [ :t | t translateBy: 0 @ 0 ].
 	self widgetElement childrenDo: [ :child |
-		child 
+		child
 			childWithId: #drag_ghost
-			ifFound: [ :ghost | ghost visibility: BlVisibility hidden. ] ]
+			ifFound: [ :ghost | ghost visibility: BlVisibility hidden ] ]
 ]
 
 { #category : #'as yet unclassified' }
@@ -50,33 +44,37 @@ PyramidSelectionWidgetExtension >> centerDragEvent: anEvent [
 	anEvent primaryButtonPressed ifFalse: [
 		self centerDragEnd: anEvent.
 		^ self ].
-	self childCurrentTranslation: ((((anEvent position - self dragOrigin)/movingLap)rounded) * movingLap).
-	self widgetElement transformDo: [ :t |
-		"Move the dragged and selected element with the lap of the grid spacing"
+	self scaleFactor <= 0.1 ifTrue: [ self scaleFactor: 0.1 ].
+	self movingLap <= 0 ifTrue: [ self movingLap: 1 ].
+	self childCurrentTranslation: (((anEvent position - self dragOrigin)/self scaleFactor) / self movingLap) rounded * self movingLap.
+	self widgetElement transformDo: [ :t | "Move the dragged and selected element with the lap of the grid spacing"
 		t translateBy: self childCurrentTranslation ].
 	anEvent consumed: true
 ]
 
 { #category : #'as yet unclassified' }
 PyramidSelectionWidgetExtension >> centerDragStart: anEvent [
-	
-	| firstSelected currentPos | 
-	
+
+	| firstSelected currentPos |
 	self isDragging: true.
 	self dragOrigin: anEvent position.
 	anEvent consumed: true.
 	
-	"Get the repositionning of the first selected element when the grid is active"
-	firstSelected := self widgetElement children at:1.
-	currentPos := firstSelected position.
-	self movingForGrid: (currentPos - (((firstSelected position/movingLap)rounded)*movingLap)).
+	self isAnyKeyPressed ifTrue: [ self isDragging: false.
+											self projectModel updateSelection.
+											^ self ].
 
-	self widgetElement childrenDo: [ :child |
-		"Put the reposition of the first selected element to all selected element"
-		child position: (child position - movingForGrid).
+	"Get the repositionning of the first selected element when the grid is active"
+	firstSelected := self widgetElement children at: 1.
+	currentPos := firstSelected position.
+
+	self movingForGrid: currentPos.
+
+	self widgetElement childrenDo: [ :child | "Put the reposition of the first selected element to all selected element"
+		child position: child position - self movingForGrid.
 		child
 			childWithId: #drag_ghost
-			ifFound: [ :ghost | ghost visibility: BlVisibility visible ] ].
+			ifFound: [ :ghost | ghost visibility: BlVisibility visible ] ]
 ]
 
 { #category : #accessing }
@@ -88,7 +86,7 @@ PyramidSelectionWidgetExtension >> childCurrentTranslation [
 { #category : #accessing }
 PyramidSelectionWidgetExtension >> childCurrentTranslation: aPoint [
 
-	childCurrentTranslation := aPoint
+	childCurrentTranslation := aPoint.
 ]
 
 { #category : #accessing }
@@ -117,7 +115,7 @@ PyramidSelectionWidgetExtension >> dragOrigin: anObject [
 
 { #category : #accessing }
 PyramidSelectionWidgetExtension >> editor: aPyramidEditor [
-
+	
 	self commandExecutor:
 		aPyramidEditor commandExecutor
 ]
@@ -132,12 +130,14 @@ PyramidSelectionWidgetExtension >> informTransformationChanged [
 PyramidSelectionWidgetExtension >> initialize [
 
 	widgetElement := BlElement new
+							 id: 'currentSelection';
 		                 clipChildren: false;
 		                 zIndex: 1;
 		                 yourself.
 	dragOrigin := 0 @ 0.
 	isDragging := false.
 	movingLap := 1.
+	scaleFactor := 1
 ]
 
 { #category : #displaying }
@@ -187,13 +187,13 @@ PyramidSelectionWidgetExtension >> makeMonoSelectionFor: aBlElement [
 				                 do: [ :evt | self centerDragStart: evt ]);
 		                addEventHandler: (BlEventHandler
 				                 on: BlMouseEvent
-				                 do: [ :evt | self centerDragEvent: evt ]);
+				                 do: [ :evt | self isDragging ifTrue: [  self centerDragEvent: evt ] ]);
 		                addEventHandler: (BlEventHandler
 				                 on: BlPrimaryMouseUpEvent
-				                 do: [ :evt | self centerDragEnd: evt ]);
+				                 do: [ :evt | self isDragging ifTrue: [ self centerDragEnd: evt ] ]);
 		                yourself.
 	borderElement := PyramidSelectionWidgetBorderBuilder new build.
-
+	
 	monoSelection addChild: dragGhostElement.
 	monoSelection addChild: borderElement.
 	monoSelection addChild: eventElement.
@@ -209,14 +209,26 @@ PyramidSelectionWidgetExtension >> makeNewSelection [
 		nb := nb + 1.
 		overlayElement := self makeMonoSelectionFor: each.
 		overlayElement id: ('overlay', nb asString) asSymbol.
-		self widgetElement addChild: overlayElement. 
+		self widgetElement addChild: overlayElement.
 	]
+]
+
+{ #category : #accessing }
+PyramidSelectionWidgetExtension >> movingForGrid [
+
+	^ movingForGrid
 ]
 
 { #category : #accessing }
 PyramidSelectionWidgetExtension >> movingForGrid: aPoint [
 
-	movingForGrid := aPoint
+	movingForGrid := aPoint - ((aPoint / self movingLap) rounded * self movingLap)
+]
+
+{ #category : #accessing }
+PyramidSelectionWidgetExtension >> movingLap [
+
+	^ movingLap
 ]
 
 { #category : #accessing }
@@ -275,6 +287,18 @@ PyramidSelectionWidgetExtension >> removeSelection [
 
 	self removeMonoSelections: self widgetElement.
 	self widgetElement removeChildren.
+]
+
+{ #category : #accessing }
+PyramidSelectionWidgetExtension >> scaleFactor [
+
+	^ scaleFactor
+]
+
+{ #category : #accessing }
+PyramidSelectionWidgetExtension >> scaleFactor: aValue [
+
+	scaleFactor := aValue
 ]
 
 { #category : #'as yet unclassified' }

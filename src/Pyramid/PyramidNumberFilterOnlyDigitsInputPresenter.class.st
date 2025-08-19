@@ -32,6 +32,7 @@ PyramidNumberFilterOnlyDigitsInputPresenter >> defaultValue [
 { #category : #accessing }
 PyramidNumberFilterOnlyDigitsInputPresenter >> defaultValue: aValue [
 
+	aValue <= 0 ifTrue: [ defaultValue := 1. ^ self ].
 	defaultValue := aValue
 ]
 

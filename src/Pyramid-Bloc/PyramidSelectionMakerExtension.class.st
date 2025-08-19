@@ -48,8 +48,8 @@ PyramidSelectionMakerExtension >> computeSelection: anEvent [
 		              self selectAllElementsInBound:
 			              self selectionGhost boundsInSpace ].
 
-	self isOnlyCtrlKeyPressed ifTrue: [
-		^ self computeExclusifSelection: collection ].
+	"self isOnlyCtrlKeyPressed ifTrue: [
+		^ self computeExclusifSelection: collection ]."
 	self isOnlyShiftKeyPressed ifTrue: [
 		^ self computeAdditiveSelection: collection ].
 	self computeNormalSelection: collection
@@ -66,12 +66,16 @@ PyramidSelectionMakerExtension >> dragEnd: anEvent [
 { #category : #'event handling' }
 PyramidSelectionMakerExtension >> dragEvent: anEvent [
 
-	| xmin ymin "newY newX" |
+	| xmin ymin |
 	self isDragging ifFalse: [ ^ self ].
 	(anEvent primaryButtonPressed or: [ anEvent secondaryButtonPressed ])
 		ifFalse: [
 			self dragEnd: anEvent.
 			^ self ].
+
+	self isAnyKeyPressed ifTrue: [
+		self dragEnd: anEvent.
+		^ self ].
 
 	xmin := self dragOrigin x min: anEvent position x.
 	ymin := self dragOrigin y min: anEvent position y.
@@ -99,6 +103,8 @@ PyramidSelectionMakerExtension >> dragStart: anEvent [
 	self isDragging: true.
 	self dragOrigin: anEvent position.
 
+	self isOnlyCtrlKeyPressed ifTrue: [ self isDragging: false ].
+
 	self selectionGhost
 		extent: 0 @ 0;
 		position: self dragOrigin;
@@ -110,8 +116,9 @@ PyramidSelectionMakerExtension >> initialize [
 
 	isDragging := false.
 	selectionGhost := BlElement new
+							  id: 'selectionGhost';
 		                  background: Color blue translucent;
-		zIndex: 1;
+		                  zIndex: 1;
 		                  visibility: BlVisibility gone;
 		                  yourself
 ]
@@ -131,14 +138,14 @@ PyramidSelectionMakerExtension >> installOn: aBuilder [
 
 	self elementAtEvents addEventHandler: (BlEventHandler
 			 on: BlMouseMoveEvent
-			 do: [ :evt | self dragEvent: evt ]).
+			 do: [ :evt | self isDragging ifTrue: [ self dragEvent: evt ] ]).
 
 	self elementAtEvents addEventHandler: (BlEventHandler
 			 on: BlPrimaryMouseUpEvent
-			 do: [ :evt | self dragEnd: evt ]).
+			 do: [ :evt | self isDragging ifTrue: [ self dragEnd: evt ] ]).
 	self elementAtEvents addEventHandler: (BlEventHandler
 			 on: BlSecondaryMouseUpEvent
-			 do: [ :evt | self dragEnd: evt ])
+			 do: [ :evt | self isDragging ifTrue: [ self dragEnd: evt ] ])
 ]
 
 { #category : #accessing }
