@@ -18,9 +18,9 @@ Class {
 
 { #category : #accessing }
 PyramidSpecShortcutRemoveElement >> defaultKeyCombination [
-	"CTRL + R to activate this shortcut"
+	"Delete (ENG) and SUPPR (FR) to activate this shortcut"
 
-	keyCombination := $d command mac | $d control unix | $d control win
+	keyCombination := KeyboardKey delete
 ]
 
 { #category : #initialization }

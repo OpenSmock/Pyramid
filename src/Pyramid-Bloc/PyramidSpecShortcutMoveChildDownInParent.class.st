@@ -16,9 +16,9 @@ Class {
 
 { #category : #accessing }
 PyramidSpecShortcutMoveChildDownInParent >> defaultKeyCombination [
-	"CTRL + PageDown to activate this shortcut"
+	"PageDown to activate this shortcut"
 
-	keyCombination := Character pageDown
+	keyCombination := KeyboardKey pageDown
 ]
 
 { #category : #initialization }
