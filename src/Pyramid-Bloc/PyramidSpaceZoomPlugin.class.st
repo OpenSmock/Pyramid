@@ -262,6 +262,7 @@ PyramidSpaceZoomPlugin >> display: aDisplay [
 PyramidSpaceZoomPlugin >> editScaleDisplayElement: aBlElement scaleValue: aValue [
 
 	self currentScaleFactor: aValue.
+	self currentScaleFactor <= self minScaleValue ifTrue: [ self currentScaleFactor: self minScaleValue ].
 	pyramidSelectionWidgetExtension scaleFactor: self currentScaleFactor.
 	pyramidPositionExtension scaleFactor: self currentScaleFactor.
 
@@ -280,8 +281,11 @@ PyramidSpaceZoomPlugin >> editScaleDisplayElement: aBlElement scaleValue: aValue
 
 { #category : #'as yet unclassified' }
 PyramidSpaceZoomPlugin >> editSizeOfMainExtensionSizeBorderElement: aScaleValue [
-
-	((pyramidSelectionWidgetExtension elementAtMain childWithId: #MainExtension_sizeElement)childWithId: #MainExtension_borderElement) border: (BlBorder paint: Color blue width: (1/aScaleValue))
+	
+	| aScaleValueSafe |
+	aScaleValueSafe := aScaleValue.
+	aScaleValue < self minScaleValue ifTrue: [ aScaleValueSafe := self minScaleValue ].
+	((pyramidSelectionWidgetExtension elementAtMain childWithId: #MainExtension_sizeElement)childWithId: #MainExtension_borderElement) border: (BlBorder paint: Color blue width: (1/aScaleValueSafe))
 ]
 
 { #category : #initialization }
