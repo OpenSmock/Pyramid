@@ -37,7 +37,7 @@ PyramidSpecShortcutSelectAllElement >> pluginFromPyramid: aPyramidEditor [
 PyramidSpecShortcutSelectAllElement >> selectAll [
 
 	plugin selection asArray isEmpty ifTrue: [
-		self selectAllElementInSpace ].
+		self selectAllElementInSpace. ^ self ].
 	plugin selection asArray size = 1 ifTrue: [
 		self selectAllChildrenOfSelectedElement ]
 ]
