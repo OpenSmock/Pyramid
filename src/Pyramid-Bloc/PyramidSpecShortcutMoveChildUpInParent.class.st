@@ -16,11 +16,9 @@ Class {
 
 { #category : #accessing }
 PyramidSpecShortcutMoveChildUpInParent >> defaultKeyCombination [
-	"CTRL + Arrow up to activate this shortcut"
+	"CTRL + PageUp to activate this shortcut"
 
-	keyCombination := Character arrowUp command mac
-	                  | Character arrowUp control unix
-	                  | Character arrowUp control win
+	keyCombination := Character pageUp
 ]
 
 { #category : #initialization }

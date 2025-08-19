@@ -17,8 +17,8 @@ List of current active shortcut (default value) :
 - Unselect all element -> Escape
 - Delete selected element -> ctrl + D
 - Inspect one selected element -> ctrl + I
-- Move child index Up -> ctrl + Arrow Up
-- Move child index Down -> ctrl + Arrow Down
+- Move child index Up -> Page Up
+- Move child index Down -> Page Down
 - Move element to position zero -> ctrl + Space
 "
 Class {

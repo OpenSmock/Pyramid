@@ -16,9 +16,9 @@ Class {
 
 { #category : #accessing }
 PyramidSpecShortcutMoveChildDownInParent >> defaultKeyCombination [
-	"CTRL + Arrow Down to activate this shortcut"
+	"CTRL + PageDown to activate this shortcut"
 
-	keyCombination := Character arrowDown command mac | Character arrowDown control unix | Character arrowDown control win
+	keyCombination := Character pageDown
 ]
 
 { #category : #initialization }
