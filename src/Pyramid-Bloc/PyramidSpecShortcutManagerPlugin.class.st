@@ -19,7 +19,6 @@ List of current active shortcut (default value) :
 - Inspect one selected element -> ctrl + I
 - Move child index Up -> Page Up
 - Move child index Down -> Page Down
-- Move a selected element to position zero -> ctrl + Space
 - Move a selected element to the right -> arrow Right
 - Move a selected element to the left -> arrow Left
 - Move a selected element to the up -> arrow Up
