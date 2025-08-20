@@ -24,6 +24,7 @@ List of current active shortcut (default value) :
 - Move a selected element to the left -> arrow Left
 - Move a selected element to the up -> arrow Up
 - Move a selected element to the down -> arrow Down
+- Move a selected element to the mouse position -> ctrl + space
 "
 Class {
 	#name : #PyramidSpecShortcutManagerPlugin,
