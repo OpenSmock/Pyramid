@@ -61,7 +61,7 @@ PyramidSpecShortcutManagerPlugin >> setupPluginOfShortcuts: aPyramidEditor [
 
 { #category : #connecting }
 PyramidSpecShortcutManagerPlugin >> windowOpenBy: aPyramidEditor [
-
+	
 	"The window to apply the shortcuts"
 	pyramidWindow := aPyramidEditor window spec.
 

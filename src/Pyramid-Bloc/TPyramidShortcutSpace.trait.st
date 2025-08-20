@@ -12,8 +12,8 @@ Trait {
 TPyramidShortcutSpace >> defaultKeyCombination [
 
 	"CTRL + S as example"
-	keyCombination := "(BlKeyCombination builder primary key:
-		                       KeyboardKey S) build" nil
+	keyCombination := (BlKeyCombination builder primary key:
+		                       KeyboardKey S) build
 ]
 
 { #category : #initialization }
@@ -34,7 +34,7 @@ TPyramidShortcutSpace >> pluginFromPyramid: aPyramidEditor [
 	| listOfPlugins pluginSorted |
 	
 	listOfPlugins := aPyramidEditor plugins.
-	pluginSorted := listOfPlugins select: [ :extensions | "extensions isKindOf: PyramidHistoryPlugin" ].
+	pluginSorted := listOfPlugins select: [ :extensions | extensions isKindOf: PyramidHistoryPlugin ].
 	pluginSorted size = 1
 	ifFalse: [^ self].
 	plugin := pluginSorted asArray first
