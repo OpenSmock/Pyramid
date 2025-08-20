@@ -39,13 +39,14 @@ PyramidSpaceShortcutManagerPlugin >> addAllShortcutInSpace: aSpace [
 { #category : #connecting }
 PyramidSpaceShortcutManagerPlugin >> connectOn: aPyramidEditor [
 
-	| spacePlugin |
+	| spacePlugin listOfPlugins pluginSorted |
 	"Get the space plugin to adding shortcut"
-	spacePlugin := aPyramidEditor findPlugin: PyramidSpacePlugin.
-	spacePlugin ifNil: [
-		self inform:
-			'Space plugin is not installed -> impossible to install shortcut to the space'.
-		^ self ].
+	listOfPlugins := aPyramidEditor plugins.
+	pluginSorted := listOfPlugins select: [ :extensions | extensions isKindOf: PyramidSpacePlugin ].
+	pluginSorted size = 1
+	ifFalse: [self inform:
+			'Space plugin is not installed -> impossible to install shortcut to the space'. ^ self].
+	spacePlugin := pluginSorted asArray first.
 
 	self setupPluginOfShortcuts: aPyramidEditor.
 
