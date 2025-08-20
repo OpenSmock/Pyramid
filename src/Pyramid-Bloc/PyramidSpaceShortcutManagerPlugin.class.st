@@ -18,12 +18,6 @@ Class {
 	#category : #'Pyramid-Bloc-plugin-shortcut-manager'
 }
 
-{ #category : #asserting }
-PyramidSpaceShortcutManagerPlugin class >> shouldInstall [
-
-	^ false
-]
-
 { #category : #adding }
 PyramidSpaceShortcutManagerPlugin >> addAllShortcutInCollection [
 	"Default values of the different shortcut"

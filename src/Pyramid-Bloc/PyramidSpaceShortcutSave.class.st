@@ -10,7 +10,7 @@ Class {
 	#classTraits : 'TPyramidShortcutSpace classTrait',
 	#instVars : [
 		'plugin',
-		'shortcut',
+		'shortcutAction',
 		'keyCombination'
 	],
 	#category : #'Pyramid-Bloc-plugin-shortcut-manager'
@@ -42,7 +42,7 @@ PyramidSpaceShortcutSave >> shortcutAction [
 		                    combination: keyCombination;
 		                    action: [ :event |
 			                    plugin
-				                    ifNil: [
-					                    self inform: 'Plugin save is not installed' ]
-				                    ifNotNil: [ plugin saveAction ] ]
+				                    ifNil: [ self inform: 'Plugin save is not installed' ]
+				                    ifNotNil: [ "plugin saveAction" "disable because it's already implement 
+														in spec shortcut and it's use only as example" ] ]
 ]

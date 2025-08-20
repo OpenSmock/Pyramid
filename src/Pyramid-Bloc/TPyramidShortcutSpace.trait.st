@@ -48,7 +48,6 @@ TPyramidShortcutSpace >> shortcutAction [
 		                    combination: keyCombination;
 		                    action: [ :event |
 			                    plugin
-				                    ifNil: [
-					                    self inform: 'Plugin' , ' is not installed' "name of the plugin" ]
+				                    ifNil: [ self inform: 'Problem with the plugin' "Add the name of the plugin" ]
 				                    ifNotNil: [ "Action here" ] ]
 ]
