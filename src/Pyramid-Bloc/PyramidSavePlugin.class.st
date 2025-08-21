@@ -52,6 +52,10 @@ PyramidSavePlugin >> connectOn: aPyramidEditor [
 	self saveModel projectModel: aPyramidEditor projectModel.
 	self inputsController projectModel: aPyramidEditor projectModel.
 	
+	aPyramidEditor
+		addShortcutSpecInCollection: $s command mac | $s control unix | $s control win
+		action: [ self saveAction ]
+		name: 'Save shortcut spec'
 ]
 
 { #category : #initialization }

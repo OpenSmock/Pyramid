@@ -12,7 +12,8 @@ Class {
 		'movingLap',
 		'childCurrentTranslation',
 		'movingForGrid',
-		'scaleFactor'
+		'scaleFactor',
+		'pyramidDynamicResizer'
 	],
 	#category : #'Pyramid-Bloc-plugin-space-extensions'
 }

@@ -1,6 +1,9 @@
 Class {
 	#name : #PyramidMoveChildInParentCommand,
 	#superclass : #PyramidAbstractBlocCommand,
+	#instVars : [
+		'mementoInverse'
+	],
 	#category : #'Pyramid-Bloc-plugin-bloc'
 }
 

@@ -242,7 +242,7 @@ PyramidVisualPystonForCly >> update [
 	blElement isCollection ifTrue: [
 		blElement := BlElement new
 			             addChildren: blElement;
-			             extent: 1500 @ 1500;
+			             size: 1500 @ 1500;
 			             yourself ].
 
 	imageMorph form: blElement exportAsForm

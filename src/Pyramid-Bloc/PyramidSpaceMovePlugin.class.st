@@ -22,7 +22,11 @@ PyramidSpaceMovePlugin >> connectOn: aPyramidEditor [
 	
 	pyramidWheelTransformExtension ifNil: [ ^ self ].
 
-	self installOnMoveSpace
+	self installOnMoveSpace.
+	
+	pyramidWheelTransformExtension elementAtDisplaysAddons zIndex: 1001.
+	
+	pyramidWheelTransformExtension elementAtDisplaysAddons addChild: self defaultViewPositionButton
 ]
 
 { #category : #accessing }
@@ -164,14 +168,4 @@ PyramidSpaceMovePlugin >> positionOrigin [
 PyramidSpaceMovePlugin >> positionOrigin: aPosition [
 
 	positionOrigin := aPosition.
-]
-
-{ #category : #connecting }
-PyramidSpaceMovePlugin >> windowOpenBy: aPyramidEditor [
-	
-	pyramidWheelTransformExtension ifNil: [ ^ self ].
-	
-	pyramidWheelTransformExtension elementAtDisplaysAddons zIndex: 1001.
-	
-	pyramidWheelTransformExtension elementAtDisplaysAddons addChild: self defaultViewPositionButton
 ]

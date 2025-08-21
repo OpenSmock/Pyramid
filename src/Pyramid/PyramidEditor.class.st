@@ -8,7 +8,8 @@ Class {
 		'projectModel',
 		'window',
 		'commandExecutor',
-		'announcer'
+		'announcer',
+		'collectionOfShortcutSpec'
 	],
 	#category : #'Pyramid-core'
 }
@@ -24,6 +25,19 @@ PyramidEditor class >> open [
 	<script>
 
 	self buildEditor open
+]
+
+{ #category : #adding }
+PyramidEditor >> addShortcutSpecInCollection: aKeyCombination action: aBlockAction name: aString [
+
+	| shortcutObject |
+
+	shortcutObject := PyramidSpecShortcutActionObject new.
+	shortcutObject	name: aString;
+						shortcut: aKeyCombination;
+						action: aBlockAction.											
+													
+	collectionOfShortcutSpec add: shortcutObject
 ]
 
 { #category : #'open/close' }
@@ -52,6 +66,49 @@ PyramidEditor >> commandExecutor: anObject [
 	commandExecutor := anObject
 ]
 
+{ #category : #'as yet unclassified' }
+PyramidEditor >> defaultSpecShortcuts [
+
+	"Shortcut using only projectModel"
+	self
+		addShortcutSpecInCollection: KeyboardKey I command mac |
+											 KeyboardKey I control unix |
+											 KeyboardKey I control win
+		action: [
+			self projectModel selection size = 1
+				ifTrue: [
+					self projectModel selection first inspect.
+					self projectModel updateSelection ]
+				ifFalse: [
+				self inform: 'Cannot inspect zero or multiple selected element' ] ]
+		name: 'Shortcut Spec Inspect selected element'.
+
+	self
+		addShortcutSpecInCollection: KeyboardKey escape
+		action: [ self projectModel updateSelection ]
+		name: 'Shortcut Spec unselect all elements'.
+
+	self
+		addShortcutSpecInCollection: KeyboardKey A command mac |
+											 KeyboardKey A control unix |
+											 KeyboardKey A control win
+		action: [
+			self projectModel selection asArray isEmpty
+				ifTrue: [
+					self projectModel setSelection:
+						self projectModel firstLevelElements collection ]
+				ifFalse: [
+					self projectModel selection asArray size = 1 ifTrue: [
+						self projectModel selection collection asArray first children
+							isEmpty
+							ifTrue: [
+							self inform: 'No children to select in the selected element' ]
+							ifFalse: [
+								self projectModel setSelection:
+									self projectModel selection collection asArray first children ] ] ] ]
+		name: 'Shortcut Spec Select all element'
+]
+
 { #category : #initialization }
 PyramidEditor >> initialize [
 
@@ -64,16 +121,25 @@ PyramidEditor >> initialize [
 		                   afterDo: [
 			                   self projectModel informElementsChanged ];
 		                   wrappee: PyramidMainCommandExecutor new;
-		                   yourself
+		                   yourself.
+		
+	collectionOfShortcutSpec := OrderedCollection new.
 ]
 
 { #category : #'open/close' }
 PyramidEditor >> open [
 
 	self window ifNil: [ ^ self ].
-	self window isOpen ifTrue:[ ^ self ].
+	self window isOpen ifTrue: [ ^ self ].
 	self window open.
-	self plugins do: [ :plugin | plugin windowOpenBy: self ]
+	self plugins do: [ :plugin | plugin windowOpenBy: self ].
+	
+	self defaultSpecShortcuts.
+
+	collectionOfShortcutSpec do: [ :shortcutClass |
+		window spec
+			bindKeyCombination: shortcutClass shortcut
+			toAction: shortcutClass action ]
 ]
 
 { #category : #plugins }

@@ -75,6 +75,12 @@ PyramidEditElementTreeDragAndDropPlugin >> editor [
 	^ editor
 ]
 
+{ #category : #initialization }
+PyramidEditElementTreeDragAndDropPlugin >> initialize [ 
+	
+	"Do nothing"
+]
+
 { #category : #actions }
 PyramidEditElementTreeDragAndDropPlugin >> moveElementDragToChild: arrayOfElementDragged target: aElementTarget [
 
@@ -107,6 +113,12 @@ PyramidEditElementTreeDragAndDropPlugin >> navigationPlugin: aPlugin [
 
 { #category : #accessing }
 PyramidEditElementTreeDragAndDropPlugin >> navigationPluginFromPyramid: aPyramidEditor [
+
+	self navigationPlugin: (aPyramidEditor findPlugin: PyramidNavigationPlugin).
+]
+
+{ #category : #'as yet unclassified' }
+PyramidEditElementTreeDragAndDropPlugin >> pluginFromPyramid: aPyramidEditor [
 
 	self navigationPlugin: (aPyramidEditor findPlugin: PyramidNavigationPlugin).
 ]

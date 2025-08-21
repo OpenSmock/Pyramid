@@ -29,6 +29,16 @@ PyramidMoveChildInParentPlugin >> connectOn: aPyramidEditor [
 	editor := aPyramidEditor.
 	projectModel := aPyramidEditor projectModel.
 	self navigationFromPyramid: aPyramidEditor.
+	
+	aPyramidEditor
+		addShortcutSpecInCollection: KeyboardKey pageUp
+		action: [ self moveChildIndexUpInParent ]
+		name: 'Shortcut spec move child index up'.
+		
+	aPyramidEditor
+		addShortcutSpecInCollection: KeyboardKey pageDown
+		action: [ self moveChildIndexDownInParent ]
+		name: 'Shortcut spec move child index down'.
 ]
 
 { #category : #adding }
