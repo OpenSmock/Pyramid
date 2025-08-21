@@ -39,6 +39,7 @@ PyramidSpacePlugin >> builder [
 PyramidSpacePlugin >> connectOn: aPyramidEditor [
 
 	builder editor: aPyramidEditor.
+	self resetSpace.
 	self defaultShortcutsForEditor: aPyramidEditor
 ]
 

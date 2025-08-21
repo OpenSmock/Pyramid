@@ -464,6 +464,8 @@ PyramidSpaceZoomPlugin >> valueOfPixelGridToShow: aScaleValue [
 PyramidSpaceZoomPlugin >> windowOpenBy: aPyramidEditor [
 
 	| position aUIElement |
+	
+	pyramidSelectionWidgetExtension ifNil: [ ^ self ].
 
 	sizeElementExtent := (pyramidSelectionWidgetExtension elementAtMain
 		                      childWithId: #MainExtension_sizeElement)
