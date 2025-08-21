@@ -21,8 +21,6 @@ PyramidSpaceMovePlugin >> connectOn: aPyramidEditor [
 	self pluginFromPyramid: aPyramidEditor.
 	
 	pyramidWheelTransformExtension ifNil: [ ^ self ].
-
-	self installOnMoveSpace.
 	
 	pyramidWheelTransformExtension elementAtDisplaysAddons zIndex: 1001.
 	
@@ -101,7 +99,7 @@ PyramidSpaceMovePlugin >> initialize [
 { #category : #displaying }
 PyramidSpaceMovePlugin >> installOnMoveSpace [
 
-	pyramidWheelTransformExtension elementAtEvents addEventHandler:
+	pyramidWheelTransformExtension elementAtDisplays space addEventHandler:
 		(BlEventHandler
 			 on: BlPrimaryMouseDownEvent
 			 do: [ :evt |
@@ -112,7 +110,7 @@ PyramidSpaceMovePlugin >> installOnMoveSpace [
 				 moveTo ifNotNil: [
 					 self positionOrigin: evt position
 						 - pyramidWheelTransformExtension currentTransformTranslation.
-					 pyramidWheelTransformExtension elementAtEvents addEventHandler:
+					 pyramidWheelTransformExtension elementAtDisplays space addEventHandler:
 						 moveEvent.
 					 evt consumed: true ] ]) 
 	
@@ -125,7 +123,7 @@ PyramidSpaceMovePlugin >> moveSpaceEvent [
 		  on: BlMouseMoveEvent
 		  do: [ :evt |
 			  evt primaryButtonPressed ifFalse: [
-				  pyramidWheelTransformExtension elementAtEvents
+				  pyramidWheelTransformExtension elementAtDisplays space
 					  removeEventHandler: moveEvent ].
 				
 			  pyramidWheelTransformExtension isOnlyCtrlKeyPressed ifTrue: [
@@ -168,4 +166,12 @@ PyramidSpaceMovePlugin >> positionOrigin [
 PyramidSpaceMovePlugin >> positionOrigin: aPosition [
 
 	positionOrigin := aPosition.
+]
+
+{ #category : #connecting }
+PyramidSpaceMovePlugin >> windowOpenBy: aPyramidEditor [
+
+	pyramidWheelTransformExtension ifNil: [ ^ self ].
+
+	self installOnMoveSpace.
 ]
