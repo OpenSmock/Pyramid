@@ -138,7 +138,9 @@ PyramidSelectionWidgetExtension >> initialize [
 	dragOrigin := 0 @ 0.
 	isDragging := false.
 	movingLap := 1.
-	scaleFactor := 1
+	scaleFactor := 1.
+	
+	self childCurrentTranslation: 0@0.
 ]
 
 { #category : #displaying }
