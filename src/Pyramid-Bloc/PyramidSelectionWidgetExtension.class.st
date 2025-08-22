@@ -118,7 +118,9 @@ PyramidSelectionWidgetExtension >> dragOrigin: anObject [
 PyramidSelectionWidgetExtension >> editor: aPyramidEditor [
 	
 	self commandExecutor:
-		aPyramidEditor commandExecutor
+		aPyramidEditor commandExecutor.
+		
+	pyramidDynamicResizer setupExtension: aPyramidEditor
 ]
 
 { #category : #events }
@@ -141,6 +143,8 @@ PyramidSelectionWidgetExtension >> initialize [
 	scaleFactor := 1.
 	
 	self childCurrentTranslation: 0@0.
+	
+	pyramidDynamicResizer := PyramidDynamicResizer new.
 ]
 
 { #category : #displaying }
@@ -196,6 +200,8 @@ PyramidSelectionWidgetExtension >> makeMonoSelectionFor: aBlElement [
 				                 do: [ :evt | self isDragging ifTrue: [ self centerDragEnd: evt ] ]);
 		                yourself.
 	borderElement := PyramidSelectionWidgetBorderBuilder new build.
+	
+	pyramidDynamicResizer installOnDynamicResizer: eventElement.
 	
 	monoSelection addChild: dragGhostElement.
 	monoSelection addChild: borderElement.
