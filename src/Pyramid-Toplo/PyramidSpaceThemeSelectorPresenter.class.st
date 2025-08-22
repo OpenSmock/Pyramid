@@ -6,7 +6,7 @@ Class {
 	#instVars : [
 		'projectModel'
 	],
-	#category : #'Pyramid-Toplo-EXPERIMENTAL-plugin-theme-management'
+	#category : #'Pyramid-Toplo-plugin-theme-management'
 }
 
 { #category : #'as yet unclassified' }
@@ -14,6 +14,29 @@ PyramidSpaceThemeSelectorPresenter >> applyTheme [
 
 	self builder space toTheme: self currentTheme.
 	self projectModel informElementsChanged
+]
+
+{ #category : #accessing }
+PyramidSpaceThemeSelectorPresenter >> builder [
+
+	^ builder
+]
+
+{ #category : #accessing }
+PyramidSpaceThemeSelectorPresenter >> builder: anObject [
+
+	builder:= anObject.
+]
+
+{ #category : #accessing }
+PyramidSpaceThemeSelectorPresenter >> editor: aPyramidEditor [
+]
+
+{ #category : #displaying }
+PyramidSpaceThemeSelectorPresenter >> installOn: aBuilder [
+
+	self builder: aBuilder.
+		
 ]
 
 { #category : #initialization }

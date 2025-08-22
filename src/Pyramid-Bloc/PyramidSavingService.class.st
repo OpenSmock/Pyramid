@@ -82,8 +82,8 @@ PyramidSavingService class >> ston [
 		        comment: [
 			        'This class has been generated using Pyramid.<r><r><t>By: <1s><r><t><2s> <3s>'
 				        expandMacrosWith: ''
-				         with: Date today yyyymmdd
-				         with: Time now print24 ];
+				        with: Date today yyyymmdd
+				        with: Time now print24 ];
 		        pragma: 'pySTON';
 		        serializeBlock: [ :collection |
 			        '<1p>' expandMacrosWith:

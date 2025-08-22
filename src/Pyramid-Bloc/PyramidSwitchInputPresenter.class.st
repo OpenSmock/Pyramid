@@ -140,7 +140,7 @@ PyramidSwitchInputPresenter class >> blocToggleUncertain [
 PyramidSwitchInputPresenter class >> formToggleOff [
 
 	^ (BlElement new
-		   size: 40 @ 16;
+		   extent: 40 @ 16;
 		   addChildren: self blocToggleOff materializeAsBlElement)
 		  exportAsForm
 ]
@@ -149,7 +149,7 @@ PyramidSwitchInputPresenter class >> formToggleOff [
 PyramidSwitchInputPresenter class >> formToggleOn [
 
 	^ (BlElement new
-		   size: 40 @ 16;
+		   extent: 40 @ 16;
 		   addChildren: self blocToggleOn materializeAsBlElement)
 		  exportAsForm
 ]
@@ -158,7 +158,7 @@ PyramidSwitchInputPresenter class >> formToggleOn [
 PyramidSwitchInputPresenter class >> formToggleUncertain [
 
 	^ (BlElement new
-		   size: 40 @ 16;
+		   extent: 40 @ 16;
 		   addChildren: self blocToggleUncertain materializeAsBlElement)
 		  exportAsForm
 ]

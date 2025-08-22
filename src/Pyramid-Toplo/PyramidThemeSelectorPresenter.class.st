@@ -6,7 +6,7 @@ Class {
 		'buttonRefreshTheme',
 		'triggerThemeChangement'
 	],
-	#category : #'Pyramid-Toplo-EXPERIMENTAL-plugin-theme-management'
+	#category : #'Pyramid-Toplo-plugin-theme-management'
 }
 
 { #category : #'as yet unclassified' }
@@ -96,7 +96,7 @@ PyramidThemeSelectorPresenter >> labelPresenter [
 PyramidThemeSelectorPresenter >> selectTheme: aToTheme [
 
 	self triggerThemeChangement: false.
-	self themeSelector selectItem: aToTheme.
+	self themeSelector items do: [:theme | (theme class) = (aToTheme class) ifTrue: [ self themeSelector selectItem: (theme) ]].
 	self triggerThemeChangement: true.
 	
 ]

@@ -6,10 +6,18 @@ Class {
 	#instVars : [
 		'builder',
 		'morphicPresenter',
-		'resetSpaceButton'
+		'resetSpaceButton',
+		'resetShortcutBlock',
+		'spaceEventCollection'
 	],
 	#category : #'Pyramid-Bloc-plugin-space'
 }
+
+{ #category : #adding }
+PyramidSpacePlugin >> addEventHandlerToSpaceEventCollection: anEventHandler [
+	
+	spaceEventCollection add: anEventHandler
+]
 
 { #category : #adding }
 PyramidSpacePlugin >> addPanelsOn: aPyramidSimpleWindow [
@@ -31,12 +39,49 @@ PyramidSpacePlugin >> builder [
 PyramidSpacePlugin >> connectOn: aPyramidEditor [
 
 	builder editor: aPyramidEditor.
-	self resetSpace
+	self defaultShortcutsForEditor: aPyramidEditor
+]
+
+{ #category : #'shortcut management' }
+PyramidSpacePlugin >> defaultShortcutsForEditor: aPyramidEditor [
+	
+	| extensionList pyramidMainExtension pyramidPositionExtension |
+	extensionList := self builder extensions.
+
+	pyramidMainExtension := extensionList select: [ :extensions |
+		                   extensions isKindOf: PyramidMainExtension ].
+	pyramidMainExtension size = 1 ifTrue: [
+		aPyramidEditor
+			addShortcutSpecInCollection: KeyboardKey G command mac |
+												 KeyboardKey G control unix |
+												 KeyboardKey G control win
+			action: [
+				(pyramidMainExtension asArray first) workplacePropertiesView
+					visibilityButton toggleState ]
+			name: 'Shortcut Spec grid visibility' ].
+
+	pyramidPositionExtension := extensionList select: [ :extensions |
+		                   extensions isKindOf: PyramidPositionExtension ].
+	pyramidPositionExtension size = 1 ifTrue: [
+		aPyramidEditor
+			addShortcutSpecInCollection: KeyboardKey space command mac |
+												 KeyboardKey space control unix | 
+												 KeyboardKey space control win
+			action: [
+				aPyramidEditor projectModel selection size = 1 ifFalse: [ ^ self ].
+				aPyramidEditor projectModel selection first.
+				aPyramidEditor commandExecutor
+					use: PyramidPositionCommand new
+					on: { aPyramidEditor projectModel selection first }
+					with: (pyramidPositionExtension asArray first) position ]
+			name: 'Shortcut Spec Move element to the mouse position' ].
 ]
 
 { #category : #initialization }
 PyramidSpacePlugin >> initialize [
-
+	
+	resetShortcutBlock := [ :aSpace | ].
+	spaceEventCollection := OrderedCollection new.
 	builder := PyramidSpaceBuilder defaultEditorBuilder.
 	morphicPresenter := SpMorphPresenter new.
 	resetSpaceButton := SpButtonPresenter new
@@ -74,12 +119,26 @@ PyramidSpacePlugin >> morphicPresenter [
 ^ morphicPresenter
 ]
 
+{ #category : #accessing }
+PyramidSpacePlugin >> resetShortcutBlock [
+
+	^ resetShortcutBlock
+]
+
+{ #category : #accessing }
+PyramidSpacePlugin >> resetShortcutBlock: aBlock [
+
+	resetShortcutBlock := aBlock
+]
+
 { #category : #initialization }
 PyramidSpacePlugin >> resetSpace [
 
 	| space |
 	space := self builder build.
 	self makePresenterWithBlSpace: space.
+	resetShortcutBlock value: space.
+	spaceEventCollection do: [ :aEventHandler | space addEventHandler: aEventHandler ].
 	space show
 ]
 
@@ -99,4 +158,10 @@ PyramidSpacePlugin >> updateMorphInCaseOfFaillure: aMorph [
 			 target: [ self resetSpace ];
 			 actionSelector: #value;
 			 yourself)
+]
+
+{ #category : #connecting }
+PyramidSpacePlugin >> windowOpenBy: aPyramidEditor [
+
+	self resetSpace.
 ]

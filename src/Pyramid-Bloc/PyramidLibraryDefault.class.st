@@ -38,7 +38,7 @@ PyramidLibraryDefault >> pragmaCategory: aSymbol withIcon: anIcon [
 	^ (packages collect: [ :package |
 		   | elements |
 		   elements := methods
-			               select: [ :method | method package = package and: [ method methodClass isObsolete not ] ]
+			               select: [ :method | method package = package ]
 			               thenCollect: [ :method |
 				               PyramidLibraryElement new
 					               icon: (Smalltalk ui icons iconNamed:
@@ -87,7 +87,7 @@ PyramidLibraryDefault >> smalltalkIconsCategory [
 			            name: each key;
 			            block: [
 				            { (BlElement new
-					             size: each value extent;
+					             extent: each value extent;
 					             background:
 						             (BlImageBackground image:
 								              (PyramidExternalRessourceProxy fromSource:

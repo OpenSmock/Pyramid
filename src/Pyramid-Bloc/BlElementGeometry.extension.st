@@ -5,7 +5,7 @@ BlElementGeometry class >> asIcon [
 
 	| element |
 	element := BlElement new
-		           size: 16 @ 12;
+		           extent: 16 @ 12;
 		           background: (Color gray: 0.75);
 		           border: (BlBorder paint: Color black width: 1);
 		           geometry: self pyramidDefaultValueForIcon;

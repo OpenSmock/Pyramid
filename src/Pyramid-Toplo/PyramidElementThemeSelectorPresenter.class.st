@@ -3,12 +3,13 @@ Class {
 	#superclass : #PyramidThemeSelectorPresenter,
 	#instVars : [
 		'projectModel',
+		'themePropertyManager',
 		'inheritSelector',
 		'labelPresenter',
 		'commandExecutor',
 		'themeCommand'
 	],
-	#category : #'Pyramid-Toplo-EXPERIMENTAL-plugin-theme-management'
+	#category : #'Pyramid-Toplo-plugin-theme-management'
 }
 
 { #category : #'as yet unclassified' }
@@ -67,7 +68,7 @@ PyramidElementThemeSelectorPresenter >> elementsOrSelectionChanged: anEvent [
 
 	self triggerThemeChangement: false.
 	self updatePresenterFor: anEvent selection.
-	self triggerThemeChangement: true
+	self triggerThemeChangement: true.
 ]
 
 { #category : #accessing }
@@ -83,7 +84,7 @@ PyramidElementThemeSelectorPresenter >> initializePresenters [
 	themeCommand := PyramidThemeCommand new.
 	inheritSelector := SpCheckBoxPresenter new
 		                   label: 'Inherits from parents';
-		                   whenChangedDo: [ :aBoolean | self applyTheme ];
+		                   whenChangedDo: [ :aBoolean | self applyTheme. self themeSelector enabled: (aBoolean not) ];
 		                   yourself.
 	labelPresenter := SpLabelPresenter new
 		                  label: 'Element Theme (empty select)';
@@ -110,11 +111,11 @@ PyramidElementThemeSelectorPresenter >> projectModel [
 PyramidElementThemeSelectorPresenter >> projectModel: aPyramidProjectModel [
 
 	projectModel := aPyramidProjectModel.
-	projectModel
+	projectModel announcer
 		when: PyramidElementsChangedEvent
 		do: [ :evt | self elementsOrSelectionChanged: evt ]
 		for: self.
-	projectModel
+	projectModel announcer
 		when: PyramidSelectionChangedEvent
 		do: [ :evt | self elementsOrSelectionChanged: evt ]
 		for: self.
@@ -170,7 +171,5 @@ PyramidElementThemeSelectorPresenter >> updatePresenterFor: aCollectionOfElement
 	collectionOfLocalThemes first ifNotNil: [
 		self inheritSelector state: false.
 		self themeSelector enabled: true.
-		self selectTheme: collectionOfLocalThemes first ].
-
-	self layout: self defaultLayout
+		self selectTheme: collectionOfLocalThemes first ]
 ]

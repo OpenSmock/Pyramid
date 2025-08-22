@@ -43,6 +43,12 @@ PyramidLayoutBlocCommandTest >> targetContainers [
 			   prop: proportionalLayout) }
 ]
 
+{ #category : #'as yet unclassified' }
+PyramidLayoutBlocCommandTest >> targetsCanBeUsedFor [
+
+	^ self targetContainers collect: [ :each | each targetNoProp ].
+]
+
 { #category : #tests }
 PyramidLayoutBlocCommandTest >> testGetValueFor [
 
