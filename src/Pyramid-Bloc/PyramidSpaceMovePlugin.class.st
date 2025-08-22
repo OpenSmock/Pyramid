@@ -10,8 +10,8 @@ Class {
 		'positionOrigin',
 		'currentTranslation',
 		'moveEvent',
-		'pyramidWheelTransformExtension',
-		'spacePlugin'
+		'spacePlugin',
+		'pyramidSelectionWidgetExtension'
 	],
 	#category : #'Pyramid-Bloc-plugin-space-zoom-move'
 }
@@ -21,9 +21,11 @@ PyramidSpaceMovePlugin >> connectOn: aPyramidEditor [
 
 	self pluginFromPyramid: aPyramidEditor.
 	
-	pyramidWheelTransformExtension ifNil: [ ^ self ].
+	pyramidSelectionWidgetExtension ifNil: [ ^ self ].
 	
-	self installOnMoveSpace
+	self installOnMoveSpace.
+	
+	self installOnWheelMoveSpace
 ]
 
 { #category : #accessing }
@@ -41,8 +43,8 @@ PyramidSpaceMovePlugin >> currentTranslation: aPosition [
 { #category : #'as yet unclassified' }
 PyramidSpaceMovePlugin >> defaultViewPosition [
 
-	pyramidWheelTransformExtension elementAtTransforms transformDo: [ :t | 
-				t translateBy: (50@50 - pyramidWheelTransformExtension elementAtTransforms position) ]
+	pyramidSelectionWidgetExtension elementAtTransforms transformDo: [ :t | 
+				t translateBy: (50@50 - pyramidSelectionWidgetExtension elementAtTransforms position) ]
 ]
 
 { #category : #'as yet unclassified' }
@@ -104,15 +106,32 @@ PyramidSpaceMovePlugin >> installOnMoveSpace [
 			 do: [ :evt |
 				 | moveTo |
 				 moveTo := nil.
-				 pyramidWheelTransformExtension isOnlyCtrlKeyPressed ifTrue: [
+				 pyramidSelectionWidgetExtension isOnlyCtrlKeyPressed ifTrue: [
 					 moveTo := evt position ].
 				 moveTo ifNotNil: [
 					 self positionOrigin: evt position
-						 - pyramidWheelTransformExtension currentTransformTranslation.
-					 pyramidWheelTransformExtension elementAtDisplays space addEventHandler:
+						 - pyramidSelectionWidgetExtension currentTransformTranslation.
+					 spacePlugin builder space addEventHandler:
 						 moveEvent.
 					 evt consumed: true ] ]) 
 	
+]
+
+{ #category : #'as yet unclassified' }
+PyramidSpaceMovePlugin >> installOnWheelMoveSpace [
+
+	spacePlugin addEventHandlerToSpaceEventCollection: (BlEventHandler
+			 on: BlMouseWheelEvent
+			 do: [ :evt |
+				 | moveTo |
+				 moveTo := nil.
+				 pyramidSelectionWidgetExtension isNoKeyPressed ifTrue: [ moveTo := evt vector asPoint ].
+				 pyramidSelectionWidgetExtension isOnlyShiftKeyPressed ifTrue: [
+					 moveTo := evt vector asPoint leftRotated ].
+				 moveTo ifNotNil: [
+					 pyramidSelectionWidgetExtension elementAtTransforms transformDo: [ :t |
+						 t translateBy:
+							 moveTo * self wheelSpeed + pyramidSelectionWidgetExtension currentTransformTranslation ] ] ])
 ]
 
 { #category : #'as yet unclassified' }
@@ -122,12 +141,12 @@ PyramidSpaceMovePlugin >> moveSpaceEvent [
 		  on: BlMouseMoveEvent
 		  do: [ :evt |
 			  evt primaryButtonPressed ifFalse: [
-				  pyramidWheelTransformExtension elementAtDisplays space
+				  spacePlugin builder space
 					  removeEventHandler: moveEvent ].
 				
-			  pyramidWheelTransformExtension isOnlyCtrlKeyPressed ifTrue: [
+			  pyramidSelectionWidgetExtension isOnlyCtrlKeyPressed ifTrue: [
 				  self currentTranslation: evt position - self positionOrigin.
-				  pyramidWheelTransformExtension elementAtTransforms transformDo: [
+				  pyramidSelectionWidgetExtension elementAtTransforms transformDo: [
 					  :t | t translateBy: self currentTranslation ].
 				  evt consumed: true ] ]
 ]
@@ -135,7 +154,7 @@ PyramidSpaceMovePlugin >> moveSpaceEvent [
 { #category : #'accessing - classes' }
 PyramidSpaceMovePlugin >> pluginFromPyramid: aPyramidEditor [
 
-	| listOfSpaceExtension pyramidWheelTransformExtensionSet listOfPlugins pluginSorted |
+	| listOfSpaceExtension pyramidSelectionWidgetExtensionSet listOfPlugins pluginSorted |
 	
 	listOfPlugins := aPyramidEditor plugins.
 	pluginSorted := listOfPlugins select: [ :extensions | extensions isKindOf: PyramidSpacePlugin ].
@@ -145,13 +164,13 @@ PyramidSpaceMovePlugin >> pluginFromPyramid: aPyramidEditor [
 
 	listOfSpaceExtension := spacePlugin builder extensions.
 
-	pyramidWheelTransformExtensionSet := listOfSpaceExtension select: [
+	pyramidSelectionWidgetExtensionSet := listOfSpaceExtension select: [
 		                                     :extensions |
 		                                     extensions isKindOf:
-			                                     PyramidWheelTransformExtension ].
-	pyramidWheelTransformExtensionSet size = 1 ifFalse: [ ^ self ].
+			                                     PyramidSelectionWidgetExtension ].
+	pyramidSelectionWidgetExtensionSet size = 1 ifFalse: [ ^ self ].
 
-	pyramidWheelTransformExtension := pyramidWheelTransformExtensionSet
+	pyramidSelectionWidgetExtension := pyramidSelectionWidgetExtensionSet
 		                                  asArray first
 ]
 
@@ -167,12 +186,18 @@ PyramidSpaceMovePlugin >> positionOrigin: aPosition [
 	positionOrigin := aPosition.
 ]
 
+{ #category : #'as yet unclassified' }
+PyramidSpaceMovePlugin >> wheelSpeed [
+
+	^ 10
+]
+
 { #category : #connecting }
 PyramidSpaceMovePlugin >> windowOpenBy: aPyramidEditor [
 	
-	pyramidWheelTransformExtension ifNil: [ ^ self ].
+	pyramidSelectionWidgetExtension ifNil: [ ^ self ].
 	
-	pyramidWheelTransformExtension elementAtDisplaysAddons zIndex: 1001.
+	pyramidSelectionWidgetExtension elementAtDisplaysAddons zIndex: 1001.
 	
-	pyramidWheelTransformExtension elementAtDisplaysAddons addChild: self defaultViewPositionButton
+	pyramidSelectionWidgetExtension elementAtDisplaysAddons addChild: self defaultViewPositionButton
 ]
