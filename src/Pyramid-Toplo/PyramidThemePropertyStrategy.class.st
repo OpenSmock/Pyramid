@@ -5,7 +5,7 @@ Class {
 }
 
 { #category : #'as yet unclassified' }
-PyramidThemePropertyStrategy >> propertiesFor: aCollectionOfElements [
+PyramidThemePropertyStrategy >> propertiesFor: aElement [
 
 	| elementsWithStyleSheetTheme allPossibleStamps allCommonStamps temp |
 	
@@ -15,19 +15,19 @@ PyramidThemePropertyStrategy >> propertiesFor: aCollectionOfElements [
 	
 	"Temp du to the problem with the message asOrderedCollection"
 	temp := OrderedCollection new.
-	temp add: aCollectionOfElements.
+	temp add: aElement.
 	
-	elementsWithStyleSheetTheme := "aCollectionOfElements 
+	elementsWithStyleSheetTheme := "aElement
 		                               asOrderedCollection"temp select: [
 		                               :element |
 		                               element isAttachedToSceneGraph and: [
-			                               aCollectionOfElements lookupTheme isKindOf:
+			                               element lookupTheme isKindOf:
 				                               ToStyleSheetTheme ] ].
-	elementsWithStyleSheetTheme ifEmpty: [ ^ { } ].
+	elementsWithStyleSheetTheme ifEmpty: [ ^ {  } ].
 	allPossibleStamps := elementsWithStyleSheetTheme collect: [ :each |
 		                     PyramidSelectorPossibleStamps new
-			                     theme: elementsWithStyleSheetTheme lookupTheme;
-			                     findAllStampsFor: elementsWithStyleSheetTheme ].
+			                     theme: each lookupTheme;
+			                     findAllStampsFor: each ].
 	allCommonStamps := allPossibleStamps first.
 	allPossibleStamps do: [ :each |
 		allCommonStamps := allCommonStamps & each ].
