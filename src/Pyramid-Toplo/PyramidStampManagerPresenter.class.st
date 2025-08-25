@@ -31,9 +31,8 @@ PyramidStampManagerPresenter >> addRootsStampAddTreeTable: aElement [
 { #category : #'as yet unclassified' }
 PyramidStampManagerPresenter >> allStampFromElement: aElement [
 
-	| stampsCollection collectionOfStamps |
+	| stampsCollection |
 	stampsCollection := OrderedCollection new.
-	collectionOfStamps := OrderedCollection new.
 
 	aElement allStamps do: [ :aStamp |
 		stampsCollection add: (PyramidProperty new
