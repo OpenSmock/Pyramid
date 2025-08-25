@@ -311,16 +311,17 @@ PyramidMainExtension >> initialize [
 		               constraintsDo: [ :c |
 			               c vertical matchParent.
 			               c horizontal matchParent ];
-		               zIndex: 0.
+		               zIndex: 2.
+		
+	borderElement addChild: gridElement.
 
 	sizeElement := BlElement new
 		               id: #MainExtension_sizeElement;
 		               extent: self defaultExtent;
 		               clipChildren: false;
 		               addChildren: {
-				               containerElement.
-				               borderElement.
-				               gridElement } yourself
+				               containerElement .
+				               borderElement } yourself
 ]
 
 { #category : #displaying }
