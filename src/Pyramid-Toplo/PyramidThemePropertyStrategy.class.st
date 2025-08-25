@@ -7,18 +7,27 @@ Class {
 { #category : #'as yet unclassified' }
 PyramidThemePropertyStrategy >> propertiesFor: aCollectionOfElements [
 
-	| elementsWithStyleSheetTheme allPossibleStamps allCommonStamps |
-	elementsWithStyleSheetTheme := aCollectionOfElements
-		                               asOrderedCollection select: [
+	| elementsWithStyleSheetTheme allPossibleStamps allCommonStamps temp |
+	
+	self flag: 'the message asOrderedCollection is removed in pharo 13 as i know now the method have always 1 element in the aCollectionOfElements
+	
+	Need a refactorization of this part'.
+	
+	"Temp du to the problem with the message asOrderedCollection"
+	temp := OrderedCollection new.
+	temp add: aCollectionOfElements.
+	
+	elementsWithStyleSheetTheme := "aCollectionOfElements 
+		                               asOrderedCollection"temp select: [
 		                               :element |
 		                               element isAttachedToSceneGraph and: [
-			                               element lookupTheme isKindOf:
+			                               aCollectionOfElements lookupTheme isKindOf:
 				                               ToStyleSheetTheme ] ].
-	elementsWithStyleSheetTheme ifEmpty: [ ^ {  } ].
+	elementsWithStyleSheetTheme ifEmpty: [ ^ { } ].
 	allPossibleStamps := elementsWithStyleSheetTheme collect: [ :each |
 		                     PyramidSelectorPossibleStamps new
-			                     theme: each lookupTheme;
-			                     findAllStampsFor: each ].
+			                     theme: elementsWithStyleSheetTheme lookupTheme;
+			                     findAllStampsFor: elementsWithStyleSheetTheme ].
 	allCommonStamps := allPossibleStamps first.
 	allPossibleStamps do: [ :each |
 		allCommonStamps := allCommonStamps & each ].
