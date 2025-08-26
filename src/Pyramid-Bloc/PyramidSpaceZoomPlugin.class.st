@@ -262,7 +262,7 @@ PyramidSpaceZoomPlugin >> editScaleDisplayElement: aBlElement scaleValue: aValue
 	pyramidSelectionWidgetExtension scaleFactor: self currentScaleFactor.
 	pyramidPositionExtension scaleFactor: self currentScaleFactor.
 
-	self refreshScaledZoom.
+	self refreshScaledZoom: aBlElement.
 
 	self installOnPixelGrid.
 
@@ -298,7 +298,7 @@ PyramidSpaceZoomPlugin >> initialize [
 	"imagePixel := self class imagePixelGrid2000x2000WhiteLine1x."
 	"imagePixel := self class imagePixelGrid2000x2000BlackDot4x4."
 	"imagePixel := self class imagePixelGrid2000x2000WhiteDot4x4."
-	pixelGridEnable := false.
+	pixelGridEnable := false
 ]
 
 { #category : #'as yet unclassified' }
@@ -420,13 +420,9 @@ PyramidSpaceZoomPlugin >> refreshPixelGrid: aPoint [
 ]
 
 { #category : #'as yet unclassified' }
-PyramidSpaceZoomPlugin >> refreshScaledZoom [
+PyramidSpaceZoomPlugin >> refreshScaledZoom: aBlElement [
 
-	scaledZoom := pyramidSelectionWidgetExtension elementAtMain extent x
-	              * (self currentScaleFactor - 1 / 2)
-	              @
-		              (pyramidSelectionWidgetExtension elementAtMain extent y
-		               * (self currentScaleFactor - 1 / 2))
+	scaledZoom := (aBlElement extent * (self currentScaleFactor - 1)) / 2.
 ]
 
 { #category : #accessing }
