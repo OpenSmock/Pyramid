@@ -5,13 +5,13 @@ Class {
 }
 
 { #category : #'as yet unclassified' }
-PyramidThemePropertyStrategy >> propertiesFor: aElement [
+PyramidThemePropertyStrategy >> propertiesFor: anElement [
 
 	| elementWithStyleSheetTheme allPossibleStamps |
 	
-	elementWithStyleSheetTheme := (aElement isAttachedToSceneGraph and: [
-			                               aElement lookupTheme isKindOf:
-				                               ToStyleSheetTheme ]) ifTrue: [ aElement ].
+	elementWithStyleSheetTheme := (anElement isAttachedToSceneGraph and: [
+			                               anElement lookupTheme isKindOf:
+				                               ToStyleSheetTheme ]) ifTrue: [ anElement ].
 	elementWithStyleSheetTheme ifNil: [ ^ {  } ].
 	allPossibleStamps := PyramidSelectorPossibleStamps new
 			                     theme: elementWithStyleSheetTheme lookupTheme;

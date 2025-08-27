@@ -19,11 +19,11 @@ Class {
 }
 
 { #category : #adding }
-PyramidStampManagerPresenter >> addRootsStampAddTreeTable: aElement [
+PyramidStampManagerPresenter >> addRootsStampAddTreeTable: anElement [
 
 	| collectionOfStamps |
 	
-	collectionOfStamps := pyramidPropertiesStrategy propertiesFor: aElement.
+	collectionOfStamps := pyramidPropertiesStrategy propertiesFor: anElement.
 	
 	^ collectionOfStamps.
 ]
