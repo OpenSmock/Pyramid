@@ -15,6 +15,8 @@ PyramidFilteringListNavigationAddElementPlugin >> connectOn: aPyramidEditor [
 
 	self pluginFromPyramid: aPyramidEditor.
 	
+	libraryPresenter ifNil: [ ^ self ].
+	
 	self installOnAddElementFilteringList.
 	
 	libraryPresenter libraryController initializeCategories.
