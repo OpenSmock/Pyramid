@@ -51,10 +51,10 @@ PyramidFilteringListNavigationAddElementPlugin >> installOnAddElementFilteringLi
 		                    displayIcon: [ :each | each icon ].
 	categoryPresenter whenSelectionChangedDo: [ :category | | index elements |
 		index := category selectedIndex.
-		
 		index <= 0 ifFalse: [
 			elements := (categoryPresenter items at: index).
-			elementPresenter items: elements elements ] ].
+			elementPresenter items: elements elements.
+			elementPresenter selectItem: elementPresenter items first ] ].
 
 	libraryPresenter categoryPresenter: categoryPresenter.
 	libraryPresenter elementPresenter: elementPresenter.
