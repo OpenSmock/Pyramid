@@ -7,7 +7,6 @@ Class {
 		'projectModel',
 		'editor',
 		'rightDynamicSize',
-		'overlayElement',
 		'moveEventRight',
 		'bottomDynamicSize',
 		'moveEventBottom',

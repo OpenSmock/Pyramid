@@ -23,6 +23,12 @@ PyramidLibraryPresenter >> categoryPresenter [
 	^ categoryPresenter
 ]
 
+{ #category : #accessing }
+PyramidLibraryPresenter >> categoryPresenter: anCategoryPresenter [
+
+	categoryPresenter := anCategoryPresenter
+]
+
 { #category : #initialization }
 PyramidLibraryPresenter >> connectPresenters [
 
@@ -68,6 +74,12 @@ PyramidLibraryPresenter >> defaultLayout [
 PyramidLibraryPresenter >> elementPresenter [
 
 	^ elementPresenter
+]
+
+{ #category : #accessing }
+PyramidLibraryPresenter >> elementPresenter: anElementPresenter [
+
+	elementPresenter := anElementPresenter
 ]
 
 { #category : #accessing }
