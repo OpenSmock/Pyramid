@@ -1,12 +1,10 @@
 Class {
-	#name : 'PyramidSystemSettings',
-	#superclass : 'Object',
-	#category : 'Pyramid-IDE-settings-menu',
-	#package : 'Pyramid-IDE',
-	#tag : 'settings-menu'
+	#name : #PyramidSystemSettings,
+	#superclass : #Object,
+	#category : #'Pyramid-IDE-settings-menu'
 }
 
-{ #category : 'settings' }
+{ #category : #settings }
 PyramidSystemSettings class >> pyramidSettingOn: aBuilder [
 	<systemsettings>
 
@@ -15,6 +13,6 @@ PyramidSystemSettings class >> pyramidSettingOn: aBuilder [
 		description: 'Settings related to Pyramid editor'.
 ]
 
-{ #category : 'see class side' }
+{ #category : #'see class side' }
 PyramidSystemSettings >> seeClassSide [ 
 ]

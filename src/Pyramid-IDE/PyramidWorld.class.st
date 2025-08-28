@@ -1,22 +1,42 @@
 Class {
-	#name : 'PyramidWorld',
-	#superclass : 'Object',
+	#name : #PyramidWorld,
+	#superclass : #Object,
 	#classInstVars : [
 		'themeIcons'
 	],
-	#category : 'Pyramid-IDE-menus',
-	#package : 'Pyramid-IDE',
-	#tag : 'menus'
+	#category : #'Pyramid-IDE-menus'
 }
 
-{ #category : 'cleanup' }
+{ #category : #cleanup }
 PyramidWorld class >> cleanUp [
 	<script>
 	
 	self resetThemeIcons.
 ]
 
-{ #category : 'actions' }
+{ #category : #'private - icons' }
+PyramidWorld class >> createThemeIcons [
+	"create a Pyramid ThemeIcons set"
+	"To encode icon easily from png files: (Base64MimeConverter mimeEncode: 'myIcon.png' asFileReference binaryReadStream) contents."
+	"To decode contents: Form fromBinaryStream: self myIcon base64Decoded readStream"
+	
+	| theme |
+	theme := ThemeIcons named: 'Pyramid'.
+
+	theme icons at: #pin16 put: (self icon_PyramidPin32 scaledToSize: 16 asPoint).
+	theme icons at: #pin24 put: (self icon_PyramidPin32 scaledToSize: 24 asPoint).
+	theme icons at: #pin32 put: self icon_PyramidPin32.
+
+	theme icons at: #pinPtah16 put: (self icon_PyramidPinPtah32 scaledToSize: 16 asPoint).
+	theme icons at: #pinPtah24 put: (self icon_PyramidPinPtah32 scaledToSize: 24 asPoint).
+	theme icons at: #pinPtah32 put: self icon_PyramidPinPtah32.
+	
+	theme icons at: #logotype512 put: self icon_PyramidLogotype512.
+	theme icons at: #cartouche512 put: self icon_PyramidLogotypeCartouche512.
+	^ theme
+]
+
+{ #category : #actions }
 PyramidWorld class >> displayLoadedPlugins [
 
 	<script>
@@ -70,7 +90,7 @@ PyramidWorld class >> displayLoadedPlugins [
 	presenter withWindowDo: [ :w | w title: 'Pyramid loaded plugins' ]
 ]
 
-{ #category : 'private - icons' }
+{ #category : #'private - icons' }
 PyramidWorld class >> icon_PyramidLogotype512 [
 	<script: 'self icon_PyramidLogotype512 inspect'>
 		
@@ -432,7 +452,7 @@ C1SPvZ0LrMHpkrgSWAjMAj5R1a1NMtlisVgsWcD/A+xMwN/LtsRBAAAAAElFTkSuQmCC' base64Deco
 	
 ]
 
-{ #category : 'private - icons' }
+{ #category : #'private - icons' }
 PyramidWorld class >> icon_PyramidLogotypeCartouche512 [
 	<script: 'self icon_PyramidLogotypeCartouche512 inspect'>
 		
@@ -804,7 +824,7 @@ cejRkwkaGAAAAABJRU5ErkJggg==' base64Decoded readStream
 	
 ]
 
-{ #category : 'private - icons' }
+{ #category : #'private - icons' }
 PyramidWorld class >> icon_PyramidPin32 [
 	<script: 'self icon_PyramidPin32 inspect'>
 		
@@ -840,7 +860,7 @@ AAAASUVORK5CYII=' base64Decoded readStream
 	
 ]
 
-{ #category : 'private - icons' }
+{ #category : #'private - icons' }
 PyramidWorld class >> icon_PyramidPinPtah32 [
 	<script: 'self icon_PyramidPinPtah32 inspect'>
 		
@@ -882,28 +902,7 @@ xuPHfwAGrx1xrwrpDAAAAABJRU5ErkJggg==' base64Decoded readStream
 	
 ]
 
-{ #category : 'private - icons' }
-PyramidWorld class >> initializeThemeIcons [
-	"Instanciate Pyramid ThemeIcons set"
-	"To encode icon easily from png files: (Base64MimeConverter mimeEncode: 'myIcon.png' asFileReference binaryReadStream) contents."
-	"To decode contents: Form fromBinaryStream: self myIcon base64Decoded readStream"
-	
-	themeIcons := ThemeIcons named: 'Pyramid'.
-
-	themeIcons icons at: #pin16 put: (self icon_PyramidPin32 scaledToSize: 16 asPoint).
-	themeIcons icons at: #pin24 put: (self icon_PyramidPin32 scaledToSize: 24 asPoint).
-	themeIcons icons at: #pin32 put: self icon_PyramidPin32.
-
-	themeIcons icons at: #pinPtah16 put: (self icon_PyramidPinPtah32 scaledToSize: 16 asPoint).
-	themeIcons icons at: #pinPtah24 put: (self icon_PyramidPinPtah32 scaledToSize: 24 asPoint).
-	themeIcons icons at: #pinPtah32 put: self icon_PyramidPinPtah32.
-	
-	themeIcons icons at: #logotype512 put: self icon_PyramidLogotype512.
-	themeIcons icons at: #cartouche512 put: self icon_PyramidLogotypeCartouche512.
-
-]
-
-{ #category : 'menu' }
+{ #category : #menu }
 PyramidWorld class >> menuAboutOn: aBuilder [
 
 	<worldMenu>
@@ -911,12 +910,12 @@ PyramidWorld class >> menuAboutOn: aBuilder [
 		parent: #PyramidContrib;
 		order: 3.0;
 		label: 'About';
-		help: 'Open Pyramid Github page';
-		icon: (Smalltalk ui icons iconNamed: #smallInfo);
+		help: 'To know more about Pyramid';
+		icon: (self iconNamed: #comments);
 		action: [ self openAbout ]
 ]
 
-{ #category : 'menu' }
+{ #category : #menu }
 PyramidWorld class >> menuBrowseSourcesOn: aBuilder [
 
 	<worldMenu>
@@ -924,12 +923,29 @@ PyramidWorld class >> menuBrowseSourcesOn: aBuilder [
 		parent: #PyramidDev;
 		order: 2.0;
 		action: [ self startBrowseSources ];
-		icon: (Smalltalk ui icons iconNamed: #nautilus);
+		icon: (self iconNamed: #nautilus);
 		help: 'Open Pyramid sources packages in a browser';
 		label: 'Browse sources'
 ]
 
-{ #category : 'menu' }
+{ #category : #'private - menu' }
+PyramidWorld class >> menuDefinition: aPragmaString [
+	"Get a menu definition related to a pragme, if not found return nil"
+
+	| list |
+	aPragmaString ifNil: [ ^ nil ].
+
+	list := Pragma allNamed: aPragmaString.
+
+	^ list ifEmpty: [ nil ] ifNotEmpty: [ :e |
+			  | pragma class |
+			  pragma := e first.
+			  class := pragma methodClass.
+			  (class instanceSide respondsTo: pragma methodSelector) ifTrue: [
+				  class instanceSide perform: pragma methodSelector ] ]
+]
+
+{ #category : #menu }
 PyramidWorld class >> menuExamplesOn: aBuilder [
 
 	<worldMenu>
@@ -942,7 +958,7 @@ PyramidWorld class >> menuExamplesOn: aBuilder [
 		label: 'Examples'
 ]
 
-{ #category : 'menu' }
+{ #category : #menu }
 PyramidWorld class >> menuGithubOn: aBuilder [
 
 	<worldMenu>
@@ -951,11 +967,17 @@ PyramidWorld class >> menuGithubOn: aBuilder [
 		order: 1.0;
 		label: 'Github';
 		help: 'Open Pyramid Github page';
-		icon: (Smalltalk ui icons iconNamed: #github);
+		icon: (self iconNamed: #github);
 		action: [ WebBrowser openOn: 'https://github.com/OpenSmock/Pyramid' ]
 ]
 
-{ #category : 'menu' }
+{ #category : #'private - menu' }
+PyramidWorld class >> menuKey [
+
+	^ #Pyramid
+]
+
+{ #category : #menu }
 PyramidWorld class >> menuLoadedPluginsOn: aBuilder [
 
 	<worldMenu>
@@ -963,12 +985,12 @@ PyramidWorld class >> menuLoadedPluginsOn: aBuilder [
 		parent: #PyramidDev;
 		order: 1.0;
 		action: [ self displayLoadedPlugins ];
-		icon: (Smalltalk ui icons iconNamed: #box);
+		icon: (self iconNamed: #box);
 		help: 'Display all installed plugins';
 		label: 'Loaded plugins'
 ]
 
-{ #category : 'menu' }
+{ #category : #menu }
 PyramidWorld class >> menuNewOn: aBuilder [
 
 	<worldMenu>
@@ -977,20 +999,20 @@ PyramidWorld class >> menuNewOn: aBuilder [
 		order: 1.0;
 		action: [ self startNewDesign ];
 		icon: (self themeIcons iconNamed: #pin16 ifNone:[ ]);
-		help: 'Create a new User-Interface project !';
+		help: 'Create a new GUI project!';
 		label: 'New project'
 ]
 
-{ #category : 'menu - root' }
+{ #category : #'menu - root' }
 PyramidWorld class >> menuPyramidOn: aBuilder [
 
 	<worldMenu>
-	(aBuilder item: #Pyramid)
-		parent: #Tools;
+	(aBuilder item: self menuKey)
+		parent: self parent; 
 		label: 'Pyramid';
 		icon: (self themeIcons iconNamed: #pin24 ifNone:[ ]);
-		help: 'Pyramid is an User-Interface (UI) editor';
-		order: 777;
+		help: 'A Graphical User-Interface (GUI) builder and editor for Bloc and Toplo.';
+		order: self order;
 		
 	with:[
 			(aBuilder group: #PyramidUser)
@@ -1004,7 +1026,7 @@ PyramidWorld class >> menuPyramidOn: aBuilder [
 		]
 ]
 
-{ #category : 'menu' }
+{ #category : #menu }
 PyramidWorld class >> menuRefreshPluginOn: aBuilder [
 
 	<worldMenu>
@@ -1012,12 +1034,12 @@ PyramidWorld class >> menuRefreshPluginOn: aBuilder [
 		parent: #PyramidDev;
 		order: 1.1;
 		action: [ self startRefreshPlugins ];
-		icon: (Smalltalk ui icons iconNamed: #refresh);
+		icon: (self iconNamed: #refresh);
 		help: 'Reload all Pyramid plugins, use this for example to change installed plugin list';
 		label: 'Reload plugins'
 ]
 
-{ #category : 'menu' }
+{ #category : #menu }
 PyramidWorld class >> menuReportABugOn: aBuilder [
 
 	<worldMenu>
@@ -1025,12 +1047,12 @@ PyramidWorld class >> menuReportABugOn: aBuilder [
 		parent: #PyramidContrib;
 		order: 2.0;
 		label: 'Report a Bug';
-		icon: (Smalltalk ui icons iconNamed: #smallDebug);
+		icon: (self iconNamed: #smallDebug);
 		help: 'Will open the github page to report an issue';
 		action: [ WebBrowser openOn: 'https://github.com/OpenSmock/Pyramid/issues/new' ]
 ]
 
-{ #category : 'menu' }
+{ #category : #menu }
 PyramidWorld class >> menuSettingsOn: aBuilder [
 
 	<worldMenu>
@@ -1039,22 +1061,23 @@ PyramidWorld class >> menuSettingsOn: aBuilder [
 		order: 2.0;
 		label: 'Settings';
 		help: 'Open Pyramid system settings';
-		icon: (Smalltalk ui icons iconNamed: #glamorousPreferences);
+		icon: (self iconNamed: #glamorousPreferences);
 		action: [ self openPyramidSettings ]
 ]
 
-{ #category : 'actions' }
+{ #category : #actions }
 PyramidWorld class >> openAbout [
 	<script>
 	
-	| presenter |
-	presenter := SpTextPresenter new.
-	presenter text: PyramidWindow aboutText.
-	presenter open.
-	presenter withWindowDo: [ :w | w title: ('About ', PyramidWindow aboutTitle) ].
+	SpInformDialog new
+		title: ('About ', PyramidWindow aboutTitle);
+		icon: (SmockResources faviconSmockWorkshop);
+		label: PyramidWindow aboutText;
+		acceptLabel: 'Close';
+		openDialog
 ]
 
-{ #category : 'actions' }
+{ #category : #actions }
 PyramidWorld class >> openPyramidSettings [
 	<script>
 	
@@ -1065,14 +1088,32 @@ PyramidWorld class >> openPyramidSettings [
 	browser expandAll
 ]
 
-{ #category : 'icons' }
+{ #category : #'menu - definitions' }
+PyramidWorld class >> order [
+	"Define the order of the root of this World Menu, override me to change the it"
+
+	"Use this pragma to overidde me in a new method => <PyramidOrderWorldMenuDefinition>"
+
+	^ (self menuDefinition: 'PyramidOrderWorldMenuDefinition') ifNil: [ 777 ]
+]
+
+{ #category : #'menu - definitions' }
+PyramidWorld class >> parent [
+	"Define the root parent of this World Menu, override me to change the location"
+
+	"Use this pragma to overidde me in a new method => <PyramidParentWorldMenuDefinition>"
+
+	^ (self menuDefinition: 'PyramidParentWorldMenuDefinition') ifNil: [ #Tools ]
+]
+
+{ #category : #icons }
 PyramidWorld class >> resetThemeIcons [
 	<script>
 
 	themeIcons := nil
 ]
 
-{ #category : 'actions' }
+{ #category : #actions }
 PyramidWorld class >> startBrowseExamples [
 
 	<script>
@@ -1083,35 +1124,35 @@ PyramidWorld class >> startBrowseExamples [
 	browser switchToMetaLevelScope: ClyClassSideScope.
 ]
 
-{ #category : 'actions' }
+{ #category : #actions }
 PyramidWorld class >> startBrowseSources [
 	<script>
 	
 	Smalltalk tools browser open packageView filterField setText: 'Pyramid'
 ]
 
-{ #category : 'actions' }
+{ #category : #actions }
 PyramidWorld class >> startNewDesign [
 	<script>
 
 	PyramidEditor open
 ]
 
-{ #category : 'actions' }
+{ #category : #actions }
 PyramidWorld class >> startRefreshPlugins [
 	<script>
 
 	PyramidPluginManager reset
 ]
 
-{ #category : 'icons' }
+{ #category : #icons }
 PyramidWorld class >> themeIcons [
 	<script: 'self themeIcons inspect'>
 
-	themeIcons ifNil:[ self initializeThemeIcons ].
+	themeIcons ifNil:[ themeIcons := self createThemeIcons ].
 	^ themeIcons
 ]
 
-{ #category : 'see class side' }
+{ #category : #'see class side' }
 PyramidWorld >> seeClassSide [ 
 ]

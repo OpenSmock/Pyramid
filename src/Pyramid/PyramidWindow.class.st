@@ -14,13 +14,13 @@ Class {
 { #category : #'window - properties' }
 PyramidWindow class >> aboutText [
 
-	^ 'Pyramid is an User-Interface (UI) editor.
+	^ 'Pyramid: a Graphical User-Interface (GUI) builder and editor for Bloc and Toplo.
 
 https://github.com/OpenSmock/Pyramid
 
 LICENSE
 Licensed under the MIT License
-Copyright (c) 2022-2024 OpenSmock
+Copyright (c) 2022-2025 OpenSmock
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

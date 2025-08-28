@@ -84,13 +84,15 @@ BaselineOfPyramid >> preload: loader package: packageSpec [
 { #category : #packages }
 BaselineOfPyramid >> pyramidPackages: spec [
 
-	spec 
-		package: 'Pyramid' 
-		with:[ spec requires: #( 'PharoBackwardCompatibility' ) ].
 	spec
-		package: 'Pyramid-IDE'
-		with: [ spec requires: #( 'Pyramid' ) ].
-
+		package: 'Pyramid'
+		with: [ spec requires: #( 'PharoBackwardCompatibility' ) ].
+		
+	spec 
+		package: 'Pyramid-IDE' with: [ spec requires: #( 'Pyramid' ) ].
+	
+	spec 
+		package: 'Pyramid-IDE-Tests' with: [ spec requires: #( 'Pyramid-IDE' ) ]
 ]
 
 { #category : #dependencies }
