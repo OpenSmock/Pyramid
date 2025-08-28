@@ -67,7 +67,7 @@ BaselineOfPyramid >> blocPackages: spec [
 { #category : #packages }
 BaselineOfPyramid >> blocPackagesNames [
 
-	^ #( 'Pyramid' 'Pyramid-Bloc' 'Pyramid-Tests' 'Pyramid-IDE' 'Pyramid-Examples' )
+	^ #( 'Pyramid' 'Pyramid-Bloc' 'Pyramid-Tests' 'Pyramid-IDE' 'Pyramid-IDE-Tests' 'Pyramid-Examples' )
 ]
 
 { #category : #actions }
