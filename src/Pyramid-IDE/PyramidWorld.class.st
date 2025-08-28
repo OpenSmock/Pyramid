@@ -928,23 +928,6 @@ PyramidWorld class >> menuBrowseSourcesOn: aBuilder [
 		label: 'Browse sources'
 ]
 
-{ #category : #'private - menu' }
-PyramidWorld class >> menuDefinition: aPragmaString [
-	"Get a menu definition related to a pragme, if not found return nil"
-
-	| list |
-	aPragmaString ifNil: [ ^ nil ].
-
-	list := Pragma allNamed: aPragmaString.
-
-	^ list ifEmpty: [ nil ] ifNotEmpty: [ :e |
-			  | pragma class |
-			  pragma := e first.
-			  class := pragma methodClass.
-			  (class instanceSide respondsTo: pragma methodSelector) ifTrue: [
-				  class instanceSide perform: pragma methodSelector ] ]
-]
-
 { #category : #menu }
 PyramidWorld class >> menuExamplesOn: aBuilder [
 
@@ -1008,22 +991,24 @@ PyramidWorld class >> menuPyramidOn: aBuilder [
 
 	<worldMenu>
 	(aBuilder item: self menuKey)
-		parent: self parent; 
+		parent: #Tools; 
 		label: 'Pyramid';
 		icon: (self themeIcons iconNamed: #pin24 ifNone:[ ]);
 		help: 'A Graphical User-Interface (GUI) builder and editor for Bloc and Toplo.';
-		order: self order;
+		order: 777;
 		
 	with:[
 			(aBuilder group: #PyramidUser)
 				order: 1;
 				withSeparatorAfter.	
-			(aBuilder group: #PyramidDev)
-				order: 2;
+			(aBuilder group: #PyramidDev) 
+				order: 2;  
 				withSeparatorAfter.	
 			(aBuilder group: #PyramidContrib)
 				order: 3.
-		]
+		].  
+	
+	self worldMenuPostBuildSetup: aBuilder
 ]
 
 { #category : #menu }
@@ -1088,24 +1073,6 @@ PyramidWorld class >> openPyramidSettings [
 	browser expandAll
 ]
 
-{ #category : #'menu - definitions' }
-PyramidWorld class >> order [
-	"Define the order of the root of this World Menu, override me to change the it"
-
-	"Use this pragma to overidde me in a new method => <PyramidOrderWorldMenuDefinition>"
-
-	^ (self menuDefinition: 'PyramidOrderWorldMenuDefinition') ifNil: [ 777 ]
-]
-
-{ #category : #'menu - definitions' }
-PyramidWorld class >> parent [
-	"Define the root parent of this World Menu, override me to change the location"
-
-	"Use this pragma to overidde me in a new method => <PyramidParentWorldMenuDefinition>"
-
-	^ (self menuDefinition: 'PyramidParentWorldMenuDefinition') ifNil: [ #Tools ]
-]
-
 { #category : #icons }
 PyramidWorld class >> resetThemeIcons [
 	<script>
@@ -1151,6 +1118,23 @@ PyramidWorld class >> themeIcons [
 
 	themeIcons ifNil:[ themeIcons := self createThemeIcons ].
 	^ themeIcons
+]
+
+{ #category : #'private - menu' }
+PyramidWorld class >> worldMenuPostBuildSetup: aBuilder [
+	"Setup a menu item after his build"
+
+	| list item |
+	list := (Pragma allNamed: 'worldMenuItem:') select: [ :e |
+		        e hasArguments and: [ e arguments first = self menuKey ] ].
+	
+	item := aBuilder items detect:[ :e | e item = self menuKey ] ifNone:[ ^ self ].
+	
+	list do: [ :pragma |
+			| class |
+			class := pragma methodClass.
+			(class instanceSide respondsTo: pragma methodSelector) ifTrue: [
+				class instanceSide perform: pragma methodSelector with: item ] ]
 ]
 
 { #category : #'see class side' }

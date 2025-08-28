@@ -14,12 +14,6 @@ PyramidWorldTest >> testCleanUp [
 ]
 
 { #category : #tests }
-PyramidWorldTest >> testMenuDefinition [
-
-	self assert: (PyramidWorld menuDefinition: nil) isNil
-]
-
-{ #category : #tests }
 PyramidWorldTest >> testMenuKey [
 
 	self assert: PyramidWorld menuKey equals: #Pyramid
@@ -31,18 +25,6 @@ PyramidWorldTest >> testOpenAbout [
 	| object |
 	object := PyramidWorld openAbout.
 	self assert: object notNil
-]
-
-{ #category : #tests }
-PyramidWorldTest >> testOrder [
-
-	self assert: PyramidWorld order equals: 777
-]
-
-{ #category : #tests }
-PyramidWorldTest >> testParent [
-
-	self assert: PyramidWorld parent equals: #Tools
 ]
 
 { #category : #tests }
