@@ -13,6 +13,6 @@ SmalltalkCISpec {
     }
   ],
   #testing : {
-    #packages : [ 'Pyramid*-Tests' 'Bloc-Serialization*-Tests' 'Toplo-Serialization*-Tests' ]
+    #packages : [ 'Pyramid*-Tests', 'Bloc-Serialization*-Tests', 'Toplo-Serialization*-Tests' ]
   }
 }
