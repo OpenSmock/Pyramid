@@ -47,8 +47,16 @@ PyramidWorldTest >> testThemeIcons [
 ]
 
 { #category : #tests }
-PyramidWorldTest >> testWorldMenuPostBuildSetup [
+PyramidWorldTest >> testWorldMenuBuilding [
 
-	"just test if there is no error"
-	PyramidWorld worldMenuPostBuildSetup: nil
+	| menuBuilder menuMethods |
+	menuBuilder := PragmaMenuAndShortcutRegistration new.
+	PyramidWorld menuPyramidOn: menuBuilder.
+	
+	menuMethods := PyramidWorld class pragmas select:[ :p | p selector = #worldMenu ] thenCollect:[ :p | p methodSelector ].
+	self assert: menuMethods notEmpty.
+	
+	menuMethods do:[ :p |
+		PyramidWorld perform: p with: menuBuilder.
+	].
 ]

@@ -22,7 +22,8 @@ PyramidWorld class >> createThemeIcons [
 	
 	| theme |
 	theme := ThemeIcons named: 'Pyramid'.
-
+	theme 	scale.
+		
 	theme icons at: #pin16 put: (self icon_PyramidPin32 scaledToSize: 16 asPoint).
 	theme icons at: #pin24 put: (self icon_PyramidPin32 scaledToSize: 24 asPoint).
 	theme icons at: #pin32 put: self icon_PyramidPin32.
