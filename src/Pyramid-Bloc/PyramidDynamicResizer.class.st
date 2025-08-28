@@ -21,7 +21,9 @@ Class {
 		'positionOrigin',
 		'minimumSizeForBottomAndRight',
 		'resizeContainer',
-		'builder'
+		'builder',
+		'moveEventTopAndLeft',
+		'topAndLeftDynamicSize'
 	],
 	#category : #'Pyramid-Bloc-plugin-space-extensions'
 }
@@ -132,6 +134,39 @@ PyramidDynamicResizer >> createRightResizerElement: aBlElement [
 	^ rightResizer
 ]
 
+{ #category : #adding }
+PyramidDynamicResizer >> createTopAndLeftResizerElement: aBlElement [
+
+	| topAndLeftResizer |
+	topAndLeftResizer := BlElement new.
+	topAndLeftResizer
+		background: resizeElementColor;
+		id: 'topAndLeftResizer';
+		extent: resizeElementSize;
+		zIndex: 1005.
+	topAndLeftResizer constraintsDo: [ :c |
+		c frame horizontal alignLeft.
+		c frame vertical alignTop ].
+
+	(aBlElement extent x < minimumSizeForBottomAndRight and: [
+		 aBlElement extent y < minimumSizeForBottomAndRight ]) ifTrue: [
+		topAndLeftResizer extent: 0 @ 0 ].
+
+	topAndLeftResizer addEventHandler: (BlEventHandler
+			 on: BlPrimaryMouseDownEvent
+			 do: [ :evt |
+				 "aBlElement userData
+					 at: #pyramidPreviousDynamicResize
+					 put: aBlElement bounds bottomRight."
+
+				 self positionOrigin: aBlElement bounds bottomRight.
+				 pyramidSelectionWidgetExtension elementAtEvents addEventHandler:
+					 moveEventTopAndLeft.
+				 evt consumed: true ]).
+
+	^ topAndLeftResizer
+]
+
 { #category : #accessing }
 PyramidDynamicResizer >> currentTranslation [
 
@@ -171,10 +206,14 @@ PyramidDynamicResizer >> dynamicResizer: eventElement originElement: aBlElement 
 
 	moveEventBottomAndRight := self moveSpaceEventBottomAndRight: aBlElement.
 	bottomAndRightDynamicSize := self createBottomAndRightResizerElement: aBlElement.
+	
+	moveEventTopAndLeft := self moveSpaceEventTopAndLeft: aBlElement.
+	topAndLeftDynamicSize := self createTopAndLeftResizerElement: aBlElement.
 
 	resizeContainer addChild: rightDynamicSize.
 	resizeContainer addChild: bottomDynamicSize.
 	resizeContainer addChild: bottomAndRightDynamicSize.
+	resizeContainer addChild: topAndLeftDynamicSize.
 
 	eventElement addChild: resizeContainer
 ]
@@ -313,6 +352,45 @@ PyramidDynamicResizer >> moveSpaceEventRight: aBlElement [
 					  aBlElement extent x < minimumSizeForRightOrBottom
 						  ifTrue: [ bottomDynamicSize extent: 0 @ 0 ]
 						  ifFalse: [ bottomDynamicSize extent: resizeElementSize ] ] ]
+]
+
+{ #category : #'event creation' }
+PyramidDynamicResizer >> moveSpaceEventTopAndLeft: aBlElement [
+
+	| ratio initialeSize newWidth newHeight candidateWidth candidateHeight | 
+
+	^ BlEventHandler
+		on: BlMouseMoveEvent
+		do: [ :evt |
+			evt primaryButtonPressed
+				ifFalse: [
+					  evt consumed: true.
+					"Need to make a new command to keep the position and the extent -> bounds"
+					  "self resizeCommand: aBlElement with: aBlElement extent."
+					  "aBlElement userData removeKey: #pyramidPreviousDynamicResize."
+					  pyramidSelectionWidgetExtension elementAtEvents
+						  removeEventHandler: moveEventTopAndLeft ]
+				ifTrue: [
+					pyramidSelectionWidgetExtension movingForGrid: aBlElement position.
+					
+					self currentTranslation: self positionOrigin - pyramidPositionExtension position ].
+					  
+					 aBlElement position: pyramidPositionExtension position.
+					 aBlElement extent: self currentTranslation x
+						  - pyramidSelectionWidgetExtension movingForGrid x
+						  @ (self currentTranslation y
+							   - pyramidSelectionWidgetExtension movingForGrid y).
+
+					 aBlElement extent y < minimumSizeForRightOrBottom
+						  ifTrue: [ rightDynamicSize extent: 0 @ 0 ]
+						  ifFalse: [ rightDynamicSize extent: resizeElementSize ].
+					 aBlElement extent x < minimumSizeForRightOrBottom
+						  ifTrue: [ bottomDynamicSize extent: 0 @ 0 ]
+						  ifFalse: [ bottomDynamicSize extent: resizeElementSize ].
+					 (aBlElement extent x < minimumSizeForBottomAndRight and: [
+						   aBlElement extent y < minimumSizeForBottomAndRight ])
+						  ifTrue: [ bottomAndRightDynamicSize extent: 0 @ 0 ]
+						  ifFalse: [ bottomAndRightDynamicSize extent: resizeElementSize ] ]
 ]
 
 { #category : #'accessing - classes' }
