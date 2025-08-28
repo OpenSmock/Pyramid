@@ -68,12 +68,13 @@ PyramidSpacePlugin >> defaultShortcutsForEditor: aPyramidEditor [
 												 KeyboardKey space control unix | 
 												 KeyboardKey space control win
 			action: [
-				aPyramidEditor projectModel selection size = 1 ifFalse: [ ^ self ].
-				aPyramidEditor projectModel selection first.
-				aPyramidEditor commandExecutor
-					use: PyramidPositionCommand new
-					on: { aPyramidEditor projectModel selection first }
-					with: (pyramidPositionExtension asArray first) position ]
+				aPyramidEditor projectModel selection size = 1
+					ifTrue: [ 
+						aPyramidEditor projectModel selection first.
+						aPyramidEditor commandExecutor
+							use: PyramidPositionCommand new
+							on: { aPyramidEditor projectModel selection first }
+							with: (pyramidPositionExtension asArray first) position ] ]
 			name: 'Shortcut Spec Move element to the mouse position' ].
 ]
 
