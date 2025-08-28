@@ -1071,7 +1071,7 @@ PyramidWorld class >> openAbout [
 	
 	SpInformDialog new
 		title: ('About ', PyramidWindow aboutTitle);
-		icon: (SmockResources faviconSmockWorkshop);
+		icon: (self themeIcons iconNamed: #logotype512);
 		label: PyramidWindow aboutText;
 		acceptLabel: 'Close';
 		openDialog
