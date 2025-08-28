@@ -157,7 +157,7 @@ PyramidDynamicResizer >> createTopAndLeftResizerElement: aBlElement [
 			 do: [ :evt |
 				 "aBlElement userData
 					 at: #pyramidPreviousDynamicResize
-					 put: aBlElement bounds bottomRight."
+					 put: aBlElement bounds."
 
 				 self positionOrigin: aBlElement bounds bottomRight.
 				 pyramidSelectionWidgetExtension elementAtEvents addEventHandler:
@@ -366,6 +366,7 @@ PyramidDynamicResizer >> moveSpaceEventTopAndLeft: aBlElement [
 				ifFalse: [
 					  evt consumed: true.
 					"Need to make a new command to keep the position and the extent -> bounds"
+					
 					  "self resizeCommand: aBlElement with: aBlElement extent."
 					  "aBlElement userData removeKey: #pyramidPreviousDynamicResize."
 					  pyramidSelectionWidgetExtension elementAtEvents
