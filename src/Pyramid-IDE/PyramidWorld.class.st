@@ -1125,6 +1125,7 @@ PyramidWorld class >> worldMenuPostBuildSetup: aBuilder [
 	"Setup a menu item after his build"
 
 	| list item |
+	aBuilder ifNil:[ ^ self ].
 	list := (Pragma allNamed: 'worldMenuItem:') select: [ :e |
 		        e hasArguments and: [ e arguments first = self menuKey ] ].
 	

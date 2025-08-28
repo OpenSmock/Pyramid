@@ -45,3 +45,10 @@ PyramidWorldTest >> testThemeIcons [
 	self deny: (theme iconNamed: #logotype512) isAllWhite.
 	self deny: (theme iconNamed: #cartouche512) isAllWhite.
 ]
+
+{ #category : #tests }
+PyramidWorldTest >> testWorldMenuPostBuildSetup [
+
+	"just test if there is no error"
+	PyramidWorld worldMenuPostBuildSetup: nil
+]
