@@ -22,7 +22,7 @@ BaselineOfPyramid >> baselineForCommon: spec [
 	"Pharo backward compatibility: to preserve running from previous versions of Pharo"
 	spec
     	baseline: 'PharoBackwardCompatibility'
-    	with: [ spec repository: 'github://jecisc/PharoBackwardCompatibility:master/src' ].
+    	with: [ spec repository: 'github://jecisc/PharoBackwardCompatibility:master' ].
 	
 	"Dependencies"
 	self blocDependencies: spec.
@@ -45,7 +45,7 @@ BaselineOfPyramid >> blocDependencies: spec [
 	spec
 		baseline: 'BlocSerialization'
 		with: [
-		spec repository: 'github://OpenSmock/Bloc-Serialization:main/src' ]
+		spec repository: 'github://OpenSmock/Bloc-Serialization:main' ]
 ]
 
 { #category : #packages }
@@ -101,7 +101,7 @@ BaselineOfPyramid >> toploDependencies: spec [
 	spec
 		baseline: 'ToploSerialization'
 		with: [
-		spec repository: 'github://OpenSmock/Toplo-Serialization:main/src' ]
+		spec repository: 'github://OpenSmock/Toplo-Serialization:main' ]
 ]
 
 { #category : #packages }

@@ -4,8 +4,44 @@ A PyramidWorldTest is a test class for testing the behavior of PyramidWorld
 Class {
 	#name : #PyramidWorldTest,
 	#superclass : #TestCase,
+	#classInstVars : [
+		'worldMenuItemCheck'
+	],
 	#category : #'Pyramid-IDE-Tests-menus'
 }
+
+{ #category : #accessing }
+PyramidWorldTest class >> worldMenuItemCheck [
+
+	^ worldMenuItemCheck
+]
+
+{ #category : #accessing }
+PyramidWorldTest class >> worldMenuItemCheck: anObject [
+
+	worldMenuItemCheck := anObject
+]
+
+{ #category : #'tests - menu' }
+PyramidWorldTest class >> worldMenuItemTestMethod: anItem [
+	"This method check if the pragma mecanism to setup a menu item is working"
+	"Be aware to not inject behavior here because this is just a test method ant it is called when the menu is build!"
+
+	<worldMenuItem: #Pyramid>
+	worldMenuItemCheck := true.
+	
+	anItem ifNil:[ Exception signal: 'Menu item should be not nil' ].
+	anItem item = (PyramidWorld menuKey) ifFalse:[ Exception signal: 'Menu item should be equals to ', PyramidWorld menuKey printString ].
+]
+
+{ #category : #running }
+PyramidWorldTest >> setUp [
+
+	super setUp.
+
+	self class worldMenuItemCheck: false.
+	self deny: self class worldMenuItemCheck.
+]
 
 { #category : #tests }
 PyramidWorldTest >> testCleanUp [
@@ -59,4 +95,6 @@ PyramidWorldTest >> testWorldMenuBuilding [
 	menuMethods do:[ :p |
 		PyramidWorld perform: p with: menuBuilder.
 	].
+
+	self assert: self class worldMenuItemCheck.
 ]

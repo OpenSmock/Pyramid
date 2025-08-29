@@ -32,7 +32,7 @@ You can add plugins into Pyramid to extend the editor capacities or create [your
 You can load a release version of Pyramid or the latest development version.
 Beware that Pyramid is currently in alpha development. The API is subject to significant changes, and stability is not guaranteed. Projects created during the alpha version are not designed to be compatible with newer versions of Pyramid. 
 
-Pyramid is available with Bloc and Toplo as defaults. If you want to build UI without Toplo, you can choose to load Pyramid with only Bloc using the baseline option `load: 'BlocUI'`. Here's an example script below.
+Pyramid is available with Bloc and Toplo as defaults.
 
 To install a version of Pyramid, use one of the following scripts inside a playground.
 
@@ -41,19 +41,8 @@ To install a version of Pyramid, use one of the following scripts inside a playg
 ```st
 Metacello new
 	baseline: 'Pyramid';
-	repository: 'github://OpenSmock/Pyramid:main/src';
+	repository: 'github://OpenSmock/Pyramid:main';
 	onConflictUseLoaded;
-	load
-```
-
-Only with Bloc (without Toplo features):
-
-```st
-Metacello new
-	baseline: 'Pyramid';
-	repository: 'github://OpenSmock/Pyramid:main/src';
-	onConflictUseLoaded;
-	load: 'BlocUI';
 	load
 ```
 
@@ -64,7 +53,7 @@ We advise you to use dependencies committed at the date of the Pyramid release (
 ```st
 Metacello new
 	baseline: 'Pyramid';
-	repository: 'github://OpenSmock/Pyramid:alpha4';
+	repository: 'github://OpenSmock/Pyramid:alpha8';
 	onConflictUseLoaded;
 	load
 ```
@@ -72,7 +61,7 @@ Metacello new
 ### Add in your baseline
 
 ```st
-spec baseline: 'Pyramid' with: [ spec repository: 'github://OpenSmock/Pyramid:main/src' ].
+spec baseline: 'Pyramid' with: [ spec repository: 'github://OpenSmock/Pyramid:main' ].
 ```
 
 ## <img src="/assets/PyramidPinPtah.svg" width="75" height="75" align="bottom"> How to use Pyramid
@@ -147,8 +136,7 @@ https://github.com/OpenSmock/Pyramid/assets/49183340/0c66a3ac-7bea-48c1-b1e8-0b0
 - [Toplo](https://github.com/pharo-graphics/Toplo) - a widget framework on top of Bloc.
 - [STON](https://github.com/svenvc/ston) - serializer for Pharo objects to Smalltalk Object Notation format.
 - [Stash](https://github.com/Nyan11/Stash) - serializer for Pharo objects to source code format.
-
-**Pharo 12 compatibility:** On Pharo 12, [PharoBackwardCompatibility](https://github.com/jecisc/PharoBackwardCompatibility) is automatically loaded via the baseline to ensure compatibility.
+- [PharoBackwardCompatibility](https://github.com/jecisc/PharoBackwardCompatibility) - Automatically ensure compatibility with old versions of Pharo.
 
 ## <img src="/assets/PyramidPinPtah.svg" width="75" height="75" align="bottom"> License
 
