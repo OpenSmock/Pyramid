@@ -1057,7 +1057,7 @@ PyramidWorld class >> openAbout [
 	
 	SpInformDialog new
 		title: ('About ', PyramidWindow aboutTitle);
-		icon: (self themeIcons iconNamed: #logotype512);
+		icon: ((self themeIcons iconNamed: #cartouche512) scaledToSize: 200 asPoint);
 		label: PyramidWindow aboutText;
 		acceptLabel: 'Close';
 		openDialog
