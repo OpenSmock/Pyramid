@@ -41,7 +41,7 @@ PyramidToploThemePlugin class >> toploIconThemeCategoryFromClass: aClass withCat
 				              block: [
 					              | image |
 					              image := ToImage new
-						                       size: 48 asPoint;
+						                       extent: 48 asPoint;
 						                       innerImage:
 							                       (PyramidExternalRessourceProxy new
 								                        pyramidExternalRessourceSource:

@@ -17,7 +17,7 @@ PyramidLibraryController >> addCategories: aCollection [
 	self library categoryPresenter items = aCollection ifTrue: [ ^ self ].
 	self library categoryPresenter
 		items: aCollection;
-		selectIndex: 1
+		selectItem: aCollection first
 ]
 
 { #category : #accessing }

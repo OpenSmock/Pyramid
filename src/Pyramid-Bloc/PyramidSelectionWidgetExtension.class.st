@@ -120,7 +120,8 @@ PyramidSelectionWidgetExtension >> editor: aPyramidEditor [
 	self commandExecutor:
 		aPyramidEditor commandExecutor.
 		
-	pyramidDynamicResizer setupExtension: aPyramidEditor
+	pyramidDynamicResizer setupExtension: aPyramidEditor.
+	pyramidDynamicResizer builder: self builder
 ]
 
 { #category : #events }
