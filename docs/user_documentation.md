@@ -1,4 +1,4 @@
-Table of contents
+# Table of contents
 
 [1 Open the Pyramid tool
 [3](#open-the-pyramid-tool)](#open-the-pyramid-tool)
@@ -124,7 +124,6 @@ Table of contents
 [2.3.2 Dynamic resizing of selected element
 [40](#dynamic-resizing-of-selected-element)](#dynamic-resizing-of-selected-element)
 
-#  ****
 
 # Open the Pyramid tool
 
