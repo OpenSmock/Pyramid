@@ -1,3 +1,5 @@
+Table of contents
+
 [1 Open the Pyramid tool
 [3](#open-the-pyramid-tool)](#open-the-pyramid-tool)
 
