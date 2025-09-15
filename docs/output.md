@@ -5,11 +5,6 @@ style="width:2.63542in;height:0.75in" />
 
 # Table des matières
 
-[1 Auteur [4](#auteur)](#auteur)
-
-[2 Suivi des modifications
-[4](#suivi-des-modifications)](#suivi-des-modifications)
-
 [3 Ouvrir l’outil Pyramid
 [5](#ouvrir-loutil-pyramid)](#ouvrir-loutil-pyramid)
 
@@ -148,22 +143,6 @@ style="width:2.63542in;height:0.75in" />
 [43](#redimensionnement-dynamique-délément-sélectionné)](#redimensionnement-dynamique-délément-sélectionné)
 
 #  ****
-
-# Auteur
-
-|             | **Nom**         | **Date** |
-|-------------|-----------------|:--------:|
-| Rédigé par  | Sully MILLET    | 20/08/25 |
-| Vérifié par | Brendan LANDAIS | 27/08/25 |
-
-# Suivi des modifications
-
-| **Révision** | **Date** | **Description des évolutions** |
-|:------------:|:--------:|--------------------------------|
-|      00      | 20/08/25 | Version initiale               |
-|              |          |                                |
-
-#  
 
 # Ouvrir l’outil Pyramid
 
