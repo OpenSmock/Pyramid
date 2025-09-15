@@ -137,7 +137,6 @@
 [2.3.2 Redimensionnement dynamique d’élément sélectionné
 [41](#redimensionnement-dynamique-délément-sélectionné)](#redimensionnement-dynamique-délément-sélectionné)
 
-#  ****
 
 # Ouvrir l’outil Pyramid
 
