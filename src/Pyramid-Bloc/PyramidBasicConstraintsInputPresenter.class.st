@@ -117,7 +117,7 @@ PyramidBasicConstraintsInputPresenter >> setMatchParent [
 ]
 
 { #category : #initialization }
-PyramidBasicConstraintsInputPresenter >> setUnknowValue [
+PyramidBasicConstraintsInputPresenter >> setUnknownValue [
 
 	self buttonExact
 		enabled: false;

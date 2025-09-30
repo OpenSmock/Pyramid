@@ -7,7 +7,7 @@ Class {
 		'buttonsNotSelected',
 		'whenValueChangedDo',
 		'selectedIndex',
-		'buttonUnknow',
+		'buttonUnknown',
 		'validationArray'
 	],
 	#classInstVars : [
@@ -28,7 +28,7 @@ PyramidMagicButtonsInputPresenter >> applyInputModel [
 	self inputModel buttonsModel do: [ :each |
 		self makeAssociatedButtonFor: each ].
 	self selectedIndex: 0.
-	self setUnknowValue
+	self setUnknownValue
 ]
 
 { #category : #private }
@@ -38,9 +38,9 @@ PyramidMagicButtonsInputPresenter >> buttonExtent [
 ]
 
 { #category : #accessing }
-PyramidMagicButtonsInputPresenter >> buttonUnknow [
+PyramidMagicButtonsInputPresenter >> buttonUnknown [
 
-	^ buttonUnknow
+	^ buttonUnknown
 ]
 
 { #category : #accessing }
@@ -67,7 +67,7 @@ PyramidMagicButtonsInputPresenter >> defaultLayout [
 PyramidMagicButtonsInputPresenter >> emptyValue [
 
 	self selectedIndex: 0.
-	 self setUnknowValue
+	 self setUnknownValue
 ]
 
 { #category : #'as yet unclassified' }
@@ -85,7 +85,7 @@ PyramidMagicButtonsInputPresenter >> initializePresenters [
 	buttonsSelected := OrderedCollection new.
 	buttonsNotSelected := OrderedCollection new.
 	validationArray := OrderedCollection new.
-	buttonUnknow := SpButtonPresenter new
+	buttonUnknown := SpButtonPresenter new
 		                label: 'Unknow';
 		                state: true;
 		                yourself
@@ -142,7 +142,7 @@ PyramidMagicButtonsInputPresenter >> makeAssociatedButtonFor: aButtonModel [
 PyramidMagicButtonsInputPresenter >> mixedValues [
 
 	self selectedIndex: 0.
-	self setUnknowValue
+	self setUnknownValue
 ]
 
 { #category : #'as yet unclassified' }
@@ -158,11 +158,11 @@ PyramidMagicButtonsInputPresenter >> selectedIndex: anObject [
 ]
 
 { #category : #'as yet unclassified' }
-PyramidMagicButtonsInputPresenter >> setUnknowValue [
+PyramidMagicButtonsInputPresenter >> setUnknownValue [
 
 	| buttonsList |
 	self selectedIndex: 0.
-	buttonsList := { self buttonUnknow }
+	buttonsList := { self buttonUnknown }
 	               , self buttonsNotSelected asArray.
 	self layout: (self layoutFor: buttonsList withSelectedIndex: 1)
 ]
@@ -186,7 +186,7 @@ PyramidMagicButtonsInputPresenter >> value: aValue [
 	| buttonsList |
 	self selectedIndex: (self indexOf: aValue).
 	self selectedIndex = 0 ifTrue: [
-		self setUnknowValue.
+		self setUnknownValue.
 		^ self ].
 	buttonsList := self buttonsNotSelected asArray.
 	buttonsList

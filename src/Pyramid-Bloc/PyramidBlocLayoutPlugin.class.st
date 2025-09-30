@@ -100,7 +100,7 @@ PyramidBlocLayoutPlugin class >> constraintsPropH [
 	property := PyramidProperty new
 		            name: 'Constraints - horizontal';
 		            command:
-			            PyramidProportionnalHorizontalConstraintsCommand new;
+			            PyramidProportionalHorizontalConstraintsCommand new;
 		            inputPresenterClass: PyramidPointInputPresenter;
 		            yourself.
 	property inputPresenterModel
@@ -117,7 +117,7 @@ PyramidBlocLayoutPlugin class >> constraintsPropV [
 	property := PyramidProperty new
 		            name: 'Constraints - vertical';
 		            command:
-			            PyramidProportionnalVerticalConstraintsCommand new;
+			            PyramidProportionalVerticalConstraintsCommand new;
 		            inputPresenterClass: PyramidPointInputPresenter;
 		            yourself.
 	property inputPresenterModel
@@ -167,8 +167,7 @@ PyramidBlocLayoutPlugin class >> layout [
 	property := PyramidProperty new
 		            name: 'Layout Type';
 		            command: PyramidLayoutBlocCommand new;
-		            inputPresenterClass:
-			            PyramidMagicButtonsInputPresenter;
+		            inputPresenterClass: PyramidMagicButtonsInputPresenter;
 		            yourself.
 	property inputPresenterModel
 		addButtonModel: (PyramidMagicButtonModel new
@@ -205,8 +204,8 @@ PyramidBlocLayoutPlugin class >> layout [
 				 yourself);
 		addButtonModel: (PyramidMagicButtonModel new
 				 icon: (Smalltalk ui icons iconNamed: #haloScale);
-				 helpSelected: 'The layout is proportionnal.';
-				 helpNotSelected: 'Set the layout to proportionnal.';
+				 helpSelected: 'The layout is proportional.';
+				 helpNotSelected: 'Set the layout to proportional.';
 				 label: 'Prop';
 				 inputValue: [ BlProportionalLayout new ];
 				 inputValidation: [ :value | value class = BlProportionalLayout ];
