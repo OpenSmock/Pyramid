@@ -3,14 +3,9 @@ Class {
 	#superclass : #Object,
 	#traits : 'TPyramidPlugin',
 	#classTraits : 'TPyramidPlugin classTrait',
-	#instVars : [
-		'editOnRunning'
-	],
 	#classInstVars : [
 		'editOnRunning',
-		'spaceIds',
 		'shortcut',
-		'shortcutFork',
 		'keyCombination',
 		'breakpoint'
 	],
@@ -51,20 +46,12 @@ PyramidPluginEditOnRunning class >> cleanUp: anObject [
 PyramidPluginEditOnRunning class >> doShortcutAction: anEvent [
 
 	| space editor whenClosedDo |
-	self flag:
-		'labordep: this is a temporary processing because this fork is due to a Bloc opened issue'.
-	(shortcutFork notNil and: [ shortcutFork isTerminated not ]) ifTrue: [
-		^ self ].
-
-	shortcutFork := [
-	                self editOnRunning ifTrue: [
-		                space := anEvent source space.
-		                (self canEditSpace: space) ifTrue: [
-			                editor := space editWithPyramid.
-			                whenClosedDo := editor window whenClosedDo.
-			                editor window whenClosedDo: [ whenClosedDo value ] ] ] ]
-		                forkAt: Processor userBackgroundPriority
-		                named: 'Pyramid edit-on-running plugin shortcut'
+	self editOnRunning ifFalse: [ ^ self ].
+	space := anEvent source space.
+	(self canEditSpace: space) ifFalse: [ ^ self ].
+	editor := space editWithPyramid.
+	whenClosedDo := editor window whenClosedDo.
+	editor window whenClosedDo: [ whenClosedDo value ]
 ]
 
 { #category : #'as yet unclassified' }
