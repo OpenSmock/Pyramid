@@ -3,12 +3,8 @@ Class {
 	#superclass : #Object,
 	#traits : 'TPyramidPlugin',
 	#classTraits : 'TPyramidPlugin classTrait',
-	#instVars : [
-		'editOnRunning'
-	],
 	#classInstVars : [
 		'editOnRunning',
-		'spaceIds',
 		'shortcut',
 		'keyCombination',
 		'breakpoint'
@@ -52,10 +48,10 @@ PyramidPluginEditOnRunning class >> doShortcutAction: anEvent [
 	| space editor whenClosedDo |
 	self editOnRunning ifFalse: [ ^ self ].
 	space := anEvent source space.
-	(self canEditSpace: space) ifTrue: [
-			editor := space editWithPyramid.
-			whenClosedDo := editor window whenClosedDo.
-			editor window whenClosedDo: [ whenClosedDo value ] ]
+	(self canEditSpace: space) ifFalse: [ ^ self ].
+	editor := space editWithPyramid.
+	whenClosedDo := editor window whenClosedDo.
+	editor window whenClosedDo: [ whenClosedDo value ]
 ]
 
 { #category : #'as yet unclassified' }
