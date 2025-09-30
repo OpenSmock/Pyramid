@@ -1,11 +1,11 @@
 Class {
-	#name : #PyramidProportionnalConstraintsCommand,
+	#name : #PyramidProportionalConstraintsCommand,
 	#superclass : #PyramidAbstractBlocCommand,
 	#category : #'Pyramid-Bloc-plugin-bloc-layout'
 }
 
 { #category : #testing }
-PyramidProportionnalConstraintsCommand >> canBeUsedFor: anObject [
+PyramidProportionalConstraintsCommand >> canBeUsedFor: anObject [
 
 	^ (super canBeUsedFor: anObject) and: [
 		  anObject hasParent and: [

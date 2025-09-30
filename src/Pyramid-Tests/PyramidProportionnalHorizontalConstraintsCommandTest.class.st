@@ -9,7 +9,7 @@ Class {
 { #category : #accessing }
 PyramidProportionnalHorizontalConstraintsCommandTest >> command [
 
-	^ PyramidProportionnalHorizontalConstraintsCommand new
+	^ PyramidProportionalHorizontalConstraintsCommand new
 ]
 
 { #category : #'as yet unclassified' }
