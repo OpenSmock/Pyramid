@@ -70,19 +70,19 @@ PyramidMenuExtension >> showMenuAt: anEvent [
 	currentMenu := self menu builder menuFor: self projectModel selection.
 	chooseColorSubMenu := SpMenuPresenter new.
 	self backgroundColors do: [ :color |
-		chooseColorSubMenu addItem: [ :item |
-			item
-				name: color printString;
-				action: [ self elementAtDisplays background: color ];
-				icon: [
-					self elementAtDisplays background paint color = color
-						ifTrue: [ Smalltalk ui icons iconNamed: #testGreen ]
-						ifFalse: [ Smalltalk ui icons iconNamed: #testNotRun ] ] ] ].
+			chooseColorSubMenu addItem: [ :item |
+					item
+						name: color printString;
+						action: [ self elementAtDisplays background: color ];
+						icon: [
+								self elementAtDisplays background paint color = color
+									ifTrue: [ Smalltalk ui icons iconNamed: #testGreen ]
+									ifFalse: [ Smalltalk ui icons iconNamed: #testNotRun ] ] ] ].
 
 	currentMenu addGroup: [ :group |
-		group addItem: [ :item |
-			item
-				name: 'Space backgorund color';
-				subMenu: chooseColorSubMenu ] ].
+			group addItem: [ :item |
+					item
+						name: 'Space background color';
+						subMenu: chooseColorSubMenu ] ].
 	currentMenu openWithSpecAt: self currentHand position
 ]
