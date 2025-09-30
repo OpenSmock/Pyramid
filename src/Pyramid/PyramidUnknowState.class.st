@@ -68,7 +68,7 @@ PyramidUnknowState >> pyramidSelectOn: anInput [
 { #category : #initialization }
 PyramidUnknowState >> setConstraintsOn: aPyramidBasicConstraintsInputPresenter [
 
-	aPyramidBasicConstraintsInputPresenter setUnknowValue
+	aPyramidBasicConstraintsInputPresenter setUnknownValue
 ]
 
 { #category : #initialization }
