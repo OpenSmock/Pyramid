@@ -85,7 +85,7 @@ PyramidMagicButtonsInputPresenter >> initializePresenters [
 	buttonsSelected := OrderedCollection new.
 	buttonsNotSelected := OrderedCollection new.
 	validationArray := OrderedCollection new.
-	buttonUnknow := SpButtonPresenter new
+	buttonUnknown := SpButtonPresenter new
 		                label: 'Unknow';
 		                state: true;
 		                yourself
