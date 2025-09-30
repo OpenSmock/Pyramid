@@ -50,7 +50,6 @@ PyramidSaveModelVerifier class >> methodIsValid [
 		  verifyBlock: [ :model | model savingMethodName isValidSelector ];
 		  showBlock: [ :view | view showMethodIsNotValidError ];
 		  yourself.
-		  
 ]
 
 { #category : #constructor }
