@@ -60,24 +60,11 @@ PyramidBlocPlugin class >> elementId [
 ]
 
 { #category : #accessing }
-PyramidBlocPlugin class >> geometry [
-
-	| property |
-	property := PyramidProperty new
-		            name: 'Geometry';
-		            command: PyramidGeometryCommand new;
-		            inputPresenterClass:
-			            PyramidGeometryInputPresenter;
-		            yourself.
-	^ property
-]
-
-{ #category : #accessing }
 PyramidBlocPlugin class >> visibility [
 
 	| property |
 	property := PyramidProperty new
-		            name: 'Visibility2';
+		            name: 'Visibility';
 		            command: PyramidVisibilityCommand new;
 		            inputPresenterClass: PyramidMagicButtonsInputPresenter;
 		            yourself.
@@ -230,7 +217,6 @@ PyramidBlocPlugin >> initialize [
 	propertiesManager addProperty: self class visibility.
 	propertiesManager addProperty: self class zIndex.
 	propertiesManager addProperty: self class clipChildren.
-	propertiesManager addProperty: self class geometry.
 	propertiesManager addProperty: self class cornerRadii
 ]
 
