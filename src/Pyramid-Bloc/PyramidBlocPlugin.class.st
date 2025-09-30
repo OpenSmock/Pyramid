@@ -111,7 +111,7 @@ PyramidBlocPlugin class >> zIndex [
 		            inputPresenterClass: PyramidNumberInputPresenter;
 		            yourself.
 	property inputPresenterModel help:
-		'Change the elevation (#zIndex:). Bloc will used the elevation to determine wich of two sibling must be draw on top. The higher zIndex will be drawn on top of the lesser one.'.
+		'Change the elevation (#zIndex:). Bloc will use the elevation to determine wich of two siblings must be draw on top. The higher zIndex will be drawn on top of the lesser one.'.
 	^ property
 ]
 
