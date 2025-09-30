@@ -10,6 +10,24 @@ Class {
 }
 
 { #category : #accessing }
+PyramidBlocGeometryPlugin class >> cornerRadii [
+
+	| property |
+	property := PyramidProperty new
+		            name: 'Corner radius';
+		            command: PyramidRoundedRectangleCornerRadiiCommand new;
+		            inputPresenterClass:
+			            PyramidCornerRadiiInputPresenter;
+		            yourself.
+	property inputPresenterModel help:
+		'Change the corner radius of the geometry. For example:
+	- "10" to set a radius of 10 px on each corner.
+	- "10 20" to set a radius of 10 px on the top-left and bottom-right corner and 20 px on the top-right and bottom-left corner.
+	- "10 20 30 40" to set a radius of 10 px on top-left, 20 px on top-right, 30 px on bottom-right and 40 px on bottom-left.'.
+	^ property
+]
+
+{ #category : #accessing }
 PyramidBlocGeometryPlugin class >> geometry [
 
 	| property |
@@ -66,7 +84,7 @@ PyramidBlocGeometryPlugin >> initialize [
 	propertiesManager := PyramidPropertiesManagerForSelection new.
 
 	propertiesManager addProperty: self class geometry.
-
+	propertiesManager addProperty: self class cornerRadii.
 ]
 
 { #category : #adding }

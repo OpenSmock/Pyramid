@@ -29,24 +29,6 @@ PyramidBlocPlugin class >> clipChildren [
 ]
 
 { #category : #accessing }
-PyramidBlocPlugin class >> cornerRadii [
-
-	| property |
-	property := PyramidProperty new
-		            name: 'Corner radius';
-		            command: PyramidRoundedRectangleCornerRadiiCommand new;
-		            inputPresenterClass:
-			            PyramidCornerRadiiInputPresenter;
-		            yourself.
-	property inputPresenterModel help:
-		'Change the corner radius of the geometry. For example:
-	- "10" to set a radius of 10 px on each corner.
-	- "10 20" to set a radius of 10 px on the top-left and bottom-right corner and 20 px on the top-right and bottom-left corner.
-	- "10 20 30 40" to set a radius of 10 px on top-left, 20 px on top-right, 30 px on bottom-right and 40 px on bottom-left.'.
-	^ property
-]
-
-{ #category : #accessing }
 PyramidBlocPlugin class >> elementId [
 
 	| property |
@@ -216,8 +198,7 @@ PyramidBlocPlugin >> initialize [
 	propertiesManager addProperty: self class elementId.
 	propertiesManager addProperty: self class visibility.
 	propertiesManager addProperty: self class zIndex.
-	propertiesManager addProperty: self class clipChildren.
-	propertiesManager addProperty: self class cornerRadii
+	propertiesManager addProperty: self class clipChildren
 ]
 
 { #category : #'as yet unclassified' }
