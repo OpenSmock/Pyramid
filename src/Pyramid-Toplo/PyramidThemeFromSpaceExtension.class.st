@@ -11,12 +11,6 @@ Class {
 	#category : #'Pyramid-Toplo-plugin-theme-management'
 }
 
-{ #category : #asserting }
-PyramidThemeFromSpaceExtension class >> shouldInstall [
-
-	^ true
-]
-
 { #category : #actions }
 PyramidThemeFromSpaceExtension >> configureBuilder: aPyramidEditorBuilder [
 
