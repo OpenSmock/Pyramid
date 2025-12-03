@@ -14,7 +14,7 @@ Class {
 { #category : #asserting }
 PyramidThemeFromSpaceExtension class >> shouldInstall [
 
-	^ false
+	^ true
 ]
 
 { #category : #actions }
@@ -44,6 +44,7 @@ PyramidThemeFromSpaceExtension >> configureOpenFromSpace: aSpace [
 { #category : #accessing }
 PyramidThemeFromSpaceExtension >> defaultToTheme [
 
+	defaultToTheme ifNil: [ defaultToTheme := PyramidToploThemePlugin defaultTheme new ].
 	^ defaultToTheme
 ]
 

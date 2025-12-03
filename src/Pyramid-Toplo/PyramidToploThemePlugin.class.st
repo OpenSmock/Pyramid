@@ -17,7 +17,7 @@ Class {
 PyramidToploThemePlugin class >> defaultTheme [
 
 	defaultTheme ifNil: [
-		defaultTheme := (ToTheme subclasses select: #canBeDefaul) last ].
+		defaultTheme := (ToTheme withAllSubclasses select: [ :e | e canBeDefault ]) last ].
 	^ defaultTheme
 ]
 
