@@ -20,12 +20,21 @@ PyramidThemeFromSpaceExtension class >> shouldInstall [
 { #category : #actions }
 PyramidThemeFromSpaceExtension >> configureBuilder: aPyramidEditorBuilder [
 
-	(aPyramidEditorBuilder findPlugin: PyramidOpenFromSpacePlugin)
-		addExtension: self.
-	(aPyramidEditorBuilder findPlugin: PyramidSpacePlugin) builder
-		addExtension: self.
-	self themeSpaceSelector: (aPyramidEditorBuilder findPlugin: PyramidToploThemePlugin)
-		themePresenter themeSpaceSelector
+	| pyramidOpenFromSpacePlugin pyramidSpacePlugin pyramidToploThemePlugin |
+	[
+		pyramidOpenFromSpacePlugin := aPyramidEditorBuilder findPlugin:
+			                              PyramidOpenFromSpacePlugin.
+		pyramidSpacePlugin := aPyramidEditorBuilder findPlugin:
+			                      PyramidSpacePlugin.
+		pyramidToploThemePlugin := aPyramidEditorBuilder findPlugin:
+			                           PyramidToploThemePlugin ]
+		on: PyramidNoPluginFoundError
+		do: [ ^ self ].
+
+	pyramidOpenFromSpacePlugin addExtension: self.
+	pyramidSpacePlugin builder addExtension: self.
+	self themeSpaceSelector:
+		pyramidToploThemePlugin themePresenter themeSpaceSelector
 ]
 
 { #category : #'as yet unclassified' }
