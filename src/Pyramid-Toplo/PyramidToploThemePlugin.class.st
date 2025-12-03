@@ -7,8 +7,39 @@ Class {
 		'themePresenter',
 		'themePropertyManager'
 	],
+	#classInstVars : [
+		'defaultTheme'
+	],
 	#category : #'Pyramid-Toplo-plugin-theme-management'
 }
+
+{ #category : #'as yet unclassified' }
+PyramidToploThemePlugin class >> defaultTheme [
+
+	defaultTheme ifNil: [
+		defaultTheme := (ToTheme withAllSubclasses select: [ :e | e canBeDefault ]) last ].
+	^ defaultTheme
+]
+
+{ #category : #'as yet unclassified' }
+PyramidToploThemePlugin class >> defaultTheme: anObject [
+
+	defaultTheme := anObject
+]
+
+{ #category : #'as yet unclassified' }
+PyramidToploThemePlugin class >> defaultThemeSettingOn: aBuilder [
+
+	<systemsettings>
+	(aBuilder pickOne: #defaultTheme)
+		parent: #pyramid;
+		label: 'Choose the default theme.';
+		target: self;
+		domainValues:
+			(ToTheme withAllSubclasses select: #canBeDefault);
+		description:
+			'Define the theme that will be used by default when a new editor is opened.'
+]
 
 { #category : #adding }
 PyramidToploThemePlugin class >> toploAntIconCategory [
