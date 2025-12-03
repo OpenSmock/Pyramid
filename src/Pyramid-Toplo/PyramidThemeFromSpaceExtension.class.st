@@ -32,7 +32,6 @@ PyramidThemeFromSpaceExtension >> configureBuilder: aPyramidEditorBuilder [
 PyramidThemeFromSpaceExtension >> configureCloseOnSpace: aSpace [
 
 	aSpace toTheme: themeSpaceSelector currentTheme.
-	aSpace root skinManager postponeRequestSkinIn: aSpace root
 ]
 
 { #category : #'as yet unclassified' }
@@ -40,7 +39,6 @@ PyramidThemeFromSpaceExtension >> configureOpenFromSpace: aSpace [
 	"Do something with the space"
 
 	self defaultToTheme: aSpace toTheme.
-	aSpace root skinManager postponeRequestSkinIn: aSpace root
 ]
 
 { #category : #accessing }

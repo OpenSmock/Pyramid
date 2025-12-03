@@ -24,7 +24,7 @@ PyramidThemeSelectorPresenter >> buttonRefreshTheme [
 { #category : #'as yet unclassified' }
 PyramidThemeSelectorPresenter >> currentTheme [
 
-	^ self themeSelector selectedItem
+	^ self themeSelector selectedItem new
 ]
 
 { #category : #layout }
@@ -58,16 +58,14 @@ PyramidThemeSelectorPresenter >> initializeAllPossibleThemes [
 
 	allThemes := ToTheme allSubclasses select: [ :theme |
 		             theme canBeDefault ].
-	
-	allThemes := allThemes collect: [ :each | each new ].
 
 	self triggerThemeChangement: false.
 	self themeSelector items: allThemes.
 
 	(previousTheme isNotNil and: [ allThemes includes: previousTheme ])
 		ifTrue: [ self themeSelector selectItem: previousTheme ]
-		ifFalse: [ self themeSelector selectItem: allThemes first ].
-	self triggerThemeChangement: true.
+		ifFalse: [ self themeSelector selectItem: PyramidToploThemePlugin defaultTheme ].
+	self triggerThemeChangement: true
 ]
 
 { #category : #initialization }
@@ -96,9 +94,8 @@ PyramidThemeSelectorPresenter >> labelPresenter [
 PyramidThemeSelectorPresenter >> selectTheme: aToTheme [
 
 	self triggerThemeChangement: false.
-	self themeSelector items do: [:theme | (theme class) = (aToTheme class) ifTrue: [ self themeSelector selectItem: (theme) ]].
-	self triggerThemeChangement: true.
-	
+	self themeSelector selectItem: aToTheme class.
+	self triggerThemeChangement: true
 ]
 
 { #category : #'as yet unclassified' }
