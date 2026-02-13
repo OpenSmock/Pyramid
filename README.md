@@ -136,12 +136,8 @@ https://github.com/OpenSmock/Pyramid/assets/49183340/0c66a3ac-7bea-48c1-b1e8-0b0
 
 ![image](https://github.com/user-attachments/assets/192ff62a-ce48-4801-a437-c9c83720eb5f)
 
-- [Bloc-Serialization](https://github.com/OpenSmock/Bloc-Serialization) - serializer project for Bloc (this project define the Bloc version of Pyramid).
-- [Bloc](https://github.com/pharo-graphics/Bloc) - low-level UI infrastructure & framework for Pharo.
-- [Toplo-Serialization](https://github.com/OpenSmock/Toplo-Serialization) - serializer project for Toplo (this project define the Toplo version of Pyramid).
-- [Toplo](https://github.com/pharo-graphics/Toplo) - a widget framework on top of Bloc.
-- [STON](https://github.com/svenvc/ston) - serializer for Pharo objects to Smalltalk Object Notation format.
-- [Stash](https://github.com/Nyan11/Stash) - serializer for Pharo objects to source code format.
+- [Bloc-Serialization](https://github.com/OpenSmock/Bloc-Serialization) - Bloc serialization features to store/unstore BlElements.
+- [Toplo-Serialization](https://github.com/OpenSmock/Toplo-Serialization) - Toplo serialization features to store/unstore ToElements.
 - [PharoBackwardCompatibility](https://github.com/jecisc/PharoBackwardCompatibility) - Automatically ensure compatibility with old versions of Pharo.
 
 ## <img src="/assets/PyramidPinPtah.svg" width="75" height="75" align="bottom"> License
