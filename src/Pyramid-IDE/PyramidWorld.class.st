@@ -1035,7 +1035,9 @@ PyramidWorld class >> menuReportABugOn: aBuilder [
 		label: 'Report a Bug';
 		icon: (self iconNamed: #smallDebug);
 		help: 'Will open the github page to report an issue';
-		action: [ WebBrowser openOn: 'https://github.com/OpenSmock/Pyramid/issues/new' ]
+		action: [
+			self openWebBrowserOnIssue.
+		]
 ]
 
 { #category : #menu }
@@ -1072,6 +1074,32 @@ PyramidWorld class >> openPyramidSettings [
 	browser changeSearchedText: 'Pyramid'.
 	browser open.
 	browser expandAll
+]
+
+{ #category : #menu }
+PyramidWorld class >> openWebBrowserOnIssue [
+
+	| repositoryName repositoryOwner currentCommit bodyString url |
+	repositoryName := 'Pyramid'.
+	repositoryOwner := 'OpenSmock'.
+
+	currentCommit := (IceRepository repositoryNamed: repositoryName)
+		                 workingCopy referenceCommit.
+
+	bodyString := '<r><r><r>---<r><r><1s> version: <2s><r><1s> date: <3s><r><r>Pharo version: <4s><r>Pharo date : <5s><r>'
+		              expandMacrosWithArguments: {
+				              repositoryName.
+				              currentCommit id.
+				              currentCommit datetime asDate printString.
+				              SystemVersion current printString.
+				              SystemVersion current date printString }.
+
+	url := 'https://github.com/<1s>/<2s>/issues/new?body=<3s>'
+		       expandMacrosWithArguments: {
+				       repositoryOwner.
+				       repositoryName.
+				       bodyString asZnUrl printString allButFirst }.
+	WebBrowser openOn: url
 ]
 
 { #category : #icons }
