@@ -42,7 +42,7 @@ PyramidLibraryDefault >> pragmaCategory: aSymbol withIcon: anIcon [
 			               thenCollect: [ :method |
 				               PyramidLibraryElement new
 					               icon: (Smalltalk ui icons iconNamed:
-								                method methodClass soleInstance systemIconName);
+								                method methodClass systemIconName);
 					               name: ('<1s> (<2s>)'
 							                expandMacrosWith: method selector
 							                with: method methodClass name);
