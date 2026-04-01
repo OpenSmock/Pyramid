@@ -618,6 +618,19 @@ PyramidBackgroundBlocPlugin class >> borderWidth [
 	^ property
 ]
 
+{ #category : #'as yet unclassified' }
+PyramidBackgroundBlocPlugin class >> gaussianShadowWidth [
+
+	| property |
+	property := PyramidProperty new
+		            name: 'Shadow Width';
+		            command: PyramidGaussianShadowWidthCommand new;
+		            inputPresenterClass: PyramidNumberInputPresenter;
+		            yourself.
+	property inputPresenterModel help: 'Set the width value'.
+	^ property
+]
+
 { #category : #accessing }
 PyramidBackgroundBlocPlugin class >> opacity [
 
@@ -686,8 +699,8 @@ PyramidBackgroundBlocPlugin class >> shadow [
 				 helpSelected: 'No shadow.';
 				 helpNotSelected: 'Remove shadow.';
 				 label: 'None';
-				 inputValue: [ BlNullEffect new];
-				 inputValidation: [ :value | value class = BlNullEffect];
+				 inputValue: [ BlNullEffect new ];
+				 inputValidation: [ :value | value class = BlNullEffect ];
 				 yourself);
 		addButtonModel: (PyramidMagicButtonModel new
 				 icon: (Smalltalk ui icons iconNamed: #menuPin);
@@ -697,6 +710,15 @@ PyramidBackgroundBlocPlugin class >> shadow [
 				 inputValue: [
 					 BlSimpleShadowEffect color: Color random offset: 2 @ 2 ];
 				 inputValidation: [ :value | value class = BlSimpleShadowEffect ];
+				 yourself);
+		addButtonModel: (PyramidMagicButtonModel new
+				 icon: (Smalltalk ui icons iconNamed: #menuPin);
+				 helpSelected: 'Shadow type is gaussian.';
+				 helpNotSelected: 'Set shadow type to gaussian.';
+				 label: 'Gaussian';
+				 inputValue: [
+					 BlGaussianShadowEffect color: Color random width: 2 offset: 2 @ 2 ];
+				 inputValidation: [ :value | value class = BlGaussianShadowEffect ];
 				 yourself);
 		yourself.
 	^ property
@@ -813,7 +835,8 @@ PyramidBackgroundBlocPlugin >> initialize [
 	"Shadow"
 	propertiesManager addProperty: self class shadow.
 	propertiesManager addProperty: self class shadowColor.
-	propertiesManager addProperty: self class shadowOffset
+	propertiesManager addProperty: self class shadowOffset.
+	propertiesManager addProperty: self class gaussianShadowWidth
 ]
 
 { #category : #adding }
