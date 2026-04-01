@@ -671,6 +671,67 @@ PyramidBackgroundBlocPlugin class >> outskirts [
 	^ property
 ]
 
+{ #category : #accessing }
+PyramidBackgroundBlocPlugin class >> shadow [
+
+	| property |
+	property := PyramidProperty new
+		            name: 'Shadow Effect';
+		            command: PyramidShadowCommand new;
+		            inputPresenterClass: PyramidMagicButtonsInputPresenter;
+		            yourself.
+	property inputPresenterModel
+		addButtonModel: (PyramidMagicButtonModel new
+				 icon: (Smalltalk ui icons iconNamed: #blank);
+				 helpSelected: 'No shadow.';
+				 helpNotSelected: 'Remove shadow.';
+				 label: 'None';
+				 inputValue: [ BlNullEffect new];
+				 inputValidation: [ :value | value class = BlNullEffect];
+				 yourself);
+		addButtonModel: (PyramidMagicButtonModel new
+				 icon: (Smalltalk ui icons iconNamed: #menuPin);
+				 helpSelected: 'Shadow type is simple.';
+				 helpNotSelected: 'Set shadow type to simple.';
+				 label: 'Simple';
+				 inputValue: [
+					 BlSimpleShadowEffect color: Color random offset: 2 @ 2 ];
+				 inputValidation: [ :value | value class = BlSimpleShadowEffect ];
+				 yourself);
+		yourself.
+	^ property
+]
+
+{ #category : #accessing }
+PyramidBackgroundBlocPlugin class >> shadowColor [
+
+	| property |
+	property := PyramidProperty new
+		            name: 'Shadow Color';
+		            command: PyramidShadowColorCommand new;
+		            inputPresenterClass:
+			            PyramidColorInputSingleLineWithPickupButtonPresenter;
+		            yourself.
+	^ property
+	
+
+]
+
+{ #category : #accessing }
+PyramidBackgroundBlocPlugin class >> shadowOffset [
+
+	| property |
+	property := PyramidProperty new
+		            name: 'Shadow Offset';
+		            command: PyramidShadowOffsetCommand new;
+		            inputPresenterClass:
+			            PyramidPointInputPresenter;
+		            yourself.
+		property inputPresenterModel help:
+		'Set the position x and y for the shadow offset'.
+	^ property
+]
+
 { #category : #adding }
 PyramidBackgroundBlocPlugin >> addPanelsOn: aPyramidSimpleWindow [
 
@@ -747,7 +808,12 @@ PyramidBackgroundBlocPlugin >> initialize [
 	propertiesManager addProperty: self class borderRadialInnerCenter.
 	propertiesManager addProperty: self class borderRadialInnerRadius.
 	propertiesManager addProperty: self class borderRadialOuterCenter.
-	propertiesManager addProperty: self class borderRadialOuterRadius
+	propertiesManager addProperty: self class borderRadialOuterRadius.
+
+	"Shadow"
+	propertiesManager addProperty: self class shadow.
+	propertiesManager addProperty: self class shadowColor.
+	propertiesManager addProperty: self class shadowOffset
 ]
 
 { #category : #adding }
