@@ -703,7 +703,7 @@ PyramidBackgroundBlocPlugin class >> shadow [
 				 inputValidation: [ :value | value class = BlNullEffect ];
 				 yourself);
 		addButtonModel: (PyramidMagicButtonModel new
-				 icon: (Smalltalk ui icons iconNamed: #menuPin);
+				 icon: (Smalltalk ui icons iconNamed: #windowMaximize);
 				 helpSelected: 'Shadow type is simple.';
 				 helpNotSelected: 'Set shadow type to simple.';
 				 label: 'Simple';
@@ -712,12 +712,15 @@ PyramidBackgroundBlocPlugin class >> shadow [
 				 inputValidation: [ :value | value class = BlSimpleShadowEffect ];
 				 yourself);
 		addButtonModel: (PyramidMagicButtonModel new
-				 icon: (Smalltalk ui icons iconNamed: #menuPin);
+				 icon: (Smalltalk ui icons iconNamed: #radioButtonUnselected);
 				 helpSelected: 'Shadow type is gaussian.';
 				 helpNotSelected: 'Set shadow type to gaussian.';
 				 label: 'Gaussian';
 				 inputValue: [
-					 BlGaussianShadowEffect color: Color random width: 2 offset: 2 @ 2 ];
+					 BlGaussianShadowEffect
+						 color: Color random
+						 width: 2
+						 offset: 2 @ 2 ];
 				 inputValidation: [ :value | value class = BlGaussianShadowEffect ];
 				 yourself);
 		yourself.
