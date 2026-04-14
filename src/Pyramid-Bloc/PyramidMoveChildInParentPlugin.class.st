@@ -46,22 +46,21 @@ PyramidMoveChildInParentPlugin >> contextMenuMoveChildInParent: aBuilder [
 
 	aBuilder
 		addGroupSingleSelection: [ :group :single |
-			group
-				addItem: [ :item |
-					item
-						icon: (Smalltalk ui icons iconNamed: #up);
-						name: 'Move index child up';
-						action: [ self moveChildIndexUpInParent ];
-						yourself ];
-
-				addItem: [ :item |
-					item
-						icon: (Smalltalk ui icons iconNamed: #down);
-						name: 'Move index child down';
-						action: [ self moveChildIndexDownInParent ];
-						yourself ];
-				yourself ]
-		order: 10.
+				group
+					addItem: [ :item |
+							item
+								icon: (Smalltalk ui icons iconNamed: #up);
+								name: 'Move child up';
+								action: [  self moveChildIndexDownInParent  ];
+								yourself ];
+					addItem: [ :item |
+							item
+								icon: (Smalltalk ui icons iconNamed: #down);
+								name: 'Move child down';
+								action: [self moveChildIndexUpInParent];
+								yourself ];
+					yourself ]
+		order: 10
 ]
 
 { #category : #accessing }
