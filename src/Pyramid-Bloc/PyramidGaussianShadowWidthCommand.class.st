@@ -18,7 +18,8 @@ PyramidGaussianShadowWidthCommand >> getValueFor: aBlElement [
 ]
 
 { #category : #'as yet unclassified' }
-PyramidGaussianShadowWidthCommand >> setValueFor: aBlElement with: aValue [
+PyramidGaussianShadowWidthCommand >> setValueFor: aBlElement with: aWidth [
 
-	aBlElement effect: (aBlElement effect copyWithWidth: aValue)
+    aBlElement effect: (aBlElement effect copyWithWidth: aWidth).
+    PyramidShadowCommand current syncFromElement: aBlElement
 ]

@@ -17,5 +17,7 @@ PyramidShadowColorCommand >> getValueFor: aBlElement [
 
 { #category : #initialization }
 PyramidShadowColorCommand >> setValueFor: aBlElement with: aColor [
-    aBlElement effect: (aBlElement effect copyWithColor: aColor)
+
+	aBlElement effect: (aBlElement effect copyWithColor: aColor).
+	PyramidShadowCommand current syncFromElement: aBlElement
 ]

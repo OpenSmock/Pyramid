@@ -19,6 +19,6 @@ PyramidShadowOffsetCommand >> getValueFor: aBlElement [
 
 { #category : #'as yet unclassified' }
 PyramidShadowOffsetCommand >> setValueFor: aBlElement with: aPoint [
-
-	aBlElement effect: (aBlElement effect copyWithOffset: aPoint)
+    aBlElement effect: (aBlElement effect copyWithOffset: aPoint).
+    PyramidShadowCommand current syncFromElement: aBlElement
 ]
