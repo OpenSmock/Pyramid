@@ -6,9 +6,6 @@ Class {
 	#instVars : [
 		'propertiesManager'
 	],
-	#classInstVars : [
-		'shadowCommand'
-	],
 	#category : #'Pyramid-Bloc-plugin-bloc-visuals'
 }
 
@@ -688,18 +685,12 @@ PyramidBackgroundBlocPlugin class >> outskirts [
 ]
 
 { #category : #accessing }
-PyramidBackgroundBlocPlugin class >> resetShadowCommand [
-    shadowCommand := nil
-]
-
-{ #category : #accessing }
 PyramidBackgroundBlocPlugin class >> shadow [
+
 	| property |
-	shadowCommand ifNil: [ shadowCommand := PyramidShadowCommand new ].
-	PyramidShadowCommand current: shadowCommand.
 	property := PyramidProperty new
 		            name: 'Shadow Effect';
-		            command: shadowCommand;
+		            command: PyramidShadowCommand current;
 		            inputPresenterClass: PyramidMagicButtonsInputPresenter;
 		            yourself.
 	property inputPresenterModel
@@ -716,7 +707,7 @@ PyramidBackgroundBlocPlugin class >> shadow [
 				 helpSelected: 'Shadow type is simple.';
 				 helpNotSelected: 'Set shadow type to simple.';
 				 label: 'Simple';
-				 inputValue: [ shadowCommand lastSimpleShadow ];
+				 inputValue: [ PyramidShadowCommand current lastSimpleShadow ];
 				 inputValidation: [ :value | value class = BlSimpleShadowEffect ];
 				 yourself);
 		addButtonModel: (PyramidMagicButtonModel new
@@ -724,7 +715,7 @@ PyramidBackgroundBlocPlugin class >> shadow [
 				 helpSelected: 'Shadow type is gaussian.';
 				 helpNotSelected: 'Set shadow type to gaussian.';
 				 label: 'Gaussian';
-				 inputValue: [ shadowCommand lastGaussianShadow ];
+				 inputValue: [ PyramidShadowCommand current lastGaussianShadow ];
 				 inputValidation: [ :value | value class = BlGaussianShadowEffect ];
 				 yourself);
 		yourself.
@@ -840,7 +831,7 @@ PyramidBackgroundBlocPlugin >> initialize [
 	propertiesManager addProperty: self class borderRadialOuterRadius.
 
 	"Shadow"
-	self class resetShadowCommand.
+	PyramidShadowCommand resetShadowCommand.
 	propertiesManager addProperty: self class shadow.
 	propertiesManager addProperty: self class shadowColor.
 	propertiesManager addProperty: self class shadowOffset.

@@ -13,14 +13,14 @@ Class {
 
 { #category : #accessing }
 PyramidShadowCommand class >> current [
-    ^ current
-
-
+	current ifNil: [ current := self new ].
+	^ current
 ]
 
 { #category : #accessing }
-PyramidShadowCommand class >> current: anInstance [
-    current := anInstance
+PyramidShadowCommand class >> resetShadowCommand [
+
+	current := nil
 ]
 
 { #category : #'as yet unclassified' }
