@@ -15,17 +15,15 @@ PyramidShadowGaussianWidthCommand >> canBeUsedFor: anObject [
 PyramidShadowGaussianWidthCommand >> getValueFor: aBlElement [
 
 	(aBlElement effect class = BlSimpleShadowEffect or: [
-		 aBlElement effect class = BlGaussianShadowEffect ])
-		ifTrue: [ ^ aBlElement effect width ]
-		ifFalse: [ ^ nil ]
+		 aBlElement effect class = BlGaussianShadowEffect ]) ifFalse: [ ^ nil ].
+	^ aBlElement effect width
 ]
 
 { #category : #accessing }
 PyramidShadowGaussianWidthCommand >> setValueFor: aBlElement with: aWidth [
 
-	(aBlElement effect class = BlSimpleShadowEffect or: [aBlElement effect class = BlGaussianShadowEffect])
-		ifTrue: [
-		aBlElement effect: (aBlElement effect copyWithWidth: aWidth) ]
-		ifFalse: [ ^ nil ].
+	(aBlElement effect class = BlSimpleShadowEffect or: [
+		 aBlElement effect class = BlGaussianShadowEffect ]) ifFalse: [ ^ nil ].
+	aBlElement effect: (aBlElement effect copyWithWidth: aWidth).
 	PyramidShadowCommand current syncFromElement: aBlElement
 ]

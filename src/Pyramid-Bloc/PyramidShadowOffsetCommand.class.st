@@ -14,17 +14,16 @@ PyramidShadowOffsetCommand >> canBeUsedFor: anObject [
 { #category : #accessing }
 PyramidShadowOffsetCommand >> getValueFor: aBlElement [
 
-	(aBlElement effect class = BlSimpleShadowEffect or: [aBlElement effect class = BlGaussianShadowEffect])
-		  ifTrue: [ ^ aBlElement effect offset ]
-		  ifFalse: [ ^ nil ]
+	(aBlElement effect class = BlSimpleShadowEffect or: [
+		 aBlElement effect class = BlGaussianShadowEffect ]) ifFalse: [ ^ nil ].
+	^ aBlElement effect offset
 ]
 
 { #category : #accessing }
 PyramidShadowOffsetCommand >> setValueFor: aBlElement with: aPoint [
 
-	(aBlElement effect class = BlSimpleShadowEffect or: [aBlElement effect class = BlGaussianShadowEffect])
-		ifTrue: [
-		aBlElement effect: (aBlElement effect copyWithOffset: aPoint) ]
-		ifFalse: [ ^ nil ].
+	(aBlElement effect class = BlSimpleShadowEffect or: [
+		 aBlElement effect class = BlGaussianShadowEffect ]) ifFalse: [ ^ nil ].
+	aBlElement effect: (aBlElement effect copyWithOffset: aPoint).
 	PyramidShadowCommand current syncFromElement: aBlElement
 ]

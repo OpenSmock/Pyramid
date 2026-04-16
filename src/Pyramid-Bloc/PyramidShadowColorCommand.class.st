@@ -15,17 +15,16 @@ PyramidShadowColorCommand >> canBeUsedFor: anObject [
 { #category : #accessing }
 PyramidShadowColorCommand >> getValueFor: aBlElement [
 
-	(aBlElement effect class = BlSimpleShadowEffect or: [aBlElement effect class = BlGaussianShadowEffect])
-		ifTrue: [ ^ aBlElement effect color ]
-		ifFalse: [ ^ nil ]
+	(aBlElement effect class = BlSimpleShadowEffect or: [
+		 aBlElement effect class = BlGaussianShadowEffect ]) ifFalse: [ ^ nil ].
+	^ aBlElement effect color
 ]
 
 { #category : #accessing }
 PyramidShadowColorCommand >> setValueFor: aBlElement with: aColor [
 
-	(aBlElement effect class = BlSimpleShadowEffect or: [aBlElement effect class= BlGaussianShadowEffect])
-		ifTrue: [
-		aBlElement effect: (aBlElement effect copyWithColor: aColor) ]
-		ifFalse: [ ^ nil ].
+	(aBlElement effect class = BlSimpleShadowEffect or: [
+		 aBlElement effect class = BlGaussianShadowEffect ]) ifFalse: [ ^ nil ].
+	aBlElement effect: (aBlElement effect copyWithColor: aColor).
 	PyramidShadowCommand current syncFromElement: aBlElement
 ]
