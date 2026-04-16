@@ -11,14 +11,16 @@ PyramidShadowOffsetCommand >> canBeUsedFor: anObject [
 		  anObject effect isKindOf: BlShadowEffect ]
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 PyramidShadowOffsetCommand >> getValueFor: aBlElement [
 
-	^ aBlElement effect offset
+	^ (aBlElement effect isKindOf: BlShadowEffect) ifTrue: [aBlElement effect offset] ifFalse: [ ^ self ]
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 PyramidShadowOffsetCommand >> setValueFor: aBlElement with: aPoint [
-    aBlElement effect: (aBlElement effect copyWithOffset: aPoint).
-    PyramidShadowCommand current syncFromElement: aBlElement
+
+	(aBlElement effect isKindOf: BlShadowEffect)
+		  ifTrue: [aBlElement effect: (aBlElement effect copyWithOffset: aPoint)] ifFalse: [^ self] .
+	PyramidShadowCommand current syncFromElement: aBlElement
 ]

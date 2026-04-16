@@ -10,14 +10,20 @@ PyramidShadowColorCommand >> canBeUsedFor: anObject [
         anObject effect isKindOf: BlShadowEffect ]
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 PyramidShadowColorCommand >> getValueFor: aBlElement [
-    ^ aBlElement effect color
+
+	(aBlElement effect isKindOf: BlShadowEffect)
+		ifTrue: [ ^ aBlElement effect color ]
+		ifFalse: [ ^ self ]
 ]
 
-{ #category : #initialization }
+{ #category : #accessing }
 PyramidShadowColorCommand >> setValueFor: aBlElement with: aColor [
 
-	aBlElement effect: (aBlElement effect copyWithColor: aColor).
+	(aBlElement effect isKindOf: BlShadowEffect)
+		ifTrue: [
+		aBlElement effect: (aBlElement effect copyWithColor: aColor) ]
+		ifFalse: [ ^ self ].
 	PyramidShadowCommand current syncFromElement: aBlElement
 ]

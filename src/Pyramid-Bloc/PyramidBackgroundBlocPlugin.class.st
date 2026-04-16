@@ -618,19 +618,6 @@ PyramidBackgroundBlocPlugin class >> borderWidth [
 	^ property
 ]
 
-{ #category : #'as yet unclassified' }
-PyramidBackgroundBlocPlugin class >> gaussianShadowWidth [
-
-	| property |
-	property := PyramidProperty new
-		            name: 'Shadow Width';
-		            command: PyramidGaussianShadowWidthCommand new;
-		            inputPresenterClass: PyramidNumberInputPresenter;
-		            yourself.
-	property inputPresenterModel help: 'Set the width value'.
-	^ property
-]
-
 { #category : #accessing }
 PyramidBackgroundBlocPlugin class >> opacity [
 
@@ -717,8 +704,7 @@ PyramidBackgroundBlocPlugin class >> shadow [
 				 label: 'Gaussian';
 				 inputValue: [ PyramidShadowCommand current lastGaussianShadow ];
 				 inputValidation: [ :value | value class = BlGaussianShadowEffect ];
-				 yourself);
-		yourself.
+				 yourself).
 	^ property
 ]
 
@@ -749,6 +735,19 @@ PyramidBackgroundBlocPlugin class >> shadowOffset [
 		            yourself.
 		property inputPresenterModel help:
 		'Set the position x and y for the shadow offset'.
+	^ property
+]
+
+{ #category : #accessing }
+PyramidBackgroundBlocPlugin class >> shadowWidthGaussian [
+
+	| property |
+	property := PyramidProperty new
+		            name: 'Shadow Width';
+		            command: PyramidShadowGaussianWidthCommand new;
+		            inputPresenterClass: PyramidNumberInputPresenter;
+		            yourself.
+	property inputPresenterModel help: 'Set the width value'.
 	^ property
 ]
 
@@ -835,7 +834,7 @@ PyramidBackgroundBlocPlugin >> initialize [
 	propertiesManager addProperty: self class shadow.
 	propertiesManager addProperty: self class shadowColor.
 	propertiesManager addProperty: self class shadowOffset.
-	propertiesManager addProperty: self class gaussianShadowWidth
+	propertiesManager addProperty: self class shadowWidthGaussian
 ]
 
 { #category : #adding }

@@ -91,8 +91,7 @@ PyramidMoveChildInParentPlugin >> moveChildIndexDownInParent [
 
 	| childToMoveCollection childToMove childIndexToMove parentChild navigationSelectionPanel |
 	childToMoveCollection := projectModel selection collection.
-	navigationSelectionPanel := navigationPlugin navigation
-		                            selectionPanel.
+	navigationSelectionPanel := navigationPlugin navigation selectionPanel.
 
 	childToMoveCollection size = 1 ifFalse: [ ^ self ].
 	childToMove := childToMoveCollection first.
@@ -106,8 +105,8 @@ PyramidMoveChildInParentPlugin >> moveChildIndexDownInParent [
 		ifTrue: [
 				self moveChildIndexDownCommand: parentChild with: childToMove.
 				self refreshTreeTable ]
-		ifFalse: [
-			self inform: 'Cannot move up' ]  "cannot move the child up and the index down"
+		ifFalse: [ "cannot move the child up and the index down"
+			self inform: 'Cannot move up' ]
 ]
 
 { #category : #'as yet unclassified' }
@@ -125,8 +124,7 @@ PyramidMoveChildInParentPlugin >> moveChildIndexUpInParent [
 
 	| childToMoveCollection childToMove childIndexToMove parentChild navigationSelectionPanel |
 	childToMoveCollection := projectModel selection collection.
-	navigationSelectionPanel := navigationPlugin navigation
-		                            selectionPanel.
+	navigationSelectionPanel := navigationPlugin navigation selectionPanel.
 
 	childToMoveCollection size = 1 ifFalse: [ ^ self ].
 	childToMove := childToMoveCollection first.
@@ -140,7 +138,8 @@ PyramidMoveChildInParentPlugin >> moveChildIndexUpInParent [
 		ifTrue: [
 				self moveChildIndexUpCommand: parentChild with: childToMove.
 				self refreshTreeTable ]
-		ifFalse: [ self inform: 'Cannot move down' ] "cannot move the child down and the index up"
+		ifFalse: [ "cannot move the child down and the index up"
+			self inform: 'Cannot move down' ]
 ]
 
 { #category : #accessing }

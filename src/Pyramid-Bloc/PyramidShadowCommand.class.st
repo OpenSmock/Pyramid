@@ -23,10 +23,10 @@ PyramidShadowCommand class >> resetShadowCommand [
 	current := nil
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 PyramidShadowCommand >> getValueFor: aBlElement [
 
-	 ^ aBlElement effect 
+		^ aBlElement effect 
 ]
 
 { #category : #accessing }
@@ -41,7 +41,7 @@ PyramidShadowCommand >> lastSimpleShadow [
 		  BlSimpleShadowEffect color: Color black offset: 2 @ 2 ]
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 PyramidShadowCommand >> setValueFor: aBlElement with: anArgument [
 
 	anArgument class = BlSimpleShadowEffect ifTrue: [
@@ -51,7 +51,7 @@ PyramidShadowCommand >> setValueFor: aBlElement with: anArgument [
 	aBlElement effect: anArgument
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #updating }
 PyramidShadowCommand >> syncFromElement: aBlElement [
 
 	aBlElement effect class = BlSimpleShadowEffect ifTrue: [
