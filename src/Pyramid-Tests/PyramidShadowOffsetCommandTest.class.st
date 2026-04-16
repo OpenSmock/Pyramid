@@ -12,7 +12,7 @@ PyramidShadowOffsetCommandTest >> command [
 	^ PyramidShadowOffsetCommand new
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 PyramidShadowOffsetCommandTest >> targetContainers [
 
 	^ {

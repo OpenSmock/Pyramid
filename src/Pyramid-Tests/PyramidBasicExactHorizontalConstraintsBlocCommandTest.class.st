@@ -12,7 +12,7 @@ PyramidBasicExactHorizontalConstraintsBlocCommandTest >> command [
 	^ PyramidBasicExactHorizontalConstraintsBlocCommand new
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 PyramidBasicExactHorizontalConstraintsBlocCommandTest >> targetContainers [
 
 	| p1 a1 b1 p2 a2 b2 |
@@ -42,7 +42,7 @@ PyramidBasicExactHorizontalConstraintsBlocCommandTest >> targetContainers [
 		  (PyramidCommandTestContainer no: a2 with: b2 prop: 600) }
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 PyramidBasicExactHorizontalConstraintsBlocCommandTest >> targetsCannotBeUsedFor [
 	"override if needed"
 

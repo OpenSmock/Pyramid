@@ -12,7 +12,7 @@ PyramidElementIdCommandTest >> command [
 		^ PyramidElementIdCommand new
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 PyramidElementIdCommandTest >> targetContainers [
 
 

@@ -12,7 +12,7 @@ PyramidVisibilityCommandTest >> command [
 	^ PyramidVisibilityCommand new.
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 PyramidVisibilityCommandTest >> targetContainers [
 
 	^ {

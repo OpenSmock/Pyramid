@@ -12,7 +12,7 @@ PyramidPositionOffsetCommandTest >> command [
 	^ PyramidPositionOffsetCommand new
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 PyramidPositionOffsetCommandTest >> targetContainers [
 
 	^ {

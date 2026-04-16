@@ -13,7 +13,7 @@ PyramidShadowGaussianWidthTest >> command [
 	
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 PyramidShadowGaussianWidthTest >> targetContainers [
 
 	^ {

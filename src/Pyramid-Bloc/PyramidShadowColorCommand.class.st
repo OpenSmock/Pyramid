@@ -6,24 +6,26 @@ Class {
 
 { #category : #testing }
 PyramidShadowColorCommand >> canBeUsedFor: anObject [
-    ^ (super canBeUsedFor: anObject) and: [
-        anObject effect isKindOf: BlShadowEffect ]
+
+	^ (super canBeUsedFor: anObject) and: [
+			  anObject effect class = BlSimpleShadowEffect or: [
+				  anObject effect class = BlGaussianShadowEffect ] ]
 ]
 
 { #category : #accessing }
 PyramidShadowColorCommand >> getValueFor: aBlElement [
 
-	(aBlElement effect isKindOf: BlShadowEffect)
+	(aBlElement effect class = BlSimpleShadowEffect or: [aBlElement effect class = BlGaussianShadowEffect])
 		ifTrue: [ ^ aBlElement effect color ]
-		ifFalse: [ ^ self ]
+		ifFalse: [ ^ nil ]
 ]
 
 { #category : #accessing }
 PyramidShadowColorCommand >> setValueFor: aBlElement with: aColor [
 
-	(aBlElement effect isKindOf: BlShadowEffect)
+	(aBlElement effect class = BlSimpleShadowEffect or: [aBlElement effect class= BlGaussianShadowEffect])
 		ifTrue: [
 		aBlElement effect: (aBlElement effect copyWithColor: aColor) ]
-		ifFalse: [ ^ self ].
+		ifFalse: [ ^ nil ].
 	PyramidShadowCommand current syncFromElement: aBlElement
 ]

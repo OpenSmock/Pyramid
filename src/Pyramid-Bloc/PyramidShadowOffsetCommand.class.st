@@ -8,19 +8,23 @@ Class {
 PyramidShadowOffsetCommand >> canBeUsedFor: anObject [
 
 	^ (super canBeUsedFor: anObject) and: [
-		  anObject effect isKindOf: BlShadowEffect ]
+		  anObject effect class = BlSimpleShadowEffect or: [anObject effect class = BlGaussianShadowEffect] ]
 ]
 
 { #category : #accessing }
 PyramidShadowOffsetCommand >> getValueFor: aBlElement [
 
-	^ (aBlElement effect isKindOf: BlShadowEffect) ifTrue: [aBlElement effect offset] ifFalse: [ ^ self ]
+	(aBlElement effect class = BlSimpleShadowEffect or: [aBlElement effect class = BlGaussianShadowEffect])
+		  ifTrue: [ ^ aBlElement effect offset ]
+		  ifFalse: [ ^ nil ]
 ]
 
 { #category : #accessing }
 PyramidShadowOffsetCommand >> setValueFor: aBlElement with: aPoint [
 
-	(aBlElement effect isKindOf: BlShadowEffect)
-		  ifTrue: [aBlElement effect: (aBlElement effect copyWithOffset: aPoint)] ifFalse: [^ self] .
+	(aBlElement effect class = BlSimpleShadowEffect or: [aBlElement effect class = BlGaussianShadowEffect])
+		ifTrue: [
+		aBlElement effect: (aBlElement effect copyWithOffset: aPoint) ]
+		ifFalse: [ ^ nil ].
 	PyramidShadowCommand current syncFromElement: aBlElement
 ]

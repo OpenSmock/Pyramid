@@ -12,7 +12,7 @@ PyramidShadowColorCommandTest >> command [
 	^ PyramidShadowColorCommand new
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 PyramidShadowColorCommandTest >> targetContainers [
 
 	^ {

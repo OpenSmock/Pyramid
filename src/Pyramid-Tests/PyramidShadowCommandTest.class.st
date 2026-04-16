@@ -21,7 +21,7 @@ PyramidShadowCommandTest >> command [
 	^ PyramidShadowCommand new
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 PyramidShadowCommandTest >> targetContainers [
 
 	^ {

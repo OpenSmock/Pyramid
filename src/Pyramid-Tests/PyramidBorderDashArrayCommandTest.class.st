@@ -12,7 +12,7 @@ PyramidBorderDashArrayCommandTest >> command [
 	^ PyramidBorderDashArrayCommand new
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 PyramidBorderDashArrayCommandTest >> targetContainers [
 
 	^ {

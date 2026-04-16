@@ -12,7 +12,7 @@ PyramidChangeTextCommandTest >> command [
 	^ PyramidChangeTextCommand new
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 PyramidChangeTextCommandTest >> targetContainers [
 
 	^ {
