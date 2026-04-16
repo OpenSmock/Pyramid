@@ -12,7 +12,7 @@ PyramidBasicExactVerticalConstraintsBlocCommandTest >> command [
 	^ PyramidBasicExactVerticalConstraintsBlocCommand new
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 PyramidBasicExactVerticalConstraintsBlocCommandTest >> targetContainers [
 
 	| p1 a1 b1 p2 a2 b2 |
@@ -44,7 +44,7 @@ PyramidBasicExactVerticalConstraintsBlocCommandTest >> targetContainers [
 		  (PyramidCommandTestContainer no: a2 with: b2 prop: 100) }
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 PyramidBasicExactVerticalConstraintsBlocCommandTest >> targetsCannotBeUsedFor [
 	"override if needed"
 

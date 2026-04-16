@@ -12,7 +12,7 @@ PyramidBorderLineCapCommandTest >> command [
 	^ PyramidBorderLineCapCommand new
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 PyramidBorderLineCapCommandTest >> targetContainers [
 
 	^ {

@@ -12,7 +12,7 @@ PyramidBackgroundPaintColorCommandTest >> command [
 	^ PyramidBackgroundPaintColorCommand new
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 PyramidBackgroundPaintColorCommandTest >> targetContainers [
 
 	^ {
@@ -35,7 +35,7 @@ PyramidBackgroundPaintColorCommandTest >> targetContainers [
 		   }
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 PyramidBackgroundPaintColorCommandTest >> targetsCannotBeUsedFor [
 	"override if needed"
 

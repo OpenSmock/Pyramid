@@ -12,7 +12,7 @@ PyramidWeightConstraintsCommandTest >> command [
 	^ PyramidWeightConstraintsCommand new
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 PyramidWeightConstraintsCommandTest >> targetContainers [
 
 	| parentLinear e1Linear e2Linear parentFlow e1Flow e2Flow |
@@ -41,7 +41,7 @@ PyramidWeightConstraintsCommandTest >> targetContainers [
 	^ { (PyramidCommandTestContainer no: e1Linear with: e2Linear prop: 0.5) .  (PyramidCommandTestContainer no: e1Flow with: e2Flow prop: 0.5) }
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 PyramidWeightConstraintsCommandTest >> targetsCannotBeUsedFor [
 	"override if needed"
 	| parent child |

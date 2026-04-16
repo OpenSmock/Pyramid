@@ -46,22 +46,21 @@ PyramidMoveChildInParentPlugin >> contextMenuMoveChildInParent: aBuilder [
 
 	aBuilder
 		addGroupSingleSelection: [ :group :single |
-			group
-				addItem: [ :item |
-					item
-						icon: (Smalltalk ui icons iconNamed: #up);
-						name: 'Move index child up';
-						action: [ self moveChildIndexUpInParent ];
-						yourself ];
-
-				addItem: [ :item |
-					item
-						icon: (Smalltalk ui icons iconNamed: #down);
-						name: 'Move index child down';
-						action: [ self moveChildIndexDownInParent ];
-						yourself ];
-				yourself ]
-		order: 10.
+				group
+					addItem: [ :item |
+							item
+								icon: (Smalltalk ui icons iconNamed: #up);
+								name: 'Move child up';
+								action: [  self moveChildIndexDownInParent  ];
+								yourself ];
+					addItem: [ :item |
+							item
+								icon: (Smalltalk ui icons iconNamed: #down);
+								name: 'Move child down';
+								action: [self moveChildIndexUpInParent];
+								yourself ];
+					yourself ]
+		order: 10
 ]
 
 { #category : #accessing }
@@ -91,28 +90,23 @@ PyramidMoveChildInParentPlugin >> moveChildIndexDownCommand: aBlElementParent wi
 PyramidMoveChildInParentPlugin >> moveChildIndexDownInParent [
 
 	| childToMoveCollection childToMove childIndexToMove parentChild navigationSelectionPanel |
-	
 	childToMoveCollection := projectModel selection collection.
 	navigationSelectionPanel := navigationPlugin navigation selectionPanel.
-	
-	childToMoveCollection size = 1
-	ifFalse: [ ^ self ].
+
+	childToMoveCollection size = 1 ifFalse: [ ^ self ].
 	childToMove := childToMoveCollection first.
-	
-	childToMove hasParent 
-	ifFalse: [ ^ self ].
+
+	childToMove hasParent ifFalse: [ ^ self ].
 	parentChild := childToMove parent.
-	
-	childIndexToMove := (parentChild childIndexOf: childToMove).
-	
+
+	childIndexToMove := parentChild childIndexOf: childToMove.
+
 	childIndexToMove > 1
-		ifTrue: [ self moveChildIndexDownCommand: parentChild with: childToMove.
-			self refreshTreeTable ]
-		ifFalse: [ self inform: 'Cannot move down' ].
-
-			
-	
-
+		ifTrue: [
+				self moveChildIndexDownCommand: parentChild with: childToMove.
+				self refreshTreeTable ]
+		ifFalse: [ "cannot move the child up and the index down"
+			self inform: 'Cannot move up' ]
 ]
 
 { #category : #'as yet unclassified' }
@@ -129,27 +123,23 @@ PyramidMoveChildInParentPlugin >> moveChildIndexUpCommand: aBlElementParent with
 PyramidMoveChildInParentPlugin >> moveChildIndexUpInParent [
 
 	| childToMoveCollection childToMove childIndexToMove parentChild navigationSelectionPanel |
-	
 	childToMoveCollection := projectModel selection collection.
 	navigationSelectionPanel := navigationPlugin navigation selectionPanel.
-	
-	childToMoveCollection size = 1
-	ifFalse: [ ^ self ].
-	childToMove := childToMoveCollection first.
-	
-	childToMove hasParent 
-	ifFalse: [ ^ self ].
-	parentChild := childToMove parent.
-	
-	childIndexToMove := (parentChild childIndexOf: childToMove).
-	
-	childIndexToMove < (parentChild children size)
-		ifTrue: [ self moveChildIndexUpCommand: parentChild with: childToMove.
-			self refreshTreeTable ]
-		ifFalse: [ self inform: 'Cannot move up' ].
-			
-	
 
+	childToMoveCollection size = 1 ifFalse: [ ^ self ].
+	childToMove := childToMoveCollection first.
+
+	childToMove hasParent ifFalse: [ ^ self ].
+	parentChild := childToMove parent.
+
+	childIndexToMove := parentChild childIndexOf: childToMove.
+
+	childIndexToMove < parentChild children size
+		ifTrue: [
+				self moveChildIndexUpCommand: parentChild with: childToMove.
+				self refreshTreeTable ]
+		ifFalse: [ "cannot move the child down and the index up"
+			self inform: 'Cannot move down' ]
 ]
 
 { #category : #accessing }
