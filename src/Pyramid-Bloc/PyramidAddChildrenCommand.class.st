@@ -12,6 +12,6 @@ PyramidAddChildrenCommand >> commandInverse [
 
 { #category : #'as yet unclassified' }
 PyramidAddChildrenCommand >> setValueFor: aBlElement with: aChildrenToAdd [
-
-	aBlElement addChildren: aChildrenToAdd
+    aChildrenToAdd do: [ :child |
+        aBlElement addChild: child ]
 ]

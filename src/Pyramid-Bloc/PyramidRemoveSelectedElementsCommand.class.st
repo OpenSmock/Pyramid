@@ -15,18 +15,23 @@ PyramidRemoveSelectedElementsCommand >> getValueFor: anElementOfSelection [
 
 { #category : #'as yet unclassified' }
 PyramidRemoveSelectedElementsCommand >> mementoFor: anElement withArguments: anArgument [
-
-	(anArgument includes: anElement) ifTrue: [
-		^ PyramidCommandMemento new
-			  command: PyramidRemoveFromCollectionCommand new commandInverse;
-			  target: anArgument;
-			  arguments: anElement;
-			  yourself ].
-	^ PyramidCommandMemento new
-		  command: PyramidRemoveChildCommand new commandInverse;
-		  target: anElement parent;
-		  arguments: anElement;
-		  yourself
+    | index |
+    "Save index before removing"
+    index := anElement parent
+        ifNotNil: [ :p | p children indexOf: anElement ]
+        ifNil: [ 0 ].
+    anElement userData at: #removedAtIndex put: index.
+    (anArgument includes: anElement) ifTrue: [
+        ^ PyramidCommandMemento new
+            command: PyramidRemoveFromCollectionCommand new commandInverse;
+            target: anArgument;
+            arguments: anElement;
+            yourself ].
+    ^ PyramidCommandMemento new
+        command: PyramidRemoveChildCommand new commandInverse;
+        target: anElement parent;
+        arguments: anElement;
+        yourself
 ]
 
 { #category : #accessing }
