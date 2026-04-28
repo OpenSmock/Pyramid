@@ -12,6 +12,6 @@ PyramidAddChildrenCommand >> commandInverse [
 
 { #category : #setter }
 PyramidAddChildrenCommand >> setValueFor: aBlElement with: aChildrenToAdd [
-    aChildrenToAdd do: [ :child |
-        aBlElement addChild: child ]
+
+    aBlElement addChildren: aChildrenToAdd 
 ]
