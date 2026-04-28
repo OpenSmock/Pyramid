@@ -4,13 +4,13 @@ Class {
 	#category : #'Pyramid-Bloc-plugin-bloc'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : #getter }
 PyramidZIndexCommand >> getValueFor: aBlElement [
 
 	^ aBlElement elevation elevation
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #setter }
 PyramidZIndexCommand >> setValueFor: aBlElement with: anArgument [
 
 	aBlElement zIndex: anArgument

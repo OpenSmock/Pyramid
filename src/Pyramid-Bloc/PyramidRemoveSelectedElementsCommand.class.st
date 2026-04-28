@@ -7,7 +7,7 @@ Class {
 	#category : #'Pyramid-Bloc-plugin-bloc'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : #getter }
 PyramidRemoveSelectedElementsCommand >> getValueFor: anElementOfSelection [
 
 	^ nil
@@ -15,23 +15,19 @@ PyramidRemoveSelectedElementsCommand >> getValueFor: anElementOfSelection [
 
 { #category : #'as yet unclassified' }
 PyramidRemoveSelectedElementsCommand >> mementoFor: anElement withArguments: anArgument [
-    | index |
-    "Save index before removing"
-    index := anElement parent
-        ifNotNil: [ :p | p children indexOf: anElement ]
-        ifNil: [ 0 ].
-    anElement userData at: #removedAtIndex put: index.
-    (anArgument includes: anElement) ifTrue: [
-        ^ PyramidCommandMemento new
-            command: PyramidRemoveFromCollectionCommand new commandInverse;
-            target: anArgument;
-            arguments: anElement;
-            yourself ].
-    ^ PyramidCommandMemento new
-        command: PyramidRemoveChildCommand new commandInverse;
-        target: anElement parent;
-        arguments: anElement;
-        yourself
+
+	self saveIndexOf: anElement.
+	(anArgument includes: anElement) ifTrue: [
+			^ PyramidCommandMemento new
+				  command: PyramidRemoveFromCollectionCommand new commandInverse;
+				  target: anArgument;
+				  arguments: anElement;
+				  yourself ].
+	^ PyramidCommandMemento new
+		  command: PyramidRemoveChildCommand new commandInverse;
+		  target: anElement parent;
+		  arguments: anElement;
+		  yourself
 ]
 
 { #category : #accessing }
@@ -46,14 +42,24 @@ PyramidRemoveSelectedElementsCommand >> mementoInverse: anObject [
 	mementoInverse := anObject
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #private }
+PyramidRemoveSelectedElementsCommand >> saveIndexOf: anElement [
+
+	| index |
+	index := anElement parent
+		         ifNotNil: [ :p | p children indexOf: anElement ]
+		         ifNil: [ 0 ].
+	anElement userData at: #removedAtIndex put: index
+]
+
+{ #category : #history }
 PyramidRemoveSelectedElementsCommand >> saveStatesOf: aCollection with: aRoots [
 	"We ignore the state recovery for the redo, we will force the inverse of the undo state."
 
 	^ self mementoInverse accept: PyramidMementoInverser new.
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #history }
 PyramidRemoveSelectedElementsCommand >> saveStatesWithCommandInverseOf: aCollection with: aRoots [
 
 	| mementos finalMemento |
@@ -69,7 +75,7 @@ PyramidRemoveSelectedElementsCommand >> saveStatesWithCommandInverseOf: aCollect
 	^ finalMemento
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #setter }
 PyramidRemoveSelectedElementsCommand >> setValueFor: aBlElementToRemove with: aRoot [
 	"Remove the element from its parent"
 

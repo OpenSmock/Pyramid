@@ -4,13 +4,13 @@ Class {
 	#category : #'Pyramid-Bloc-plugin-bloc-layout'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : #getter }
 PyramidMarginCommand >> getValueFor: aBlElement [
 
 	^ aBlElement margin
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #setter }
 PyramidMarginCommand >> setValueFor: aBlElement with: anArgument [
 
 	aBlElement margin: anArgument

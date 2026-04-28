@@ -4,17 +4,26 @@ Class {
 	#category : #'Pyramid-Bloc-plugin-bloc'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : #history }
 PyramidAddChildCommand >> commandInverse [
 
 	^ PyramidRemoveChildCommand new
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #private }
+PyramidAddChildCommand >> savedIndexFor: aChild in: aParent [
+
+	| index |
+	index := aChild userData at: #removedAtIndex ifAbsent: [ 0 ].
+	(index = 0 or: [ index > aParent children size ])
+		ifTrue: [ ^ aParent children size + 1 ]
+		ifFalse: [ ^ index ]
+]
+
+{ #category : #setter }
 PyramidAddChildCommand >> setValueFor: aBlElement with: aChildToAdd [
-    | index |
-    index := aChildToAdd userData at: #removedAtIndex ifAbsent: [ 0 ].
-    (index = 0 or: [ index > aBlElement children size ])
-        ifTrue: [ aBlElement addChild: aChildToAdd ]
-        ifFalse: [ aBlElement addChild: aChildToAdd at: index ]
+
+	aBlElement
+		addChild: aChildToAdd
+		at: (self savedIndexFor: aChildToAdd in: aBlElement)
 ]

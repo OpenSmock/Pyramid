@@ -4,13 +4,13 @@ Class {
 	#category : #'Pyramid-Bloc-plugin-bloc-visuals'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : #getter }
 PyramidBackgroundPaintLinearStartCommand >> getValueFor: aBlElement [
 
 	^ aBlElement background paint start
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #setter }
 PyramidBackgroundPaintLinearStartCommand >> setValueFor: aBlElement with: anArgument [
 
 	aBlElement background paint start: anArgument

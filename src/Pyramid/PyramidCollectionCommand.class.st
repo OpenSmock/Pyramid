@@ -16,7 +16,7 @@ PyramidCollectionCommand >> canBeUsedFor: anObject [
 	^ anObject isCollection
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #private }
 PyramidCollectionCommand >> saveStatesOf: aCollection withCommand: aCommand withArguments: anArguments [
 
 	| mementos |

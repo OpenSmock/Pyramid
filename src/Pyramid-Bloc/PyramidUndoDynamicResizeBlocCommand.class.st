@@ -11,19 +11,19 @@ PyramidUndoDynamicResizeBlocCommand >> canBeUsedFor: anObject [
 			  anObject size ]
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #history }
 PyramidUndoDynamicResizeBlocCommand >> commandInverse [ 
 
 	^ PyramidDynamicResizeCommand new
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #getter }
 PyramidUndoDynamicResizeBlocCommand >> getValueFor: anObject [
 
 	^ anObject userData at: #pyramidPreviousDynamicResize
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #setter }
 PyramidUndoDynamicResizeBlocCommand >> setValueFor: anObject with: anArgument [
 
 	^ anObject constraintsDo: [ :c |

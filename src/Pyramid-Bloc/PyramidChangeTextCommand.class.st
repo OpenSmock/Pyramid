@@ -4,13 +4,13 @@ Class {
 	#category : #'Pyramid-Bloc-plugin-bloc-text'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : #getter }
 PyramidChangeTextCommand >> getValueFor: aBlTextElement [
 
 	^ aBlTextElement text asString
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #setter }
 PyramidChangeTextCommand >> setValueFor: aBlTextElement with: aString [
 
 	| attributes rope |

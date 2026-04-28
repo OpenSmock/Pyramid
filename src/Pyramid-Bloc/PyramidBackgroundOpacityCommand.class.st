@@ -4,13 +4,13 @@ Class {
 	#category : #'Pyramid-Bloc-plugin-bloc-visuals'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : #getter }
 PyramidBackgroundOpacityCommand >> getValueFor: aBlElement [
 
 	^ aBlElement background opacity
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #setter }
 PyramidBackgroundOpacityCommand >> setValueFor: aBlElement with: anArgument [
 
 	| background |
