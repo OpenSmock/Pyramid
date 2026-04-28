@@ -13,7 +13,7 @@ PyramidRemoveSelectedElementsCommand >> getValueFor: anElementOfSelection [
 	^ nil
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #history }
 PyramidRemoveSelectedElementsCommand >> mementoFor: anElement withArguments: anArgument [
 
 	self saveIndexOf: anElement.
