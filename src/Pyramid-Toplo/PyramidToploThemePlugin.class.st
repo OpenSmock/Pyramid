@@ -110,30 +110,79 @@ PyramidToploThemePlugin class >> toploIconThemeCategoryFromClass: aClass withCat
 PyramidToploThemePlugin class >> toploLibraryCategory [
 
 	<pyramidLibraryCategory: 1>
-	| classes elements |
+	| classes elements knownBroken testClass okElements unserializedElements |
+	knownBroken := #( #ToCircularMenuInnerElement
+	                  #ToCircularMenuList #ToExPicsumNode #ToAnimatedIcon ).
+	testClass := Smalltalk at: #ToSerializerTest.
 	classes := ToElement allSubclasses , { ToElement }.
-	elements := classes
-		            reject: [ :each |
-			            each isAbstract or: [
-				            (each name findString: 'Abstract') > 0 or: [
-					            [
-					            each new.
-					            false ]
-						            on: Error
-						            do: [ true ] ] ] ]
-		            thenCollect: [ :class |
+	classes := classes reject: [ :each |
+		           each isAbstract or: [
+			           (each name findString: 'Abstract') > 0 ] ].
+	elements := classes collect: [ :class |
+			            | broken serializable status |
+			            broken := [
+				                      class new.
+				                      false ]
+				                      on: Error
+				                      do: [ :e | true ].
+			            broken := broken or: [
+				                      knownBroken includes: class name asSymbol ].
+			            serializable := [
+				                            | suite prefix |
+				                            prefix := 'test' , class name.
+				                            suite := testClass suite tests
+					                                     select: [ :t |
+							                                     (t selector beginsWith:
+								                                      prefix) and: [
+									                                     t selector size
+									                                     = prefix size or: [
+											                                     | suffix |
+											                                     suffix := t selector
+												                                               copyFrom:
+												                                               prefix size
+												                                               + 1
+												                                               to:
+												                                               t selector
+													                                               size.
+											                                     suffix allSatisfy: [
+												                                     :c | c isDigit ] ] ] ].
+				                            suite isNotEmpty ]
+				                            on: Error
+				                            do: [ false ].
+			            status := broken
+				                      ifTrue: [ #broken ]
+				                      ifFalse: [
+						                      serializable
+							                      ifTrue: [ #ok ]
+							                      ifFalse: [ #unserialized ] ].
 			            PyramidLibraryElement new
 				            icon:
-					            (Smalltalk ui icons iconNamed: class systemIconName);
+					            (Smalltalk ui icons iconNamed: (status = #broken
+								              ifTrue: [ #error ]
+								              ifFalse: [
+										              status = #unserialized
+											              ifTrue: [ #warning ]
+											              ifFalse: [ class systemIconName ] ]));
 				            name: class name;
 				            block: [ { class new } ];
+				            status: status;
 				            yourself ].
-
-	^ { (PyramidLibraryCategory new
-		   name: 'Toplo';
-		   icon: (Smalltalk ui icons iconNamed: #box);
-		   elements: (elements sorted: [ :a :b | a name < b name ]);
-		   yourself) }
+	elements := elements reject: [ :e | e status = #broken ].
+	okElements := elements select: [ :e | e status = #ok ].
+	unserializedElements := elements select: [ :e |
+		                        e status = #unserialized ].
+	^ {
+		  (PyramidLibraryCategory new
+			   name: 'Toplo';
+			   icon: (Smalltalk ui icons iconNamed: #box);
+			   elements: (okElements sorted: [ :a :b | a name < b name ]);
+			   yourself).
+		  (PyramidLibraryCategory new
+			   name: 'Unstable';
+			   icon: (Smalltalk ui icons iconNamed: #warning);
+			   elements:
+				   (unserializedElements sorted: [ :a :b | a name < b name ]);
+			   yourself) }
 ]
 
 { #category : #adding }

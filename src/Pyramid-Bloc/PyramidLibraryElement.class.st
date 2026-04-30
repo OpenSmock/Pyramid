@@ -4,7 +4,8 @@ Class {
 	#instVars : [
 		'name',
 		'icon',
-		'block'
+		'block',
+		'status'
 	],
 	#category : #'Pyramid-Bloc-plugin-navigation'
 }
@@ -84,4 +85,16 @@ PyramidLibraryElement >> name [
 PyramidLibraryElement >> name: anObject [
 
 	name := anObject
+]
+
+{ #category : #accessing }
+PyramidLibraryElement >> status [
+
+	^ status ifNil: [ #ok ]
+]
+
+{ #category : #accessing }
+PyramidLibraryElement >> status: aSymbol [
+
+	status := aSymbol
 ]
