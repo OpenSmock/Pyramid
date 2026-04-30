@@ -27,7 +27,7 @@ PyramidCommand >> canBeUsedFor: anObject [
 	^ self shouldBeImplemented
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #actions }
 PyramidCommand >> clusterOf: aCollection [
 
 	| users cluster |
@@ -40,25 +40,25 @@ PyramidCommand >> clusterOf: aCollection [
 	^ cluster
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #history }
 PyramidCommand >> commandInverse [
 
 	^ self
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #getter }
 PyramidCommand >> getGroupedValueFor: anObject [
 
 	^ self getValueFor: anObject
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #getter }
 PyramidCommand >> getValueFor: anObject [
 
 	^ self shouldBeImplemented
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #history }
 PyramidCommand >> saveStatesOf: aCollection with: arguments [
 
 	^ self
@@ -67,7 +67,7 @@ PyramidCommand >> saveStatesOf: aCollection with: arguments [
 		  withArguments: arguments
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #private }
 PyramidCommand >> saveStatesOf: aCollection withCommand: aCommand withArguments: anArguments [
 
 	| mementos |
@@ -83,19 +83,19 @@ PyramidCommand >> saveStatesOf: aCollection withCommand: aCommand withArguments:
 		  yourself
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #history }
 PyramidCommand >> saveStatesWithCommandInverseOf: aCollection with: arguments [
 
 	^ self saveStatesOf: aCollection withCommand: self commandInverse withArguments: arguments
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #setter }
 PyramidCommand >> setValueFor: anObject with: anArgument [
 
 	self shouldBeImplemented
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #actions }
 PyramidCommand >> useOn: aCollection with: anArgument [
 
 	aCollection do: [ :each | self setValueFor: each with: anArgument ]

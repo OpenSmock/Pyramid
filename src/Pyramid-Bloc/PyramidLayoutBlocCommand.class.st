@@ -4,13 +4,13 @@ Class {
 	#category : #'Pyramid-Bloc-plugin-bloc-layout'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : #getter }
 PyramidLayoutBlocCommand >> getValueFor: anObject [
 
 	^ anObject layout
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #setter }
 PyramidLayoutBlocCommand >> setValueFor: anObject with: anArgument [
 
 	anObject layout: anArgument

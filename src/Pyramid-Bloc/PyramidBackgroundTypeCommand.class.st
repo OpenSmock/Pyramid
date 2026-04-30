@@ -4,19 +4,19 @@ Class {
 	#category : #'Pyramid-Bloc-plugin-bloc-visuals'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : #getter }
 PyramidBackgroundTypeCommand >> getGroupedValueFor: aBlElement [
 
 	^ aBlElement background class
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #getter }
 PyramidBackgroundTypeCommand >> getValueFor: aBlElement [
 
 	^ aBlElement background
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #setter }
 PyramidBackgroundTypeCommand >> setValueFor: aBlElement with: anArgument [
 	"Must be a blockClosure to ensure no background are created."
 

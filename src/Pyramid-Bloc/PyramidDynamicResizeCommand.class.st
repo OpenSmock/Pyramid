@@ -11,19 +11,19 @@ PyramidDynamicResizeCommand >> canBeUsedFor: anObject [
 			  anObject size ]
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #history }
 PyramidDynamicResizeCommand >> commandInverse [ 
 
 	^ PyramidUndoDynamicResizeBlocCommand new
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #getter }
 PyramidDynamicResizeCommand >> getValueFor: anObject [
 
 	^ anObject extent
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #history }
 PyramidDynamicResizeCommand >> saveStatesWithCommandInverseOf: aCollection with: arguments [
 	| mementos |
 
@@ -39,7 +39,7 @@ PyramidDynamicResizeCommand >> saveStatesWithCommandInverseOf: aCollection with:
 		  yourself
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #setter }
 PyramidDynamicResizeCommand >> setValueFor: anObject with: anArgument [
 
 	^ anObject constraintsDo: [ :c |

@@ -4,13 +4,13 @@ Class {
 	#category : #'Pyramid-Bloc-plugin-bloc-group'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : #history }
 PyramidRedoGroupCommand >> commandInverse [
 
 	^ PyramidUndoGroupCommand new
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #getter }
 PyramidRedoGroupCommand >> getValueFor: aBlElement [
 
 	^ nil
@@ -34,7 +34,7 @@ PyramidRedoGroupCommand >> positionGroupElement: groupElement [
 			child constraints position - (currentLeft @ currentTop) ]
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #setter }
 PyramidRedoGroupCommand >> setValueFor: aCollectionToGroup with: aGroupModel [
 
 	| anyElementInFirstLevels |

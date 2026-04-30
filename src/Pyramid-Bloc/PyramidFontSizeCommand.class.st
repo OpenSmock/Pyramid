@@ -4,7 +4,7 @@ Class {
 	#category : #'Pyramid-Bloc-plugin-bloc-text'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : #getter }
 PyramidFontSizeCommand >> getValueFor: aBlTextElement [
 
 	aBlTextElement text attributesFinder
@@ -14,7 +14,7 @@ PyramidFontSizeCommand >> getValueFor: aBlTextElement [
 			^ 10
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #setter }
 PyramidFontSizeCommand >> setValueFor: aBlTextElement with: aNumber [
 
 	aBlTextElement text attribute: (BlFontSizeAttribute size: aNumber).
