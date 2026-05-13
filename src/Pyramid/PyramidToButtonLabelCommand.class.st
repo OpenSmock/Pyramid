@@ -6,7 +6,8 @@ Class {
 
 { #category : #testing }
 PyramidToButtonLabelCommand >> canBeUsedFor: anObject [
-    ^ anObject class = ToButton
+
+	^ (super canBeUsedFor: anObject) and: [ anObject class = ToButton ]
 ]
 
 { #category : #getter }

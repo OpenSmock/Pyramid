@@ -1,25 +1,31 @@
 Class {
 	#name : #PyramidToButtonIconCommand,
 	#superclass : #PyramidAbstractBlocCommand,
-	#instVars : [
-		'lastIconName'
-	],
 	#category : #'Pyramid-plugin-element'
 }
 
 { #category : #testing }
 PyramidToButtonIconCommand >> canBeUsedFor: anObject [
-    ^ anObject class = ToButton
+
+	^ (super canBeUsedFor: anObject) and: [ anObject class = ToButton ]
 ]
 
 { #category : #getter }
 PyramidToButtonIconCommand >> getValueFor: aToButton [
-    ^ lastIconName ifNil: [ '' ]
+
+	| form |
+	aToButton icon ifNil: [ ^ '' ].
+	form := aToButton icon image innerFormImage.
+	^ Smalltalk ui icons allIconNames
+		  detect: [ :name | (Smalltalk ui icons iconNamed: name) = form ]
+		  ifNone: [ '' ]
 ]
 
 { #category : #setter }
 PyramidToButtonIconCommand >> setValueFor: aToButton with: aSymbol [
 
-	lastIconName := aSymbol.
-	aToButton iconImage: (Smalltalk ui icons iconNamed: aSymbol)
+	| icon |
+	icon := ToIcon new.
+	icon iconImage: (Smalltalk ui icons iconNamed: aSymbol).
+	aToButton icon: icon
 ]

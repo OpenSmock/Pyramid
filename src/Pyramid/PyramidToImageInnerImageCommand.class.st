@@ -1,27 +1,27 @@
 Class {
 	#name : #PyramidToImageInnerImageCommand,
 	#superclass : #PyramidAbstractBlocCommand,
-	#instVars : [
-		'lastInnerImage'
-	],
 	#category : #'Pyramid-plugin-element'
 }
 
 { #category : #testing }
 PyramidToImageInnerImageCommand >> canBeUsedFor: anObject [
 
-	^ anObject class = ToImage
+	^ (super canBeUsedFor: anObject) and: [ anObject class = ToImage ]
 ]
 
 { #category : #getter }
 PyramidToImageInnerImageCommand >> getValueFor: aToImage [
 
-    ^ lastInnerImage ifNil: [ '' ]
+	| form |
+	aToImage innerFormImage ifNil: [ ^ '' ].
+	form := aToImage innerFormImage.
+	^ Smalltalk ui icons allIconNames
+		  detect: [ :name | (Smalltalk ui icons iconNamed: name) = form ]
+		  ifNone: [ '' ]
 ]
 
 { #category : #setter }
 PyramidToImageInnerImageCommand >> setValueFor: aToImage with: aSymbol [
-
-    lastInnerImage := aSymbol.
     aToImage innerImage: (Smalltalk ui icons iconNamed: aSymbol)
 ]
