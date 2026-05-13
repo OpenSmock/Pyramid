@@ -19,6 +19,24 @@ PyramidIconInputPresenter >> defaultLayout [
         yourself
 ]
 
+{ #category : #initialization }
+PyramidIconInputPresenter >> initializePresenters [
+
+	whenValueChangedDo := [ :v |  ].
+	list := SpFilteringListPresenter new.
+	list items:
+		Smalltalk ui icons allIconNames asSortedCollection asArray.
+	list display: [ :name | name ].
+	list displayIcon: [ :name | Smalltalk ui icons iconNamed: name ].
+	textInput := SpTextInputFieldPresenter new.
+	textInput whenSubmitDo: [ :text | whenValueChangedDo value: text ].
+	button := SpButtonPresenter new
+		          help: 'Select an icon';
+		          icon: (Smalltalk ui icons iconNamed: #image);
+		          action: [ self openIconModal ];
+		          yourself
+]
+
 { #category : #'as yet unclassified' }
 PyramidIconInputPresenter >> openIconModal [
 

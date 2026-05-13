@@ -134,3 +134,24 @@ PyramidElementPlugin >> connectOn: aPyramidEditor [
     propertiesManager projectModel: aPyramidEditor projectModel.
     propertiesManager commandExecutor: aPyramidEditor commandExecutor.
 ]
+
+{ #category : #initialization }
+PyramidElementPlugin >> initialize [
+
+	propertiesManager := PyramidPropertiesManagerForSelection new.
+
+	"BlElements properties"
+	propertiesManager addProperty: self class geometry.
+	propertiesManager addProperty: self class cornerRadii.
+
+	"ToButton properties"
+	propertiesManager addProperty: self class toButtonLabel.
+	propertiesManager addProperty: self class toButtonIcon.
+	propertiesManager addProperty: self class toButtonEndIcon.
+
+	"ToImage properties"
+	propertiesManager addProperty: self class toImageInnerImage.
+
+	"ToLabel properties"
+	propertiesManager addProperty: self class toLabelText
+]
