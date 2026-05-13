@@ -1,16 +1,23 @@
 Class {
 	#name : #PyramidGeometryCommand,
 	#superclass : #PyramidAbstractBlocCommand,
-	#category : #'Pyramid-Bloc-plugin-bloc-geometry'
+	#category : #'Pyramid-plugin-element'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : #testing }
+PyramidGeometryCommand >> canBeUsedFor: anObject [
+
+	^ (super canBeUsedFor: anObject) and: [
+		  anObject class = BlElement ]
+]
+
+{ #category : #getter }
 PyramidGeometryCommand >> getValueFor: aBlElement [
 
 	^ aBlElement geometry
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #setter }
 PyramidGeometryCommand >> setValueFor: aBlElement with: anArgument [
 
 	aBlElement geometry: anArgument

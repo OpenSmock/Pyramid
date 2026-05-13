@@ -112,15 +112,15 @@ PyramidLibraryPresenter >> initializePresenters [
 				                     title: 'Element-Name'
 				                     evaluated: [ :each | each name ]);
 		                    whenSelectedItemChangedDo: [ :e |
-			                    self addButtonPresenter enabled: e isNotNil.
-			                    self addButtonPresenter action: [
-					                    self libraryController addNewElement: e ].
-			                    e
-				                    ifNil: [
-					                    self imagePresenter image:
-							                    (Form extent: 1 asPoint) ]
-				                    ifNotNil: [
-					                    self imagePresenter image: e asForm ] ].
+				                    self addButtonPresenter enabled: e isNotNil.
+				                    self addButtonPresenter action: [
+						                    self libraryController addNewElement: e ].
+				                    e
+					                    ifNil: [
+						                    self imagePresenter image:
+								                    (Form extent: 1 asPoint) ]
+					                    ifNotNil: [
+						                    self imagePresenter image: e asForm ] ].
 	imagePresenter := SpImagePresenter new
 		                  autoScale: true;
 		                  yourself.
