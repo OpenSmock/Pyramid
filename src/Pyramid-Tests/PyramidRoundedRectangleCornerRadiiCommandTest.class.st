@@ -12,7 +12,7 @@ PyramidRoundedRectangleCornerRadiiCommandTest >> command [
 	^ PyramidRoundedRectangleCornerRadiiCommand new
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 PyramidRoundedRectangleCornerRadiiCommandTest >> targetContainers [
 
 	^ {
@@ -30,7 +30,7 @@ PyramidRoundedRectangleCornerRadiiCommandTest >> targetContainers [
 			   prop: (BlCornerRadii radius: 20)) }
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 PyramidRoundedRectangleCornerRadiiCommandTest >> targetsCannotBeUsedFor [
 	"override if needed"
 

@@ -4,13 +4,13 @@ Class {
 	#category : #'Pyramid-Bloc-plugin-bloc'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : #getter }
 PyramidVisibilityCommand >> getValueFor: aBlElement [
 
 	^ aBlElement visibility
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #setter }
 PyramidVisibilityCommand >> setValueFor: aBlElement with: anArgument [
 
 	aBlElement visibility: anArgument

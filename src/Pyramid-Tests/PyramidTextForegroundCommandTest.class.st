@@ -18,7 +18,7 @@ PyramidTextForegroundCommandTest >> command [
 	^ PyramidTextForegroundCommand new
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 PyramidTextForegroundCommandTest >> targetContainers [
 
 	^ {

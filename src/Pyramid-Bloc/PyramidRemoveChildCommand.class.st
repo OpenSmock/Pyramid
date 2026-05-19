@@ -4,13 +4,13 @@ Class {
 	#category : #'Pyramid-Bloc-plugin-bloc'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : #history }
 PyramidRemoveChildCommand >> commandInverse [
 
 	^ PyramidAddChildCommand new
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #setter }
 PyramidRemoveChildCommand >> setValueFor: aBlElement with: aChildToRemove [
 
 	aBlElement removeChild: aChildToRemove

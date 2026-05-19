@@ -12,7 +12,7 @@ PyramidBackgroundPaintRadialInnerRadiusCommandTest >> command [
 	^ PyramidBackgroundPaintRadialInnerRadiusCommand new
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 PyramidBackgroundPaintRadialInnerRadiusCommandTest >> targetContainers [
 
 	^ {
@@ -66,7 +66,7 @@ PyramidBackgroundPaintRadialInnerRadiusCommandTest >> targetContainers [
 			   prop: 600) }
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 PyramidBackgroundPaintRadialInnerRadiusCommandTest >> targetsCannotBeUsedFor [
 	"override if needed"
 

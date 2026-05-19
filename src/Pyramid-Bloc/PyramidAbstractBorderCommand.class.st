@@ -20,7 +20,7 @@ PyramidAbstractBorderCommand >> borderBuilderOf: aBlElement [
 	^ builder
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #setter }
 PyramidAbstractBorderCommand >> setValueFor: aBlElement with: anArgument [
 
 	| builder |

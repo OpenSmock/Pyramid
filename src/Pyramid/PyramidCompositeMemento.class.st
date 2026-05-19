@@ -34,5 +34,12 @@ PyramidCompositeMemento >> mementos: anObject [
 { #category : #'window management' }
 PyramidCompositeMemento >> restore [
 
-	self mementos do: [ :each | each restore ]
+	(self mementos allSatisfy: [ :m | m arguments isKindOf: BlElement ])
+		ifFalse: [
+				self mementos do: [ :each | each restore ].
+				^ self ].
+	(self mementos asSortedCollection: [ :a :b |
+			 (a arguments userData at: #pyramidRemovedAtIndex ifAbsent: [ 0 ])
+			 < (b arguments userData at: #pyramidRemovedAtIndex ifAbsent: [ 0 ]) ])
+		do: [ :each | each restore ]
 ]

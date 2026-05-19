@@ -12,7 +12,7 @@ PyramidBackgroundPaintLinearStartCommandTest >> command [
 	^ PyramidBackgroundPaintLinearStartCommand new
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 PyramidBackgroundPaintLinearStartCommandTest >> targetContainers [
 
 	^ {
@@ -58,7 +58,7 @@ PyramidBackgroundPaintLinearStartCommandTest >> targetContainers [
 			   prop: 0 @ 10) }
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 PyramidBackgroundPaintLinearStartCommandTest >> targetsCannotBeUsedFor [
 	"override if needed"
 

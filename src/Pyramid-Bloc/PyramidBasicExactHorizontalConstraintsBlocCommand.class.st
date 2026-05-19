@@ -11,13 +11,13 @@ PyramidBasicExactHorizontalConstraintsBlocCommand >> canBeUsedFor: anObject [
 			  anObject constraints horizontal resizer isExact ]
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #getter }
 PyramidBasicExactHorizontalConstraintsBlocCommand >> getValueFor: anObject [
 
 ^ anObject constraints horizontal resizer size
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #setter }
 PyramidBasicExactHorizontalConstraintsBlocCommand >> setValueFor: anObject with: anArgument [
 
 	^ anObject constraintsDo: [ :c | c horizontal exact: anArgument ] 

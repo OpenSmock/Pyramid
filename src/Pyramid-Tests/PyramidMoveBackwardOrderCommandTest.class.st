@@ -6,7 +6,7 @@ Class {
 	#category : #'Pyramid-Tests-cases-plugin-bloc-order'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 PyramidMoveBackwardOrderCommandTest >> argumentsForHistory [
 
 	^ { 3. 2. 1 }
@@ -30,7 +30,7 @@ PyramidMoveBackwardOrderCommandTest >> makeElementWithChildren [
 	^ parent
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 PyramidMoveBackwardOrderCommandTest >> targetContainers [
 
 	| test1 test2 test3 |
@@ -53,7 +53,7 @@ PyramidMoveBackwardOrderCommandTest >> targetContainers [
 			   prop: 3) }
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 PyramidMoveBackwardOrderCommandTest >> targetsCanBeUsedFor [
 
 	^ self targetContainers flatCollect: [ :each |
@@ -61,7 +61,7 @@ PyramidMoveBackwardOrderCommandTest >> targetsCanBeUsedFor [
 			  each targetNoProp } ]
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 PyramidMoveBackwardOrderCommandTest >> targetsCannotBeUsedFor [
 	"override if needed"
 

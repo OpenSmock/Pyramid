@@ -4,13 +4,13 @@ Class {
 	#category : #'Pyramid-Bloc-plugin-bloc-layout'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : #getter }
 PyramidBasicHorizontalConstraintsBlocCommand >> getValueFor: anObject [
 
 	^ anObject constraints horizontal
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #private }
 PyramidBasicHorizontalConstraintsBlocCommand >> saveStatesOf: aCollection withCommand: aCommand withArguments: anArguments [
 
 	| mementos |
@@ -26,7 +26,7 @@ PyramidBasicHorizontalConstraintsBlocCommand >> saveStatesOf: aCollection withCo
 		  yourself
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #setter }
 PyramidBasicHorizontalConstraintsBlocCommand >> setValueFor: anObject with: anArgument [
 
 	anArgument isSymbol

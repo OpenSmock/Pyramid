@@ -11,19 +11,19 @@ PyramidBackgroundPaintCommand >> canBeUsedFor: anObject [
 		  anObject background isKindOf: BlPaintBackground ]
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #getter }
 PyramidBackgroundPaintCommand >> getGroupedValueFor: aBlElement [
 
 	^ aBlElement background paint class
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #getter }
 PyramidBackgroundPaintCommand >> getValueFor: aBlElement [
 
 	^ aBlElement background paint
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #setter }
 PyramidBackgroundPaintCommand >> setValueFor: aBlElement with: anArgument [
 
 	aBlElement background: (BlBackground paint: anArgument value)
