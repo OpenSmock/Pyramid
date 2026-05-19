@@ -49,7 +49,7 @@ PyramidRemoveSelectedElementsCommand >> saveIndexOf: anElement [
 	index := anElement parent
 		         ifNotNil: [ :p | p children indexOf: anElement ]
 		         ifNil: [ 0 ].
-	anElement userData at: #removedAtIndex put: index
+	anElement userData at: #pyramidRemovedAtIndex put: index
 ]
 
 { #category : #history }

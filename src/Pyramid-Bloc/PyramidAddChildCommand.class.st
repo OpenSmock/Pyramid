@@ -14,7 +14,7 @@ PyramidAddChildCommand >> commandInverse [
 PyramidAddChildCommand >> savedIndexFor: aChild in: aParent [
 
 	| index |
-	index := aChild userData at: #removedAtIndex ifAbsent: [ 0 ].
+	index := aChild userData at: #pyramidRemovedAtIndex ifAbsent: [ 0 ].
 	(index = 0 or: [ index > aParent children size ])
 		ifTrue: [ ^ aParent children size + 1 ]
 		ifFalse: [ ^ index ]
