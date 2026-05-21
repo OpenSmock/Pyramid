@@ -7,17 +7,15 @@ Class {
 { #category : #testing }
 PyramidToLabelTextCommand >> canBeUsedFor: anObject [
 
-	^  (super canBeUsedFor: anObject) and: [anObject class = ToLabel]
+	^ (super canBeUsedFor: anObject) and: [ anObject class = ToLabel ]
 ]
 
 { #category : #getter }
 PyramidToLabelTextCommand >> getValueFor: aToLabel [
-
-	^ aToLabel text asString ifNil: [ '' ] 
+    ^ aToLabel text asString ifNil: [ '' ]
 ]
 
 { #category : #setter }
 PyramidToLabelTextCommand >> setValueFor: aToLabel with: aString [
-
-	aToLabel text: aString
+    aToLabel text: aString
 ]

@@ -63,7 +63,7 @@ PyramidEditorPlugin class >> toButtonEndIcon [
 
 	| property |
 	property := PyramidProperty new
-		            name: 'EndIcon';
+		            name: 'End Icon';
 		            command: PyramidToButtonEndIconCommand new;
 		            inputPresenterClass: PyramidIconInputPresenter;
 		            yourself.
@@ -99,7 +99,7 @@ PyramidEditorPlugin class >> toImageInnerImage [
 
 	| property |
 	property := PyramidProperty new
-		            name: 'InnerImage';
+		            name: 'Image';
 		            command: PyramidToImageInnerImageCommand new;
 		            inputPresenterClass: PyramidIconInputPresenter;
 		            yourself.

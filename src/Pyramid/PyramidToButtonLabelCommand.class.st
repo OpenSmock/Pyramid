@@ -7,16 +7,18 @@ Class {
 { #category : #testing }
 PyramidToButtonLabelCommand >> canBeUsedFor: anObject [
 
-	^ (super canBeUsedFor: anObject) and: [ anObject class = ToButton ]
+	^ (super canBeUsedFor: anObject) and: [
+		  anObject class = ToButton  ]
 ]
 
 { #category : #getter }
-PyramidToButtonLabelCommand >> getValueFor: aToButton [
+PyramidToButtonLabelCommand >> getValueFor: anObject [
 
-	^ aToButton labelText ifNil: [ '' ]
+	^ anObject labelText ifNil: [ '' ]
 ]
 
 { #category : #setter }
-PyramidToButtonLabelCommand >> setValueFor: aToButton with: aString [
-    aToButton labelText: aString
+PyramidToButtonLabelCommand >> setValueFor: anObject with: aString [
+
+	anObject labelText: aString
 ]

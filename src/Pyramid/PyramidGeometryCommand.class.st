@@ -6,8 +6,7 @@ Class {
 
 { #category : #testing }
 PyramidGeometryCommand >> canBeUsedFor: anObject [
-
-	^ (super canBeUsedFor: anObject) and: [ anObject class = BlElement ]
+    ^ (super canBeUsedFor: anObject) and: [ anObject class = BlElement ]
 ]
 
 { #category : #getter }
