@@ -33,6 +33,12 @@ PyramidExternalRessourceProxy class >> fromTarget: aTarget selector: aSelector a
 			postConstructionBlock: aBlock)
 ]
 
+{ #category : #'as yet unclassified' }
+PyramidExternalRessourceProxy >> allSetterAndGettersForMyStash [
+
+	^ self stashAccessors
+]
+
 { #category : #converting }
 PyramidExternalRessourceProxy >> asStashConstructor [
 

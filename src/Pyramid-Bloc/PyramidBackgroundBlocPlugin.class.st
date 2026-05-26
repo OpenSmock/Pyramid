@@ -238,8 +238,7 @@ PyramidBackgroundBlocPlugin class >> backgroundType [
 	property := PyramidProperty new
 		            name: 'Background Type';
 		            command: PyramidBackgroundTypeCommand new;
-		            inputPresenterClass:
-			            PyramidMagicButtonsInputPresenter;
+		            inputPresenterClass: PyramidMagicButtonsInputPresenter;
 		            yourself.
 	property inputPresenterModel
 		addButtonModel: (PyramidMagicButtonModel new
@@ -265,7 +264,14 @@ PyramidBackgroundBlocPlugin class >> backgroundType [
 				 helpNotSelected: 'Set the value to image.';
 				 label: 'Image';
 				 inputValue: [
-					 BlImageBackground image: (Smalltalk ui icons iconNamed: #pharoBig) ];
+						 BlImageBackground image: (PyramidExternalRessourceProxy new
+									  pyramidExternalRessourceSource:
+										  (PyramidExternalRessourceSource new
+											   target: Object;
+											   selector: #iconNamed:;
+											   arguments: { #pharoBig };
+											   yourself);
+									  yourself) ];
 				 inputValidation: [ :value | value = BlImageBackground ];
 				 yourself).
 	^ property
