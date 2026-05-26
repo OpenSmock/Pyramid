@@ -98,7 +98,7 @@ PyramidSinglePopingPresenterBuilder >> buildPresenterWithButtonsFor: anAssociati
 			                    self property commandExecutor
 				                    use: self property command
 				                    on: self cluster allTargets
-				                    with: input value ].
+				                    with: input value value ].
 	layout := self
 		          layoutForLabel: aString
 		          input: input

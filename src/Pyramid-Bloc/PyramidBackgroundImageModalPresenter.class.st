@@ -259,7 +259,7 @@ PyramidBackgroundImageModalPresenter >> proxyLayout [
 { #category : #'special objects' }
 PyramidBackgroundImageModalPresenter >> proxyObject [
 
-	| receiver selector arguments proxySource proxy |
+	| receiver selector arguments proxySource |
 	receiver := self inputReceiverProxy
 		            evaluate: self inputReceiverProxy text
 		            onCompileError: [ :err | ^ self ]
