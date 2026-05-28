@@ -186,20 +186,13 @@ PyramidSelectionMakerExtension >> selectAllElementsInBound: aBound [
 { #category : #'as yet unclassified' }
 PyramidSelectionMakerExtension >> selectFirstElementAt: aPosition [
 
-	| selectedElements filtered isInnerOfImage isInnerOfLabel isLabelOfButton |
+	| selectedElements filtered |
 	self projectModel ifNil: [ ^ {  } ].
 	selectedElements := self projectModel allElements select: [ :each |
 		                    each boundsInSpace containsPoint: aPosition ].
 	selectedElements ifEmpty: [ ^ {  } ].
-	filtered := selectedElements reject: [ :e |
-			            isInnerOfImage := e class = BlElement and: [
-				                              e parent class = ToImage ].
-			            isInnerOfLabel := e class = ToLabelMonoLineInnerElement
-				                              and: [ e parent class = ToLabel ].
-			            isLabelOfButton := e class = ToLabel and: [
-				                               e parent parent class = ToButton ].
-			            isInnerOfImage or: [
-				            isInnerOfLabel or: [ isLabelOfButton ] ] ].
+	filtered := selectedElements select: [ :e |
+		            e parentsShouldSerializeChildren ].
 	filtered ifEmpty: [ ^ { selectedElements last } ].
 	^ { filtered last }
 ]
