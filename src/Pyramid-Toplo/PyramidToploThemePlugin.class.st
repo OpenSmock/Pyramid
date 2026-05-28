@@ -110,67 +110,65 @@ PyramidToploThemePlugin class >> toploIconThemeCategoryFromClass: aClass withCat
 PyramidToploThemePlugin class >> toploLibraryCategory [
 
 	<pyramidLibraryCategory: 1>
-	| classes elements knownBroken testClass okElements unserializedElements |
-	knownBroken := #( #ToCircularMenuInnerElement
-	                  #ToCircularMenuList #ToExPicsumNode #ToAnimatedIcon ).
+	| allowedClasses allClasses elements knownNotUsable testClass okElements unserializedElements |
+	allowedClasses := {
+		                  ToButton.
+		                  ToLabel.
+		                  ToImage.
+		                  ToAlbum.
+		                  ToTextField.
+		                  ToListElement. }.
+	knownNotUsable := #( #ToCircularMenuInnerElement
+	                     #ToCircularMenuList #ToExPicsumNode
+	                     #ToAnimatedIcon ).
 	testClass := Smalltalk at: #ToSerializerTest.
-	classes := ToElement allSubclasses , { ToElement }.
-	classes := classes reject: [ :each |
-		           each isAbstract or: [
-			           (each name findString: 'Abstract') > 0 ] ].
-	elements := classes collect: [ :class |
-			            | broken serializable status |
-			            broken := [
-				                      class new.
-				                      false ]
-				                      on: Error
-				                      do: [ :e | true ].
-			            broken := broken or: [
-				                      knownBroken includes: class name asSymbol ].
+	allClasses := ToElement allSubclasses , { ToElement }.
+	allClasses := allClasses reject: [ :each |
+		              each isAbstract or: [
+			              (each name findString: 'Abstract') > 0 ] ].
+	elements := allClasses collect: [ :class |
+			            | notUsable serializable status |
+			            notUsable := [
+				                         class new.
+				                         false ]
+				                         on: Error
+				                         do: [ :e | true ].
+			            notUsable := notUsable or: [
+				                         knownNotUsable includes:
+					                         class name asSymbol ].
 			            serializable := [
 				                            | suite prefix |
 				                            prefix := 'test' , class name.
 				                            suite := testClass suite tests
 					                                     select: [ :t |
-							                                     (t selector beginsWith:
-								                                      prefix) and: [
-									                                     t selector size
-									                                     = prefix size or: [
-											                                     | suffix |
-											                                     suffix := t selector
-												                                               copyFrom:
-												                                               prefix size
-												                                               + 1
-												                                               to:
-												                                               t selector
-													                                               size.
-											                                     suffix allSatisfy: [
-												                                     :c | c isDigit ] ] ] ].
+					                                     t selector beginsWith:
+						                                     prefix ].
 				                            suite isNotEmpty ]
 				                            on: Error
 				                            do: [ false ].
-			            status := broken
-				                      ifTrue: [ #broken ]
+			            status := notUsable
+				                      ifTrue: [ #notUsable ]
 				                      ifFalse: [
-						                      serializable
+						                      ((allowedClasses includes: class) and: [
+							                       serializable ])
 							                      ifTrue: [ #ok ]
-							                      ifFalse: [ #unserialized ] ].
+							                      ifFalse: [ #unstable ] ].
 			            PyramidLibraryElement new
 				            icon:
-					            (Smalltalk ui icons iconNamed: (status = #broken
+					            (Smalltalk ui icons iconNamed: (status = #notUsable
 								              ifTrue: [ #error ]
 								              ifFalse: [
-										              status = #unserialized
+										              status = #unstable 
 											              ifTrue: [ #warning ]
 											              ifFalse: [ class systemIconName ] ]));
 				            name: class name;
 				            block: [ { class new } ];
 				            status: status;
 				            yourself ].
-	elements := elements reject: [ :e | e status = #broken ].
+	elements := elements reject: [ :e | e status = #notUsable ].
 	okElements := elements select: [ :e | e status = #ok ].
 	unserializedElements := elements select: [ :e |
-		                        e status = #unserialized ].
+		                        e status = #unstable ].
 	^ {
 		  (PyramidLibraryCategory new
 			   name: 'Toplo';
