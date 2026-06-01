@@ -10,6 +10,22 @@ Class {
 	#category : #'Pyramid-Bloc-plugin-navigation'
 }
 
+{ #category : #accessing }
+PyramidLibraryElement class >> statusNotUsable [
+    ^ #notUsable
+]
+
+{ #category : #accessing }
+PyramidLibraryElement class >> statusOk [
+
+	^ #ok
+]
+
+{ #category : #accessing }
+PyramidLibraryElement class >> statusUnstable [
+    ^ #unstable
+]
+
 { #category : #converting }
 PyramidLibraryElement >> asArray [
 
@@ -90,7 +106,7 @@ PyramidLibraryElement >> name: anObject [
 { #category : #accessing }
 PyramidLibraryElement >> status [
 
-	^ status ifNil: [ #ok ]
+	^ status ifNil: [self class statusUnstable]
 ]
 
 { #category : #accessing }

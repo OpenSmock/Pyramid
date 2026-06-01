@@ -113,11 +113,13 @@ PyramidToploThemePlugin class >> toploLibraryCategory [
 	| allowedClasses allClasses elements knownNotUsable testClass okElements unserializedElements |
 	allowedClasses := {
 		                  ToButton.
+		                  ToRadioButton.
+		                  ToToggleButton.
 		                  ToLabel.
 		                  ToImage.
 		                  ToAlbum.
 		                  ToTextField.
-		                  ToListElement. }.
+		                  ToListElement }.
 	knownNotUsable := #( #ToCircularMenuInnerElement
 	                     #ToCircularMenuList #ToExPicsumNode
 	                     #ToAnimatedIcon ).
@@ -147,36 +149,41 @@ PyramidToploThemePlugin class >> toploLibraryCategory [
 				                            on: Error
 				                            do: [ false ].
 			            status := notUsable
-				                      ifTrue: [ #notUsable ]
+				                      ifTrue: [
+				                      PyramidLibraryElement statusNotUsable ]
 				                      ifFalse: [
 						                      ((allowedClasses includes: class) and: [
 							                       serializable ])
-							                      ifTrue: [ #ok ]
-							                      ifFalse: [ #unstable ] ].
+							                      ifTrue: [ PyramidLibraryElement statusOk ]
+							                      ifFalse: [
+							                      PyramidLibraryElement statusUnstable ] ].
 			            PyramidLibraryElement new
-				            icon:
-					            (Smalltalk ui icons iconNamed: (status = #notUsable
+				            icon: (Smalltalk ui icons iconNamed:
+							             (status = PyramidLibraryElement statusNotUsable
 								              ifTrue: [ #error ]
 								              ifFalse: [
-										              status = #unstable 
+										              status = PyramidLibraryElement statusUnstable
 											              ifTrue: [ #warning ]
 											              ifFalse: [ class systemIconName ] ]));
 				            name: class name;
 				            block: [ { class new } ];
 				            status: status;
 				            yourself ].
-	elements := elements reject: [ :e | e status = #notUsable ].
-	okElements := elements select: [ :e | e status = #ok ].
+	elements := elements reject: [ :e |
+		            e status = PyramidLibraryElement statusNotUsable ].
+	okElements := elements select: [ :e |
+		              e status = PyramidLibraryElement statusOk ].
 	unserializedElements := elements select: [ :e |
-		                        e status = #unstable ].
+		                        e status
+		                        = PyramidLibraryElement statusUnstable ].
 	^ {
 		  (PyramidLibraryCategory new
-			   name: 'Toplo';
-			   icon: (Smalltalk ui icons iconNamed: #box);
+			   name: 'Toplo-Verified';
+			   icon: (Smalltalk ui icons iconNamed: #smallOk);
 			   elements: (okElements sorted: [ :a :b | a name < b name ]);
 			   yourself).
 		  (PyramidLibraryCategory new
-			   name: 'Unstable';
+			   name: 'Toplo-Unverified';
 			   icon: (Smalltalk ui icons iconNamed: #warning);
 			   elements:
 				   (unserializedElements sorted: [ :a :b | a name < b name ]);
