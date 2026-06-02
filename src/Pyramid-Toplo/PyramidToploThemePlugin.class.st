@@ -118,8 +118,7 @@ PyramidToploThemePlugin class >> toploLibraryCategory [
 		                  ToLabel.
 		                  ToImage.
 		                  ToAlbum.
-		                  ToTextField.
-		                  ToListElement }.
+		                  ToTextField}.
 	knownNotUsable := #( #ToCircularMenuInnerElement
 	                     #ToCircularMenuList #ToExPicsumNode
 	                     #ToAnimatedIcon ).
