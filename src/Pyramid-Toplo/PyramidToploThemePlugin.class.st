@@ -45,9 +45,7 @@ PyramidToploThemePlugin class >> defaultThemeSettingOn: aBuilder [
 PyramidToploThemePlugin class >> toploAntIconCategory [
 
 	<pyramidLibraryCategory: 11>
-	^ PyramidToploThemePlugin
-		  toploIconThemeCategoryFromClass: ToAntDesignIconProvider
-		  withCategoryPrefix: 'Ant Design - '
+	^ PyramidIconInputPresenter toploAntIconCategory
 ]
 
 { #category : #adding }
@@ -140,9 +138,7 @@ PyramidToploThemePlugin class >> toploLibraryCategory [
 PyramidToploThemePlugin class >> toploMaterialIconCategory [
 
 	<pyramidLibraryCategory: 12>
-	^ PyramidToploThemePlugin
-		  toploIconThemeCategoryFromClass: ToMaterialDesignIconProvider
-		  withCategoryPrefix: 'Material Design - '
+	^ PyramidIconInputPresenter toploMaterialIconCategory
 ]
 
 { #category : #adding }

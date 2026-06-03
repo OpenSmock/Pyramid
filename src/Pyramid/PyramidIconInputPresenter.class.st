@@ -11,6 +11,38 @@ Class {
 	#category : #'Pyramid-specs-custom'
 }
 
+{ #category : #private }
+PyramidIconInputPresenter class >> findToploIconNamed: aSymbol [
+    ^ (self
+        toploIconThemeCategoryFromClass: ToAntDesignIconProvider
+        withCategoryPrefix: '') ,
+      (self
+        toploIconThemeCategoryFromClass: ToMaterialDesignIconProvider
+        withCategoryPrefix: '')
+      inject: nil
+      into: [ :found :cat |
+          found ifNil: [
+              cat elements
+                  detect: [ :e | e name = aSymbol ]
+                  ifNone: [ nil ] ] ]
+]
+
+{ #category : #private }
+PyramidIconInputPresenter class >> toImageFromName: aSymbol [
+    | element |
+    (Smalltalk ui icons iconNamed: aSymbol)
+        = (Smalltalk ui icons iconNamed: #blank) ifTrue: [
+            element := self findToploIconNamed: aSymbol.
+            element ifNotNil: [ ^ element block value first ] ].
+    ^ ToImage new
+          innerImage: (PyramidExternalRessourceProxy fromSource:
+                       (PyramidExternalRessourceSource
+                            target: Object
+                            selector: #iconNamed:
+                            arguments: { aSymbol }));
+          yourself
+]
+
 { #category : #adding }
 PyramidIconInputPresenter class >> toploAntIconCategory [
 
@@ -88,48 +120,59 @@ PyramidIconInputPresenter class >> toploMaterialIconCategory [
 
 { #category : #private }
 PyramidIconInputPresenter >> buildIconPickerPresenter [
-    | categories presenter |
-    categories := OrderedCollection new.
-    categories add: (PyramidLibraryCategory new
-             name: 'Smalltalk Icons';
-             icon: (Smalltalk ui icons iconNamed: #image);
-             elements:
-                 (Smalltalk ui icons allIconNames asSortedCollection collect: [
-                              :name |
-                              PyramidLibraryElement new
-                                  name: name;
-                                  icon: (Smalltalk ui icons iconNamed: name);
-                                  yourself ]);
-             yourself).
-    categories addAll: self class toploAntIconCategory.
-    categories addAll: self class toploMaterialIconCategory.
-    categoryList := SpFilteringListPresenter new.
-    categoryList
-        items: categories asArray;
-        display: [ :category | category name ];
-        displayIcon: [ :category | category icon ];
-        itemFilter: [ :category :filter |
-                filter isEmpty or: [
-                        category name asLowercase includesSubstring: filter asLowercase ] ].
-    iconList := SpListPresenter new.
-    iconList
-        display: [ :element | element name ];
-        displayIcon: [ :element |
-                [ element asForm scaledToSize: 16 @ 16 ]
-                    on: Error
-                    do: [ element icon ifNil: [ #blank ] ] ].
-    categoryList whenSelectionChangedDo: [ :selection |
-            selection isEmpty
-                ifTrue: [ iconList items: #(  ) ]
-                ifFalse: [
-                iconList items: selection selectedItem elements asArray ] ].
-    categories isNotEmpty ifTrue: [ categoryList selectIndex: 1 ].
-    presenter := SpPresenter new.
-    presenter layout: (SpBoxLayout newHorizontal
-             add: categoryList width: 220;
-             add: iconList;
-             yourself).
-    ^ presenter
+
+	| categories presenter |
+	categories := OrderedCollection new.
+	categories add: (PyramidLibraryCategory new
+			 name: 'Smalltalk Icons';
+			 icon: (Smalltalk ui icons iconNamed: #image);
+			 elements:
+				 (Smalltalk ui icons allIconNames asSortedCollection collect: [
+							  :name |
+							  PyramidLibraryElement new
+								  name: name asString;
+								  icon: (Smalltalk ui icons iconNamed: name);
+								  yourself ]);
+			 yourself).
+
+	categories addAll: self class toploAntIconCategory.
+	categories addAll: self class toploMaterialIconCategory.
+
+	categoryList := SpListPresenter new.
+	categoryList
+		items: categories asArray;
+		display: [ :category | category name ];
+		displayIcon: [ :category | category icon ].
+
+
+	iconList := SpFilteringListPresenter new.
+	iconList
+		display: [ :element | element name ];
+		displayIcon: [ :element |
+				| icon |
+				icon := element icon.
+				(icon isNil or: [ icon = (Smalltalk ui icons iconNamed: #blank) ])
+					ifTrue: [
+							[ element asForm scaledToSize: 16 @ 16 ]
+								on: Error
+								do: [ Smalltalk ui icons iconNamed: #blank ] ]
+					ifFalse: [ icon ] ];
+		itemFilter: [ :element :filter |
+				filter isEmpty or: [
+						element asLowercase includesSubstring: filter asLowercase ] ].
+
+	categoryList whenSelectionChangedDo: [ :selection |
+			selection isEmpty
+				ifTrue: [ iconList items: #(  ) ]
+				ifFalse: [
+				iconList items: selection selectedItem elements asArray ] ].
+	categories isNotEmpty ifTrue: [ categoryList selectIndex: 1 ].
+	presenter := SpPresenter new.
+	presenter layout: (SpBoxLayout newHorizontal
+			 add: categoryList width: 220;
+			 add: iconList;
+			 yourself).
+	^ presenter -> iconList
 ]
 
 { #category : #layout }
@@ -139,29 +182,6 @@ PyramidIconInputPresenter >> defaultLayout [
           add: textInput;
           add: button width: 24;
           yourself
-]
-
-{ #category : #private }
-PyramidIconInputPresenter >> iconFormFromName: aSymbol [
-
-	| iconImage element |
-	iconImage := Smalltalk ui icons iconNamed: aSymbol.
-	iconImage = (Smalltalk ui icons iconNamed: #blank) ifTrue: [
-			element := (PyramidToploThemePlugin
-				            toploIconThemeCategoryFromClass:
-				            ToAntDesignIconProvider
-				            withCategoryPrefix: '') , (PyramidToploThemePlugin
-				            toploIconThemeCategoryFromClass:
-				            ToMaterialDesignIconProvider
-				            withCategoryPrefix: '')
-				           inject: nil
-				           into: [ :found :cat |
-						           found ifNil: [
-							           cat elements
-								           detect: [ :e | e name = aSymbol ]
-								           ifNone: [ nil ] ] ].
-			element ifNotNil: [ ^ element block value first innerFormImage ] ].
-	^ iconImage
 ]
 
 { #category : #initialization }
@@ -180,8 +200,10 @@ PyramidIconInputPresenter >> initializePresenters [
 { #category : #private }
 PyramidIconInputPresenter >> openIconModal [
 
-	| modalPresenter window dialog selected |
-	modalPresenter := self buildIconPickerPresenter.
+	| result modalPresenter window dialog selected |
+	result := self buildIconPickerPresenter.
+	modalPresenter := result key.
+	iconList := result value.
 	window := modalPresenter asModalWindow.
 	window title: 'Choose an icon'.
 	window centered.
