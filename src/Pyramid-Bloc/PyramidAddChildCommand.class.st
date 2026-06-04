@@ -25,5 +25,6 @@ PyramidAddChildCommand >> setValueFor: aBlElement with: aChildToAdd [
 
 	aBlElement
 		addChild: aChildToAdd
-		at: (self savedIndexFor: aChildToAdd in: aBlElement)
+		at: (self savedIndexFor: aChildToAdd in: aBlElement).
+	aChildToAdd userData removeKey: #pyramidRemovedAtIndex ifAbsent: [ ]
 ]
