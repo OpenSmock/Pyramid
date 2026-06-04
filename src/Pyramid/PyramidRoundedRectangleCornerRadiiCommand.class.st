@@ -5,7 +5,7 @@ Class {
 }
 
 { #category : #testing }
-PyramidRoundedRectangleCornerRadiiCommand >> canBeUsedFor: anObject [
+PyramidRoundedRectangleCornerRadiiCommand >> canBeUsedFor: anObject [ 
 
 	^ (super canBeUsedFor: anObject) and: [
 			  anObject class = BlElement and: [
@@ -13,13 +13,13 @@ PyramidRoundedRectangleCornerRadiiCommand >> canBeUsedFor: anObject [
 ]
 
 { #category : #getter }
-PyramidRoundedRectangleCornerRadiiCommand >> getValueFor: aBlElement [
+PyramidRoundedRectangleCornerRadiiCommand >> getValueFor: aBlElement [ 
 
 	^ aBlElement geometry cornerRadii
 ]
 
 { #category : #setter }
-PyramidRoundedRectangleCornerRadiiCommand >> setValueFor: aBlElement with: anArgument [
+PyramidRoundedRectangleCornerRadiiCommand >> setValueFor: aBlElement with: anArgument [ 
 
 	aBlElement geometry:
 		(BlRoundedRectangleGeometry cornerRadii: anArgument)
