@@ -59,6 +59,6 @@ PyramidDynamicLayoutStrategy >> topLayoutFor: aWindow [
 	layout add: SpNullPresenter new expand: true.
 	layout add: (aWindow services at: #topCenter) presenter expand: true.
 	layout add: SpNullPresenter new expand: true.
-	layout add: (aWindow services at: #topRight) presenter expand: false.
+	layout add: (aWindow services at: #topRight) presenter expand: true.
 	^ layout
 ]

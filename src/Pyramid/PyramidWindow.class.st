@@ -70,11 +70,11 @@ PyramidWindow >> close [
 PyramidWindow >> initialize [
 
 	title := self class defaultTitle.
-	whenClosedDo := [  ].
+	whenClosedDo := [ ].
 
 	PyramidPanelModel toolbarHorizontal installOn: self at: #topLeft.
 	PyramidPanelModel toolbarHorizontal installOn: self at: #topCenter.
-	PyramidPanelModel toolbarHorizontal installOn: self at: #topRight.
+	PyramidPanelModel toolbarHorizontalEnd installOn: self at: #topRight.
 	PyramidPanelModel presenter installOn: self at: #space.
 	PyramidPanelModel tab installOn: self at: #tabLeft.
 	PyramidPanelModel tab installOn: self at: #tabRight.
