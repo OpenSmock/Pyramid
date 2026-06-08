@@ -4,19 +4,19 @@ Class {
 	#category : #'Pyramid-commands'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : #history }
 PyramidAddAllToCollectionCommand >> commandInverse [
 
 	^ PyramidRemoveAllFromCollectionCommand new
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #getter }
 PyramidAddAllToCollectionCommand >> getValueFor: anObject [
 
 	^ nil
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #setter }
 PyramidAddAllToCollectionCommand >> setValueFor: anObject with: anArgument [
 
 	anObject addAll: anArgument

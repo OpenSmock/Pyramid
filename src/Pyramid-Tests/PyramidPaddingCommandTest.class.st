@@ -12,7 +12,7 @@ PyramidPaddingCommandTest >> command [
 	^ PyramidPaddingCommand new
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 PyramidPaddingCommandTest >> targetContainers [
 
 	^ {

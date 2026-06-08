@@ -18,7 +18,7 @@ PyramidFontWeightCommandTest >> command [
 	^ PyramidFontWeightCommand new
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 PyramidFontWeightCommandTest >> targetContainers [
 
 	^ {

@@ -4,13 +4,13 @@ Class {
 	#category : #'Pyramid-Bloc-plugin-bloc'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : #history }
 PyramidMoveChildIndexUpCommand >> commandInverse [
 
 	^ PyramidMoveChildIndexDownCommand new
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #setter }
 PyramidMoveChildIndexUpCommand >> setValueFor: aBlElementParent with: aBlElementToMove [
 
 	| childIndexToMove |

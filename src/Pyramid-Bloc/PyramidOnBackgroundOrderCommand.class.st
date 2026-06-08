@@ -4,13 +4,13 @@ Class {
 	#category : #'Pyramid-Bloc-plugin-bloc-order'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : #history }
 PyramidOnBackgroundOrderCommand >> commandInverse [
 
 	^ PyramidChangeOrderWithIndexCommand new
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #setter }
 PyramidOnBackgroundOrderCommand >> setValueFor: aBlElement with: anArgument [
 
 	| currentIndex parent |

@@ -18,7 +18,7 @@ PyramidFontSizeCommandTest >> command [
 	^ PyramidFontSizeCommand new
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 PyramidFontSizeCommandTest >> targetContainers [
 
 	^ {

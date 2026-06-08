@@ -12,7 +12,7 @@ PyramidAddChildCommandTest >> command [
 	^ PyramidAddChildCommand new
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 PyramidAddChildCommandTest >> targetsCanBeUsedFor [
 
 	^ { BlElement new . BlElement new addChild: BlElement new; yourself }

@@ -4,7 +4,7 @@ Class {
 	#category : #'Pyramid-Bloc-plugin-bloc-text'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : #getter }
 PyramidTextForegroundCommand >> getValueFor: aBlTextElement [
 
 	aBlTextElement text attributesFinder
@@ -14,7 +14,7 @@ PyramidTextForegroundCommand >> getValueFor: aBlTextElement [
 	^ Color black
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #setter }
 PyramidTextForegroundCommand >> setValueFor: aBlTextElement with: aColor [
 
 	aBlTextElement text attribute:

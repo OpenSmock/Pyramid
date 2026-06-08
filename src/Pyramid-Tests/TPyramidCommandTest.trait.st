@@ -3,7 +3,7 @@ Trait {
 	#category : #'Pyramid-Tests-cases-command'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 TPyramidCommandTest >> argumentsForHistory [
 
 
@@ -16,19 +16,19 @@ TPyramidCommandTest >> command [
 	^ self shouldBeImplemented
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 TPyramidCommandTest >> targetContainers [
 
 	^ self shouldBeImplemented
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 TPyramidCommandTest >> targetsCanBeUsedFor [
 
 	^ self targetContainers flatCollect: [ :each | { each targetNoProp . each targetWithProp } ].
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 TPyramidCommandTest >> targetsCannotBeUsedFor [
 	"override if needed"
 	^ { nil . false . 0 . $a }

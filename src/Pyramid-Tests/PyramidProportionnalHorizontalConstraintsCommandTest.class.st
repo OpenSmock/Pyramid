@@ -12,7 +12,7 @@ PyramidProportionnalHorizontalConstraintsCommandTest >> command [
 	^ PyramidProportionalHorizontalConstraintsCommand new
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 PyramidProportionnalHorizontalConstraintsCommandTest >> targetContainers [
 
 	| parent e1 e2 |
@@ -31,7 +31,7 @@ PyramidProportionnalHorizontalConstraintsCommandTest >> targetContainers [
 			   prop: 0.2 @ 0.4)}
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 PyramidProportionnalHorizontalConstraintsCommandTest >> targetsCannotBeUsedFor [
 	"override if needed"
 

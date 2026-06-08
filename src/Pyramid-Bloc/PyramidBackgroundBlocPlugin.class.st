@@ -671,6 +671,86 @@ PyramidBackgroundBlocPlugin class >> outskirts [
 	^ property
 ]
 
+{ #category : #accessing }
+PyramidBackgroundBlocPlugin class >> shadow [
+
+	| property |
+	property := PyramidProperty new
+		            name: 'Shadow Effect';
+		            command: PyramidShadowCommand current;
+		            inputPresenterClass: PyramidMagicButtonsInputPresenter;
+		            yourself.
+	property inputPresenterModel
+		addButtonModel: (PyramidMagicButtonModel new
+				 icon: (Smalltalk ui icons iconNamed: #blank);
+				 helpSelected: 'No shadow.';
+				 helpNotSelected: 'Remove shadow.';
+				 label: 'None';
+				 inputValue: [ BlNullEffect new ];
+				 inputValidation: [ :value | value class = BlNullEffect ];
+				 yourself);
+		addButtonModel: (PyramidMagicButtonModel new
+				 icon: (Smalltalk ui icons iconNamed: #windowMaximize);
+				 helpSelected: 'Shadow type is simple.';
+				 helpNotSelected: 'Set shadow type to simple.';
+				 label: 'Simple';
+				 inputValue: [ PyramidShadowCommand current lastSimpleShadow ];
+				 inputValidation: [ :value | value class = BlSimpleShadowEffect ];
+				 yourself);
+		addButtonModel: (PyramidMagicButtonModel new
+				 icon: (Smalltalk ui icons iconNamed: #radioButtonUnselected);
+				 helpSelected: 'Shadow type is gaussian.';
+				 helpNotSelected: 'Set shadow type to gaussian.';
+				 label: 'Gaussian';
+				 inputValue: [ PyramidShadowCommand current lastGaussianShadow ];
+				 inputValidation: [ :value | value class = BlGaussianShadowEffect ];
+				 yourself).
+	^ property
+]
+
+{ #category : #accessing }
+PyramidBackgroundBlocPlugin class >> shadowColor [
+
+	| property |
+	property := PyramidProperty new
+		            name: 'Shadow Color';
+		            command: PyramidShadowColorCommand new;
+		            inputPresenterClass:
+			            PyramidColorInputSingleLineWithPickupButtonPresenter;
+		            yourself.
+	^ property
+	
+
+]
+
+{ #category : #accessing }
+PyramidBackgroundBlocPlugin class >> shadowOffset [
+
+	| property |
+	property := PyramidProperty new
+		            name: 'Shadow Offset';
+		            command: PyramidShadowOffsetCommand new;
+		            inputPresenterClass:
+			            PyramidPointInputPresenter;
+		            yourself.
+		property inputPresenterModel help:
+		'Set the position x and y for the shadow offset'.
+	^ property
+]
+
+{ #category : #accessing }
+PyramidBackgroundBlocPlugin class >> shadowWidthGaussian [
+
+	| property |
+	property := PyramidProperty new
+		            name: 'Shadow Width';
+		            command: PyramidShadowGaussianWidthCommand new;
+		            inputPresenterClass: PyramidNumberInputPresenter;
+		            yourself.
+	property inputPresenterModel help: 'Set the width value'.
+	^ property
+]
+
 { #category : #adding }
 PyramidBackgroundBlocPlugin >> addPanelsOn: aPyramidSimpleWindow [
 
@@ -747,7 +827,14 @@ PyramidBackgroundBlocPlugin >> initialize [
 	propertiesManager addProperty: self class borderRadialInnerCenter.
 	propertiesManager addProperty: self class borderRadialInnerRadius.
 	propertiesManager addProperty: self class borderRadialOuterCenter.
-	propertiesManager addProperty: self class borderRadialOuterRadius
+	propertiesManager addProperty: self class borderRadialOuterRadius.
+
+	"Shadow"
+	PyramidShadowCommand resetShadowCommand.
+	propertiesManager addProperty: self class shadow.
+	propertiesManager addProperty: self class shadowColor.
+	propertiesManager addProperty: self class shadowOffset.
+	propertiesManager addProperty: self class shadowWidthGaussian
 ]
 
 { #category : #adding }

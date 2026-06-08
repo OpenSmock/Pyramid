@@ -12,7 +12,7 @@ PyramidBackgroundPaintRadialOuterCenterCommandTest >> command [
 	^ PyramidBackgroundPaintRadialOuterCenterCommand new
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 PyramidBackgroundPaintRadialOuterCenterCommandTest >> targetContainers [
 
 	^ {
@@ -66,7 +66,7 @@ PyramidBackgroundPaintRadialOuterCenterCommandTest >> targetContainers [
 			   prop: 500 asPoint) }
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 PyramidBackgroundPaintRadialOuterCenterCommandTest >> targetsCannotBeUsedFor [
 	"override if needed"
 

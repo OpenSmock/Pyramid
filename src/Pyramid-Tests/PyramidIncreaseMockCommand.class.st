@@ -4,19 +4,19 @@ Class {
 	#category : #'Pyramid-Tests-cases-command'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : #history }
 PyramidIncreaseMockCommand >> commandInverse [
 
 	^ PyramidDecreaseMockCommand new
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #getter }
 PyramidIncreaseMockCommand >> getValueFor: anObject [
 
 	^ nil
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #setter }
 PyramidIncreaseMockCommand >> setValueFor: anObject with: anArgument [
 
 	anObject count: anObject count + 1

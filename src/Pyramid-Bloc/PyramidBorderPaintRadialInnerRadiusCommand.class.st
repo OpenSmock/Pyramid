@@ -4,7 +4,7 @@ Class {
 	#category : #'Pyramid-Bloc-plugin-bloc-visuals'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : #getter }
 PyramidBorderPaintRadialInnerRadiusCommand >> getValueFor: aBlElement [
 
 	^ aBlElement border paint innerRadius

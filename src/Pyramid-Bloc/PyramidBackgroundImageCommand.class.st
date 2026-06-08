@@ -11,13 +11,13 @@ PyramidBackgroundImageCommand >> canBeUsedFor: anObject [
 		  anObject background isKindOf: BlImageBackground ]
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #getter }
 PyramidBackgroundImageCommand >> getValueFor: aBlElement [
 
 	^ aBlElement background image
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #setter }
 PyramidBackgroundImageCommand >> setValueFor: aBlElement with: anArgument [
 
 	aBlElement background: (BlBackground image: anArgument)

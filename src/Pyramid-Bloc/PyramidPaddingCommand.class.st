@@ -4,13 +4,13 @@ Class {
 	#category : #'Pyramid-Bloc-plugin-bloc-layout'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : #getter }
 PyramidPaddingCommand >> getValueFor: aBlElement [
 
 	^ aBlElement padding
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #setter }
 PyramidPaddingCommand >> setValueFor: aBlElement with: anArgument [
 
 	aBlElement padding: anArgument

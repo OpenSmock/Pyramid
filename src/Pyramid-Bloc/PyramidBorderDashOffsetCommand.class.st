@@ -11,7 +11,7 @@ PyramidBorderDashOffsetCommand >> canBeUsedFor: anObject [
 		  anObject border style dashArray isNotEmpty ]
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #getter }
 PyramidBorderDashOffsetCommand >> getValueFor: aBlElement [
 
 	^ aBlElement border style dashOffset
