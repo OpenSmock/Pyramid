@@ -53,40 +53,35 @@ PyramidPluginOpenInWindow >> initialize [
                   yourself
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #private }
 PyramidPluginOpenInWindow >> openInWindowIcon [
 
-	^ Smalltalk ui icons iconNamed: #glamorousInspect 
+	| svgString coloredSvg blElement |
+	svgString := ToMaterialDesignIconProvider sharp_openinnew.
+	coloredSvg := svgString
+		              copyReplaceAll: '<path '
+		              with: '<path fill="#1DB954" '.
+	blElement := BlSvgConverter convertFromString: coloredSvg.
+	blElement extent: 22@22.
+	^ blElement asForm
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #private }
 PyramidPluginOpenInWindow >> openSpaceInWindow [
 
-	| elements stash newElements space |
+	| elements container stash space currentTheme |
 	projectModel ifNil: [ ^ self inform: 'No project found.' ].
-
 	elements := projectModel firstLevelElements asOrderedCollection.
 	elements ifEmpty: [ ^ self inform: 'Nothing to display.' ].
-
-	elements size = 1
-		ifTrue: [
-				stash := BlSerializer
-					         serialize: elements first
-					         with: BlStashSerializer.
-				newElements := { stash materializeAsBlElement } ]
-		ifFalse: [
-				| container |
-				container := BlElement new
-					             extent: 4000 @ 2000;
-					             yourself.
-				elements do: [ :each |
-						stash := BlSerializer serialize: each with: BlStashSerializer.
-						container addChild: stash materializeAsBlElement ].
-				newElements := { container } ].
-
-	space := newElements first openInNewSpace.
-	newElements size > 1 ifTrue: [
-		space root addChildren: newElements allButFirst ]
+	currentTheme := builder space root localTheme.
+	container := BlElement new
+		             extent: 4000 @ 2000;
+		             yourself.
+	elements do: [ :each |
+			stash := BlSerializer serialize: each with: BlStashSerializer.
+			container addChild: stash materializeAsBlElement ].
+	space := container openInNewSpace.
+	currentTheme ifNotNil: [ space toTheme: currentTheme ]
 ]
 
 { #category : #accessing }
