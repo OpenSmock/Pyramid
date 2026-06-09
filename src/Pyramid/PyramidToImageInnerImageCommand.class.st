@@ -22,5 +22,6 @@ PyramidToImageInnerImageCommand >> getValueFor: aToImage [
 PyramidToImageInnerImageCommand >> setValueFor: aToImage with: aSymbol [
 
 	iconName := aSymbol.
-	aToImage innerImage: (PyramidIconInputPresenter toImageFromName: aSymbol)
+	aToImage innerImage:
+		(PyramidIconInputPresenter innerElementFromName: aSymbol)
 ]

@@ -28,19 +28,35 @@ PyramidIconInputPresenter class >> findToploIconNamed: aSymbol [
 ]
 
 { #category : #private }
+PyramidIconInputPresenter class >> innerElementFromName: aSymbol [
+
+	(Smalltalk ui icons iconNamed: aSymbol)
+	= (Smalltalk ui icons iconNamed: #blank) ifTrue: [
+			| element |
+			element := self findToploIconNamed: aSymbol.
+			element ifNotNil: [ ^ element block value first asForm ] ].
+	^ PyramidExternalRessourceProxy fromSource:
+		  (PyramidExternalRessourceSource
+			   target: Object
+			   selector: #iconNamed:
+			   arguments: { aSymbol })
+]
+
+{ #category : #private }
 PyramidIconInputPresenter class >> toImageFromName: aSymbol [
-    | element |
-    (Smalltalk ui icons iconNamed: aSymbol)
-        = (Smalltalk ui icons iconNamed: #blank) ifTrue: [
-            element := self findToploIconNamed: aSymbol.
-            element ifNotNil: [ ^ element block value first ] ].
-    ^ ToImage new
-          innerImage: (PyramidExternalRessourceProxy fromSource:
-                       (PyramidExternalRessourceSource
-                            target: Object
-                            selector: #iconNamed:
-                            arguments: { aSymbol }));
-          yourself
+
+	(Smalltalk ui icons iconNamed: aSymbol)
+	= (Smalltalk ui icons iconNamed: #blank) ifTrue: [
+			| element |
+			element := self findToploIconNamed: aSymbol.
+			element ifNotNil: [^ element block value first ] ]. 
+	^ ToImage new
+		  innerImage: (PyramidExternalRessourceProxy fromSource:
+					   (PyramidExternalRessourceSource
+						    target: Object
+						    selector: #iconNamed:
+						    arguments: { aSymbol }));
+		  yourself
 ]
 
 { #category : #adding }
