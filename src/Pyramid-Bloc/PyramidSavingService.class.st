@@ -9,7 +9,9 @@ Class {
 		'currentMethodBuilder',
 		'stash',
 		'ston',
-		'currentMethodBuilderSelector'
+		'currentMethodBuilderSelector',
+		'currentSaveModel',
+		'currentProjectWindowSize'
 	],
 	#category : #'Pyramid-Bloc-plugin-save'
 }
@@ -39,6 +41,26 @@ PyramidSavingService class >> currentMethodBuilderSelector [
 PyramidSavingService class >> currentMethodBuilderSelector: anObject [
 
 	currentMethodBuilderSelector := anObject
+]
+
+{ #category : #accessing }
+PyramidSavingService class >> currentProjectWindowSize [
+    ^ currentProjectWindowSize
+]
+
+{ #category : #accessing }
+PyramidSavingService class >> currentProjectWindowSize: aPoint [
+    currentProjectWindowSize := aPoint
+]
+
+{ #category : #accessing }
+PyramidSavingService class >> currentSaveModel [
+    ^ currentSaveModel
+]
+
+{ #category : #accessing }
+PyramidSavingService class >> currentSaveModel: aSaveModel [
+    currentSaveModel := aSaveModel
 ]
 
 { #category : #'as yet unclassified' }
@@ -91,6 +113,17 @@ PyramidSavingService class >> ston [
 		        yourself
 ]
 
+{ #category : #'as yet unclassified' }
+PyramidSavingService >> buildMetaDataMethod [
+    | methodName windowSize |
+    methodName := self saveModel savingMethodName , 'MetaData'.
+    windowSize := PyramidMainExtension currentGridWindowSize.
+    ^ '<1s><r><t>"Pyramid project metadata"<r><t>%<pyMetaData><r><t>PyramidSavingService currentProjectWindowSize: <2p> @ <3p>'
+        expandMacrosWith: methodName
+        with: windowSize x
+        with: windowSize y
+]
+
 { #category : #testing }
 PyramidSavingService >> canSave [
 	"Verify:
@@ -114,22 +147,32 @@ PyramidSavingService >> methodBuilder [
 	^ self class currentMethodBuilder
 ]
 
-{ #category : #testing }
+{ #category : #'as yet unclassified' }
 PyramidSavingService >> save [
+    | class |
+    self canSave ifFalse: [ self errorCannotSave ].
+    class := self saveModel isClassSide
+        ifTrue: [ self savingClass classSide ]
+        ifFalse: [ self savingClass ].
+    self methodBuilder classifier
+        ifNil: [ class compile: self savingMethod ]
+        ifNotNil: [
+            class
+                compile: self savingMethod
+                classified: self methodBuilder classifier ].
+    self saveMetaData
+]
 
-	| class |
+{ #category : #'as yet unclassified' }
+PyramidSavingService >> saveMetaData [
+
+	| class metaDataMethod |
 	self canSave ifFalse: [ self errorCannotSave ].
-
 	class := self saveModel isClassSide
 		         ifTrue: [ self savingClass classSide ]
 		         ifFalse: [ self savingClass ].
-
-	self methodBuilder classifier
-		ifNil: [ class compile: self savingMethod ]
-		ifNotNil: [
-			class
-				compile: self savingMethod
-				classified: self methodBuilder classifier ]
+	metaDataMethod := self buildMetaDataMethod.
+	class compile: metaDataMethod classified: #'pyramid-metadata'
 ]
 
 { #category : #accessing }

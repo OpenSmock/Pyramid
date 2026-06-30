@@ -17,8 +17,29 @@ Class {
 		'gridColor',
 		'selectionWidgetExtension'
 	],
+	#classInstVars : [
+		'currentGridWindowSize'
+	],
 	#category : #'Pyramid-Bloc-plugin-space-extensions'
 }
+
+{ #category : #accessing }
+PyramidMainExtension class >> currentGridWindowSize [
+
+	^ currentGridWindowSize 
+]
+
+{ #category : #accessing }
+PyramidMainExtension class >> currentGridWindowSize: aPoint [
+
+	currentGridWindowSize := aPoint.
+	
+]
+
+{ #category : #'class initialization' }
+PyramidMainExtension class >> initialize [
+    currentGridWindowSize := 800 @ 600
+]
 
 { #category : #accessing }
 PyramidMainExtension >> borderElement [
@@ -104,6 +125,7 @@ PyramidMainExtension >> extent: aPoint [
 	self elementAtWidgets extent: aPoint.
 	self sizeElement extent: aPoint.
 	self gridWindowSize: aPoint.
+	self class currentGridWindowSize: aPoint.workplacePropertiesView workplaceSizeValue: aPoint.
 
 	self createGrid
 ]

@@ -17,17 +17,36 @@ Class {
 
 { #category : #'instance creation' }
 PyramidSavePlugin class >> openOn: aCollectionOfBlElement saveModel: aSaveModel [
+    | editor savePlugin windowSize mainExtension spacePlugin |
+    editor := PyramidEditor buildEditor.
+    savePlugin := editor plugins select: [ :each | each class = self ].
+    savePlugin size = 1 ifFalse: [
+        Error signal:
+            'Wrong installation of SavePlugin. Should only be one instance.' ].
+    savePlugin := savePlugin asArray first.
+    editor projectModel firstLevelElements addAll: aCollectionOfBlElement.
 
-	| editor savePlugin |
-	editor := PyramidEditor buildEditor.
-	savePlugin := editor plugins select: [ :each | each class = self ].
-	savePlugin size = 1 ifFalse: [
-		Error signal:
-			'Wrong installation of SavePlugin. Should only be one instance.' ].
-	savePlugin := savePlugin asArray first.
-	editor projectModel firstLevelElements addAll: aCollectionOfBlElement.
-	savePlugin openOn: aSaveModel.
-	editor open
+    windowSize := [
+        | metaDataSelector savingClass |
+        metaDataSelector := (aSaveModel savingMethodName , 'MetaData') asSymbol.
+        savingClass := self class environment classNamed: aSaveModel savingClassName.
+        savingClass perform: metaDataSelector.
+        PyramidSavingService currentProjectWindowSize ]
+            on: Error
+            do: [ nil ].
+
+    windowSize ifNotNil: [
+        spacePlugin := editor plugins
+            detect: [ :p | p isKindOf: PyramidSpacePlugin ]
+            ifNone: [ nil ].
+        spacePlugin ifNotNil: [
+            mainExtension := spacePlugin builder extensions
+                detect: [ :e | e isKindOf: PyramidMainExtension ]
+                ifNone: [ nil ].
+            mainExtension ifNotNil: [ mainExtension extent: windowSize ] ] ].
+
+    savePlugin openOn: aSaveModel.
+    editor open
 ]
 
 { #category : #adding }
@@ -135,31 +154,23 @@ PyramidSavePlugin >> projectModel: aPyramidProjectModel [
 
 { #category : #actions }
 PyramidSavePlugin >> saveAction [
-	"Action executed by a save button from UI, this method catch exceptions when needed to doesn't expose directly a debugger but an info window"
-
-	[
-	self savingService save.
-	self inputsController isSaved. 
-	]
-	on: Error
-	do: [ :e |
-		
-		"Pyramid level error"
-		(e isKindOf: PyramidSaveError) ifTrue:[		
-			^ UIManager default
-				 	alert: 'Cannot save the project, open project configuration to setup a valid saving location.'
-			 	 	title: 'Project configuration problem'
-		].
-		
-		"Serializer level error"
-		(e isKindOf: BlocSerializationError) ifTrue:[		
-			(UIManager default
-				confirm: 'Error when saving the project: ', e messageText asString, '
-				Debug this error ?'
-			 	label: 'Error')
-			ifTrue:[e debug] ifFalse:[^ self].
-		].
-	]
+    [
+        self savingService save.
+        self inputsController isSaved.
+        PyramidSavingService currentSaveModel: self saveModel ]
+        on: Error
+        do: [ :e |
+            (e isKindOf: PyramidSaveError) ifTrue: [
+                ^ UIManager default
+                    alert: 'Cannot save the project, open project configuration to setup a valid saving location.'
+                    title: 'Project configuration problem' ].
+            (e isKindOf: BlocSerializationError) ifTrue: [
+                (UIManager default
+                    confirm: 'Error when saving the project: ' , e messageText asString , '
+            Debug this error ?'
+                    label: 'Error')
+                    ifTrue: [ e debug ]
+                    ifFalse: [ ^ self ] ] ]
 ]
 
 { #category : #accessing }

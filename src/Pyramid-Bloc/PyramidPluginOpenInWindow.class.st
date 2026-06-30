@@ -8,7 +8,8 @@ Class {
 		'spacePlugin',
 		'builder',
 		'projectModel',
-		'savePlugin'
+		'savePlugin',
+		'space'
 	],
 	#category : #'Pyramid-Bloc-plugin-openinwindow'
 }
@@ -24,6 +25,12 @@ PyramidPluginOpenInWindow >> addPanelsOn: aPyramidSimpleWindow [
 { #category : #accessing }
 PyramidPluginOpenInWindow >> builder [
     ^ builder
+]
+
+{ #category : #accessing }
+PyramidPluginOpenInWindow >> builder: anObject [
+
+builder := anObject 
 ]
 
 { #category : #accessing }
@@ -68,23 +75,49 @@ PyramidPluginOpenInWindow >> openInWindowIcon [
 
 { #category : #private }
 PyramidPluginOpenInWindow >> openSpaceInWindow [
+    | elements container stash currentTheme windowSize |
+    elements := projectModel firstLevelElements asOrderedCollection.
+    currentTheme := nil.
+    builder ifNotNil: [ :aBuilder |
+        aBuilder space ifNotNil: [ :aSpace |
+            aSpace root ifNotNil: [ :aRoot | currentTheme := aRoot localTheme ] ] ].
 
-	| elements container stash space currentTheme |
-	projectModel ifNil: [ ^ self inform: 'No project found.' ].
-	elements := projectModel firstLevelElements asOrderedCollection.
-	elements ifEmpty: [ ^ self inform: 'Nothing to display.' ].
-	currentTheme := builder space root localTheme.
-	container := BlElement new
-		             extent: 4000 @ 2000;
-		             yourself.
-	elements do: [ :each |
-			stash := BlSerializer serialize: each with: BlStashSerializer.
-			container addChild: stash materializeAsBlElement ].
-	space := container openInNewSpace.
-	currentTheme ifNotNil: [ space toTheme: currentTheme ]
+windowSize := [
+    | mainExtension |
+    mainExtension := builder extensions
+        detect: [ :e | e isKindOf: PyramidMainExtension ]
+        ifNone: [ nil ].
+    mainExtension sizeElement extent ]
+        on: Error
+        do: [ PyramidMainExtension currentGridWindowSize ].
+
+    container := BlElement new
+        constraintsDo: [ :c |
+            c horizontal matchParent.
+            c vertical matchParent ];
+        yourself.
+    elements do: [ :each |
+        stash := BlSerializer serialize: each with: BlStashSerializer.
+        container addChild: stash materializeAsBlElement ].
+    space := container openInNewSpace.
+    space extent: windowSize.
+    currentTheme ifNotNil: [ space toTheme: currentTheme ].
+    ^ space
 ]
 
 { #category : #accessing }
 PyramidPluginOpenInWindow >> projectModel [
     ^ projectModel
+]
+
+{ #category : #accessing }
+PyramidPluginOpenInWindow >> projectModel: anObject [
+
+projectModel := anObject
+]
+
+{ #category : #accessing }
+PyramidPluginOpenInWindow >> space [ 
+
+^ space 
 ]
