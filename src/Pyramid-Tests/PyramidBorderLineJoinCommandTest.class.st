@@ -12,7 +12,7 @@ PyramidBorderLineJoinCommandTest >> command [
 	^ PyramidBorderLineJoinCommand new
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 PyramidBorderLineJoinCommandTest >> targetContainers [
 
 	^ {

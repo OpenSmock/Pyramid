@@ -11,7 +11,7 @@ PyramidBorderPaintStopsCommand >> canBeUsedFor: anObject [
 			  anObject border paint isKindOf: BlGradientPaint  ]
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #getter }
 PyramidBorderPaintStopsCommand >> getValueFor: aBlElement [
 	"We ensure that we are working with a copy of the associations."
 

@@ -20,7 +20,7 @@ PyramidGroupCommand >> canBeUsedFor: aCollectionOfBlElements [
 				  each parent = parent ]
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #history }
 PyramidGroupCommand >> commandInverse [
 	"Command used to undo the group."
 
@@ -67,7 +67,7 @@ PyramidGroupCommand >> createNewGroupElement: aCollectionOfBlElement [
 		  yourself.
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #getter }
 PyramidGroupCommand >> getValueFor: aBlElement [
 
 	^ self historyCommandArguments
@@ -106,7 +106,7 @@ PyramidGroupCommand >> positionGroupElement: groupElement [
 			child constraints position - (currentLeft @ currentTop) ]
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #history }
 PyramidGroupCommand >> saveStatesOf: aCollection with: arguments [
 
 	^ self
@@ -116,7 +116,7 @@ PyramidGroupCommand >> saveStatesOf: aCollection with: arguments [
 		  (self commandRestaurationArgumentsFor: aCollection and: arguments)
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #history }
 PyramidGroupCommand >> saveStatesWithCommandInverseOf: aCollection with: arguments [
 
 	^ self
@@ -126,7 +126,7 @@ PyramidGroupCommand >> saveStatesWithCommandInverseOf: aCollection with: argumen
 		  (self commandInverseArgumentsFor: aCollection and: arguments)
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #setter }
 PyramidGroupCommand >> setValueFor: aCollectionToGroup with: aCollectionOfFirstLevelElements [
 
 	| groupInCorrectOrder parent groupElement removedElementFromFirstLevel |

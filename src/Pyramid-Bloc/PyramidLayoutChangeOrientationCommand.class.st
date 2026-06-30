@@ -11,13 +11,13 @@ PyramidLayoutChangeOrientationCommand >> canBeUsedFor: anObject [
 		   { BlFlowLayout . BlLinearLayout } includes: anObject layout class ]
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #getter }
 PyramidLayoutChangeOrientationCommand >> getValueFor: anObject [
 
 	^ anObject layout orientation
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #setter }
 PyramidLayoutChangeOrientationCommand >> setValueFor: anObject with: anArgument [
 
 	anObject layout orientation: anArgument

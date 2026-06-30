@@ -12,7 +12,7 @@ PyramidBackgroundPaintStopsCommand >> canBeUsedFor: anObject [
 			  anObject background paint isKindOf: BlGradientPaint ] ]
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #getter }
 PyramidBackgroundPaintStopsCommand >> getValueFor: aBlElement [
 	"We ensure that we are working with a copy of the associations."
 
@@ -20,7 +20,7 @@ PyramidBackgroundPaintStopsCommand >> getValueFor: aBlElement [
 		  asso key copy -> asso value copy ]
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #setter }
 PyramidBackgroundPaintStopsCommand >> setValueFor: aBlElement with: anArgument [
 	"We ensure that we are working with a copy of the associations."
 

@@ -12,13 +12,13 @@ PyramidWeightConstraintsCommand >> canBeUsedFor: anObject [
 		   { BlFlowLayout . BlLinearLayout } includes: anObject parent layout class ] ]
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #getter }
 PyramidWeightConstraintsCommand >> getValueFor: anObject [
 
 	^ anObject constraints linear weight
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #setter }
 PyramidWeightConstraintsCommand >> setValueFor: anObject with: anArgument [
 
 	anObject constraints linear weight: anArgument.

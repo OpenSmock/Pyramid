@@ -11,13 +11,13 @@ PyramidBasicExactVerticalConstraintsBlocCommand >> canBeUsedFor: anObject [
 		  anObject constraints vertical resizer isExact ]
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #getter }
 PyramidBasicExactVerticalConstraintsBlocCommand >> getValueFor: anObject [
 
 	^ anObject constraints vertical resizer size
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #setter }
 PyramidBasicExactVerticalConstraintsBlocCommand >> setValueFor: anObject with: anArgument [
 
 	^ anObject constraintsDo: [ :c | c vertical exact: anArgument ]

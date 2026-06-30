@@ -12,7 +12,7 @@ PyramidBorderTypeCommandTest >> command [
 	^ PyramidBorderPaintCommand new
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 PyramidBorderTypeCommandTest >> targetContainers [
 
 	^ {

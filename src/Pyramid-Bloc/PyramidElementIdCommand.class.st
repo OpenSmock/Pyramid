@@ -4,13 +4,13 @@ Class {
 	#category : #'Pyramid-Bloc-plugin-bloc'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : #getter }
 PyramidElementIdCommand >> getValueFor: aBlElement [
 
 	^ aBlElement id
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #setter }
 PyramidElementIdCommand >> setValueFor: aBlElement with: anArgument [
 
 	aBlElement id: anArgument

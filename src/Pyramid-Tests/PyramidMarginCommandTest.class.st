@@ -12,7 +12,7 @@ PyramidMarginCommandTest >> command [
 	^ PyramidMarginCommand new
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 PyramidMarginCommandTest >> targetContainers [
 
 	^ {

@@ -12,13 +12,13 @@ PyramidBackgroundPaintColorCommand >> canBeUsedFor: anObject [
 			  anObject background paint isKindOf: BlColorPaint ] ]
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #getter }
 PyramidBackgroundPaintColorCommand >> getValueFor: aBlElement [
 
 	^ aBlElement background paint color
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #setter }
 PyramidBackgroundPaintColorCommand >> setValueFor: aBlElement with: anArgument [
 
 	aBlElement background: (BlBackground paint: anArgument asBlPaint)

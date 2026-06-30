@@ -12,7 +12,7 @@ PyramidGeometryCommandTest >> command [
 	^ PyramidGeometryCommand new
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 PyramidGeometryCommandTest >> targetContainers [
 
 	^ {

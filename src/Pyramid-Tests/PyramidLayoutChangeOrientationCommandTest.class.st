@@ -12,7 +12,7 @@ PyramidLayoutChangeOrientationCommandTest >> command [
 	^ PyramidLayoutChangeOrientationCommand new
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 PyramidLayoutChangeOrientationCommandTest >> targetContainers [
 
 	^ { (PyramidCommandTestContainer
@@ -49,7 +49,7 @@ PyramidLayoutChangeOrientationCommandTest >> targetContainers [
 		   prop: BlLayoutOrientation horizontal) }
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 PyramidLayoutChangeOrientationCommandTest >> targetsCannotBeUsedFor [
 	"override if needed"
 

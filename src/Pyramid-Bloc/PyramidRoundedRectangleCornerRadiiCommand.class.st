@@ -11,13 +11,13 @@ PyramidRoundedRectangleCornerRadiiCommand >> canBeUsedFor: anObject [
 		  anObject geometry class = BlRoundedRectangleGeometry ]
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #getter }
 PyramidRoundedRectangleCornerRadiiCommand >> getValueFor: aBlElement [
 
 	^ aBlElement geometry cornerRadii
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #setter }
 PyramidRoundedRectangleCornerRadiiCommand >> setValueFor: aBlElement with: anArgument [
 
 	aBlElement geometry: (BlRoundedRectangleGeometry cornerRadii: anArgument)

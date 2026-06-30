@@ -4,13 +4,13 @@ Class {
 	#category : #'Pyramid-Tests-cases-command'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : #getter }
 PyramidSimpleMockCommand >> getValueFor: anObject [
 
 	^ anObject count.
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #setter }
 PyramidSimpleMockCommand >> setValueFor: anObject with: anArgument [
 
 	anObject count: anArgument

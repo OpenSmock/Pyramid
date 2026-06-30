@@ -4,13 +4,13 @@ Class {
 	#category : #'Pyramid-Toplo-plugin-theme-management'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : #getter }
 PyramidThemeCommand >> getValueFor: anObject [
 
 	^ anObject localTheme
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #setter }
 PyramidThemeCommand >> setValueFor: anObject with: nilOrToTheme [
 
 	anObject localTheme: nilOrToTheme
