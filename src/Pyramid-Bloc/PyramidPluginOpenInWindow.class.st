@@ -11,8 +11,23 @@ Class {
 		'savePlugin',
 		'space'
 	],
+	#classInstVars : [
+		'currentTheme'
+	],
 	#category : #'Pyramid-Bloc-plugin-openinwindow'
 }
+
+{ #category : #accessing }
+PyramidPluginOpenInWindow class >> currentTheme [
+
+	^ currentTheme
+]
+
+{ #category : #accessing }
+PyramidPluginOpenInWindow class >> currentTheme: aTheme [
+
+	currentTheme := aTheme
+]
 
 { #category : #adding }
 PyramidPluginOpenInWindow >> addPanelsOn: aPyramidSimpleWindow [
@@ -75,34 +90,38 @@ PyramidPluginOpenInWindow >> openInWindowIcon [
 
 { #category : #private }
 PyramidPluginOpenInWindow >> openSpaceInWindow [
-    | elements container stash currentTheme windowSize |
-    elements := projectModel firstLevelElements asOrderedCollection.
-    currentTheme := nil.
-    builder ifNotNil: [ :aBuilder |
-        aBuilder space ifNotNil: [ :aSpace |
-            aSpace root ifNotNil: [ :aRoot | currentTheme := aRoot localTheme ] ] ].
 
-windowSize := [
-    | mainExtension |
-    mainExtension := builder extensions
-        detect: [ :e | e isKindOf: PyramidMainExtension ]
-        ifNone: [ nil ].
-    mainExtension sizeElement extent ]
-        on: Error
-        do: [ PyramidMainExtension currentGridWindowSize ].
+	| elements container stash currentTheme windowSize |
+	elements := projectModel firstLevelElements asOrderedCollection.
+	currentTheme := nil.
+	builder ifNotNil: [ :aBuilder |
+			aBuilder space ifNotNil: [ :aSpace |
+				aSpace root ifNotNil: [ :aRoot | currentTheme := aRoot localTheme ] ] ].
 
-    container := BlElement new
-        constraintsDo: [ :c |
-            c horizontal matchParent.
-            c vertical matchParent ];
-        yourself.
-    elements do: [ :each |
-        stash := BlSerializer serialize: each with: BlStashSerializer.
-        container addChild: stash materializeAsBlElement ].
-    space := container openInNewSpace.
-    space extent: windowSize.
-    currentTheme ifNotNil: [ space toTheme: currentTheme ].
-    ^ space
+	windowSize := [
+		              | mainExtension |
+		              mainExtension := builder extensions
+			                               detect: [ :e |
+			                               e isKindOf: PyramidMainExtension ]
+			                               ifNone: [ nil ].
+		              mainExtension
+			              ifNotNil: [ mainExtension sizeElement extent ]
+			              ifNil: [ 800 @ 600 ] ]
+		              on: Error
+		              do: [ 800 @ 600 ].
+
+	container := BlElement new
+		             constraintsDo: [ :c |
+				             c horizontal matchParent.
+				             c vertical matchParent ];
+		             yourself.
+	elements do: [ :each |
+			stash := BlSerializer serialize: each with: BlStashSerializer.
+			container addChild: stash materializeAsBlElement ].
+	space := container openInNewSpace.
+	space extent: windowSize.
+	currentTheme ifNotNil: [ space toTheme: currentTheme ].
+	^ space
 ]
 
 { #category : #accessing }

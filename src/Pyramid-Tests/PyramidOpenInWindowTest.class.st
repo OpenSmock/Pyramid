@@ -82,14 +82,13 @@ PyramidOpenInWindowTest >> testOpenSpaceInWindowWithBuilderSpaceHavingNilRoot [
 	initialSpace := BlSpace new.
 	window builder: (PyramidSpaceBuilder new space: initialSpace).
 	space := window openSpaceInWindow.
-	self assert: space isNotNil
+	self assert: space isNotNil.
 ]
 
 { #category : #tests }
 PyramidOpenInWindowTest >> testWindowDefaultExtent [
 
 	| space |
-	PyramidMainExtension defaultExtent.
 	space := window openSpaceInWindow.
 	self assert: space extent equals: 800 @ 600
 ]

@@ -207,21 +207,38 @@ PyramidVisualPystonForCly >> openEditor [
 { #category : #accessing }
 PyramidVisualPystonForCly >> openInNewSpace [
 
-	| class elements space |
+	| class elements space theme windowSize |
 	class := method classBinding value.
 	elements := class isMeta
 		            ifTrue: [
-			            (method classBinding value instanceSide perform:
-				             method selector) materializeAsBlElement ]
+				            (method classBinding value instanceSide perform:
+					             method selector) materializeAsBlElement ]
 		            ifFalse: [
-			            (method classBinding value new perform: method selector)
-				            materializeAsBlElement ].
-
+				            (method classBinding value new perform:
+					             method selector) materializeAsBlElement ].
 	elements isCollection ifFalse: [ elements := { elements } ].
-
 	elements ifEmpty: [ ^ self ].
-	space := elements first openInNewSpace.
-	space root addChildren: elements allButFirst
+
+	windowSize := [
+		              | metaDataSelector |
+		              metaDataSelector := (method selector , 'MetaData')
+			                                  asSymbol.
+		              method classBinding value instanceSide perform:
+			              metaDataSelector.
+		              PyramidSavingService currentProjectMetaData
+			              at: #windowSize
+			              ifAbsent: [ nil ] ]
+		              on: Error
+		              do: [ nil ].
+	windowSize ifNil: [ windowSize := 800 @ 600 ].
+
+	space := BlSpace new.
+	space extent: windowSize.
+	theme := PyramidPluginOpenInWindow currentTheme.
+	theme ifNotNil: [ space toTheme: theme ].
+	space root addChildren: elements.
+	space show.
+	^ space
 ]
 
 { #category : #initialization }

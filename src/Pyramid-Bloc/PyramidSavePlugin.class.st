@@ -17,36 +17,56 @@ Class {
 
 { #category : #'instance creation' }
 PyramidSavePlugin class >> openOn: aCollectionOfBlElement saveModel: aSaveModel [
-    | editor savePlugin windowSize mainExtension spacePlugin |
-    editor := PyramidEditor buildEditor.
-    savePlugin := editor plugins select: [ :each | each class = self ].
-    savePlugin size = 1 ifFalse: [
-        Error signal:
-            'Wrong installation of SavePlugin. Should only be one instance.' ].
-    savePlugin := savePlugin asArray first.
-    editor projectModel firstLevelElements addAll: aCollectionOfBlElement.
 
-    windowSize := [
-        | metaDataSelector savingClass |
-        metaDataSelector := (aSaveModel savingMethodName , 'MetaData') asSymbol.
-        savingClass := self class environment classNamed: aSaveModel savingClassName.
-        savingClass perform: metaDataSelector.
-        PyramidSavingService currentProjectWindowSize ]
-            on: Error
-            do: [ nil ].
+	| editor savePlugin metaData mainExtension spacePlugin |
+	PyramidSavingService currentProjectMetaData: nil.
+	PyramidMainExtension currentGridWindowSize: nil.
+	editor := PyramidEditor buildEditor.
+	savePlugin := editor plugins select: [ :each | each class = self ].
+	savePlugin size = 1 ifFalse: [
+			Error signal:
+				'Wrong installation of SavePlugin. Should only be one instance.' ].
+	savePlugin := savePlugin asArray first.
+	editor projectModel firstLevelElements addAll: aCollectionOfBlElement.
 
-    windowSize ifNotNil: [
-        spacePlugin := editor plugins
-            detect: [ :p | p isKindOf: PyramidSpacePlugin ]
-            ifNone: [ nil ].
-        spacePlugin ifNotNil: [
-            mainExtension := spacePlugin builder extensions
-                detect: [ :e | e isKindOf: PyramidMainExtension ]
-                ifNone: [ nil ].
-            mainExtension ifNotNil: [ mainExtension extent: windowSize ] ] ].
+	[
+		| metaDataSelector savingClass |
+		metaDataSelector := (aSaveModel savingMethodName , 'MetaData')
+			                    asSymbol.
+		savingClass := self class environment classNamed:
+			               aSaveModel savingClassName.
+		savingClass perform: metaDataSelector ]
+		on: Error
+		do: [ nil ].
 
-    savePlugin openOn: aSaveModel.
-    editor open
+	metaData := PyramidSavingService currentProjectMetaData.
+	savePlugin openOn: aSaveModel.
+	editor open.
+
+	metaData ifNotNil: [
+			spacePlugin := editor plugins
+				               detect: [ :p | p isKindOf: PyramidSpacePlugin ]
+				               ifNone: [ nil ].
+			spacePlugin ifNotNil: [
+					mainExtension := spacePlugin builder extensions
+						                 detect: [ :e |
+						                 e isKindOf: PyramidMainExtension ]
+						                 ifNone: [ nil ].
+					mainExtension ifNotNil: [
+							(metaData at: #windowSize ifAbsent: [ nil ]) ifNotNil: [ :size |
+								mainExtension extent: size.
+								mainExtension workplacePropertiesView workplaceSizeValue: size. ].
+							(metaData at: #gridVisibility ifAbsent: [ nil ]) ifNotNil: [
+								:visibility | mainExtension gridVisibility: visibility ].
+							(metaData at: #gridSpacing ifAbsent: [ nil ]) ifNotNil: [
+									:spacing |
+									mainExtension gridSpacing: spacing.
+									mainExtension workplacePropertiesView spacingText value:
+										spacing ].
+							(metaData at: #gridColor ifAbsent: [ nil ]) ifNotNil: [ :color |
+									mainExtension gridColor: color.
+									mainExtension workplacePropertiesView gridColorValue: color.
+									mainExtension createGrid ] ] ] ]
 ]
 
 { #category : #adding }

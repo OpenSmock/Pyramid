@@ -11,7 +11,7 @@ Class {
 		'ston',
 		'currentMethodBuilderSelector',
 		'currentSaveModel',
-		'currentProjectWindowSize'
+		'currentProjectMetaData'
 	],
 	#category : #'Pyramid-Bloc-plugin-save'
 }
@@ -44,13 +44,15 @@ PyramidSavingService class >> currentMethodBuilderSelector: anObject [
 ]
 
 { #category : #accessing }
-PyramidSavingService class >> currentProjectWindowSize [
-    ^ currentProjectWindowSize
+PyramidSavingService class >> currentProjectMetaData [
+
+^ currentProjectMetaData 
 ]
 
 { #category : #accessing }
-PyramidSavingService class >> currentProjectWindowSize: aPoint [
-    currentProjectWindowSize := aPoint
+PyramidSavingService class >> currentProjectMetaData: aDictionary [
+
+currentProjectMetaData := aDictionary 
 ]
 
 { #category : #accessing }
@@ -115,13 +117,21 @@ PyramidSavingService class >> ston [
 
 { #category : #'as yet unclassified' }
 PyramidSavingService >> buildMetaDataMethod [
-    | methodName windowSize |
-    methodName := self saveModel savingMethodName , 'MetaData'.
-    windowSize := PyramidMainExtension currentGridWindowSize.
-    ^ '<1s><r><t>"Pyramid project metadata"<r><t>%<pyMetaData><r><t>PyramidSavingService currentProjectWindowSize: <2p> @ <3p>'
-        expandMacrosWith: methodName
-        with: windowSize x
-        with: windowSize y
+
+	| methodName windowSize gridVisibility gridSpacing gridColor |
+	methodName := self saveModel savingMethodName , 'MetaData'.
+	windowSize := PyramidMainExtension currentGridWindowSize.
+	gridVisibility := PyramidMainExtension currentGridVisibility.
+	gridSpacing := PyramidMainExtension currentGridSpacing.
+	gridColor := PyramidMainExtension currentGridColor.
+	^ '<1s><r><t>"Pyramid project metadata"<r><t>%<pyMetaData><r><t>PyramidSavingService currentProjectMetaData: (Dictionary new<r><t><t>at: #windowSize put: <2p> @ <3p>;<r><t><t>at: #gridVisibility put: <4p>;<r><t><t>at: #gridSpacing put: <5p>;<r><t><t>at: #gridColor put: <6p>;yourself)'
+		  expandMacrosWithArguments: {
+				  methodName.
+				  windowSize x.
+				  windowSize y.
+				  gridVisibility.
+				  gridSpacing.
+				gridColor }
 ]
 
 { #category : #testing }
@@ -165,14 +175,13 @@ PyramidSavingService >> save [
 
 { #category : #'as yet unclassified' }
 PyramidSavingService >> saveMetaData [
-
-	| class metaDataMethod |
-	self canSave ifFalse: [ self errorCannotSave ].
-	class := self saveModel isClassSide
-		         ifTrue: [ self savingClass classSide ]
-		         ifFalse: [ self savingClass ].
-	metaDataMethod := self buildMetaDataMethod.
-	class compile: metaDataMethod classified: #'pyramid-metadata'
+    | class metaDataMethod |
+    self canSave ifFalse: [ self errorCannotSave ].
+    class := self saveModel isClassSide
+        ifTrue: [ self savingClass classSide ]
+        ifFalse: [ self savingClass ].
+    metaDataMethod := self buildMetaDataMethod.
+    class compile: metaDataMethod classified: #'pyramid-metadata'
 ]
 
 { #category : #accessing }
