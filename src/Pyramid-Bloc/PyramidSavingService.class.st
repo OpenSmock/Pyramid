@@ -115,23 +115,46 @@ PyramidSavingService class >> ston [
 		        yourself
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #private }
 PyramidSavingService >> buildMetaDataMethod [
 
-	| methodName windowSize gridVisibility gridSpacing gridColor |
+	| methodName windowSize gridVisibility gridSpacing gridColor dictContent nl tab header |
 	methodName := self saveModel savingMethodName , 'MetaData'.
-	windowSize := PyramidMainExtension currentGridWindowSize.
-	gridVisibility := PyramidMainExtension currentGridVisibility.
-	gridSpacing := PyramidMainExtension currentGridSpacing.
-	gridColor := PyramidMainExtension currentGridColor.
-	^ '<1s><r><t>"Pyramid project metadata"<r><t>%<pyMetaData><r><t>PyramidSavingService currentProjectMetaData: (Dictionary new<r><t><t>at: #windowSize put: <2p> @ <3p>;<r><t><t>at: #gridVisibility put: <4p>;<r><t><t>at: #gridSpacing put: <5p>;<r><t><t>at: #gridColor put: <6p>;yourself)'
-		  expandMacrosWithArguments: {
-				  methodName.
-				  windowSize x.
-				  windowSize y.
-				  gridVisibility.
-				  gridSpacing.
-				gridColor }
+	windowSize := PyramidMainExtension currentGridWindowSize ifNil: [
+		              800 @ 600 ].
+	gridVisibility := PyramidMainExtension currentGridVisibility ifNil: [
+		                  false ].
+	gridSpacing := PyramidMainExtension currentGridSpacing ifNil: [ 10 ].
+	gridColor := PyramidMainExtension currentGridColor ifNil: [
+		             Color black ].
+	(windowSize = (800 @ 600) and: [
+			 gridVisibility not and: [
+				 gridSpacing = 10 and: [ gridColor = Color black ] ] ]) ifTrue: [
+		^ nil ].
+
+	nl := String with: Character cr.
+	tab := String with: Character tab.
+
+	dictContent := ''.
+	windowSize = (800 @ 600) ifFalse: [
+			dictContent := dictContent , nl , tab , tab , 'at: #windowSize put: '
+			               , windowSize x printString , ' @ '
+			               , windowSize y printString , ';' ].
+	gridVisibility ifTrue: [
+		dictContent := dictContent
+		               , nl , tab , tab , 'at: #gridVisibility put: true;' ].
+	gridSpacing = 10 ifFalse: [
+			dictContent := dictContent , nl , tab , tab , 'at: #gridSpacing put: '
+			               , gridSpacing printString , ';' ].
+	gridColor = Color black ifFalse: [
+			dictContent := dictContent , nl , tab , tab , 'at: #gridColor put: '
+			               , gridColor printString , ';' ].
+
+	header := methodName , nl , tab , '"Pyramid project metadata"' , nl , tab.
+
+	^ header , '<pyMetaData>' , nl , tab
+		  , 'PyramidSavingService currentProjectMetaData: (Dictionary new'
+		  , dictContent , nl , tab , tab , 'yourself)'
 ]
 
 { #category : #testing }
@@ -173,15 +196,24 @@ PyramidSavingService >> save [
     self saveMetaData
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #private }
 PyramidSavingService >> saveMetaData [
-    | class metaDataMethod |
-    self canSave ifFalse: [ self errorCannotSave ].
-    class := self saveModel isClassSide
-        ifTrue: [ self savingClass classSide ]
-        ifFalse: [ self savingClass ].
-    metaDataMethod := self buildMetaDataMethod.
-    class compile: metaDataMethod classified: #'pyramid-metadata'
+
+	| class metaDataMethod methodName |
+	self canSave ifFalse: [ self errorCannotSave ].
+	class := self saveModel isClassSide
+		         ifTrue: [ self savingClass classSide ]
+		         ifFalse: [ self savingClass ].
+	metaDataMethod := self buildMetaDataMethod.
+
+	metaDataMethod ifNil: [
+			methodName := (self saveModel savingMethodName , 'MetaData')
+				              asSymbol.
+			(class includesSelector: methodName) ifTrue: [
+				class removeSelector: methodName ].
+			^ self ].
+
+	class compile: metaDataMethod classified: #'pyramid-metadata'
 ]
 
 { #category : #accessing }

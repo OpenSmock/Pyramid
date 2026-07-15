@@ -1103,7 +1103,6 @@ PyramidWorld class >> startBrowseSources [
 PyramidWorld class >> startNewDesign [
 
 	<script>
-	PyramidSavingService currentProjectMetaData: nil .
 	PyramidEditor open
 ]
 

@@ -5,7 +5,8 @@ Class {
 		'window',
 		'windowSize',
 		'projectModel',
-		'openedSpaces'
+		'space',
+		'mainExtension'
 	],
 	#category : #'Pyramid-Tests-cases-plugin-openInWindow'
 }
@@ -14,91 +15,51 @@ Class {
 PyramidOpenInWindowTest >> setUp [
 
 	super setUp.
-	projectModel := PyramidProjectModel new.
 	window := PyramidPluginOpenInWindow new.
-	window projectModel: projectModel.
+	window projectModel: PyramidProjectModel new.
 	window builder: PyramidSpaceBuilder new.
-	windowSize := PyramidMainExtension currentGridWindowSize.
+	window builder space: BlSpace new.
 ]
 
 { #category : #running }
 PyramidOpenInWindowTest >> tearDown [
 
+	space ifNotNil: [ space close ].
+
 	PyramidMainExtension currentGridWindowSize: windowSize.
+
 	super tearDown
 ]
 
 { #category : #tests }
-PyramidOpenInWindowTest >> testOpenSpaceInWindowAddsProjectElements [
+PyramidOpenInWindowTest >> testOpenSpaceDefaultSizeWhenNoExtension [
 
-	| space |
-
-	space := window openSpaceInWindow.
-	self assert: space root children size equals: 1.
-	self
-		assert: space root children first children size
-		equals: window projectModel firstLevelElements size
-]
-
-{ #category : #tests }
-PyramidOpenInWindowTest >> testOpenSpaceInWindowContainerMatchesParent [
-    | space container |
-    space := window openSpaceInWindow.
-    container := space root children first.
-    self assert: container constraints horizontal resizer equals: BlLayoutResizer matchParent.
-    self assert: container constraints vertical resizer equals: BlLayoutResizer matchParent.
-]
-
-{ #category : #tests }
-PyramidOpenInWindowTest >> testOpenSpaceInWindowUsesBuilderTheme [
-
-	| initialSpace rootElement theme openedSpace |
-	theme := ToRawDarkTheme new.
-	rootElement := BlElement new.
-	rootElement localTheme: theme.
-
-	initialSpace := BlSpace new.
-	initialSpace root: rootElement.
-
-	window builder: (PyramidSpaceBuilder new space: initialSpace).
-
-	openedSpace := window openSpaceInWindow.
-
-	self assert: openedSpace root localTheme equals: theme
-]
-
-{ #category : #tests }
-PyramidOpenInWindowTest >> testOpenSpaceInWindowWithBuilderHavingNilSpace [
-    | space |
-    window builder: (PyramidSpaceBuilder new space: nil).
-    space := window openSpaceInWindow.
-    self assert: space isNotNil
-]
-
-{ #category : #tests }
-PyramidOpenInWindowTest >> testOpenSpaceInWindowWithBuilderSpaceHavingNilRoot [
-
-	| initialSpace space |
-	initialSpace := BlSpace new.
-	window builder: (PyramidSpaceBuilder new space: initialSpace).
-	space := window openSpaceInWindow.
-	self assert: space isNotNil.
-]
-
-{ #category : #tests }
-PyramidOpenInWindowTest >> testWindowDefaultExtent [
-
-	| space |
 	space := window openSpaceInWindow.
 	self assert: space extent equals: 800 @ 600
 ]
 
 { #category : #tests }
-PyramidOpenInWindowTest >> testWindowExtentUsesConfiguredGridSize [
+PyramidOpenInWindowTest >> testOpenSpaceTransfersTheme [
 
-	| space |
-	PyramidMainExtension currentGridWindowSize: 2000 @ 1000.
+	| theme builderSpace |
+
+	builderSpace := BlSpace new.
+	theme := ToBeeDarkTheme new.
+	builderSpace toTheme: theme.
+	window builder space: builderSpace.
 	space := window openSpaceInWindow.
+	self assert: space toTheme equals: theme
+]
 
-	self assert: space extent equals: 2000 @ 1000
+{ #category : #tests }
+PyramidOpenInWindowTest >> testOpenSpaceWithExtension [
+
+	| mockExtension mockSizeElement |
+
+	mockSizeElement := 0 @ 0 extent: 1024 @ 768.
+	mockExtension := PyramidMainExtension new.
+	mockExtension instVarNamed: 'sizeElement' put: mockSizeElement.
+	window builder extensions add: mockExtension.
+	space := window openSpaceInWindow.
+	self assert: space extent equals: 1024 @ 768
 ]

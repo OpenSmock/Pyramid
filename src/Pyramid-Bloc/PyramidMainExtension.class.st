@@ -29,7 +29,7 @@ Class {
 { #category : #accessing }
 PyramidMainExtension class >> currentGridColor [
 
-^ currentGridColor
+	^ currentGridColor ifNil: [ ^ Color black ]
 ]
 
 { #category : #accessing }
@@ -41,7 +41,7 @@ currentGridColor := aColor
 { #category : #accessing }
 PyramidMainExtension class >> currentGridSpacing [
 
-^ currentGridSpacing
+	^ currentGridSpacing ifNil: [ ^ 10 ]
 ]
 
 { #category : #accessing }
@@ -52,7 +52,7 @@ PyramidMainExtension class >> currentGridSpacing: anInteger [
 
 { #category : #accessing }
 PyramidMainExtension class >> currentGridVisibility [
-    ^ currentGridVisibility
+    ^ currentGridVisibility ifNil: [ ^ false ]
 
 
 ]
@@ -64,22 +64,13 @@ PyramidMainExtension class >> currentGridVisibility: aBoolean [
 
 { #category : #accessing }
 PyramidMainExtension class >> currentGridWindowSize [
-    ^ currentGridWindowSize
 
-
+	^ currentGridWindowSize ifNil: [ ^ 800 @ 600 ]
 ]
 
 { #category : #accessing }
 PyramidMainExtension class >> currentGridWindowSize: aPoint [
     currentGridWindowSize := aPoint
-]
-
-{ #category : #'class initialization' }
-PyramidMainExtension class >> initialize [
-
-	currentGridWindowSize := nil.
-	currentGridVisibility := nil.
-	currentGridSpacing:= nil
 ]
 
 { #category : #accessing }
@@ -149,9 +140,7 @@ PyramidMainExtension >> defaultGridSpacing [
 { #category : #'as yet unclassified' }
 PyramidMainExtension >> defaultGridVisibility [
     "Default visibility value of the grid"
-    ^ (PyramidSavingService currentProjectMetaData
-        ifNotNil: [ :md | md at: #gridVisibility ifAbsent: [ nil ] ])
-        ifNil: [ false ]
+    ^ false
 ]
 
 { #category : #accessing }
@@ -259,17 +248,6 @@ PyramidMainExtension >> gridColor: aColor [
 gridColor := aColor
 ]
 
-{ #category : #'as yet unclassified' }
-PyramidMainExtension >> gridDefaultValueInitializer [
-	
-	"Set the default parameter values of the grid"
-	gridWindowSize := self defaultExtent.
-	gridVisibility := self defaultGridVisibility.
-	gridSpacing := self defaultGridSpacing.
-	gridColor := self defaultGridColor.
-	self createGrid.
-]
-
 { #category : #accessing }
 PyramidMainExtension >> gridElement [ 
 	^ gridElement 
@@ -318,7 +296,11 @@ PyramidMainExtension >> informTransformationChanged [
 { #category : #initialization }
 PyramidMainExtension >> initialize [
 	"Set the default parameter value of the grid"
-
+	self class currentGridWindowSize: self defaultExtent.
+	self class currentGridVisibility: self defaultGridVisibility.
+	self class currentGridSpacing: self defaultGridSpacing.
+	self class currentGridColor: self defaultGridColor.
+	
 	gridWindowSize := self defaultExtent.
 	gridVisibility := self defaultGridVisibility.
 	gridSpacing := self defaultGridSpacing.
@@ -326,13 +308,14 @@ PyramidMainExtension >> initialize [
 
 	"Set up the graphical parameter windows of the grid and the space extension"
 	workplacePropertiesView := PyramidWorkplacePropertiesPresenter new
-		                           workplaceSizeValue: self defaultExtent;
+		                           workplaceSizeValue: self defaultExtent; 
 		                           whenWorkplaceValuesChangedDo: [ :point |
 			                           self extent: point ];
 		                           whenVisibilityChangedDo: [
 				                           gridVisibility := workplacePropertiesView
 					                                             visibilityButton
-					                                             state.
+					                                             state. 
+					
 				                           self class currentGridVisibility:
 						                           gridVisibility.
 				                           self createGrid ];
@@ -354,9 +337,12 @@ PyramidMainExtension >> initialize [
 				                           self createGrid ];
 		                           gridColorValue: self defaultGridColor;
 		                           whenColorValuesChangedDo: [ :color |
-				                           gridColor := color. self class currentGridColor: color.
+				                           gridColor := color.
+				                           self class currentGridColor: color.
 				                           self createGrid ];
 		                           yourself.
+		workplacePropertiesView visibilityButton state: gridVisibility.
+
 
 	self defaultGridSpacing <= 0 ifTrue: [ gridSpacing := 1 ].
 	workplacePropertiesView spacingText value: gridSpacing.

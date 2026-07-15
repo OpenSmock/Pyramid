@@ -3,7 +3,11 @@ Class {
 	#superclass : #ClyBrowserToolMorph,
 	#instVars : [
 		'method',
-		'imageMorph'
+		'imageMorph',
+		'builder',
+		'spacePlugin',
+		'projectModel',
+		'savePlugin'
 	],
 	#category : #'Pyramid-Bloc-plugin-save'
 }
@@ -141,6 +145,19 @@ PyramidVisualPystonForCly >> buttonOpen [
 		  action: [ self openInNewSpace ]
 ]
 
+{ #category : #connecting }
+PyramidVisualPystonForCly >> connectOn: aPyramidEditor [
+
+	spacePlugin := aPyramidEditor plugins
+		               detect: [ :p | p isKindOf: PyramidSpacePlugin ]
+		               ifNone: [ ].
+	spacePlugin ifNotNil: [ builder := spacePlugin builder ].
+	projectModel := aPyramidEditor projectModel.
+	savePlugin := aPyramidEditor plugins
+		              detect: [ :p | p isKindOf: PyramidSavePlugin ]
+		              ifNone: [ ]
+]
+
 { #category : #'as yet unclassified' }
 PyramidVisualPystonForCly >> copyElement [
 
@@ -207,7 +224,7 @@ PyramidVisualPystonForCly >> openEditor [
 { #category : #accessing }
 PyramidVisualPystonForCly >> openInNewSpace [
 
-	| class elements space theme windowSize |
+	| class elements theme space windowSize |
 	class := method classBinding value.
 	elements := class isMeta
 		            ifTrue: [
@@ -234,8 +251,8 @@ PyramidVisualPystonForCly >> openInNewSpace [
 
 	space := BlSpace new.
 	space extent: windowSize.
-	theme := PyramidPluginOpenInWindow currentTheme.
-	theme ifNotNil: [ space toTheme: theme ].
+	theme := PyramidToploThemePlugin defaultTheme.
+	space toTheme: theme new.
 	space root addChildren: elements.
 	space show.
 	^ space

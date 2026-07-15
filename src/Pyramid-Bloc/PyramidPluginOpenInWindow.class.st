@@ -17,18 +17,6 @@ Class {
 	#category : #'Pyramid-Bloc-plugin-openinwindow'
 }
 
-{ #category : #accessing }
-PyramidPluginOpenInWindow class >> currentTheme [
-
-	^ currentTheme
-]
-
-{ #category : #accessing }
-PyramidPluginOpenInWindow class >> currentTheme: aTheme [
-
-	currentTheme := aTheme
-]
-
 { #category : #adding }
 PyramidPluginOpenInWindow >> addPanelsOn: aPyramidSimpleWindow [
 

@@ -35,7 +35,9 @@ PyramidSavePlugin class >> openOn: aCollectionOfBlElement saveModel: aSaveModel 
 			                    asSymbol.
 		savingClass := self class environment classNamed:
 			               aSaveModel savingClassName.
-		savingClass perform: metaDataSelector ]
+		aSaveModel isClassSide
+			ifTrue: [ savingClass perform: metaDataSelector ]
+			ifFalse: [ savingClass new perform: metaDataSelector ] ]
 		on: Error
 		do: [ nil ].
 
@@ -54,10 +56,12 @@ PyramidSavePlugin class >> openOn: aCollectionOfBlElement saveModel: aSaveModel 
 						                 ifNone: [ nil ].
 					mainExtension ifNotNil: [
 							(metaData at: #windowSize ifAbsent: [ nil ]) ifNotNil: [ :size |
-								mainExtension extent: size.
-								mainExtension workplacePropertiesView workplaceSizeValue: size. ].
+									mainExtension extent: size.
+									mainExtension workplacePropertiesView workplaceSizeValue:
+										size ].
 							(metaData at: #gridVisibility ifAbsent: [ nil ]) ifNotNil: [
-								:visibility | mainExtension gridVisibility: visibility ].
+								:visibility | mainExtension gridVisibility: visibility.
+								mainExtension workplacePropertiesView visibilityButton state: visibility ].
 							(metaData at: #gridSpacing ifAbsent: [ nil ]) ifNotNil: [
 									:spacing |
 									mainExtension gridSpacing: spacing.
@@ -65,8 +69,8 @@ PyramidSavePlugin class >> openOn: aCollectionOfBlElement saveModel: aSaveModel 
 										spacing ].
 							(metaData at: #gridColor ifAbsent: [ nil ]) ifNotNil: [ :color |
 									mainExtension gridColor: color.
-									mainExtension workplacePropertiesView gridColorValue: color.
-									mainExtension createGrid ] ] ] ]
+									mainExtension workplacePropertiesView gridColorValue: color ].
+							mainExtension createGrid ] ] ]
 ]
 
 { #category : #adding }
