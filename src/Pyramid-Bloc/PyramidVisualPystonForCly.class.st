@@ -240,8 +240,14 @@ PyramidVisualPystonForCly >> openInNewSpace [
 		              | metaDataSelector |
 		              metaDataSelector := (method selector , 'MetaData')
 			                                  asSymbol.
-		              method classBinding value instanceSide perform:
-			              metaDataSelector.
+		              class isMeta
+			              ifTrue: [
+			              method classBinding value instanceSide perform:
+				              metaDataSelector ]
+			              ifFalse: [
+			              method classBinding value new perform:
+				              metaDataSelector ].
+
 		              PyramidSavingService currentProjectMetaData
 			              at: #windowSize
 			              ifAbsent: [ nil ] ]
