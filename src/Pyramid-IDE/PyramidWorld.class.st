@@ -1101,8 +1101,8 @@ PyramidWorld class >> startBrowseSources [
 
 { #category : #actions }
 PyramidWorld class >> startNewDesign [
-	<script>
 
+	<script>
 	PyramidEditor open
 ]
 

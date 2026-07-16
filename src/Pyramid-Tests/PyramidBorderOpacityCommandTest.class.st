@@ -12,7 +12,7 @@ PyramidBorderOpacityCommandTest >> command [
 	^ PyramidBorderOpacityCommand new
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 PyramidBorderOpacityCommandTest >> targetContainers [
 
 	^ {

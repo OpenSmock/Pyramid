@@ -11,37 +11,37 @@ TPyramidEditorExtension >> currentTransformTranslation [
 	^ matrix x @ matrix y
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #displaying }
 TPyramidEditorExtension >> elementAtDisplays [
 
 	^ (self builder elementAt: #displays)
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #displaying }
 TPyramidEditorExtension >> elementAtDisplaysAddons [
 
 	^ self elementAtDisplays childWithId: #displaysAddons
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #displaying }
 TPyramidEditorExtension >> elementAtEvents [
 
 	^ self builder elementAt: #events
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #displaying }
 TPyramidEditorExtension >> elementAtMain [
 
 	^ self builder elementAt: #main
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #displaying }
 TPyramidEditorExtension >> elementAtTransforms [
 
 	^ (self builder elementAt: #transforms)
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #displaying }
 TPyramidEditorExtension >> elementAtWidgets [
 
 	^ self builder elementAt: #widgets

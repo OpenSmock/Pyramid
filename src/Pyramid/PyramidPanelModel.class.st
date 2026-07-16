@@ -43,6 +43,17 @@ PyramidPanelModel class >> toolbarHorizontal [
 ]
 
 { #category : #'as yet unclassified' }
+PyramidPanelModel class >> toolbarHorizontalEnd [
+
+	^ self new
+		  builder: (PyramidToolbarPanelBuilder new
+				   isHorizontal: true;
+				   alignEnd: true;
+				   yourself);
+		  yourself
+]
+
+{ #category : #'as yet unclassified' }
 PyramidPanelModel class >> toolbarVertical [
 
 	^ self new

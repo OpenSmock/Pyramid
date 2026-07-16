@@ -7,13 +7,13 @@ Class {
 	#category : #'Pyramid-Bloc-plugin-bloc'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : #getter }
 PyramidMoveChildInParentCommand >> getValueFor: aBlElement [
 
 	^ nil
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #private }
 PyramidMoveChildInParentCommand >> saveStatesOf: aCollection withCommand: aCommand withArguments: anArguments [
 
 	| mementos |

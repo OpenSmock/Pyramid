@@ -12,7 +12,7 @@ PyramidBackgroundPaintStopsCommandTest >> command [
 	^ PyramidBackgroundPaintStopsCommand new
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 PyramidBackgroundPaintStopsCommandTest >> targetContainers [
 
 	^ {
@@ -87,7 +87,7 @@ PyramidBackgroundPaintStopsCommandTest >> targetContainers [
 			 }
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 PyramidBackgroundPaintStopsCommandTest >> targetsCannotBeUsedFor [
 	"override if needed"
 

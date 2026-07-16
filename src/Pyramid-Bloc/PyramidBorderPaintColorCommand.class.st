@@ -11,7 +11,7 @@ PyramidBorderPaintColorCommand >> canBeUsedFor: anObject [
 		  anObject border paint isKindOf: BlColorPaint ]
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #getter }
 PyramidBorderPaintColorCommand >> getValueFor: aBlElement [
 
 	^ aBlElement border paint color

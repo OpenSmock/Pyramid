@@ -4,14 +4,14 @@ Class {
 	#category : #'Pyramid-Bloc-plugin-bloc-layout'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : #getter }
 PyramidProportionalHorizontalConstraintsCommand >> getValueFor: anObject [
 
 	^ anObject constraints proportional horizontal left
 	  @ anObject constraints proportional horizontal right
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #setter }
 PyramidProportionalHorizontalConstraintsCommand >> setValueFor: anObject with: anArgument [
 
 	anObject constraintsDo: [ :c |

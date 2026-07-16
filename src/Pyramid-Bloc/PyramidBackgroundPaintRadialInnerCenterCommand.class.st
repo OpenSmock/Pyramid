@@ -4,13 +4,13 @@ Class {
 	#category : #'Pyramid-Bloc-plugin-bloc-visuals'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : #getter }
 PyramidBackgroundPaintRadialInnerCenterCommand >> getValueFor: aBlElement [
 
 	^ aBlElement background paint innerCenter
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #setter }
 PyramidBackgroundPaintRadialInnerCenterCommand >> setValueFor: aBlElement with: anArgument [
 
 	aBlElement background paint innerCenter: anArgument

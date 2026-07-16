@@ -3,10 +3,23 @@ Class {
 	#superclass : #PyramidPanelBuilder,
 	#instVars : [
 		'item',
-		'isHorizontal'
+		'isHorizontal',
+		'alignEnd'
 	],
 	#category : #'Pyramid-views'
 }
+
+{ #category : #accessing }
+PyramidToolbarPanelBuilder >> alignEnd [
+
+	^ alignEnd ifNil: [ false ]
+]
+
+{ #category : #accessing }
+PyramidToolbarPanelBuilder >> alignEnd: aBoolean [
+
+alignEnd := aBoolean 
+]
 
 { #category : #accessing }
 PyramidToolbarPanelBuilder >> height [
@@ -69,6 +82,7 @@ PyramidToolbarPanelBuilder >> presenterOf: aCollectionOfItems [
 
 	| layout |
 	layout := self layout.
+	self alignEnd ifTrue: [ layout hAlignEnd ].
 	aCollectionOfItems sorted do: [ :each | each addOnLayout: layout ].
 	^ SpPresenter new
 		  layout: layout;
