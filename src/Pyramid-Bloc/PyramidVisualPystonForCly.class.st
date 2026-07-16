@@ -3,7 +3,11 @@ Class {
 	#superclass : #ClyBrowserToolMorph,
 	#instVars : [
 		'method',
-		'imageMorph'
+		'imageMorph',
+		'builder',
+		'spacePlugin',
+		'projectModel',
+		'savePlugin'
 	],
 	#category : #'Pyramid-Bloc-plugin-save'
 }
@@ -141,6 +145,19 @@ PyramidVisualPystonForCly >> buttonOpen [
 		  action: [ self openInNewSpace ]
 ]
 
+{ #category : #connecting }
+PyramidVisualPystonForCly >> connectOn: aPyramidEditor [
+
+	spacePlugin := aPyramidEditor plugins
+		               detect: [ :p | p isKindOf: PyramidSpacePlugin ]
+		               ifNone: [ ].
+	spacePlugin ifNotNil: [ builder := spacePlugin builder ].
+	projectModel := aPyramidEditor projectModel.
+	savePlugin := aPyramidEditor plugins
+		              detect: [ :p | p isKindOf: PyramidSavePlugin ]
+		              ifNone: [ ]
+]
+
 { #category : #'as yet unclassified' }
 PyramidVisualPystonForCly >> copyElement [
 
@@ -207,21 +224,44 @@ PyramidVisualPystonForCly >> openEditor [
 { #category : #accessing }
 PyramidVisualPystonForCly >> openInNewSpace [
 
-	| class elements space |
+	| class elements theme space windowSize |
 	class := method classBinding value.
 	elements := class isMeta
 		            ifTrue: [
-			            (method classBinding value instanceSide perform:
-				             method selector) materializeAsBlElement ]
+				            (method classBinding value instanceSide perform:
+					             method selector) materializeAsBlElement ]
 		            ifFalse: [
-			            (method classBinding value new perform: method selector)
-				            materializeAsBlElement ].
-
+				            (method classBinding value new perform:
+					             method selector) materializeAsBlElement ].
 	elements isCollection ifFalse: [ elements := { elements } ].
-
 	elements ifEmpty: [ ^ self ].
-	space := elements first openInNewSpace.
-	space root addChildren: elements allButFirst
+
+	windowSize := [
+		              | metaDataSelector |
+		              metaDataSelector := (method selector , 'MetaData')
+			                                  asSymbol.
+		              class isMeta
+			              ifTrue: [
+			              method classBinding value instanceSide perform:
+				              metaDataSelector ]
+			              ifFalse: [
+			              method classBinding value new perform:
+				              metaDataSelector ].
+
+		              PyramidSavingService currentProjectMetaData
+			              at: #windowSize
+			              ifAbsent: [ nil ] ]
+		              on: Error
+		              do: [ nil ].
+	windowSize ifNil: [ windowSize := 800 @ 600 ].
+
+	space := BlSpace new.
+	space extent: windowSize.
+	theme := PyramidToploThemePlugin defaultTheme.
+	space toTheme: theme new.
+	space root addChildren: elements.
+	space show.
+	^ space
 ]
 
 { #category : #initialization }
