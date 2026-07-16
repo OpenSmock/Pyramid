@@ -26,12 +26,8 @@ PyramidOpenInWindowTest >> tearDown [
 
 	space ifNotNil: [
 			space close.
-			space := nil.
-	].
+			space := nil ].
 
-	window ifNotNil: [
-			window := nil ].
-		
 	PyramidMainExtension currentGridWindowSize: windowSize.
 
 	super tearDown
@@ -40,20 +36,19 @@ PyramidOpenInWindowTest >> tearDown [
 { #category : #tests }
 PyramidOpenInWindowTest >> testOpenSpaceDefaultSizeWhenNoExtension [
 
-	space := window openSpaceInWindow.
-	self assert: space extent equals: 800 @ 600. 
+	space := window buildSpaceInWindow.
+	self assert: space extent equals: 800 @ 600
 ]
 
 { #category : #tests }
 PyramidOpenInWindowTest >> testOpenSpaceTransfersTheme [
 
 	| theme builderSpace |
-
 	builderSpace := BlSpace new.
 	theme := ToBeeDarkTheme new.
 	builderSpace toTheme: theme.
 	window builder space: builderSpace.
-	space := window openSpaceInWindow.
+	space := window buildSpaceInWindow.
 	self assert: space toTheme equals: theme
 ]
 
@@ -61,11 +56,10 @@ PyramidOpenInWindowTest >> testOpenSpaceTransfersTheme [
 PyramidOpenInWindowTest >> testOpenSpaceWithExtension [
 
 	| mockExtension mockSizeElement |
-
 	mockSizeElement := 0 @ 0 extent: 1024 @ 768.
 	mockExtension := PyramidMainExtension new.
 	mockExtension instVarNamed: 'sizeElement' put: mockSizeElement.
 	window builder extensions add: mockExtension.
-	space := window openSpaceInWindow.
+	space := window buildSpaceInWindow.
 	self assert: space extent equals: 1024 @ 768
 ]
