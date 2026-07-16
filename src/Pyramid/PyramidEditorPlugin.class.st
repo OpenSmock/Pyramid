@@ -154,5 +154,5 @@ PyramidEditorPlugin >> initialize [
 	propertiesManager addProperty: self class toImageInnerImage.
 
 	"ToLabel properties"
-	propertiesManager addProperty: self class toLabelText
+	propertiesManager addProperty: self class toLabelText.
 ]

@@ -34,7 +34,27 @@ PyramidIconInputPresenter class >> innerElementFromName: aSymbol [
 	= (Smalltalk ui icons iconNamed: #blank) ifTrue: [
 			| element |
 			element := self findToploIconNamed: aSymbol.
-			element ifNotNil: [ ^ element block value first asForm ] ].
+			element ifNotNil: [
+					^ PyramidExternalRessourceProxy new
+						  pyramidExternalRessourceSource:
+							  (PyramidExternalRessourceSource new
+
+								   postConstructionBlock: [ :obj |
+									   obj constraints horizontal matchParent.
+									   obj constraints vertical matchParent ];
+
+								   target: BlSvgConverter;
+								   selector: #convertFromString:;
+								   arguments: { (PyramidExternalRessourceProxy new
+										    pyramidExternalRessourceSource:
+											    (PyramidExternalRessourceSource new
+												     target: element provider;
+												     selector: element name asSymbol;
+												     arguments: {  };
+												     yourself);
+										    yourself) };
+								   yourself);
+						  yourself ] ].
 	^ PyramidExternalRessourceProxy fromSource:
 		  (PyramidExternalRessourceSource
 			   target: Object
@@ -49,7 +69,24 @@ PyramidIconInputPresenter class >> toImageFromName: aSymbol [
 	= (Smalltalk ui icons iconNamed: #blank) ifTrue: [
 			| element |
 			element := self findToploIconNamed: aSymbol.
-			element ifNotNil: [^ element block value first ] ]. 
+			element ifNotNil: [
+					^ ToImage new
+						  innerImage:
+							  (PyramidExternalRessourceProxy new
+								   pyramidExternalRessourceSource:
+									   (PyramidExternalRessourceSource new
+										    target: BlSvgConverter;
+										    selector: #convertFromString:;
+										    arguments: { (PyramidExternalRessourceProxy new
+												     pyramidExternalRessourceSource:
+													     (PyramidExternalRessourceSource new
+														      target: element provider;
+														      selector: element name asSymbol;
+														      arguments: {  };
+														      yourself);
+												     yourself) };
+										    yourself));
+						  yourself ] ].
 	^ ToImage new
 		  innerImage: (PyramidExternalRessourceProxy fromSource:
 					   (PyramidExternalRessourceSource
@@ -85,6 +122,7 @@ PyramidIconInputPresenter class >> toploIconThemeCategoryFromClass: aClass withC
 			  elements := elementSelectors collect: [ :selector |
 					              PyramidLibraryElement new
 						              name: selector;
+						              provider: aClass;
 						              icon: (Smalltalk ui icons iconNamed: #blank);
 						              block: [
 								              | image |
