@@ -24,8 +24,14 @@ PyramidOpenInWindowTest >> setUp [
 { #category : #running }
 PyramidOpenInWindowTest >> tearDown [
 
-	space ifNotNil: [ space close ].
+	space ifNotNil: [
+			space close.
+			space := nil.
+	].
 
+	window ifNotNil: [
+			window := nil ].
+		
 	PyramidMainExtension currentGridWindowSize: windowSize.
 
 	super tearDown
@@ -35,7 +41,7 @@ PyramidOpenInWindowTest >> tearDown [
 PyramidOpenInWindowTest >> testOpenSpaceDefaultSizeWhenNoExtension [
 
 	space := window openSpaceInWindow.
-	self assert: space extent equals: 800 @ 600
+	self assert: space extent equals: 800 @ 600. 
 ]
 
 { #category : #tests }
