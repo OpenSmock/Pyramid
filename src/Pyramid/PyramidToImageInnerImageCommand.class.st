@@ -14,15 +14,17 @@ PyramidToImageInnerImageCommand >> canBeUsedFor: anObject [
 
 { #category : #getter }
 PyramidToImageInnerImageCommand >> getValueFor: aToImage [
-
-	^ aToImage userData at: #pyramidIconName ifAbsent: [ '' ]
+    ^ (PyramidMainExtension currentProjectIcons
+        at: aToImage id , '_innerImage' ifAbsent: [ nil ])
+        ifNil: [ '' ]
 ]
 
 { #category : #setter }
 PyramidToImageInnerImageCommand >> setValueFor: aToImage with: aSymbol [
 
-	iconName := aSymbol.
-	aToImage extent isZero ifTrue: [ aToImage extent: 48 asPoint ].
 	aToImage innerImage:
-		(PyramidIconInputPresenter innerElementFromName: aSymbol)
+		(PyramidIconInputPresenter innerElementFromName: aSymbol).
+	PyramidMainExtension
+		addIconName: aSymbol
+		forElementId: aToImage id , '_innerImage'
 ]

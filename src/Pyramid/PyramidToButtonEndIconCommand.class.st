@@ -1,9 +1,6 @@
 Class {
 	#name : #PyramidToButtonEndIconCommand,
 	#superclass : #PyramidAbstractBlocCommand,
-	#instVars : [
-		'endIconName'
-	],
 	#category : #'Pyramid-plugin-editor'
 }
 
@@ -15,13 +12,17 @@ PyramidToButtonEndIconCommand >> canBeUsedFor: anObject [
 
 { #category : #getter }
 PyramidToButtonEndIconCommand >> getValueFor: aToButton [
-
-	^ endIconName ifNil: [ ^ '' ]
+    ^ (PyramidMainExtension currentProjectIcons
+        at: aToButton id , '_endIcon' ifAbsent: [ nil ])
+        ifNil: [ '' ]
 ]
 
 { #category : #setter }
 PyramidToButtonEndIconCommand >> setValueFor: aToButton with: aSymbol [
 
-	endIconName := aSymbol.
-	aToButton endIcon: (PyramidIconInputPresenter toImageFromName: aSymbol)
+	aToButton endIcon:
+		(PyramidIconInputPresenter toImageFromName: aSymbol).
+	PyramidMainExtension
+		addIconName: aSymbol
+		forElementId: aToButton id , '_endIcon'
 ]

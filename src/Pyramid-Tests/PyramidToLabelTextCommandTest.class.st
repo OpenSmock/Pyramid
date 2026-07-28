@@ -12,7 +12,7 @@ PyramidToLabelTextCommandTest >> command [
 ^ PyramidToLabelTextCommand new
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 PyramidToLabelTextCommandTest >> targetContainers [
 
 	^ {

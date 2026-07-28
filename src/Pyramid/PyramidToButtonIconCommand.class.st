@@ -1,9 +1,6 @@
 Class {
 	#name : #PyramidToButtonIconCommand,
 	#superclass : #PyramidAbstractBlocCommand,
-	#instVars : [
-		'iconName'
-	],
 	#category : #'Pyramid-plugin-editor'
 }
 
@@ -15,14 +12,16 @@ PyramidToButtonIconCommand >> canBeUsedFor: anObject [
 
 { #category : #getter }
 PyramidToButtonIconCommand >> getValueFor: aToButton [
+	^ (PyramidMainExtension iconNameForElementId: aToButton id , '_icon') ifNil: [ '' ]
 
-	^ iconName ifNil: [ ^ '' ]
 
 ]
 
 { #category : #setter }
 PyramidToButtonIconCommand >> setValueFor: aToButton with: aSymbol [
 
-	iconName := aSymbol.
-	aToButton icon: (PyramidIconInputPresenter toImageFromName: aSymbol)
+	aToButton icon: (PyramidIconInputPresenter toImageFromName: aSymbol).
+	PyramidMainExtension
+		addIconName: aSymbol
+		forElementId: aToButton id , '_icon'
 ]

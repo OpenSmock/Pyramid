@@ -21,10 +21,16 @@ Class {
 		'currentGridWindowSize',
 		'currentGridVisibility',
 		'currentGridSpacing',
-		'currentGridColor'
+		'currentGridColor',
+		'currentProjectIcons'
 	],
 	#category : #'Pyramid-Bloc-plugin-space-extensions'
 }
+
+{ #category : #adding }
+PyramidMainExtension class >> addIconName: aSymbol forElementId: aString [
+	self currentProjectIcons at: aString asSymbol put: aSymbol
+]
 
 { #category : #accessing }
 PyramidMainExtension class >> currentGridColor [
@@ -71,6 +77,29 @@ PyramidMainExtension class >> currentGridWindowSize [
 { #category : #accessing }
 PyramidMainExtension class >> currentGridWindowSize: aPoint [
     currentGridWindowSize := aPoint
+]
+
+{ #category : #accessing }
+PyramidMainExtension class >> currentProjectIcons [
+
+	^ currentProjectIcons ifNil: [ currentProjectIcons := Dictionary new ]
+]
+
+{ #category : #accessing }
+PyramidMainExtension class >> currentProjectIcons: aDictionary [
+    currentProjectIcons := aDictionary
+
+]
+
+{ #category : #accessing }
+PyramidMainExtension class >> iconNameForElementId: aString [
+	^ self currentProjectIcons at: aString ifAbsent: [ nil ]
+]
+
+{ #category : #initialization }
+PyramidMainExtension class >> resetCurrentProjectIcons [
+
+	currentProjectIcons := Dictionary new
 ]
 
 { #category : #accessing }
@@ -296,11 +325,13 @@ PyramidMainExtension >> informTransformationChanged [
 { #category : #initialization }
 PyramidMainExtension >> initialize [
 	"Set the default parameter value of the grid"
+
 	self class currentGridWindowSize: self defaultExtent.
 	self class currentGridVisibility: self defaultGridVisibility.
 	self class currentGridSpacing: self defaultGridSpacing.
 	self class currentGridColor: self defaultGridColor.
-	
+	self class resetCurrentProjectIcons.
+
 	gridWindowSize := self defaultExtent.
 	gridVisibility := self defaultGridVisibility.
 	gridSpacing := self defaultGridSpacing.
@@ -308,14 +339,14 @@ PyramidMainExtension >> initialize [
 
 	"Set up the graphical parameter windows of the grid and the space extension"
 	workplacePropertiesView := PyramidWorkplacePropertiesPresenter new
-		                           workplaceSizeValue: self defaultExtent; 
+		                           workplaceSizeValue: self defaultExtent;
 		                           whenWorkplaceValuesChangedDo: [ :point |
 			                           self extent: point ];
 		                           whenVisibilityChangedDo: [
 				                           gridVisibility := workplacePropertiesView
 					                                             visibilityButton
-					                                             state. 
-					
+					                                             state.
+
 				                           self class currentGridVisibility:
 						                           gridVisibility.
 				                           self createGrid ];
@@ -341,7 +372,7 @@ PyramidMainExtension >> initialize [
 				                           self class currentGridColor: color.
 				                           self createGrid ];
 		                           yourself.
-		workplacePropertiesView visibilityButton state: gridVisibility.
+	workplacePropertiesView visibilityButton state: gridVisibility.
 
 
 	self defaultGridSpacing <= 0 ifTrue: [ gridSpacing := 1 ].

@@ -12,6 +12,16 @@ Class {
 }
 
 { #category : #private }
+PyramidIconInputPresenter class >> buildProxy: aTarget selector: aSelector args: anArray [
+
+	^ PyramidExternalRessourceProxy fromSource:
+		  (PyramidExternalRessourceSource
+			   target: aTarget
+			   selector: aSelector
+			   arguments: anArray)
+]
+
+{ #category : #private }
 PyramidIconInputPresenter class >> findToploIconNamed: aSymbol [
     ^ (self
         toploIconThemeCategoryFromClass: ToAntDesignIconProvider
@@ -30,69 +40,37 @@ PyramidIconInputPresenter class >> findToploIconNamed: aSymbol [
 { #category : #private }
 PyramidIconInputPresenter class >> innerElementFromName: aSymbol [
 
-	(Smalltalk ui icons iconNamed: aSymbol)
-	= (Smalltalk ui icons iconNamed: #blank) ifTrue: [
-			| element |
-			element := self findToploIconNamed: aSymbol.
-			element ifNotNil: [
-					^ PyramidExternalRessourceProxy new
-						  pyramidExternalRessourceSource:
-							  (PyramidExternalRessourceSource new
+	(self findToploIconNamed: aSymbol) ifNotNil: [ :element |
+			| proxy |
+			proxy := self toploSvgProxyFor: element.
 
-								   postConstructionBlock: [ :obj |
-									   obj constraints horizontal matchParent.
-									   obj constraints vertical matchParent ];
+			proxy pyramidExternalRessourceSource postConstructionBlock: [ :obj |
+					obj constraints horizontal matchParent.
+					obj constraints vertical matchParent ].
 
-								   target: BlSvgConverter;
-								   selector: #convertFromString:;
-								   arguments: { (PyramidExternalRessourceProxy new
-										    pyramidExternalRessourceSource:
-											    (PyramidExternalRessourceSource new
-												     target: element provider;
-												     selector: element name asSymbol;
-												     arguments: {  };
-												     yourself);
-										    yourself) };
-								   yourself);
-						  yourself ] ].
-	^ PyramidExternalRessourceProxy fromSource:
-		  (PyramidExternalRessourceSource
-			   target: Object
-			   selector: #iconNamed:
-			   arguments: { aSymbol })
+			^ proxy ].
+
+	^ self buildProxy: Object selector: #iconNamed: args: { aSymbol }
 ]
 
 { #category : #private }
 PyramidIconInputPresenter class >> toImageFromName: aSymbol [
 
-	(Smalltalk ui icons iconNamed: aSymbol)
-	= (Smalltalk ui icons iconNamed: #blank) ifTrue: [
-			| element |
-			element := self findToploIconNamed: aSymbol.
-			element ifNotNil: [
-					^ ToImage new
-						  innerImage:
-							  (PyramidExternalRessourceProxy new
-								   pyramidExternalRessourceSource:
-									   (PyramidExternalRessourceSource new
-										    target: BlSvgConverter;
-										    selector: #convertFromString:;
-										    arguments: { (PyramidExternalRessourceProxy new
-												     pyramidExternalRessourceSource:
-													     (PyramidExternalRessourceSource new
-														      target: element provider;
-														      selector: element name asSymbol;
-														      arguments: {  };
-														      yourself);
-												     yourself) };
-										    yourself));
-						  yourself ] ].
+	(self findToploIconNamed: aSymbol) ifNotNil: [ :element |
+			| proxy |
+			proxy := self toploSvgProxyFor: element.
+
+			proxy pyramidExternalRessourceSource postConstructionBlock: [ :obj |
+					obj constraints horizontal exact: 16.
+					obj constraints vertical exact: 16 ].
+
+			^ ToImage new
+				  innerImage: proxy;
+				  yourself ].
+
 	^ ToImage new
-		  innerImage: (PyramidExternalRessourceProxy fromSource:
-					   (PyramidExternalRessourceSource
-						    target: Object
-						    selector: #iconNamed:
-						    arguments: { aSymbol }));
+		  innerImage:
+			  (self buildProxy: Object selector: #iconNamed: args: { aSymbol });
 		  yourself
 ]
 
@@ -170,6 +148,23 @@ PyramidIconInputPresenter class >> toploMaterialIconCategory [
 	^ self
 		  toploIconThemeCategoryFromClass: ToMaterialDesignIconProvider
 		  withCategoryPrefix: 'Material Design - '
+]
+
+{ #category : #private }
+PyramidIconInputPresenter class >> toploSvgProxyFor: element [
+
+	| stringProxy svgProxy |
+	stringProxy := self
+		               buildProxy: element provider
+		               selector: element name asSymbol
+		               args: #(  ).
+
+	svgProxy := self
+		            buildProxy: BlSvgConverter
+		            selector: #convertFromString:
+		            args: { stringProxy }.
+
+	^ svgProxy
 ]
 
 { #category : #private }

@@ -12,7 +12,7 @@ PyramidToButtonLabelCommandTest >> command [
 ^ PyramidToButtonLabelCommand new 
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 PyramidToButtonLabelCommandTest >> targetContainers [
 
 	^ {
