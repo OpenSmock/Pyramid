@@ -4,7 +4,7 @@ Class {
 	#instVars : [
 		'iconName'
 	],
-	#category : #'Pyramid-plugin-editor'
+	#category : #'Pyramid-Bloc-plugin-bloc-editor'
 }
 
 { #category : #testing }

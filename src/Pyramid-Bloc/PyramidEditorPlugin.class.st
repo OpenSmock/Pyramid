@@ -6,7 +6,7 @@ Class {
 	#instVars : [
 		'propertiesManager'
 	],
-	#category : #'Pyramid-plugin-editor'
+	#category : #'Pyramid-Bloc-plugin-bloc-editor'
 }
 
 { #category : #accessing }
