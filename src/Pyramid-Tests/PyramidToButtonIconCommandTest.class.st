@@ -26,7 +26,7 @@ PyramidToButtonIconCommandTest >> targetContainers [
 			                   (PyramidIconInputPresenter toImageFromName: #add);
 		                   yourself.
 
-	PyramidMainExtension addIconName: #add forElementId: 'A'.
+	PyramidMainExtension addIconName: #add forElementId: 'A_icon'.
 
 
 	^ { (PyramidCommandTestContainer
