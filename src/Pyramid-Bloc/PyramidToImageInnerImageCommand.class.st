@@ -27,5 +27,5 @@ PyramidToImageInnerImageCommand >> setValueFor: aToImage with: aSymbol [
 		(PyramidIconInputPresenter innerElementFromName: aSymbol).
 	PyramidMainExtension
 		addIconName: aSymbol
-		forElementId: aToImage id , '_innerImage'
+		forElementId: aToImage id asString, '_innerImage'
 ]
