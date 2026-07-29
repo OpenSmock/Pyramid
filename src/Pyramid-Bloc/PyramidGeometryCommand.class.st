@@ -4,13 +4,6 @@ Class {
 	#category : #'Pyramid-Bloc-plugin-bloc-editor'
 }
 
-{ #category : #testing }
-PyramidGeometryCommand >> canBeUsedFor: anObject [
-
-	^ (super canBeUsedFor: anObject) and: [
-		  anObject class = BlElement ]
-]
-
 { #category : #getter }
 PyramidGeometryCommand >> getValueFor: aBlElement [
 

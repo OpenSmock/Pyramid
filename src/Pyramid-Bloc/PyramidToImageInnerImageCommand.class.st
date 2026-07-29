@@ -14,9 +14,10 @@ PyramidToImageInnerImageCommand >> canBeUsedFor: anObject [
 
 { #category : #getter }
 PyramidToImageInnerImageCommand >> getValueFor: aToImage [
-    ^ (PyramidMainExtension currentProjectIcons
-        at: aToImage id , '_innerImage' ifAbsent: [ nil ])
-        ifNil: [ '' ]
+
+	^ (PyramidMainExtension currentProjectIcons
+		   at: aToImage id asString, '_innerImage'
+		   ifAbsent: [ nil ]) ifNil: [ '' ]
 ]
 
 { #category : #setter }
