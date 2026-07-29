@@ -118,7 +118,7 @@ PyramidSavingService class >> ston [
 { #category : #private }
 PyramidSavingService >> buildMetaDataMethod [
 
-	| methodName windowSize gridVisibility gridSpacing gridColor dictContent nl tab header |
+	| methodName windowSize gridVisibility gridSpacing gridColor icons dictContent nl tab header existingIds |
 	methodName := self saveModel savingMethodName , 'MetaData'.
 	windowSize := PyramidMainExtension currentGridWindowSize ifNil: [
 		              800 @ 600 ].
@@ -127,34 +127,61 @@ PyramidSavingService >> buildMetaDataMethod [
 	gridSpacing := PyramidMainExtension currentGridSpacing ifNil: [ 10 ].
 	gridColor := PyramidMainExtension currentGridColor ifNil: [
 		             Color black ].
+	existingIds := Set new.
+	[
+		self saveModel projectModel firstLevelElements do: [ :e |
+				(e respondsTo: #id) ifTrue: [
+					e id ifNotNil: [ :anId | existingIds add: anId asString ] ] ] ]
+		on: Error
+		do: [ :err | existingIds := Set new ].
+	icons := Dictionary new.
+		PyramidMainExtension currentProjectIcons keysAndValuesDo: [
+				:key
+				:value |
+				| keyString suffix baseId |
+				keyString := key asString.
+				suffix := #( '_icon' '_endIcon' '_innerImage' )
+					          detect: [ :s | keyString endsWith: s ]
+					          ifNone: [ nil ].
+				suffix ifNotNil: [
+						baseId := keyString copyFrom: 1 to: keyString size - suffix size.
+						(existingIds includes: baseId) ifTrue: [
+							icons at: key put: value ] ] ] .
 	(windowSize = (800 @ 600) and: [
 			 gridVisibility not and: [
-				 gridSpacing = 10 and: [ gridColor = Color black ] ] ]) ifTrue: [
+					 gridSpacing = 10 and: [
+						 gridColor = Color black and: [ icons isEmpty ] ] ] ]) ifTrue: [
 		^ nil ].
-
 	nl := String with: Character cr.
 	tab := String with: Character tab.
-
 	dictContent := ''.
 	windowSize = (800 @ 600) ifFalse: [
-			dictContent := dictContent , nl , tab , tab , 'at: #windowSize put: '
-			               , windowSize x printString , ' @ '
-			               , windowSize y printString , ';' ].
+			dictContent := dictContent , nl , tab , tab
+			               , 'at: #windowSize put: ' , windowSize x printString
+			               , ' @ ' , windowSize y printString , ';' ].
 	gridVisibility ifTrue: [
-		dictContent := dictContent
-		               , nl , tab , tab , 'at: #gridVisibility put: true;' ].
+			dictContent := dictContent , nl , tab , tab
+			               , 'at: #gridVisibility put: true;' ].
 	gridSpacing = 10 ifFalse: [
-			dictContent := dictContent , nl , tab , tab , 'at: #gridSpacing put: '
-			               , gridSpacing printString , ';' ].
+			dictContent := dictContent , nl , tab , tab
+			               , 'at: #gridSpacing put: ' , gridSpacing printString
+			               , ';' ].
 	gridColor = Color black ifFalse: [
-			dictContent := dictContent , nl , tab , tab , 'at: #gridColor put: '
-			               , gridColor printString , ';' ].
-
-	header := methodName , nl , tab , '"Pyramid project metadata"' , nl , tab.
-
+			dictContent := dictContent , nl , tab , tab
+			               , 'at: #gridColor put: ' , gridColor printString
+			               , ';' ].
+	icons ifNotEmpty: [
+			dictContent := dictContent , nl , tab , tab
+			               , 'at: #icons put: (Dictionary new'.
+			icons keysAndValuesDo: [ :id :symbol |
+					dictContent := dictContent , nl , tab , tab , tab , 'at: #' , id
+					               , ' put: #' , symbol , ';' ].
+			dictContent := dictContent , nl , tab , tab , tab , 'yourself);' ].
+	header := methodName , nl , tab , '"Pyramid project metadata"' , nl
+	          , tab.
 	^ header , '<pyMetaData>' , nl , tab
-		  , 'PyramidSavingService currentProjectMetaData: (Dictionary new'
-		  , dictContent , nl , tab , tab , 'yourself)'
+	  , 'PyramidSavingService currentProjectMetaData: (Dictionary new'
+	  , dictContent , nl , tab , tab , 'yourself)'
 ]
 
 { #category : #testing }

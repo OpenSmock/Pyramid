@@ -20,7 +20,6 @@ PyramidSavePlugin class >> openOn: aCollectionOfBlElement saveModel: aSaveModel 
 
 	| editor savePlugin metaData mainExtension spacePlugin |
 	PyramidSavingService currentProjectMetaData: nil.
-	PyramidMainExtension currentGridWindowSize: nil.
 	editor := PyramidEditor buildEditor.
 	savePlugin := editor plugins select: [ :each | each class = self ].
 	savePlugin size = 1 ifFalse: [
@@ -46,6 +45,8 @@ PyramidSavePlugin class >> openOn: aCollectionOfBlElement saveModel: aSaveModel 
 	editor open.
 
 	metaData ifNotNil: [
+			(metaData at: #icons ifAbsent: [ nil ]) ifNotNil: [ :icons |
+				PyramidMainExtension currentProjectIcons: icons ].
 			spacePlugin := editor plugins
 				               detect: [ :p | p isKindOf: PyramidSpacePlugin ]
 				               ifNone: [ nil ].
@@ -60,8 +61,10 @@ PyramidSavePlugin class >> openOn: aCollectionOfBlElement saveModel: aSaveModel 
 									mainExtension workplacePropertiesView workplaceSizeValue:
 										size ].
 							(metaData at: #gridVisibility ifAbsent: [ nil ]) ifNotNil: [
-								:visibility | mainExtension gridVisibility: visibility.
-								mainExtension workplacePropertiesView visibilityButton state: visibility ].
+									:visibility |
+									mainExtension gridVisibility: visibility.
+									mainExtension workplacePropertiesView visibilityButton
+										state: visibility ].
 							(metaData at: #gridSpacing ifAbsent: [ nil ]) ifNotNil: [
 									:spacing |
 									mainExtension gridSpacing: spacing.
