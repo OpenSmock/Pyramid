@@ -1,7 +1,7 @@
 Class {
 	#name : #PyramidRoundedRectangleCornerRadiiCommand,
 	#superclass : #PyramidAbstractBlocCommand,
-	#category : #'Pyramid-Bloc-plugin-bloc-geometry'
+	#category : #'Pyramid-Bloc-plugin-bloc-editor'
 }
 
 { #category : #testing }
@@ -17,8 +17,9 @@ PyramidRoundedRectangleCornerRadiiCommand >> getValueFor: aBlElement [
 	^ aBlElement geometry cornerRadii
 ]
 
-{ #category : #setter }
+{ #category : #initialization }
 PyramidRoundedRectangleCornerRadiiCommand >> setValueFor: aBlElement with: anArgument [
 
-	aBlElement geometry: (BlRoundedRectangleGeometry cornerRadii: anArgument)
+	aBlElement geometry:
+		(BlRoundedRectangleGeometry cornerRadii: anArgument)
 ]

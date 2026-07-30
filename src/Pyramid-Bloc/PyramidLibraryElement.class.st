@@ -5,6 +5,7 @@ Class {
 		'name',
 		'icon',
 		'block',
+		'provider',
 		'status'
 	],
 	#category : #'Pyramid-Bloc-plugin-navigation'
@@ -101,6 +102,18 @@ PyramidLibraryElement >> name [
 PyramidLibraryElement >> name: anObject [
 
 	name := anObject
+]
+
+{ #category : #accessing }
+PyramidLibraryElement >> provider [
+
+	^ provider
+]
+
+{ #category : #accessing }
+PyramidLibraryElement >> provider: aClass [ 
+
+provider := aClass
 ]
 
 { #category : #accessing }
