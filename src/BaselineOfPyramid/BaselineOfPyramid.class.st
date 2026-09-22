@@ -22,7 +22,7 @@ BaselineOfPyramid >> baselineForCommon: spec [
 	"Pharo backward compatibility: to preserve running from previous versions of Pharo"
 	spec
     	baseline: 'PharoBackwardCompatibility'
-    	with: [ spec repository: 'github://jecisc/PharoBackwardCompatibility:master' ].
+    	with: [ spec repository: 'github://LANDAISB/PharoBackwardCompatibility:master' ].
 	
 	"Dependencies"
 	self blocDependencies: spec.
