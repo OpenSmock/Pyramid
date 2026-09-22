@@ -13,18 +13,8 @@ PyramidDebugPoint class >> removeAllPyramidDebugPoint [
 	<script: 'self removeAllPyramidDebugPoint'>
 	| pyramidDebugPoints |
 	pyramidDebugPoints := PyramidDebugPoint allInstances.
-	pyramidDebugPoints ifEmpty: [ ^ self ].
-	pyramidDebugPoints do: [ :each | each remove ]
-]
-
-{ #category : #removing }
-PyramidDebugPoint class >> removeAllPyramidDebugPointExceptOne [
-
-	<script: 'self removeAllPyramidDebugPointExceptOne'>
-	| pyramidDebugPoints |
-	pyramidDebugPoints := PyramidDebugPoint allInstances.
-	pyramidDebugPoints ifEmpty: [ ^ self ].
-	pyramidDebugPoints allButFirstDo: [ :each | each remove ]
+	pyramidDebugPoints isEmptyOrNil ifTrue: [ ^ self ].
+	pyramidDebugPoints do: [ :each | each link ifNotNil:[ each remove ] ]
 ]
 
 { #category : #API }
