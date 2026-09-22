@@ -24,7 +24,7 @@ PyramidPluginEditOnRunning class >> breakpoint [
 	^ breakpoint
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #private }
 PyramidPluginEditOnRunning class >> canEditSpace: aSpace [
 
 	aSpace ifNil:[ ^ false ].
@@ -54,13 +54,13 @@ PyramidPluginEditOnRunning class >> doShortcutAction: anEvent [
 	editor window whenClosedDo: [ whenClosedDo value ]
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 PyramidPluginEditOnRunning class >> editOnRunning [
 
 	^ editOnRunning ifNil: [ editOnRunning := true ]
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 PyramidPluginEditOnRunning class >> editOnRunning: aBoolean [
 
 	editOnRunning := aBoolean
@@ -77,10 +77,10 @@ PyramidPluginEditOnRunning class >> install [
 PyramidPluginEditOnRunning class >> installBreakpoint [
 
 	| node |
-	PyramidBreakpoint removeAllPyramidBreakpoint.
+	PyramidDebugPoint removeAllPyramidDebugPoint.
 	node := (BlParallelUniverse methodNamed: #openSpace:) ast.
 
-	breakpoint := PyramidBreakpoint new.
+	breakpoint := PyramidDebugPoint new.
 	breakpoint node: node.
 	breakpoint whenHitDo: [ :context |
 		self addShortcutInSpace: context arguments first ].
@@ -122,6 +122,6 @@ PyramidPluginEditOnRunning class >> shortcut [
 PyramidPluginEditOnRunning class >> uninstall [
 	"Undo some stuff here when the plugin used class oriented behavior"
 
-	PyramidBreakpoint removeAllPyramidBreakpoint.
+	PyramidDebugPoint removeAllPyramidDebugPoint.
 	breakpoint := nil.
 ]
