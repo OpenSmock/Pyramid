@@ -106,7 +106,7 @@ PyramidPluginEditOnRunningTest >> testOnlyOnePyramidBreakpoint [
 	Smalltalk image garbageCollect.
 	Smalltalk image garbageCollect.
 	Smalltalk image garbageCollect.
-	self assert: (PyramidBreakpoint allInstances select: #isInstalled) size equals: 1
+	self assert: (PyramidDebugPoint allInstances select: #isInstalled) size equals: 1
 ]
 
 { #category : #tests }
