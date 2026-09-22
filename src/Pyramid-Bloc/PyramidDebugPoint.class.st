@@ -12,7 +12,7 @@ PyramidDebugPoint class >> removeAllPyramidDebugPoint [
 
 	<script: 'self removeAllPyramidDebugPoint'>
 	| pyramidDebugPoints |
-	pyramidDebugPoints := self all select: [ :each | each class = self ].
+	pyramidDebugPoints := PyramidDebugPoint allInstances.
 	pyramidDebugPoints ifEmpty: [ ^ self ].
 	pyramidDebugPoints do: [ :each | each remove ]
 ]
@@ -22,7 +22,7 @@ PyramidDebugPoint class >> removeAllPyramidDebugPointExceptOne [
 
 	<script: 'self removeAllPyramidDebugPointExceptOne'>
 	| pyramidDebugPoints |
-	pyramidDebugPoints := self all select: [ :each | each class = self ].
+	pyramidDebugPoints := PyramidDebugPoint allInstances.
 	pyramidDebugPoints ifEmpty: [ ^ self ].
 	pyramidDebugPoints allButFirstDo: [ :each | each remove ]
 ]
