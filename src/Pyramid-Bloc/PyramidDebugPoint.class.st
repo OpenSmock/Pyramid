@@ -43,6 +43,12 @@ PyramidDebugPoint >> isInstalled [
 ]
 
 { #category : #accessing }
+PyramidDebugPoint >> link [
+
+	^ link ifNil: [ link := self metaLink ]
+]
+
+{ #category : #accessing }
 PyramidDebugPoint >> whenHitDo [
 
 	^ whenHitDo
