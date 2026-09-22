@@ -38,6 +38,7 @@ PyramidDebugPoint >> initialize [
 { #category : #testing }
 PyramidDebugPoint >> isInstalled [
 
+	self link ifNil:[ ^false ].
 	^ self link methods isNotEmpty
 ]
 
