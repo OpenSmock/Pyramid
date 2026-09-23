@@ -12,7 +12,7 @@ PyramidClipChildrenCommandTest >> command [
 	^ PyramidClipChildrenCommand new
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 PyramidClipChildrenCommandTest >> targetContainers [
 
 	^ {

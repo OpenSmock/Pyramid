@@ -4,13 +4,13 @@ Class {
 	#category : #'Pyramid-Bloc-plugin-bloc-visuals'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : #getter }
 PyramidOutskirtsCommand >> getValueFor: aBlElement [
 
 	^ aBlElement outskirts
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #setter }
 PyramidOutskirtsCommand >> setValueFor: aBlElement with: anArgument [
 
 	aBlElement outskirts: anArgument

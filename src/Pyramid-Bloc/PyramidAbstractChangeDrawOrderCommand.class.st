@@ -16,7 +16,7 @@ PyramidAbstractChangeDrawOrderCommand >> canBeUsedFor: anObject [
 	^ (super canBeUsedFor: anObject) and: [ anObject hasParent]
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #getter }
 PyramidAbstractChangeDrawOrderCommand >> getValueFor: aBlElement [
 	"return current index for testing."
 

@@ -12,7 +12,7 @@ PyramidStampCommandTest >> command [
 	^ PyramidStampCommand new stamp: #test; yourself
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 PyramidStampCommandTest >> targetContainers [
 
 	^ {

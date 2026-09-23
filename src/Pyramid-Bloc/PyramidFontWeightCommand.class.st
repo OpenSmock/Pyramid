@@ -4,14 +4,14 @@ Class {
 	#category : #'Pyramid-Bloc-plugin-bloc-text'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : #getter }
 PyramidFontWeightCommand >> getValueFor: aBlTextElement [
 
 	aBlTextElement text attributesFinder findAttributesSuchThat: [ :a | a class = BlFontWeightAttribute ] indicesDo: [ :new :old :a | ^ a weight ].
 	^ LogicalFont weightRegular
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #setter }
 PyramidFontWeightCommand >> setValueFor: aBlTextElement with: aNumber [
 
 	aBlTextElement text attribute:

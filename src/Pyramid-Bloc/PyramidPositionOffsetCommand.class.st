@@ -4,25 +4,25 @@ Class {
 	#category : #'Pyramid-Bloc-plugin-bloc-layout'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : #history }
 PyramidPositionOffsetCommand >> commandInverse [
 
 	^ PyramidPositionCommand new
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #getter }
 PyramidPositionOffsetCommand >> getValueFor: aBlElement [
 
 	^ aBlElement constraints position
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #history }
 PyramidPositionOffsetCommand >> saveStatesOf: aCollection with: arguments [
 
 	^ self saveStatesWithCommandInverseOf: aCollection with: arguments
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #setter }
 PyramidPositionOffsetCommand >> setValueFor: aBlElement with: anArgument [
 
 	anArgument isPoint ifFalse: [ ^ self ].

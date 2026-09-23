@@ -4,19 +4,19 @@ Class {
 	#category : #'Pyramid-commands'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : #history }
 PyramidRemoveFromCollectionCommand >> commandInverse [
 
 	^ PyramidAddToCollectionCommand new
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #getter }
 PyramidRemoveFromCollectionCommand >> getValueFor: anObject [
 
 	^ nil
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #setter }
 PyramidRemoveFromCollectionCommand >> setValueFor: anObject with: anArgument [
 
 	anObject remove: anArgument

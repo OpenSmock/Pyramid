@@ -11,7 +11,7 @@ PyramidBorderMiterLimitCommand >> canBeUsedFor: anObject [
 		  (anObject border style lineJoin isKindOf: BlStrokeLineMiterJoin) ]
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #getter }
 PyramidBorderMiterLimitCommand >> getValueFor: aBlElement [
 
 	^ aBlElement border style miterLimit

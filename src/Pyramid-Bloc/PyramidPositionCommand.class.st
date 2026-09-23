@@ -4,13 +4,13 @@ Class {
 	#category : #'Pyramid-Bloc-plugin-bloc-layout'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : #getter }
 PyramidPositionCommand >> getValueFor: aBlElement [
 
 	^ aBlElement constraints position
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #setter }
 PyramidPositionCommand >> setValueFor: aBlElement with: anArgument [
 
 	anArgument isPoint ifFalse: [ ^ self ].

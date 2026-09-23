@@ -35,7 +35,7 @@ PyramidChangeOrderWithIndexCommandTest >> makeElementWithChildren [
 	^ parent
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 PyramidChangeOrderWithIndexCommandTest >> targetContainers [
 
 	| test1 test2 test3 test4 test5 test6 |
@@ -73,7 +73,7 @@ PyramidChangeOrderWithIndexCommandTest >> targetContainers [
 			   prop: 1) }
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 PyramidChangeOrderWithIndexCommandTest >> targetsCanBeUsedFor [
 
 	^ self targetContainers flatCollect: [ :each |

@@ -4,13 +4,13 @@ Class {
 	#category : #'Pyramid-Bloc-plugin-bloc-layout'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : #getter }
 PyramidFrameVerticalConstraintsCommand >> getValueFor: anObject [
 
 	^ anObject constraints frame vertical alignment
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #setter }
 PyramidFrameVerticalConstraintsCommand >> setValueFor: anObject with: anArgument [
 
 	anObject constraintsDo: [ :c |

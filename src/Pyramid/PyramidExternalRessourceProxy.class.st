@@ -40,6 +40,22 @@ PyramidExternalRessourceProxy >> allSetterAndGettersForMyStash [
 ]
 
 { #category : #converting }
+PyramidExternalRessourceProxy >> asBlBackground [
+
+	^ BlBackground image: self
+]
+
+{ #category : #testing }
+PyramidExternalRessourceProxy >> asElement [ 
+
+	(self pyramidExternalRessourceObject isKindOf: Form ) ifTrue: [ ^ BlElement new
+		  extent: self extent;
+		  background: self;
+		  yourself ]. 
+	^ self pyramidExternalRessourceObject asElement
+]
+
+{ #category : #converting }
 PyramidExternalRessourceProxy >> asStashConstructor [
 
 	^ self class printString , ' new'

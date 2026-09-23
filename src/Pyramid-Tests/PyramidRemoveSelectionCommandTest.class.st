@@ -116,7 +116,7 @@ PyramidRemoveSelectionCommandTest >> parentsAndElements [
 	^ parents -> elements
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 PyramidRemoveSelectionCommandTest >> targetsCanBeUsedFor [
 
 	^ {

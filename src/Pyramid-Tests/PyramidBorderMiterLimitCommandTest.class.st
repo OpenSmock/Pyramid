@@ -12,7 +12,7 @@ PyramidBorderMiterLimitCommandTest >> command [
 	^ PyramidBorderMiterLimitCommand new
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 PyramidBorderMiterLimitCommandTest >> targetContainers [
 
 	^ {

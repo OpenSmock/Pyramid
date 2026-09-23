@@ -7,13 +7,13 @@ Class {
 	#category : #'Pyramid-Toplo-plugin-theme-management'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : #getter }
 PyramidStampCommand >> getValueFor: anObject [
 
 	^ anObject hasStamp:  self stamp
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #setter }
 PyramidStampCommand >> setValueFor: anObject with: aBoolean [
 
 	aBoolean

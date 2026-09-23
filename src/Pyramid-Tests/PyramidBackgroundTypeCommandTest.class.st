@@ -12,7 +12,7 @@ PyramidBackgroundTypeCommandTest >> command [
 	^ PyramidBackgroundTypeCommand new
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 PyramidBackgroundTypeCommandTest >> targetContainers [
 
 	^ {

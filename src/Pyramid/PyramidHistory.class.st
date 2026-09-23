@@ -66,6 +66,6 @@ PyramidHistory >> redo [
 PyramidHistory >> undo [
 
 	self canUndo ifTrue: [
-		(self mementosStack at: self position) key restore.
-		position := position - 1 ]
+			(self mementosStack at: self position) key restore.
+			position := position - 1 ]. 
 ]

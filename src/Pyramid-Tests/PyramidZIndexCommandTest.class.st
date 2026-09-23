@@ -12,7 +12,7 @@ PyramidZIndexCommandTest >> command [
 	^ PyramidZIndexCommand new.
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 PyramidZIndexCommandTest >> targetContainers [
 
 	^ {

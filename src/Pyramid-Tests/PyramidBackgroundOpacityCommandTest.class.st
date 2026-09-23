@@ -26,7 +26,7 @@ PyramidBackgroundOpacityCommandTest >> isBlBackgroundEqualityFix [
 	^ e background == b2
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 PyramidBackgroundOpacityCommandTest >> targetContainers [
 
 	^ {

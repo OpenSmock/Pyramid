@@ -12,7 +12,7 @@ PyramidBasicVerticalConstraintsBlocCommandTest >> command [
 	^ PyramidBasicVerticalConstraintsBlocCommand new
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 PyramidBasicVerticalConstraintsBlocCommandTest >> targetContainers [
 
 	| p1 a1 b1 c1 d1 p2 a2 b2 c2 d2 |
@@ -56,7 +56,7 @@ PyramidBasicVerticalConstraintsBlocCommandTest >> targetContainers [
 		  (PyramidCommandTestContainer no: a2 with: d2 prop: #matchParent) }
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 PyramidBasicVerticalConstraintsBlocCommandTest >> targetsCannotBeUsedFor [
 	"override if needed"
 

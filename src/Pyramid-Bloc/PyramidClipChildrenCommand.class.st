@@ -4,13 +4,13 @@ Class {
 	#category : #'Pyramid-Bloc-plugin-bloc'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : #getter }
 PyramidClipChildrenCommand >> getValueFor: aBlElement [
 
 	^ aBlElement clipChildren
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #setter }
 PyramidClipChildrenCommand >> setValueFor: aBlElement with: anArgument [
 
 	aBlElement clipChildren: anArgument

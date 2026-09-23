@@ -35,7 +35,7 @@ PyramidOnBackgroundOrderCommandTest >> makeElementWithChildren [
 	^ parent
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 PyramidOnBackgroundOrderCommandTest >> targetContainers [
 
 	| test1 test2 test3 |
@@ -58,7 +58,7 @@ PyramidOnBackgroundOrderCommandTest >> targetContainers [
 			   prop: 1) }
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 PyramidOnBackgroundOrderCommandTest >> targetsCanBeUsedFor [
 
 	^ self targetContainers flatCollect: [ :each |

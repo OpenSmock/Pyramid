@@ -186,12 +186,15 @@ PyramidSelectionMakerExtension >> selectAllElementsInBound: aBound [
 { #category : #'as yet unclassified' }
 PyramidSelectionMakerExtension >> selectFirstElementAt: aPosition [
 
-	| selectedElements |
+	| selectedElements filtered |
 	self projectModel ifNil: [ ^ {  } ].
 	selectedElements := self projectModel allElements select: [ :each |
 		                    each boundsInSpace containsPoint: aPosition ].
 	selectedElements ifEmpty: [ ^ {  } ].
-	^ { selectedElements last }
+	filtered := selectedElements select: [ :e |
+		            e parentsShouldSerializeChildren ].
+	filtered ifEmpty: [ ^ { selectedElements last } ].
+	^ { filtered last }
 ]
 
 { #category : #accessing }

@@ -4,10 +4,28 @@ Class {
 	#instVars : [
 		'name',
 		'icon',
-		'block'
+		'block',
+		'provider',
+		'status'
 	],
 	#category : #'Pyramid-Bloc-plugin-navigation'
 }
+
+{ #category : #accessing }
+PyramidLibraryElement class >> statusNotUsable [
+    ^ #notUsable
+]
+
+{ #category : #accessing }
+PyramidLibraryElement class >> statusOk [
+
+	^ #ok
+]
+
+{ #category : #accessing }
+PyramidLibraryElement class >> statusUnstable [
+    ^ #unstable
+]
 
 { #category : #converting }
 PyramidLibraryElement >> asArray [
@@ -84,4 +102,28 @@ PyramidLibraryElement >> name [
 PyramidLibraryElement >> name: anObject [
 
 	name := anObject
+]
+
+{ #category : #accessing }
+PyramidLibraryElement >> provider [
+
+	^ provider
+]
+
+{ #category : #accessing }
+PyramidLibraryElement >> provider: aClass [ 
+
+provider := aClass
+]
+
+{ #category : #accessing }
+PyramidLibraryElement >> status [
+
+	^ status ifNil: [self class statusUnstable]
+]
+
+{ #category : #accessing }
+PyramidLibraryElement >> status: aSymbol [
+
+	status := aSymbol
 ]

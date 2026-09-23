@@ -12,7 +12,7 @@ PyramidBackgroundImageCommandTest >> command [
 	^ PyramidBackgroundImageCommand new
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 PyramidBackgroundImageCommandTest >> targetContainers [
 
 	^ {
@@ -34,7 +34,7 @@ PyramidBackgroundImageCommandTest >> targetContainers [
 			   prop: (Smalltalk ui icons iconNamed: #pharoBig)) }
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 PyramidBackgroundImageCommandTest >> targetsCannotBeUsedFor [
 	"override if needed"
 

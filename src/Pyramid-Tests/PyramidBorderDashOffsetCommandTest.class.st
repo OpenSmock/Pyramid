@@ -12,7 +12,7 @@ PyramidBorderDashOffsetCommandTest >> command [
 	^ PyramidBorderDashOffsetCommand new
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 PyramidBorderDashOffsetCommandTest >> targetContainers [
 
 	^ {

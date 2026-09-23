@@ -12,7 +12,7 @@ PyramidRemoveChildCommandTest >> command [
 	^ PyramidRemoveChildCommand new
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 PyramidRemoveChildCommandTest >> targetsCanBeUsedFor [
 
 	^ { BlElement new . BlElement new addChild: BlElement new; yourself }

@@ -17,8 +17,90 @@ Class {
 		'gridColor',
 		'selectionWidgetExtension'
 	],
+	#classInstVars : [
+		'currentGridWindowSize',
+		'currentGridVisibility',
+		'currentGridSpacing',
+		'currentGridColor',
+		'currentProjectIcons'
+	],
 	#category : #'Pyramid-Bloc-plugin-space-extensions'
 }
+
+{ #category : #adding }
+PyramidMainExtension class >> addIconName: aSymbol forElementId: aString [
+	self currentProjectIcons at: aString asSymbol put: aSymbol
+]
+
+{ #category : #accessing }
+PyramidMainExtension class >> currentGridColor [
+
+	^ currentGridColor ifNil: [ ^ Color black ]
+]
+
+{ #category : #accessing }
+PyramidMainExtension class >> currentGridColor: aColor [
+
+currentGridColor := aColor
+]
+
+{ #category : #accessing }
+PyramidMainExtension class >> currentGridSpacing [
+
+	^ currentGridSpacing ifNil: [ ^ 10 ]
+]
+
+{ #category : #accessing }
+PyramidMainExtension class >> currentGridSpacing: anInteger [
+
+	currentGridSpacing := anInteger
+]
+
+{ #category : #accessing }
+PyramidMainExtension class >> currentGridVisibility [
+    ^ currentGridVisibility ifNil: [ ^ false ]
+
+
+]
+
+{ #category : #accessing }
+PyramidMainExtension class >> currentGridVisibility: aBoolean [
+    currentGridVisibility := aBoolean
+]
+
+{ #category : #accessing }
+PyramidMainExtension class >> currentGridWindowSize [
+
+	^ currentGridWindowSize ifNil: [ ^ 800 @ 600 ]
+]
+
+{ #category : #accessing }
+PyramidMainExtension class >> currentGridWindowSize: aPoint [
+    currentGridWindowSize := aPoint
+]
+
+{ #category : #accessing }
+PyramidMainExtension class >> currentProjectIcons [
+
+	^ currentProjectIcons ifNil: [ currentProjectIcons := Dictionary new ]
+]
+
+{ #category : #accessing }
+PyramidMainExtension class >> currentProjectIcons: aDictionary [
+    currentProjectIcons := aDictionary
+
+]
+
+{ #category : #accessing }
+PyramidMainExtension class >> iconNameForElementId: aString [
+	^ self currentProjectIcons at: aString ifAbsent: [ nil ]
+]
+
+{ #category : #initialization }
+PyramidMainExtension class >> resetCurrentProjectIcons [
+
+	currentProjectIcons := Dictionary new
+]
 
 { #category : #accessing }
 PyramidMainExtension >> borderElement [
@@ -40,23 +122,23 @@ PyramidMainExtension >> containerElement [
 
 { #category : #'as yet unclassified' }
 PyramidMainExtension >> createGrid [
-	
 	"Remove the current all the line of the grid"
+
 	self gridElement removeChildWithId: #gridHorizontal.
 	self gridElement removeChildWithId: #gridVertical.
 	self gridElement removeChildWithId: #pixelGrid.
 	
 	"Create the grid if gridVisibility is true"
-	gridVisibility ifTrue: [	self grid: self gridElement 
-									cellSpacing: self gridSpacing 
-									color: self gridColor 
-									width: (self gridWindowSize x) 
-									height: (self gridWindowSize y).
-									self selectionWidgetExtension movingLap: self gridSpacing
-								]
-						ifFalse: [ self selectionWidgetExtension movingLap: 1 ].
-	
-	 
+	gridVisibility
+		ifTrue: [
+				self
+					grid: self gridElement
+					cellSpacing: self gridSpacing
+					color: self gridColor
+					width: self gridWindowSize x
+					height: self gridWindowSize y.
+				self selectionWidgetExtension movingLap: self gridSpacing ]
+		ifFalse: [ self selectionWidgetExtension movingLap: 1 ]
 ]
 
 { #category : #accessing }
@@ -80,22 +162,25 @@ PyramidMainExtension >> defaultGridColor [
 { #category : #'as yet unclassified' }
 PyramidMainExtension >> defaultGridSpacing [
 	"Default spacing value of the grid"
+
 	^ 10
 ]
 
 { #category : #'as yet unclassified' }
 PyramidMainExtension >> defaultGridVisibility [
-	"Default visibility value of the grid"
-	^ false
+    "Default visibility value of the grid"
+    ^ false
 ]
 
 { #category : #accessing }
 PyramidMainExtension >> editor: aPyramidEditor [
 
 	aPyramidEditor window at: #topRight addItem: [ :buttonBuilder |
-		buttonBuilder makeButtonWithIcon: self workplacePropertiesButton order: 10 ].
-	
+			buttonBuilder
+				makeButtonWithIcon: self workplacePropertiesButton
+				order: 10 ].
 	self getSelectionWidgetExtension: aPyramidEditor.
+
 ]
 
 { #category : #geometry }
@@ -104,6 +189,7 @@ PyramidMainExtension >> extent: aPoint [
 	self elementAtWidgets extent: aPoint.
 	self sizeElement extent: aPoint.
 	self gridWindowSize: aPoint.
+	self class currentGridWindowSize: aPoint.
 
 	self createGrid
 ]
@@ -185,15 +271,10 @@ PyramidMainExtension >> gridColor [
 	^ gridColor
 ]
 
-{ #category : #'as yet unclassified' }
-PyramidMainExtension >> gridDefaultValueInitializer [
-	
-	"Set the default parameter values of the grid"
-	gridWindowSize := self defaultExtent.
-	gridVisibility := self defaultGridVisibility.
-	gridSpacing := self defaultGridSpacing.
-	gridColor := self defaultGridColor.
-	self createGrid.
+{ #category : #accessing }
+PyramidMainExtension >> gridColor: aColor [
+
+gridColor := aColor
 ]
 
 { #category : #accessing }
@@ -207,8 +288,21 @@ PyramidMainExtension >> gridSpacing [
 ]
 
 { #category : #accessing }
+PyramidMainExtension >> gridSpacing: anInteger [
+
+	gridSpacing := anInteger.
+]
+
+{ #category : #accessing }
 PyramidMainExtension >> gridVisibility [
-	^ gridVisibility 
+
+	^ gridVisibility
+]
+
+{ #category : #accessing }
+PyramidMainExtension >> gridVisibility: aBoolean [
+
+	gridVisibility := aBoolean
 ]
 
 { #category : #accessing }
@@ -232,6 +326,12 @@ PyramidMainExtension >> informTransformationChanged [
 PyramidMainExtension >> initialize [
 	"Set the default parameter value of the grid"
 
+	self class currentGridWindowSize: self defaultExtent.
+	self class currentGridVisibility: self defaultGridVisibility.
+	self class currentGridSpacing: self defaultGridSpacing.
+	self class currentGridColor: self defaultGridColor.
+	self class resetCurrentProjectIcons.
+
 	gridWindowSize := self defaultExtent.
 	gridVisibility := self defaultGridVisibility.
 	gridSpacing := self defaultGridSpacing.
@@ -243,24 +343,38 @@ PyramidMainExtension >> initialize [
 		                           whenWorkplaceValuesChangedDo: [ :point |
 			                           self extent: point ];
 		                           whenVisibilityChangedDo: [
-			                           self switchGridvisibility.
-			                           self createGrid ];
+				                           gridVisibility := workplacePropertiesView
+					                                             visibilityButton
+					                                             state.
+
+				                           self class currentGridVisibility:
+						                           gridVisibility.
+				                           self createGrid ];
 		                           spacingTextValue: self defaultGridSpacing;
 		                           whenSpacingTextChangedDo: [ :value |
-			                           (self checkZeroOrSubZeroGridSpacingValue: value)
-				                           ifTrue: [
-					                           self defaultGridSpacing <= 0 ifTrue: [
-							                           gridSpacing := 1.
-							                           ^ self ].
-					                           gridSpacing := self defaultGridSpacing ]
-				                           ifFalse: [ gridSpacing := value ].
-			                           self createGrid ];
+				                           (self
+					                            checkZeroOrSubZeroGridSpacingValue:
+						                            value)
+					                           ifTrue: [
+							                           self defaultGridSpacing <= 0
+								                           ifTrue: [
+										                           gridSpacing := 1.
+										                           ^ self ].
+							                           gridSpacing := self
+								                                          defaultGridSpacing ]
+					                           ifFalse: [ gridSpacing := value ].
+				                           self class currentGridSpacing:
+						                           gridSpacing.
+				                           self createGrid ];
 		                           gridColorValue: self defaultGridColor;
 		                           whenColorValuesChangedDo: [ :color |
-			                           gridColor := color.
-			                           self createGrid ];
+				                           gridColor := color.
+				                           self class currentGridColor: color.
+				                           self createGrid ];
 		                           yourself.
-		
+	workplacePropertiesView visibilityButton state: gridVisibility.
+
+
 	self defaultGridSpacing <= 0 ifTrue: [ gridSpacing := 1 ].
 	workplacePropertiesView spacingText value: gridSpacing.
 
@@ -271,8 +385,8 @@ PyramidMainExtension >> initialize [
 		                             help:
 			                             'Edit the properties of the workplace';
 		                             action: [
-			                             self workplacePropertiesPopover popup.
-			                             self refreshPopupWorkplaceProperties ];
+				                             self workplacePropertiesPopover popup.
+				                             self refreshPopupWorkplaceProperties ];
 		                             yourself.
 
 	"Creation of the pop-up"
@@ -286,8 +400,8 @@ PyramidMainExtension >> initialize [
 	containerElement := BlElement new
 		                    id: #MainExtension_containerElement;
 		                    constraintsDo: [ :c |
-			                    c vertical matchParent.
-			                    c horizontal matchParent ];
+				                    c vertical matchParent.
+				                    c horizontal matchParent ];
 		                    clipChildren: false;
 		                    zIndex: 0;
 		                    yourself.
@@ -298,8 +412,8 @@ PyramidMainExtension >> initialize [
 		                 border: self defaultBorder;
 		                 outskirts: BlOutskirts outside;
 		                 constraintsDo: [ :c |
-			                 c vertical matchParent.
-			                 c horizontal matchParent ];
+				                 c vertical matchParent.
+				                 c horizontal matchParent ];
 		                 clipChildren: false;
 		                 zIndex: 1;
 		                 preventMeAndChildrenMouseEvents;
@@ -309,10 +423,10 @@ PyramidMainExtension >> initialize [
 	gridElement := BlElement new
 		               id: #MainExtension_gridElement;
 		               constraintsDo: [ :c |
-			               c vertical matchParent.
-			               c horizontal matchParent ];
+				               c vertical matchParent.
+				               c horizontal matchParent ];
 		               zIndex: 2.
-		
+
 	borderElement addChild: gridElement.
 
 	sizeElement := BlElement new
@@ -320,7 +434,7 @@ PyramidMainExtension >> initialize [
 		               extent: self defaultExtent;
 		               clipChildren: false;
 		               addChildren: {
-				               containerElement .
+				               containerElement.
 				               borderElement } yourself
 ]
 
@@ -381,14 +495,6 @@ PyramidMainExtension >> selectionWidgetExtension [
 PyramidMainExtension >> sizeElement [
 
 	^ sizeElement
-]
-
-{ #category : #'as yet unclassified' }
-PyramidMainExtension >> switchGridvisibility [
-	"Switch the visibility from true to false or false to true"
-	gridVisibility := self gridVisibility not.
-	
-	^ self gridVisibility
 ]
 
 { #category : #accessing }

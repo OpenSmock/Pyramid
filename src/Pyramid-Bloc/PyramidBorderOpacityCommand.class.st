@@ -4,7 +4,7 @@ Class {
 	#category : #'Pyramid-Bloc-plugin-bloc-visuals'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : #getter }
 PyramidBorderOpacityCommand >> getValueFor: aBlElement [
 
 	^ aBlElement border opacity

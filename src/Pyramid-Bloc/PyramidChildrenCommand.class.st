@@ -10,13 +10,13 @@ PyramidChildrenCommand class >> isAbstract [
 	^ self == PyramidChildrenCommand
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #getter }
 PyramidChildrenCommand >> getValueFor: aBlElement [
 
 	^ nil
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #private }
 PyramidChildrenCommand >> saveStatesOf: aCollection withCommand: aCommand withArguments: anArguments [
 
 	| mementos |

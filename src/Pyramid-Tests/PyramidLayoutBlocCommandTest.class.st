@@ -12,7 +12,7 @@ PyramidLayoutBlocCommandTest >> command [
 	^ PyramidLayoutBlocCommand new
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 PyramidLayoutBlocCommandTest >> targetContainers [
 	| flowLayoutVertical basicLayout proportionalLayout  |
 	
@@ -43,7 +43,7 @@ PyramidLayoutBlocCommandTest >> targetContainers [
 			   prop: proportionalLayout) }
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 PyramidLayoutBlocCommandTest >> targetsCanBeUsedFor [
 
 	^ self targetContainers collect: [ :each | each targetNoProp ].

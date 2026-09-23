@@ -12,7 +12,7 @@ PyramidPositionCommandTest >> command [
 	^ PyramidPositionCommand new
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 PyramidPositionCommandTest >> targetContainers [
 
 	^ {
