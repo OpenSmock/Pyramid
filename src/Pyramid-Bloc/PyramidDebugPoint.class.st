@@ -35,17 +35,20 @@ PyramidDebugPoint >> initialize [
 	whenHitDo := [ :c | ]
 ]
 
+{ #category : #installing }
+PyramidDebugPoint >> install [
+
+	"For compatibility P12"
+	self link ifNil:[ self link: self metaLink].
+	
+	super install
+]
+
 { #category : #testing }
 PyramidDebugPoint >> isInstalled [
 
 	self link ifNil:[ ^false ].
 	^ self link methods isNotEmpty
-]
-
-{ #category : #accessing }
-PyramidDebugPoint >> link [
-
-	^ link ifNil: [ link := self metaLink ]
 ]
 
 { #category : #accessing }
