@@ -66,7 +66,7 @@ PyramidEditor >> commandExecutor: anObject [
 	commandExecutor := anObject
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #'private - default' }
 PyramidEditor >> defaultSpecShortcuts [
 
 	"Shortcut using only projectModel"

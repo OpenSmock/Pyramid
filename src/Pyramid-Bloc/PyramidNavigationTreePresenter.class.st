@@ -11,7 +11,7 @@ Class {
 	#category : #'Pyramid-Bloc-plugin-navigation'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : #actions }
 PyramidNavigationTreePresenter >> actionEditorMenu [
 
 	| builder |
@@ -20,7 +20,7 @@ PyramidNavigationTreePresenter >> actionEditorMenu [
 	^ builder menuFor: self editor projectModel selection
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #actions }
 PyramidNavigationTreePresenter >> actionSelectionChanged: aSelection [
 
 	self editor ifNil: [ ^ self ].
@@ -106,7 +106,9 @@ PyramidNavigationTreePresenter >> initializePresenters [
 		whenSelectionChangedDo: [ :aSelection |
 			self actionSelectionChanged: aSelection ];
 		expandAll.
-	self allTreeColumns do: [ :each | treeTable addColumn: each ]
+	self allTreeColumns do: [ :each | treeTable addColumn: each ].
+	
+	treeTable eventHandler whenKeyUpDo:[ :event | (event key = KeyboardKey delete) ifTrue:[ self removeSelectedElements] ]
 ]
 
 { #category : #accessing }
@@ -140,6 +142,18 @@ PyramidNavigationTreePresenter >> previousNumberOfElement: anObject [
 	previousNumberOfElement := anObject
 ]
 
+{ #category : #actions }
+PyramidNavigationTreePresenter >> removeSelectedElements [
+
+	self editor commandExecutor
+		use: PyramidRemoveSelectedElementsCommand new
+		on: self editor projectModel selection
+		with: self editor projectModel firstLevelElements.
+
+	"Update the selection after remove"
+	self editor projectModel updateSelection
+]
+
 { #category : #api }
 PyramidNavigationTreePresenter >> roots: aCollection [
 
@@ -164,7 +178,7 @@ PyramidNavigationTreePresenter >> treeTable [
 	^ treeTable
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #updating }
 PyramidNavigationTreePresenter >> updateRoots [
 
 	| currentTreeRoots roots parent shouldOrder calculatedNumberOfElement |

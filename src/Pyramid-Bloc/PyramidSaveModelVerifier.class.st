@@ -47,7 +47,8 @@ PyramidSaveModelVerifier class >> classPackageIsEqual [
 PyramidSaveModelVerifier class >> methodIsValid [
 
 	^ self new
-		  verifyBlock: [ :model |model savingMethodName isValidSelector];
+		  verifyBlock: [ :model |
+			  OCScanner isSelector: model savingMethodName ];
 		  showBlock: [ :view | view showMethodIsNotValidError ];
 		  yourself
 ]

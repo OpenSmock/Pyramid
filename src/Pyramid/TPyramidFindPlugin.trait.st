@@ -3,7 +3,7 @@ Trait {
 	#category : #'Pyramid-core'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 TPyramidFindPlugin >> findPlugin: aSymbolOrAClass [
 
 	| allPlugins |
