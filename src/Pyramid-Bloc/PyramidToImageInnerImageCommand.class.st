@@ -23,8 +23,12 @@ PyramidToImageInnerImageCommand >> getValueFor: aToImage [
 { #category : #setter }
 PyramidToImageInnerImageCommand >> setValueFor: aToImage with: aSymbol [
 
-	aToImage innerImage:
-		(PyramidIconInputPresenter innerElementFromName: aSymbol).
+	| innerImage |
+	innerImage := PyramidIconInputPresenter toImageFromName: aSymbol.
+	innerImage constraints horizontal matchParent.
+	innerImage constraints vertical matchParent.
+	aToImage innerImage: innerImage.
+	
 	PyramidMainExtension
 		addIconName: aSymbol
 		forElementId: aToImage id asString, '_innerImage'

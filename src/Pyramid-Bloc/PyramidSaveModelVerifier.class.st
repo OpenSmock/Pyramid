@@ -46,8 +46,18 @@ PyramidSaveModelVerifier class >> classPackageIsEqual [
 { #category : #constructor }
 PyramidSaveModelVerifier class >> methodIsValid [
 
+	(SystemVersion current major <= 12) ifTrue: [ ^self methodIsValidP12 ].
+
+	^ self new verifyBlock: [ :model | OCScanner isSelector: model savingMethodName ];
+		  showBlock: [ :view | view showMethodIsNotValidError ];
+		  yourself
+]
+
+{ #category : #constructor }
+PyramidSaveModelVerifier class >> methodIsValidP12 [
+
 	^ self new
-		  verifyBlock: [ :model |model savingMethodName isValidSelector];
+		  verifyBlock: [ :model | model savingMethodName isValidSelector ];
 		  showBlock: [ :view | view showMethodIsNotValidError ];
 		  yourself
 ]
