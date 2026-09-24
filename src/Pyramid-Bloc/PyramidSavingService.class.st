@@ -118,40 +118,34 @@ PyramidSavingService class >> ston [
 { #category : #private }
 PyramidSavingService >> buildMetaDataMethod [
 
-	| methodName windowSize gridVisibility gridSpacing gridColor icons dictContent nl tab header existingIds |
+	| methodName windowSize gridVisibility gridSpacing gridColor icons dictContent nl tab header rootElements|
 	methodName := self saveModel savingMethodName , 'MetaData'.
-	windowSize := PyramidMainExtension currentGridWindowSize ifNil: [
-		              800 @ 600 ].
-	gridVisibility := PyramidMainExtension currentGridVisibility ifNil: [
-		                  false ].
+	windowSize := PyramidMainExtension currentGridWindowSize ifNil: [ 800 @ 600 ].
+	gridVisibility := PyramidMainExtension currentGridVisibility ifNil: [ false ].
 	gridSpacing := PyramidMainExtension currentGridSpacing ifNil: [ 10 ].
-	gridColor := PyramidMainExtension currentGridColor ifNil: [
-		             Color black ].
-	existingIds := Set new.
-	[
-		self saveModel projectModel firstLevelElements do: [ :e |
-				(e respondsTo: #id) ifTrue: [
-					e id ifNotNil: [ :anId | existingIds add: anId asString ] ] ] ]
-		on: Error
-		do: [ :err | existingIds := Set new ].
+	gridColor := PyramidMainExtension currentGridColor ifNil: [ Color black ].
+	
+	rootElements := self saveModel projectModel firstLevelElements.
 	icons := Dictionary new.
-		PyramidMainExtension currentProjectIcons keysAndValuesDo: [
-				:key
-				:value |
-				| keyString suffix baseId |
-				keyString := key asString.
-				suffix := #( '_icon' '_endIcon' '_innerImage' )
-					          detect: [ :s | keyString endsWith: s ]
-					          ifNone: [ nil ].
-				suffix ifNotNil: [
-						baseId := keyString copyFrom: 1 to: keyString size - suffix size.
-						(existingIds includes: baseId) ifTrue: [
-							icons at: key put: value ] ] ] .
+	PyramidMainExtension currentProjectIcons keysAndValuesDo: [:key :value |
+		| keyString suffix baseId |
+		keyString := key asString.
+		suffix := #( '_icon' '_endIcon' '_innerImage' )
+			          detect: [ :s | keyString endsWith: s ]
+			          ifNone: [ nil ].
+		suffix ifNotNil: [
+				baseId := keyString copyFrom: 1 to: keyString size - suffix size.
+				(rootElements anySatisfy:[:e | (e id = baseId) or:[ e allChildrenBreadthFirstDetect: [:c |c id = baseId ] ifFound:[:c | true]  ifNone:[false] ]]) ifTrue:[
+					icons at: key put: value 
+				]
+		] 
+	].
 	(windowSize = (800 @ 600) and: [
-			 gridVisibility not and: [
-					 gridSpacing = 10 and: [
-						 gridColor = Color black and: [ icons isEmpty ] ] ] ]) ifTrue: [
-		^ nil ].
+		 gridVisibility not and: [
+			gridSpacing = 10 and: [
+			 gridColor = Color black and: [ icons isEmpty ] ] ] ]) ifTrue: [
+		^ nil 
+	].
 	nl := String with: Character cr.
 	tab := String with: Character tab.
 	dictContent := ''.
@@ -195,7 +189,7 @@ PyramidSavingService >> canSave [
 	^ self verifier verify: self saveModel
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #private }
 PyramidSavingService >> errorCannotSave [
 
 	PyramidSaveError signal: 'Cannot save with given model. Check canSave method to more explenation.'
@@ -207,7 +201,7 @@ PyramidSavingService >> methodBuilder [
 	^ self class currentMethodBuilder
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #API }
 PyramidSavingService >> save [
     | class |
     self canSave ifFalse: [ self errorCannotSave ].

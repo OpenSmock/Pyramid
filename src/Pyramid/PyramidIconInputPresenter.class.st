@@ -38,40 +38,16 @@ PyramidIconInputPresenter class >> findToploIconNamed: aSymbol [
 ]
 
 { #category : #private }
-PyramidIconInputPresenter class >> innerElementFromName: aSymbol [
-
-	(self findToploIconNamed: aSymbol) ifNotNil: [ :element |
-			| proxy |
-			proxy := self toploSvgProxyFor: element.
-
-			proxy pyramidExternalRessourceSource postConstructionBlock: [ :obj |
-					obj constraints horizontal matchParent.
-					obj constraints vertical matchParent ].
-
-			^ proxy ].
-
-	^ self buildProxy: Object selector: #iconNamed: args: { aSymbol }
-]
-
-{ #category : #private }
 PyramidIconInputPresenter class >> toImageFromName: aSymbol [
 
-	(self findToploIconNamed: aSymbol) ifNotNil: [ :element |
-			| proxy |
-			proxy := self toploSvgProxyFor: element.
+	| proxy |
+	proxy := (self findToploIconNamed: aSymbol) ifNotNil: [ :element |
+		self buildProxy: element provider selector: element name asSymbol args: #( )
+	] ifNil:[
+		self buildProxy: Object selector: #iconNamed: args: { aSymbol }
+	].
 
-			proxy pyramidExternalRessourceSource postConstructionBlock: [ :obj |
-					obj constraints horizontal exact: 16.
-					obj constraints vertical exact: 16 ].
-
-			^ ToImage new
-				  innerImage: proxy;
-				  yourself ].
-
-	^ ToImage new
-		  innerImage:
-			  (self buildProxy: Object selector: #iconNamed: args: { aSymbol });
-		  yourself
+	^ ToImage new innerImage: proxy;yourself 
 ]
 
 { #category : #adding }
@@ -150,23 +126,6 @@ PyramidIconInputPresenter class >> toploMaterialIconCategory [
 	^ self
 		  toploIconThemeCategoryFromClass: ToMaterialDesignIconProvider
 		  withCategoryPrefix: 'Material Design - '
-]
-
-{ #category : #private }
-PyramidIconInputPresenter class >> toploSvgProxyFor: element [
-
-	| stringProxy svgProxy |
-	stringProxy := self
-		               buildProxy: element provider
-		               selector: element name asSymbol
-		               args: #(  ).
-
-	svgProxy := self
-		            buildProxy: BlSvgConverter
-		            selector: #convertFromString:
-		            args: { stringProxy }.
-
-	^ svgProxy
 ]
 
 { #category : #private }
