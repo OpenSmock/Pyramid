@@ -96,6 +96,8 @@ PyramidIconInputPresenter class >> toploIconThemeCategoryFromClass: aClass withC
 
 			  elementSelectors := (aClass perform: method selector) collect: [
 				                      :suffix | prefix , '_' , suffix ].
+			
+			elementSelectors := elementSelectors asSortedCollection.
 
 			  elements := elementSelectors collect: [ :selector |
 					              PyramidLibraryElement new
